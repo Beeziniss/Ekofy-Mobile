@@ -1,13 +1,11 @@
 import 'package:ekofy_mobile/core/configs/theme/app_theme.dart';
-import 'package:ekofy_mobile/features/login_feature/presentation/pages/login_page.dart';
+import 'package:ekofy_mobile/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
@@ -19,8 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
-      home: const LoginPage()
+      theme: ThemeData(
+        fontFamily: 'BE_Vietnam_Pro',
+        colorScheme: AppTheme.darkTheme.colorScheme,
+      ),
+      home: const HomePage(),
     );
   }
 }

@@ -1,27 +1,27 @@
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
-import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
-import 'package:ekofy_mobile/core/widgets/button/gradient_border_text_field.dart';
-import 'package:ekofy_mobile/features/auth/presentation/widgets/remember_me_section.dart';
-import 'package:ekofy_mobile/features/auth/presentation/pages/register_page.dart';
 import 'package:ekofy_mobile/core/utils/validators.dart';
+import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
+import 'package:ekofy_mobile/features/auth/presentation/screens/login_screen.dart';
+import 'package:ekofy_mobile/core/widgets/button/gradient_border_text_field.dart';
+import 'package:ekofy_mobile/features/auth/presentation/screens/otp_verify_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
   @override
   State<StatefulWidget> createState() {
-    return _LoginPageState();
+    return _RegisterPageState();
   }
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   final GlobalKey _tooltipIconKey = GlobalKey();
   bool _obscurePassword = true;
   OverlayEntry? _tooltipOverlay;
@@ -63,7 +63,11 @@ class _LoginPageState extends State<LoginPage> {
 
                       _welcomeBackTitle(),
 
-                      const SizedBox(height: 80),
+                      const SizedBox(height: 40),
+
+                      _noteText(),
+
+                      const SizedBox(height: 40),
 
                       _emailFieldInput(),
 
@@ -73,15 +77,15 @@ class _LoginPageState extends State<LoginPage> {
 
                       const SizedBox(height: 20),
 
-                      RememberMeSection(),
+                      _confirmPasswordFieldInput(),
+
+                      const SizedBox(height: 30),
+
+                      _continueButton(context),
 
                       const SizedBox(height: 20),
 
-                      _loginButton(context),
-
-                      const SizedBox(height: 20),
-
-                      _signUpNavigationText(),
+                      _loginNavigationText(),
 
                       const SizedBox(height: 20),
 
@@ -103,21 +107,33 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _welcomeBackTitle() {
     return const Text(
-      'Welcome Back!',
+      'Let’s get started',
       style: TextStyle(
-        fontSize: 30,
+        fontSize: 35,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.bold,
       ),
     );
   }
 
-  Widget _signUpNavigationText() {
+  Widget _noteText() {
+    return const Text(
+      'We will send you a verification code through the registered email.',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 14,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget _loginNavigationText() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          'Don’t have an account? ',
+          'Already have an account?  ',
           style: TextStyle(
             color: Colors.white,
             fontSize: 14,
@@ -128,11 +144,11 @@ class _LoginPageState extends State<LoginPage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const RegisterPage()),
+              MaterialPageRoute(builder: (_) => const LoginPage()),
             );
           },
           child: const Text(
-            'Sign up to Ekofy.',
+            'Log in to Ekofy.',
             style: TextStyle(
               color: Colors.white,
               fontSize: 14,
@@ -181,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(width: 6),
             GestureDetector(
-              key: _tooltipIconKey,
+              // key: _tooltipIconKey,
               onTap: () {
                 _showTooltip(context);
               },
@@ -223,19 +239,77 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _loginButton(BuildContext context) {
+  Widget _confirmPasswordFieldInput() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Text(
+              'Confirm Password',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ],
+        ),
+        const SizedBox(height: 5),
+
+        GradientBorderTextField(
+          label: '',
+          gradientColors: [AppColors.deepBlue, AppColors.violet],
+          controller: _confirmPasswordController,
+          obscureText: _obscurePassword,
+          keyboardType: TextInputType.visiblePassword,
+          decoration: InputDecoration(
+            hintText: 'Enter your password',
+            hintStyle: const TextStyle(color: Colors.white70),
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 13,
+              vertical: 12,
+            ),
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                color: Colors.white70,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscurePassword = !_obscurePassword;
+                });
+              },
+            ),
+          ),
+          validator: (passwordConfirm) {
+            if (passwordConfirm != _passwordController.text) {
+              return 'Password do not match';
+            }
+            return null;
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _continueButton(BuildContext context) {
     return CustomButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          final email = _emailController.text.trim();
-          final password = _passwordController.text;
+          // final email = _emailController.text.trim();
+          // final password = _passwordController.text;
 
           // call api login here
-
-          print('Login with: $email / $password');
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => OtpVerifyPage()),
+          );
         }
       },
-      title: 'Log in',
+      title: 'Continue',
       height: 45,
       gradientColors: [AppColors.deepBlue, AppColors.violet],
     );

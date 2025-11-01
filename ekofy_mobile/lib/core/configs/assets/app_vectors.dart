@@ -17,4 +17,5 @@ class AppVectors {
   static const String searchIconActive = '${basePath}ic_search_active$format';
   static const String hubIconInactive = '${basePath}ic_hub_inactive$format';
   static const String hubIconActive = '${basePath}ic_hub_active$format';
+  static const String menuIcon = '${basePath}ic_menu$format';
 }

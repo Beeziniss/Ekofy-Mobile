@@ -1,23 +1,23 @@
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
+import 'package:ekofy_mobile/features/home/presentation/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MainTab extends StatefulWidget {
+  const MainTab({super.key});
 
   @override
-  State<StatefulWidget> createState() => _HomePageState();
+  State<StatefulWidget> createState() => _MainTabState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _MainTabState extends State<MainTab> with SingleTickerProviderStateMixin {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TabController? controller;
   int selectTab = 0;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller = TabController(length: 4, vsync: this);
 
@@ -29,19 +29,29 @@ class _HomePageState extends State<HomePage>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     controller?.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    // var mediaSize = MediaQuery.sizeOf(context);
+
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: _sideBar(),
       backgroundColor: AppColors.primaryBackground,
       body: TabBarView(
         controller: controller,
-        children: [Container(), Container(), Container(), Container()],
+        children: [
+          MainHomePage(scaffoldKey: _scaffoldKey),
+          Container(),
+          Container(),
+          Container(),
+        ],
       ),
+
+      //info: config cho bottom nav
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: AppColors.primaryBackground,
@@ -75,6 +85,7 @@ class _HomePageState extends State<HomePage>
               fontWeight: FontWeight.normal,
               fontSize: 15,
             ),
+
             tabs: [
               Tab(
                 text: 'Home',
@@ -119,6 +130,35 @@ class _HomePageState extends State<HomePage>
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _sideBar() {
+    return Drawer(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.circular(5),
+      ),
+      backgroundColor: AppColors.darkGrey,
+
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          // DrawerHeader(
+          //   child: Column(children: [Text('Test'), Text('Just test')]),
+          //   decoration: BoxDecoration(color: AppColors.secondaryBackground),
+          // ),
+          ListTile(
+            leading: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('The first', style: TextStyle(fontSize: 15)),
+                Text('The second', style: TextStyle(fontSize: 15)),
+                Text('The third', style: TextStyle(fontSize: 15)),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

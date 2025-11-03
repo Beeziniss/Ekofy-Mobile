@@ -37,6 +37,7 @@ dependencies:
   flutter_svg:
   flutter_otp_text_field: ^1.1.0+2
   flutter_bloc: ^9.1.1
+  go_router: ^13.0.0
   dio: ^5.9.0
   graphql_flutter: ^5.2.1
   flutter_secure_storage: ^9.2.4

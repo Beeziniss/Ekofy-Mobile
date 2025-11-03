@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ekofy_mobile/core/utils/result_type.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_api_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/models/login_request.dart';
@@ -12,7 +13,7 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.authApiDatasource, this.authLocalDatasource);
 
   @override
-  Future<bool> login({required String email, required String password}) async {
+  Future<Result> login({required String email, required String password}) async {
     try {
       final response = await authApiDatasource.login(
         LoginRequest(email: email, password: password),
@@ -25,8 +26,23 @@ class AuthRepositoryImpl implements AuthRepository {
       log(response.toJson().toString());
     } catch (e) {
       log('$e');
-      return false;
+      return Failure('$e');
     }
-    return true;
+    return Success(null);
+  }
+
+  @override
+  Future<Result<String?>> isAuthen() async{
+    try{
+      final token = await authLocalDatasource.getAccessToken();
+      if(token == null){
+        return Success(null);
+      }
+      return Success(token);
+    }
+    catch(e) {
+      log('$e');
+      return Failure('$e');
+    }
   }
 }

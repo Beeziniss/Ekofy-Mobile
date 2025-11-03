@@ -1,16 +1,19 @@
+import 'dart:developer';
+
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
+import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
 import 'package:ekofy_mobile/core/widgets/button/gradient_border_text_field.dart';
 import 'package:ekofy_mobile/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:ekofy_mobile/features/auth/presentation/bloc/auth_event.dart';
 import 'package:ekofy_mobile/features/auth/presentation/widgets/remember_me_section.dart';
-import 'package:ekofy_mobile/features/auth/presentation/screens/register_page.dart';
+import 'package:ekofy_mobile/features/auth/presentation/screens/register_screen.dart';
 import 'package:ekofy_mobile/core/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,13 +26,13 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController(text: '');
+  final _passwordController = TextEditingController(text: '');
   final GlobalKey _tooltipIconKey = GlobalKey();
   bool _obscurePassword = true;
   OverlayEntry? _tooltipOverlay;
 
-  void _handleGo(BuildContext context) {
+  void _handleLogin(BuildContext context) {
     context.read<AuthBloc>().add(
       AuthLoginStarted(
         email: _emailController.text,
@@ -38,8 +41,110 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  void _handleRetry(BuildContext context) {
+    context.read<AuthBloc>().add(AuthStarted());
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget _buildInitialWidget() {
+      return Positioned.fill(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: SvgPicture.asset(AppVectors.logo),
+                ),
+
+                const SizedBox(height: 40),
+
+                _welcomeBackTitle(),
+
+                const SizedBox(height: 80),
+
+                _emailFieldInput(),
+
+                const SizedBox(height: 20),
+
+                _passwordFieldInput(),
+
+                const SizedBox(height: 20),
+
+                RememberMeSection(),
+
+                const SizedBox(height: 20),
+
+                _loginButton(context),
+
+                const SizedBox(height: 20),
+
+                _signUpNavigationText(),
+
+                const SizedBox(height: 20),
+
+                SvgPicture.asset(AppVectors.orSplit),
+
+                const SizedBox(height: 20),
+
+                _loginWithGoogleButtton(),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget _inProgressLoginWidget() {
+      return Center(
+        child: Image.asset(AppImages.loader, gaplessPlayback: true),
+      );
+    }
+
+    Widget _buildFailureLoginWidget(String message) {
+      return Column(
+        children: [
+          Text(message),
+          const SizedBox(height: 24),
+          FilledButton.icon(
+            onPressed: () {
+              _handleRetry(context);
+            },
+            label: Text('Retry'),
+            icon: Icon(Icons.refresh),
+          ),
+        ],
+      );
+    }
+
+    final authState = context.watch<AuthBloc>().state;
+
+    var loginWidget = (switch (authState) {
+      AuthInitial() => _buildInitialWidget(),
+      AuthLoginInProgress() => _inProgressLoginWidget(),
+      AuthLoginFailure(message: final msg) => _buildFailureLoginWidget(msg),
+      AuthLoginSuccess() => Container(),
+      _ => Container(),
+    });
+
+    loginWidget = BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        switch (state) {
+          case AuthLoginSuccess():
+            context.read<AuthBloc>().add(AuthAuthenticateStarted());
+            break;
+          case AuthAuthenticateSuccess():
+            context.go(RouteName.home);
+            break;
+          default:
+        }
+      },
+      child: loginWidget,
+    );
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -59,54 +164,7 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.black.withOpacity(0.8),
             ),
 
-            Positioned.fill(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: SvgPicture.asset(AppVectors.logo),
-                      ),
-
-                      const SizedBox(height: 40),
-
-                      _welcomeBackTitle(),
-
-                      const SizedBox(height: 80),
-
-                      _emailFieldInput(),
-
-                      const SizedBox(height: 20),
-
-                      _passwordFieldInput(),
-
-                      const SizedBox(height: 20),
-
-                      RememberMeSection(),
-
-                      const SizedBox(height: 20),
-
-                      _loginButton(context),
-
-                      const SizedBox(height: 20),
-
-                      _signUpNavigationText(),
-
-                      const SizedBox(height: 20),
-
-                      SvgPicture.asset(AppVectors.orSplit),
-
-                      const SizedBox(height: 20),
-
-                      _loginWithGoogleButtton(),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            loginWidget,
           ],
         ),
       ),
@@ -140,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const RegisterPage()),
+              MaterialPageRoute(builder: (_) => const RegisterScreen()),
             );
           },
           child: const Text(
@@ -239,12 +297,7 @@ class _LoginPageState extends State<LoginPage> {
     return CustomButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          // final email = _emailController.text.trim();
-          // final password = _passwordController.text;
-
-          // call api login here
-          _handleGo(context);
-          // print('Login with: $email / $password');
+          _handleLogin(context);
         }
       },
       title: 'Log in',

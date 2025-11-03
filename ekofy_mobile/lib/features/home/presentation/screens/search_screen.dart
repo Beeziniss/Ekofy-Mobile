@@ -12,7 +12,6 @@ class SearchPage extends StatefulWidget {
 class _StateSearchPage extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     throw UnimplementedError();
   }
 }

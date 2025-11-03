@@ -5,19 +5,19 @@ import 'package:ekofy_mobile/core/utils/validators.dart';
 import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/login_screen.dart';
 import 'package:ekofy_mobile/core/widgets/button/gradient_border_text_field.dart';
-import 'package:ekofy_mobile/features/auth/presentation/screens/otp_verify_page.dart';
+import 'package:ekofy_mobile/features/auth/presentation/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
   @override
   State<StatefulWidget> createState() {
-    return _RegisterPageState();
+    return _RegisterScreenState();
   }
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -305,7 +305,7 @@ class _RegisterPageState extends State<RegisterPage> {
           // call api login here
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => OtpVerifyPage()),
+            MaterialPageRoute(builder: (context) => OtpScreen()),
           );
         }
       },

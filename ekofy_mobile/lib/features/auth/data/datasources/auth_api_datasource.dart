@@ -10,9 +10,10 @@ class AuthApiDatasource {
 
   Future<LoginResponse> login(LoginRequest loginRequest) async {
     final response = await dio.post(
-      '/login',
+      '/api/authentication/login/listener',
       data: {'email': loginRequest.email, 'password': loginRequest.password},
     );
     return LoginResponse.fromJson(response.data);
   }
+
 }

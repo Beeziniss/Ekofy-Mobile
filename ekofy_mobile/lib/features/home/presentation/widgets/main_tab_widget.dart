@@ -44,7 +44,7 @@ class _MainTabState extends State<MainTab> with SingleTickerProviderStateMixin {
       body: TabBarView(
         controller: controller,
         children: [
-          MainHomePage(scaffoldKey: _scaffoldKey),
+          HomeScreen(scaffoldKey: _scaffoldKey),
           Container(),
           Container(),
           Container(),

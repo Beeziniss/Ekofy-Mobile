@@ -7,15 +7,15 @@ import 'package:ekofy_mobile/features/home/data/models/menu_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class MainHomePage extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  const MainHomePage({super.key, required this.scaffoldKey});
+  const HomeScreen({super.key, required this.scaffoldKey});
 
   @override
-  State<StatefulWidget> createState() => _MainHomePageState();
+  State<StatefulWidget> createState() => _HomeScreenState();
 }
 
-class _MainHomePageState extends State<MainHomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey _menuKey = GlobalKey();
 
   @override

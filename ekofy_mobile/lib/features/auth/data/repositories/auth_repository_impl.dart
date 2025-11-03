@@ -23,7 +23,6 @@ class AuthRepositoryImpl implements AuthRepository {
         response.result.accessToken,
         response.result.refreshToken,
       );
-      log(response.toJson().toString());
     } catch (e) {
       log('$e');
       return Failure('$e');

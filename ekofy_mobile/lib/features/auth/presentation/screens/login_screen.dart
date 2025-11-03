@@ -1,15 +1,15 @@
 import 'dart:developer';
 
-import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
-import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
-import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
-import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
-import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
-import 'package:ekofy_mobile/core/widgets/button/gradient_border_text_field.dart';
-import 'package:ekofy_mobile/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:ekofy_mobile/features/auth/presentation/widgets/remember_me_section.dart';
-import 'package:ekofy_mobile/features/auth/presentation/screens/register_screen.dart';
-import 'package:ekofy_mobile/core/utils/validators.dart';
+import '../../../../core/configs/assets/app_images.dart';
+import '../../../../core/configs/assets/app_vectors.dart';
+import '../../../../core/configs/routes/app_route.dart';
+import '../../../../core/configs/theme/app_colors.dart';
+import '../../../../core/widgets/button/custom_button.dart';
+import '../../../../core/widgets/button/gradient_border_text_field.dart';
+import '../../../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../../../features/auth/presentation/widgets/remember_me_section.dart';
+import '../../../../features/auth/presentation/screens/register_screen.dart';
+import '../../../../core/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';

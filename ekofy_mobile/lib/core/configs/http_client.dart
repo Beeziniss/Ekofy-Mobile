@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final dio = Dio(
   BaseOptions(
-    baseUrl: 'https://beeziniss.online',
+    baseUrl: dotenv.env['BACKEND_URL']! ,
     contentType: Headers.jsonContentType,
     responseType: ResponseType.json,
     validateStatus: (int? status) {

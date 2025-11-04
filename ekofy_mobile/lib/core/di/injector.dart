@@ -6,20 +6,23 @@ import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasourc
 import 'package:ekofy_mobile/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
 import 'package:ekofy_mobile/features/auth/presentation/providers/auth_provider.dart';
+// removed unused flutter/material import
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// removed unused graphql_flutter import
 
 // AndroidOptions getAndroidOptions() =>
 //     const AndroidOptions(encryptedSharedPreferences: true);
 //       final ss = FlutterSecureStorage(aOptions: getAndroidOptions());
 
 //! EXTERNAL
-final dioProvider = Provider<Dio>((ref) => dio);
-final apiHandleProvider = Provider<ApiHandle>((ref) => ApiHandle(dio));
+final dioProvider = Provider<Dio>((ref) => dioConfig);
+final apiHandleProvider = Provider<ApiHandle>((ref) => ApiHandle(dioConfig));
 
 final secureStorageProvider = Provider<FlutterSecureStorage>((ref) {
   throw UnimplementedError('secureStorageProvider dc override trong main');
 });
+
 //!=========
 
 //* === FOR SERVICE INJECT ===

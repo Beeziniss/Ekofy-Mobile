@@ -6,6 +6,7 @@ import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/features/home/data/models/menu_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -27,211 +28,193 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: _appBarLeading(),
         actions: [_profileAction()],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 30), // cach phia tren ra 1 khoang cho no tu nhien
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Demo',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      body: Query(
+        options: QueryOptions(
+          document: gql('''
+            query CombinedQuery(
+            ) {
+              tracks(take: 10) {
+                items {
+                  id
+                  name
+                  mainArtistIds
+                  coverImage
+                }
+              }
+              artists {
+                items {
+                  id
+                  stageName
+                }
+              }
+            }
+          '''),
+          variables: const {'take': 10},
+        ),
+        builder: (result, {refetch, fetchMore}) {
+          // Loading
+          if (result.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          // Error
+          if (result.hasException) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.error_outline, size: 60, color: Colors.red),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Error: ${result.exception.toString()}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => refetch?.call(),
+                    child: const Text('Retry'),
+                  ),
+                ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: SizedBox(
-                height: 160, // fix cung height bai hat
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
+            );
+          }
+
+          // Parse data
+          final tracks =
+              (result.data?['tracks']['items'] as List?)
+                  ?.map((track) {
+                    final artistIds = List<String>.from(
+                      track['mainArtistIds'] ?? [],
+                    );
+                    final artistNames =
+                        (result.data?['artists']['items'] as List?)
+                            ?.where(
+                              (artist) => artistIds.contains(artist['id']),
+                            )
+                            .map((artist) => artist['stageName'] as String)
+                            .toList();
+                    return {
+                      'id': track['id'],
+                      'name': track['name'],
+                      'coverImage': track['coverImage'],
+                      'artistNames': artistNames,
+                    };
+                  })
+                  .whereType<Map<String, dynamic>>()
+                  .toList() ??
+              [];
+
+          return SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 30),
+                Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: 10,
-                  separatorBuilder: (_, __) => const SizedBox(width: 12),
-                  itemBuilder: (context, index) => SizedBox(
-                    width: 120, // fix cung width
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple.shade100,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            Icons.music_note,
-                            size: 40,
-                            color: Colors.white,
-                          ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Tracks',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
-                        const SizedBox(height: 6),
-                        const Text(
-                          'Muzik, hehe',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
+                _buildTracksList(tracks, refetch),
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Vẫn là demo nhưng có số 2',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildTracksList(
+    List<Map<String, dynamic>> tracks,
+    VoidCallback? refetch,
+  ) {
+    if (tracks.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.all(30),
+        child: Center(
+          child: Column(
+            children: [
+              const Text('No tracks available'),
+              TextButton(onPressed: refetch, child: const Text('Refresh')),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: SizedBox(
+        height: 190,
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          itemCount: tracks.length,
+          separatorBuilder: (_, __) => const SizedBox(width: 12),
+          itemBuilder: (context, index) {
+            final track = tracks[index];
+
+            return IntrinsicHeight(
               child: SizedBox(
-                height: 160, // fix cung height bai hat
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: 10,
-                  separatorBuilder: (_, __) => const SizedBox(width: 12),
-                  itemBuilder: (context, index) => SizedBox(
-                    width: 120, // fix cung width
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple.shade100,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            Icons.music_note,
-                            size: 40,
-                            color: Colors.white,
-                          ),
+                width: 120,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurple.shade100,
+                        borderRadius: BorderRadius.circular(12),
+                        image: DecorationImage(
+                          image: NetworkImage(track['coverImage']),
+                          fit: BoxFit.cover,
                         ),
-                        const SizedBox(height: 6),
-                        const Text(
-                          'Muzik, hehe',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
+                      ),
+                      child: const Icon(
+                        Icons.music_note,
+                        size: 40,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
+                    const SizedBox(height: 6),
+                    Text(
+                      track['name'],
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const Spacer(),
+                    if (track['artistNames'] != null &&
+                        track['artistNames'].isNotEmpty)
+                      Text(
+                        '${track['artistNames'].join(', ')}',
+                        style: TextStyle(fontSize: 11, color: Colors.grey[600]),
+                      ),
+                  ],
                 ),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'What \'s that',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: SizedBox(
-                height: 160, // fix cung height bai hat
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: 10,
-                  separatorBuilder: (_, __) => const SizedBox(width: 12),
-                  itemBuilder: (context, index) => SizedBox(
-                    width: 120, // fix cung width
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple.shade100,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            Icons.music_note,
-                            size: 40,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        const Text(
-                          'Muzik, hehe',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Vẫn là demo nhưng có số 4',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: SizedBox(
-                height: 160, // fix cung height bai hat
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: 10,
-                  separatorBuilder: (_, __) => const SizedBox(width: 12),
-                  itemBuilder: (context, index) => SizedBox(
-                    width: 120, // fix cung width
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple.shade100,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            Icons.music_note,
-                            size: 40,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        const Text(
-                          'Muzik, hehe',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
   }
 
-  //info: leading gocs tren ben trai
   Widget _appBarLeading() {
     return IconButton(
       onPressed: () {
@@ -247,23 +230,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _profileAction() {
-    // return PopupMenuButton<String>(
-    //   // onSelected: ,
-    //   itemBuilder: (BuildContext context) {
-    //     return [
-    //       PopupMenuItem(value: 'Profile', child: Text('Profile')),
-    //       PopupMenuItem(value: 'Profile', child: Text('Profile')),
-    //       PopupMenuItem(value: 'Profile', child: Text('Profile')),
-    //     ];
-    //   },
-    //   child: Padding(
-    //     padding: const EdgeInsets.symmetric(horizontal: 16),
-    //     child: CircleAvatar(
-    //       radius: 18,
-    //       backgroundImage: AssetImage(AppImages.backgroundLogin),
-    //     ),
-    //   ),
-    // );
     return GestureDetector(
       key: _menuKey,
       onTap: () => _showCustomMenu(context),
@@ -288,23 +254,20 @@ class _HomeScreenState extends State<HomeScreen> {
       ancestor: overlay,
     );
 
-    //custom menu position
     final selected = await showMenu(
       context: context,
-      menuPadding: EdgeInsetsGeometry.symmetric(vertical: 2, horizontal: 2),
+      menuPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
       elevation: 1,
       color: AppColors.secondaryBackground,
       shadowColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
-
-      //info: set vi tri cua menu nam duoi avatar
       position: RelativeRect.fromLTRB(
         position.dx,
-        position.dy + button.size.height, //info: display dưới avatar
+        position.dy + button.size.height,
         position.dx,
         position.dy - 20,
       ),
-      items: [
+      items: const [
         PopupMenuItem<HomePageMenu>(
           value: HomePageMenu.profile,
           child: Text('Profile'),
@@ -313,14 +276,6 @@ class _HomeScreenState extends State<HomeScreen> {
           value: HomePageMenu.logout,
           child: Text('Logout'),
         ),
-        // PopupMenuItem<String>(
-        //   value: 'Tài khoản',
-        //   child: Text('Nhìn cái dí đèo'),
-        // ),
-        // PopupMenuItem<String>(
-        //   value: 'Đăng xuất',
-        //   child: Text('Đăng xuất')
-        // ),
       ],
     );
 

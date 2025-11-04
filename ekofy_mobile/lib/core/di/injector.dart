@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ekofy_mobile/core/configs/api_handle.dart';
 import 'package:ekofy_mobile/core/configs/http_client.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_api_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasource.dart';
@@ -14,9 +15,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 //! EXTERNAL
 final dioProvider = Provider<Dio>((ref) => dio);
+final apiHandleProvider = Provider<ApiHandle>((ref) => ApiHandle(dio));
 
 final secureStorageProvider = Provider<FlutterSecureStorage>((ref) {
-  throw UnimplementedError('secureStorageProvider be overridden in main');
+  throw UnimplementedError('secureStorageProvider dc override trong main');
 });
 //!=========
 
@@ -27,8 +29,8 @@ final authLocalDatasourceProvider = Provider<AuthLocalDatasource>((ref) {
 });
 
 final authApiDatasourceProvider = Provider<AuthApiDatasource>((ref) {
-  final dioInstance = ref.watch(dioProvider);
-  return AuthApiDatasource(dioInstance);
+  final apiHandle = ref.watch(apiHandleProvider);
+  return AuthApiDatasource(apiHandle);
 });
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {

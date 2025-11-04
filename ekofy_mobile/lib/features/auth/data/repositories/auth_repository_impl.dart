@@ -5,6 +5,7 @@ import 'package:ekofy_mobile/core/utils/results/result_type.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_api_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/login_request.dart';
+import 'package:ekofy_mobile/features/auth/data/models/request/register_request.dart';
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -40,7 +41,7 @@ class AuthRepositoryImpl implements AuthRepository {
       return Success('');
     } on DioException catch (e) {
       log('$e');
-      return Failure('Server Error!');
+      return Failure('Server or Request Error!');
     }
   }
 
@@ -55,6 +56,39 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       log('$e');
       return Failure('$e');
+    }
+  }
+
+  @override
+  Future<ResultType> register({
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String fullName,
+    required DateTime birthDate,
+    required String gender,
+    required String displayName,
+  }) async {
+    try {
+      final response = await authApiDatasource.register(
+        RegisterRequest(
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+          fullName: fullName,
+          birthDate: birthDate,
+          gender: gender,
+          displayName: displayName,
+        ),
+      );
+      response.when(
+        success: (res) => Success(null),
+        failure: (res, status) => Failure(res),
+      );
+      return Success('');
+    } on DioException catch (e) {
+      log('$e');
+      return Failure('Server or Request Error!');
     }
   }
 }

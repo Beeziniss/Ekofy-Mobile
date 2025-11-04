@@ -21,14 +21,217 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AppBar(
+      backgroundColor: AppColors.primaryBackground,
+      appBar: AppBar(
         backgroundColor: AppColors.primaryBackground,
         leading: _appBarLeading(),
         actions: [_profileAction()],
       ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 30), // cach phia tren ra 1 khoang cho no tu nhien
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Demo',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: SizedBox(
+                height: 160, // fix cung height bai hat
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: 10,
+                  separatorBuilder: (_, __) => const SizedBox(width: 12),
+                  itemBuilder: (context, index) => SizedBox(
+                    width: 120, // fix cung width
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple.shade100,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(
+                            Icons.music_note,
+                            size: 40,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Muzik, hehe',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Vẫn là demo nhưng có số 2',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: SizedBox(
+                height: 160, // fix cung height bai hat
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: 10,
+                  separatorBuilder: (_, __) => const SizedBox(width: 12),
+                  itemBuilder: (context, index) => SizedBox(
+                    width: 120, // fix cung width
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple.shade100,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(
+                            Icons.music_note,
+                            size: 40,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Muzik, hehe',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'What \'s that',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: SizedBox(
+                height: 160, // fix cung height bai hat
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: 10,
+                  separatorBuilder: (_, __) => const SizedBox(width: 12),
+                  itemBuilder: (context, index) => SizedBox(
+                    width: 120, // fix cung width
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple.shade100,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(
+                            Icons.music_note,
+                            size: 40,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Muzik, hehe',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Vẫn là demo nhưng có số 4',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: SizedBox(
+                height: 160, // fix cung height bai hat
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: 10,
+                  separatorBuilder: (_, __) => const SizedBox(width: 12),
+                  itemBuilder: (context, index) => SizedBox(
+                    width: 120, // fix cung width
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple.shade100,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(
+                            Icons.music_note,
+                            size: 40,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Muzik, hehe',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
+  //info: leading gocs tren ben trai
   Widget _appBarLeading() {
     return IconButton(
       onPressed: () {

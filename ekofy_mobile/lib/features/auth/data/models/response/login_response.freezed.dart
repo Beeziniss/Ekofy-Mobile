@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint, unreachable_switch_case
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'login_response.dart';
@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LoginResponse {
 
- String get message; LoginResult get result;
+ String? get message; LoginSuccessResult? get result;//info: for login fail
+ String? get detail;
 /// Create a copy of LoginResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +29,16 @@ $LoginResponseCopyWith<LoginResponse> get copyWith => _$LoginResponseCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginResponse&&(identical(other.message, message) || other.message == message)&&(identical(other.result, result) || other.result == result));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginResponse&&(identical(other.message, message) || other.message == message)&&(identical(other.result, result) || other.result == result)&&(identical(other.detail, detail) || other.detail == detail));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,message,result);
+int get hashCode => Object.hash(runtimeType,message,result,detail);
 
 @override
 String toString() {
-  return 'LoginResponse(message: $message, result: $result)';
+  return 'LoginResponse(message: $message, result: $result, detail: $detail)';
 }
 
 
@@ -48,11 +49,11 @@ abstract mixin class $LoginResponseCopyWith<$Res>  {
   factory $LoginResponseCopyWith(LoginResponse value, $Res Function(LoginResponse) _then) = _$LoginResponseCopyWithImpl;
 @useResult
 $Res call({
- String message, LoginResult result
+ String? message, LoginSuccessResult? result, String? detail
 });
 
 
-$LoginResultCopyWith<$Res> get result;
+$LoginSuccessResultCopyWith<$Res>? get result;
 
 }
 /// @nodoc
@@ -65,20 +66,24 @@ class _$LoginResponseCopyWithImpl<$Res>
 
 /// Create a copy of LoginResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? message = null,Object? result = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? message = freezed,Object? result = freezed,Object? detail = freezed,}) {
   return _then(_self.copyWith(
-message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,result: null == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
-as LoginResult,
+message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,result: freezed == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
+as LoginSuccessResult?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 /// Create a copy of LoginResponse
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$LoginResultCopyWith<$Res> get result {
-  
-  return $LoginResultCopyWith<$Res>(_self.result, (value) {
+$LoginSuccessResultCopyWith<$Res>? get result {
+    if (_self.result == null) {
+    return null;
+  }
+
+  return $LoginSuccessResultCopyWith<$Res>(_self.result!, (value) {
     return _then(_self.copyWith(result: value));
   });
 }
@@ -125,10 +130,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _LoginResponse():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -163,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String message,  LoginResult result)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? message,  LoginSuccessResult? result,  String? detail)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoginResponse() when $default != null:
-return $default(_that.message,_that.result);case _:
+return $default(_that.message,_that.result,_that.detail);case _:
   return orElse();
 
 }
@@ -184,13 +186,10 @@ return $default(_that.message,_that.result);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String message,  LoginResult result)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? message,  LoginSuccessResult? result,  String? detail)  $default,) {final _that = this;
 switch (_that) {
 case _LoginResponse():
-return $default(_that.message,_that.result);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.message,_that.result,_that.detail);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -204,10 +203,10 @@ return $default(_that.message,_that.result);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String message,  LoginResult result)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? message,  LoginSuccessResult? result,  String? detail)?  $default,) {final _that = this;
 switch (_that) {
 case _LoginResponse() when $default != null:
-return $default(_that.message,_that.result);case _:
+return $default(_that.message,_that.result,_that.detail);case _:
   return null;
 
 }
@@ -219,11 +218,13 @@ return $default(_that.message,_that.result);case _:
 @JsonSerializable()
 
 class _LoginResponse implements LoginResponse {
-  const _LoginResponse({required this.message, required this.result});
+  const _LoginResponse(this.message, this.result, this.detail);
   factory _LoginResponse.fromJson(Map<String, dynamic> json) => _$LoginResponseFromJson(json);
 
-@override final  String message;
-@override final  LoginResult result;
+@override final  String? message;
+@override final  LoginSuccessResult? result;
+//info: for login fail
+@override final  String? detail;
 
 /// Create a copy of LoginResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -238,16 +239,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginResponse&&(identical(other.message, message) || other.message == message)&&(identical(other.result, result) || other.result == result));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginResponse&&(identical(other.message, message) || other.message == message)&&(identical(other.result, result) || other.result == result)&&(identical(other.detail, detail) || other.detail == detail));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,message,result);
+int get hashCode => Object.hash(runtimeType,message,result,detail);
 
 @override
 String toString() {
-  return 'LoginResponse(message: $message, result: $result)';
+  return 'LoginResponse(message: $message, result: $result, detail: $detail)';
 }
 
 
@@ -258,11 +259,11 @@ abstract mixin class _$LoginResponseCopyWith<$Res> implements $LoginResponseCopy
   factory _$LoginResponseCopyWith(_LoginResponse value, $Res Function(_LoginResponse) _then) = __$LoginResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String message, LoginResult result
+ String? message, LoginSuccessResult? result, String? detail
 });
 
 
-@override $LoginResultCopyWith<$Res> get result;
+@override $LoginSuccessResultCopyWith<$Res>? get result;
 
 }
 /// @nodoc
@@ -275,11 +276,12 @@ class __$LoginResponseCopyWithImpl<$Res>
 
 /// Create a copy of LoginResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? message = null,Object? result = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? message = freezed,Object? result = freezed,Object? detail = freezed,}) {
   return _then(_LoginResponse(
-message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,result: null == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
-as LoginResult,
+freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,freezed == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
+as LoginSuccessResult?,freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -287,9 +289,12 @@ as LoginResult,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$LoginResultCopyWith<$Res> get result {
-  
-  return $LoginResultCopyWith<$Res>(_self.result, (value) {
+$LoginSuccessResultCopyWith<$Res>? get result {
+    if (_self.result == null) {
+    return null;
+  }
+
+  return $LoginSuccessResultCopyWith<$Res>(_self.result!, (value) {
     return _then(_self.copyWith(result: value));
   });
 }
@@ -297,22 +302,22 @@ $LoginResultCopyWith<$Res> get result {
 
 
 /// @nodoc
-mixin _$LoginResult {
+mixin _$LoginSuccessResult {
 
  String get accessToken; String get refreshToken; String get userId; String get listenerId; String get role; String get avatarImage;
-/// Create a copy of LoginResult
+/// Create a copy of LoginSuccessResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$LoginResultCopyWith<LoginResult> get copyWith => _$LoginResultCopyWithImpl<LoginResult>(this as LoginResult, _$identity);
+$LoginSuccessResultCopyWith<LoginSuccessResult> get copyWith => _$LoginSuccessResultCopyWithImpl<LoginSuccessResult>(this as LoginSuccessResult, _$identity);
 
-  /// Serializes this LoginResult to a JSON map.
+  /// Serializes this LoginSuccessResult to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginResult&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.listenerId, listenerId) || other.listenerId == listenerId)&&(identical(other.role, role) || other.role == role)&&(identical(other.avatarImage, avatarImage) || other.avatarImage == avatarImage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginSuccessResult&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.listenerId, listenerId) || other.listenerId == listenerId)&&(identical(other.role, role) || other.role == role)&&(identical(other.avatarImage, avatarImage) || other.avatarImage == avatarImage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -321,15 +326,15 @@ int get hashCode => Object.hash(runtimeType,accessToken,refreshToken,userId,list
 
 @override
 String toString() {
-  return 'LoginResult(accessToken: $accessToken, refreshToken: $refreshToken, userId: $userId, listenerId: $listenerId, role: $role, avatarImage: $avatarImage)';
+  return 'LoginSuccessResult(accessToken: $accessToken, refreshToken: $refreshToken, userId: $userId, listenerId: $listenerId, role: $role, avatarImage: $avatarImage)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $LoginResultCopyWith<$Res>  {
-  factory $LoginResultCopyWith(LoginResult value, $Res Function(LoginResult) _then) = _$LoginResultCopyWithImpl;
+abstract mixin class $LoginSuccessResultCopyWith<$Res>  {
+  factory $LoginSuccessResultCopyWith(LoginSuccessResult value, $Res Function(LoginSuccessResult) _then) = _$LoginSuccessResultCopyWithImpl;
 @useResult
 $Res call({
  String accessToken, String refreshToken, String userId, String listenerId, String role, String avatarImage
@@ -340,14 +345,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$LoginResultCopyWithImpl<$Res>
-    implements $LoginResultCopyWith<$Res> {
-  _$LoginResultCopyWithImpl(this._self, this._then);
+class _$LoginSuccessResultCopyWithImpl<$Res>
+    implements $LoginSuccessResultCopyWith<$Res> {
+  _$LoginSuccessResultCopyWithImpl(this._self, this._then);
 
-  final LoginResult _self;
-  final $Res Function(LoginResult) _then;
+  final LoginSuccessResult _self;
+  final $Res Function(LoginSuccessResult) _then;
 
-/// Create a copy of LoginResult
+/// Create a copy of LoginSuccessResult
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? accessToken = null,Object? refreshToken = null,Object? userId = null,Object? listenerId = null,Object? role = null,Object? avatarImage = null,}) {
   return _then(_self.copyWith(
@@ -364,8 +369,8 @@ as String,
 }
 
 
-/// Adds pattern-matching-related methods to [LoginResult].
-extension LoginResultPatterns on LoginResult {
+/// Adds pattern-matching-related methods to [LoginSuccessResult].
+extension LoginSuccessResultPatterns on LoginSuccessResult {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -378,10 +383,10 @@ extension LoginResultPatterns on LoginResult {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LoginResult value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LoginSuccessResult value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _LoginResult() when $default != null:
+case _LoginSuccessResult() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -400,14 +405,11 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LoginResult value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LoginSuccessResult value)  $default,){
 final _that = this;
 switch (_that) {
-case _LoginResult():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+case _LoginSuccessResult():
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -421,10 +423,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LoginResult value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LoginSuccessResult value)?  $default,){
 final _that = this;
 switch (_that) {
-case _LoginResult() when $default != null:
+case _LoginSuccessResult() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -444,7 +446,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String accessToken,  String refreshToken,  String userId,  String listenerId,  String role,  String avatarImage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _LoginResult() when $default != null:
+case _LoginSuccessResult() when $default != null:
 return $default(_that.accessToken,_that.refreshToken,_that.userId,_that.listenerId,_that.role,_that.avatarImage);case _:
   return orElse();
 
@@ -465,11 +467,8 @@ return $default(_that.accessToken,_that.refreshToken,_that.userId,_that.listener
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String accessToken,  String refreshToken,  String userId,  String listenerId,  String role,  String avatarImage)  $default,) {final _that = this;
 switch (_that) {
-case _LoginResult():
-return $default(_that.accessToken,_that.refreshToken,_that.userId,_that.listenerId,_that.role,_that.avatarImage);case _:
-  throw StateError('Unexpected subclass');
-
-}
+case _LoginSuccessResult():
+return $default(_that.accessToken,_that.refreshToken,_that.userId,_that.listenerId,_that.role,_that.avatarImage);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -485,7 +484,7 @@ return $default(_that.accessToken,_that.refreshToken,_that.userId,_that.listener
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String accessToken,  String refreshToken,  String userId,  String listenerId,  String role,  String avatarImage)?  $default,) {final _that = this;
 switch (_that) {
-case _LoginResult() when $default != null:
+case _LoginSuccessResult() when $default != null:
 return $default(_that.accessToken,_that.refreshToken,_that.userId,_that.listenerId,_that.role,_that.avatarImage);case _:
   return null;
 
@@ -497,9 +496,9 @@ return $default(_that.accessToken,_that.refreshToken,_that.userId,_that.listener
 /// @nodoc
 @JsonSerializable()
 
-class _LoginResult implements LoginResult {
-  const _LoginResult({required this.accessToken, required this.refreshToken, required this.userId, required this.listenerId, required this.role, required this.avatarImage});
-  factory _LoginResult.fromJson(Map<String, dynamic> json) => _$LoginResultFromJson(json);
+class _LoginSuccessResult implements LoginSuccessResult {
+  const _LoginSuccessResult({required this.accessToken, required this.refreshToken, required this.userId, required this.listenerId, required this.role, required this.avatarImage});
+  factory _LoginSuccessResult.fromJson(Map<String, dynamic> json) => _$LoginSuccessResultFromJson(json);
 
 @override final  String accessToken;
 @override final  String refreshToken;
@@ -508,20 +507,20 @@ class _LoginResult implements LoginResult {
 @override final  String role;
 @override final  String avatarImage;
 
-/// Create a copy of LoginResult
+/// Create a copy of LoginSuccessResult
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$LoginResultCopyWith<_LoginResult> get copyWith => __$LoginResultCopyWithImpl<_LoginResult>(this, _$identity);
+_$LoginSuccessResultCopyWith<_LoginSuccessResult> get copyWith => __$LoginSuccessResultCopyWithImpl<_LoginSuccessResult>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$LoginResultToJson(this, );
+  return _$LoginSuccessResultToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginResult&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.listenerId, listenerId) || other.listenerId == listenerId)&&(identical(other.role, role) || other.role == role)&&(identical(other.avatarImage, avatarImage) || other.avatarImage == avatarImage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginSuccessResult&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.listenerId, listenerId) || other.listenerId == listenerId)&&(identical(other.role, role) || other.role == role)&&(identical(other.avatarImage, avatarImage) || other.avatarImage == avatarImage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -530,15 +529,15 @@ int get hashCode => Object.hash(runtimeType,accessToken,refreshToken,userId,list
 
 @override
 String toString() {
-  return 'LoginResult(accessToken: $accessToken, refreshToken: $refreshToken, userId: $userId, listenerId: $listenerId, role: $role, avatarImage: $avatarImage)';
+  return 'LoginSuccessResult(accessToken: $accessToken, refreshToken: $refreshToken, userId: $userId, listenerId: $listenerId, role: $role, avatarImage: $avatarImage)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$LoginResultCopyWith<$Res> implements $LoginResultCopyWith<$Res> {
-  factory _$LoginResultCopyWith(_LoginResult value, $Res Function(_LoginResult) _then) = __$LoginResultCopyWithImpl;
+abstract mixin class _$LoginSuccessResultCopyWith<$Res> implements $LoginSuccessResultCopyWith<$Res> {
+  factory _$LoginSuccessResultCopyWith(_LoginSuccessResult value, $Res Function(_LoginSuccessResult) _then) = __$LoginSuccessResultCopyWithImpl;
 @override @useResult
 $Res call({
  String accessToken, String refreshToken, String userId, String listenerId, String role, String avatarImage
@@ -549,17 +548,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$LoginResultCopyWithImpl<$Res>
-    implements _$LoginResultCopyWith<$Res> {
-  __$LoginResultCopyWithImpl(this._self, this._then);
+class __$LoginSuccessResultCopyWithImpl<$Res>
+    implements _$LoginSuccessResultCopyWith<$Res> {
+  __$LoginSuccessResultCopyWithImpl(this._self, this._then);
 
-  final _LoginResult _self;
-  final $Res Function(_LoginResult) _then;
+  final _LoginSuccessResult _self;
+  final $Res Function(_LoginSuccessResult) _then;
 
-/// Create a copy of LoginResult
+/// Create a copy of LoginSuccessResult
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? accessToken = null,Object? refreshToken = null,Object? userId = null,Object? listenerId = null,Object? role = null,Object? avatarImage = null,}) {
-  return _then(_LoginResult(
+  return _then(_LoginSuccessResult(
 accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
 as String,refreshToken: null == refreshToken ? _self.refreshToken : refreshToken // ignore: cast_nullable_to_non_nullable
 as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable

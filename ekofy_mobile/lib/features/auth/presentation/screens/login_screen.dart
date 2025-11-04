@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'package:ekofy_mobile/core/di/injector.dart';
 
 import '../../../../core/configs/assets/app_images.dart';
 import '../../../../core/configs/assets/app_vectors.dart';
@@ -6,25 +6,25 @@ import '../../../../core/configs/routes/app_route.dart';
 import '../../../../core/configs/theme/app_colors.dart';
 import '../../../../core/widgets/button/custom_button.dart';
 import '../../../../core/widgets/button/gradient_border_text_field.dart';
-import '../../../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../../../features/auth/presentation/widgets/remember_me_section.dart';
 import '../../../../features/auth/presentation/screens/register_screen.dart';
 import '../../../../core/utils/validators.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginPage extends StatefulWidget {
+// Import auth provider
+import '../providers/auth_provider.dart';
+
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<StatefulWidget> createState() {
-    return _LoginPageState();
-  }
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController(text: '');
   final _passwordController = TextEditingController(text: '');
@@ -32,22 +32,50 @@ class _LoginPageState extends State<LoginPage> {
   bool _obscurePassword = true;
   OverlayEntry? _tooltipOverlay;
 
-  void _handleLogin(BuildContext context) {
-    context.read<AuthBloc>().add(
-      AuthLoginStarted(
-        email: _emailController.text,
-        password: _passwordController.text,
-      ),
-    );
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _hideTooltip();
+    super.dispose();
   }
 
-  void _handleRetry(BuildContext context) {
-    context.read<AuthBloc>().add(AuthStarted());
+  void _handleLogin() {
+    //info: handle login
+    ref
+        .read(authProvider.notifier)
+        .login(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+  }
+
+  void _handleRetry() {
+    //info: reset state
+    ref.read(authProvider.notifier).reset();
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget _buildInitialWidget() {
+    // listen to auth state changes
+    ref.listen<AuthState>(authProvider, (previous, next) {
+      switch (next) {
+        case AuthLoginSuccess():
+          // trigger authenticate --> login success
+          ref.read(authProvider.notifier).authenticate();
+          break;
+        case AuthAuthenticateSuccess():
+          context.go(RouteName.home);
+          break;
+        default:
+          break;
+      }
+    });
+
+    //watch auth state, like BlocBuilder
+    final authState = ref.watch(authProvider);
+
+    Widget buildInitialWidget() {
       return Positioned.fill(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
@@ -59,38 +87,22 @@ class _LoginPageState extends State<LoginPage> {
                   alignment: Alignment.topCenter,
                   child: SvgPicture.asset(AppVectors.logo),
                 ),
-
                 const SizedBox(height: 40),
-
                 _welcomeBackTitle(),
-
                 const SizedBox(height: 80),
-
                 _emailFieldInput(),
-
                 const SizedBox(height: 20),
-
                 _passwordFieldInput(),
-
                 const SizedBox(height: 20),
-
                 RememberMeSection(),
-
                 const SizedBox(height: 20),
-
-                _loginButton(context),
-
+                _loginButton(),
                 const SizedBox(height: 20),
-
                 _signUpNavigationText(),
-
                 const SizedBox(height: 20),
-
                 SvgPicture.asset(AppVectors.orSplit),
-
                 const SizedBox(height: 20),
-
-                _loginWithGoogleButtton(),
+                _loginWithGoogleButton(),
               ],
             ),
           ),
@@ -98,21 +110,20 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
 
-    Widget _inProgressLoginWidget() {
+    Widget inProgressLoginWidget() {
       return Center(
         child: Image.asset(AppImages.loader, gaplessPlayback: true),
       );
     }
 
-    Widget _buildFailureLoginWidget(String message) {
+    Widget buildFailureLoginWidget(String message) {
       return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(message),
+          Text(message, style: TextStyle(color: Colors.red, fontSize: 16)),
           const SizedBox(height: 24),
           FilledButton.icon(
-            onPressed: () {
-              _handleRetry(context);
-            },
+            onPressed: _handleRetry,
             label: Text('Retry'),
             icon: Icon(Icons.refresh),
           ),
@@ -120,30 +131,14 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
 
-    final authState = context.watch<AuthBloc>().state;
-
-    var loginWidget = (switch (authState) {
-      AuthInitial() => _buildInitialWidget(),
-      AuthLoginInProgress() => _inProgressLoginWidget(),
-      AuthLoginFailure(message: final msg) => _buildFailureLoginWidget(msg),
-      AuthLoginSuccess() => Container(),
-      _ => Container(),
-    });
-
-    loginWidget = BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        switch (state) {
-          case AuthLoginSuccess():
-            context.read<AuthBloc>().add(AuthAuthenticateStarted());
-            break;
-          case AuthAuthenticateSuccess():
-            context.go(RouteName.home);
-            break;
-          default:
-        }
-      },
-      child: loginWidget,
-    );
+    //*: SWITCH STATE
+    final loginWidget = switch (authState) {
+      AuthInitial() => buildInitialWidget(),
+      AuthLoginInProgress() => inProgressLoginWidget(),
+      AuthLoginFailure(message: final msg) => buildFailureLoginWidget(msg),
+      AuthLoginSuccess() => inProgressLoginWidget(), // Đang authenticate
+      _ => buildInitialWidget(),
+    };
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -158,12 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-
-            Container(
-              // ignore: deprecated_member_use
-              color: Colors.black.withOpacity(0.8),
-            ),
-
+            Container(color: Colors.black.withOpacity(0.8)),
             loginWidget,
           ],
         ),
@@ -252,15 +242,12 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(width: 6),
             GestureDetector(
               key: _tooltipIconKey,
-              onTap: () {
-                _showTooltip(context);
-              },
+              onTap: () => _showTooltip(context),
               child: SvgPicture.asset('assets/vectors/tooltip_icon.svg'),
             ),
           ],
         ),
         const SizedBox(height: 5),
-
         GradientBorderTextField(
           label: '',
           gradientColors: [AppColors.deepBlue, AppColors.violet],
@@ -293,11 +280,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _loginButton(BuildContext context) {
+  Widget _loginButton() {
     return CustomButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          _handleLogin(context);
+          _handleLogin();
         }
       },
       title: 'Log in',
@@ -306,7 +293,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _loginWithGoogleButtton() {
+  Widget _loginWithGoogleButton() {
     return CustomButton(
       onPressed: () {},
       title: 'Continue with Google',
@@ -320,7 +307,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _showTooltip(BuildContext context) {
-    _hideTooltip(); // Xoá cái cũ nếu có
+    _hideTooltip();
 
     final renderBox =
         _tooltipIconKey.currentContext?.findRenderObject() as RenderBox?;
@@ -331,14 +318,12 @@ class _LoginPageState extends State<LoginPage> {
     _tooltipOverlay = OverlayEntry(
       builder: (context) => Stack(
         children: [
-          // Transparent area to detect tap outside
           Positioned.fill(
             child: GestureDetector(
               onTap: _hideTooltip,
               child: Container(color: Colors.transparent),
             ),
           ),
-
           Positioned(
             left: position.dx - 75,
             top: position.dy - 110,

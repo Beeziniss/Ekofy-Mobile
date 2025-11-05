@@ -1,6 +1,7 @@
-import 'request_hub_page.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/screens/request_hub_page.dart';
 
-/// Backwards-compatible alias for the new RequestHubPage implementation.
+/// Deprecated: Use [RequestHubPage] from features/request_hub instead.
+/// This alias remains temporarily for backward compatibility.
 class RequestHubScreen extends RequestHubPage {
   const RequestHubScreen({super.key});
 }

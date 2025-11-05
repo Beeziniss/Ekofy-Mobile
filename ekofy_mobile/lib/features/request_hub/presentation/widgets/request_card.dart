@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/models/request.dart';
 import '../../data/models/request_status.dart';
-import 'status_badge.dart';
+import '../../../../core/widgets/badges/status_badge.dart';
 
 class RequestCard extends StatelessWidget {
   final RequestItem item;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../data/models/request_status.dart';
+import '../../../features/request_hub/data/models/request_status.dart';
 
 class StatusBadge extends StatelessWidget {
   final RequestStatus status;

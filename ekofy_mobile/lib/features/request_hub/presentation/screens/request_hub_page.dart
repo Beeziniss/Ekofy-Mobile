@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+//INFO: Đang import RequestLocalDataSource (mock). Khi tích hợp API/repository thật, hãy thay thế import này và xóa các chỗ dùng mock để tránh sót.
 import '../../data/datasources/request_local_datasource.dart';
 import '../../data/models/request.dart';
 import '../../data/models/request_status.dart';
@@ -19,6 +20,7 @@ class RequestHubPage extends StatefulWidget {
 }
 
 class _RequestHubPageState extends State<RequestHubPage> {
+  //INFO: Sử dụng RequestLocalDataSource (dữ liệu mock). Cần chuyển sang Repository/API thật khi backend sẵn sàng.
   final _ds = RequestLocalDataSource();
   final _scrollController = ScrollController();
   final _searchCtrl = TextEditingController();
@@ -48,6 +50,7 @@ class _RequestHubPageState extends State<RequestHubPage> {
   }
 
   Future<void> _load() async {
+    //INFO: Gọi dữ liệu từ mock datasource. Đổi sang gọi Repository/API thật và xóa mock khi triển khai backend.
     final data = await _ds.fetchAll();
     if (!mounted) return;
     setState(() {

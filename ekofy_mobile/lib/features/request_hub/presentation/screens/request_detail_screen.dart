@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/widgets/info/key_value_table.dart';
 import '../../data/models/request.dart';
 import '../../data/models/request_status.dart';
-import '../widgets/status_badge.dart';
+import '../../../../core/widgets/badges/status_badge.dart';
 
 class RequestDetailScreen extends StatelessWidget {
   final RequestItem item;

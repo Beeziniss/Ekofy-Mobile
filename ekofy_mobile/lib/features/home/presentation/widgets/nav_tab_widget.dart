@@ -1,7 +1,7 @@
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/features/home/presentation/screens/main_screen.dart';
-import 'package:ekofy_mobile/features/home/presentation/screens/request_hub_screen.dart';
+import 'package:ekofy_mobile/features/home/presentation/screens/request_hub_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -48,10 +48,7 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
           HomeScreen(scaffoldKey: _scaffoldKey),
           Container(),
           Container(),
-          Scaffold(
-            backgroundColor: AppColors.primaryBackground,
-            body: SingleChildScrollView(child: RequestHubScreen()),
-          ),
+          const RequestHubPage(),
         ],
       ),
 

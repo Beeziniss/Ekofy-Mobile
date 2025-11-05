@@ -1,0 +1,134 @@
+[
+  {
+    "id": "req_001",
+    "title": "Mix and master a 3-minute pop track",
+    "description": "Need polished mix and master for a demo. Vocals + 10 stems.",
+    "type": "Audio Production",
+    "createdAt": "2025-10-30T14:24:00Z",
+    "amount": 120.0,
+    "currency": "USD",
+    "status": "pending",
+    "free": false
+  },
+  {
+    "id": "req_002",
+    "title": "Acoustic cover for wedding",
+    "description": "Looking for a mellow acoustic cover of our song.",
+    "type": "Performance",
+    "createdAt": "2025-11-03T09:00:00Z",
+    "amount": 0,
+    "currency": "USD",
+    "status": "in_progress",
+    "free": true
+  },
+  {
+    "id": "req_003",
+    "title": "Album art illustration",
+    "description": "Vibrant, minimalistic album cover art.",
+    "type": "Design",
+    "createdAt": "2025-10-20T18:10:00Z",
+    "amount": 250.5,
+    "currency": "USD",
+    "status": "completed",
+    "free": false
+  },
+  {
+    "id": "req_004",
+    "title": "Sax solo recording",
+    "description": "Need 30s sax solo, smooth jazz vibe.",
+    "type": "Recording",
+    "createdAt": "2025-11-02T12:00:00Z",
+    "amount": 75,
+    "currency": "USD",
+    "status": "pending",
+    "free": false
+  },
+  {
+    "id": "req_005",
+    "title": "Podcast intro jingle",
+    "description": "10–15s catchy jingle.",
+    "type": "Composition",
+    "createdAt": "2025-10-10T07:45:00Z",
+    "amount": 60,
+    "currency": "USD",
+    "status": "rejected",
+    "free": false
+  },
+  {
+    "id": "req_006",
+    "title": "Beat for freestyle video",
+    "description": "Need a chill lo-fi beat, exclusive rights.",
+    "type": "Production",
+    "createdAt": "2025-11-04T15:20:00Z",
+    "amount": 180,
+    "currency": "USD",
+    "status": "in_progress",
+    "free": false
+  },
+  {
+    "id": "req_007",
+    "title": "Lyrics polish and translation",
+    "description": "Polish lyrics and provide EN->VN translation.",
+    "type": "Writing",
+    "createdAt": "2025-09-25T20:00:00Z",
+    "amount": 45,
+    "currency": "USD",
+    "status": "completed",
+    "free": false
+  },
+  {
+    "id": "req_008",
+    "title": "Free feedback on mix",
+    "description": "Quick thoughts on balance/punch.",
+    "type": "Review",
+    "createdAt": "2025-11-01T11:11:00Z",
+    "amount": 0,
+    "currency": "USD",
+    "status": "pending",
+    "free": true
+  },
+  {
+    "id": "req_009",
+    "title": "Session guitarist for hook",
+    "description": "Need a crisp guitar hook, funk vibe.",
+    "type": "Recording",
+    "createdAt": "2025-10-29T10:30:00Z",
+    "amount": 90,
+    "currency": "USD",
+    "status": "rejected",
+    "free": false
+  },
+  {
+    "id": "req_010",
+    "title": "Mix review and tweaks",
+    "description": "Provide notes and minor tweaks.",
+    "type": "Audio Production",
+    "createdAt": "2025-10-31T22:00:00Z",
+    "amount": 50,
+    "currency": "USD",
+    "status": "completed",
+    "free": false
+  },
+  {
+    "id": "req_011",
+    "title": "Create simple beat pack (3x)",
+    "description": "3 minimal beats for social clips.",
+    "type": "Production",
+    "createdAt": "2025-11-05T01:30:00Z",
+    "amount": 150,
+    "currency": "USD",
+    "status": "pending",
+    "free": false
+  },
+  {
+    "id": "req_012",
+    "title": "Free mentoring call",
+    "description": "15 min call about home studio setup.",
+    "type": "Mentoring",
+    "createdAt": "2025-11-02T08:15:00Z",
+    "amount": 0,
+    "currency": "USD",
+    "status": "in_progress",
+    "free": true
+  }
+]

@@ -5,7 +5,6 @@ import 'package:ekofy_mobile/features/auth/presentation/screens/login_screen.dar
 import 'package:ekofy_mobile/features/auth/presentation/screens/otp_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/register_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/splash.dart';
-import 'package:ekofy_mobile/features/home/presentation/screens/main_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/providers/auth_provider.dart';
 import 'package:ekofy_mobile/features/home/presentation/widgets/nav_tab_widget.dart';
 import 'package:flutter/material.dart';

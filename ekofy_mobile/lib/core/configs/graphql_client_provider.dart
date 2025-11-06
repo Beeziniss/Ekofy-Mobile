@@ -13,8 +13,9 @@ final graphqlClientProvider = Provider<GraphQLClient>((ref) {
     getToken: () async {
       // AuthNotifier provides a getToken() async helper
       final token = await authNotifier.getToken();
-      log('== TOKEN:' + token!);
-      return token != null ? 'Bearer $token' : null;
+      log('== TOKEN: ${token ?? 'null'}');
+      if (token == null || token.isEmpty) return null;
+      return 'Bearer $token';
     },
   );
 

@@ -1,0 +1,8 @@
+[
+  {"id":"t1","name":"Sunrise","artistName":"Aero","albumArt":null,"duration":201,"isFavorited":true},
+  {"id":"t2","name":"Deep Focus","artistName":"Neon","albumArt":null,"duration":245,"isFavorited":false},
+  {"id":"t3","name":"Late Night","artistName":"Calm","albumArt":null,"duration":188,"isFavorited":false},
+  {"id":"t4","name":"Runner","artistName":"Pulse","albumArt":null,"duration":175,"isFavorited":false},
+  {"id":"t5","name":"Dreamer","artistName":"Nova","albumArt":null,"duration":220,"isFavorited":false},
+  {"id":"t6","name":"Echoes","artistName":"Aurora","albumArt":null,"duration":199,"isFavorited":false}
+]

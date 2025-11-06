@@ -1,0 +1,5 @@
+[
+  {"id":"u20","name":"Neo","avatarImage":null,"userType":"Listener","followerCount":120,"isFollowingBack":false},
+  {"id":"u21","name":"Kira","avatarImage":null,"userType":"Listener","followerCount":85,"isFollowingBack":true},
+  {"id":"u22","name":"Astra","avatarImage":null,"userType":"Artist","followerCount":5400,"isFollowingBack":false}
+]

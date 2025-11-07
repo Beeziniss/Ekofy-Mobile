@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../data/models/library_models.dart';
 
+// Deprecated in favor of horizontal TrackTile for Library lists.
+@Deprecated('Use TrackTile with showFavorite or remove favorites entirely')
 class TrackCard extends StatelessWidget {
   final Track track;
   final bool isFavorited;
@@ -48,11 +50,7 @@ class TrackCard extends StatelessWidget {
                 tooltip: 'Play',
               ),
               const Spacer(),
-              IconButton(
-                onPressed: onToggleFavorite,
-                icon: Icon(isFavorited ? Icons.favorite : Icons.favorite_border, color: Colors.white70),
-                tooltip: isFavorited ? 'Remove' : 'Favorite',
-              ),
+              // Favorite removed per new Library spec
               IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.more_horiz, color: Colors.white70),

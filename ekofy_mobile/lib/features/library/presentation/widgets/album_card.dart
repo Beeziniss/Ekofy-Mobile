@@ -4,13 +4,15 @@ import '../../data/models/library_models.dart';
 class AlbumCard extends StatelessWidget {
   final Album album;
   final bool isFavorited;
-  final VoidCallback onToggleFavorite;
+  final bool showFavorite;
+  final VoidCallback? onToggleFavorite;
 
   const AlbumCard({
     super.key,
     required this.album,
-    required this.isFavorited,
-    required this.onToggleFavorite,
+    this.isFavorited = false,
+    this.showFavorite = true,
+    this.onToggleFavorite,
   });
 
   @override
@@ -34,20 +36,21 @@ class AlbumCard extends StatelessWidget {
                           errorBuilder: (_, __, ___) => Container(color: const Color(0xFF22222A))),
                 ),
               ),
-              Positioned(
-                right: 8,
-                bottom: 8,
-                child: InkWell(
-                  onTap: onToggleFavorite,
-                  customBorder: const CircleBorder(),
-                  child: Container(
-                    width: 44,
-                    height: 44,
-                    decoration: const BoxDecoration(color: Color(0xFF0B0B0E), shape: BoxShape.circle),
-                    child: Icon(isFavorited ? Icons.favorite : Icons.favorite_border, color: Colors.white),
+              if (showFavorite)
+                Positioned(
+                  right: 8,
+                  bottom: 8,
+                  child: InkWell(
+                    onTap: onToggleFavorite,
+                    customBorder: const CircleBorder(),
+                    child: Container(
+                      width: 44,
+                      height: 44,
+                      decoration: const BoxDecoration(color: Color(0xFF0B0B0E), shape: BoxShape.circle),
+                      child: Icon(isFavorited ? Icons.favorite : Icons.favorite_border, color: Colors.white),
+                    ),
                   ),
-                ),
-              )
+                )
             ]),
           ),
           Padding(

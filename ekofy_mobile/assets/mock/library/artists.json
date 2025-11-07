@@ -1,0 +1,6 @@
+[
+  {"id":"ar1","stageName":"Aero","avatarImage":null,"followerCount":12200,"isFollowing":false,"isVerified":true},
+  {"id":"ar2","stageName":"Neon","avatarImage":null,"followerCount":25600,"isFollowing":true,"isVerified":false},
+  {"id":"ar3","stageName":"Calm","avatarImage":null,"followerCount":9800,"isFollowing":false,"isVerified":false},
+  {"id":"ar4","stageName":"Nova","avatarImage":null,"followerCount":34000,"isFollowing":false,"isVerified":true}
+]

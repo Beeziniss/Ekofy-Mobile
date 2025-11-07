@@ -1,0 +1,6 @@
+[
+  {"id":"a1","name":"Aurora","artistName":"Aero","albumArt":null,"isFavorited":false},
+  {"id":"a2","name":"Pulse","artistName":"Neon","albumArt":null,"isFavorited":true},
+  {"id":"a3","name":"Calm Nights","artistName":"Calm","albumArt":null,"isFavorited":false},
+  {"id":"a4","name":"Journey","artistName":"Nova","albumArt":null,"isFavorited":false}
+]

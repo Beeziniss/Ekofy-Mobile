@@ -8,6 +8,7 @@ import 'package:ekofy_mobile/features/auth/presentation/screens/splash.dart';
 import 'package:ekofy_mobile/features/auth/presentation/providers/auth_provider.dart';
 import 'package:ekofy_mobile/features/home/presentation/widgets/nav_tab_widget.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
+import 'package:ekofy_mobile/features/profile/presentation/screens/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +20,7 @@ class RouteName {
   static const String otp = '/otp';
   static const String start = '/';
   static const String library = '/library';
+  static const String profile = '/profile';
 
   static const publicRoutes = [home, login, register];
 }
@@ -80,6 +82,10 @@ GoRouter router(WidgetRef ref) {
       GoRoute(
         path: RouteName.library,
         builder: (context, state) => const LibraryPage(),
+      ),
+      GoRoute(
+        path: RouteName.profile,
+        builder: (context, state) => const ProfilePage(),
       ),
       GoRoute(
         path: RouteName.otp,

@@ -1,8 +1,9 @@
+import 'package:ekofy_mobile/features/request_hub/presentation/widgets/request_status_badge.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/request.dart';
 import '../../data/models/request_status.dart';
-import '../../../../core/widgets/badges/status_badge.dart';
+
 
 class RequestCard extends StatelessWidget {
   final RequestItem item;
@@ -88,7 +89,7 @@ class RequestCard extends StatelessWidget {
                   else
                     _pill(label: _formatAmount(item.amount, item.currency)),
                   const Spacer(),
-                  StatusBadge(status: item.status),
+                  RequestStatusBadge(status: item.status),
                 ],
               )
             ],

@@ -1,4 +1,6 @@
+import 'package:ekofy_mobile/features/request_hub/presentation/widgets/request_status_badge.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../../../core/widgets/info/key_value_table.dart';
 import '../../data/models/request.dart';
@@ -59,7 +61,7 @@ class RequestDetailScreen extends StatelessWidget {
               ],
             ),
           ),
-          StatusBadge(status: item.status),
+          RequestStatusBadge(status: item.status),
         ],
       ),
     );

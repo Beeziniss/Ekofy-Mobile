@@ -5,6 +5,8 @@ import 'package:ekofy_mobile/features/library/presentation/screens/library_page.
 import 'package:ekofy_mobile/features/request_hub/presentation/screens/request_hub_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+
 
 class NavTab extends StatefulWidget {
   const NavTab({super.key});
@@ -160,8 +162,19 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
                 ),
                 // Text('The second', style: TextStyle(fontSize: 15)),
                 // Text('The third', style: TextStyle(fontSize: 15)),
+              
               ],
             ),
+          ),
+          const Divider(height: 1),
+          ListTile(
+            leading: const Icon(Icons.receipt_long, color: Colors.white70),
+            title: const Text('Payment History', style: TextStyle(color: Colors.white)),
+            onTap: () {
+              // Close drawer then navigate
+              Navigator.of(context).pop();
+              context.push('/transactions'); //INFO: Navigate to UI-only transactions list
+            },
           ),
         ],
       ),

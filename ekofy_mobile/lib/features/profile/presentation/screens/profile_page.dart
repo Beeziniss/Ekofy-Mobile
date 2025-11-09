@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../data/models/profile_model.dart';
 import '../widgets/profile_header_widget.dart';
 
@@ -96,6 +97,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   _settingsPrivacyCard(context),
                   const SizedBox(height: 12),
                   _supportHelpCard(context),
+                  const SizedBox(height: 12),
+                  _paymentsCard(context),
                   const SizedBox(height: 24),
                 ],
               ),
@@ -286,6 +289,35 @@ class _ProfilePageState extends State<ProfilePage> {
                 );
               },
               child: const Text('Contact'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _paymentsCard(BuildContext context) {
+    return Card(
+      color: const Color(0xFF15151B),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        child: Row(
+          children: [
+            const Icon(Icons.receipt_long, color: Colors.white70),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Text(
+                'Payment History',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                //INFO: Navigate to mock Payment History list (UI-only)
+                context.push('/transactions');
+              },
+              child: const Text('View'),
             )
           ],
         ),

@@ -8,7 +8,6 @@ import 'package:ekofy_mobile/core/widgets/loading/simple_shimmer.dart';
 import 'package:ekofy_mobile/core/widgets/search_text_field.dart';
 import '../widgets/playlist_card.dart';
 import '../widgets/create_playlist_card.dart';
-import '../widgets/track_card.dart';
 import '../widgets/track_tile.dart';
 import '../widgets/album_card.dart';
 import '../widgets/artist_card.dart';
@@ -30,11 +29,11 @@ class _LibraryPageState extends State<LibraryPage>
 
   // Local UI state per tab
   int _activeTab = 0;
-  final _searchCtrls = List.generate(6, (_) => TextEditingController());
-  final _searchDebouncers = List<Timer?>.filled(6, null);
-  final _isLoading = List.filled(6, false);
-  final _hasMore = List.filled(6, true);
-  final _page = List.filled(6, 1);
+  final _searchCtrls = List.generate(5, (_) => TextEditingController());
+  final _searchDebouncers = List<Timer?>.filled(5, null);
+  final _isLoading = List.filled(5, false);
+  final _hasMore = List.filled(5, true);
+  final _page = List.filled(5, 1);
   final _pageSize = 12;
 
   // Data caches
@@ -53,27 +52,22 @@ class _LibraryPageState extends State<LibraryPage>
   List<AppUser> _allFollowers = [];
   List<AppUser> _visibleFollowers = [];
 
-  List<AppUser> _allFollowing = [];
-  List<AppUser> _visibleFollowing = [];
-
+ 
   // UI states
   String? _currentlyPlayingPlaylistId;
-  final Set<String> _favoritedPlaylistIds = {};
-  bool _favoritesGridMode = true;
-  final Set<String> _favoritedTrackIds = {};
-  final Set<String> _favoritedAlbumIds = {};
+  // Removed grid mode and favorites in Library per new spec
   final Set<String> _followingArtistIds = {};
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 6, vsync: this);
+  _tabController = TabController(length: 5, vsync: this);
     _tabController.addListener(() {
       if (_activeTab != _tabController.index) {
         setState(() => _activeTab = _tabController.index);
       }
     });
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 5; i++) {
       _searchCtrls[i].addListener(() => _onSearchChanged(i));
     }
     _loadInitial();
@@ -98,7 +92,6 @@ class _LibraryPageState extends State<LibraryPage>
       _loadAlbums(reset: true),
       _loadArtists(reset: true),
       _loadFollowers(reset: true),
-      _loadFollowing(reset: true),
     ]);
   }
 
@@ -119,9 +112,6 @@ class _LibraryPageState extends State<LibraryPage>
           _applyArtistFilters(resetPage: true);
           break;
         case 4:
-          _applyFollowingFilters(resetPage: true);
-          break;
-        case 5:
           _applyFollowersFilters(resetPage: true);
           break;
       }
@@ -187,9 +177,14 @@ class _LibraryPageState extends State<LibraryPage>
   void _applyTrackFilters({bool resetPage = false}) {
     if (resetPage) _page[1] = 1;
     final q = _searchCtrls[1].text.trim().toLowerCase();
-    Iterable<Track> list = _allTracks;
+    // Only show favorited tracks in the Favorites tab
+    Iterable<Track> list = _allTracks.where((e) => e.isFavorited);
     if (q.isNotEmpty) {
-      list = list.where((e) => e.name.toLowerCase().contains(q) || e.artistName.toLowerCase().contains(q));
+      list = list.where(
+        (e) =>
+            e.name.toLowerCase().contains(q) ||
+            e.artistName.toLowerCase().contains(q),
+      );
     }
     final sorted = list.toList();
     final end = (_page[1] * _pageSize).clamp(0, sorted.length);
@@ -228,7 +223,11 @@ class _LibraryPageState extends State<LibraryPage>
     final q = _searchCtrls[2].text.trim().toLowerCase();
     Iterable<Album> list = _allAlbums;
     if (q.isNotEmpty) {
-      list = list.where((e) => e.name.toLowerCase().contains(q) || e.artistName.toLowerCase().contains(q));
+      list = list.where(
+        (e) =>
+            e.name.toLowerCase().contains(q) ||
+            e.artistName.toLowerCase().contains(q),
+      );
     }
     final sorted = list.toList();
     final end = (_page[2] * _pageSize).clamp(0, sorted.length);
@@ -287,9 +286,9 @@ class _LibraryPageState extends State<LibraryPage>
 
   Future<void> _loadFollowers({bool reset = false}) async {
     if (reset) {
-      _page[5] = 1;
-      _hasMore[5] = true;
-      setState(() => _isLoading[5] = true);
+      _page[4] = 1;
+      _hasMore[4] = true;
+      setState(() => _isLoading[4] = true);
     }
     //INFO: Gọi dữ liệu mock followers.
     final data = await _ds.getFollowers();
@@ -297,71 +296,33 @@ class _LibraryPageState extends State<LibraryPage>
     setState(() {
       _allFollowers = data;
       _applyFollowersFilters(resetPage: true);
-      _isLoading[5] = false;
+      _isLoading[4] = false;
     });
   }
 
   void _applyFollowersFilters({bool resetPage = false}) {
-    if (resetPage) _page[5] = 1;
-    final q = _searchCtrls[5].text.trim().toLowerCase();
+    if (resetPage) _page[4] = 1;
+    final q = _searchCtrls[4].text.trim().toLowerCase();
     Iterable<AppUser> list = _allFollowers;
     if (q.isNotEmpty) {
       list = list.where((e) => e.name.toLowerCase().contains(q));
     }
     final sorted = list.toList();
-    final end = (_page[5] * _pageSize).clamp(0, sorted.length);
-    _visibleFollowers = sorted.sublist(0, end);
-    _hasMore[5] = end < sorted.length;
-    setState(() {});
-  }
-
-  void _loadMoreFollowers() async {
-    if (!_hasMore[5] || _isLoading[5]) return;
-    setState(() => _isLoading[5] = true);
-    await Future.delayed(const Duration(milliseconds: 600));
-    _page[5] += 1;
-    _applyFollowersFilters();
-    setState(() => _isLoading[5] = false);
-  }
-
-  Future<void> _loadFollowing({bool reset = false}) async {
-    if (reset) {
-      _page[4] = 1;
-      _hasMore[4] = true;
-      setState(() => _isLoading[4] = true);
-    }
-    //INFO: Gọi dữ liệu mock following.
-    final data = await _ds.getFollowing();
-    if (!mounted) return;
-    setState(() {
-      _allFollowing = data;
-      _applyFollowingFilters(resetPage: true);
-      _isLoading[4] = false;
-    });
-  }
-
-  void _applyFollowingFilters({bool resetPage = false}) {
-    if (resetPage) _page[4] = 1;
-    final q = _searchCtrls[4].text.trim().toLowerCase();
-    Iterable<AppUser> list = _allFollowing;
-    if (q.isNotEmpty) {
-      list = list.where((e) => e.name.toLowerCase().contains(q));
-    }
-    final sorted = list.toList();
     final end = (_page[4] * _pageSize).clamp(0, sorted.length);
-    _visibleFollowing = sorted.sublist(0, end);
+    _visibleFollowers = sorted.sublist(0, end);
     _hasMore[4] = end < sorted.length;
     setState(() {});
   }
 
-  void _loadMoreFollowing() async {
+  void _loadMoreFollowers() async {
     if (!_hasMore[4] || _isLoading[4]) return;
     setState(() => _isLoading[4] = true);
     await Future.delayed(const Duration(milliseconds: 600));
     _page[4] += 1;
-    _applyFollowingFilters();
+    _applyFollowersFilters();
     setState(() => _isLoading[4] = false);
   }
+
 
   // ----- UI -----
   @override
@@ -371,25 +332,36 @@ class _LibraryPageState extends State<LibraryPage>
       backgroundColor: const Color(0xFF0B0B0E),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0B0B0E),
-        elevation: 0,
-        title: const Text('Library', style: TextStyle(fontWeight: FontWeight.bold)),
+
+        title: const Text(
+          'Library',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(100),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+
             children: [
               const SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
                   '124 followers | 89 following',
-                  style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: Colors.white70,
+                  ),
                 ),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 0, width: 0),
               TabBar(
                 controller: _tabController,
                 isScrollable: true,
+                tabAlignment: TabAlignment.start,
+                padding: EdgeInsets.zero,
+
+                indicatorPadding: EdgeInsets.zero,
+
                 indicatorColor: const Color(0xFF9333EA),
                 labelColor: Colors.white,
                 unselectedLabelColor: Colors.white70,
@@ -398,7 +370,6 @@ class _LibraryPageState extends State<LibraryPage>
                   Tab(icon: Icon(Icons.favorite), text: 'Favorites'),
                   Tab(icon: Icon(Icons.album), text: 'Albums'),
                   Tab(icon: Icon(Icons.person), text: 'Artists'),
-                  Tab(icon: Icon(Icons.person_add_alt_1), text: 'Following'),
                   Tab(icon: Icon(Icons.groups), text: 'Followers'),
                 ],
               ),
@@ -413,7 +384,6 @@ class _LibraryPageState extends State<LibraryPage>
           _buildFavoritesTab(context),
           _buildAlbumsTab(context),
           _buildArtistsTab(context),
-          _buildFollowingTab(context),
           _buildFollowersTab(context),
         ],
       ),
@@ -436,7 +406,10 @@ class _LibraryPageState extends State<LibraryPage>
             SliverToBoxAdapter(child: _searchBar(0, hint: 'Search playlists…')),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: Text(
                   _visiblePlaylists.length == 1
                       ? '1 playlist'
@@ -452,7 +425,9 @@ class _LibraryPageState extends State<LibraryPage>
                   (context, index) {
                     final showCreate = _searchCtrls[0].text.trim().isEmpty;
                     if (showCreate && index == 0) {
-                      return CreatePlaylistCard(onTap: () => _showCreatePlaylistSheet(context));
+                      return CreatePlaylistCard(
+                        onTap: () => _showCreatePlaylistSheet(context),
+                      );
                     }
                     final itemIndex = showCreate ? index - 1 : index;
                     if (itemIndex >= _visiblePlaylists.length) {
@@ -460,48 +435,43 @@ class _LibraryPageState extends State<LibraryPage>
                     }
                     final p = _visiblePlaylists[itemIndex];
                     final isPlaying = _currentlyPlayingPlaylistId == p.id;
-                    final isFavorited = _favoritedPlaylistIds.contains(p.id);
-                    final isOwn = p.userId == 'me';
+                    // favorites hidden; ownership not needed for UI now
                     return PlaylistCard(
                       playlist: p,
                       isPlaying: isPlaying,
-                      isFavorited: isFavorited,
-                      canFavorite: p.isPublic && !isOwn,
                       onTogglePlay: () {
                         setState(() {
                           _currentlyPlayingPlaylistId = isPlaying ? null : p.id;
                         });
-                      },
-                      onToggleFavorite: () {
-                        setState(() {
-                          if (isFavorited) {
-                            _favoritedPlaylistIds.remove(p.id);
-                          } else {
-                            _favoritedPlaylistIds.add(p.id);
-                          }
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(isFavorited ? 'Removed from favorites' : 'Added to favorites')),
-                        );
                       },
                       onMore: () {
                         showModalBottomSheet(
                           context: context,
                           backgroundColor: const Color(0xFF15151B),
                           shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(16),
+                            ),
                           ),
                           builder: (_) => SafeArea(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 ListTile(
-                                  leading: const Icon(Icons.link, color: Colors.white70),
-                                  title: const Text('Copy link', style: TextStyle(color: Colors.white)),
+                                  leading: const Icon(
+                                    Icons.link,
+                                    color: Colors.white70,
+                                  ),
+                                  title: const Text(
+                                    'Copy link',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                   onTap: () {
                                     Navigator.pop(context);
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Link copied')),
+                                      const SnackBar(
+                                        content: Text('Link copied'),
+                                      ),
                                     );
                                   },
                                 ),
@@ -512,7 +482,8 @@ class _LibraryPageState extends State<LibraryPage>
                       },
                     );
                   },
-                  childCount: (_visiblePlaylists.length + (_isLoading[0] ? 6 : 0)) +
+                  childCount:
+                      (_visiblePlaylists.length + (_isLoading[0] ? 6 : 0)) +
                       (_searchCtrls[0].text.trim().isEmpty ? 1 : 0),
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -569,8 +540,14 @@ class _LibraryPageState extends State<LibraryPage>
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Create playlist',
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+                  const Text(
+                    'Create playlist',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
                   const SizedBox(height: 12),
                   TextField(
                     controller: nameCtrl,
@@ -589,7 +566,10 @@ class _LibraryPageState extends State<LibraryPage>
                   const SizedBox(height: 12),
                   Row(
                     children: [
-                      const Text('Public', style: TextStyle(color: Colors.white70)),
+                      const Text(
+                        'Public',
+                        style: TextStyle(color: Colors.white70),
+                      ),
                       const Spacer(),
                       Switch(
                         value: isPublic,
@@ -617,7 +597,8 @@ class _LibraryPageState extends State<LibraryPage>
                             final name = nameCtrl.text.trim();
                             if (name.isEmpty) return;
                             final newItem = Playlist(
-                              id: DateTime.now().millisecondsSinceEpoch.toString(),
+                              id: DateTime.now().millisecondsSinceEpoch
+                                  .toString(),
                               name: name,
                               coverImage: null,
                               isPublic: isPublic,
@@ -638,7 +619,7 @@ class _LibraryPageState extends State<LibraryPage>
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               );
             },
@@ -674,89 +655,71 @@ class _LibraryPageState extends State<LibraryPage>
         onRefresh: () => _loadTracks(reset: true),
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: Row(
-                children: [
-                  Expanded(child: _searchBar(1, hint: 'Search favorites…')),
-                  IconButton(
-                    onPressed: () => setState(() => _favoritesGridMode = !_favoritesGridMode),
-                    icon: Icon(_favoritesGridMode ? Icons.view_list : Icons.grid_view, color: Colors.white70),
-                  )
-                ],
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              sliver: _favoritesGridMode
-                  ? SliverGrid(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: _gridCols(context),
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
-                        childAspectRatio: 1.2,
+            SliverToBoxAdapter(child: _searchBar(1, hint: 'Search tracks…')),
+            if (_visibleTracks.isEmpty && !_isLoading[1])
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: _emptyFavorites(),
+              )
+            else ...[
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                sliver: SliverList.builder(
+                  itemCount: _visibleTracks.length + (_isLoading[1] ? 6 : 0),
+                  itemBuilder: (context, index) {
+                    if (index >= _visibleTracks.length) return _trackSkeleton();
+                    final t = _visibleTracks[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
                       ),
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          if (index >= _visibleTracks.length) return _playlistSkeleton();
-                          final t = _visibleTracks[index];
-                          final isFav = _favoritedTrackIds.contains(t.id);
-                          return TrackCard(
-                            track: t,
-                            isFavorited: isFav,
-                            onToggleFavorite: () {
-                              setState(() {
-                                if (isFav) {
-                                  _favoritedTrackIds.remove(t.id);
-                                } else {
-                                  _favoritedTrackIds.add(t.id);
-                                }
-                              });
-                            },
-                            onPlay: () {},
-                          );
+                      child: TrackTile(
+                        track: t,
+                        isFavorited: t.isFavorited,
+                        showFavorite: true,
+                        onToggleFavorite: () {
+                          // Toggle to unfavorite and remove from list
+                          final idx = _allTracks.indexWhere((e) => e.id == t.id);
+                          if (idx != -1) {
+                            setState(() {
+                              _allTracks[idx] = Track(
+                                id: t.id,
+                                name: t.name,
+                                artistName: t.artistName,
+                                albumArt: t.albumArt,
+                                duration: t.duration,
+                                isFavorited: !t.isFavorited,
+                              );
+                              _applyTrackFilters();
+                            });
+                          }
+                          if (mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Removed from favorites')),
+                            );
+                          }
                         },
-                        childCount: _visibleTracks.length + (_isLoading[1] ? 6 : 0),
+                        onPlay: () {},
                       ),
-                    )
-                  : SliverList.builder(
-                      itemCount: _visibleTracks.length + (_isLoading[1] ? 6 : 0),
-                      itemBuilder: (context, index) {
-                        if (index >= _visibleTracks.length) return _trackSkeleton();
-                        final t = _visibleTracks[index];
-                        final isFav = _favoritedTrackIds.contains(t.id);
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          child: TrackTile(
-                            track: t,
-                            isFavorited: isFav,
-                            onToggleFavorite: () {
-                              setState(() {
-                                if (isFav) {
-                                  _favoritedTrackIds.remove(t.id);
-                                } else {
-                                  _favoritedTrackIds.add(t.id);
-                                }
-                              });
-                            },
-                            onPlay: () {},
-                          ),
-                        );
-                      },
+                    );
+                  },
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Center(
+                    child: Text(
+                      _hasMore[1]
+                          ? (_isLoading[1] ? 'Loading more…' : 'Scroll for more')
+                          : 'No more items',
+                      style: const TextStyle(color: Colors.white70),
                     ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                child: Center(
-                  child: Text(
-                    _hasMore[1]
-                        ? (_isLoading[1] ? 'Loading more…' : 'Scroll for more')
-                        : 'No more items',
-                    style: const TextStyle(color: Colors.white70),
                   ),
                 ),
               ),
-            ),
+            ],
           ],
         ),
       ),
@@ -768,14 +731,36 @@ class _LibraryPageState extends State<LibraryPage>
   // moved to TrackTile widget
 
   Widget _trackSkeleton() => _shimmer(
-        child: Container(
-          height: 72,
-          decoration: BoxDecoration(
-            color: const Color(0xFF15151B),
-            borderRadius: BorderRadius.circular(12),
+    child: Container(
+      height: 72,
+      decoration: BoxDecoration(
+        color: const Color(0xFF15151B),
+        borderRadius: BorderRadius.circular(12),
+      ),
+    ),
+  );
+
+  Widget _emptyFavorites() {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          Icon(Icons.favorite_border, size: 64, color: Colors.white24),
+          SizedBox(height: 12),
+          Text(
+            'No favorites yet',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
           ),
-        ),
-      );
+          SizedBox(height: 6),
+          Text(
+            'Tap the heart on tracks to add them here.',
+            style: TextStyle(color: Colors.white70),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
 
   // ----- Albums Tab -----
   Widget _buildAlbumsTab(BuildContext context) {
@@ -801,20 +786,10 @@ class _LibraryPageState extends State<LibraryPage>
                   childAspectRatio: 0.9,
                 ),
                 delegate: SliverChildBuilderDelegate((context, index) {
-                  if (index >= _visibleAlbums.length) return _playlistSkeleton();
+                  if (index >= _visibleAlbums.length)
+                    return _playlistSkeleton();
                   final a = _visibleAlbums[index];
-                  final isFav = _favoritedAlbumIds.contains(a.id);
-                  return AlbumCard(
-                    album: a,
-                    isFavorited: isFav,
-                    onToggleFavorite: () => setState(() {
-                      if (isFav) {
-                        _favoritedAlbumIds.remove(a.id);
-                      } else {
-                        _favoritedAlbumIds.add(a.id);
-                      }
-                    }),
-                  );
+                  return AlbumCard(album: a, showFavorite: false);
                 }, childCount: _visibleAlbums.length + (_isLoading[2] ? 6 : 0)),
               ),
             ),
@@ -843,7 +818,8 @@ class _LibraryPageState extends State<LibraryPage>
   Widget _buildArtistsTab(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: (n) {
-        if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120) _loadMoreArtists();
+        if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120)
+          _loadMoreArtists();
         return false;
       },
       child: RefreshIndicator(
@@ -862,7 +838,8 @@ class _LibraryPageState extends State<LibraryPage>
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    if (index >= _visibleArtists.length) return _playlistSkeleton();
+                    if (index >= _visibleArtists.length)
+                      return _playlistSkeleton();
                     final a = _visibleArtists[index];
                     final isFollowing = _followingArtistIds.contains(a.id);
                     return ArtistCard(
@@ -889,76 +866,48 @@ class _LibraryPageState extends State<LibraryPage>
 
   // moved to ArtistCard widget
 
-  // ----- Following Tab -----
-  Widget _buildFollowingTab(BuildContext context) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: (n) {
-        if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120) _loadMoreFollowing();
-        return false;
-      },
-      child: RefreshIndicator(
-        onRefresh: () => _loadFollowing(reset: true),
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: _searchBar(4, hint: 'Search following…')),
-            SliverList.builder(
-              itemCount: _visibleFollowing.length + (_isLoading[4] ? 6 : 0),
-              itemBuilder: (context, index) {
-                if (index >= _visibleFollowing.length) return _userSkeleton();
-                final u = _visibleFollowing[index];
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: UserTile(
-                    user: u,
-                    isFollowingList: true,
-                    onPressed: () {
-                      setState(() {
-                        _allFollowing = _allFollowing.where((e) => e.id != u.id).toList();
-                        _applyFollowingFilters();
-                      });
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Unfollowed')));
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
+  
   // ----- Followers Tab -----
   Widget _buildFollowersTab(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: (n) {
-        if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120) _loadMoreFollowers();
+        if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120)
+          _loadMoreFollowers();
         return false;
       },
       child: RefreshIndicator(
         onRefresh: () => _loadFollowers(reset: true),
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: _searchBar(5, hint: 'Search followers…')),
+            SliverToBoxAdapter(child: _searchBar(4, hint: 'Search followers…')),
             SliverList.builder(
-              itemCount: _visibleFollowers.length + (_isLoading[5] ? 6 : 0),
+              itemCount: _visibleFollowers.length + (_isLoading[4] ? 6 : 0),
               itemBuilder: (context, index) {
                 if (index >= _visibleFollowers.length) return _userSkeleton();
                 final u = _visibleFollowers[index];
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   child: UserTile(
                     user: u,
                     isFollowingList: false,
                     onPressed: () {
                       setState(() {
-                        final idx = _allFollowers.indexWhere((e) => e.id == u.id);
+                        final idx = _allFollowers.indexWhere(
+                          (e) => e.id == u.id,
+                        );
                         if (idx != -1) {
-                          _allFollowers[idx] = _allFollowers[idx].copyWith(isFollowingBack: !u.isFollowingBack);
+                          _allFollowers[idx] = _allFollowers[idx].copyWith(
+                            isFollowingBack: !u.isFollowingBack,
+                          );
                         }
                         _applyFollowersFilters();
                       });
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Follow back updated')));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Follow back updated')),
+                      );
                     },
                   ),
                 );
@@ -973,14 +922,14 @@ class _LibraryPageState extends State<LibraryPage>
   // moved to UserTile widget
 
   Widget _userSkeleton() => _shimmer(
-        child: Container(
-          height: 72,
-          decoration: BoxDecoration(
-            color: const Color(0xFF15151B),
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-      );
+    child: Container(
+      height: 72,
+      decoration: BoxDecoration(
+        color: const Color(0xFF15151B),
+        borderRadius: BorderRadius.circular(12),
+      ),
+    ),
+  );
 
   // ----- Common UI -----
   int _gridCols(BuildContext context) {
@@ -1002,5 +951,4 @@ class _LibraryPageState extends State<LibraryPage>
   }
 
   Widget _shimmer({required Widget child}) => SimpleShimmer(child: child);
-
 }

@@ -5,21 +5,15 @@ import 'package:ekofy_mobile/core/widgets/button/circle_icon_button.dart';
 class PlaylistCard extends StatelessWidget {
   final Playlist playlist;
   final bool isPlaying;
-  final bool isFavorited;
-  final bool canFavorite;
   final VoidCallback onTogglePlay;
-  final VoidCallback? onToggleFavorite;
   final VoidCallback onMore;
 
   const PlaylistCard({
     super.key,
     required this.playlist,
     required this.isPlaying,
-    required this.isFavorited,
-    required this.canFavorite,
     required this.onTogglePlay,
     required this.onMore,
-    this.onToggleFavorite,
   });
 
   @override
@@ -57,11 +51,7 @@ class PlaylistCard extends StatelessWidget {
                         onPressed: onTogglePlay,
                       ),
                       const SizedBox(width: 8),
-                      if (canFavorite)
-                        CircleIconButton(
-                          icon: isFavorited ? Icons.favorite : Icons.favorite_border,
-                          onPressed: onToggleFavorite ?? () {},
-                        ),
+                      // Favorite icon removed per new Library spec
                       const SizedBox(width: 8),
                       CircleIconButton(
                         icon: Icons.more_horiz,

@@ -5,6 +5,8 @@ import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/features/home/data/models/menu_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -281,6 +283,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (selected != null) {
       log("Đã chọn: $selected");
+      switch (selected) {
+        case HomePageMenu.profile:
+          if (mounted) {
+            // Navigate to profile screen
+            context.push(RouteName.profile);
+          }
+          break;
+        case HomePageMenu.logout:
+          // TODO: implement logout flow
+          break;
+      }
     }
   }
 }

@@ -4,14 +4,16 @@ import '../../data/models/library_models.dart';
 class TrackTile extends StatelessWidget {
   final Track track;
   final bool isFavorited;
-  final VoidCallback onToggleFavorite;
+  final bool showFavorite;
+  final VoidCallback? onToggleFavorite;
   final VoidCallback onPlay;
 
   const TrackTile({
     super.key,
     required this.track,
-    required this.isFavorited,
-    required this.onToggleFavorite,
+    this.isFavorited = false,
+    this.showFavorite = true,
+    this.onToggleFavorite,
     required this.onPlay,
   });
 
@@ -46,10 +48,11 @@ class TrackTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(onPressed: onPlay, icon: const Icon(Icons.play_arrow, color: Colors.white70)),
-            IconButton(
-              onPressed: onToggleFavorite,
-              icon: Icon(isFavorited ? Icons.favorite : Icons.favorite_border, color: Colors.white70),
-            ),
+            if (showFavorite)
+              IconButton(
+                onPressed: onToggleFavorite,
+                icon: Icon(isFavorited ? Icons.favorite : Icons.favorite_border, color: Colors.white70),
+              ),
             IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz, color: Colors.white70)),
           ],
         ),

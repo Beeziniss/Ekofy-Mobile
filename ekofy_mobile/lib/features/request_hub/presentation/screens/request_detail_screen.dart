@@ -1,11 +1,9 @@
 import 'package:ekofy_mobile/features/request_hub/presentation/widgets/request_status_badge.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../../../core/widgets/info/key_value_table.dart';
 import '../../data/models/request.dart';
 import '../../data/models/request_status.dart';
-import '../../../../core/widgets/badges/status_badge.dart';
 
 class RequestDetailScreen extends StatelessWidget {
   final RequestItem item;
@@ -15,9 +13,7 @@ class RequestDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Request Details'),
-      ),
+      appBar: AppBar(title: const Text('Request Details')),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -49,15 +45,31 @@ class RequestDetailScreen extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(radius: 24, child: Text(item.type.isNotEmpty ? item.type[0].toUpperCase() : '?')),
+          CircleAvatar(
+            radius: 24,
+            child: Text(
+              item.type.isNotEmpty ? item.type[0].toUpperCase() : '?',
+            ),
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(item.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                Text(
+                  item.title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 const SizedBox(height: 4),
-                Text(item.type, style: theme.textTheme.bodySmall?.copyWith(color: Colors.white70)),
+                Text(
+                  item.type,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: Colors.white70,
+                  ),
+                ),
               ],
             ),
           ),
@@ -79,7 +91,10 @@ class RequestDetailScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Description', style: TextStyle(fontWeight: FontWeight.w600)),
+          const Text(
+            'Description',
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
           const SizedBox(height: 8),
           Text(item.description),
         ],
@@ -92,8 +107,12 @@ class RequestDetailScreen extends StatelessWidget {
     final createdAtStr = _formatDate(item.createdAt);
     final user = '—';
     final assigned = '—';
-    final amountStr = item.free ? 'Free' : _formatAmount(item.amount, item.currency);
-    final transactionId = item.status == RequestStatus.completed ? 'TXN-${id.substring(0, 5).toUpperCase()}' : '—';
+    final amountStr = item.free
+        ? 'Free'
+        : _formatAmount(item.amount, item.currency);
+    final transactionId = item.status == RequestStatus.completed
+        ? 'TXN-${id.substring(0, 5).toUpperCase()}'
+        : '—';
 
     return Container(
       width: double.infinity,
@@ -136,7 +155,8 @@ class RequestDetailScreen extends StatelessWidget {
                 button: true,
                 label: primaryLabel,
                 child: ElevatedButton(
-                  onPressed: () => _placeholder(context, '$primaryLabel (mock)'),
+                  onPressed: () =>
+                      _placeholder(context, '$primaryLabel (mock)'),
                   child: Text(primaryLabel),
                 ),
               ),

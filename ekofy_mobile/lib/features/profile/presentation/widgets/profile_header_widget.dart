@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
-//INFO: Header widget consumes mock image paths & display name (no network/loading logic yet).
+  //INFO: Header widget consumes mock image paths & display name (no network/loading logic yet).
   final String? bannerImage;
   final String? avatarImage;
   final String displayName;
   final String userId;
+  final bool isVerified;
   final VoidCallback onEditBanner;
   final VoidCallback onEditAvatar;
 
@@ -15,13 +16,14 @@ class ProfileHeaderWidget extends StatelessWidget {
     required this.avatarImage,
     required this.displayName,
     required this.userId,
+    required this.isVerified,
     required this.onEditBanner,
     required this.onEditAvatar,
   });
 
   @override
   Widget build(BuildContext context) {
-  // Keep layout responsive if needed in future; currently width not required.
+    // Keep layout responsive if needed in future; currently width not required.
     return SliverAppBar(
       pinned: true,
       stretch: true,
@@ -32,7 +34,7 @@ class ProfileHeaderWidget extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             // Banner with gradient fallback
-      //INFO: Mock banner fallback when bannerImage is null.
+            //INFO: Mock banner fallback when bannerImage is null.
             bannerImage == null
                 ? Container(
                     decoration: const BoxDecoration(
@@ -43,7 +45,7 @@ class ProfileHeaderWidget extends StatelessWidget {
                       ),
                     ),
                   )
-                : Image.asset(
+                : Image.network(
                     bannerImage!,
                     fit: BoxFit.cover,
                     errorBuilder: (_, __, ___) => Container(
@@ -90,13 +92,16 @@ class ProfileHeaderWidget extends StatelessWidget {
                         CircleAvatar(
                           radius: 36,
                           backgroundColor: const Color(0xFF22222A),
-                          backgroundImage:
-                              avatarImage == null ? null : AssetImage(avatarImage!),
+                          backgroundImage: avatarImage == null
+                              ? null
+                              : NetworkImage(avatarImage!),
                           child: avatarImage == null
                               ? Text(
                                   _initials(displayName),
                                   style: const TextStyle(
-                                      color: Colors.white70, fontWeight: FontWeight.bold),
+                                    color: Colors.white70,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 )
                               : null,
                         ),
@@ -114,7 +119,11 @@ class ProfileHeaderWidget extends StatelessWidget {
                                 onTap: onEditAvatar,
                                 child: const Padding(
                                   padding: EdgeInsets.all(6.0),
-                                  child: Icon(Icons.edit, size: 16, color: Colors.white),
+                                  child: Icon(
+                                    Icons.edit,
+                                    size: 16,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
@@ -143,6 +152,12 @@ class ProfileHeaderWidget extends StatelessWidget {
                             userId,
                             style: const TextStyle(color: Colors.white70),
                           ),
+                          const SizedBox(height: 4),
+                          if (userId.isNotEmpty)
+                            Text(
+                              'Verified: ${isVerified ? "Yes" : "No"}',
+                              style: const TextStyle(color: Colors.greenAccent),
+                            ),
                         ],
                       ),
                     ),

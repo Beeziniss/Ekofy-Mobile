@@ -1,0 +1,24 @@
+query listenersProfileQuery($userId: String) {
+  listeners(take: 1, where: { userId: { eq: $userId } } ) {
+    items {
+      id
+      userId
+      displayName
+      avatarImage
+      bannerImage
+      followerCount
+      followingCount
+      isVisible
+      isVerified
+      user {
+        email
+        gender
+        birthDate
+        phoneNumber
+        status
+        lastLoginAt
+        createdAt
+      }
+    }
+  }
+}

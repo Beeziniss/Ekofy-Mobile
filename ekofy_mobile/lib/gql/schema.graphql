@@ -1,0 +1,6154 @@
+schema {
+  query: QueryInitialization
+  mutation: MutationInitialization
+  subscription: SubscriptionInitialization
+}
+
+type AccountLinkResponse {
+  accountId: String!
+  url: String!
+  refreshUrl: String!
+  returnUrl: String!
+  type: String!
+  created: DateTime!
+  expired: DateTime!
+}
+
+type Address {
+  street: String
+  ward: String
+  province: String
+  oldDistrict: String
+  oldWard: String
+  oldProvince: String
+  addressLine: String
+}
+
+type Album {
+  id: String!
+  name: String!
+  nameUnsigned: String!
+  description: String
+  type: AlbumType!
+  trackIds: [String!]!
+  contributingArtists: [ContributingArtist!]!
+  coverImage: String!
+  thumbnailImage: String
+  releaseInfo: ReleaseInfo!
+  isVisible: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  tracks(
+    skip: Int
+    take: Int
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): TracksCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  artists(
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): [Artist!]! @cost(weight: "10")
+  checkAlbumInFavorite: Boolean! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type AlbumsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Album!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type ApprovalHistoriesCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [ApprovalHistory!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type ApprovalHistory {
+  id: String!
+  targetOwnerId: String
+  targetId: String!
+  approvalType: ApprovalType!
+  approvedByUserId: String!
+  actionAt: DateTime!
+  action: HistoryActionType!
+  notes: String
+  snapshot: JSON!
+  user(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  track(
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): [Track!]! @cost(weight: "10")
+  approvedBy(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+}
+
+type Artist {
+  id: String!
+  userId: String!
+  stageName: String!
+  stageNameUnsigned: String!
+  email: String!
+  artistType: ArtistType!
+  members: [ArtistMember!]!
+  categoryIds: [String!]!
+  biography: String
+  followerCount: Long!
+  popularity: Decimal!
+  avatarImage: String
+  bannerImage: String
+  isVerified: Boolean!
+  verifiedAt: DateTime
+  identityCard: IdentityCard!
+  legalDocuments: [LegalDocument!]!
+  isVisible: Boolean!
+  royaltyEarnings: Decimal!
+  serviceRevenue: Decimal!
+  grossRevenue: Decimal!
+  refundAmount: Decimal!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  user(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  categories(
+    skip: Int
+    take: Int
+    where: CategoryFilterInput @cost(weight: "10")
+    order: [CategorySortInput!] @cost(weight: "10")
+  ): CategoriesCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  netEarnings: Decimal! @cost(weight: "10")
+}
+
+type ArtistInfo {
+  id: String!
+  stageName: String!
+  avatarImage: String
+  isVerified: Boolean!
+  followerCount: Long!
+  popularity: Decimal!
+}
+
+type ArtistMember {
+  fullName: String!
+  email: String!
+  phoneNumber: String!
+  isLeader: Boolean!
+  gender: UserGender!
+}
+
+type ArtistPackage {
+  id: String!
+  artistId: String!
+  packageName: String!
+  amount: Decimal!
+  currency: CurrencyType!
+  estimateDeliveryDays: Int!
+  description: String
+  maxRevision: Int!
+  serviceDetails: [Metadata!]!
+  status: ArtistPackageStatus!
+  isDelete: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  artist(
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): [Artist!]! @cost(weight: "10")
+  review: ReviewResponse! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type ArtistPackagesCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [ArtistPackage!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type ArtistPackagesInConversationCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [ArtistPackage!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type ArtistRevenueResponse {
+  royaltyEarnings: Decimal!
+  serviceRevenue: Decimal!
+  grossRevenue: Decimal!
+  refundAmount: Decimal!
+}
+
+"A segment of a collection."
+type ArtistsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Artist!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type AudioFeature {
+  tempo: Float!
+  key: String!
+  keyNumber: Int!
+  mode: String!
+  modeNumber: Int!
+  energy: Float!
+  danceability: Float!
+  acousticness: Float!
+  spectralCentroid: Float!
+  zeroCrossingRate: Float!
+  duration: Float!
+  chromaMean: [Float!]!
+  mfccMean: [Float!]!
+}
+
+type AudioFingerprint {
+  compressedFingerprints: [[Byte!]!]!
+  sequenceNumbers: [UInt32!]!
+  startsAt: [Float!]!
+  originalPoints: [[Byte!]!]!
+  duration: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"A segment of a collection."
+type CategoriesCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Category!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type Category {
+  id: String!
+  name: String!
+  slug: String!
+  type: CategoryType!
+  aliases: [String!]!
+  popularity: Int!
+  description: String
+  isVisible: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type CheckoutSessionResponse {
+  id: String!
+  url: String!
+  successUrl: String!
+  cancelUrl: String!
+  status: String!
+  created: DateTime!
+  expired: DateTime!
+  mode: String!
+}
+
+"Information about the offset pagination."
+type CollectionSegmentInfo {
+  "Indicates whether more items exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more items exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+}
+
+type CombinedUploadRequest {
+  id: String!
+  track: TrackTempRequest!
+  work: WorkTempRequest!
+  recording: RecordingTempRequest!
+  requestedAt: DateTime!
+  createdBy: String!
+  workUsers(
+    skip: Int
+    take: Int
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): WorkUsersCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  recordingUsers(
+    skip: Int
+    take: Int
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): RecordingUsersCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  mainArtists(
+    skip: Int
+    take: Int
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): MainArtistsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  featuredArtists(
+    skip: Int
+    take: Int
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): FeaturedArtistsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+}
+
+type Comment {
+  id: String!
+  targetId: String!
+  commentType: CommentType!
+  commenterId: String!
+  content: String!
+  parentCommentId: String
+  rootCommentId: String
+  threadPath: [String!]!
+  depth: Int!
+  replyCount: Long!
+  totalRepliesCount: Long!
+  sortOrder: Int!
+  threadUpdatedAt: DateTime!
+  isEdited: Boolean!
+  isDeleted: Boolean!
+  isVisible: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  user(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  listener(
+    where: ListenerFilterInput @cost(weight: "10")
+    order: [ListenerSortInput!] @cost(weight: "10")
+  ): [Listener!]! @cost(weight: "10")
+  artist(
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): [Artist!]! @cost(weight: "10")
+  track(
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): [Track!]! @cost(weight: "10")
+}
+
+type CommentRepliesResponse {
+  replies: [CommentResponse!]!
+  totalReplies: Int!
+  page: Int!
+  pageSize: Int!
+  hasNextPage: Boolean!
+  parentCommentId: String!
+}
+
+type CommentResponse {
+  id: String!
+  targetId: String!
+  commentType: CommentType!
+  commenterId: String!
+  content: String!
+  parentCommentId: String
+  rootCommentId: String
+  threadPath: [String!]!
+  depth: Int!
+  replyCount: Long!
+  totalRepliesCount: Long!
+  isEdited: Boolean!
+  isDeleted: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  threadUpdatedAt: DateTime!
+  commenter: CommenterInfo!
+}
+
+type CommentThread {
+  rootComment: CommentResponse!
+  replies: [CommentResponse!]!
+  totalReplies: Int!
+  hasMoreReplies: Boolean!
+  lastActivity: DateTime!
+}
+
+type CommenterInfo {
+  userId: String!
+  fullName: String!
+  avatar: String!
+  email: String!
+  role: UserRole!
+  isVerified: Boolean!
+  listener: ListenerInfo
+  artist: ArtistInfo
+}
+
+type ContributingArtist {
+  artistId: String!
+  role: ArtistRole!
+}
+
+type Conversation {
+  id: String!
+  userIds: [String!]!
+  requestHubId: String
+  status: ConversationStatus!
+  lastMessage: LastMessage
+  deletedFor: [DeletedForEntry!]!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  ownerProfileConversation: ConversationResponse! @cost(weight: "10")
+  otherProfileConversation: ConversationResponse! @cost(weight: "10")
+}
+
+type ConversationResponse {
+  nickname: String!
+  avatar: String!
+}
+
+"A segment of a collection."
+type ConversationsByUserIdCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Conversation!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type ConversationsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Conversation!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type Coupon {
+  id: String!
+  stripeCouponId: String!
+  name: String!
+  description: String
+  code: String!
+  percentOff: Decimal!
+  duration: CouponDurationType!
+  purpose: CouponPurposeType!
+  status: CouponStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"A segment of a collection."
+type CouponsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Coupon!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type CreateRecordingSplitRequest {
+  userId: String!
+  artistRole: ArtistRole!
+  percentage: Decimal!
+}
+
+type CreateWorkSplitRequest {
+  userId: String!
+  artistRole: ArtistRole!
+  percentage: Decimal!
+}
+
+type DeletedForEntry {
+  userId: String!
+  isDeleted: Boolean!
+}
+
+type Entitlement {
+  id: String!
+  name: String!
+  code: String!
+  description: String!
+  valueType: EntitlementValueType!
+  defaultValues: [EntitlementRoleDefault!]!
+  subscriptionOverrides: [EntitlementSubscriptionOverride!]!
+  isActive: Boolean!
+  expiredAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime
+  value: EntitlementValue!
+}
+
+type EntitlementRoleDefault {
+  role: UserRole!
+}
+
+type EntitlementSubscriptionOverride {
+  subscriptionCode: String!
+}
+
+"A segment of a collection."
+type EntitlementsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Entitlement!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type EscrowCommissionPoliciesCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [EscrowCommissionPolicy!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type EscrowCommissionPolicy {
+  id: String!
+  currency: CurrencyType!
+  platformFeePercentage: Decimal!
+  version: Long!
+  status: PolicyStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"A segment of a collection."
+type FavoriteAlbumsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Album!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type FavoritePlaylistsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Playlist!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type FavoriteTracksCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Track!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type FeaturedArtistsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Artist!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type FollowersCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [User!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type FollowersUserCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [User!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type FollowingsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [User!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type FollowingsUserCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [User!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type IdentityCard {
+  number: String!
+  fullName: String!
+  dateOfBirth: DateTime!
+  gender: UserGender!
+  placeOfOrigin: String!
+  nationality: String!
+  placeOfResidence: Address!
+  frontImage: String
+  backImage: String
+  validUntil: DateTime
+}
+
+type Invoice {
+  id: String!
+  userId: String!
+  paymentTransactionId: String!
+  stripeInvoiceId: String!
+  oneOffSnapshot: OneOffSnapshot
+  subscriptionSnapshot: SubscriptionSnapshot
+  fullName: String!
+  email: String!
+  country: String!
+  amount: Decimal!
+  currency: String!
+  from: String!
+  to: String!
+  originContext: String
+  paidAt: DateTime!
+  user(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  transaction(
+    where: PaymentTransactionFilterInput @cost(weight: "10")
+    order: [PaymentTransactionSortInput!] @cost(weight: "10")
+  ): [PaymentTransaction!]! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type InvoicesByUserIdCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Invoice!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type InvoicesCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Invoice!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type KeyValuePairOfStringAndInt32 {
+  key: String!
+  value: Int!
+}
+
+type LastMessage {
+  text: String!
+  senderId: String!
+  sentAt: DateTime!
+  isReadBy: [String!]!
+}
+
+type LegalDocument {
+  name: String!
+  documentUrl: String!
+  documentType: DocumentType!
+  note: String!
+}
+
+"A segment of a collection."
+type LegalPoliciesCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [LegalPolicy!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type LegalPolicy {
+  id: String!
+  name: String!
+  content: String!
+  version: Long!
+  status: PolicyStatus!
+  effectiveAt: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type Listener {
+  id: String!
+  userId: String!
+  displayName: String!
+  displayNameUnsigned: String!
+  email: String!
+  avatarImage: String
+  bannerImage: String
+  isVerified: Boolean!
+  verifiedAt: DateTime
+  followerCount: Long!
+  followingCount: Long!
+  lastFollowers: [String!]!
+  lastFollowings: [String!]!
+  isVisible: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  user(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  followingsUser(
+    skip: Int
+    take: Int
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): FollowingsUserCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  followersUser(
+    skip: Int
+    take: Int
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): FollowersUserCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+}
+
+type ListenerInfo {
+  id: String!
+  displayName: String!
+  avatarImage: String
+  isVerified: Boolean!
+  followerCount: Long!
+}
+
+"A segment of a collection."
+type ListenersCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Listener!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type MainArtistsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Artist!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type Message {
+  id: String!
+  conversationId: String!
+  senderId: String!
+  receiverId: String!
+  text: String!
+  isRead: Boolean!
+  deletedForIds: [String!]!
+  sentAt: DateTime!
+  senderProfileMessages: MessageResponse! @cost(weight: "10")
+  receiverProfileMessages: MessageResponse! @cost(weight: "10")
+}
+
+type MessageResponse {
+  nickname: String!
+  avatar: String!
+}
+
+"A connection to a list of items."
+type MessagesConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [MessagesEdge!]
+  "A flattened list of the nodes."
+  nodes: [Message!]
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
+}
+
+"An edge in a connection."
+type MessagesEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Message!
+}
+
+type Metadata {
+  key: String!
+  value: String!
+}
+
+type MomoPaymentResponse {
+  partnerCode: String
+  requestId: String
+  orderId: String
+  amount: Long
+  responseTime: Long
+  message: String
+  localMessage: String
+  resultCode: Int
+  payUrl: String
+}
+
+type MonthlyStreamCount {
+  id: String!
+  trackId: String!
+  month: Int!
+  year: Int!
+  streamCount: Long!
+  createdAt: DateTime!
+  processedAt: DateTime
+  track(
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): [Track!]! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type MonthlyStreamCountsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [MonthlyStreamCount!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type MutationInitialization {
+  initialize: String!
+  createMomoPaymentQR(
+    createMomoPaymentRequest: CreateMomoPaymentRequestInput!
+  ): MomoPaymentResponse! @allowAnonymous @cost(weight: "10")
+  createMomoPaymentVisa(
+    createMomoPaymentRequest: CreateMomoPaymentRequestInput!
+  ): MomoPaymentResponse! @allowAnonymous @cost(weight: "10")
+  createAlbum(createAlbumRequest: CreateAlbumRequestInput!): Boolean!
+    @authorize(roles: ["Artist"])
+    @cost(weight: "10")
+  addToFavoriteAlbum(albumId: String!, isAdding: Boolean!): Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  addTrackToAlbum(
+    addTrackToAlbumRequest: AddTrackToAlbumRequestInput!
+  ): Boolean! @authorize(roles: ["Artist"]) @cost(weight: "10")
+  removeTrackFromAlbum(
+    removeTrackFromAlbumRequest: RemoveTrackFromAlbumRequestInput!
+  ): Boolean! @authorize(roles: ["Artist"]) @cost(weight: "10")
+  deleteAlbum(albumId: String!): Boolean!
+    @authorize(roles: ["Artist"])
+    @cost(weight: "10")
+  createArtistPackage(
+    createRequest: CreateArtistPackageRequestInput!
+  ): Boolean!
+    @authorize(roles: ["Artist"])
+    @authorize(roles: ["Artist"])
+    @authorize(roles: ["Artist"])
+    @cost(weight: "10")
+  updateArtistPackage(
+    updateRequest: UpdateArtistPackageRequestInput!
+  ): Boolean!
+    @authorize(roles: ["Artist"])
+    @authorize(roles: ["Artist"])
+    @authorize(roles: ["Artist"])
+    @cost(weight: "10")
+  changeArtistPackageStatus(
+    updateStatusRequest: UpdateStatusArtistPackageRequestInput!
+  ): Boolean!
+    @authorize(roles: ["Artist"])
+    @authorize(roles: ["Artist"])
+    @authorize(roles: ["Artist"])
+    @cost(weight: "10")
+  deleteArtistPackage(artistPackageId: String!): Boolean!
+    @authorize(roles: ["Artist"])
+    @authorize(roles: ["Artist"])
+    @authorize(roles: ["Artist"])
+    @cost(weight: "10")
+  updateArtistProfile(updateArtistRequest: UpdateArtistRequestInput!): Boolean!
+    @authorize(roles: ["Artist"])
+    @cost(weight: "10")
+  approveArtistRegistration(
+    request: ArtistRegistrationApprovalRequestInput!
+  ): Boolean! @authorize(roles: ["Moderator"]) @cost(weight: "10")
+  rejectArtistRegistration(
+    request: ArtistRegistrationApprovalRequestInput!
+  ): Boolean! @authorize(roles: ["Moderator"]) @cost(weight: "10")
+  computeArtistRevenueByArtistId(artistId: String!): ArtistRevenueResponse!
+    @authorize(roles: ["Admin", "Artist", "Moderator"])
+    @cost(weight: "10")
+  registerArtistManual(
+    createArtistRequest: CreateArtistRequestInput!
+  ): Boolean! @cost(weight: "10")
+  createBillingPortalConfiguration(
+    createBillingPortalConfigurationRequest: CreateBillingPortalConfigurationRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  createCustomerPortalSession(returnUrl: String!, version: Long!): String!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  createCategory(categoryRequest: CreateCategoryRequestInput!): Boolean!
+    @cost(weight: "10")
+  updateConversationStatus(
+    conversationId: String!
+    status: ConversationStatus!
+  ): Boolean!
+    @authorize(roles: ["Artist", "Listener", "Moderator"])
+    @cost(weight: "10")
+  addConversationGeneral(otherUserId: String!): String!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  addConversationFromRequestHub(
+    request: CreateConversationRequestInput!
+  ): String! @authorize(roles: ["Artist", "Listener"]) @cost(weight: "10")
+  createComment(request: CreateCommentRequestInput!): Boolean!
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @cost(weight: "10")
+  updateComment(request: UpdateTrackCommentRequestInput!): Boolean!
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @cost(weight: "10")
+  deleteComment(request: DeleteCommentRequestInput!): Boolean!
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @cost(weight: "10")
+  createCoupon(createCouponRequest: CreateCouponRequestInput!): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  deprecateCoupon(couponIds: [String!]!): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  deleteCoupon(couponIds: [String!]!): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  seedEntitlements(password: String!): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  createEntitlement(
+    createEntitlementRequest: CreateEntitlementRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  entitlementUserCount(code: String!): Long!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  deactiveEntitlement(code: String!): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  reactiveEntitlement(code: String!): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  updateListenerProfile(
+    updateListenerRequest: UpdateListenerRequestInput!
+  ): Boolean! @authorize(roles: ["Listener"]) @cost(weight: "10")
+  createExpressConnectedAccount(
+    refreshUrl: String! = "https://ekofy.com/refresh"
+    returnUrl: String! = "https://ekofy.com/return"
+  ): AccountLinkResponse! @authorize(roles: ["Artist"]) @cost(weight: "10")
+  createPaymentCheckoutSession(
+    createPaymentCheckoutSessionRequest: CreatePaymentCheckoutSessionRequestInput!
+  ): CheckoutSessionResponse!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  refund(
+    paymentIntentId: String!
+    amount: Decimal!
+    refundReasonType: RefundReasonType!
+  ): Boolean!
+    @authorize(roles: ["Artist", "Listener", "Moderator"])
+    @cost(weight: "10")
+  createSubscriptionCheckoutSession(
+    createCheckoutSessionRequest: CreateSubscriptionCheckoutSessionRequestInput!
+  ): CheckoutSessionResponse!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  cancelSubscriptionAtPeriodEnd: Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  resumeSubscription: Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  createPlaylist(createPlaylistRequest: CreatePlaylistRequestInput!): Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  updatePlaylist(updatePlaylistRequest: UpdatePlaylistRequestInput!): Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  addToFavoritePlaylist(playlistId: String!, isAdding: Boolean!): Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  addToPlaylist(addToPlaylistRequest: AddToPlaylistRequestInput!): Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  removeFromPlaylist(
+    removeFromPlaylistRequest: RemoveFromPlaylistRequestInput!
+  ): Boolean! @authorize(roles: ["Artist", "Listener"]) @cost(weight: "10")
+  deletePlaylist(playlistId: String!): Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  seedEscrowCommissionPolicyData(password: String!): Boolean!
+    @allowAnonymous
+    @cost(weight: "10")
+  createEscrowCommissionPolicy(
+    createRequest: CreateEscrowCommissionPolicyRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  updateEscrowCommissionPolicy(
+    updateRequest: UpdateEscrowCommissionPolicyRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  downgradeEscrowCommissionPolicyVersion(version: Long): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  createLegalPolicy(
+    createLegalPolicyRequest: CreateLegalPolicyRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  seedRoyaltyPolicyData(password: String!): Boolean!
+    @allowAnonymous
+    @cost(weight: "10")
+  createRoyaltyPolicy(
+    createRoyalPolicyRequest: CreateRoyalPolicyRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  updateRoyaltyPolicy(
+    updateRoyalPolicyRequest: UpdateRoyalPolicyRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  downgradeRoyaltyPolicyVersion(version: Long): Boolean! @cost(weight: "10")
+  processTrackStreamingMetric(
+    trackId: String!
+    actionType: PopularityActionType!
+  ): Boolean! @allowAnonymous @cost(weight: "10")
+  processTrackEngagementMetric(
+    trackId: String!
+    actionType: PopularityActionType!
+  ): Boolean! @allowAnonymous @cost(weight: "10")
+  processTrackDiscovery(
+    trackId: String!
+    actionType: PopularityActionType!
+  ): Boolean! @allowAnonymous @cost(weight: "10")
+  processArtistEngagement(
+    artistId: String!
+    actionType: PopularityActionType!
+  ): Boolean! @allowAnonymous @cost(weight: "10")
+  processArtistDiscovery(
+    artistId: String!
+    actionType: PopularityActionType!
+  ): Boolean! @allowAnonymous @cost(weight: "10")
+  createReport(request: CreateReportRequestInput!): Boolean!
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @cost(weight: "10")
+  assignReportToModerator(reportId: String!, moderatorId: String!): Boolean!
+    @authorize(roles: ["Admin", "Moderator"])
+    @authorize(roles: ["Admin", "Moderator"])
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  processReport(request: ProcessReportRequestInput!): Boolean!
+    @authorize(roles: ["Admin", "Moderator"])
+    @authorize(roles: ["Admin", "Moderator"])
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  updateReportPriority(reportId: String!, priority: String!): Boolean!
+    @authorize(roles: ["Admin", "Moderator"])
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  deleteReport(reportId: String!): Boolean!
+    @authorize(roles: ["Admin"])
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  escalateReport(reportId: String!): Boolean!
+    @authorize(roles: ["Admin", "Moderator"])
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  restoreUser(reportId: String!): Boolean!
+    @authorize(roles: ["Admin"])
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  restoreContent(reportId: String!): Boolean!
+    @authorize(roles: ["Admin", "Moderator"])
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  sendRequest(
+    request: CreateDirectRequestInput!
+    isDirectRequest: Boolean! = false
+  ): Boolean! @authorize(roles: ["Listener"]) @cost(weight: "10")
+  changeRequestStatus(request: ChangeStatusRequestInput!): Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  createPublicRequest(request: RequestCreatingRequestInput!): Boolean!
+    @authorize(roles: ["Listener"])
+    @cost(weight: "10")
+  updatePublicRequest(request: RequestUpdatingRequestInput!): Boolean!
+    @authorize(roles: ["Listener"])
+    @cost(weight: "10")
+  blockPublicRequest(requestId: String!): Boolean!
+    @authorize(roles: ["Moderator"])
+    @cost(weight: "10")
+  computePlatformRevenue: PlatformRevenue! @allowAnonymous @cost(weight: "10")
+  createSubscription(
+    createSubscriptionRequest: CreateSubscriptionRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  createSubscriptionPlan(
+    createSubScriptionPlanRequest: CreateSubScriptionPlanRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  updateSubscriptionPlan(
+    updateSubscriptionPlanRequest: UpdateSubscriptionPlanRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  activateSubscription(subscriptionId: String!): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  testTransferMoneyToArtist(
+    artistAccountId: String!
+    amount: Decimal!
+  ): TransferResponse! @allowAnonymous
+  seedMonthlyStreamCountByTrackId(
+    trackId: String!
+    streamCount: Long!
+    month: Int!
+    year: Int!
+  ): Boolean! @allowAnonymous @cost(weight: "10")
+  testGenrateMonthlyRoyaltyReportsAynsc(month: Int!, year: Int!): Boolean!
+    @allowAnonymous
+    @cost(weight: "10")
+  upsertTopTrackCount(trackId: String!): Boolean!
+    @authorize(roles: ["Listener"])
+    @authorize(roles: ["Listener"])
+    @authorize(roles: ["Listener"])
+    @cost(weight: "10")
+  uploadTrackFingerprint(
+    file: Upload!
+    trackId: String!
+    trackName: String!
+    artistName: String!
+    artistId: String!
+  ): String! @cost(weight: "10")
+  uploadTrack(
+    file: Upload!
+    createTrackRequest: CreateTrackRequestInput!
+    createWorkRequest: CreateWorkRequestInput!
+    createRecordingRequest: CreateRecordingRequestInput!
+    isTesting: Boolean! = false
+  ): Boolean! @authorize(roles: ["Artist"]) @cost(weight: "10")
+  approveTrackUploadRequest(uploadId: String!): Boolean!
+    @authorize(roles: ["Moderator"])
+    @cost(weight: "10")
+  rejectTrackUploadRequest(uploadId: String!, reasonReject: String!): Boolean!
+    @authorize(roles: ["Moderator"])
+    @cost(weight: "10")
+  addToFavoriteTrack(trackId: String!, isAdding: Boolean!): Boolean!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  createModerator(
+    createModeratorRequest: CreateModeratorRequestInput!
+  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  createAdmin(createAdminRequest: CreateAdminRequestInput!): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+  followUser(request: UserEngagementRequestInput!): Boolean!
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @cost(weight: "10")
+  unfollowUser(request: UserEngagementRequestInput!): Boolean!
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @cost(weight: "10")
+  banUser(targetUserId: String!): Boolean!
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  unbanUser(targetUserId: String!): Boolean!
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  deleteUserManual(userId: String!): Boolean!
+    @authorize(roles: ["Admin"])
+    @cost(weight: "10")
+}
+
+type OneOffSnapshot {
+  packageName: String!
+  packageAmount: Decimal!
+  packageCurrency: CurrencyType!
+  estimateDeliveryDays: Int!
+  packageDescription: String
+  maxRevision: Int!
+  serviceDetails: [Metadata!]!
+  artistPackageStatus: ArtistPackageStatus!
+  deadline: DateTime!
+  platformFeePercentage: Decimal!
+  artistFeePercentage: Decimal!
+  oneOffType: OneOffType!
+}
+
+"A segment of a collection."
+type OwnPlaylistsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Playlist!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type OwnRequestsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Request!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type PackageOrder {
+  id: String!
+  clientId: String!
+  providerId: String!
+  artistPackageId: String!
+  paymentTransactionId: String!
+  conversationId: String!
+  status: PackageOrderStatus!
+  revisionCount: Int!
+  deliveries: [PackageOrderDelivery!]!
+  deadline: DateTime!
+  completedAt: DateTime
+  isEscrowReleased: Boolean!
+  platformFeePercentage: Decimal!
+  artistFeePercentage: Decimal!
+  review: Review
+  backgroundJobId: String
+  createdAt: DateTime!
+  updatedAt: DateTime
+  package(
+    where: ArtistPackageFilterInput @cost(weight: "10")
+    order: [ArtistPackageSortInput!] @cost(weight: "10")
+  ): [ArtistPackage!]! @cost(weight: "10")
+  client(
+    where: ListenerFilterInput @cost(weight: "10")
+    order: [ListenerSortInput!] @cost(weight: "10")
+  ): [Listener!]! @cost(weight: "10")
+  provider(
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): [Artist!]! @cost(weight: "10")
+  paymentTransaction(
+    where: PaymentTransactionFilterInput @cost(weight: "10")
+    order: [PaymentTransactionSortInput!] @cost(weight: "10")
+  ): [PaymentTransaction!]! @cost(weight: "10")
+}
+
+type PackageOrderDelivery {
+  deliveryFileUrl: String!
+  notes: String
+  revisionNumber: Int!
+  clientFeedback: String
+  requestedAt: DateTime
+  deliveredAt: DateTime
+}
+
+"A segment of a collection."
+type PackageOrdersCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [PackageOrder!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+  "Indicates whether more edges exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more edges exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+}
+
+type PaginatedDataOfCombinedUploadRequest {
+  items: [CombinedUploadRequest!]!
+  totalCount: Int!
+}
+
+type PaginatedDataOfPendingArtistRegistrationResponse {
+  items: [PendingArtistRegistrationResponse!]!
+  totalCount: Int!
+}
+
+type PaymentTransaction {
+  id: String!
+  userId: String!
+  stripeCheckoutSessionId: String
+  stripeSubscriptionId: String
+  stripeInvoiceId: String
+  stripePaymentId: String
+  stripePaymentMethod: [String!]!
+  amount: Decimal!
+  currency: String!
+  paymentStatus: PaymentTransactionStatus!
+  status: TransactionStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  user(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type PaymentTransactionsByUserIdCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [PaymentTransaction!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type PaymentTransactionsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [PaymentTransaction!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type PayoutTransaction {
+  id: String!
+  userId: String!
+  royaltyReportId: String
+  stripeTransferId: String!
+  stripePayoutId: String!
+  destinationAccountId: String!
+  amount: Decimal!
+  currency: String!
+  level: AggregationLevel
+  description: String!
+  status: PayoutTransactionStatus!
+  method: String
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"A segment of a collection."
+type PayoutTransactionsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [PayoutTransaction!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type PendingArtistRegistrationResponse {
+  id: String!
+  email: String!
+  fullName: String!
+  stageName: String!
+  stageNameUnsigned: String!
+  artistType: ArtistType!
+  gender: UserGender!
+  birthDate: DateTime!
+  phoneNumber: String!
+  avatarImage: String
+  members: [ArtistMember!]!
+  requestedAt: DateTime!
+  timeToLive: TimeSpan
+  identityCardNumber: String!
+  identityCardFullName: String!
+  identityCardDateOfBirth: DateTime!
+  placeOfOrigin: String!
+  placeOfResidence: String!
+  frontImageUrl: String
+  backImageUrl: String
+}
+
+type PlatformRevenue {
+  subscriptionRevenue: Decimal!
+  serviceRevenue: Decimal!
+  grossRevenue: Decimal!
+  royaltyPayoutAmount: Decimal!
+  servicePayoutAmount: Decimal!
+  refundAmount: Decimal!
+  totalPayoutAmount: Decimal!
+  grossDeductions: Decimal!
+  commissionProfit: Decimal!
+  netProfit: Decimal!
+  currency: CurrencyType!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"A segment of a collection."
+type PlatformRevenuesCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [PlatformRevenue!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type Playlist {
+  id: String!
+  userId: String!
+  name: String!
+  nameUnsigned: String!
+  description: String
+  coverImage: String
+  tracksInfo: [PlaylistTracksInfo!]!
+  isPublic: Boolean!
+  isVisible: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  user(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  listener(
+    where: ListenerFilterInput @cost(weight: "10")
+    order: [ListenerSortInput!] @cost(weight: "10")
+  ): [Listener!]! @cost(weight: "10")
+  artist(
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): [Artist!]! @cost(weight: "10")
+  tracks(
+    skip: Int
+    take: Int
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): TracksCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  checkPlaylistInFavorite: Boolean! @cost(weight: "10")
+}
+
+type PlaylistTracksInfo {
+  trackId: String!
+  addedTime: DateTime!
+}
+
+"A segment of a collection."
+type PlaylistsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Playlist!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type QueryAudioFingerprintResponse {
+  trackId: String!
+  trackName: String!
+  artistId: String!
+  artistName: String!
+  mediaType: String!
+  queryMatchStartsAt: Float!
+  queryMatchEndsAt: Float!
+  trackMatchStartsAt: Float!
+  trackMatchEndsAt: Float!
+  queryCoverageLength: Float!
+  trackCoverageLength: Float!
+  queryCoverage: Float!
+  trackCoverage: Float!
+  minConfidence: Float!
+  minCoverage: Float!
+}
+
+type QueryInitialization {
+  initialize: String!
+  albums(
+    skip: Int
+    take: Int
+    where: AlbumFilterInput @cost(weight: "10")
+    order: [AlbumSortInput!] @cost(weight: "10")
+  ): AlbumsCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  favoriteAlbums(
+    skip: Int
+    take: Int
+    where: AlbumFilterInput @cost(weight: "10")
+    order: [AlbumSortInput!] @cost(weight: "10")
+  ): FavoriteAlbumsCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  searchAlbums(
+    skip: Int
+    take: Int
+    name: String!
+    where: AlbumFilterInput @cost(weight: "10")
+    order: [AlbumSortInput!] @cost(weight: "10")
+  ): SearchAlbumsCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  checkAlbumInFavorite(albumId: String!): Boolean!
+    @allowAnonymous
+    @cost(weight: "10")
+  approvalHistories(
+    skip: Int
+    take: Int
+    where: ApprovalHistoryFilterInput @cost(weight: "10")
+    order: [ApprovalHistorySortInput!] @cost(weight: "10")
+  ): ApprovalHistoriesCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  artistPackages(
+    skip: Int
+    take: Int
+    where: ArtistPackageFilterInput @cost(weight: "10")
+    order: [ArtistPackageSortInput!] @cost(weight: "10")
+  ): ArtistPackagesCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  artistPackagesInConversation(
+    skip: Int
+    take: Int
+    artistId: String!
+    where: ArtistPackageFilterInput @cost(weight: "10")
+    order: [ArtistPackageSortInput!] @cost(weight: "10")
+  ): ArtistPackagesInConversationCollectionSegment
+    @authorize(roles: ["Artist", "Listener"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  artists(
+    skip: Int
+    take: Int
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): ArtistsCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  searchArtists(
+    skip: Int
+    take: Int
+    stageName: String!
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): SearchArtistsCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  pendingArtistRegistrations(
+    pageNumber: Int! = 1
+    pageSize: Int! = 20
+  ): PaginatedDataOfPendingArtistRegistrationResponse!
+    @authorize(roles: ["Moderator"])
+    @cost(weight: "10")
+  pendingArtistRegistrationById(
+    artistRegistrationId: String!
+  ): PendingArtistRegistrationResponse!
+    @authorize(roles: ["Moderator"])
+    @cost(weight: "10")
+  categories(
+    skip: Int
+    take: Int
+    where: CategoryFilterInput @cost(weight: "10")
+    order: [CategorySortInput!] @cost(weight: "10")
+  ): CategoriesCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  messages(
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the last _n_ elements from the list."
+    last: Int
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    where: MessageFilterInput @cost(weight: "10")
+    order: [MessageSortInput!] @cost(weight: "10")
+  ): MessagesConnection
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  conversations(
+    skip: Int
+    take: Int
+    where: ConversationFilterInput @cost(weight: "10")
+    order: [ConversationSortInput!] @cost(weight: "10")
+  ): ConversationsCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  conversationsByUserId(
+    skip: Int
+    take: Int
+    userId: String!
+    where: ConversationFilterInput @cost(weight: "10")
+    order: [ConversationSortInput!] @cost(weight: "10")
+  ): ConversationsByUserIdCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  threadedComments(
+    request: ThreadedCommentsRequestInput!
+  ): ThreadedCommentsResponse! @cost(weight: "10")
+  commentReplies(request: CommentRepliesRequestInput!): CommentRepliesResponse!
+    @cost(weight: "10")
+  commentThread(request: CommentThreadRequestInput!): [CommentResponse!]!
+    @cost(weight: "10")
+  commentDepth(commentId: String!): Int! @cost(weight: "10")
+  isCommentInThread(commentId: String!, threadRootId: String!): Boolean!
+    @cost(weight: "10")
+  coupons(
+    skip: Int
+    take: Int
+    where: CouponFilterInput @cost(weight: "10")
+    order: [CouponSortInput!] @cost(weight: "10")
+  ): CouponsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  entitlements(
+    skip: Int
+    take: Int
+    where: EntitlementFilterInput @cost(weight: "10")
+    order: [EntitlementSortInput!] @cost(weight: "10")
+  ): EntitlementsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  invoices(
+    skip: Int
+    take: Int
+    where: InvoiceFilterInput @cost(weight: "10")
+    order: [InvoiceSortInput!] @cost(weight: "10")
+  ): InvoicesCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  invoicesByUserId(
+    skip: Int
+    take: Int
+    userId: String!
+    where: InvoiceFilterInput @cost(weight: "10")
+    order: [InvoiceSortInput!] @cost(weight: "10")
+  ): InvoicesByUserIdCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  listeners(
+    skip: Int
+    take: Int
+    where: ListenerFilterInput @cost(weight: "10")
+    order: [ListenerSortInput!] @cost(weight: "10")
+  ): ListenersCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  searchListeners(
+    skip: Int
+    take: Int
+    displayName: String!
+    where: ListenerFilterInput @cost(weight: "10")
+    order: [ListenerSortInput!] @cost(weight: "10")
+  ): SearchListenersCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  monthlyStreamCounts(
+    skip: Int
+    take: Int
+    where: MonthlyStreamCountFilterInput @cost(weight: "10")
+    order: [MonthlyStreamCountSortInput!] @cost(weight: "10")
+  ): MonthlyStreamCountsCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  packageOrders(
+    skip: Int
+    take: Int
+    where: PackageOrderFilterInput @cost(weight: "10")
+    order: [PackageOrderSortInput!] @cost(weight: "10")
+  ): PackageOrdersCollectionSegment
+    @authorize(roles: ["Artist", "Listener"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  playlists(
+    skip: Int
+    take: Int
+    where: PlaylistFilterInput @cost(weight: "10")
+    order: [PlaylistSortInput!] @cost(weight: "10")
+  ): PlaylistsCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  ownPlaylists(
+    skip: Int
+    take: Int
+    where: PlaylistFilterInput @cost(weight: "10")
+    order: [PlaylistSortInput!] @cost(weight: "10")
+  ): OwnPlaylistsCollectionSegment
+    @authorize(roles: ["Artist", "Listener"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  favoritePlaylists(
+    skip: Int
+    take: Int
+    where: PlaylistFilterInput @cost(weight: "10")
+    order: [PlaylistSortInput!] @cost(weight: "10")
+  ): FavoritePlaylistsCollectionSegment
+    @authorize(roles: ["Artist", "Listener"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  searchPlaylists(
+    skip: Int
+    take: Int
+    name: String!
+    where: PlaylistFilterInput @cost(weight: "10")
+    order: [PlaylistSortInput!] @cost(weight: "10")
+  ): SearchPlaylistsCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  escrowCommissionPolicies(
+    skip: Int
+    take: Int
+    where: EscrowCommissionPolicyFilterInput @cost(weight: "10")
+    order: [EscrowCommissionPolicySortInput!] @cost(weight: "10")
+  ): EscrowCommissionPoliciesCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  legalPolicies(
+    skip: Int
+    take: Int
+    where: LegalPolicyFilterInput @cost(weight: "10")
+    order: [LegalPolicySortInput!] @cost(weight: "10")
+  ): LegalPoliciesCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  royaltyPolicies(
+    skip: Int
+    take: Int
+    where: RoyaltyPolicyFilterInput @cost(weight: "10")
+    order: [RoyaltyPolicySortInput!] @cost(weight: "10")
+  ): RoyaltyPoliciesCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  recordings(
+    skip: Int
+    take: Int
+    where: RecordingFilterInput @cost(weight: "10")
+    order: [RecordingSortInput!] @cost(weight: "10")
+  ): RecordingsCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  metadataRecordingUploadRequest(uploadId: String!): RecordingTempRequest!
+    @authorize(roles: ["Admin", "Artist", "Moderator"])
+    @cost(weight: "10")
+  reports(
+    skip: Int
+    take: Int
+    where: ReportFilterInput @cost(weight: "10")
+    order: [ReportSortInput!] @cost(weight: "10")
+  ): ReportsCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  reportStatistics: ReportStatisticsResponse!
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  requests(
+    skip: Int
+    take: Int
+    where: RequestFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): RequestsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  requestDetailById(requestId: String!): Request @cost(weight: "10")
+  searchRequests(
+    skip: Int
+    take: Int
+    searchTerm: String!
+    isIndividual: Boolean!
+    where: RequestFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): SearchRequestsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  ownRequests(
+    skip: Int
+    take: Int
+    where: RequestFilterInput @cost(weight: "10")
+  ): OwnRequestsCollectionSegment
+    @authorize(roles: ["Listener"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  platformRevenues(
+    skip: Int
+    take: Int
+    where: PlatformRevenueFilterInput @cost(weight: "10")
+    order: [PlatformRevenueSortInput!] @cost(weight: "10")
+  ): PlatformRevenuesCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  royaltyReports(
+    skip: Int
+    take: Int
+    where: RoyaltyReportFilterInput @cost(weight: "10")
+    order: [RoyaltyReportSortInput!] @cost(weight: "10")
+  ): RoyaltyReportsCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  subscriptionPlans(
+    skip: Int
+    take: Int
+    where: SubscriptionPlanFilterInput @cost(weight: "10")
+    order: [SubscriptionPlanSortInput!] @cost(weight: "10")
+  ): SubscriptionPlansCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  subscriptions(
+    skip: Int
+    take: Int
+    where: SubscriptionFilterInput @cost(weight: "10")
+    order: [SubscriptionSortInput!] @cost(weight: "10")
+  ): SubscriptionsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  topTracks: [TopTrackResponse!]!
+    @authorize(roles: ["Listener"])
+    @cost(weight: "10")
+  queryTracks(file: Upload!): [QueryAudioFingerprintResponse!]!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  queryTrack(file: Upload!): QueryAudioFingerprintResponse!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  tracks(
+    skip: Int
+    take: Int
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): TracksCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  favoriteTracks(
+    skip: Int
+    take: Int
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): FavoriteTracksCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  searchTracks(
+    skip: Int
+    take: Int
+    name: String!
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): SearchTracksCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  pendingTrackUploadRequests(
+    pageNumber: Int! = 1
+    pageSize: Int! = 20
+  ): PaginatedDataOfCombinedUploadRequest!
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  pendingTrackUploadRequestById(uploadId: String!): CombinedUploadRequest!
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  metadataTrackUploadRequest(uploadId: String!): TrackTempRequest!
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  originalFileTrackUploadRequest(trackId: String!): String!
+    @authorize(roles: ["Admin", "Moderator"])
+  trackBySemanticSearch(term: String!): [Track!]!
+    @authorize(roles: ["Artist", "Listener"])
+    @cost(weight: "10")
+  recommendedTracksByTrackId(
+    skip: Int
+    take: Int
+    algorithm: RecommendationAlgorithm!
+    trackId: String!
+    audioFeatureWeight: AudioFeatureWeightInput!
+    limit: Int!
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): RecommendedTracksByTrackIdCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  paymentTransactions(
+    skip: Int
+    take: Int
+    where: PaymentTransactionFilterInput @cost(weight: "10")
+    order: [PaymentTransactionSortInput!] @cost(weight: "10")
+  ): PaymentTransactionsCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  payoutTransactions(
+    skip: Int
+    take: Int
+    where: PayoutTransactionFilterInput @cost(weight: "10")
+    order: [PayoutTransactionSortInput!] @cost(weight: "10")
+  ): PayoutTransactionsCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  refundTransactions(
+    skip: Int
+    take: Int
+    where: RefundTransactionFilterInput @cost(weight: "10")
+    order: [RefundTransactionSortInput!] @cost(weight: "10")
+  ): RefundTransactionsCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  userEngagement(
+    skip: Int
+    take: Int
+    where: UserEngagementFilterInput @cost(weight: "10")
+    order: [UserEngagementSortInput!] @cost(weight: "10")
+  ): UserEngagementCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  users(
+    skip: Int
+    take: Int
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): UsersCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  followers(
+    skip: Int
+    take: Int
+    userId: String
+    artistId: String
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): FollowersCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  followings(
+    skip: Int
+    take: Int
+    userId: String
+    artistId: String
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): FollowingsCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  paymentTransactionsByUserId(
+    skip: Int
+    take: Int
+    userId: String!
+    where: PaymentTransactionFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): PaymentTransactionsByUserIdCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  userSubscriptions(
+    skip: Int
+    take: Int
+    where: UserSubscriptionFilterInput @cost(weight: "10")
+    order: [UserSubscriptionSortInput!] @cost(weight: "10")
+  ): UserSubscriptionsCollectionSegment
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  works(
+    skip: Int
+    take: Int
+    where: WorkFilterInput @cost(weight: "10")
+    order: [WorkSortInput!] @cost(weight: "10")
+  ): WorksCollectionSegment
+    @authorize(roles: ["Admin", "Artist", "Moderator"])
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  metadataWorkUploadRequest(uploadId: String!): WorkTempRequest!
+    @authorize(roles: ["Admin", "Artist", "Moderator"])
+    @cost(weight: "10")
+}
+
+"A segment of a collection."
+type RecommendedTracksByTrackIdCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Track!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type Recording {
+  id: String!
+  trackId: String!
+  description: String
+  recordingSplits: [RecordingSplit!]!
+  version: Long!
+  status: RecordingStatus!
+  createdAt: DateTime!
+  track(
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): [Track!]! @cost(weight: "10")
+  users(
+    skip: Int
+    take: Int
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): UsersCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+}
+
+type RecordingSplit {
+  userId: String!
+  artistRole: ArtistRole!
+  percentage: Decimal!
+}
+
+type RecordingTempRequest {
+  id: String!
+  description: String
+  recordingSplitRequests: [CreateRecordingSplitRequest!]!
+}
+
+"A segment of a collection."
+type RecordingUsersCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [User!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type RecordingsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Recording!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type RefundTransaction {
+  id: String!
+  stripePaymentId: String!
+  amount: Decimal!
+  currency: CurrencyType!
+  reason: RefundReasonType!
+  status: RefundTransactionStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"A segment of a collection."
+type RefundTransactionsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [RefundTransaction!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type ReleaseInfo {
+  isRelease: Boolean!
+  releaseDate: DateTime
+  releasedAt: DateTime
+  releaseStatus: ReleaseStatus!
+}
+
+type Report {
+  id: String!
+  reportedUserId: String!
+  reporterId: String!
+  reportType: ReportType!
+  description: String!
+  status: ReportStatus!
+  priority: ReportPriority!
+  relatedContentId: String
+  relatedContentType: ReportRelatedContentType
+  evidences: [String!]!
+  assignedModeratorId: String
+  actionTaken: ReportAction
+  note: String
+  resolvedAt: DateTime
+  totalReportsCount: Long!
+  isDeleted: Boolean!
+  backgroundJobId: String
+  createdAt: DateTime!
+  updatedAt: DateTime
+  userReporter(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  nicknameReporter: String! @cost(weight: "10")
+  nicknameReported: String! @cost(weight: "10")
+  userReported(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  userAssignedTo(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  track(
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): [Track!]! @cost(weight: "10")
+  comment(
+    where: CommentFilterInput @cost(weight: "10")
+    order: [CommentSortInput!] @cost(weight: "10")
+  ): [Comment!]! @cost(weight: "10")
+  request(
+    where: RequestFilterInput @cost(weight: "10")
+    order: [RequestSortInput!] @cost(weight: "10")
+  ): [Request!]! @cost(weight: "10")
+}
+
+type ReportStatisticsResponse {
+  totalReports: Int!
+  pendingReports: Int!
+  underReviewReports: Int!
+  resolvedReports: Int!
+  rejectedReports: Int!
+  reportsByType: [KeyValuePairOfStringAndInt32!]!
+  reportsByPriority: [KeyValuePairOfStringAndInt32!]!
+  topReportedUsers: [TopReportedUserResponse!]!
+}
+
+"A segment of a collection."
+type ReportsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Report!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type Request {
+  id: String!
+  requestUserId: String!
+  artistId: String
+  packageId: String
+  title: String
+  titleUnsigned: String
+  summary: String
+  summaryUnsigned: String
+  detailDescription: String
+  requirements: String
+  budget: RequestBudget
+  postCreatedTime: DateTime
+  updatedAt: DateTime
+  type: RequestType!
+  currency: CurrencyType!
+  deadline: DateTime!
+  status: RequestStatus!
+  requestCreatedTime: DateTime
+  notes: String
+  requestor(
+    where: ListenerFilterInput @cost(weight: "10")
+    order: [ListenerSortInput!] @cost(weight: "10")
+  ): [Listener!]! @cost(weight: "10")
+  artist(
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): [Artist!]! @cost(weight: "10")
+  artistPackage(
+    where: ArtistPackageFilterInput @cost(weight: "10")
+    order: [ArtistPackageSortInput!] @cost(weight: "10")
+  ): [ArtistPackage!]! @cost(weight: "10")
+}
+
+type RequestBudget {
+  min: Decimal!
+  max: Decimal!
+}
+
+"A segment of a collection."
+type RequestsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Request!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type Restriction {
+  type: RestrictionType!
+  action: RestrictionAction
+  reason: String
+  restrictedAt: DateTime
+  expired: DateTime
+}
+
+type Review {
+  rating: Int!
+  content: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type ReviewResponse {
+  averageRating: Int!
+  totalReviews: Int!
+}
+
+"A segment of a collection."
+type RoyaltyPoliciesCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [RoyaltyPolicy!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type RoyaltyPolicy {
+  id: String!
+  ratePerStream: Decimal!
+  currency: CurrencyType!
+  recordingPercentage: Decimal!
+  workPercentage: Decimal!
+  version: Long!
+  status: PolicyStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type RoyaltyReport {
+  id: String!
+  trackId: String!
+  month: Int!
+  year: Int!
+  streamCount: Long!
+  totalRoyaltyAmount: Decimal!
+  royaltySplits: [RoyaltySplit!]!
+  createdAt: DateTime!
+  track(
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): [Track!]! @cost(weight: "10")
+  users(
+    skip: Int
+    take: Int
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): UsersCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+}
+
+"A segment of a collection."
+type RoyaltyReportsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [RoyaltyReport!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type RoyaltySplit {
+  userId: String!
+  artistRole: ArtistRole!
+  percentage: Decimal!
+  amount: Decimal!
+  level: AggregationLevel!
+  isTransferred: Boolean!
+}
+
+"A segment of a collection."
+type SearchAlbumsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Album!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type SearchArtistsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Artist!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type SearchListenersCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Listener!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type SearchPlaylistsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Playlist!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type SearchRequestsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Request!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type SearchTracksCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Track!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type Subscription {
+  id: String!
+  name: String!
+  description: String
+  code: String!
+  version: Int!
+  amount: Decimal!
+  currency: CurrencyType!
+  tier: SubscriptionTier!
+  status: SubscriptionStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type SubscriptionInitialization {
+  initialize: String!
+  onFavoriteCountUpdated(trackId: String!): Long!
+}
+
+type SubscriptionPlan {
+  id: String!
+  subscriptionId: String!
+  stripeProductId: String!
+  stripeProductActive: Boolean!
+  stripeProductName: String!
+  stripeProductImages: [String!]
+  stripeProductType: String!
+  stripeProductMetadata: [Metadata!]
+  subscriptionPlanPrices: [SubscriptionPlanPrice!]!
+  subscription(
+    where: SubscriptionFilterInput @cost(weight: "10")
+    order: [SubscriptionSortInput!] @cost(weight: "10")
+  ): [Subscription!]! @cost(weight: "10")
+}
+
+type SubscriptionPlanPrice {
+  stripePriceId: String!
+  stripePriceActive: Boolean!
+  stripePriceUnitAmount: Long!
+  stripePriceCurrency: String!
+  stripePriceLookupKey: String!
+  stripePriceMetadata: [Metadata!]
+  interval: PeriodTime!
+  intervalCount: Long!
+}
+
+"A segment of a collection."
+type SubscriptionPlansCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [SubscriptionPlan!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type SubscriptionSnapshot {
+  subscriptionName: String!
+  subscriptionDescription: String
+  subscriptionCode: String!
+  subscriptionVersion: Int!
+  subscriptionAmount: Decimal!
+  subscriptionCurrency: CurrencyType!
+  subscriptionTier: SubscriptionTier!
+  subscriptionStatus: SubscriptionStatus!
+  subscriptionPlanPrices: [SubscriptionPlanPrice!]!
+  stripeProductId: String!
+  stripeProductActive: Boolean!
+  stripeProductName: String!
+  stripeProductImages: [String!]
+  stripeProductType: String!
+  stripeProductMetadata: [Metadata!]
+}
+
+"A segment of a collection."
+type SubscriptionsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Subscription!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type SyncedLine {
+  text: String!
+  time: Float!
+}
+
+type ThreadedCommentsResponse {
+  threads: [CommentThread!]!
+  totalThreads: Int!
+  page: Int!
+  pageSize: Int!
+  hasNextPage: Boolean!
+}
+
+type TopReportedUserResponse {
+  userId: String!
+  userName: String!
+  reportCount: Int!
+}
+
+type TopTrackInfo {
+  trackId: String!
+  playedCount: Int!
+}
+
+type TopTrackResponse {
+  tracksInfo: [TopTrackInfo!]!
+}
+
+type Track {
+  id: String!
+  name: String!
+  nameUnsigned: String!
+  description: String
+  type: TrackType!
+  categoryIds: [String!]!
+  tags: [String!]!
+  mainArtistIds: [String!]!
+  featuredArtistIds: [String!]!
+  alternativeDescription: String!
+  streamCount: Long!
+  favoriteCount: Long!
+  coverImage: String!
+  previewVideo: String
+  isExplicit: Boolean!
+  lyrics: String
+  syncedLyrics: [SyncedLine!]!
+  popularity: Decimal!
+  releaseInfo: ReleaseInfo!
+  restriction: Restriction!
+  legalDocuments: [LegalDocument!]!
+  embeddingVector: [Float!]!
+  createdBy: String
+  updatedBy: String
+  createdAt: DateTime!
+  updatedAt: DateTime
+  mainArtists(
+    skip: Int
+    take: Int
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): MainArtistsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  featuredArtists(
+    skip: Int
+    take: Int
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): FeaturedArtistsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  categories(
+    skip: Int
+    take: Int
+    where: CategoryFilterInput @cost(weight: "10")
+    order: [CategorySortInput!] @cost(weight: "10")
+  ): CategoriesCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  checkTrackInFavorite: Boolean! @cost(weight: "10")
+}
+
+type TrackTempRequest {
+  id: String!
+  name: String!
+  description: String
+  type: TrackType!
+  mainArtistIds: [String!]!
+  featuredArtistIds: [String!]!
+  categoryIds: [String!]!
+  tags: [String!]!
+  coverImage: String!
+  previewVideo: String
+  isExplicit: Boolean!
+  lyrics: String
+  releaseInfo: ReleaseInfo!
+  legalDocuments: [LegalDocument!]!
+  createdBy: String!
+  requestedAt: DateTime!
+}
+
+"A segment of a collection."
+type TracksCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Track!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type TransferResponse {
+  id: String!
+  amount: Long!
+  currency: String!
+  destinationAccountId: String!
+  description: String!
+  created: DateTime!
+}
+
+type User {
+  id: String!
+  email: String!
+  fullName: String!
+  gender: UserGender!
+  birthDate: DateTime!
+  role: UserRole!
+  phoneNumber: String
+  status: UserStatus!
+  isLinkedWithGoogle: Boolean!
+  stripeCustomerId: String
+  stripeAccountId: String
+  lastLoginAt: DateTime
+  restrictions: [Restriction!]!
+  createdBy: String
+  updatedBy: String
+  createdAt: DateTime!
+  updatedAt: DateTime
+  checkUserFollowing: Boolean! @cost(weight: "10")
+}
+
+type UserEngagement {
+  id: String!
+  actorId: String!
+  actorType: UserEngagementTargetType!
+  targetId: String!
+  targetType: UserEngagementTargetType!
+  action: UserEngagementAction!
+  createdAt: DateTime!
+  artists(
+    skip: Int
+    take: Int
+    where: ArtistFilterInput @cost(weight: "10")
+    order: [ArtistSortInput!] @cost(weight: "10")
+  ): ArtistsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  listeners(
+    skip: Int
+    take: Int
+    where: ListenerFilterInput @cost(weight: "10")
+    order: [ListenerSortInput!] @cost(weight: "10")
+  ): ListenersCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  tracks(
+    skip: Int
+    take: Int
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): TracksCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  playlists(
+    skip: Int
+    take: Int
+    where: PlaylistFilterInput @cost(weight: "10")
+    order: [PlaylistSortInput!] @cost(weight: "10")
+  ): PlaylistsCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+}
+
+"A segment of a collection."
+type UserEngagementCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [UserEngagement!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type UserSubscription {
+  id: String!
+  userId: String!
+  subscriptionId: String!
+  stripeSubscriptionId: String
+  periodStart: DateTime!
+  periodEnd: DateTime
+  autoRenew: Boolean!
+  cancelAtEndOfPeriod: Boolean!
+  canceledAt: DateTime
+  isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  user(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+  subscription(
+    where: SubscriptionFilterInput @cost(weight: "10")
+    order: [SubscriptionSortInput!] @cost(weight: "10")
+  ): [Subscription!]! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type UserSubscriptionsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [UserSubscription!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type UsersCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [User!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type Work {
+  id: String!
+  trackId: String!
+  description: String
+  workSplits: [WorkSplit!]!
+  version: Long!
+  status: WorkStatus!
+  createdAt: DateTime!
+  track(
+    where: TrackFilterInput @cost(weight: "10")
+    order: [TrackSortInput!] @cost(weight: "10")
+  ): [Track!]! @cost(weight: "10")
+  users(
+    skip: Int
+    take: Int
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): UsersCollectionSegment
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["take"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["items"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+}
+
+type WorkSplit {
+  userId: String!
+  artistRole: ArtistRole!
+  percentage: Decimal!
+}
+
+type WorkTempRequest {
+  id: String!
+  description: String
+  workSplits: [CreateWorkSplitRequest!]!
+}
+
+"A segment of a collection."
+type WorkUsersCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [User!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type WorksCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Work!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+input AddToPlaylistRequestInput {
+  trackId: String!
+  playlistId: String
+  playlistName: String
+}
+
+input AddTrackToAlbumRequestInput {
+  trackId: String!
+  albumId: String
+  albumName: String
+}
+
+input AddressFilterInput {
+  and: [AddressFilterInput!]
+  or: [AddressFilterInput!]
+  street: StringOperationFilterInput
+  ward: StringOperationFilterInput
+  province: StringOperationFilterInput
+  oldDistrict: StringOperationFilterInput
+  oldWard: StringOperationFilterInput
+  oldProvince: StringOperationFilterInput
+  addressLine: StringOperationFilterInput
+}
+
+input AddressInput {
+  street: String
+  ward: String
+  province: String
+  oldDistrict: String
+  oldWard: String
+  oldProvince: String
+  addressLine: String
+}
+
+input AddressSortInput {
+  street: SortEnumType @cost(weight: "10")
+  ward: SortEnumType @cost(weight: "10")
+  province: SortEnumType @cost(weight: "10")
+  oldDistrict: SortEnumType @cost(weight: "10")
+  oldWard: SortEnumType @cost(weight: "10")
+  oldProvince: SortEnumType @cost(weight: "10")
+  addressLine: SortEnumType @cost(weight: "10")
+}
+
+input AggregationLevelOperationFilterInput {
+  eq: AggregationLevel @cost(weight: "10")
+  neq: AggregationLevel @cost(weight: "10")
+  in: [AggregationLevel!] @cost(weight: "10")
+  nin: [AggregationLevel!] @cost(weight: "10")
+}
+
+input AlbumFilterInput {
+  and: [AlbumFilterInput!]
+  or: [AlbumFilterInput!]
+  id: StringOperationFilterInput
+  name: StringOperationFilterInput
+  nameUnsigned: StringOperationFilterInput
+  description: StringOperationFilterInput
+  type: AlbumTypeOperationFilterInput
+  trackIds: ListStringOperationFilterInput
+  contributingArtists: ListFilterInputTypeOfContributingArtistFilterInput
+  coverImage: StringOperationFilterInput
+  thumbnailImage: StringOperationFilterInput
+  releaseInfo: ReleaseInfoFilterInput
+  isVisible: BooleanOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input AlbumSortInput {
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  nameUnsigned: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  type: SortEnumType @cost(weight: "10")
+  coverImage: SortEnumType @cost(weight: "10")
+  thumbnailImage: SortEnumType @cost(weight: "10")
+  releaseInfo: ReleaseInfoSortInput @cost(weight: "10")
+  isVisible: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input AlbumTypeOperationFilterInput {
+  eq: AlbumType @cost(weight: "10")
+  neq: AlbumType @cost(weight: "10")
+  in: [AlbumType!] @cost(weight: "10")
+  nin: [AlbumType!] @cost(weight: "10")
+}
+
+input ApprovalHistoryFilterInput {
+  and: [ApprovalHistoryFilterInput!]
+  or: [ApprovalHistoryFilterInput!]
+  id: StringOperationFilterInput
+  targetOwnerId: StringOperationFilterInput
+  targetId: StringOperationFilterInput
+  approvalType: ApprovalTypeOperationFilterInput
+  approvedByUserId: StringOperationFilterInput
+  actionAt: DateTimeOperationFilterInput
+  action: HistoryActionTypeOperationFilterInput
+  notes: StringOperationFilterInput
+  snapshot: StringOperationFilterInput
+}
+
+input ApprovalHistorySortInput {
+  id: SortEnumType @cost(weight: "10")
+  targetOwnerId: SortEnumType @cost(weight: "10")
+  targetId: SortEnumType @cost(weight: "10")
+  approvalType: SortEnumType @cost(weight: "10")
+  approvedByUserId: SortEnumType @cost(weight: "10")
+  actionAt: SortEnumType @cost(weight: "10")
+  action: SortEnumType @cost(weight: "10")
+  notes: SortEnumType @cost(weight: "10")
+  snapshot: SortEnumType @cost(weight: "10")
+}
+
+input ApprovalTypeOperationFilterInput {
+  eq: ApprovalType @cost(weight: "10")
+  neq: ApprovalType @cost(weight: "10")
+  in: [ApprovalType!] @cost(weight: "10")
+  nin: [ApprovalType!] @cost(weight: "10")
+}
+
+input ArtistFilterInput {
+  and: [ArtistFilterInput!]
+  or: [ArtistFilterInput!]
+  id: StringOperationFilterInput
+  userId: StringOperationFilterInput
+  stageName: StringOperationFilterInput
+  stageNameUnsigned: StringOperationFilterInput
+  email: StringOperationFilterInput
+  artistType: ArtistTypeOperationFilterInput
+  members: ListFilterInputTypeOfArtistMemberFilterInput
+  categoryIds: ListStringOperationFilterInput
+  biography: StringOperationFilterInput
+  followerCount: LongOperationFilterInput
+  popularity: DecimalOperationFilterInput
+  avatarImage: StringOperationFilterInput
+  bannerImage: StringOperationFilterInput
+  isVerified: BooleanOperationFilterInput
+  verifiedAt: DateTimeOperationFilterInput
+  identityCard: IdentityCardFilterInput
+  legalDocuments: ListFilterInputTypeOfLegalDocumentFilterInput
+  isVisible: BooleanOperationFilterInput
+  royaltyEarnings: DecimalOperationFilterInput
+  serviceRevenue: DecimalOperationFilterInput
+  grossRevenue: DecimalOperationFilterInput
+  refundAmount: DecimalOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input ArtistMemberFilterInput {
+  and: [ArtistMemberFilterInput!]
+  or: [ArtistMemberFilterInput!]
+  fullName: StringOperationFilterInput
+  email: StringOperationFilterInput
+  phoneNumber: StringOperationFilterInput
+  isLeader: BooleanOperationFilterInput
+  gender: UserGenderOperationFilterInput
+}
+
+input ArtistPackageFilterInput {
+  and: [ArtistPackageFilterInput!]
+  or: [ArtistPackageFilterInput!]
+  id: StringOperationFilterInput
+  artistId: StringOperationFilterInput
+  packageName: StringOperationFilterInput
+  amount: DecimalOperationFilterInput
+  currency: CurrencyTypeOperationFilterInput
+  estimateDeliveryDays: IntOperationFilterInput
+  description: StringOperationFilterInput
+  maxRevision: IntOperationFilterInput
+  serviceDetails: ListFilterInputTypeOfMetadataFilterInput
+  status: ArtistPackageStatusOperationFilterInput
+  isDelete: BooleanOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input ArtistPackageSortInput {
+  id: SortEnumType @cost(weight: "10")
+  artistId: SortEnumType @cost(weight: "10")
+  packageName: SortEnumType @cost(weight: "10")
+  amount: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  estimateDeliveryDays: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  maxRevision: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  isDelete: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input ArtistPackageStatusOperationFilterInput {
+  eq: ArtistPackageStatus @cost(weight: "10")
+  neq: ArtistPackageStatus @cost(weight: "10")
+  in: [ArtistPackageStatus!] @cost(weight: "10")
+  nin: [ArtistPackageStatus!] @cost(weight: "10")
+}
+
+input ArtistRegistrationApprovalRequestInput {
+  userId: String!
+  email: String!
+  fullName: String!
+  rejectionReason: String
+}
+
+input ArtistRoleOperationFilterInput {
+  eq: ArtistRole @cost(weight: "10")
+  neq: ArtistRole @cost(weight: "10")
+  in: [ArtistRole!] @cost(weight: "10")
+  nin: [ArtistRole!] @cost(weight: "10")
+}
+
+input ArtistSortInput {
+  id: SortEnumType @cost(weight: "10")
+  userId: SortEnumType @cost(weight: "10")
+  stageName: SortEnumType @cost(weight: "10")
+  stageNameUnsigned: SortEnumType @cost(weight: "10")
+  email: SortEnumType @cost(weight: "10")
+  artistType: SortEnumType @cost(weight: "10")
+  biography: SortEnumType @cost(weight: "10")
+  followerCount: SortEnumType @cost(weight: "10")
+  popularity: SortEnumType @cost(weight: "10")
+  avatarImage: SortEnumType @cost(weight: "10")
+  bannerImage: SortEnumType @cost(weight: "10")
+  isVerified: SortEnumType @cost(weight: "10")
+  verifiedAt: SortEnumType @cost(weight: "10")
+  identityCard: IdentityCardSortInput @cost(weight: "10")
+  isVisible: SortEnumType @cost(weight: "10")
+  royaltyEarnings: SortEnumType @cost(weight: "10")
+  serviceRevenue: SortEnumType @cost(weight: "10")
+  grossRevenue: SortEnumType @cost(weight: "10")
+  refundAmount: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input ArtistTypeOperationFilterInput {
+  eq: ArtistType @cost(weight: "10")
+  neq: ArtistType @cost(weight: "10")
+  in: [ArtistType!] @cost(weight: "10")
+  nin: [ArtistType!] @cost(weight: "10")
+}
+
+input AudioFeatureFilterInput {
+  and: [AudioFeatureFilterInput!]
+  or: [AudioFeatureFilterInput!]
+  tempo: FloatOperationFilterInput
+  key: StringOperationFilterInput
+  keyNumber: IntOperationFilterInput
+  mode: StringOperationFilterInput
+  modeNumber: IntOperationFilterInput
+  energy: FloatOperationFilterInput
+  danceability: FloatOperationFilterInput
+  acousticness: FloatOperationFilterInput
+  spectralCentroid: FloatOperationFilterInput
+  zeroCrossingRate: FloatOperationFilterInput
+  duration: FloatOperationFilterInput
+  chromaMean: ListFloatOperationFilterInput
+  mfccMean: ListFloatOperationFilterInput
+}
+
+input AudioFeatureSortInput {
+  tempo: SortEnumType @cost(weight: "10")
+  key: SortEnumType @cost(weight: "10")
+  keyNumber: SortEnumType @cost(weight: "10")
+  mode: SortEnumType @cost(weight: "10")
+  modeNumber: SortEnumType @cost(weight: "10")
+  energy: SortEnumType @cost(weight: "10")
+  danceability: SortEnumType @cost(weight: "10")
+  acousticness: SortEnumType @cost(weight: "10")
+  spectralCentroid: SortEnumType @cost(weight: "10")
+  zeroCrossingRate: SortEnumType @cost(weight: "10")
+  duration: SortEnumType @cost(weight: "10")
+}
+
+input AudioFeatureWeightInput {
+  tempo: Float
+  energy: Float
+  danceability: Float
+  acousticness: Float
+}
+
+input AudioFingerprintFilterInput {
+  and: [AudioFingerprintFilterInput!]
+  or: [AudioFingerprintFilterInput!]
+  compressedFingerprints: ListListByteOperationFilterInput
+  sequenceNumbers: ListOfUInt32FilterInput
+  startsAt: ListFloatOperationFilterInput
+  originalPoints: ListListByteOperationFilterInput
+  duration: FloatOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input AudioFingerprintSortInput {
+  duration: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input BooleanOperationFilterInput {
+  eq: Boolean @cost(weight: "10")
+  neq: Boolean @cost(weight: "10")
+}
+
+input ByteOperationFilterInput {
+  eq: Byte @cost(weight: "10")
+  neq: Byte @cost(weight: "10")
+  in: [Byte] @cost(weight: "10")
+  nin: [Byte] @cost(weight: "10")
+  gt: Byte @cost(weight: "10")
+  ngt: Byte @cost(weight: "10")
+  gte: Byte @cost(weight: "10")
+  ngte: Byte @cost(weight: "10")
+  lt: Byte @cost(weight: "10")
+  nlt: Byte @cost(weight: "10")
+  lte: Byte @cost(weight: "10")
+  nlte: Byte @cost(weight: "10")
+}
+
+input CategoryFilterInput {
+  and: [CategoryFilterInput!]
+  or: [CategoryFilterInput!]
+  id: StringOperationFilterInput
+  name: StringOperationFilterInput
+  slug: StringOperationFilterInput
+  type: CategoryTypeOperationFilterInput
+  aliases: ListStringOperationFilterInput
+  popularity: IntOperationFilterInput
+  description: StringOperationFilterInput
+  isVisible: BooleanOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input CategorySortInput {
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  slug: SortEnumType @cost(weight: "10")
+  type: SortEnumType @cost(weight: "10")
+  popularity: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  isVisible: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input CategoryTypeOperationFilterInput {
+  eq: CategoryType @cost(weight: "10")
+  neq: CategoryType @cost(weight: "10")
+  in: [CategoryType!] @cost(weight: "10")
+  nin: [CategoryType!] @cost(weight: "10")
+}
+
+input ChangeOrderStatusRequestInput {
+  id: String!
+  status: PackageOrderStatus!
+}
+
+input ChangeStatusRequestInput {
+  requestId: String!
+  status: RequestStatus!
+}
+
+input CommentFilterInput {
+  and: [CommentFilterInput!]
+  or: [CommentFilterInput!]
+  id: StringOperationFilterInput
+  targetId: StringOperationFilterInput
+  commentType: CommentTypeOperationFilterInput
+  commenterId: StringOperationFilterInput
+  content: StringOperationFilterInput
+  parentCommentId: StringOperationFilterInput
+  rootCommentId: StringOperationFilterInput
+  threadPath: ListStringOperationFilterInput
+  depth: IntOperationFilterInput
+  replyCount: LongOperationFilterInput
+  totalRepliesCount: LongOperationFilterInput
+  sortOrder: IntOperationFilterInput
+  threadUpdatedAt: DateTimeOperationFilterInput
+  isEdited: BooleanOperationFilterInput
+  isDeleted: BooleanOperationFilterInput
+  isVisible: BooleanOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input CommentRepliesRequestInput {
+  commentId: String!
+  page: Int!
+  pageSize: Int!
+  sortOrder: CommentSortOrder!
+}
+
+input CommentSortInput {
+  id: SortEnumType @cost(weight: "10")
+  targetId: SortEnumType @cost(weight: "10")
+  commentType: SortEnumType @cost(weight: "10")
+  commenterId: SortEnumType @cost(weight: "10")
+  content: SortEnumType @cost(weight: "10")
+  parentCommentId: SortEnumType @cost(weight: "10")
+  rootCommentId: SortEnumType @cost(weight: "10")
+  depth: SortEnumType @cost(weight: "10")
+  replyCount: SortEnumType @cost(weight: "10")
+  totalRepliesCount: SortEnumType @cost(weight: "10")
+  sortOrder: SortEnumType @cost(weight: "10")
+  threadUpdatedAt: SortEnumType @cost(weight: "10")
+  isEdited: SortEnumType @cost(weight: "10")
+  isDeleted: SortEnumType @cost(weight: "10")
+  isVisible: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input CommentThreadRequestInput {
+  commentId: String!
+  includeDeleted: Boolean!
+}
+
+input CommentTypeOperationFilterInput {
+  eq: CommentType @cost(weight: "10")
+  neq: CommentType @cost(weight: "10")
+  in: [CommentType!] @cost(weight: "10")
+  nin: [CommentType!] @cost(weight: "10")
+}
+
+input ContributingArtistFilterInput {
+  and: [ContributingArtistFilterInput!]
+  or: [ContributingArtistFilterInput!]
+  artistId: StringOperationFilterInput
+  role: ArtistRoleOperationFilterInput
+}
+
+input ContributingArtistInput {
+  artistId: String!
+  role: ArtistRole!
+}
+
+input ConversationFilterInput {
+  and: [ConversationFilterInput!]
+  or: [ConversationFilterInput!]
+  id: StringOperationFilterInput
+  userIds: ListStringOperationFilterInput
+  requestHubId: StringOperationFilterInput
+  status: ConversationStatusOperationFilterInput
+  lastMessage: LastMessageFilterInput
+  deletedFor: ListFilterInputTypeOfDeletedForEntryFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input ConversationSortInput {
+  id: SortEnumType @cost(weight: "10")
+  requestHubId: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  lastMessage: LastMessageSortInput @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input ConversationStatusOperationFilterInput {
+  eq: ConversationStatus @cost(weight: "10")
+  neq: ConversationStatus @cost(weight: "10")
+  in: [ConversationStatus!] @cost(weight: "10")
+  nin: [ConversationStatus!] @cost(weight: "10")
+}
+
+input CouponDurationTypeOperationFilterInput {
+  eq: CouponDurationType @cost(weight: "10")
+  neq: CouponDurationType @cost(weight: "10")
+  in: [CouponDurationType!] @cost(weight: "10")
+  nin: [CouponDurationType!] @cost(weight: "10")
+}
+
+input CouponFilterInput {
+  and: [CouponFilterInput!]
+  or: [CouponFilterInput!]
+  id: StringOperationFilterInput
+  stripeCouponId: StringOperationFilterInput
+  name: StringOperationFilterInput
+  description: StringOperationFilterInput
+  code: StringOperationFilterInput
+  percentOff: DecimalOperationFilterInput
+  duration: CouponDurationTypeOperationFilterInput
+  purpose: CouponPurposeTypeOperationFilterInput
+  status: CouponStatusOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input CouponPurposeTypeOperationFilterInput {
+  eq: CouponPurposeType @cost(weight: "10")
+  neq: CouponPurposeType @cost(weight: "10")
+  in: [CouponPurposeType!] @cost(weight: "10")
+  nin: [CouponPurposeType!] @cost(weight: "10")
+}
+
+input CouponSortInput {
+  id: SortEnumType @cost(weight: "10")
+  stripeCouponId: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  code: SortEnumType @cost(weight: "10")
+  percentOff: SortEnumType @cost(weight: "10")
+  duration: SortEnumType @cost(weight: "10")
+  purpose: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input CouponStatusOperationFilterInput {
+  eq: CouponStatus @cost(weight: "10")
+  neq: CouponStatus @cost(weight: "10")
+  in: [CouponStatus!] @cost(weight: "10")
+  nin: [CouponStatus!] @cost(weight: "10")
+}
+
+input CreateAdminRequestInput {
+  fullName: String!
+  email: String!
+  password: String!
+}
+
+input CreateAlbumRequestInput {
+  name: String!
+  description: String
+  type: AlbumType!
+  trackIds: [String!]!
+  artistInfos: [ContributingArtistInput!]!
+  coverImage: String
+  thumbnailImage: String
+  releaseInfo: ReleaseInfoInput!
+  isVisible: Boolean!
+}
+
+input CreateArtistPackageRequestInput {
+  packageName: String!
+  artistId: String!
+  amount: Decimal!
+  estimateDeliveryDays: Int!
+  description: String
+  serviceDetails: [MetadataInput!]!
+  maxRevision: Int!
+}
+
+input CreateArtistRequestInput {
+  userId: String!
+  name: String!
+  biography: String!
+  identityCard: IdentityCardInput!
+}
+
+input CreateBillingPortalConfigurationRequestInput {
+  customerUpdateEnabled: Boolean!
+  allowedCustomerUpdates: [CustomerUpdate!]!
+  userRole: UserRole!
+  subscriptionTier: SubscriptionTier!
+  subscriptionVersion: Long!
+  version: Long!
+  paymentMethodUpdateEnabled: Boolean!
+  invoiceHistoryEnabled: Boolean!
+  subscriptionCancelEnabled: Boolean!
+  mode: StripeSubscriptionCancelMode!
+  suscriptionUpdateEnabled: Boolean!
+  allowedSubscriptionUpdates: [StripeSubscriptionUpdate!]!
+  products: [StripeProductRequestInput!]!
+  status: BillingPortalConfigStatus!
+}
+
+input CreateCategoryRequestInput {
+  name: String!
+  description: String!
+  type: CategoryType!
+}
+
+input CreateCommentRequestInput {
+  targetId: String!
+  commentType: CommentType!
+  content: String!
+  parentCommentId: String
+}
+
+input CreateConversationRequestInput {
+  otherUserId: String!
+  requestHubId: String!
+}
+
+input CreateCouponRequestInput {
+  name: String!
+  description: String
+  code: String!
+  percentOff: Decimal!
+  duration: CouponDurationType!
+  purpose: CouponPurposeType!
+  status: CouponStatus!
+}
+
+input CreateDirectRequestInput {
+  publicRequestId: String
+  artistId: String!
+  deadline: DateTime!
+  requirements: String
+  packageId: String!
+}
+
+input CreateEntitlementRequestInput {
+  defaultValues: EntitlementValue!
+  name: String!
+  code: String!
+  description: String!
+  valueType: EntitlementValueType!
+  subscriptionOverrides: [CreateEntitlementSubscriptionOverrideRequestInput!]!
+  isActive: Boolean!
+}
+
+input CreateEntitlementSubscriptionOverrideRequestInput {
+  subscriptionCode: String!
+}
+
+input CreateEscrowCommissionPolicyRequestInput {
+  currency: CurrencyType!
+  platformFeePercentage: Decimal!
+}
+
+input CreateLegalPolicyRequestInput {
+  name: String!
+  content: String!
+  isActive: Boolean!
+}
+
+input CreateModeratorRequestInput {
+  fullName: String!
+  email: String!
+  password: String!
+}
+
+input CreateMomoPaymentRequestInput {
+  amount: Long!
+  orderId: String!
+  orderInfo: String!
+}
+
+input CreatePaymentCheckoutSessionRequestInput {
+  packageId: String!
+  requestHubId: String!
+  successUrl: String!
+  cancelUrl: String!
+  isSavePaymentMethod: Boolean!
+  isReceiptEmail: Boolean!
+  conversationId: String!
+  requirementFiles: [String!]!
+  deliveries: [PackageOrderDeliveryInput!]!
+  deadline: DateTime!
+}
+
+input CreatePlaylistRequestInput {
+  name: String!
+  description: String!
+  coverImage: String
+  isPublic: Boolean!
+}
+
+input CreatePriceRequestInput {
+  lookupKey: String!
+  interval: PeriodTime!
+  intervalCount: Long!
+}
+
+input CreateRecordingRequestInput {
+  description: String
+  recordingSplits: [CreateRecordingSplitRequestInput!]!
+}
+
+input CreateRecordingSplitRequestInput {
+  userId: String!
+  artistRole: ArtistRole!
+  percentage: Decimal!
+}
+
+input CreateReportRequestInput {
+  reportedUserId: String!
+  reportType: ReportType!
+  description: String!
+  relatedContentId: String
+  relatedContentType: ReportRelatedContentType
+  evidences: [String!]
+}
+
+input CreateReviewRequestInput {
+  packageOrderId: String!
+  rating: Int!
+  content: String!
+}
+
+input CreateRoyalPolicyRequestInput {
+  ratePerStream: Decimal!
+  currency: CurrencyType!
+  recordingPercentage: Decimal!
+  workPercentage: Decimal!
+}
+
+input CreateSubScriptionPlanRequestInput {
+  prices: [CreatePriceRequestInput!]!
+  name: String!
+  images: [String!]
+  metadata: [KeyValuePairOfStringAndStringInput!]
+  subscriptionCode: String!
+}
+
+input CreateSubscriptionCheckoutSessionRequestInput {
+  subscriptionCode: String!
+  period: PeriodTime!
+  successUrl: String!
+  cancelUrl: String!
+  isSavePaymentMethod: Boolean!
+}
+
+input CreateSubscriptionRequestInput {
+  name: String!
+  description: String
+  code: String!
+  price: Decimal!
+  tier: SubscriptionTier!
+}
+
+input CreateTrackRequestInput {
+  name: String!
+  description: String
+  mainArtistIds: [String!]!
+  featuredArtistIds: [String!]!
+  categoryIds: [String!]!
+  tags: [String!]!
+  coverImage: String!
+  previewVideo: String
+  isExplicit: Boolean!
+  lyrics: String
+  isRelease: Boolean!
+  releaseDate: DateTime
+  releaseStatus: ReleaseStatus!
+  legalDocuments: [LegalDocumentInput!]!
+  isOriginal: Boolean!
+}
+
+input CreateWorkRequestInput {
+  description: String
+  workSplits: [CreateWorkSplitRequestInput!]!
+}
+
+input CreateWorkSplitRequestInput {
+  userId: String!
+  artistRole: ArtistRole!
+  percentage: Decimal!
+}
+
+input CurrencyTypeOperationFilterInput {
+  eq: CurrencyType @cost(weight: "10")
+  neq: CurrencyType @cost(weight: "10")
+  in: [CurrencyType!] @cost(weight: "10")
+  nin: [CurrencyType!] @cost(weight: "10")
+}
+
+input DateTimeOperationFilterInput {
+  eq: DateTime @cost(weight: "10")
+  neq: DateTime @cost(weight: "10")
+  in: [DateTime] @cost(weight: "10")
+  nin: [DateTime] @cost(weight: "10")
+  gt: DateTime @cost(weight: "10")
+  ngt: DateTime @cost(weight: "10")
+  gte: DateTime @cost(weight: "10")
+  ngte: DateTime @cost(weight: "10")
+  lt: DateTime @cost(weight: "10")
+  nlt: DateTime @cost(weight: "10")
+  lte: DateTime @cost(weight: "10")
+  nlte: DateTime @cost(weight: "10")
+}
+
+input DecimalOperationFilterInput {
+  eq: Decimal @cost(weight: "10")
+  neq: Decimal @cost(weight: "10")
+  in: [Decimal] @cost(weight: "10")
+  nin: [Decimal] @cost(weight: "10")
+  gt: Decimal @cost(weight: "10")
+  ngt: Decimal @cost(weight: "10")
+  gte: Decimal @cost(weight: "10")
+  ngte: Decimal @cost(weight: "10")
+  lt: Decimal @cost(weight: "10")
+  nlt: Decimal @cost(weight: "10")
+  lte: Decimal @cost(weight: "10")
+  nlte: Decimal @cost(weight: "10")
+}
+
+input DeleteCommentRequestInput {
+  commentId: String!
+}
+
+input DeletedForEntryFilterInput {
+  and: [DeletedForEntryFilterInput!]
+  or: [DeletedForEntryFilterInput!]
+  userId: StringOperationFilterInput
+  isDeleted: BooleanOperationFilterInput
+}
+
+input DocumentTypeOperationFilterInput {
+  eq: DocumentType @cost(weight: "10")
+  neq: DocumentType @cost(weight: "10")
+  in: [DocumentType!] @cost(weight: "10")
+  nin: [DocumentType!] @cost(weight: "10")
+}
+
+input EntitlementFilterInput {
+  and: [EntitlementFilterInput!]
+  or: [EntitlementFilterInput!]
+  id: StringOperationFilterInput
+  name: StringOperationFilterInput
+  code: StringOperationFilterInput
+  description: StringOperationFilterInput
+  valueType: EntitlementValueTypeOperationFilterInput
+  defaultValues: ListFilterInputTypeOfEntitlementRoleDefaultFilterInput
+  subscriptionOverrides: ListFilterInputTypeOfEntitlementSubscriptionOverrideFilterInput
+  isActive: BooleanOperationFilterInput
+  expiredAt: DateTimeOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input EntitlementRoleDefaultFilterInput {
+  and: [EntitlementRoleDefaultFilterInput!]
+  or: [EntitlementRoleDefaultFilterInput!]
+  role: UserRoleOperationFilterInput
+}
+
+input EntitlementSortInput {
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  code: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  valueType: SortEnumType @cost(weight: "10")
+  isActive: SortEnumType @cost(weight: "10")
+  expiredAt: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input EntitlementSubscriptionOverrideFilterInput {
+  and: [EntitlementSubscriptionOverrideFilterInput!]
+  or: [EntitlementSubscriptionOverrideFilterInput!]
+  subscriptionCode: StringOperationFilterInput
+}
+
+input EntitlementValueTypeOperationFilterInput {
+  eq: EntitlementValueType @cost(weight: "10")
+  neq: EntitlementValueType @cost(weight: "10")
+  in: [EntitlementValueType!] @cost(weight: "10")
+  nin: [EntitlementValueType!] @cost(weight: "10")
+}
+
+input EscrowCommissionPolicyFilterInput {
+  and: [EscrowCommissionPolicyFilterInput!]
+  or: [EscrowCommissionPolicyFilterInput!]
+  id: StringOperationFilterInput
+  currency: CurrencyTypeOperationFilterInput
+  platformFeePercentage: DecimalOperationFilterInput
+  version: LongOperationFilterInput
+  status: PolicyStatusOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input EscrowCommissionPolicySortInput {
+  id: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  platformFeePercentage: SortEnumType @cost(weight: "10")
+  version: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input FloatOperationFilterInput {
+  eq: Float @cost(weight: "10")
+  neq: Float @cost(weight: "10")
+  in: [Float] @cost(weight: "10")
+  nin: [Float] @cost(weight: "10")
+  gt: Float @cost(weight: "10")
+  ngt: Float @cost(weight: "10")
+  gte: Float @cost(weight: "10")
+  ngte: Float @cost(weight: "10")
+  lt: Float @cost(weight: "10")
+  nlt: Float @cost(weight: "10")
+  lte: Float @cost(weight: "10")
+  nlte: Float @cost(weight: "10")
+}
+
+input HistoryActionTypeOperationFilterInput {
+  eq: HistoryActionType @cost(weight: "10")
+  neq: HistoryActionType @cost(weight: "10")
+  in: [HistoryActionType!] @cost(weight: "10")
+  nin: [HistoryActionType!] @cost(weight: "10")
+}
+
+input IdentityCardFilterInput {
+  and: [IdentityCardFilterInput!]
+  or: [IdentityCardFilterInput!]
+  number: StringOperationFilterInput
+  fullName: StringOperationFilterInput
+  dateOfBirth: DateTimeOperationFilterInput
+  gender: UserGenderOperationFilterInput
+  placeOfOrigin: StringOperationFilterInput
+  nationality: StringOperationFilterInput
+  placeOfResidence: AddressFilterInput
+  frontImage: StringOperationFilterInput
+  backImage: StringOperationFilterInput
+  validUntil: DateTimeOperationFilterInput
+}
+
+input IdentityCardInput {
+  number: String!
+  fullName: String!
+  dateOfBirth: DateTime!
+  gender: UserGender!
+  placeOfOrigin: String!
+  nationality: String!
+  placeOfResidence: AddressInput!
+  frontImage: String
+  backImage: String
+  validUntil: DateTime
+}
+
+input IdentityCardSortInput {
+  number: SortEnumType @cost(weight: "10")
+  fullName: SortEnumType @cost(weight: "10")
+  dateOfBirth: SortEnumType @cost(weight: "10")
+  gender: SortEnumType @cost(weight: "10")
+  placeOfOrigin: SortEnumType @cost(weight: "10")
+  nationality: SortEnumType @cost(weight: "10")
+  placeOfResidence: AddressSortInput @cost(weight: "10")
+  frontImage: SortEnumType @cost(weight: "10")
+  backImage: SortEnumType @cost(weight: "10")
+  validUntil: SortEnumType @cost(weight: "10")
+}
+
+input IntOperationFilterInput {
+  eq: Int @cost(weight: "10")
+  neq: Int @cost(weight: "10")
+  in: [Int] @cost(weight: "10")
+  nin: [Int] @cost(weight: "10")
+  gt: Int @cost(weight: "10")
+  ngt: Int @cost(weight: "10")
+  gte: Int @cost(weight: "10")
+  ngte: Int @cost(weight: "10")
+  lt: Int @cost(weight: "10")
+  nlt: Int @cost(weight: "10")
+  lte: Int @cost(weight: "10")
+  nlte: Int @cost(weight: "10")
+}
+
+input InvoiceFilterInput {
+  and: [InvoiceFilterInput!]
+  or: [InvoiceFilterInput!]
+  id: StringOperationFilterInput
+  userId: StringOperationFilterInput
+  paymentTransactionId: StringOperationFilterInput
+  stripeInvoiceId: StringOperationFilterInput
+  oneOffSnapshot: OneOffSnapshotFilterInput
+  subscriptionSnapshot: SubscriptionSnapshotFilterInput
+  fullName: StringOperationFilterInput
+  email: StringOperationFilterInput
+  country: StringOperationFilterInput
+  amount: DecimalOperationFilterInput
+  currency: StringOperationFilterInput
+  from: StringOperationFilterInput
+  to: StringOperationFilterInput
+  originContext: StringOperationFilterInput
+  paidAt: DateTimeOperationFilterInput
+}
+
+input InvoiceSortInput {
+  id: SortEnumType @cost(weight: "10")
+  userId: SortEnumType @cost(weight: "10")
+  paymentTransactionId: SortEnumType @cost(weight: "10")
+  stripeInvoiceId: SortEnumType @cost(weight: "10")
+  oneOffSnapshot: OneOffSnapshotSortInput @cost(weight: "10")
+  subscriptionSnapshot: SubscriptionSnapshotSortInput @cost(weight: "10")
+  fullName: SortEnumType @cost(weight: "10")
+  email: SortEnumType @cost(weight: "10")
+  country: SortEnumType @cost(weight: "10")
+  amount: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  from: SortEnumType @cost(weight: "10")
+  to: SortEnumType @cost(weight: "10")
+  originContext: SortEnumType @cost(weight: "10")
+  paidAt: SortEnumType @cost(weight: "10")
+}
+
+input KeyValuePairOfStringAndStringInput {
+  key: String!
+  value: String!
+}
+
+input LastMessageFilterInput {
+  and: [LastMessageFilterInput!]
+  or: [LastMessageFilterInput!]
+  text: StringOperationFilterInput
+  senderId: StringOperationFilterInput
+  sentAt: DateTimeOperationFilterInput
+  isReadBy: ListStringOperationFilterInput
+}
+
+input LastMessageSortInput {
+  text: SortEnumType @cost(weight: "10")
+  senderId: SortEnumType @cost(weight: "10")
+  sentAt: SortEnumType @cost(weight: "10")
+}
+
+input LegalDocumentFilterInput {
+  and: [LegalDocumentFilterInput!]
+  or: [LegalDocumentFilterInput!]
+  name: StringOperationFilterInput
+  documentUrl: StringOperationFilterInput
+  documentType: DocumentTypeOperationFilterInput
+  note: StringOperationFilterInput
+}
+
+input LegalDocumentInput {
+  name: String!
+  documentUrl: String!
+  documentType: DocumentType!
+  note: String!
+}
+
+input LegalPolicyFilterInput {
+  and: [LegalPolicyFilterInput!]
+  or: [LegalPolicyFilterInput!]
+  id: StringOperationFilterInput
+  name: StringOperationFilterInput
+  content: StringOperationFilterInput
+  version: LongOperationFilterInput
+  status: PolicyStatusOperationFilterInput
+  effectiveAt: DateTimeOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input LegalPolicySortInput {
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  content: SortEnumType @cost(weight: "10")
+  version: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  effectiveAt: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input ListByteOperationFilterInput {
+  all: ByteOperationFilterInput @cost(weight: "10")
+  none: ByteOperationFilterInput @cost(weight: "10")
+  some: ByteOperationFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfArtistMemberFilterInput {
+  all: ArtistMemberFilterInput @cost(weight: "10")
+  none: ArtistMemberFilterInput @cost(weight: "10")
+  some: ArtistMemberFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfContributingArtistFilterInput {
+  all: ContributingArtistFilterInput @cost(weight: "10")
+  none: ContributingArtistFilterInput @cost(weight: "10")
+  some: ContributingArtistFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfDeletedForEntryFilterInput {
+  all: DeletedForEntryFilterInput @cost(weight: "10")
+  none: DeletedForEntryFilterInput @cost(weight: "10")
+  some: DeletedForEntryFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfEntitlementRoleDefaultFilterInput {
+  all: EntitlementRoleDefaultFilterInput @cost(weight: "10")
+  none: EntitlementRoleDefaultFilterInput @cost(weight: "10")
+  some: EntitlementRoleDefaultFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfEntitlementSubscriptionOverrideFilterInput {
+  all: EntitlementSubscriptionOverrideFilterInput @cost(weight: "10")
+  none: EntitlementSubscriptionOverrideFilterInput @cost(weight: "10")
+  some: EntitlementSubscriptionOverrideFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfLegalDocumentFilterInput {
+  all: LegalDocumentFilterInput @cost(weight: "10")
+  none: LegalDocumentFilterInput @cost(weight: "10")
+  some: LegalDocumentFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfMetadataFilterInput {
+  all: MetadataFilterInput @cost(weight: "10")
+  none: MetadataFilterInput @cost(weight: "10")
+  some: MetadataFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfPackageOrderDeliveryFilterInput {
+  all: PackageOrderDeliveryFilterInput @cost(weight: "10")
+  none: PackageOrderDeliveryFilterInput @cost(weight: "10")
+  some: PackageOrderDeliveryFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfPlaylistTracksInfoFilterInput {
+  all: PlaylistTracksInfoFilterInput @cost(weight: "10")
+  none: PlaylistTracksInfoFilterInput @cost(weight: "10")
+  some: PlaylistTracksInfoFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfRecordingSplitFilterInput {
+  all: RecordingSplitFilterInput @cost(weight: "10")
+  none: RecordingSplitFilterInput @cost(weight: "10")
+  some: RecordingSplitFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfRestrictionFilterInput {
+  all: RestrictionFilterInput @cost(weight: "10")
+  none: RestrictionFilterInput @cost(weight: "10")
+  some: RestrictionFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfRoyaltySplitFilterInput {
+  all: RoyaltySplitFilterInput @cost(weight: "10")
+  none: RoyaltySplitFilterInput @cost(weight: "10")
+  some: RoyaltySplitFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfSubscriptionPlanPriceFilterInput {
+  all: SubscriptionPlanPriceFilterInput @cost(weight: "10")
+  none: SubscriptionPlanPriceFilterInput @cost(weight: "10")
+  some: SubscriptionPlanPriceFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfSyncedLineFilterInput {
+  all: SyncedLineFilterInput @cost(weight: "10")
+  none: SyncedLineFilterInput @cost(weight: "10")
+  some: SyncedLineFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfWorkSplitFilterInput {
+  all: WorkSplitFilterInput @cost(weight: "10")
+  none: WorkSplitFilterInput @cost(weight: "10")
+  some: WorkSplitFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFloatOperationFilterInput {
+  all: FloatOperationFilterInput @cost(weight: "10")
+  none: FloatOperationFilterInput @cost(weight: "10")
+  some: FloatOperationFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListListByteOperationFilterInput {
+  all: ListByteOperationFilterInput @cost(weight: "10")
+  none: ListByteOperationFilterInput @cost(weight: "10")
+  some: ListByteOperationFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListOfUInt32FilterInput {
+  and: [ListOfUInt32FilterInput!]
+  or: [ListOfUInt32FilterInput!]
+  capacity: IntOperationFilterInput
+  count: IntOperationFilterInput
+}
+
+input ListStringOperationFilterInput {
+  all: StringOperationFilterInput @cost(weight: "10")
+  none: StringOperationFilterInput @cost(weight: "10")
+  some: StringOperationFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListenerFilterInput {
+  and: [ListenerFilterInput!]
+  or: [ListenerFilterInput!]
+  id: StringOperationFilterInput
+  userId: StringOperationFilterInput
+  displayName: StringOperationFilterInput
+  displayNameUnsigned: StringOperationFilterInput
+  email: StringOperationFilterInput
+  avatarImage: StringOperationFilterInput
+  bannerImage: StringOperationFilterInput
+  isVerified: BooleanOperationFilterInput
+  verifiedAt: DateTimeOperationFilterInput
+  followerCount: LongOperationFilterInput
+  followingCount: LongOperationFilterInput
+  lastFollowers: ListStringOperationFilterInput
+  lastFollowings: ListStringOperationFilterInput
+  isVisible: BooleanOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input ListenerSortInput {
+  id: SortEnumType @cost(weight: "10")
+  userId: SortEnumType @cost(weight: "10")
+  displayName: SortEnumType @cost(weight: "10")
+  displayNameUnsigned: SortEnumType @cost(weight: "10")
+  email: SortEnumType @cost(weight: "10")
+  avatarImage: SortEnumType @cost(weight: "10")
+  bannerImage: SortEnumType @cost(weight: "10")
+  isVerified: SortEnumType @cost(weight: "10")
+  verifiedAt: SortEnumType @cost(weight: "10")
+  followerCount: SortEnumType @cost(weight: "10")
+  followingCount: SortEnumType @cost(weight: "10")
+  isVisible: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input LongOperationFilterInput {
+  eq: Long @cost(weight: "10")
+  neq: Long @cost(weight: "10")
+  in: [Long] @cost(weight: "10")
+  nin: [Long] @cost(weight: "10")
+  gt: Long @cost(weight: "10")
+  ngt: Long @cost(weight: "10")
+  gte: Long @cost(weight: "10")
+  ngte: Long @cost(weight: "10")
+  lt: Long @cost(weight: "10")
+  nlt: Long @cost(weight: "10")
+  lte: Long @cost(weight: "10")
+  nlte: Long @cost(weight: "10")
+}
+
+input MessageFilterInput {
+  and: [MessageFilterInput!]
+  or: [MessageFilterInput!]
+  id: StringOperationFilterInput
+  conversationId: StringOperationFilterInput
+  senderId: StringOperationFilterInput
+  receiverId: StringOperationFilterInput
+  text: StringOperationFilterInput
+  isRead: BooleanOperationFilterInput
+  deletedForIds: ListStringOperationFilterInput
+  sentAt: DateTimeOperationFilterInput
+}
+
+input MessageSortInput {
+  id: SortEnumType @cost(weight: "10")
+  conversationId: SortEnumType @cost(weight: "10")
+  senderId: SortEnumType @cost(weight: "10")
+  receiverId: SortEnumType @cost(weight: "10")
+  text: SortEnumType @cost(weight: "10")
+  isRead: SortEnumType @cost(weight: "10")
+  sentAt: SortEnumType @cost(weight: "10")
+}
+
+input MetadataFilterInput {
+  and: [MetadataFilterInput!]
+  or: [MetadataFilterInput!]
+  key: StringOperationFilterInput
+  value: StringOperationFilterInput
+}
+
+input MetadataInput {
+  key: String!
+  value: String!
+}
+
+input MonthlyStreamCountFilterInput {
+  and: [MonthlyStreamCountFilterInput!]
+  or: [MonthlyStreamCountFilterInput!]
+  id: StringOperationFilterInput
+  trackId: StringOperationFilterInput
+  month: IntOperationFilterInput
+  year: IntOperationFilterInput
+  streamCount: LongOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  processedAt: DateTimeOperationFilterInput
+}
+
+input MonthlyStreamCountSortInput {
+  id: SortEnumType @cost(weight: "10")
+  trackId: SortEnumType @cost(weight: "10")
+  month: SortEnumType @cost(weight: "10")
+  year: SortEnumType @cost(weight: "10")
+  streamCount: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  processedAt: SortEnumType @cost(weight: "10")
+}
+
+input NullableOfAggregationLevelOperationFilterInput {
+  eq: AggregationLevel @cost(weight: "10")
+  neq: AggregationLevel @cost(weight: "10")
+  in: [AggregationLevel] @cost(weight: "10")
+  nin: [AggregationLevel] @cost(weight: "10")
+}
+
+input NullableOfReportActionOperationFilterInput {
+  eq: ReportAction @cost(weight: "10")
+  neq: ReportAction @cost(weight: "10")
+  in: [ReportAction] @cost(weight: "10")
+  nin: [ReportAction] @cost(weight: "10")
+}
+
+input NullableOfReportRelatedContentTypeOperationFilterInput {
+  eq: ReportRelatedContentType @cost(weight: "10")
+  neq: ReportRelatedContentType @cost(weight: "10")
+  in: [ReportRelatedContentType] @cost(weight: "10")
+  nin: [ReportRelatedContentType] @cost(weight: "10")
+}
+
+input NullableOfRestrictionActionOperationFilterInput {
+  eq: RestrictionAction @cost(weight: "10")
+  neq: RestrictionAction @cost(weight: "10")
+  in: [RestrictionAction] @cost(weight: "10")
+  nin: [RestrictionAction] @cost(weight: "10")
+}
+
+input OneOffSnapshotFilterInput {
+  and: [OneOffSnapshotFilterInput!]
+  or: [OneOffSnapshotFilterInput!]
+  packageName: StringOperationFilterInput
+  packageAmount: DecimalOperationFilterInput
+  packageCurrency: CurrencyTypeOperationFilterInput
+  estimateDeliveryDays: IntOperationFilterInput
+  packageDescription: StringOperationFilterInput
+  maxRevision: IntOperationFilterInput
+  serviceDetails: ListFilterInputTypeOfMetadataFilterInput
+  artistPackageStatus: ArtistPackageStatusOperationFilterInput
+  deadline: DateTimeOperationFilterInput
+  platformFeePercentage: DecimalOperationFilterInput
+  artistFeePercentage: DecimalOperationFilterInput
+  oneOffType: OneOffTypeOperationFilterInput
+}
+
+input OneOffSnapshotSortInput {
+  packageName: SortEnumType @cost(weight: "10")
+  packageAmount: SortEnumType @cost(weight: "10")
+  packageCurrency: SortEnumType @cost(weight: "10")
+  estimateDeliveryDays: SortEnumType @cost(weight: "10")
+  packageDescription: SortEnumType @cost(weight: "10")
+  maxRevision: SortEnumType @cost(weight: "10")
+  artistPackageStatus: SortEnumType @cost(weight: "10")
+  deadline: SortEnumType @cost(weight: "10")
+  platformFeePercentage: SortEnumType @cost(weight: "10")
+  artistFeePercentage: SortEnumType @cost(weight: "10")
+  oneOffType: SortEnumType @cost(weight: "10")
+}
+
+input OneOffTypeOperationFilterInput {
+  eq: OneOffType @cost(weight: "10")
+  neq: OneOffType @cost(weight: "10")
+  in: [OneOffType!] @cost(weight: "10")
+  nin: [OneOffType!] @cost(weight: "10")
+}
+
+input PackageOrderDeliveryFilterInput {
+  and: [PackageOrderDeliveryFilterInput!]
+  or: [PackageOrderDeliveryFilterInput!]
+  deliveryFileUrl: StringOperationFilterInput
+  notes: StringOperationFilterInput
+  revisionNumber: IntOperationFilterInput
+  clientFeedback: StringOperationFilterInput
+  requestedAt: DateTimeOperationFilterInput
+  deliveredAt: DateTimeOperationFilterInput
+}
+
+input PackageOrderDeliveryInput {
+  deliveryFileUrl: String!
+  notes: String
+  revisionNumber: Int!
+  clientFeedback: String
+  requestedAt: DateTime
+  deliveredAt: DateTime
+}
+
+input PackageOrderFilterInput {
+  and: [PackageOrderFilterInput!]
+  or: [PackageOrderFilterInput!]
+  id: StringOperationFilterInput
+  clientId: StringOperationFilterInput
+  providerId: StringOperationFilterInput
+  artistPackageId: StringOperationFilterInput
+  paymentTransactionId: StringOperationFilterInput
+  conversationId: StringOperationFilterInput
+  status: PackageOrderStatusOperationFilterInput
+  revisionCount: IntOperationFilterInput
+  deliveries: ListFilterInputTypeOfPackageOrderDeliveryFilterInput
+  deadline: DateTimeOperationFilterInput
+  completedAt: DateTimeOperationFilterInput
+  isEscrowReleased: BooleanOperationFilterInput
+  platformFeePercentage: DecimalOperationFilterInput
+  artistFeePercentage: DecimalOperationFilterInput
+  review: ReviewFilterInput
+  backgroundJobId: StringOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input PackageOrderRefundRequestInput {
+  id: String!
+  artistPercentageAmount: Decimal!
+  requestorPercentageAmount: Decimal!
+}
+
+input PackageOrderSortInput {
+  id: SortEnumType @cost(weight: "10")
+  clientId: SortEnumType @cost(weight: "10")
+  providerId: SortEnumType @cost(weight: "10")
+  artistPackageId: SortEnumType @cost(weight: "10")
+  paymentTransactionId: SortEnumType @cost(weight: "10")
+  conversationId: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  revisionCount: SortEnumType @cost(weight: "10")
+  deadline: SortEnumType @cost(weight: "10")
+  completedAt: SortEnumType @cost(weight: "10")
+  isEscrowReleased: SortEnumType @cost(weight: "10")
+  platformFeePercentage: SortEnumType @cost(weight: "10")
+  artistFeePercentage: SortEnumType @cost(weight: "10")
+  review: ReviewSortInput @cost(weight: "10")
+  backgroundJobId: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input PackageOrderStatusOperationFilterInput {
+  eq: PackageOrderStatus @cost(weight: "10")
+  neq: PackageOrderStatus @cost(weight: "10")
+  in: [PackageOrderStatus!] @cost(weight: "10")
+  nin: [PackageOrderStatus!] @cost(weight: "10")
+}
+
+input PaymentTransactionFilterInput {
+  and: [PaymentTransactionFilterInput!]
+  or: [PaymentTransactionFilterInput!]
+  id: StringOperationFilterInput
+  userId: StringOperationFilterInput
+  stripeCheckoutSessionId: StringOperationFilterInput
+  stripeSubscriptionId: StringOperationFilterInput
+  stripeInvoiceId: StringOperationFilterInput
+  stripePaymentId: StringOperationFilterInput
+  stripePaymentMethod: ListStringOperationFilterInput
+  amount: DecimalOperationFilterInput
+  currency: StringOperationFilterInput
+  paymentStatus: PaymentTransactionStatusOperationFilterInput
+  status: TransactionStatusOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input PaymentTransactionSortInput {
+  id: SortEnumType @cost(weight: "10")
+  userId: SortEnumType @cost(weight: "10")
+  stripeCheckoutSessionId: SortEnumType @cost(weight: "10")
+  stripeSubscriptionId: SortEnumType @cost(weight: "10")
+  stripeInvoiceId: SortEnumType @cost(weight: "10")
+  stripePaymentId: SortEnumType @cost(weight: "10")
+  amount: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  paymentStatus: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input PaymentTransactionStatusOperationFilterInput {
+  eq: PaymentTransactionStatus @cost(weight: "10")
+  neq: PaymentTransactionStatus @cost(weight: "10")
+  in: [PaymentTransactionStatus!] @cost(weight: "10")
+  nin: [PaymentTransactionStatus!] @cost(weight: "10")
+}
+
+input PayoutTransactionFilterInput {
+  and: [PayoutTransactionFilterInput!]
+  or: [PayoutTransactionFilterInput!]
+  id: StringOperationFilterInput
+  userId: StringOperationFilterInput
+  royaltyReportId: StringOperationFilterInput
+  stripeTransferId: StringOperationFilterInput
+  stripePayoutId: StringOperationFilterInput
+  destinationAccountId: StringOperationFilterInput
+  amount: DecimalOperationFilterInput
+  currency: StringOperationFilterInput
+  level: NullableOfAggregationLevelOperationFilterInput
+  description: StringOperationFilterInput
+  status: PayoutTransactionStatusOperationFilterInput
+  method: StringOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input PayoutTransactionSortInput {
+  id: SortEnumType @cost(weight: "10")
+  userId: SortEnumType @cost(weight: "10")
+  royaltyReportId: SortEnumType @cost(weight: "10")
+  stripeTransferId: SortEnumType @cost(weight: "10")
+  stripePayoutId: SortEnumType @cost(weight: "10")
+  destinationAccountId: SortEnumType @cost(weight: "10")
+  amount: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  level: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  method: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input PayoutTransactionStatusOperationFilterInput {
+  eq: PayoutTransactionStatus @cost(weight: "10")
+  neq: PayoutTransactionStatus @cost(weight: "10")
+  in: [PayoutTransactionStatus!] @cost(weight: "10")
+  nin: [PayoutTransactionStatus!] @cost(weight: "10")
+}
+
+input PeriodTimeOperationFilterInput {
+  eq: PeriodTime @cost(weight: "10")
+  neq: PeriodTime @cost(weight: "10")
+  in: [PeriodTime!] @cost(weight: "10")
+  nin: [PeriodTime!] @cost(weight: "10")
+}
+
+input PlatformRevenueFilterInput {
+  and: [PlatformRevenueFilterInput!]
+  or: [PlatformRevenueFilterInput!]
+  subscriptionRevenue: DecimalOperationFilterInput
+  serviceRevenue: DecimalOperationFilterInput
+  grossRevenue: DecimalOperationFilterInput
+  royaltyPayoutAmount: DecimalOperationFilterInput
+  servicePayoutAmount: DecimalOperationFilterInput
+  refundAmount: DecimalOperationFilterInput
+  totalPayoutAmount: DecimalOperationFilterInput
+  grossDeductions: DecimalOperationFilterInput
+  commissionProfit: DecimalOperationFilterInput
+  netProfit: DecimalOperationFilterInput
+  currency: CurrencyTypeOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input PlatformRevenueSortInput {
+  subscriptionRevenue: SortEnumType @cost(weight: "10")
+  serviceRevenue: SortEnumType @cost(weight: "10")
+  grossRevenue: SortEnumType @cost(weight: "10")
+  royaltyPayoutAmount: SortEnumType @cost(weight: "10")
+  servicePayoutAmount: SortEnumType @cost(weight: "10")
+  refundAmount: SortEnumType @cost(weight: "10")
+  totalPayoutAmount: SortEnumType @cost(weight: "10")
+  grossDeductions: SortEnumType @cost(weight: "10")
+  commissionProfit: SortEnumType @cost(weight: "10")
+  netProfit: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input PlaylistFilterInput {
+  and: [PlaylistFilterInput!]
+  or: [PlaylistFilterInput!]
+  id: StringOperationFilterInput
+  userId: StringOperationFilterInput
+  name: StringOperationFilterInput
+  nameUnsigned: StringOperationFilterInput
+  description: StringOperationFilterInput
+  coverImage: StringOperationFilterInput
+  tracksInfo: ListFilterInputTypeOfPlaylistTracksInfoFilterInput
+  isPublic: BooleanOperationFilterInput
+  isVisible: BooleanOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input PlaylistSortInput {
+  id: SortEnumType @cost(weight: "10")
+  userId: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  nameUnsigned: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  coverImage: SortEnumType @cost(weight: "10")
+  isPublic: SortEnumType @cost(weight: "10")
+  isVisible: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input PlaylistTracksInfoFilterInput {
+  and: [PlaylistTracksInfoFilterInput!]
+  or: [PlaylistTracksInfoFilterInput!]
+  trackId: StringOperationFilterInput
+  addedTime: DateTimeOperationFilterInput
+}
+
+input PolicyStatusOperationFilterInput {
+  eq: PolicyStatus @cost(weight: "10")
+  neq: PolicyStatus @cost(weight: "10")
+  in: [PolicyStatus!] @cost(weight: "10")
+  nin: [PolicyStatus!] @cost(weight: "10")
+}
+
+input ProcessReportRequestInput {
+  reportId: String!
+  status: ReportStatus!
+  actionTaken: ReportAction!
+  restrictionActionDetails: [RestrictionActionDetailInput!]!
+  suspensionDays: Int
+  note: String
+}
+
+input RecordingFilterInput {
+  and: [RecordingFilterInput!]
+  or: [RecordingFilterInput!]
+  id: StringOperationFilterInput
+  trackId: StringOperationFilterInput
+  description: StringOperationFilterInput
+  recordingSplits: ListFilterInputTypeOfRecordingSplitFilterInput
+  version: LongOperationFilterInput
+  status: RecordingStatusOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+}
+
+input RecordingSortInput {
+  id: SortEnumType @cost(weight: "10")
+  trackId: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  version: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+}
+
+input RecordingSplitFilterInput {
+  and: [RecordingSplitFilterInput!]
+  or: [RecordingSplitFilterInput!]
+  userId: StringOperationFilterInput
+  artistRole: ArtistRoleOperationFilterInput
+  percentage: DecimalOperationFilterInput
+}
+
+input RecordingStatusOperationFilterInput {
+  eq: RecordingStatus @cost(weight: "10")
+  neq: RecordingStatus @cost(weight: "10")
+  in: [RecordingStatus!] @cost(weight: "10")
+  nin: [RecordingStatus!] @cost(weight: "10")
+}
+
+input RedoRequestInput {
+  packageOrderId: String!
+  revisionNumber: Int!
+  clientFeedback: String!
+}
+
+input RefundReasonTypeOperationFilterInput {
+  eq: RefundReasonType @cost(weight: "10")
+  neq: RefundReasonType @cost(weight: "10")
+  in: [RefundReasonType!] @cost(weight: "10")
+  nin: [RefundReasonType!] @cost(weight: "10")
+}
+
+input RefundTransactionFilterInput {
+  and: [RefundTransactionFilterInput!]
+  or: [RefundTransactionFilterInput!]
+  id: StringOperationFilterInput
+  stripePaymentId: StringOperationFilterInput
+  amount: DecimalOperationFilterInput
+  currency: CurrencyTypeOperationFilterInput
+  reason: RefundReasonTypeOperationFilterInput
+  status: RefundTransactionStatusOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input RefundTransactionSortInput {
+  id: SortEnumType @cost(weight: "10")
+  stripePaymentId: SortEnumType @cost(weight: "10")
+  amount: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  reason: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input RefundTransactionStatusOperationFilterInput {
+  eq: RefundTransactionStatus @cost(weight: "10")
+  neq: RefundTransactionStatus @cost(weight: "10")
+  in: [RefundTransactionStatus!] @cost(weight: "10")
+  nin: [RefundTransactionStatus!] @cost(weight: "10")
+}
+
+input ReleaseInfoFilterInput {
+  and: [ReleaseInfoFilterInput!]
+  or: [ReleaseInfoFilterInput!]
+  isRelease: BooleanOperationFilterInput
+  releaseDate: DateTimeOperationFilterInput
+  releasedAt: DateTimeOperationFilterInput
+  releaseStatus: ReleaseStatusOperationFilterInput
+}
+
+input ReleaseInfoInput {
+  isRelease: Boolean!
+  releaseDate: DateTime
+  releasedAt: DateTime
+  releaseStatus: ReleaseStatus!
+}
+
+input ReleaseInfoSortInput {
+  isRelease: SortEnumType @cost(weight: "10")
+  releaseDate: SortEnumType @cost(weight: "10")
+  releasedAt: SortEnumType @cost(weight: "10")
+  releaseStatus: SortEnumType @cost(weight: "10")
+}
+
+input ReleaseStatusOperationFilterInput {
+  eq: ReleaseStatus @cost(weight: "10")
+  neq: ReleaseStatus @cost(weight: "10")
+  in: [ReleaseStatus!] @cost(weight: "10")
+  nin: [ReleaseStatus!] @cost(weight: "10")
+}
+
+input RemoveFromPlaylistRequestInput {
+  trackId: String!
+  playlistId: String
+}
+
+input RemoveTrackFromAlbumRequestInput {
+  trackId: String!
+  albumId: String!
+}
+
+input ReportFilterInput {
+  and: [ReportFilterInput!]
+  or: [ReportFilterInput!]
+  id: StringOperationFilterInput
+  reportedUserId: StringOperationFilterInput
+  reporterId: StringOperationFilterInput
+  reportType: ReportTypeOperationFilterInput
+  description: StringOperationFilterInput
+  status: ReportStatusOperationFilterInput
+  priority: ReportPriorityOperationFilterInput
+  relatedContentId: StringOperationFilterInput
+  relatedContentType: NullableOfReportRelatedContentTypeOperationFilterInput
+  evidences: ListStringOperationFilterInput
+  assignedModeratorId: StringOperationFilterInput
+  actionTaken: NullableOfReportActionOperationFilterInput
+  note: StringOperationFilterInput
+  resolvedAt: DateTimeOperationFilterInput
+  totalReportsCount: LongOperationFilterInput
+  isDeleted: BooleanOperationFilterInput
+  backgroundJobId: StringOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input ReportPriorityOperationFilterInput {
+  eq: ReportPriority @cost(weight: "10")
+  neq: ReportPriority @cost(weight: "10")
+  in: [ReportPriority!] @cost(weight: "10")
+  nin: [ReportPriority!] @cost(weight: "10")
+}
+
+input ReportSortInput {
+  id: SortEnumType @cost(weight: "10")
+  reportedUserId: SortEnumType @cost(weight: "10")
+  reporterId: SortEnumType @cost(weight: "10")
+  reportType: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  priority: SortEnumType @cost(weight: "10")
+  relatedContentId: SortEnumType @cost(weight: "10")
+  relatedContentType: SortEnumType @cost(weight: "10")
+  assignedModeratorId: SortEnumType @cost(weight: "10")
+  actionTaken: SortEnumType @cost(weight: "10")
+  note: SortEnumType @cost(weight: "10")
+  resolvedAt: SortEnumType @cost(weight: "10")
+  totalReportsCount: SortEnumType @cost(weight: "10")
+  isDeleted: SortEnumType @cost(weight: "10")
+  backgroundJobId: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input ReportStatusOperationFilterInput {
+  eq: ReportStatus @cost(weight: "10")
+  neq: ReportStatus @cost(weight: "10")
+  in: [ReportStatus!] @cost(weight: "10")
+  nin: [ReportStatus!] @cost(weight: "10")
+}
+
+input ReportTypeOperationFilterInput {
+  eq: ReportType @cost(weight: "10")
+  neq: ReportType @cost(weight: "10")
+  in: [ReportType!] @cost(weight: "10")
+  nin: [ReportType!] @cost(weight: "10")
+}
+
+input RequestBudgetFilterInput {
+  and: [RequestBudgetFilterInput!]
+  or: [RequestBudgetFilterInput!]
+  min: DecimalOperationFilterInput
+  max: DecimalOperationFilterInput
+}
+
+input RequestBudgetInput {
+  min: Decimal!
+  max: Decimal!
+}
+
+input RequestBudgetSortInput {
+  min: SortEnumType @cost(weight: "10")
+  max: SortEnumType @cost(weight: "10")
+}
+
+input RequestCreatingRequestInput {
+  title: String!
+  summary: String!
+  detailDescription: String!
+  deadline: DateTime!
+  budget: RequestBudgetInput!
+}
+
+input RequestFilterInput {
+  and: [RequestFilterInput!]
+  or: [RequestFilterInput!]
+  id: StringOperationFilterInput
+  requestUserId: StringOperationFilterInput
+  artistId: StringOperationFilterInput
+  packageId: StringOperationFilterInput
+  title: StringOperationFilterInput
+  titleUnsigned: StringOperationFilterInput
+  summary: StringOperationFilterInput
+  summaryUnsigned: StringOperationFilterInput
+  detailDescription: StringOperationFilterInput
+  requirements: StringOperationFilterInput
+  budget: RequestBudgetFilterInput
+  postCreatedTime: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+  type: RequestTypeOperationFilterInput
+  currency: CurrencyTypeOperationFilterInput
+  deadline: DateTimeOperationFilterInput
+  status: RequestStatusOperationFilterInput
+  requestCreatedTime: DateTimeOperationFilterInput
+  notes: StringOperationFilterInput
+}
+
+input RequestSortInput {
+  id: SortEnumType @cost(weight: "10")
+  requestUserId: SortEnumType @cost(weight: "10")
+  artistId: SortEnumType @cost(weight: "10")
+  packageId: SortEnumType @cost(weight: "10")
+  title: SortEnumType @cost(weight: "10")
+  titleUnsigned: SortEnumType @cost(weight: "10")
+  summary: SortEnumType @cost(weight: "10")
+  summaryUnsigned: SortEnumType @cost(weight: "10")
+  detailDescription: SortEnumType @cost(weight: "10")
+  requirements: SortEnumType @cost(weight: "10")
+  budget: RequestBudgetSortInput @cost(weight: "10")
+  postCreatedTime: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+  type: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  deadline: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  requestCreatedTime: SortEnumType @cost(weight: "10")
+  notes: SortEnumType @cost(weight: "10")
+}
+
+input RequestStatusOperationFilterInput {
+  eq: RequestStatus @cost(weight: "10")
+  neq: RequestStatus @cost(weight: "10")
+  in: [RequestStatus!] @cost(weight: "10")
+  nin: [RequestStatus!] @cost(weight: "10")
+}
+
+input RequestTypeOperationFilterInput {
+  eq: RequestType @cost(weight: "10")
+  neq: RequestType @cost(weight: "10")
+  in: [RequestType!] @cost(weight: "10")
+  nin: [RequestType!] @cost(weight: "10")
+}
+
+input RequestUpdatingRequestInput {
+  id: String!
+  title: String
+  summary: String
+  detailDescription: String
+  deadline: DateTime
+  budget: RequestBudgetInput
+  status: RequestStatus
+}
+
+input RestrictionActionDetailInput {
+  restrictionAction: RestrictionAction!
+  note: String
+}
+
+input RestrictionFilterInput {
+  and: [RestrictionFilterInput!]
+  or: [RestrictionFilterInput!]
+  type: RestrictionTypeOperationFilterInput
+  action: NullableOfRestrictionActionOperationFilterInput
+  reason: StringOperationFilterInput
+  restrictedAt: DateTimeOperationFilterInput
+  expired: DateTimeOperationFilterInput
+}
+
+input RestrictionSortInput {
+  type: SortEnumType @cost(weight: "10")
+  action: SortEnumType @cost(weight: "10")
+  reason: SortEnumType @cost(weight: "10")
+  restrictedAt: SortEnumType @cost(weight: "10")
+  expired: SortEnumType @cost(weight: "10")
+}
+
+input RestrictionTypeOperationFilterInput {
+  eq: RestrictionType @cost(weight: "10")
+  neq: RestrictionType @cost(weight: "10")
+  in: [RestrictionType!] @cost(weight: "10")
+  nin: [RestrictionType!] @cost(weight: "10")
+}
+
+input ReviewFilterInput {
+  and: [ReviewFilterInput!]
+  or: [ReviewFilterInput!]
+  rating: IntOperationFilterInput
+  content: StringOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input ReviewSortInput {
+  rating: SortEnumType @cost(weight: "10")
+  content: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input RoyaltyPolicyFilterInput {
+  and: [RoyaltyPolicyFilterInput!]
+  or: [RoyaltyPolicyFilterInput!]
+  id: StringOperationFilterInput
+  ratePerStream: DecimalOperationFilterInput
+  currency: CurrencyTypeOperationFilterInput
+  recordingPercentage: DecimalOperationFilterInput
+  workPercentage: DecimalOperationFilterInput
+  version: LongOperationFilterInput
+  status: PolicyStatusOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input RoyaltyPolicySortInput {
+  id: SortEnumType @cost(weight: "10")
+  ratePerStream: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  recordingPercentage: SortEnumType @cost(weight: "10")
+  workPercentage: SortEnumType @cost(weight: "10")
+  version: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input RoyaltyReportFilterInput {
+  and: [RoyaltyReportFilterInput!]
+  or: [RoyaltyReportFilterInput!]
+  id: StringOperationFilterInput
+  trackId: StringOperationFilterInput
+  month: IntOperationFilterInput
+  year: IntOperationFilterInput
+  streamCount: LongOperationFilterInput
+  totalRoyaltyAmount: DecimalOperationFilterInput
+  royaltySplits: ListFilterInputTypeOfRoyaltySplitFilterInput
+  createdAt: DateTimeOperationFilterInput
+}
+
+input RoyaltyReportSortInput {
+  id: SortEnumType @cost(weight: "10")
+  trackId: SortEnumType @cost(weight: "10")
+  month: SortEnumType @cost(weight: "10")
+  year: SortEnumType @cost(weight: "10")
+  streamCount: SortEnumType @cost(weight: "10")
+  totalRoyaltyAmount: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+}
+
+input RoyaltySplitFilterInput {
+  and: [RoyaltySplitFilterInput!]
+  or: [RoyaltySplitFilterInput!]
+  userId: StringOperationFilterInput
+  artistRole: ArtistRoleOperationFilterInput
+  percentage: DecimalOperationFilterInput
+  amount: DecimalOperationFilterInput
+  level: AggregationLevelOperationFilterInput
+  isTransferred: BooleanOperationFilterInput
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String @cost(weight: "10")
+  neq: String @cost(weight: "10")
+  contains: String @cost(weight: "20")
+  ncontains: String @cost(weight: "20")
+  in: [String] @cost(weight: "10")
+  nin: [String] @cost(weight: "10")
+  startsWith: String @cost(weight: "20")
+  nstartsWith: String @cost(weight: "20")
+  endsWith: String @cost(weight: "20")
+  nendsWith: String @cost(weight: "20")
+}
+
+input StripeProductRequestInput {
+  id: String!
+  stripePriceIds: [String!]!
+}
+
+input SubmitDeliveryRequestInput {
+  packageOrderId: String!
+  deliveryFileUrl: String!
+  notes: String
+}
+
+input SubscriptionFilterInput {
+  and: [SubscriptionFilterInput!]
+  or: [SubscriptionFilterInput!]
+  id: StringOperationFilterInput
+  name: StringOperationFilterInput
+  description: StringOperationFilterInput
+  code: StringOperationFilterInput
+  version: IntOperationFilterInput
+  amount: DecimalOperationFilterInput
+  currency: CurrencyTypeOperationFilterInput
+  tier: SubscriptionTierOperationFilterInput
+  status: SubscriptionStatusOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input SubscriptionPlanFilterInput {
+  and: [SubscriptionPlanFilterInput!]
+  or: [SubscriptionPlanFilterInput!]
+  id: StringOperationFilterInput
+  subscriptionId: StringOperationFilterInput
+  stripeProductId: StringOperationFilterInput
+  stripeProductActive: BooleanOperationFilterInput
+  stripeProductName: StringOperationFilterInput
+  stripeProductImages: ListStringOperationFilterInput
+  stripeProductType: StringOperationFilterInput
+  stripeProductMetadata: ListFilterInputTypeOfMetadataFilterInput
+  subscriptionPlanPrices: ListFilterInputTypeOfSubscriptionPlanPriceFilterInput
+}
+
+input SubscriptionPlanPriceFilterInput {
+  and: [SubscriptionPlanPriceFilterInput!]
+  or: [SubscriptionPlanPriceFilterInput!]
+  stripePriceId: StringOperationFilterInput
+  stripePriceActive: BooleanOperationFilterInput
+  stripePriceUnitAmount: LongOperationFilterInput
+  stripePriceCurrency: StringOperationFilterInput
+  stripePriceLookupKey: StringOperationFilterInput
+  stripePriceMetadata: ListFilterInputTypeOfMetadataFilterInput
+  interval: PeriodTimeOperationFilterInput
+  intervalCount: LongOperationFilterInput
+}
+
+input SubscriptionPlanSortInput {
+  id: SortEnumType @cost(weight: "10")
+  subscriptionId: SortEnumType @cost(weight: "10")
+  stripeProductId: SortEnumType @cost(weight: "10")
+  stripeProductActive: SortEnumType @cost(weight: "10")
+  stripeProductName: SortEnumType @cost(weight: "10")
+  stripeProductType: SortEnumType @cost(weight: "10")
+}
+
+input SubscriptionSnapshotFilterInput {
+  and: [SubscriptionSnapshotFilterInput!]
+  or: [SubscriptionSnapshotFilterInput!]
+  subscriptionName: StringOperationFilterInput
+  subscriptionDescription: StringOperationFilterInput
+  subscriptionCode: StringOperationFilterInput
+  subscriptionVersion: IntOperationFilterInput
+  subscriptionAmount: DecimalOperationFilterInput
+  subscriptionCurrency: CurrencyTypeOperationFilterInput
+  subscriptionTier: SubscriptionTierOperationFilterInput
+  subscriptionStatus: SubscriptionStatusOperationFilterInput
+  subscriptionPlanPrices: ListFilterInputTypeOfSubscriptionPlanPriceFilterInput
+  stripeProductId: StringOperationFilterInput
+  stripeProductActive: BooleanOperationFilterInput
+  stripeProductName: StringOperationFilterInput
+  stripeProductImages: ListStringOperationFilterInput
+  stripeProductType: StringOperationFilterInput
+  stripeProductMetadata: ListFilterInputTypeOfMetadataFilterInput
+}
+
+input SubscriptionSnapshotSortInput {
+  subscriptionName: SortEnumType @cost(weight: "10")
+  subscriptionDescription: SortEnumType @cost(weight: "10")
+  subscriptionCode: SortEnumType @cost(weight: "10")
+  subscriptionVersion: SortEnumType @cost(weight: "10")
+  subscriptionAmount: SortEnumType @cost(weight: "10")
+  subscriptionCurrency: SortEnumType @cost(weight: "10")
+  subscriptionTier: SortEnumType @cost(weight: "10")
+  subscriptionStatus: SortEnumType @cost(weight: "10")
+  stripeProductId: SortEnumType @cost(weight: "10")
+  stripeProductActive: SortEnumType @cost(weight: "10")
+  stripeProductName: SortEnumType @cost(weight: "10")
+  stripeProductType: SortEnumType @cost(weight: "10")
+}
+
+input SubscriptionSortInput {
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  code: SortEnumType @cost(weight: "10")
+  version: SortEnumType @cost(weight: "10")
+  amount: SortEnumType @cost(weight: "10")
+  currency: SortEnumType @cost(weight: "10")
+  tier: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input SubscriptionStatusOperationFilterInput {
+  eq: SubscriptionStatus @cost(weight: "10")
+  neq: SubscriptionStatus @cost(weight: "10")
+  in: [SubscriptionStatus!] @cost(weight: "10")
+  nin: [SubscriptionStatus!] @cost(weight: "10")
+}
+
+input SubscriptionTierOperationFilterInput {
+  eq: SubscriptionTier @cost(weight: "10")
+  neq: SubscriptionTier @cost(weight: "10")
+  in: [SubscriptionTier!] @cost(weight: "10")
+  nin: [SubscriptionTier!] @cost(weight: "10")
+}
+
+input SyncedLineFilterInput {
+  and: [SyncedLineFilterInput!]
+  or: [SyncedLineFilterInput!]
+  text: StringOperationFilterInput
+  time: FloatOperationFilterInput
+}
+
+input ThreadedCommentsRequestInput {
+  targetId: String!
+  commentType: CommentType!
+  page: Int!
+  pageSize: Int!
+  sortOrder: CommentSortOrder!
+}
+
+input TrackFilterInput {
+  and: [TrackFilterInput!]
+  or: [TrackFilterInput!]
+  id: StringOperationFilterInput
+  name: StringOperationFilterInput
+  nameUnsigned: StringOperationFilterInput
+  description: StringOperationFilterInput
+  type: TrackTypeOperationFilterInput
+  categoryIds: ListStringOperationFilterInput
+  tags: ListStringOperationFilterInput
+  mainArtistIds: ListStringOperationFilterInput
+  featuredArtistIds: ListStringOperationFilterInput
+  audioFeature: AudioFeatureFilterInput
+  alternativeDescription: StringOperationFilterInput
+  audioFingerprint: AudioFingerprintFilterInput
+  streamCount: LongOperationFilterInput
+  favoriteCount: LongOperationFilterInput
+  coverImage: StringOperationFilterInput
+  previewVideo: StringOperationFilterInput
+  isExplicit: BooleanOperationFilterInput
+  lyrics: StringOperationFilterInput
+  syncedLyrics: ListFilterInputTypeOfSyncedLineFilterInput
+  popularity: DecimalOperationFilterInput
+  releaseInfo: ReleaseInfoFilterInput
+  restriction: RestrictionFilterInput
+  legalDocuments: ListFilterInputTypeOfLegalDocumentFilterInput
+  embeddingVector: ListFloatOperationFilterInput
+  createdBy: StringOperationFilterInput
+  updatedBy: StringOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input TrackSortInput {
+  id: SortEnumType @cost(weight: "10")
+  name: SortEnumType @cost(weight: "10")
+  nameUnsigned: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  type: SortEnumType @cost(weight: "10")
+  audioFeature: AudioFeatureSortInput @cost(weight: "10")
+  alternativeDescription: SortEnumType @cost(weight: "10")
+  audioFingerprint: AudioFingerprintSortInput @cost(weight: "10")
+  streamCount: SortEnumType @cost(weight: "10")
+  favoriteCount: SortEnumType @cost(weight: "10")
+  coverImage: SortEnumType @cost(weight: "10")
+  previewVideo: SortEnumType @cost(weight: "10")
+  isExplicit: SortEnumType @cost(weight: "10")
+  lyrics: SortEnumType @cost(weight: "10")
+  popularity: SortEnumType @cost(weight: "10")
+  releaseInfo: ReleaseInfoSortInput @cost(weight: "10")
+  restriction: RestrictionSortInput @cost(weight: "10")
+  createdBy: SortEnumType @cost(weight: "10")
+  updatedBy: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input TrackTypeOperationFilterInput {
+  eq: TrackType @cost(weight: "10")
+  neq: TrackType @cost(weight: "10")
+  in: [TrackType!] @cost(weight: "10")
+  nin: [TrackType!] @cost(weight: "10")
+}
+
+input TransactionStatusOperationFilterInput {
+  eq: TransactionStatus @cost(weight: "10")
+  neq: TransactionStatus @cost(weight: "10")
+  in: [TransactionStatus!] @cost(weight: "10")
+  nin: [TransactionStatus!] @cost(weight: "10")
+}
+
+input UpdateArtistPackageRequestInput {
+  id: String!
+  packageName: String
+  description: String
+}
+
+input UpdateArtistRequestInput {
+  stageName: String
+  biography: String
+  avatarImage: String
+  bannerImage: String
+  email: String
+  phoneNumber: String
+  fullName: String
+  gender: UserGender
+  birthDate: DateTime
+}
+
+input UpdateEntitlementRequestInput {
+  value: EntitlementValue
+  name: String
+  code: String!
+  description: String
+  valueType: EntitlementValueType
+  expiredAt: DateTime
+}
+
+input UpdateEscrowCommissionPolicyRequestInput {
+  version: Long!
+  platformFeePercentage: Decimal
+  currency: CurrencyType
+}
+
+input UpdateListenerRequestInput {
+  displayName: String
+  avatarImage: String
+  bannerImage: String
+  email: String
+  phoneNumber: String
+  fullName: String
+  gender: UserGender
+  birthDate: DateTime
+}
+
+input UpdatePlaylistRequestInput {
+  playlistId: String!
+  name: String
+  description: String
+  coverImage: String
+  isPublic: Boolean
+}
+
+input UpdatePriceRequestInput {
+  stripePriceId: String!
+  lookupKey: String
+  active: Boolean
+  interval: PeriodTime
+  intervalCount: Long
+  metadata: [KeyValuePairOfStringAndStringInput!]
+}
+
+input UpdateReviewRequestInput {
+  packageOrderId: String!
+  rating: Int
+  comment: String
+}
+
+input UpdateRoyalPolicyRequestInput {
+  version: Long!
+  ratePerStream: Decimal
+  currency: CurrencyType
+  recordingPercentage: Decimal
+  workPercentage: Decimal
+}
+
+input UpdateStatusArtistPackageRequestInput {
+  id: String!
+  status: ArtistPackageStatus!
+}
+
+input UpdateSubscriptionPlanRequestInput {
+  subscriptionPlanId: String!
+  newPrices: [CreatePriceRequestInput!]!
+  updatePrices: [UpdatePriceRequestInput!]!
+  metadata: [KeyValuePairOfStringAndStringInput!]
+  images: [String!]
+  name: String
+}
+
+input UpdateTrackCommentRequestInput {
+  commentId: String!
+  content: String!
+}
+
+input UserEngagementActionOperationFilterInput {
+  eq: UserEngagementAction @cost(weight: "10")
+  neq: UserEngagementAction @cost(weight: "10")
+  in: [UserEngagementAction!] @cost(weight: "10")
+  nin: [UserEngagementAction!] @cost(weight: "10")
+}
+
+input UserEngagementFilterInput {
+  and: [UserEngagementFilterInput!]
+  or: [UserEngagementFilterInput!]
+  id: StringOperationFilterInput
+  actorId: StringOperationFilterInput
+  actorType: UserEngagementTargetTypeOperationFilterInput
+  targetId: StringOperationFilterInput
+  targetType: UserEngagementTargetTypeOperationFilterInput
+  action: UserEngagementActionOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+}
+
+input UserEngagementRequestInput {
+  targetId: String!
+}
+
+input UserEngagementSortInput {
+  id: SortEnumType @cost(weight: "10")
+  actorId: SortEnumType @cost(weight: "10")
+  actorType: SortEnumType @cost(weight: "10")
+  targetId: SortEnumType @cost(weight: "10")
+  targetType: SortEnumType @cost(weight: "10")
+  action: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+}
+
+input UserEngagementTargetTypeOperationFilterInput {
+  eq: UserEngagementTargetType @cost(weight: "10")
+  neq: UserEngagementTargetType @cost(weight: "10")
+  in: [UserEngagementTargetType!] @cost(weight: "10")
+  nin: [UserEngagementTargetType!] @cost(weight: "10")
+}
+
+input UserFilterInput {
+  and: [UserFilterInput!]
+  or: [UserFilterInput!]
+  id: StringOperationFilterInput
+  email: StringOperationFilterInput
+  passwordHash: StringOperationFilterInput
+  fullName: StringOperationFilterInput
+  gender: UserGenderOperationFilterInput
+  birthDate: DateTimeOperationFilterInput
+  role: UserRoleOperationFilterInput
+  phoneNumber: StringOperationFilterInput
+  status: UserStatusOperationFilterInput
+  isLinkedWithGoogle: BooleanOperationFilterInput
+  stripeCustomerId: StringOperationFilterInput
+  stripeAccountId: StringOperationFilterInput
+  fcmToken: StringOperationFilterInput
+  lastLoginAt: DateTimeOperationFilterInput
+  restrictions: ListFilterInputTypeOfRestrictionFilterInput
+  createdBy: StringOperationFilterInput
+  updatedBy: StringOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input UserGenderOperationFilterInput {
+  eq: UserGender @cost(weight: "10")
+  neq: UserGender @cost(weight: "10")
+  in: [UserGender!] @cost(weight: "10")
+  nin: [UserGender!] @cost(weight: "10")
+}
+
+input UserRoleOperationFilterInput {
+  eq: UserRole @cost(weight: "10")
+  neq: UserRole @cost(weight: "10")
+  in: [UserRole!] @cost(weight: "10")
+  nin: [UserRole!] @cost(weight: "10")
+}
+
+input UserSortInput {
+  id: SortEnumType @cost(weight: "10")
+  email: SortEnumType @cost(weight: "10")
+  passwordHash: SortEnumType @cost(weight: "10")
+  fullName: SortEnumType @cost(weight: "10")
+  gender: SortEnumType @cost(weight: "10")
+  birthDate: SortEnumType @cost(weight: "10")
+  role: SortEnumType @cost(weight: "10")
+  phoneNumber: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  isLinkedWithGoogle: SortEnumType @cost(weight: "10")
+  stripeCustomerId: SortEnumType @cost(weight: "10")
+  stripeAccountId: SortEnumType @cost(weight: "10")
+  fcmToken: SortEnumType @cost(weight: "10")
+  lastLoginAt: SortEnumType @cost(weight: "10")
+  createdBy: SortEnumType @cost(weight: "10")
+  updatedBy: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input UserStatusOperationFilterInput {
+  eq: UserStatus @cost(weight: "10")
+  neq: UserStatus @cost(weight: "10")
+  in: [UserStatus!] @cost(weight: "10")
+  nin: [UserStatus!] @cost(weight: "10")
+}
+
+input UserSubscriptionFilterInput {
+  and: [UserSubscriptionFilterInput!]
+  or: [UserSubscriptionFilterInput!]
+  id: StringOperationFilterInput
+  userId: StringOperationFilterInput
+  subscriptionId: StringOperationFilterInput
+  stripeSubscriptionId: StringOperationFilterInput
+  periodStart: DateTimeOperationFilterInput
+  periodEnd: DateTimeOperationFilterInput
+  autoRenew: BooleanOperationFilterInput
+  cancelAtEndOfPeriod: BooleanOperationFilterInput
+  canceledAt: DateTimeOperationFilterInput
+  isActive: BooleanOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input UserSubscriptionSortInput {
+  id: SortEnumType @cost(weight: "10")
+  userId: SortEnumType @cost(weight: "10")
+  subscriptionId: SortEnumType @cost(weight: "10")
+  stripeSubscriptionId: SortEnumType @cost(weight: "10")
+  periodStart: SortEnumType @cost(weight: "10")
+  periodEnd: SortEnumType @cost(weight: "10")
+  autoRenew: SortEnumType @cost(weight: "10")
+  cancelAtEndOfPeriod: SortEnumType @cost(weight: "10")
+  canceledAt: SortEnumType @cost(weight: "10")
+  isActive: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input WorkFilterInput {
+  and: [WorkFilterInput!]
+  or: [WorkFilterInput!]
+  id: StringOperationFilterInput
+  trackId: StringOperationFilterInput
+  description: StringOperationFilterInput
+  workSplits: ListFilterInputTypeOfWorkSplitFilterInput
+  version: LongOperationFilterInput
+  status: WorkStatusOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+}
+
+input WorkSortInput {
+  id: SortEnumType @cost(weight: "10")
+  trackId: SortEnumType @cost(weight: "10")
+  description: SortEnumType @cost(weight: "10")
+  version: SortEnumType @cost(weight: "10")
+  status: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+}
+
+input WorkSplitFilterInput {
+  and: [WorkSplitFilterInput!]
+  or: [WorkSplitFilterInput!]
+  userId: StringOperationFilterInput
+  artistRole: ArtistRoleOperationFilterInput
+  percentage: DecimalOperationFilterInput
+}
+
+input WorkStatusOperationFilterInput {
+  eq: WorkStatus @cost(weight: "10")
+  neq: WorkStatus @cost(weight: "10")
+  in: [WorkStatus!] @cost(weight: "10")
+  nin: [WorkStatus!] @cost(weight: "10")
+}
+
+enum AggregationLevel {
+  NONE
+  RECORDING
+  WORK
+  FULL
+}
+
+enum AlbumType {
+  ALBUM
+  SINGLE
+  EP
+  COMPILATION
+  REMIX
+  LIVE
+  SOUNDTRACK
+}
+
+"Defines when a policy shall be executed."
+enum ApplyPolicy {
+  "Before the resolver was executed."
+  BEFORE_RESOLVER
+  "After the resolver was executed."
+  AFTER_RESOLVER
+  "The policy is applied in the validation step before the execution."
+  VALIDATION
+}
+
+enum ApprovalType {
+  TRACK_UPLOAD
+  WORK_UPLOAD
+  RECORDING_UPLOAD
+  ARTIST_REGISTRATION
+}
+
+enum ArtistPackageStatus {
+  ENABLED
+  DISABLED
+}
+
+enum ArtistRole {
+  MAIN
+  FEATURED
+  REMIXER
+  COMPOSER
+}
+
+enum ArtistType {
+  INDIVIDUAL
+  GROUP
+  BAND
+}
+
+enum AudioFormat {
+  MP3
+  WAV
+}
+
+enum BillingPortalConfigStatus {
+  INACTIVE
+  ACTIVE
+  DEPRECATED
+}
+
+enum CategoryType {
+  GENRE
+  MOOD
+}
+
+enum CommentSortOrder {
+  CHRONOLOGICAL
+  THREAD_ACTIVITY
+  POPULARITY_BASED
+  REVERSE_CHRONOLOGICAL
+}
+
+enum CommentType {
+  TRACK
+  PLAYLIST
+  ALBUM
+  REQUEST
+}
+
+enum ConversationStatus {
+  NONE
+  PENDING
+  CANCELLED
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum CouponDurationType {
+  REPEATING
+  FOREVER
+  ONCE
+}
+
+enum CouponPurposeType {
+  GENERAL
+  AUTO_SERVICE
+  ANNUAL_PLAN_DISCOUNT
+}
+
+enum CouponStatus {
+  ACTIVE
+  INACTIVE
+  EXPIRED
+  DEPRECATED
+}
+
+enum CurrencyType {
+  VND
+  USD
+  SGP
+  SGD
+  EUR
+  GBP
+  JPY
+  AUD
+  CAD
+  CHF
+  CNY
+  SEK
+  NZD
+}
+
+enum CustomerUpdate {
+  ADDRESS
+  EMAIL
+  PHONE
+  SHIPPING
+  TAX_ID
+}
+
+enum DocumentType {
+  LICENSE
+  CONTRACT
+  CERTIFICATE
+  OTHER
+}
+
+enum EntitlementValueType {
+  STRING
+  INT
+  DECIMAL
+  LONG
+  DOUBLE
+  BOOLEAN
+  DATE_TIME
+  OBJECT
+  ARRAY
+}
+
+enum HistoryActionType {
+  APPROVED
+  REJECTED
+  REQUEST_CHANGE
+  DISMISSED
+}
+
+enum ImageTag {
+  USERS_PROFILE
+}
+
+enum KeyTag {
+  DELETE
+}
+
+enum MoodType {
+  HAPPY
+  CALM
+  SAD
+  ANGRY
+  RELAXED
+  ENERGETIC
+  DARK
+  ROMANTIC
+  CHILL
+}
+
+enum OneOffType {
+  PAYMENT
+  REFUND
+}
+
+enum PackageOrderStatus {
+  CANCELLED
+  REFUND
+  IN_PROGRESS
+  PAID
+  DISPUTED
+  DISPERSED
+}
+
+enum PathTag {
+  BASE
+  API
+  TOOLS
+  PRIVATE_KEYS
+  BIN
+}
+
+enum PaymentMethodType {
+  CARD
+  LINK
+}
+
+enum PaymentTransactionStatus {
+  PENDING
+  PAID
+  UNPAID
+}
+
+enum PayoutTransactionStatus {
+  PENDING
+  PAID
+  FAILED
+  CANCELED
+  IN_TRANSIT
+}
+
+enum PeriodTime {
+  DAY
+  WEEK
+  MONTH
+  YEAR
+}
+
+enum PolicyStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+enum PolicyType {
+  PRIVACY
+  TERMS
+  COOKIE
+  ROYALTY
+}
+
+enum PopularityActionType {
+  SKIP_STREAMING
+  STREAMING
+  COMPLETE_STREAMING
+  REPEAT_STREAMING
+  FAVORITE
+  UNFAVORITE
+  SHARE
+  ADD_TO_PLAYLIST
+  REMOVE_FROM_PLAYLIST
+  COMMENT
+  SEARCH
+  SEARCH_RESULT_CLICK
+  CLICK_FROM_RECOMMENDATION
+  FOLLOW
+  UNFOLLOW
+}
+
+enum RecommendationAlgorithm {
+  EUCLIDEAN
+  COSINE
+}
+
+enum RecordingStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+enum RefundReasonType {
+  DUPLICATE
+  FRAUDULENT
+  REQUESTED_BY_CUSTOMER
+}
+
+enum RefundTransactionStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REQUIRES_ACTION
+  CANCELED
+}
+
+enum ReleaseStatus {
+  NOT_ANNOUNCED
+  DELAYED
+  CANCELED
+  BANNED
+  OFFICIAL
+}
+
+enum ReportAction {
+  NO_ACTION
+  WARNING
+  CONTENT_REMOVAL
+  SUSPENDED
+  PERMANENT_BAN
+  ENTITLEMENT_RESTRICTION
+}
+
+enum ReportPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum ReportRelatedContentType {
+  TRACK
+  ARTIST
+  LISTENER
+  COMMENT
+  REQUEST
+}
+
+enum ReportStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  RESTORED
+  ESCALATED
+}
+
+enum ReportType {
+  SPAM
+  HARASSMENT
+  HATE_SPEECH
+  INAPPROPRIATE_CONTENT
+  IMPERSONATION
+  COPYRIGHT_VIOLATION
+  FAKE_ACCOUNT
+  SCAM_OR_FRAUD
+  SELF_HARM_OR_DANGEROUS_CONTENT
+  OTHER
+}
+
+enum RequestStatus {
+  BLOCKED
+  CLOSED
+  OPEN
+  DELETED
+  CONFIRMED
+  REJECTED
+  CANCELED
+  PENDING
+}
+
+enum RequestType {
+  PUBLIC_REQUEST
+  DIRECT_REQUEST
+}
+
+enum RestrictionAction {
+  NONE
+  REPORT
+  COMMENT
+  UPLOAD_TRACK
+  CREATE_PUBLIC_REQUEST
+  SEND_REQUEST
+}
+
+enum RestrictionType {
+  NONE
+  BANNED
+  SUSPENDED
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+enum StripeSubscriptionCancelMode {
+  IMMEDIATELY
+  AT_PERIOD_END
+}
+
+enum StripeSubscriptionUpdate {
+  PRICE
+  PROMOTION_CODE
+  QUANTITY
+}
+
+enum SubscriptionCycle {
+  WEEKLY
+  MONTHLY
+  YEARLY
+  LIFETIME
+}
+
+enum SubscriptionStatus {
+  INACTIVE
+  ACTIVE
+  DEPRECATED
+}
+
+enum SubscriptionTier {
+  FREE
+  PREMIUM
+  PRO
+}
+
+enum TrackType {
+  ORIGINAL
+  COVER
+  REMIX
+  LIVE
+  SAMPLE
+}
+
+enum TransactionStatus {
+  OPEN
+  COMPLETED
+  EXPIRED
+}
+
+enum UserEngagementAction {
+  FOLLOW
+  LIKE
+  BOOKMARK
+}
+
+enum UserEngagementTargetType {
+  ARTIST
+  LISTENER
+  TRACK
+  PLAYLIST
+  ALBUM
+}
+
+enum UserGender {
+  MALE
+  FEMALE
+  OTHER
+  NOT_SPECIFIED
+}
+
+enum UserRole {
+  ADMIN
+  MODERATOR
+  ARTIST
+  LISTENER
+  GUEST
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  BANNED
+  SUSPENDED
+}
+
+enum WorkStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+directive @allowAnonymous repeatable on FIELD_DEFINITION
+
+"The authorize directive."
+directive @authorize(
+  "The name of the authorization policy that determines access to the annotated resource."
+  policy: String
+  "Roles that are allowed to access the annotated resource."
+  roles: [String!]
+  "Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase."
+  apply: ApplyPolicy! = BEFORE_RESOLVER
+) repeatable on OBJECT | FIELD_DEFINITION
+
+"The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
+directive @cost(
+  "The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc."
+  weight: String!
+) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
+
+"The purpose of the `@listSize` directive is to either inform the static analysis about the size of returned lists (if that information is statically available), or to point the analysis to where to find that information."
+directive @listSize(
+  "The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field."
+  assumedSize: Int
+  "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments."
+  slicingArguments: [String!]
+  "The `slicingArgumentDefaultValue` argument can be used to define a default value for a slicing argument, which is used if the argument is not present in a query."
+  slicingArgumentDefaultValue: Int
+  "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields."
+  sizedFields: [String!]
+  "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error."
+  requireOneSlicingArgument: Boolean! = true
+) on FIELD_DEFINITION
+
+"The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
+directive @specifiedBy(
+  "The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types."
+  url: String!
+) on SCALAR
+
+"The `Byte` scalar type represents non-fractional whole numeric values. Byte can represent values between 0 and 255."
+scalar Byte
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime @specifiedBy(url: "https://www.graphql-scalars.com/date-time")
+
+"The `Decimal` scalar type represents a decimal floating-point number."
+scalar Decimal
+
+"Polymorphic scalar for String, Int, Long, Double, Decimal, Boolean, DateTime, Object, Array."
+scalar EntitlementValue
+
+scalar JSON
+
+"The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1."
+scalar Long
+
+"The `TimeSpan` scalar represents an ISO-8601 compliant duration type."
+scalar TimeSpan
+
+scalar UInt32
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload

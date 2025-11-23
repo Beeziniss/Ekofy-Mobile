@@ -1,18 +1,25 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/core/utils/results/result_type.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_api_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/login_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/register_request.dart';
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApiDatasource authApiDatasource;
   final AuthLocalDatasource authLocalDatasource;
+  final Ref ref;
 
-  AuthRepositoryImpl(this.authApiDatasource, this.authLocalDatasource);
+  AuthRepositoryImpl(
+    this.authApiDatasource,
+    this.authLocalDatasource,
+    this.ref,
+  );
 
   @override
   Future<ResultType> login({
@@ -25,12 +32,13 @@ class AuthRepositoryImpl implements AuthRepository {
       );
       //info: save token to storage
 
-      response.when(
+      return response.when(
         success: (res) async {
           await authLocalDatasource.saveToken(
             res.result!.accessToken,
             res.result!.refreshToken,
           );
+          // ref.read(appStateProvider.notifier).setUserId(res.result!.userId);
           return Success(null);
         },
 
@@ -38,7 +46,6 @@ class AuthRepositoryImpl implements AuthRepository {
           return Failure(res);
         },
       );
-      return Success('');
     } on DioException catch (e) {
       log('$e');
       return Failure('Server or Request Error!');

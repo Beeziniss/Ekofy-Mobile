@@ -1,0 +1,49 @@
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        enabled: true
+        options:
+          # Schema file
+          # schema: lib/gql/schema.graphql
+          
+          # # Queries glob pattern
+          # queries_glob: lib/gql/queries/*.graphql
+          
+          # Output directory
+          outputDirectory: generated
+          
+          # Client type
+          clients:
+            - graphql_flutter
+          
+          # map GraphQL scalars to Dart types
+          scalars:
+            Long:
+              type: int
+            Decimal:
+              type: double
+            Byte:
+              type: int
+            DateTime:
+              type: DateTime
+              import: dart:core
+            EntitlementValue:
+              type: dynamic
+            
+            # # JSON scalar (nếu cần)
+            # - graphql_type: JSON
+            #   dart_type:
+            #     name: Map<String, dynamic>
+            
+            # # Upload scalar (nếu có file upload)
+            # - graphql_type: Upload
+            #   dart_type:
+            #     name: MultipartFile
+            #     imports:
+            #       - 'package:dio/dio.dart'
+          
+          # Additional options
+          generate_helpers: true
+          naming_scheme: pathedWithFields
+          add_query_prefix: false

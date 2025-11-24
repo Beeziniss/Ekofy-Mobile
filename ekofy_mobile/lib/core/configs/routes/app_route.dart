@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/login_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/otp_screen.dart';
@@ -38,35 +37,34 @@ GoRouter router(WidgetRef ref) {
       ref.read(authProvider.notifier).stream,
     ),
 
-    redirect: (context, state) {
-      // Check if route is public
-      // if (RouteName.publicRoutes.contains(state.matchedLocation)) {
-      //   return null;
-      // }
+    // redirect: (context, state) {
+    //   // Check if route is public
+    //   // if (RouteName.publicRoutes.contains(state.matchedLocation)) {
+    //   //   return null;
+    //   // }
 
-      // Check authentication
-      final authState = ref.read(authProvider);
-      final isAuthenticated = authState is AuthAuthenticateSuccess;
+    //   // Check authentication
+    //   final authState = ref.read(authProvider);
+    //   final isAuthenticated = authState is AuthAuthenticateSuccess;
 
-      final isGoingToLoginOrRegister =
-          state.matchedLocation == RouteName.login ||
-          state.matchedLocation == RouteName.register;
+    //   final isGoingToLoginOrRegister =
+    //       state.matchedLocation == RouteName.login ||
+    //       state.matchedLocation == RouteName.register;
 
-      if (isAuthenticated && isGoingToLoginOrRegister) {
-        return RouteName.home;
-      }
+    //   if (isAuthenticated && isGoingToLoginOrRegister) {
+    //     return RouteName.home;
+    //   }
 
-      if (!isAuthenticated) {
-        return RouteName.login;
-      }
+    //   if (!isAuthenticated) {
+    //     return RouteName.login;
+    //   }
 
-      return null;
-    },
-
+    //   return null;
+    // },
     routes: [
       GoRoute(
         path: RouteName.start,
-        builder: (context, state) => const SplashScreen()
+        builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
         path: RouteName.login,

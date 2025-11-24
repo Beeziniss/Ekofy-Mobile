@@ -4,6 +4,7 @@ import 'package:ekofy_mobile/core/utils/results/result_type.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/login_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/register_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/response/login_response.dart';
+import 'package:ekofy_mobile/features/auth/data/models/response/logout_response.dart';
 import 'package:ekofy_mobile/features/auth/data/models/response/register_response.dart';
 
 class AuthApiDatasource {
@@ -12,7 +13,7 @@ class AuthApiDatasource {
   AuthApiDatasource(this.api);
 
   Future<ResultType<LoginResponse>> login(LoginRequest loginRequest) async {
-    return api.post<LoginResponse>(
+    return await api.post<LoginResponse>(
       path: '/api/authentication/login/listener',
       data: {'email': loginRequest.email, 'password': loginRequest.password},
       fromJson: (json) => LoginResponse.fromJson(json),
@@ -32,10 +33,19 @@ class AuthApiDatasource {
       'displayName': registerRequest.displayName,
     };
 
-    return api.post<RegisterResponse>(
+    return await api.post<RegisterResponse>(
       path: '/api/authentication/register/listener',
       data: data,
       fromJson: (json) => RegisterResponse.fromJson(json),
+    );
+  }
+
+  Future<ResultType<LogoutResponse>> logout() async {
+    final data = {'isMobile': true};
+    return await api.post(
+      path: '/api/authentication/logout',
+      data: data,
+      fromJson: (json) => LogoutResponse.fromJson(json),
     );
   }
 }

@@ -14,4 +14,6 @@ abstract class AuthRepository {
   });
 
   Future<ResultType<String?>> getAuthenToken();
+
+  Future<ResultType> logout();
 }

@@ -34,11 +34,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Future<void> _fetchProfile() async {
     final client = GraphQLProvider.of(context).value;
     Map<String, dynamic>? payload = await Helper.decodeJwtUnverified(ref);
-    log(payload!['userId']);
 
     final options = Options$Query$listenersProfileQuery(
       variables: Variables$Query$listenersProfileQuery(
-        userId: payload['userId'],
+        userId: payload!['userId'],
       ),
     );
 
@@ -153,6 +152,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         _personalDetailsCard(context),
                         const SizedBox(height: 16),
                         _accountDetailsCard(context),
+                        const SizedBox(height: 16),
+                        _accountActivitiesCard(context),
                       ],
                     ),
                   ),
@@ -172,9 +173,19 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              'Information',
+              style: TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 8),
             _kvRow('Display name', _profile?.displayName ?? '-'),
             const SizedBox(height: 8),
             _kvRow('Email', user?.email ?? '-'),
+            const SizedBox(height: 8),
+            _kvRow('Phone number', user?.phoneNumber ?? '-'),
             const SizedBox(height: 8),
             _kvRow('Date of Birth', _formatDate(user?.birthDate)),
             const SizedBox(height: 8),
@@ -196,12 +207,42 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           children: [
             const Text(
               'Account Details',
-              style: TextStyle(color: Colors.white70, fontSize: 16),
+              style: TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontSize: 16,
+              ),
             ),
             const SizedBox(height: 8),
             _kvRow('Followers', _profile?.followerCount.toString() ?? '0'),
             const SizedBox(height: 8),
             _kvRow('Following', _profile?.followingCount.toString() ?? '0'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _accountActivitiesCard(BuildContext context) {
+    final user = _profile?.user.firstOrNull;
+    return Card(
+      color: const Color(0xFF15151B),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Activities',
+              style: TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 8),
+            _kvRow('Join Date', _formatDate(user?.createdAt)),
+            const SizedBox(height: 8),
+            _kvRow('Last login at', _formatDate(user?.lastLoginAt)),
           ],
         ),
       ),

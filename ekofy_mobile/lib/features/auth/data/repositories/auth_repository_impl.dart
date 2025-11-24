@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/core/utils/results/result_type.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_api_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasource.dart';
@@ -28,7 +27,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     try {
       final response = await authApiDatasource.login(
-        LoginRequest(email: email, password: password),
+        LoginRequest(email: email, password: password, isMobile: true),
       );
       //info: save token to storage
 
@@ -97,5 +96,12 @@ class AuthRepositoryImpl implements AuthRepository {
       log('$e');
       return Failure('Server or Request Error!');
     }
+  }
+
+  @override
+  Future<ResultType> logout() async{
+      await authApiDatasource.logout();
+      await authLocalDatasource.removeToken();
+      return Success('Logout Successfully.');
   }
 }

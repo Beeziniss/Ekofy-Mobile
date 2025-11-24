@@ -148,11 +148,6 @@ class ProfileHeaderWidget extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 4),
-                          Text(
-                            userId,
-                            style: const TextStyle(color: Colors.white70),
-                          ),
-                          const SizedBox(height: 4),
                           if (userId.isNotEmpty)
                             Text(
                               'Verified: ${isVerified ? "Yes" : "No"}',

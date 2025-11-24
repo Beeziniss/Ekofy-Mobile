@@ -64,7 +64,7 @@ class AuthNotifier extends Notifier<AuthState> {
 
   // Logout method - Thay thế AuthLogoutStarted event
   Future<void> logout() async {
-    // TODO: Implement logout logic
+    await _authRepository.logout();
     state = AuthLogoutSuccess();
   }
 
@@ -72,7 +72,8 @@ class AuthNotifier extends Notifier<AuthState> {
   void reset() {
     state = AuthInitial();
   }
-    Future<String?> getToken() async {
+
+  Future<String?> getToken() async {
     final storage = ref.read(secureStorageProvider);
     final token = await storage.read(key: 'accessToken');
     return token;

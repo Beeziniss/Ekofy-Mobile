@@ -260,7 +260,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget _profileAction(Map<String, dynamic>? payload) {
     return GestureDetector(
       key: _menuKey,
-      onTap: () => _showCustomMenu(context),
+      onTap: () => _showCustomMenu(context, ref),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: CircleAvatar(
@@ -271,7 +271,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  void _showCustomMenu(BuildContext context) async {
+  void _showCustomMenu(BuildContext context, WidgetRef ref) async {
     final RenderBox button =
         _menuKey.currentContext!.findRenderObject() as RenderBox;
     final RenderBox overlay =
@@ -308,16 +308,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
 
     if (selected != null) {
-      log("Đã chọn: $selected");
       switch (selected) {
         case HomePageMenu.profile:
-          if (mounted) {
+          if (context.mounted) {
             // Navigate to profile screen
             context.push(RouteName.profile);
           }
           break;
         case HomePageMenu.logout:
-          // TODO: implement logout flow
+          await ref.read(authProvider.notifier).logout();
+          if (context.mounted){
+            context.go(RouteName.login);
+          }
           break;
       }
     }

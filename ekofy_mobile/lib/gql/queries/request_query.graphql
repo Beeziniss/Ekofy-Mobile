@@ -1,0 +1,25 @@
+query PublicRequestQuery {
+    requests(where: { type: { eq: PUBLIC_REQUEST }, status: { eq: OPEN } }) {
+        totalCount
+        items {
+            id
+            title
+            titleUnsigned
+            summary
+            requestUserId
+            budget {
+                min
+                max
+            }
+            postCreatedTime
+            duration
+            status
+            currency
+            requestor {
+                userId
+                displayName
+                avatarImage
+            }
+        }
+    }
+}

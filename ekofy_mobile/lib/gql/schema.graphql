@@ -122,8 +122,9 @@ type Artist {
   isVisible: Boolean!
   royaltyEarnings: Decimal!
   serviceRevenue: Decimal!
+  serviceEarnings: Decimal!
   grossRevenue: Decimal!
-  refundAmount: Decimal!
+  netRevenue: Decimal!
   createdAt: DateTime!
   updatedAt: DateTime
   user(
@@ -144,7 +145,6 @@ type Artist {
       requireOneSlicingArgument: false
     )
     @cost(weight: "10")
-  netEarnings: Decimal! @cost(weight: "10")
 }
 
 type ArtistInfo {
@@ -206,8 +206,9 @@ type ArtistPackagesInConversationCollectionSegment {
 type ArtistRevenueResponse {
   royaltyEarnings: Decimal!
   serviceRevenue: Decimal!
+  serviceEarnings: Decimal!
   grossRevenue: Decimal!
-  refundAmount: Decimal!
+  netRevenue: Decimal!
 }
 
 "A segment of a collection."
@@ -444,7 +445,7 @@ type ContributingArtist {
 type Conversation {
   id: String!
   userIds: [String!]!
-  requestHubId: String
+  requestId: String
   status: ConversationStatus!
   lastMessage: LastMessage
   deletedFor: [DeletedForEntry!]!
@@ -455,6 +456,8 @@ type Conversation {
 }
 
 type ConversationResponse {
+  listenerId: String
+  artistId: String
   nickname: String!
   avatar: String!
 }
@@ -963,6 +966,12 @@ type MutationInitialization {
     @cost(weight: "10")
   createCategory(categoryRequest: CreateCategoryRequestInput!): Boolean!
     @cost(weight: "10")
+  updateCategory(updateCategoryRequest: UpdateCategoryRequestInput!): Boolean!
+    @cost(weight: "10")
+  softDeleteCategory(categoryId: String!): Boolean! @cost(weight: "10")
+  hardDeleteCategory(
+    deleteCategoryRequest: DeleteCategoryRequestInput!
+  ): Boolean! @cost(weight: "10")
   updateConversationStatus(
     conversationId: String!
     status: ConversationStatus!
@@ -1011,6 +1020,33 @@ type MutationInitialization {
   updateListenerProfile(
     updateListenerRequest: UpdateListenerRequestInput!
   ): Boolean! @authorize(roles: ["Listener"]) @cost(weight: "10")
+  sendRedoRequest(request: RedoRequestInput!): Boolean!
+    @authorize(roles: ["Listener"])
+    @cost(weight: "10")
+  refundPartially(request: PackageOrderRefundRequestInput!): Boolean!
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
+  submitDelivery(request: SubmitDeliveryRequestInput!): Boolean!
+    @authorize(roles: ["Artist"])
+    @cost(weight: "10")
+  approveDelivery(packageOrderId: String!): Boolean!
+    @authorize(roles: ["Listener"])
+    @cost(weight: "10")
+  acceptRequestByArtist(packageOrderId: String!): Boolean!
+    @authorize(roles: ["Artist"])
+    @cost(weight: "10")
+  switchStatusByRequestor(request: ChangeOrderStatusRequestInput!): Boolean!
+    @authorize(roles: ["Listener"])
+    @cost(weight: "10")
+  createReview(createReviewRequest: CreateReviewRequestInput!): Boolean!
+    @authorize(roles: ["Listener"])
+    @cost(weight: "10")
+  updateReview(updateReviewRequest: UpdateReviewRequestInput!): Boolean!
+    @authorize(roles: ["Admin", "Listener", "Moderator"])
+    @cost(weight: "10")
+  deleteReviewHard(reviewId: String!): Boolean!
+    @authorize(roles: ["Admin", "Moderator"])
+    @cost(weight: "10")
   createExpressConnectedAccount(
     refreshUrl: String! = "https://ekofy.com/refresh"
     returnUrl: String! = "https://ekofy.com/return"
@@ -1121,16 +1157,16 @@ type MutationInitialization {
     @authorize(roles: ["Admin", "Moderator"])
     @cost(weight: "10")
   deleteReport(reportId: String!): Boolean!
-    @authorize(roles: ["Admin"])
-    @authorize(roles: ["Admin"])
+    @authorize(roles: ["Admin", "Moderator"])
+    @authorize(roles: ["Admin", "Moderator"])
     @cost(weight: "10")
   escalateReport(reportId: String!): Boolean!
     @authorize(roles: ["Admin", "Moderator"])
     @authorize(roles: ["Admin", "Moderator"])
     @cost(weight: "10")
   restoreUser(reportId: String!): Boolean!
-    @authorize(roles: ["Admin"])
-    @authorize(roles: ["Admin"])
+    @authorize(roles: ["Admin", "Moderator"])
+    @authorize(roles: ["Admin", "Moderator"])
     @cost(weight: "10")
   restoreContent(reportId: String!): Boolean!
     @authorize(roles: ["Admin", "Moderator"])
@@ -1229,6 +1265,64 @@ type MutationInitialization {
     @cost(weight: "10")
 }
 
+type Notification {
+  id: String!
+  actorId: String!
+  targetId: String!
+  relatedId: String
+  relatedType: NotificationRelatedType
+  content: String!
+  url: String
+  isRead: Boolean!
+  readAt: DateTime
+  action: NotificationActionType!
+  createdAt: DateTime!
+  actor(
+    where: UserFilterInput @cost(weight: "10")
+    order: [UserSortInput!] @cost(weight: "10")
+  ): [User!]! @cost(weight: "10")
+}
+
+"A connection to a list of items."
+type NotificationsConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [NotificationsEdge!]
+  "A flattened list of the nodes."
+  nodes: [Notification!]
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
+}
+
+"An edge in a connection."
+type NotificationsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Notification!
+}
+
+"A connection to a list of items."
+type NotificationsForUserConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [NotificationsForUserEdge!]
+  "A flattened list of the nodes."
+  nodes: [Notification!]
+  "Identifies the total count of items in the connection."
+  totalCount: Int! @cost(weight: "10")
+}
+
+"An edge in a connection."
+type NotificationsForUserEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Notification!
+}
+
 type OneOffSnapshot {
   packageName: String!
   packageAmount: Decimal!
@@ -1238,7 +1332,7 @@ type OneOffSnapshot {
   maxRevision: Int!
   serviceDetails: [Metadata!]!
   artistPackageStatus: ArtistPackageStatus!
-  deadline: DateTime!
+  duration: Int!
   platformFeePercentage: Decimal!
   artistFeePercentage: Decimal!
   oneOffType: OneOffType!
@@ -1269,16 +1363,21 @@ type PackageOrder {
   artistPackageId: String!
   paymentTransactionId: String!
   conversationId: String!
+  requirements: String!
   status: PackageOrderStatus!
   revisionCount: Int!
   deliveries: [PackageOrderDelivery!]!
-  deadline: DateTime!
+  duration: Int!
+  freezedTime: TimeSpan!
+  startedAt: DateTime
+  disputedAt: DateTime
   completedAt: DateTime
   isEscrowReleased: Boolean!
   platformFeePercentage: Decimal!
   artistFeePercentage: Decimal!
   review: Review
-  backgroundJobId: String
+  approvedAutoJobId: String
+  overdueJobId: String
   createdAt: DateTime!
   updatedAt: DateTime
   package(
@@ -1845,13 +1944,56 @@ type QueryInitialization {
       requireOneSlicingArgument: false
     )
     @cost(weight: "10")
+  notifications(
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the last _n_ elements from the list."
+    last: Int
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    where: NotificationFilterInput @cost(weight: "10")
+    order: [NotificationSortInput!] @cost(weight: "10")
+  ): NotificationsConnection
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
+  notificationsForUser(
+    userId: String!
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the last _n_ elements from the list."
+    last: Int
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    where: NotificationFilterInput @cost(weight: "10")
+    order: [NotificationSortInput!] @cost(weight: "10")
+  ): NotificationsForUserConnection
+    @allowAnonymous
+    @listSize(
+      assumedSize: 50
+      slicingArguments: ["first", "last"]
+      slicingArgumentDefaultValue: 10
+      sizedFields: ["edges", "nodes"]
+      requireOneSlicingArgument: false
+    )
+    @cost(weight: "10")
   packageOrders(
     skip: Int
     take: Int
     where: PackageOrderFilterInput @cost(weight: "10")
     order: [PackageOrderSortInput!] @cost(weight: "10")
   ): PackageOrdersCollectionSegment
-    @authorize(roles: ["Artist", "Listener"])
+    @authorize(roles: ["Artist", "Listener", "Moderator"])
     @listSize(
       assumedSize: 50
       slicingArguments: ["take"]
@@ -2534,7 +2676,7 @@ type Request {
   updatedAt: DateTime
   type: RequestType!
   currency: CurrencyType!
-  deadline: DateTime!
+  duration: Int!
   status: RequestStatus!
   requestCreatedTime: DateTime
   notes: String
@@ -2572,6 +2714,7 @@ type Restriction {
   reason: String
   restrictedAt: DateTime
   expired: DateTime
+  reportId: String
 }
 
 type Review {
@@ -3268,8 +3411,9 @@ input ArtistFilterInput {
   isVisible: BooleanOperationFilterInput
   royaltyEarnings: DecimalOperationFilterInput
   serviceRevenue: DecimalOperationFilterInput
+  serviceEarnings: DecimalOperationFilterInput
   grossRevenue: DecimalOperationFilterInput
-  refundAmount: DecimalOperationFilterInput
+  netRevenue: DecimalOperationFilterInput
   createdAt: DateTimeOperationFilterInput
   updatedAt: DateTimeOperationFilterInput
 }
@@ -3356,8 +3500,9 @@ input ArtistSortInput {
   isVisible: SortEnumType @cost(weight: "10")
   royaltyEarnings: SortEnumType @cost(weight: "10")
   serviceRevenue: SortEnumType @cost(weight: "10")
+  serviceEarnings: SortEnumType @cost(weight: "10")
   grossRevenue: SortEnumType @cost(weight: "10")
-  refundAmount: SortEnumType @cost(weight: "10")
+  netRevenue: SortEnumType @cost(weight: "10")
   createdAt: SortEnumType @cost(weight: "10")
   updatedAt: SortEnumType @cost(weight: "10")
 }
@@ -3569,7 +3714,7 @@ input ConversationFilterInput {
   or: [ConversationFilterInput!]
   id: StringOperationFilterInput
   userIds: ListStringOperationFilterInput
-  requestHubId: StringOperationFilterInput
+  requestId: StringOperationFilterInput
   status: ConversationStatusOperationFilterInput
   lastMessage: LastMessageFilterInput
   deletedFor: ListFilterInputTypeOfDeletedForEntryFilterInput
@@ -3579,7 +3724,7 @@ input ConversationFilterInput {
 
 input ConversationSortInput {
   id: SortEnumType @cost(weight: "10")
-  requestHubId: SortEnumType @cost(weight: "10")
+  requestId: SortEnumType @cost(weight: "10")
   status: SortEnumType @cost(weight: "10")
   lastMessage: LastMessageSortInput @cost(weight: "10")
   createdAt: SortEnumType @cost(weight: "10")
@@ -3711,7 +3856,7 @@ input CreateCommentRequestInput {
 
 input CreateConversationRequestInput {
   otherUserId: String!
-  requestHubId: String!
+  requestId: String!
 }
 
 input CreateCouponRequestInput {
@@ -3727,7 +3872,6 @@ input CreateCouponRequestInput {
 input CreateDirectRequestInput {
   publicRequestId: String
   artistId: String!
-  deadline: DateTime!
   requirements: String
   packageId: String!
 }
@@ -3771,15 +3915,15 @@ input CreateMomoPaymentRequestInput {
 
 input CreatePaymentCheckoutSessionRequestInput {
   packageId: String!
-  requestHubId: String!
+  requestId: String!
   successUrl: String!
   cancelUrl: String!
   isSavePaymentMethod: Boolean!
   isReceiptEmail: Boolean!
-  conversationId: String!
-  requirementFiles: [String!]!
+  requirements: String!
+  conversationId: String
   deliveries: [PackageOrderDeliveryInput!]!
-  deadline: DateTime!
+  duration: Int!
 }
 
 input CreatePlaylistRequestInput {
@@ -3916,6 +4060,10 @@ input DecimalOperationFilterInput {
   nlt: Decimal @cost(weight: "10")
   lte: Decimal @cost(weight: "10")
   nlte: Decimal @cost(weight: "10")
+}
+
+input DeleteCategoryRequestInput {
+  categoryId: String!
 }
 
 input DeleteCommentRequestInput {
@@ -4431,11 +4579,55 @@ input MonthlyStreamCountSortInput {
   processedAt: SortEnumType @cost(weight: "10")
 }
 
+input NotificationActionTypeOperationFilterInput {
+  eq: NotificationActionType @cost(weight: "10")
+  neq: NotificationActionType @cost(weight: "10")
+  in: [NotificationActionType!] @cost(weight: "10")
+  nin: [NotificationActionType!] @cost(weight: "10")
+}
+
+input NotificationFilterInput {
+  and: [NotificationFilterInput!]
+  or: [NotificationFilterInput!]
+  id: StringOperationFilterInput
+  actorId: StringOperationFilterInput
+  targetId: StringOperationFilterInput
+  relatedId: StringOperationFilterInput
+  relatedType: NullableOfNotificationRelatedTypeOperationFilterInput
+  content: StringOperationFilterInput
+  url: StringOperationFilterInput
+  isRead: BooleanOperationFilterInput
+  readAt: DateTimeOperationFilterInput
+  action: NotificationActionTypeOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+}
+
+input NotificationSortInput {
+  id: SortEnumType @cost(weight: "10")
+  actorId: SortEnumType @cost(weight: "10")
+  targetId: SortEnumType @cost(weight: "10")
+  relatedId: SortEnumType @cost(weight: "10")
+  relatedType: SortEnumType @cost(weight: "10")
+  content: SortEnumType @cost(weight: "10")
+  url: SortEnumType @cost(weight: "10")
+  isRead: SortEnumType @cost(weight: "10")
+  readAt: SortEnumType @cost(weight: "10")
+  action: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+}
+
 input NullableOfAggregationLevelOperationFilterInput {
   eq: AggregationLevel @cost(weight: "10")
   neq: AggregationLevel @cost(weight: "10")
   in: [AggregationLevel] @cost(weight: "10")
   nin: [AggregationLevel] @cost(weight: "10")
+}
+
+input NullableOfNotificationRelatedTypeOperationFilterInput {
+  eq: NotificationRelatedType @cost(weight: "10")
+  neq: NotificationRelatedType @cost(weight: "10")
+  in: [NotificationRelatedType] @cost(weight: "10")
+  nin: [NotificationRelatedType] @cost(weight: "10")
 }
 
 input NullableOfReportActionOperationFilterInput {
@@ -4470,7 +4662,7 @@ input OneOffSnapshotFilterInput {
   maxRevision: IntOperationFilterInput
   serviceDetails: ListFilterInputTypeOfMetadataFilterInput
   artistPackageStatus: ArtistPackageStatusOperationFilterInput
-  deadline: DateTimeOperationFilterInput
+  duration: IntOperationFilterInput
   platformFeePercentage: DecimalOperationFilterInput
   artistFeePercentage: DecimalOperationFilterInput
   oneOffType: OneOffTypeOperationFilterInput
@@ -4484,7 +4676,7 @@ input OneOffSnapshotSortInput {
   packageDescription: SortEnumType @cost(weight: "10")
   maxRevision: SortEnumType @cost(weight: "10")
   artistPackageStatus: SortEnumType @cost(weight: "10")
-  deadline: SortEnumType @cost(weight: "10")
+  duration: SortEnumType @cost(weight: "10")
   platformFeePercentage: SortEnumType @cost(weight: "10")
   artistFeePercentage: SortEnumType @cost(weight: "10")
   oneOffType: SortEnumType @cost(weight: "10")
@@ -4526,16 +4718,21 @@ input PackageOrderFilterInput {
   artistPackageId: StringOperationFilterInput
   paymentTransactionId: StringOperationFilterInput
   conversationId: StringOperationFilterInput
+  requirements: StringOperationFilterInput
   status: PackageOrderStatusOperationFilterInput
   revisionCount: IntOperationFilterInput
   deliveries: ListFilterInputTypeOfPackageOrderDeliveryFilterInput
-  deadline: DateTimeOperationFilterInput
+  duration: IntOperationFilterInput
+  freezedTime: TimeSpanOperationFilterInput
+  startedAt: DateTimeOperationFilterInput
+  disputedAt: DateTimeOperationFilterInput
   completedAt: DateTimeOperationFilterInput
   isEscrowReleased: BooleanOperationFilterInput
   platformFeePercentage: DecimalOperationFilterInput
   artistFeePercentage: DecimalOperationFilterInput
   review: ReviewFilterInput
-  backgroundJobId: StringOperationFilterInput
+  approvedAutoJobId: StringOperationFilterInput
+  overdueJobId: StringOperationFilterInput
   createdAt: DateTimeOperationFilterInput
   updatedAt: DateTimeOperationFilterInput
 }
@@ -4553,15 +4750,20 @@ input PackageOrderSortInput {
   artistPackageId: SortEnumType @cost(weight: "10")
   paymentTransactionId: SortEnumType @cost(weight: "10")
   conversationId: SortEnumType @cost(weight: "10")
+  requirements: SortEnumType @cost(weight: "10")
   status: SortEnumType @cost(weight: "10")
   revisionCount: SortEnumType @cost(weight: "10")
-  deadline: SortEnumType @cost(weight: "10")
+  duration: SortEnumType @cost(weight: "10")
+  freezedTime: SortEnumType @cost(weight: "10")
+  startedAt: SortEnumType @cost(weight: "10")
+  disputedAt: SortEnumType @cost(weight: "10")
   completedAt: SortEnumType @cost(weight: "10")
   isEscrowReleased: SortEnumType @cost(weight: "10")
   platformFeePercentage: SortEnumType @cost(weight: "10")
   artistFeePercentage: SortEnumType @cost(weight: "10")
   review: ReviewSortInput @cost(weight: "10")
-  backgroundJobId: SortEnumType @cost(weight: "10")
+  approvedAutoJobId: SortEnumType @cost(weight: "10")
+  overdueJobId: SortEnumType @cost(weight: "10")
   createdAt: SortEnumType @cost(weight: "10")
   updatedAt: SortEnumType @cost(weight: "10")
 }
@@ -4956,7 +5158,7 @@ input RequestCreatingRequestInput {
   title: String!
   summary: String!
   detailDescription: String!
-  deadline: DateTime!
+  duration: Int!
   budget: RequestBudgetInput!
 }
 
@@ -4978,7 +5180,7 @@ input RequestFilterInput {
   updatedAt: DateTimeOperationFilterInput
   type: RequestTypeOperationFilterInput
   currency: CurrencyTypeOperationFilterInput
-  deadline: DateTimeOperationFilterInput
+  duration: IntOperationFilterInput
   status: RequestStatusOperationFilterInput
   requestCreatedTime: DateTimeOperationFilterInput
   notes: StringOperationFilterInput
@@ -5000,7 +5202,7 @@ input RequestSortInput {
   updatedAt: SortEnumType @cost(weight: "10")
   type: SortEnumType @cost(weight: "10")
   currency: SortEnumType @cost(weight: "10")
-  deadline: SortEnumType @cost(weight: "10")
+  duration: SortEnumType @cost(weight: "10")
   status: SortEnumType @cost(weight: "10")
   requestCreatedTime: SortEnumType @cost(weight: "10")
   notes: SortEnumType @cost(weight: "10")
@@ -5025,7 +5227,7 @@ input RequestUpdatingRequestInput {
   title: String
   summary: String
   detailDescription: String
-  deadline: DateTime
+  duration: Int
   budget: RequestBudgetInput
   status: RequestStatus
 }
@@ -5043,6 +5245,7 @@ input RestrictionFilterInput {
   reason: StringOperationFilterInput
   restrictedAt: DateTimeOperationFilterInput
   expired: DateTimeOperationFilterInput
+  reportId: StringOperationFilterInput
 }
 
 input RestrictionSortInput {
@@ -5051,6 +5254,7 @@ input RestrictionSortInput {
   reason: SortEnumType @cost(weight: "10")
   restrictedAt: SortEnumType @cost(weight: "10")
   expired: SortEnumType @cost(weight: "10")
+  reportId: SortEnumType @cost(weight: "10")
 }
 
 input RestrictionTypeOperationFilterInput {
@@ -5292,6 +5496,21 @@ input ThreadedCommentsRequestInput {
   sortOrder: CommentSortOrder!
 }
 
+input TimeSpanOperationFilterInput {
+  eq: TimeSpan @cost(weight: "10")
+  neq: TimeSpan @cost(weight: "10")
+  in: [TimeSpan] @cost(weight: "10")
+  nin: [TimeSpan] @cost(weight: "10")
+  gt: TimeSpan @cost(weight: "10")
+  ngt: TimeSpan @cost(weight: "10")
+  gte: TimeSpan @cost(weight: "10")
+  ngte: TimeSpan @cost(weight: "10")
+  lt: TimeSpan @cost(weight: "10")
+  nlt: TimeSpan @cost(weight: "10")
+  lte: TimeSpan @cost(weight: "10")
+  nlte: TimeSpan @cost(weight: "10")
+}
+
 input TrackFilterInput {
   and: [TrackFilterInput!]
   or: [TrackFilterInput!]
@@ -5379,6 +5598,16 @@ input UpdateArtistRequestInput {
   fullName: String
   gender: UserGender
   birthDate: DateTime
+}
+
+input UpdateCategoryRequestInput {
+  categoryId: String!
+  name: String
+  description: String
+  type: CategoryType
+  aliases: [String!]
+  popularity: Int
+  isVisible: Boolean
 }
 
 input UpdateEntitlementRequestInput {
@@ -5716,6 +5945,8 @@ enum CommentType {
 enum ConversationStatus {
   NONE
   PENDING
+  CONFIRMED
+  CONFIRMED_PAYMENT
   CANCELLED
   IN_PROGRESS
   COMPLETED
@@ -5810,6 +6041,36 @@ enum MoodType {
   CHILL
 }
 
+enum NotificationActionType {
+  LIKE
+  COMMENT
+  FOLLOW
+  MENTION
+  REPORT
+  REPLY
+  REVIEW
+  MESSAGE
+  REQUEST_CREATED
+  REQUEST_APPROVED
+  REQUEST_REJECTED
+  ORDER_CREATED
+  ORDER_COMPLETED
+  ORDER_DEADLINE
+  RELEASE
+  OTHER
+}
+
+enum NotificationRelatedType {
+  TRACK
+  ALBUM
+  PLAYLIST
+  COMMENT
+  MESSAGE
+  REQUEST
+  REVIEW
+  ORDER
+}
+
 enum OneOffType {
   PAYMENT
   REFUND
@@ -5821,7 +6082,7 @@ enum PackageOrderStatus {
   IN_PROGRESS
   PAID
   DISPUTED
-  DISPERSED
+  COMPLETED
 }
 
 enum PathTag {

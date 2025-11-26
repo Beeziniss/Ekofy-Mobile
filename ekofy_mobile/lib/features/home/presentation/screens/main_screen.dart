@@ -1,8 +1,6 @@
-import 'dart:developer';
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
-import 'package:ekofy_mobile/core/utils/helper.dart';
 import 'package:ekofy_mobile/features/home/data/models/menu_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:ekofy_mobile/features/home/presentation/providers/home_providers.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -24,39 +23,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // return FutureBuilder<Map<String, dynamic>?>(
-    //   future: Helper.decodeJwtUnverified(ref),
-    //   builder: (context, snapshot) {
-    //     final payload = snapshot.data;
+    // Trigger JWT decoding on init
+    ref.watch(decodeJwtOnInitProvider);
 
-    //     if (snapshot.connectionState == ConnectionState.waiting) {
-    //       return const Scaffold(
-    //         body: Center(child: CircularProgressIndicator()),
-    //       );
-    //     }
+    final payload = ref.watch(jwtPayloadProvider);
 
-      final payload = ref.watch(jwtPayloadProvider);
+    if (payload == null) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
-      if (payload == null) {
-        // Nếu lần đầu vào app → vẫn gọi decodeJwt
-        Helper.decodeJwtUnverified(ref);
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
-      }
-
-        return Scaffold(
-          backgroundColor: AppColors.primaryBackground,
-          appBar: AppBar(
-            backgroundColor: AppColors.primaryBackground,
-            leading: _appBarLeading(),
-            actions: [_profileAction(payload)],
-          ),
-          body: Query(
-            options: QueryOptions(
-              document: gql('''
-            query CombinedQuery(
-            ) {
+    return Scaffold(
+      backgroundColor: AppColors.primaryBackground,
+      appBar: AppBar(
+        backgroundColor: AppColors.primaryBackground,
+        leading: _appBarLeading(),
+        actions: [_profileAction(payload)],
+      ),
+      body: Query(
+        options: QueryOptions(
+          document: gql('''
+            query CombinedQuery() {
               tracks(take: 10) {
                 items {
                   id
@@ -73,94 +59,45 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               }
             }
           '''),
-              variables: const {'take': 10},
-            ),
-            builder: (result, {refetch, fetchMore}) {
-              // Loading
-              if (result.isLoading) {
-                return const Center(child: CircularProgressIndicator());
-              }
+          variables: const {'take': 10},
+        ),
+        builder: (result, {refetch, fetchMore}) {
+          final tracks = _parseTracksData(result);
+          final isLoading = result.isLoading;
+          final hasException = result.hasException;
+          final errorMessage = result.exception?.toString();
 
-              // Error
-              if (result.hasException) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.error_outline,
-                        size: 60,
-                        color: Colors.red,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Error: ${result.exception.toString()}',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () => refetch?.call(),
-                        child: const Text('Retry'),
-                      ),
-                    ],
-                  ),
-                );
-              }
+          return _HomeBodyContent(
+            tracks: tracks,
+            refetch: refetch,
+            isLoading: isLoading,
+            hasException: hasException,
+            errorMessage: errorMessage,
+          );
+        },
+      ),
+    );
+  }
 
-              // Parse data
-              final tracks =
-                  (result.data?['tracks']['items'] as List?)
-                      ?.map((track) {
-                        final artistIds = List<String>.from(
-                          track['mainArtistIds'] ?? [],
-                        );
-                        final artistNames =
-                            (result.data?['artists']['items'] as List?)
-                                ?.where(
-                                  (artist) => artistIds.contains(artist['id']),
-                                )
-                                .map((artist) => artist['stageName'] as String)
-                                .toList();
-                        return {
-                          'id': track['id'],
-                          'name': track['name'],
-                          'coverImage': track['coverImage'],
-                          'artistNames': artistNames,
-                        };
-                      })
-                      .whereType<Map<String, dynamic>>()
-                      .toList() ??
-                  [];
-
-              return SingleChildScrollView(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Tracks',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    _buildTracksList(tracks, refetch),
-                  ],
-                ),
-              );
-            },
-          ),
-        );
+  /// Parse tracks data from GraphQL result
+  List<Map<String, dynamic>> _parseTracksData(QueryResult result) {
+    return (result.data?['tracks']['items'] as List?)
+            ?.map((track) {
+              final artistIds = List<String>.from(track['mainArtistIds'] ?? []);
+              final artistNames = (result.data?['artists']['items'] as List?)
+                  ?.where((artist) => artistIds.contains(artist['id']))
+                  .map((artist) => artist['stageName'] as String)
+                  .toList();
+              return {
+                'id': track['id'],
+                'name': track['name'],
+                'coverImage': track['coverImage'],
+                'artistNames': artistNames,
+              };
+            })
+            .whereType<Map<String, dynamic>>()
+            .toList() ??
+        [];
   }
 
   Widget _buildTracksList(
@@ -243,6 +180,64 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
+  /// Build home body content based on query state
+  Widget _HomeBodyContent({
+    required List<Map<String, dynamic>> tracks,
+    VoidCallback? refetch,
+    required bool isLoading,
+    required bool hasException,
+    String? errorMessage,
+  }) {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (hasException) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error_outline, size: 60, color: Colors.red),
+            const SizedBox(height: 16),
+            Text(
+              'Error: ${errorMessage ?? 'Unknown error'}',
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.red),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () => refetch?.call(),
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.only(bottom: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Tracks',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ],
+            ),
+          ),
+          _buildTracksList(tracks, refetch),
+        ],
+      ),
+    );
+  }
+
   Widget _appBarLeading() {
     return IconButton(
       onPressed: () {
@@ -317,7 +312,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           break;
         case HomePageMenu.logout:
           await ref.read(authProvider.notifier).logout();
-          if (context.mounted){
+          if (context.mounted) {
             context.go(RouteName.login);
           }
           break;

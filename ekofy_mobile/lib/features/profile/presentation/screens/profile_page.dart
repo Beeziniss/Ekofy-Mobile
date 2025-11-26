@@ -1,12 +1,10 @@
-import 'dart:developer';
-import 'package:ekofy_mobile/core/utils/helper.dart';
+import 'package:ekofy_mobile/features/profile/presentation/providers/profile_notifier.dart';
+import 'package:ekofy_mobile/features/profile/presentation/providers/profile_state.dart';
+import 'package:ekofy_mobile/features/profile/presentation/widgets/profile_header_widget.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart'
     show Enum$UserGender;
-import 'package:ekofy_mobile/gql/queries/generated/profile_query.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import '../widgets/profile_header_widget.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
@@ -16,155 +14,102 @@ class ProfilePage extends ConsumerStatefulWidget {
 }
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
-  Query$listenersProfileQuery$listeners$items? _profile;
-  bool _loading = true;
-  bool _hasFetched = false;
+  late TextEditingController _displayNameController;
+  late TextEditingController _emailController;
+  late TextEditingController _phoneController;
+  late TextEditingController _birthDateController;
+  bool _isEditing = false;
 
-  final _nameCtrl = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    _displayNameController = TextEditingController();
+    _emailController = TextEditingController();
+    _phoneController = TextEditingController();
+    _birthDateController = TextEditingController();
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (!_hasFetched) {
-      _fetchProfile();
-      _hasFetched = true;
-    }
-  }
-
-  Future<void> _fetchProfile() async {
-    final client = GraphQLProvider.of(context).value;
-    Map<String, dynamic>? payload = await Helper.decodeJwtUnverified(ref);
-
-    final options = Options$Query$listenersProfileQuery(
-      variables: Variables$Query$listenersProfileQuery(
-        userId: payload!['userId'],
-      ),
-    );
-
-    final result = await client.query(options);
-
-    if (result.hasException) {
-      log(result.exception.toString());
-      setState(() => _loading = false);
-      return;
-    }
-
-    final data = result.parsedData?.listeners?.items?.first;
-    if (data != null) {
-      setState(() {
-        _profile = data;
-        _nameCtrl.text = _profile?.displayName ?? '';
-        _loading = false;
-      });
-    } else {
-      setState(() => _loading = false);
-    }
+    final state = ref.read(profileProvider);
+    _displayNameController.text = state.displayName;
+    _emailController.text = state.email;
+    _phoneController.text = state.phone;
+    _birthDateController.text = state.birthDate;
   }
 
   @override
   void dispose() {
-    _nameCtrl.dispose();
+    _displayNameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _birthDateController.dispose();
     super.dispose();
-  }
-
-  Future<void> _showImageSourceSheet(String title) async {
-    if (!mounted) return;
-    await showModalBottomSheet(
-      context: context,
-      backgroundColor: const Color(0xFF15151B),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (_) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.image, color: Colors.white70),
-              title: Text(title, style: const TextStyle(color: Colors.white)),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.close, color: Colors.white70),
-              title: const Text(
-                'Cancel',
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () => Navigator.pop(context),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  String _formatDate(DateTime? date) {
-    if (date == null) return '-';
-    return '${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}';
-  }
-
-  String _formatGender(Enum$UserGender? gender) {
-    if (gender == null) return '-';
-    switch (gender) {
-      case Enum$UserGender.MALE:
-        return 'Male';
-      case Enum$UserGender.FEMALE:
-        return 'Female';
-      case Enum$UserGender.OTHER:
-        return 'Other';
-      default:
-        return '-';
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(profileProvider);
+    final controller = ref.read(profileProvider.notifier);
+
+    if (state.isLoading) {
+      return const Scaffold(
+        backgroundColor: Color(0xFF0B0B0E),
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (state.profile == null) {
+      return const Scaffold(
+        backgroundColor: Color(0xFF0B0B0E),
+        body: Center(
+          child: Text(
+            'Failed to load profile',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xFF0B0B0E),
-      body: _loading
-          ? const Center(child: CircularProgressIndicator())
-          : _profile == null
-          ? const Center(
-              child: Text(
-                'Failed to load profile',
-                style: TextStyle(color: Colors.white),
+      body: CustomScrollView(
+        slivers: [
+          ProfileHeaderWidget(
+            isVerified: state.profile?.isVerified ?? false,
+            bannerImage: state.profile?.bannerImage,
+            avatarImage: state.profile?.avatarImage,
+            displayName: state.displayName,
+            userId: state.profile?.userId ?? '-',
+            onEditBanner: () {},
+            onEditAvatar: () {},
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildInformationCard(context, state, controller),
+                  const SizedBox(height: 16),
+                  _buildAccountDetailsCard(state),
+                  const SizedBox(height: 16),
+                  _buildActivitiesCard(state),
+                ],
               ),
-            )
-          : CustomScrollView(
-              slivers: [
-                ProfileHeaderWidget(
-                  isVerified: _profile?.isVerified ?? false,
-                  bannerImage: _profile?.bannerImage,
-                  avatarImage: _profile?.avatarImage,
-                  displayName: _profile?.displayName ?? '-',
-                  userId: _profile?.userId ?? '-',
-                  onEditBanner: () =>
-                      _showImageSourceSheet('Select banner image'),
-                  onEditAvatar: () =>
-                      _showImageSourceSheet('Select avatar image'),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _personalDetailsCard(context),
-                        const SizedBox(height: 16),
-                        _accountDetailsCard(context),
-                        const SizedBox(height: 16),
-                        _accountActivitiesCard(context),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
             ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _personalDetailsCard(BuildContext context) {
-    final user = _profile?.user.firstOrNull;
+  Widget _buildInformationCard(
+    BuildContext context,
+    ProfileState state,
+    ProfileNotifier controller,
+  ) {
     return Card(
       color: const Color(0xFF15151B),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -173,30 +118,67 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Information',
-              style: TextStyle(
-                color: Color.fromARGB(255, 255, 255, 255),
-                fontSize: 16,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Information',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 16,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(
+                    _isEditing ? Icons.check : Icons.edit,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    if (_isEditing) {
+                      controller.updateField(
+                        name: _displayNameController.text,
+                        email: _emailController.text,
+                        phone: _phoneController.text,
+                        birth: _birthDateController.text,
+                        gender: state.gender,
+                      );
+                      controller.submitUpdate();
+                    }
+                    setState(() {
+                      _isEditing = !_isEditing;
+                    });
+                  },
+                ),
+              ],
             ),
             const SizedBox(height: 8),
-            _kvRow('Display name', _profile?.displayName ?? '-'),
+            _isEditing
+                ? _buildEditableField('Display name', _displayNameController)
+                : _kvRow('Display name', state.displayName),
             const SizedBox(height: 8),
-            _kvRow('Email', user?.email ?? '-'),
+            _isEditing
+                ? _buildReadOnlyField('Email', _emailController)
+                : _kvRow('Email', state.email),
             const SizedBox(height: 8),
-            _kvRow('Phone number', user?.phoneNumber ?? '-'),
+            _isEditing
+                ? _buildEditableField('Phone number', _phoneController)
+                : _kvRow('Phone number', state.phone),
             const SizedBox(height: 8),
-            _kvRow('Date of Birth', _formatDate(user?.birthDate)),
+            _isEditing
+                ? _buildEditableField('Date of Birth', _birthDateController)
+                : _kvRow('Date of Birth', state.birthDate),
             const SizedBox(height: 8),
-            _kvRow('Gender', _formatGender(user?.gender)),
+            _isEditing
+                ? _buildGenderDropdown(state, controller)
+                : _kvRow('Gender', _formatGender(state.gender)),
           ],
         ),
       ),
     );
   }
 
-  Widget _accountDetailsCard(BuildContext context) {
+  Widget _buildAccountDetailsCard(ProfileState state) {
+    final profile = state.profile!;
     return Card(
       color: const Color(0xFF15151B),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -213,17 +195,17 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               ),
             ),
             const SizedBox(height: 8),
-            _kvRow('Followers', _profile?.followerCount.toString() ?? '0'),
+            _kvRow('Followers', profile.followerCount.toString()),
             const SizedBox(height: 8),
-            _kvRow('Following', _profile?.followingCount.toString() ?? '0'),
+            _kvRow('Following', profile.followingCount.toString()),
           ],
         ),
       ),
     );
   }
 
-  Widget _accountActivitiesCard(BuildContext context) {
-    final user = _profile?.user.firstOrNull;
+  Widget _buildActivitiesCard(ProfileState state) {
+    final user = state.profile?.user.firstOrNull;
     return Card(
       color: const Color(0xFF15151B),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -249,6 +231,49 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     );
   }
 
+  Widget _buildEditableField(String label, TextEditingController controller) {
+    return TextField(
+      controller: controller,
+      style: const TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(color: Colors.white70),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.white24),
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGenderDropdown(ProfileState state, ProfileNotifier controller) {
+    return DropdownButton<Enum$UserGender>(
+      dropdownColor: const Color(0xFF15151B),
+      value: state.gender,
+      items: [
+        DropdownMenuItem(
+          value: Enum$UserGender.MALE,
+          child: const Text('Male', style: TextStyle(color: Colors.white)),
+        ),
+        DropdownMenuItem(
+          value: Enum$UserGender.FEMALE,
+          child: const Text('Female', style: TextStyle(color: Colors.white)),
+        ),
+        DropdownMenuItem(
+          value: Enum$UserGender.OTHER,
+          child: const Text('Other', style: TextStyle(color: Colors.white)),
+        ),
+      ],
+      onChanged: (value) {
+        if (value != null) {
+          controller.updateField(gender: value);
+        }
+      },
+    );
+  }
+
   Widget _kvRow(String k, String v) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -260,7 +285,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
         const SizedBox(width: 8),
         Expanded(
           child: Text(
-            v,
+            v.isEmpty ? '-' : v,
             style: const TextStyle(color: Colors.white),
             softWrap: true,
             maxLines: 3,
@@ -268,6 +293,43 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           ),
         ),
       ],
+    );
+  }
+
+  String _formatDate(DateTime? date) {
+    if (date == null) return '-';
+    return '${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}';
+  }
+
+  String _formatGender(Enum$UserGender? gender) {
+    if (gender == null) return '-';
+    switch (gender) {
+      case Enum$UserGender.MALE:
+        return 'Male';
+      case Enum$UserGender.FEMALE:
+        return 'Female';
+      case Enum$UserGender.OTHER:
+        return 'Other';
+      default:
+        return '-';
+    }
+  }
+
+  Widget _buildReadOnlyField(String label, TextEditingController controller) {
+    return TextField(
+      controller: controller,
+      readOnly: true,
+      style: const TextStyle(color: Colors.white54),
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(color: Colors.white38),
+        disabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.white24),
+        ),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.white24),
+        ),
+      ),
     );
   }
 }

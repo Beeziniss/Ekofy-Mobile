@@ -99,9 +99,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<ResultType> logout() async{
-      await authApiDatasource.logout();
-      await authLocalDatasource.removeToken();
-      return Success('Logout Successfully.');
+  Future<ResultType> logout() async {
+    await authApiDatasource.logout();
+    await authLocalDatasource.removeToken();
+    return Success('Logout Successfully.');
   }
 }

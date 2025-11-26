@@ -74,8 +74,6 @@ class AuthNotifier extends Notifier<AuthState> {
   }
 
   Future<String?> getToken() async {
-    final storage = ref.read(secureStorageProvider);
-    final token = await storage.read(key: 'accessToken');
-    return token;
+    return ref.read(authLocalDatasourceProvider).getAccessToken();
   }
 }

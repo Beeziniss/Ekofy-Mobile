@@ -15,7 +15,11 @@ class AuthApiDatasource {
   Future<ResultType<LoginResponse>> login(LoginRequest loginRequest) async {
     return await api.post<LoginResponse>(
       path: '/api/authentication/login/listener',
-      data: {'email': loginRequest.email, 'password': loginRequest.password},
+      data: {
+        'email': loginRequest.email,
+        'password': loginRequest.password,
+        'isMobile': loginRequest.isMobile,
+      },
       fromJson: (json) => LoginResponse.fromJson(json),
     );
   }

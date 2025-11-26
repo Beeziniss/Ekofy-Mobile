@@ -4,7 +4,6 @@ import 'package:ekofy_mobile/features/auth/presentation/screens/login_screen.dar
 import 'package:ekofy_mobile/features/auth/presentation/screens/otp_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/register_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/splash.dart';
-import 'package:ekofy_mobile/features/auth/presentation/providers/auth_provider.dart';
 import 'package:ekofy_mobile/features/home/presentation/widgets/nav_tab_widget.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
 import 'package:ekofy_mobile/features/profile/presentation/screens/profile_page.dart';
@@ -28,6 +27,8 @@ class RouteName {
   static const publicRoutes = [home, login, register];
 }
 
+final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+
 GoRouter router(WidgetRef ref) {
   return GoRouter(
     initialLocation: RouteName.start,
@@ -37,30 +38,8 @@ GoRouter router(WidgetRef ref) {
       ref.read(authProvider.notifier).stream,
     ),
 
-    // redirect: (context, state) {
-    //   // Check if route is public
-    //   // if (RouteName.publicRoutes.contains(state.matchedLocation)) {
-    //   //   return null;
-    //   // }
+    navigatorKey: rootNavigatorKey,
 
-    //   // Check authentication
-    //   final authState = ref.read(authProvider);
-    //   final isAuthenticated = authState is AuthAuthenticateSuccess;
-
-    //   final isGoingToLoginOrRegister =
-    //       state.matchedLocation == RouteName.login ||
-    //       state.matchedLocation == RouteName.register;
-
-    //   if (isAuthenticated && isGoingToLoginOrRegister) {
-    //     return RouteName.home;
-    //   }
-
-    //   if (!isAuthenticated) {
-    //     return RouteName.login;
-    //   }
-
-    //   return null;
-    // },
     routes: [
       GoRoute(
         path: RouteName.start,

@@ -1,11 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:ekofy_mobile/core/configs/response_extension.dart';
-import 'package:ekofy_mobile/core/utils/results/result_type.dart'; // nếu bạn dùng ResultType ở đây
+import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/core/utils/results/result_type.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; // nếu bạn dùng ResultType ở đây
 
 class ApiHandle {
-  final Dio _dio;
-
-  ApiHandle(this._dio);
+  final Ref ref;
+  ApiHandle(this.ref);
 
   //INFO: for HttpPost
   Future<ResultType<T>> post<T>({
@@ -14,7 +14,8 @@ class ApiHandle {
     required T Function(Map<String, dynamic>) fromJson,
   }) async {
     try {
-      final response = await _dio.post(path, data: data);
+      var dio = ref.read(dioProvider);
+      final response = await dio.post(path, data: data);
 
       if (response.isSuccessful) {
         return ResultType.success(fromJson(response.data));
@@ -33,7 +34,8 @@ class ApiHandle {
     required T Function(Map<String, dynamic>) fromJson,
   }) async {
     try {
-      final response = await _dio.get(path);
+      var dio = ref.read(dioProvider);
+      final response = await dio.get(path);
 
       if (response.isSuccessful) {
         return ResultType.success(fromJson(response.data));

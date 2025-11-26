@@ -1,4 +1,4 @@
-import 'package:ekofy_mobile/core/configs/http_client.dart';
+import 'package:ekofy_mobile/core/configs/graphql_client_provider.dart';
 import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -25,23 +25,12 @@ void main() async {
   final ss = FlutterSecureStorage(aOptions: getAndroidOptions());
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  final Link link = httpLink;
-  ValueNotifier<GraphQLClient> client = ValueNotifier(
-    GraphQLClient(
-      link: link,
-      cache: GraphQLCache(store: HiveStore()),
-    ),
-  );
-
   runApp(
-    GraphQLProvider(
-      client: client,
-      child: // Wrap với ProviderScope và override secureStorageProvider
-      ProviderScope(
-        overrides: [secureStorageProvider.overrideWithValue(ss)],
-        child: const EkofyApp(),
-      ),
+    ProviderScope(
+      overrides: [secureStorageProvider.overrideWithValue(ss)],
+      child: const EkofyApp(),
     ),
+    // ),
   );
 }
 
@@ -50,7 +39,10 @@ class EkofyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SafeArea(
+    final client = ref.watch(graphqlClientProvider);
+
+    return GraphQLProvider(
+      client: ValueNotifier(client),
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

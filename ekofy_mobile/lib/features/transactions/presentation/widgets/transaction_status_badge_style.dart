@@ -1,8 +1,6 @@
 import 'package:ekofy_mobile/core/widgets/badges/status_badge.dart';
-import 'package:ekofy_mobile/features/transactions/domain/models/transaction_item.dart';
 import 'package:ekofy_mobile/features/transactions/domain/models/transaction_status.dart';
 import 'package:flutter/material.dart';
-
 
 extension TransactionStatusUI on TransactionStatus {
   AppStatusStyle get ui {

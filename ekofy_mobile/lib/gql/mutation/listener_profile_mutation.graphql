@@ -1,0 +1,14 @@
+mutation UpdateListenerProfile {
+    updateListenerProfile(
+        updateListenerRequest: {
+            displayName: null
+            avatarImage: null
+            bannerImage: null
+            email: null
+            phoneNumber: null
+            fullName: null
+            birthDate: null
+            gender: null
+        }
+    )
+}

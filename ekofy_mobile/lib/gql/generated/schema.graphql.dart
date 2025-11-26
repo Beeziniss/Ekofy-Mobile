@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_question_mark
+
 import 'dart:core';
 
 class Input$AddToPlaylistRequestInput {
@@ -124,6 +126,7 @@ class _CopyWithImpl$Input$AddToPlaylistRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? trackId = _undefined,
     Object? playlistId = _undefined,
@@ -145,6 +148,7 @@ class _CopyWithStubImpl$Input$AddToPlaylistRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? trackId, String? playlistId, String? playlistName}) => _res;
 }
 
@@ -273,6 +277,7 @@ class _CopyWithImpl$Input$AddTrackToAlbumRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? trackId = _undefined,
     Object? albumId = _undefined,
@@ -294,6 +299,7 @@ class _CopyWithStubImpl$Input$AddTrackToAlbumRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? trackId, String? albumId, String? albumName}) => _res;
 }
 
@@ -668,6 +674,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -700,6 +707,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$AddressFilterInput>? Function(
       Iterable<CopyWith$Input$AddressFilterInput<Input$AddressFilterInput>>?,
@@ -711,6 +719,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$AddressFilterInput>? Function(
       Iterable<CopyWith$Input$AddressFilterInput<Input$AddressFilterInput>>?,
@@ -722,6 +731,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get street {
     final local$street = _instance.street;
     return local$street == null
@@ -732,6 +742,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get ward {
     final local$ward = _instance.ward;
     return local$ward == null
@@ -742,6 +753,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get province {
     final local$province = _instance.province;
     return local$province == null
@@ -752,6 +764,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get oldDistrict {
     final local$oldDistrict = _instance.oldDistrict;
     return local$oldDistrict == null
@@ -762,6 +775,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get oldWard {
     final local$oldWard = _instance.oldWard;
     return local$oldWard == null
@@ -772,6 +786,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get oldProvince {
     final local$oldProvince = _instance.oldProvince;
     return local$oldProvince == null
@@ -782,6 +797,7 @@ class _CopyWithImpl$Input$AddressFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get addressLine {
     final local$addressLine = _instance.addressLine;
     return local$addressLine == null
@@ -799,6 +815,7 @@ class _CopyWithStubImpl$Input$AddressFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$AddressFilterInput>? and,
     List<Input$AddressFilterInput>? or,
@@ -811,28 +828,37 @@ class _CopyWithStubImpl$Input$AddressFilterInput<TRes>
     Input$StringOperationFilterInput? addressLine,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get street =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get ward =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get province =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get oldDistrict =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get oldWard =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get oldProvince =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get addressLine =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 }
@@ -1065,6 +1091,7 @@ class _CopyWithImpl$Input$AddressInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? street = _undefined,
     Object? ward = _undefined,
@@ -1093,6 +1120,7 @@ class _CopyWithStubImpl$Input$AddressInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? street,
     String? ward,
@@ -1363,6 +1391,7 @@ class _CopyWithImpl$Input$AddressSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? street = _undefined,
     Object? ward = _undefined,
@@ -1394,6 +1423,7 @@ class _CopyWithStubImpl$Input$AddressSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? street,
     Enum$SortEnumType? ward,
@@ -1617,6 +1647,7 @@ class _CopyWithImpl$Input$AggregationLevelOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -1639,6 +1670,7 @@ class _CopyWithStubImpl$Input$AggregationLevelOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$AggregationLevel? eq,
     Enum$AggregationLevel? neq,
@@ -2203,6 +2235,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -2254,6 +2287,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$AlbumFilterInput>? Function(
       Iterable<CopyWith$Input$AlbumFilterInput<Input$AlbumFilterInput>>?,
@@ -2265,6 +2299,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$AlbumFilterInput>? Function(
       Iterable<CopyWith$Input$AlbumFilterInput<Input$AlbumFilterInput>>?,
@@ -2276,6 +2311,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -2286,6 +2322,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name {
     final local$name = _instance.name;
     return local$name == null
@@ -2296,6 +2333,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get nameUnsigned {
     final local$nameUnsigned = _instance.nameUnsigned;
     return local$nameUnsigned == null
@@ -2306,6 +2344,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -2316,6 +2355,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$AlbumTypeOperationFilterInput<TRes> get type {
     final local$type = _instance.type;
     return local$type == null
@@ -2326,6 +2366,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get trackIds {
     final local$trackIds = _instance.trackIds;
     return local$trackIds == null
@@ -2336,6 +2377,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfContributingArtistFilterInput<TRes>
   get contributingArtists {
     final local$contributingArtists = _instance.contributingArtists;
@@ -2349,6 +2391,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get coverImage {
     final local$coverImage = _instance.coverImage;
     return local$coverImage == null
@@ -2359,6 +2402,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get thumbnailImage {
     final local$thumbnailImage = _instance.thumbnailImage;
     return local$thumbnailImage == null
@@ -2369,6 +2413,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ReleaseInfoFilterInput<TRes> get releaseInfo {
     final local$releaseInfo = _instance.releaseInfo;
     return local$releaseInfo == null
@@ -2379,6 +2424,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible {
     final local$isVisible = _instance.isVisible;
     return local$isVisible == null
@@ -2389,6 +2435,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -2399,6 +2446,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -2416,6 +2464,7 @@ class _CopyWithStubImpl$Input$AlbumFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$AlbumFilterInput>? and,
     List<Input$AlbumFilterInput>? or,
@@ -2435,49 +2484,64 @@ class _CopyWithStubImpl$Input$AlbumFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get nameUnsigned =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$AlbumTypeOperationFilterInput<TRes> get type =>
       CopyWith$Input$AlbumTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get trackIds =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfContributingArtistFilterInput<TRes>
   get contributingArtists =>
       CopyWith$Input$ListFilterInputTypeOfContributingArtistFilterInput.stub(
         _res,
       );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get coverImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get thumbnailImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ReleaseInfoFilterInput<TRes> get releaseInfo =>
       CopyWith$Input$ReleaseInfoFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -2857,6 +2921,7 @@ class _CopyWithImpl$Input$AlbumSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -2894,6 +2959,7 @@ class _CopyWithImpl$Input$AlbumSortInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$ReleaseInfoSortInput<TRes> get releaseInfo {
     final local$releaseInfo = _instance.releaseInfo;
     return local$releaseInfo == null
@@ -2911,6 +2977,7 @@ class _CopyWithStubImpl$Input$AlbumSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? name,
@@ -2925,6 +2992,7 @@ class _CopyWithStubImpl$Input$AlbumSortInput<TRes>
     Enum$SortEnumType? updatedAt,
   }) => _res;
 
+  @override
   CopyWith$Input$ReleaseInfoSortInput<TRes> get releaseInfo =>
       CopyWith$Input$ReleaseInfoSortInput.stub(_res);
 }
@@ -3127,6 +3195,7 @@ class _CopyWithImpl$Input$AlbumTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -3149,6 +3218,7 @@ class _CopyWithStubImpl$Input$AlbumTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$AlbumType? eq,
     Enum$AlbumType? neq,
@@ -3598,6 +3668,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -3639,6 +3710,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ApprovalHistoryFilterInput>? Function(
       Iterable<
@@ -3656,6 +3728,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ApprovalHistoryFilterInput>? Function(
       Iterable<
@@ -3673,6 +3746,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -3683,6 +3757,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get targetOwnerId {
     final local$targetOwnerId = _instance.targetOwnerId;
     return local$targetOwnerId == null
@@ -3693,6 +3768,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get targetId {
     final local$targetId = _instance.targetId;
     return local$targetId == null
@@ -3703,6 +3779,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ApprovalTypeOperationFilterInput<TRes> get approvalType {
     final local$approvalType = _instance.approvalType;
     return local$approvalType == null
@@ -3713,6 +3790,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get approvedByUserId {
     final local$approvedByUserId = _instance.approvedByUserId;
     return local$approvedByUserId == null
@@ -3723,6 +3801,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get actionAt {
     final local$actionAt = _instance.actionAt;
     return local$actionAt == null
@@ -3733,6 +3812,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$HistoryActionTypeOperationFilterInput<TRes> get action {
     final local$action = _instance.action;
     return local$action == null
@@ -3745,6 +3825,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get notes {
     final local$notes = _instance.notes;
     return local$notes == null
@@ -3755,6 +3836,7 @@ class _CopyWithImpl$Input$ApprovalHistoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get snapshot {
     final local$snapshot = _instance.snapshot;
     return local$snapshot == null
@@ -3772,6 +3854,7 @@ class _CopyWithStubImpl$Input$ApprovalHistoryFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ApprovalHistoryFilterInput>? and,
     List<Input$ApprovalHistoryFilterInput>? or,
@@ -3786,34 +3869,45 @@ class _CopyWithStubImpl$Input$ApprovalHistoryFilterInput<TRes>
     Input$StringOperationFilterInput? snapshot,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get targetOwnerId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get targetId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ApprovalTypeOperationFilterInput<TRes> get approvalType =>
       CopyWith$Input$ApprovalTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get approvedByUserId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get actionAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$HistoryActionTypeOperationFilterInput<TRes> get action =>
       CopyWith$Input$HistoryActionTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get notes =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get snapshot =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 }
@@ -4132,6 +4226,7 @@ class _CopyWithImpl$Input$ApprovalHistorySortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? targetOwnerId = _undefined,
@@ -4167,6 +4262,7 @@ class _CopyWithStubImpl$Input$ApprovalHistorySortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? targetOwnerId,
@@ -4390,6 +4486,7 @@ class _CopyWithImpl$Input$ApprovalTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -4412,6 +4509,7 @@ class _CopyWithStubImpl$Input$ApprovalTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ApprovalType? eq,
     Enum$ApprovalType? neq,
@@ -5302,6 +5400,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -5390,6 +5489,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ArtistFilterInput>? Function(
       Iterable<CopyWith$Input$ArtistFilterInput<Input$ArtistFilterInput>>?,
@@ -5401,6 +5501,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ArtistFilterInput>? Function(
       Iterable<CopyWith$Input$ArtistFilterInput<Input$ArtistFilterInput>>?,
@@ -5412,6 +5513,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -5422,6 +5524,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -5432,6 +5535,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stageName {
     final local$stageName = _instance.stageName;
     return local$stageName == null
@@ -5442,6 +5546,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stageNameUnsigned {
     final local$stageNameUnsigned = _instance.stageNameUnsigned;
     return local$stageNameUnsigned == null
@@ -5452,6 +5557,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email {
     final local$email = _instance.email;
     return local$email == null
@@ -5462,6 +5568,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ArtistTypeOperationFilterInput<TRes> get artistType {
     final local$artistType = _instance.artistType;
     return local$artistType == null
@@ -5472,6 +5579,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfArtistMemberFilterInput<TRes>
   get members {
     final local$members = _instance.members;
@@ -5485,6 +5593,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get categoryIds {
     final local$categoryIds = _instance.categoryIds;
     return local$categoryIds == null
@@ -5495,6 +5604,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get biography {
     final local$biography = _instance.biography;
     return local$biography == null
@@ -5505,6 +5615,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get followerCount {
     final local$followerCount = _instance.followerCount;
     return local$followerCount == null
@@ -5515,6 +5626,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get popularity {
     final local$popularity = _instance.popularity;
     return local$popularity == null
@@ -5525,6 +5637,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get avatarImage {
     final local$avatarImage = _instance.avatarImage;
     return local$avatarImage == null
@@ -5535,6 +5648,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get bannerImage {
     final local$bannerImage = _instance.bannerImage;
     return local$bannerImage == null
@@ -5545,6 +5659,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVerified {
     final local$isVerified = _instance.isVerified;
     return local$isVerified == null
@@ -5555,6 +5670,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get verifiedAt {
     final local$verifiedAt = _instance.verifiedAt;
     return local$verifiedAt == null
@@ -5565,6 +5681,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IdentityCardFilterInput<TRes> get identityCard {
     final local$identityCard = _instance.identityCard;
     return local$identityCard == null
@@ -5575,6 +5692,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfLegalDocumentFilterInput<TRes>
   get legalDocuments {
     final local$legalDocuments = _instance.legalDocuments;
@@ -5588,6 +5706,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible {
     final local$isVisible = _instance.isVisible;
     return local$isVisible == null
@@ -5598,6 +5717,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get royaltyEarnings {
     final local$royaltyEarnings = _instance.royaltyEarnings;
     return local$royaltyEarnings == null
@@ -5608,6 +5728,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get serviceRevenue {
     final local$serviceRevenue = _instance.serviceRevenue;
     return local$serviceRevenue == null
@@ -5618,6 +5739,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get grossRevenue {
     final local$grossRevenue = _instance.grossRevenue;
     return local$grossRevenue == null
@@ -5628,6 +5750,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get refundAmount {
     final local$refundAmount = _instance.refundAmount;
     return local$refundAmount == null
@@ -5638,6 +5761,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -5648,6 +5772,7 @@ class _CopyWithImpl$Input$ArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -5665,6 +5790,7 @@ class _CopyWithStubImpl$Input$ArtistFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ArtistFilterInput>? and,
     List<Input$ArtistFilterInput>? or,
@@ -5694,81 +5820,107 @@ class _CopyWithStubImpl$Input$ArtistFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stageName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stageNameUnsigned =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ArtistTypeOperationFilterInput<TRes> get artistType =>
       CopyWith$Input$ArtistTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfArtistMemberFilterInput<TRes>
   get members =>
       CopyWith$Input$ListFilterInputTypeOfArtistMemberFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get categoryIds =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get biography =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get followerCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get popularity =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get avatarImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get bannerImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVerified =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get verifiedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IdentityCardFilterInput<TRes> get identityCard =>
       CopyWith$Input$IdentityCardFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfLegalDocumentFilterInput<TRes>
   get legalDocuments =>
       CopyWith$Input$ListFilterInputTypeOfLegalDocumentFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get royaltyEarnings =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get serviceRevenue =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get grossRevenue =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get refundAmount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -6091,6 +6243,7 @@ class _CopyWithImpl$Input$ArtistMemberFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -6118,6 +6271,7 @@ class _CopyWithImpl$Input$ArtistMemberFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ArtistMemberFilterInput>? Function(
       Iterable<
@@ -6133,6 +6287,7 @@ class _CopyWithImpl$Input$ArtistMemberFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ArtistMemberFilterInput>? Function(
       Iterable<
@@ -6148,6 +6303,7 @@ class _CopyWithImpl$Input$ArtistMemberFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName {
     final local$fullName = _instance.fullName;
     return local$fullName == null
@@ -6158,6 +6314,7 @@ class _CopyWithImpl$Input$ArtistMemberFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email {
     final local$email = _instance.email;
     return local$email == null
@@ -6168,6 +6325,7 @@ class _CopyWithImpl$Input$ArtistMemberFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get phoneNumber {
     final local$phoneNumber = _instance.phoneNumber;
     return local$phoneNumber == null
@@ -6178,6 +6336,7 @@ class _CopyWithImpl$Input$ArtistMemberFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isLeader {
     final local$isLeader = _instance.isLeader;
     return local$isLeader == null
@@ -6188,6 +6347,7 @@ class _CopyWithImpl$Input$ArtistMemberFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$UserGenderOperationFilterInput<TRes> get gender {
     final local$gender = _instance.gender;
     return local$gender == null
@@ -6205,6 +6365,7 @@ class _CopyWithStubImpl$Input$ArtistMemberFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ArtistMemberFilterInput>? and,
     List<Input$ArtistMemberFilterInput>? or,
@@ -6215,22 +6376,29 @@ class _CopyWithStubImpl$Input$ArtistMemberFilterInput<TRes>
     Input$UserGenderOperationFilterInput? gender,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get phoneNumber =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isLeader =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$UserGenderOperationFilterInput<TRes> get gender =>
       CopyWith$Input$UserGenderOperationFilterInput.stub(_res);
 }
@@ -6797,6 +6965,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -6849,6 +7018,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ArtistPackageFilterInput>? Function(
       Iterable<
@@ -6864,6 +7034,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ArtistPackageFilterInput>? Function(
       Iterable<
@@ -6879,6 +7050,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -6889,6 +7061,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get artistId {
     final local$artistId = _instance.artistId;
     return local$artistId == null
@@ -6899,6 +7072,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get packageName {
     final local$packageName = _instance.packageName;
     return local$packageName == null
@@ -6909,6 +7083,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount {
     final local$amount = _instance.amount;
     return local$amount == null
@@ -6919,6 +7094,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -6929,6 +7105,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get estimateDeliveryDays {
     final local$estimateDeliveryDays = _instance.estimateDeliveryDays;
     return local$estimateDeliveryDays == null
@@ -6939,6 +7116,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -6949,6 +7127,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get maxRevision {
     final local$maxRevision = _instance.maxRevision;
     return local$maxRevision == null
@@ -6959,6 +7138,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get serviceDetails {
     final local$serviceDetails = _instance.serviceDetails;
@@ -6972,6 +7152,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ArtistPackageStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -6984,6 +7165,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDelete {
     final local$isDelete = _instance.isDelete;
     return local$isDelete == null
@@ -6994,6 +7176,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -7004,6 +7187,7 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -7021,6 +7205,7 @@ class _CopyWithStubImpl$Input$ArtistPackageFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ArtistPackageFilterInput>? and,
     List<Input$ArtistPackageFilterInput>? or,
@@ -7039,47 +7224,62 @@ class _CopyWithStubImpl$Input$ArtistPackageFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get artistId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get packageName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency =>
       CopyWith$Input$CurrencyTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get estimateDeliveryDays =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get maxRevision =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get serviceDetails =>
       CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ArtistPackageStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$ArtistPackageStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDelete =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -7488,6 +7688,7 @@ class _CopyWithImpl$Input$ArtistPackageSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? artistId = _undefined,
@@ -7532,6 +7733,7 @@ class _CopyWithStubImpl$Input$ArtistPackageSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? artistId,
@@ -7763,6 +7965,7 @@ class _CopyWithImpl$Input$ArtistPackageStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -7785,6 +7988,7 @@ class _CopyWithStubImpl$Input$ArtistPackageStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ArtistPackageStatus? eq,
     Enum$ArtistPackageStatus? neq,
@@ -7937,6 +8141,7 @@ class _CopyWithImpl$Input$ArtistRegistrationApprovalRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? userId = _undefined,
     Object? email = _undefined,
@@ -7961,6 +8166,7 @@ class _CopyWithStubImpl$Input$ArtistRegistrationApprovalRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? userId,
     String? email,
@@ -8172,6 +8378,7 @@ class _CopyWithImpl$Input$ArtistRoleOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -8194,6 +8401,7 @@ class _CopyWithStubImpl$Input$ArtistRoleOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ArtistRole? eq,
     Enum$ArtistRole? neq,
@@ -8867,6 +9075,7 @@ class _CopyWithImpl$Input$ArtistSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? userId = _undefined,
@@ -8934,6 +9143,7 @@ class _CopyWithImpl$Input$ArtistSortInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$IdentityCardSortInput<TRes> get identityCard {
     final local$identityCard = _instance.identityCard;
     return local$identityCard == null
@@ -8951,6 +9161,7 @@ class _CopyWithStubImpl$Input$ArtistSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? userId,
@@ -8975,6 +9186,7 @@ class _CopyWithStubImpl$Input$ArtistSortInput<TRes>
     Enum$SortEnumType? updatedAt,
   }) => _res;
 
+  @override
   CopyWith$Input$IdentityCardSortInput<TRes> get identityCard =>
       CopyWith$Input$IdentityCardSortInput.stub(_res);
 }
@@ -9182,6 +9394,7 @@ class _CopyWithImpl$Input$ArtistTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -9204,6 +9417,7 @@ class _CopyWithStubImpl$Input$ArtistTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ArtistType? eq,
     Enum$ArtistType? neq,
@@ -9768,6 +9982,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -9820,6 +10035,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$AudioFeatureFilterInput>? Function(
       Iterable<
@@ -9835,6 +10051,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$AudioFeatureFilterInput>? Function(
       Iterable<
@@ -9850,6 +10067,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get tempo {
     final local$tempo = _instance.tempo;
     return local$tempo == null
@@ -9860,6 +10078,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get key {
     final local$key = _instance.key;
     return local$key == null
@@ -9870,6 +10089,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get keyNumber {
     final local$keyNumber = _instance.keyNumber;
     return local$keyNumber == null
@@ -9880,6 +10100,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get mode {
     final local$mode = _instance.mode;
     return local$mode == null
@@ -9890,6 +10111,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get modeNumber {
     final local$modeNumber = _instance.modeNumber;
     return local$modeNumber == null
@@ -9900,6 +10122,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get energy {
     final local$energy = _instance.energy;
     return local$energy == null
@@ -9910,6 +10133,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get danceability {
     final local$danceability = _instance.danceability;
     return local$danceability == null
@@ -9920,6 +10144,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get acousticness {
     final local$acousticness = _instance.acousticness;
     return local$acousticness == null
@@ -9930,6 +10155,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get spectralCentroid {
     final local$spectralCentroid = _instance.spectralCentroid;
     return local$spectralCentroid == null
@@ -9940,6 +10166,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get zeroCrossingRate {
     final local$zeroCrossingRate = _instance.zeroCrossingRate;
     return local$zeroCrossingRate == null
@@ -9950,6 +10177,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get duration {
     final local$duration = _instance.duration;
     return local$duration == null
@@ -9960,6 +10188,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFloatOperationFilterInput<TRes> get chromaMean {
     final local$chromaMean = _instance.chromaMean;
     return local$chromaMean == null
@@ -9970,6 +10199,7 @@ class _CopyWithImpl$Input$AudioFeatureFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFloatOperationFilterInput<TRes> get mfccMean {
     final local$mfccMean = _instance.mfccMean;
     return local$mfccMean == null
@@ -9987,6 +10217,7 @@ class _CopyWithStubImpl$Input$AudioFeatureFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$AudioFeatureFilterInput>? and,
     List<Input$AudioFeatureFilterInput>? or,
@@ -10005,46 +10236,61 @@ class _CopyWithStubImpl$Input$AudioFeatureFilterInput<TRes>
     Input$ListFloatOperationFilterInput? mfccMean,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get tempo =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get key =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get keyNumber =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get mode =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get modeNumber =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get energy =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get danceability =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get acousticness =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get spectralCentroid =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get zeroCrossingRate =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get duration =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFloatOperationFilterInput<TRes> get chromaMean =>
       CopyWith$Input$ListFloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFloatOperationFilterInput<TRes> get mfccMean =>
       CopyWith$Input$ListFloatOperationFilterInput.stub(_res);
 }
@@ -10423,6 +10669,7 @@ class _CopyWithImpl$Input$AudioFeatureSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? tempo = _undefined,
     Object? key = _undefined,
@@ -10465,6 +10712,7 @@ class _CopyWithStubImpl$Input$AudioFeatureSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? tempo,
     Enum$SortEnumType? key,
@@ -10638,6 +10886,7 @@ class _CopyWithImpl$Input$AudioFeatureWeightInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? tempo = _undefined,
     Object? energy = _undefined,
@@ -10660,6 +10909,7 @@ class _CopyWithStubImpl$Input$AudioFeatureWeightInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     double? tempo,
     double? energy,
@@ -11060,6 +11310,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -11096,6 +11347,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$AudioFingerprintFilterInput>? Function(
       Iterable<
@@ -11113,6 +11365,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$AudioFingerprintFilterInput>? Function(
       Iterable<
@@ -11130,6 +11383,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$ListListByteOperationFilterInput<TRes>
   get compressedFingerprints {
     final local$compressedFingerprints = _instance.compressedFingerprints;
@@ -11141,6 +11395,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListOfUInt32FilterInput<TRes> get sequenceNumbers {
     final local$sequenceNumbers = _instance.sequenceNumbers;
     return local$sequenceNumbers == null
@@ -11151,6 +11406,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFloatOperationFilterInput<TRes> get startsAt {
     final local$startsAt = _instance.startsAt;
     return local$startsAt == null
@@ -11161,6 +11417,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListListByteOperationFilterInput<TRes> get originalPoints {
     final local$originalPoints = _instance.originalPoints;
     return local$originalPoints == null
@@ -11171,6 +11428,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get duration {
     final local$duration = _instance.duration;
     return local$duration == null
@@ -11181,6 +11439,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -11191,6 +11450,7 @@ class _CopyWithImpl$Input$AudioFingerprintFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -11208,6 +11468,7 @@ class _CopyWithStubImpl$Input$AudioFingerprintFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$AudioFingerprintFilterInput>? and,
     List<Input$AudioFingerprintFilterInput>? or,
@@ -11220,29 +11481,38 @@ class _CopyWithStubImpl$Input$AudioFingerprintFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$ListListByteOperationFilterInput<TRes>
   get compressedFingerprints =>
       CopyWith$Input$ListListByteOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListOfUInt32FilterInput<TRes> get sequenceNumbers =>
       CopyWith$Input$ListOfUInt32FilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFloatOperationFilterInput<TRes> get startsAt =>
       CopyWith$Input$ListFloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListListByteOperationFilterInput<TRes> get originalPoints =>
       CopyWith$Input$ListListByteOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get duration =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -11397,6 +11667,7 @@ class _CopyWithImpl$Input$AudioFingerprintSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? duration = _undefined,
     Object? createdAt = _undefined,
@@ -11419,6 +11690,7 @@ class _CopyWithStubImpl$Input$AudioFingerprintSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? duration,
     Enum$SortEnumType? createdAt,
@@ -11533,6 +11805,7 @@ class _CopyWithImpl$Input$BooleanOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? eq = _undefined, Object? neq = _undefined}) => _then(
     Input$BooleanOperationFilterInput._({
       ..._instance._$data,
@@ -11548,6 +11821,7 @@ class _CopyWithStubImpl$Input$BooleanOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({bool? eq, bool? neq}) => _res;
 }
 
@@ -11925,6 +12199,7 @@ class _CopyWithImpl$Input$ByteOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -11963,6 +12238,7 @@ class _CopyWithStubImpl$Input$ByteOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     int? eq,
     int? neq,
@@ -12438,6 +12714,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -12478,6 +12755,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$CategoryFilterInput>? Function(
       Iterable<CopyWith$Input$CategoryFilterInput<Input$CategoryFilterInput>>?,
@@ -12491,6 +12769,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$CategoryFilterInput>? Function(
       Iterable<CopyWith$Input$CategoryFilterInput<Input$CategoryFilterInput>>?,
@@ -12502,6 +12781,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -12512,6 +12792,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name {
     final local$name = _instance.name;
     return local$name == null
@@ -12522,6 +12803,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get slug {
     final local$slug = _instance.slug;
     return local$slug == null
@@ -12532,6 +12814,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CategoryTypeOperationFilterInput<TRes> get type {
     final local$type = _instance.type;
     return local$type == null
@@ -12542,6 +12825,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get aliases {
     final local$aliases = _instance.aliases;
     return local$aliases == null
@@ -12552,6 +12836,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get popularity {
     final local$popularity = _instance.popularity;
     return local$popularity == null
@@ -12562,6 +12847,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -12572,6 +12858,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible {
     final local$isVisible = _instance.isVisible;
     return local$isVisible == null
@@ -12582,6 +12869,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -12592,6 +12880,7 @@ class _CopyWithImpl$Input$CategoryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -12609,6 +12898,7 @@ class _CopyWithStubImpl$Input$CategoryFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$CategoryFilterInput>? and,
     List<Input$CategoryFilterInput>? or,
@@ -12624,37 +12914,49 @@ class _CopyWithStubImpl$Input$CategoryFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get slug =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CategoryTypeOperationFilterInput<TRes> get type =>
       CopyWith$Input$CategoryTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get aliases =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get popularity =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -12973,6 +13275,7 @@ class _CopyWithImpl$Input$CategorySortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -13010,6 +13313,7 @@ class _CopyWithStubImpl$Input$CategorySortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? name,
@@ -13233,6 +13537,7 @@ class _CopyWithImpl$Input$CategoryTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -13255,6 +13560,7 @@ class _CopyWithStubImpl$Input$CategoryTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$CategoryType? eq,
     Enum$CategoryType? neq,
@@ -13357,6 +13663,7 @@ class _CopyWithImpl$Input$ChangeOrderStatusRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? id = _undefined, Object? status = _undefined}) => _then(
     Input$ChangeOrderStatusRequestInput._({
       ..._instance._$data,
@@ -13373,6 +13680,7 @@ class _CopyWithStubImpl$Input$ChangeOrderStatusRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? id, Enum$PackageOrderStatus? status}) => _res;
 }
 
@@ -13466,6 +13774,7 @@ class _CopyWithImpl$Input$ChangeStatusRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? requestId = _undefined, Object? status = _undefined}) =>
       _then(
         Input$ChangeStatusRequestInput._({
@@ -13484,6 +13793,7 @@ class _CopyWithStubImpl$Input$ChangeStatusRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? requestId, Enum$RequestStatus? status}) => _res;
 }
 
@@ -14188,6 +14498,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -14255,6 +14566,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$CommentFilterInput>? Function(
       Iterable<CopyWith$Input$CommentFilterInput<Input$CommentFilterInput>>?,
@@ -14266,6 +14578,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$CommentFilterInput>? Function(
       Iterable<CopyWith$Input$CommentFilterInput<Input$CommentFilterInput>>?,
@@ -14277,6 +14590,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -14287,6 +14601,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get targetId {
     final local$targetId = _instance.targetId;
     return local$targetId == null
@@ -14297,6 +14612,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CommentTypeOperationFilterInput<TRes> get commentType {
     final local$commentType = _instance.commentType;
     return local$commentType == null
@@ -14307,6 +14623,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get commenterId {
     final local$commenterId = _instance.commenterId;
     return local$commenterId == null
@@ -14317,6 +14634,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get content {
     final local$content = _instance.content;
     return local$content == null
@@ -14327,6 +14645,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get parentCommentId {
     final local$parentCommentId = _instance.parentCommentId;
     return local$parentCommentId == null
@@ -14337,6 +14656,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get rootCommentId {
     final local$rootCommentId = _instance.rootCommentId;
     return local$rootCommentId == null
@@ -14347,6 +14667,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get threadPath {
     final local$threadPath = _instance.threadPath;
     return local$threadPath == null
@@ -14357,6 +14678,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get depth {
     final local$depth = _instance.depth;
     return local$depth == null
@@ -14367,6 +14689,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get replyCount {
     final local$replyCount = _instance.replyCount;
     return local$replyCount == null
@@ -14377,6 +14700,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get totalRepliesCount {
     final local$totalRepliesCount = _instance.totalRepliesCount;
     return local$totalRepliesCount == null
@@ -14387,6 +14711,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get sortOrder {
     final local$sortOrder = _instance.sortOrder;
     return local$sortOrder == null
@@ -14397,6 +14722,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get threadUpdatedAt {
     final local$threadUpdatedAt = _instance.threadUpdatedAt;
     return local$threadUpdatedAt == null
@@ -14407,6 +14733,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isEdited {
     final local$isEdited = _instance.isEdited;
     return local$isEdited == null
@@ -14417,6 +14744,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDeleted {
     final local$isDeleted = _instance.isDeleted;
     return local$isDeleted == null
@@ -14427,6 +14755,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible {
     final local$isVisible = _instance.isVisible;
     return local$isVisible == null
@@ -14437,6 +14766,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -14447,6 +14777,7 @@ class _CopyWithImpl$Input$CommentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -14464,6 +14795,7 @@ class _CopyWithStubImpl$Input$CommentFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$CommentFilterInput>? and,
     List<Input$CommentFilterInput>? or,
@@ -14487,61 +14819,81 @@ class _CopyWithStubImpl$Input$CommentFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get targetId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CommentTypeOperationFilterInput<TRes> get commentType =>
       CopyWith$Input$CommentTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get commenterId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get content =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get parentCommentId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get rootCommentId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get threadPath =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get depth =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get replyCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get totalRepliesCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get sortOrder =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get threadUpdatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isEdited =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDeleted =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -14672,6 +15024,7 @@ class _CopyWithImpl$Input$CommentRepliesRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? commentId = _undefined,
     Object? page = _undefined,
@@ -14697,6 +15050,7 @@ class _CopyWithStubImpl$Input$CommentRepliesRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? commentId,
     int? page,
@@ -15251,6 +15605,7 @@ class _CopyWithImpl$Input$CommentSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? targetId = _undefined,
@@ -15311,6 +15666,7 @@ class _CopyWithStubImpl$Input$CommentSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? targetId,
@@ -15422,6 +15778,7 @@ class _CopyWithImpl$Input$CommentThreadRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? commentId = _undefined,
     Object? includeDeleted = _undefined,
@@ -15442,6 +15799,7 @@ class _CopyWithStubImpl$Input$CommentThreadRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? commentId, bool? includeDeleted}) => _res;
 }
 
@@ -15653,6 +16011,7 @@ class _CopyWithImpl$Input$CommentTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -15675,6 +16034,7 @@ class _CopyWithStubImpl$Input$CommentTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$CommentType? eq,
     Enum$CommentType? neq,
@@ -15920,6 +16280,7 @@ class _CopyWithImpl$Input$ContributingArtistFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -15939,6 +16300,7 @@ class _CopyWithImpl$Input$ContributingArtistFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ContributingArtistFilterInput>? Function(
       Iterable<
@@ -15956,6 +16318,7 @@ class _CopyWithImpl$Input$ContributingArtistFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ContributingArtistFilterInput>? Function(
       Iterable<
@@ -15973,6 +16336,7 @@ class _CopyWithImpl$Input$ContributingArtistFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get artistId {
     final local$artistId = _instance.artistId;
     return local$artistId == null
@@ -15983,6 +16347,7 @@ class _CopyWithImpl$Input$ContributingArtistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ArtistRoleOperationFilterInput<TRes> get role {
     final local$role = _instance.role;
     return local$role == null
@@ -16000,6 +16365,7 @@ class _CopyWithStubImpl$Input$ContributingArtistFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ContributingArtistFilterInput>? and,
     List<Input$ContributingArtistFilterInput>? or,
@@ -16007,13 +16373,17 @@ class _CopyWithStubImpl$Input$ContributingArtistFilterInput<TRes>
     Input$ArtistRoleOperationFilterInput? role,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get artistId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ArtistRoleOperationFilterInput<TRes> get role =>
       CopyWith$Input$ArtistRoleOperationFilterInput.stub(_res);
 }
@@ -16105,6 +16475,7 @@ class _CopyWithImpl$Input$ContributingArtistInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? artistId = _undefined, Object? role = _undefined}) =>
       _then(
         Input$ContributingArtistInput._({
@@ -16123,6 +16494,7 @@ class _CopyWithStubImpl$Input$ContributingArtistInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? artistId, Enum$ArtistRole? role}) => _res;
 }
 
@@ -16535,6 +16907,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -16572,6 +16945,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ConversationFilterInput>? Function(
       Iterable<
@@ -16587,6 +16961,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ConversationFilterInput>? Function(
       Iterable<
@@ -16602,6 +16977,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -16612,6 +16988,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get userIds {
     final local$userIds = _instance.userIds;
     return local$userIds == null
@@ -16622,6 +16999,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get requestHubId {
     final local$requestHubId = _instance.requestHubId;
     return local$requestHubId == null
@@ -16632,6 +17010,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ConversationStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -16644,6 +17023,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LastMessageFilterInput<TRes> get lastMessage {
     final local$lastMessage = _instance.lastMessage;
     return local$lastMessage == null
@@ -16654,6 +17034,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfDeletedForEntryFilterInput<TRes>
   get deletedFor {
     final local$deletedFor = _instance.deletedFor;
@@ -16667,6 +17048,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -16677,6 +17059,7 @@ class _CopyWithImpl$Input$ConversationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -16694,6 +17077,7 @@ class _CopyWithStubImpl$Input$ConversationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ConversationFilterInput>? and,
     List<Input$ConversationFilterInput>? or,
@@ -16707,32 +17091,42 @@ class _CopyWithStubImpl$Input$ConversationFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get userIds =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get requestHubId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ConversationStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$ConversationStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LastMessageFilterInput<TRes> get lastMessage =>
       CopyWith$Input$LastMessageFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfDeletedForEntryFilterInput<TRes>
   get deletedFor =>
       CopyWith$Input$ListFilterInputTypeOfDeletedForEntryFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -16970,6 +17364,7 @@ class _CopyWithImpl$Input$ConversationSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? requestHubId = _undefined,
@@ -16993,6 +17388,7 @@ class _CopyWithImpl$Input$ConversationSortInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$LastMessageSortInput<TRes> get lastMessage {
     final local$lastMessage = _instance.lastMessage;
     return local$lastMessage == null
@@ -17010,6 +17406,7 @@ class _CopyWithStubImpl$Input$ConversationSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? requestHubId,
@@ -17019,6 +17416,7 @@ class _CopyWithStubImpl$Input$ConversationSortInput<TRes>
     Enum$SortEnumType? updatedAt,
   }) => _res;
 
+  @override
   CopyWith$Input$LastMessageSortInput<TRes> get lastMessage =>
       CopyWith$Input$LastMessageSortInput.stub(_res);
 }
@@ -17236,6 +17634,7 @@ class _CopyWithImpl$Input$ConversationStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -17258,6 +17657,7 @@ class _CopyWithStubImpl$Input$ConversationStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ConversationStatus? eq,
     Enum$ConversationStatus? neq,
@@ -17479,6 +17879,7 @@ class _CopyWithImpl$Input$CouponDurationTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -17501,6 +17902,7 @@ class _CopyWithStubImpl$Input$CouponDurationTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$CouponDurationType? eq,
     Enum$CouponDurationType? neq,
@@ -17997,6 +18399,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -18040,6 +18443,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$CouponFilterInput>? Function(
       Iterable<CopyWith$Input$CouponFilterInput<Input$CouponFilterInput>>?,
@@ -18051,6 +18455,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$CouponFilterInput>? Function(
       Iterable<CopyWith$Input$CouponFilterInput<Input$CouponFilterInput>>?,
@@ -18062,6 +18467,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -18072,6 +18478,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeCouponId {
     final local$stripeCouponId = _instance.stripeCouponId;
     return local$stripeCouponId == null
@@ -18082,6 +18489,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name {
     final local$name = _instance.name;
     return local$name == null
@@ -18092,6 +18500,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -18102,6 +18511,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get code {
     final local$code = _instance.code;
     return local$code == null
@@ -18112,6 +18522,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get percentOff {
     final local$percentOff = _instance.percentOff;
     return local$percentOff == null
@@ -18122,6 +18533,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CouponDurationTypeOperationFilterInput<TRes> get duration {
     final local$duration = _instance.duration;
     return local$duration == null
@@ -18134,6 +18546,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CouponPurposeTypeOperationFilterInput<TRes> get purpose {
     final local$purpose = _instance.purpose;
     return local$purpose == null
@@ -18146,6 +18559,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CouponStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -18156,6 +18570,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -18166,6 +18581,7 @@ class _CopyWithImpl$Input$CouponFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -18183,6 +18599,7 @@ class _CopyWithStubImpl$Input$CouponFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$CouponFilterInput>? and,
     List<Input$CouponFilterInput>? or,
@@ -18199,40 +18616,53 @@ class _CopyWithStubImpl$Input$CouponFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeCouponId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get code =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get percentOff =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CouponDurationTypeOperationFilterInput<TRes> get duration =>
       CopyWith$Input$CouponDurationTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CouponPurposeTypeOperationFilterInput<TRes> get purpose =>
       CopyWith$Input$CouponPurposeTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CouponStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$CouponStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -18449,6 +18879,7 @@ class _CopyWithImpl$Input$CouponPurposeTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -18471,6 +18902,7 @@ class _CopyWithStubImpl$Input$CouponPurposeTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$CouponPurposeType? eq,
     Enum$CouponPurposeType? neq,
@@ -18848,6 +19280,7 @@ class _CopyWithImpl$Input$CouponSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? stripeCouponId = _undefined,
@@ -18889,6 +19322,7 @@ class _CopyWithStubImpl$Input$CouponSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? stripeCouponId,
@@ -19114,6 +19548,7 @@ class _CopyWithImpl$Input$CouponStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -19136,6 +19571,7 @@ class _CopyWithStubImpl$Input$CouponStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$CouponStatus? eq,
     Enum$CouponStatus? neq,
@@ -19248,6 +19684,7 @@ class _CopyWithImpl$Input$CreateAdminRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? fullName = _undefined,
     Object? email = _undefined,
@@ -19270,6 +19707,7 @@ class _CopyWithStubImpl$Input$CreateAdminRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? fullName, String? email, String? password}) => _res;
 }
 
@@ -19540,6 +19978,7 @@ class _CopyWithImpl$Input$CreateAlbumRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? description = _undefined,
@@ -19570,6 +20009,7 @@ class _CopyWithImpl$Input$CreateAlbumRequestInput<TRes>
     }),
   );
 
+  @override
   TRes artistInfos(
     Iterable<Input$ContributingArtistInput> Function(
       Iterable<
@@ -19585,6 +20025,7 @@ class _CopyWithImpl$Input$CreateAlbumRequestInput<TRes>
     ).toList(),
   );
 
+  @override
   CopyWith$Input$ReleaseInfoInput<TRes> get releaseInfo {
     final local$releaseInfo = _instance.releaseInfo;
     return CopyWith$Input$ReleaseInfoInput(
@@ -19600,6 +20041,7 @@ class _CopyWithStubImpl$Input$CreateAlbumRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? name,
     String? description,
@@ -19612,8 +20054,10 @@ class _CopyWithStubImpl$Input$CreateAlbumRequestInput<TRes>
     bool? isVisible,
   }) => _res;
 
+  @override
   artistInfos(_fn) => _res;
 
+  @override
   CopyWith$Input$ReleaseInfoInput<TRes> get releaseInfo =>
       CopyWith$Input$ReleaseInfoInput.stub(_res);
 }
@@ -19828,6 +20272,7 @@ class _CopyWithImpl$Input$CreateArtistPackageRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? packageName = _undefined,
     Object? artistId = _undefined,
@@ -19854,6 +20299,7 @@ class _CopyWithImpl$Input$CreateArtistPackageRequestInput<TRes>
     }),
   );
 
+  @override
   TRes serviceDetails(
     Iterable<Input$MetadataInput> Function(
       Iterable<CopyWith$Input$MetadataInput<Input$MetadataInput>>,
@@ -19874,6 +20320,7 @@ class _CopyWithStubImpl$Input$CreateArtistPackageRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? packageName,
     String? artistId,
@@ -19884,6 +20331,7 @@ class _CopyWithStubImpl$Input$CreateArtistPackageRequestInput<TRes>
     int? maxRevision,
   }) => _res;
 
+  @override
   serviceDetails(_fn) => _res;
 }
 
@@ -20014,6 +20462,7 @@ class _CopyWithImpl$Input$CreateArtistRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? userId = _undefined,
     Object? name = _undefined,
@@ -20031,6 +20480,7 @@ class _CopyWithImpl$Input$CreateArtistRequestInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$IdentityCardInput<TRes> get identityCard {
     final local$identityCard = _instance.identityCard;
     return CopyWith$Input$IdentityCardInput(
@@ -20046,6 +20496,7 @@ class _CopyWithStubImpl$Input$CreateArtistRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? userId,
     String? name,
@@ -20053,6 +20504,7 @@ class _CopyWithStubImpl$Input$CreateArtistRequestInput<TRes>
     Input$IdentityCardInput? identityCard,
   }) => _res;
 
+  @override
   CopyWith$Input$IdentityCardInput<TRes> get identityCard =>
       CopyWith$Input$IdentityCardInput.stub(_res);
 }
@@ -20434,6 +20886,7 @@ class _CopyWithImpl$Input$CreateBillingPortalConfigurationRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? customerUpdateEnabled = _undefined,
     Object? allowedCustomerUpdates = _undefined,
@@ -20489,6 +20942,7 @@ class _CopyWithImpl$Input$CreateBillingPortalConfigurationRequestInput<TRes>
     }),
   );
 
+  @override
   TRes products(
     Iterable<Input$StripeProductRequestInput> Function(
       Iterable<
@@ -20516,6 +20970,7 @@ class _CopyWithStubImpl$Input$CreateBillingPortalConfigurationRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     bool? customerUpdateEnabled,
     List<Enum$CustomerUpdate>? allowedCustomerUpdates,
@@ -20533,6 +20988,7 @@ class _CopyWithStubImpl$Input$CreateBillingPortalConfigurationRequestInput<TRes>
     Enum$BillingPortalConfigStatus? status,
   }) => _res;
 
+  @override
   products(_fn) => _res;
 }
 
@@ -20640,6 +21096,7 @@ class _CopyWithImpl$Input$CreateCategoryRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? description = _undefined,
@@ -20662,6 +21119,7 @@ class _CopyWithStubImpl$Input$CreateCategoryRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? name, String? description, Enum$CategoryType? type}) => _res;
 }
 
@@ -20804,6 +21262,7 @@ class _CopyWithImpl$Input$CreateCommentRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? targetId = _undefined,
     Object? commentType = _undefined,
@@ -20830,6 +21289,7 @@ class _CopyWithStubImpl$Input$CreateCommentRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? targetId,
     Enum$CommentType? commentType,
@@ -20935,6 +21395,7 @@ class _CopyWithImpl$Input$CreateConversationRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? otherUserId = _undefined,
     Object? requestHubId = _undefined,
@@ -20955,6 +21416,7 @@ class _CopyWithStubImpl$Input$CreateConversationRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? otherUserId, String? requestHubId}) => _res;
 }
 
@@ -21148,6 +21610,7 @@ class _CopyWithImpl$Input$CreateCouponRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? description = _undefined,
@@ -21180,6 +21643,7 @@ class _CopyWithStubImpl$Input$CreateCouponRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? name,
     String? description,
@@ -21351,6 +21815,7 @@ class _CopyWithImpl$Input$CreateDirectRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? publicRequestId = _undefined,
     Object? artistId = _undefined,
@@ -21379,6 +21844,7 @@ class _CopyWithStubImpl$Input$CreateDirectRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? publicRequestId,
     String? artistId,
@@ -21604,6 +22070,7 @@ class _CopyWithImpl$Input$CreateEntitlementRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? defaultValues = _undefined,
     Object? name = _undefined,
@@ -21634,6 +22101,7 @@ class _CopyWithImpl$Input$CreateEntitlementRequestInput<TRes>
     }),
   );
 
+  @override
   TRes subscriptionOverrides(
     Iterable<Input$CreateEntitlementSubscriptionOverrideRequestInput> Function(
       Iterable<
@@ -21661,6 +22129,7 @@ class _CopyWithStubImpl$Input$CreateEntitlementRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     dynamic? defaultValues,
     String? name,
@@ -21672,6 +22141,7 @@ class _CopyWithStubImpl$Input$CreateEntitlementRequestInput<TRes>
     bool? isActive,
   }) => _res;
 
+  @override
   subscriptionOverrides(_fn) => _res;
 }
 
@@ -21771,6 +22241,7 @@ class _CopyWithImpl$Input$CreateEntitlementSubscriptionOverrideRequestInput<
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? subscriptionCode = _undefined}) => _then(
     Input$CreateEntitlementSubscriptionOverrideRequestInput._({
       ..._instance._$data,
@@ -21791,6 +22262,7 @@ class _CopyWithStubImpl$Input$CreateEntitlementSubscriptionOverrideRequestInput<
 
   TRes _res;
 
+  @override
   call({String? subscriptionCode}) => _res;
 }
 
@@ -21897,6 +22369,7 @@ class _CopyWithImpl$Input$CreateEscrowCommissionPolicyRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? currency = _undefined,
     Object? platformFeePercentage = _undefined,
@@ -21917,6 +22390,7 @@ class _CopyWithStubImpl$Input$CreateEscrowCommissionPolicyRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({Enum$CurrencyType? currency, double? platformFeePercentage}) => _res;
 }
 
@@ -22028,6 +22502,7 @@ class _CopyWithImpl$Input$CreateLegalPolicyRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? content = _undefined,
@@ -22050,6 +22525,7 @@ class _CopyWithStubImpl$Input$CreateLegalPolicyRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? name, String? content, bool? isActive}) => _res;
 }
 
@@ -22159,6 +22635,7 @@ class _CopyWithImpl$Input$CreateModeratorRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? fullName = _undefined,
     Object? email = _undefined,
@@ -22181,6 +22658,7 @@ class _CopyWithStubImpl$Input$CreateModeratorRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? fullName, String? email, String? password}) => _res;
 }
 
@@ -22292,6 +22770,7 @@ class _CopyWithImpl$Input$CreateMomoPaymentRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? amount = _undefined,
     Object? orderId = _undefined,
@@ -22314,6 +22793,7 @@ class _CopyWithStubImpl$Input$CreateMomoPaymentRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({int? amount, String? orderId, String? orderInfo}) => _res;
 }
 
@@ -22584,6 +23064,7 @@ class _CopyWithImpl$Input$CreatePaymentCheckoutSessionRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? packageId = _undefined,
     Object? requestHubId = _undefined,
@@ -22621,6 +23102,7 @@ class _CopyWithImpl$Input$CreatePaymentCheckoutSessionRequestInput<TRes>
     }),
   );
 
+  @override
   TRes deliveries(
     Iterable<Input$PackageOrderDeliveryInput> Function(
       Iterable<
@@ -22645,6 +23127,7 @@ class _CopyWithStubImpl$Input$CreatePaymentCheckoutSessionRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? packageId,
     String? requestHubId,
@@ -22658,6 +23141,7 @@ class _CopyWithStubImpl$Input$CreatePaymentCheckoutSessionRequestInput<TRes>
     DateTime? deadline,
   }) => _res;
 
+  @override
   deliveries(_fn) => _res;
 }
 
@@ -22797,6 +23281,7 @@ class _CopyWithImpl$Input$CreatePlaylistRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? description = _undefined,
@@ -22821,6 +23306,7 @@ class _CopyWithStubImpl$Input$CreatePlaylistRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? name,
     String? description,
@@ -22933,6 +23419,7 @@ class _CopyWithImpl$Input$CreatePriceRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? lookupKey = _undefined,
     Object? interval = _undefined,
@@ -22956,6 +23443,7 @@ class _CopyWithStubImpl$Input$CreatePriceRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? lookupKey, Enum$PeriodTime? interval, int? intervalCount}) =>
       _res;
 }
@@ -23093,6 +23581,7 @@ class _CopyWithImpl$Input$CreateRecordingRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? description = _undefined,
     Object? recordingSplits = _undefined,
@@ -23106,6 +23595,7 @@ class _CopyWithImpl$Input$CreateRecordingRequestInput<TRes>
     }),
   );
 
+  @override
   TRes recordingSplits(
     Iterable<Input$CreateRecordingSplitRequestInput> Function(
       Iterable<
@@ -23130,11 +23620,13 @@ class _CopyWithStubImpl$Input$CreateRecordingRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? description,
     List<Input$CreateRecordingSplitRequestInput>? recordingSplits,
   }) => _res;
 
+  @override
   recordingSplits(_fn) => _res;
 }
 
@@ -23252,6 +23744,7 @@ class _CopyWithImpl$Input$CreateRecordingSplitRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? userId = _undefined,
     Object? artistRole = _undefined,
@@ -23274,6 +23767,7 @@ class _CopyWithStubImpl$Input$CreateRecordingSplitRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? userId, Enum$ArtistRole? artistRole, double? percentage}) =>
       _res;
 }
@@ -23490,6 +23984,7 @@ class _CopyWithImpl$Input$CreateReportRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? reportedUserId = _undefined,
     Object? reportType = _undefined,
@@ -23522,6 +24017,7 @@ class _CopyWithStubImpl$Input$CreateReportRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? reportedUserId,
     Enum$ReportType? reportType,
@@ -23636,6 +24132,7 @@ class _CopyWithImpl$Input$CreateReviewRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? packageOrderId = _undefined,
     Object? rating = _undefined,
@@ -23658,6 +24155,7 @@ class _CopyWithStubImpl$Input$CreateReviewRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? packageOrderId, int? rating, String? content}) => _res;
 }
 
@@ -23796,6 +24294,7 @@ class _CopyWithImpl$Input$CreateRoyalPolicyRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? ratePerStream = _undefined,
     Object? currency = _undefined,
@@ -23822,6 +24321,7 @@ class _CopyWithStubImpl$Input$CreateRoyalPolicyRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     double? ratePerStream,
     Enum$CurrencyType? currency,
@@ -24068,6 +24568,7 @@ class _CopyWithImpl$Input$CreateSubScriptionPlanRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? prices = _undefined,
     Object? name = _undefined,
@@ -24089,6 +24590,7 @@ class _CopyWithImpl$Input$CreateSubScriptionPlanRequestInput<TRes>
     }),
   );
 
+  @override
   TRes prices(
     Iterable<Input$CreatePriceRequestInput> Function(
       Iterable<
@@ -24104,6 +24606,7 @@ class _CopyWithImpl$Input$CreateSubScriptionPlanRequestInput<TRes>
     ).toList(),
   );
 
+  @override
   TRes metadata(
     Iterable<Input$KeyValuePairOfStringAndStringInput>? Function(
       Iterable<
@@ -24128,6 +24631,7 @@ class _CopyWithStubImpl$Input$CreateSubScriptionPlanRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$CreatePriceRequestInput>? prices,
     String? name,
@@ -24136,8 +24640,10 @@ class _CopyWithStubImpl$Input$CreateSubScriptionPlanRequestInput<TRes>
     String? subscriptionCode,
   }) => _res;
 
+  @override
   prices(_fn) => _res;
 
+  @override
   metadata(_fn) => _res;
 }
 
@@ -24300,6 +24806,7 @@ class _CopyWithImpl$Input$CreateSubscriptionCheckoutSessionRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? subscriptionCode = _undefined,
     Object? period = _undefined,
@@ -24334,6 +24841,7 @@ class _CopyWithStubImpl$Input$CreateSubscriptionCheckoutSessionRequestInput<
 
   TRes _res;
 
+  @override
   call({
     String? subscriptionCode,
     Enum$PeriodTime? period,
@@ -24502,6 +25010,7 @@ class _CopyWithImpl$Input$CreateSubscriptionRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? description = _undefined,
@@ -24527,6 +25036,7 @@ class _CopyWithStubImpl$Input$CreateSubscriptionRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? name,
     String? description,
@@ -24935,6 +25445,7 @@ class _CopyWithImpl$Input$CreateTrackRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? description = _undefined,
@@ -24981,6 +25492,7 @@ class _CopyWithImpl$Input$CreateTrackRequestInput<TRes>
     }),
   );
 
+  @override
   TRes legalDocuments(
     Iterable<Input$LegalDocumentInput> Function(
       Iterable<CopyWith$Input$LegalDocumentInput<Input$LegalDocumentInput>>,
@@ -25001,6 +25513,7 @@ class _CopyWithStubImpl$Input$CreateTrackRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? name,
     String? description,
@@ -25019,6 +25532,7 @@ class _CopyWithStubImpl$Input$CreateTrackRequestInput<TRes>
     bool? isOriginal,
   }) => _res;
 
+  @override
   legalDocuments(_fn) => _res;
 }
 
@@ -25150,6 +25664,7 @@ class _CopyWithImpl$Input$CreateWorkRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? description = _undefined,
     Object? workSplits = _undefined,
@@ -25162,6 +25677,7 @@ class _CopyWithImpl$Input$CreateWorkRequestInput<TRes>
     }),
   );
 
+  @override
   TRes workSplits(
     Iterable<Input$CreateWorkSplitRequestInput> Function(
       Iterable<
@@ -25186,11 +25702,13 @@ class _CopyWithStubImpl$Input$CreateWorkRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? description,
     List<Input$CreateWorkSplitRequestInput>? workSplits,
   }) => _res;
 
+  @override
   workSplits(_fn) => _res;
 }
 
@@ -25302,6 +25820,7 @@ class _CopyWithImpl$Input$CreateWorkSplitRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? userId = _undefined,
     Object? artistRole = _undefined,
@@ -25324,6 +25843,7 @@ class _CopyWithStubImpl$Input$CreateWorkSplitRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? userId, Enum$ArtistRole? artistRole, double? percentage}) =>
       _res;
 }
@@ -25538,6 +26058,7 @@ class _CopyWithImpl$Input$CurrencyTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -25560,6 +26081,7 @@ class _CopyWithStubImpl$Input$CurrencyTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$CurrencyType? eq,
     Enum$CurrencyType? neq,
@@ -25966,6 +26488,7 @@ class _CopyWithImpl$Input$DateTimeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -26004,6 +26527,7 @@ class _CopyWithStubImpl$Input$DateTimeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     DateTime? eq,
     DateTime? neq,
@@ -26396,6 +26920,7 @@ class _CopyWithImpl$Input$DecimalOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -26434,6 +26959,7 @@ class _CopyWithStubImpl$Input$DecimalOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     double? eq,
     double? neq,
@@ -26523,6 +27049,7 @@ class _CopyWithImpl$Input$DeleteCommentRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? commentId = _undefined}) => _then(
     Input$DeleteCommentRequestInput._({
       ..._instance._$data,
@@ -26538,6 +27065,7 @@ class _CopyWithStubImpl$Input$DeleteCommentRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? commentId}) => _res;
 }
 
@@ -26774,6 +27302,7 @@ class _CopyWithImpl$Input$DeletedForEntryFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -26793,6 +27322,7 @@ class _CopyWithImpl$Input$DeletedForEntryFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$DeletedForEntryFilterInput>? Function(
       Iterable<
@@ -26810,6 +27340,7 @@ class _CopyWithImpl$Input$DeletedForEntryFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$DeletedForEntryFilterInput>? Function(
       Iterable<
@@ -26827,6 +27358,7 @@ class _CopyWithImpl$Input$DeletedForEntryFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -26837,6 +27369,7 @@ class _CopyWithImpl$Input$DeletedForEntryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDeleted {
     final local$isDeleted = _instance.isDeleted;
     return local$isDeleted == null
@@ -26854,6 +27387,7 @@ class _CopyWithStubImpl$Input$DeletedForEntryFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$DeletedForEntryFilterInput>? and,
     List<Input$DeletedForEntryFilterInput>? or,
@@ -26861,13 +27395,17 @@ class _CopyWithStubImpl$Input$DeletedForEntryFilterInput<TRes>
     Input$BooleanOperationFilterInput? isDeleted,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDeleted =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 }
@@ -27082,6 +27620,7 @@ class _CopyWithImpl$Input$DocumentTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -27104,6 +27643,7 @@ class _CopyWithStubImpl$Input$DocumentTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$DocumentType? eq,
     Enum$DocumentType? neq,
@@ -27622,6 +28162,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -27671,6 +28212,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$EntitlementFilterInput>? Function(
       Iterable<
@@ -27686,6 +28228,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$EntitlementFilterInput>? Function(
       Iterable<
@@ -27701,6 +28244,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -27711,6 +28255,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name {
     final local$name = _instance.name;
     return local$name == null
@@ -27721,6 +28266,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get code {
     final local$code = _instance.code;
     return local$code == null
@@ -27731,6 +28277,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -27741,6 +28288,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$EntitlementValueTypeOperationFilterInput<TRes> get valueType {
     final local$valueType = _instance.valueType;
     return local$valueType == null
@@ -27753,6 +28301,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfEntitlementRoleDefaultFilterInput<TRes>
   get defaultValues {
     final local$defaultValues = _instance.defaultValues;
@@ -27766,6 +28315,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfEntitlementSubscriptionOverrideFilterInput<
     TRes
   >
@@ -27781,6 +28331,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isActive {
     final local$isActive = _instance.isActive;
     return local$isActive == null
@@ -27791,6 +28342,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get expiredAt {
     final local$expiredAt = _instance.expiredAt;
     return local$expiredAt == null
@@ -27801,6 +28353,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -27811,6 +28364,7 @@ class _CopyWithImpl$Input$EntitlementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -27828,6 +28382,7 @@ class _CopyWithStubImpl$Input$EntitlementFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$EntitlementFilterInput>? and,
     List<Input$EntitlementFilterInput>? or,
@@ -27845,31 +28400,40 @@ class _CopyWithStubImpl$Input$EntitlementFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get code =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$EntitlementValueTypeOperationFilterInput<TRes> get valueType =>
       CopyWith$Input$EntitlementValueTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfEntitlementRoleDefaultFilterInput<TRes>
   get defaultValues =>
       CopyWith$Input$ListFilterInputTypeOfEntitlementRoleDefaultFilterInput.stub(
         _res,
       );
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfEntitlementSubscriptionOverrideFilterInput<
     TRes
   >
@@ -27878,15 +28442,19 @@ class _CopyWithStubImpl$Input$EntitlementFilterInput<TRes>
         _res,
       );
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isActive =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get expiredAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -28102,6 +28670,7 @@ class _CopyWithImpl$Input$EntitlementRoleDefaultFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -28118,6 +28687,7 @@ class _CopyWithImpl$Input$EntitlementRoleDefaultFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$EntitlementRoleDefaultFilterInput>? Function(
       Iterable<
@@ -28135,6 +28705,7 @@ class _CopyWithImpl$Input$EntitlementRoleDefaultFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$EntitlementRoleDefaultFilterInput>? Function(
       Iterable<
@@ -28152,6 +28723,7 @@ class _CopyWithImpl$Input$EntitlementRoleDefaultFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$UserRoleOperationFilterInput<TRes> get role {
     final local$role = _instance.role;
     return local$role == null
@@ -28169,16 +28741,20 @@ class _CopyWithStubImpl$Input$EntitlementRoleDefaultFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$EntitlementRoleDefaultFilterInput>? and,
     List<Input$EntitlementRoleDefaultFilterInput>? or,
     Input$UserRoleOperationFilterInput? role,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$UserRoleOperationFilterInput<TRes> get role =>
       CopyWith$Input$UserRoleOperationFilterInput.stub(_res);
 }
@@ -28499,6 +29075,7 @@ class _CopyWithImpl$Input$EntitlementSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -28536,6 +29113,7 @@ class _CopyWithStubImpl$Input$EntitlementSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? name,
@@ -28763,6 +29341,7 @@ class _CopyWithImpl$Input$EntitlementSubscriptionOverrideFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -28780,6 +29359,7 @@ class _CopyWithImpl$Input$EntitlementSubscriptionOverrideFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$EntitlementSubscriptionOverrideFilterInput>? Function(
       Iterable<
@@ -28800,6 +29380,7 @@ class _CopyWithImpl$Input$EntitlementSubscriptionOverrideFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$EntitlementSubscriptionOverrideFilterInput>? Function(
       Iterable<
@@ -28820,6 +29401,7 @@ class _CopyWithImpl$Input$EntitlementSubscriptionOverrideFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionCode {
     final local$subscriptionCode = _instance.subscriptionCode;
     return local$subscriptionCode == null
@@ -28837,16 +29419,20 @@ class _CopyWithStubImpl$Input$EntitlementSubscriptionOverrideFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$EntitlementSubscriptionOverrideFilterInput>? and,
     List<Input$EntitlementSubscriptionOverrideFilterInput>? or,
     Input$StringOperationFilterInput? subscriptionCode,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionCode =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 }
@@ -29066,6 +29652,7 @@ class _CopyWithImpl$Input$EntitlementValueTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -29088,6 +29675,7 @@ class _CopyWithStubImpl$Input$EntitlementValueTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$EntitlementValueType? eq,
     Enum$EntitlementValueType? neq,
@@ -29488,6 +30076,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -29522,6 +30111,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$EscrowCommissionPolicyFilterInput>? Function(
       Iterable<
@@ -29539,6 +30129,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$EscrowCommissionPolicyFilterInput>? Function(
       Iterable<
@@ -29556,6 +30147,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -29566,6 +30158,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -29576,6 +30169,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get platformFeePercentage {
     final local$platformFeePercentage = _instance.platformFeePercentage;
     return local$platformFeePercentage == null
@@ -29586,6 +30180,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version {
     final local$version = _instance.version;
     return local$version == null
@@ -29596,6 +30191,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$PolicyStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -29606,6 +30202,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -29616,6 +30213,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -29633,6 +30231,7 @@ class _CopyWithStubImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$EscrowCommissionPolicyFilterInput>? and,
     List<Input$EscrowCommissionPolicyFilterInput>? or,
@@ -29645,28 +30244,37 @@ class _CopyWithStubImpl$Input$EscrowCommissionPolicyFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency =>
       CopyWith$Input$CurrencyTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get platformFeePercentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PolicyStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$PolicyStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -29940,6 +30548,7 @@ class _CopyWithImpl$Input$EscrowCommissionPolicySortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? currency = _undefined,
@@ -29971,6 +30580,7 @@ class _CopyWithStubImpl$Input$EscrowCommissionPolicySortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? currency,
@@ -30356,6 +30966,7 @@ class _CopyWithImpl$Input$FloatOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -30394,6 +31005,7 @@ class _CopyWithStubImpl$Input$FloatOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     double? eq,
     double? neq,
@@ -30622,6 +31234,7 @@ class _CopyWithImpl$Input$HistoryActionTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -30644,6 +31257,7 @@ class _CopyWithStubImpl$Input$HistoryActionTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$HistoryActionType? eq,
     Enum$HistoryActionType? neq,
@@ -31120,6 +31734,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -31162,6 +31777,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$IdentityCardFilterInput>? Function(
       Iterable<
@@ -31177,6 +31793,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$IdentityCardFilterInput>? Function(
       Iterable<
@@ -31192,6 +31809,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get number {
     final local$number = _instance.number;
     return local$number == null
@@ -31202,6 +31820,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName {
     final local$fullName = _instance.fullName;
     return local$fullName == null
@@ -31212,6 +31831,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get dateOfBirth {
     final local$dateOfBirth = _instance.dateOfBirth;
     return local$dateOfBirth == null
@@ -31222,6 +31842,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$UserGenderOperationFilterInput<TRes> get gender {
     final local$gender = _instance.gender;
     return local$gender == null
@@ -31232,6 +31853,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get placeOfOrigin {
     final local$placeOfOrigin = _instance.placeOfOrigin;
     return local$placeOfOrigin == null
@@ -31242,6 +31864,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get nationality {
     final local$nationality = _instance.nationality;
     return local$nationality == null
@@ -31252,6 +31875,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$AddressFilterInput<TRes> get placeOfResidence {
     final local$placeOfResidence = _instance.placeOfResidence;
     return local$placeOfResidence == null
@@ -31262,6 +31886,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get frontImage {
     final local$frontImage = _instance.frontImage;
     return local$frontImage == null
@@ -31272,6 +31897,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get backImage {
     final local$backImage = _instance.backImage;
     return local$backImage == null
@@ -31282,6 +31908,7 @@ class _CopyWithImpl$Input$IdentityCardFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get validUntil {
     final local$validUntil = _instance.validUntil;
     return local$validUntil == null
@@ -31299,6 +31926,7 @@ class _CopyWithStubImpl$Input$IdentityCardFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$IdentityCardFilterInput>? and,
     List<Input$IdentityCardFilterInput>? or,
@@ -31314,37 +31942,49 @@ class _CopyWithStubImpl$Input$IdentityCardFilterInput<TRes>
     Input$DateTimeOperationFilterInput? validUntil,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get number =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get dateOfBirth =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$UserGenderOperationFilterInput<TRes> get gender =>
       CopyWith$Input$UserGenderOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get placeOfOrigin =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get nationality =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$AddressFilterInput<TRes> get placeOfResidence =>
       CopyWith$Input$AddressFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get frontImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get backImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get validUntil =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -31602,6 +32242,7 @@ class _CopyWithImpl$Input$IdentityCardInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? number = _undefined,
     Object? fullName = _undefined,
@@ -31635,6 +32276,7 @@ class _CopyWithImpl$Input$IdentityCardInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$AddressInput<TRes> get placeOfResidence {
     final local$placeOfResidence = _instance.placeOfResidence;
     return CopyWith$Input$AddressInput(
@@ -31650,6 +32292,7 @@ class _CopyWithStubImpl$Input$IdentityCardInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? number,
     String? fullName,
@@ -31663,6 +32306,7 @@ class _CopyWithStubImpl$Input$IdentityCardInput<TRes>
     DateTime? validUntil,
   }) => _res;
 
+  @override
   CopyWith$Input$AddressInput<TRes> get placeOfResidence =>
       CopyWith$Input$AddressInput.stub(_res);
 }
@@ -32017,6 +32661,7 @@ class _CopyWithImpl$Input$IdentityCardSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? number = _undefined,
     Object? fullName = _undefined,
@@ -32051,6 +32696,7 @@ class _CopyWithImpl$Input$IdentityCardSortInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$AddressSortInput<TRes> get placeOfResidence {
     final local$placeOfResidence = _instance.placeOfResidence;
     return local$placeOfResidence == null
@@ -32068,6 +32714,7 @@ class _CopyWithStubImpl$Input$IdentityCardSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? number,
     Enum$SortEnumType? fullName,
@@ -32081,6 +32728,7 @@ class _CopyWithStubImpl$Input$IdentityCardSortInput<TRes>
     Enum$SortEnumType? validUntil,
   }) => _res;
 
+  @override
   CopyWith$Input$AddressSortInput<TRes> get placeOfResidence =>
       CopyWith$Input$AddressSortInput.stub(_res);
 }
@@ -32459,6 +33107,7 @@ class _CopyWithImpl$Input$IntOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -32497,6 +33146,7 @@ class _CopyWithStubImpl$Input$IntOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     int? eq,
     int? neq,
@@ -33126,6 +33776,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -33183,6 +33834,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$InvoiceFilterInput>? Function(
       Iterable<CopyWith$Input$InvoiceFilterInput<Input$InvoiceFilterInput>>?,
@@ -33194,6 +33846,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$InvoiceFilterInput>? Function(
       Iterable<CopyWith$Input$InvoiceFilterInput<Input$InvoiceFilterInput>>?,
@@ -33205,6 +33858,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -33215,6 +33869,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -33225,6 +33880,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get paymentTransactionId {
     final local$paymentTransactionId = _instance.paymentTransactionId;
     return local$paymentTransactionId == null
@@ -33235,6 +33891,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeInvoiceId {
     final local$stripeInvoiceId = _instance.stripeInvoiceId;
     return local$stripeInvoiceId == null
@@ -33245,6 +33902,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$OneOffSnapshotFilterInput<TRes> get oneOffSnapshot {
     final local$oneOffSnapshot = _instance.oneOffSnapshot;
     return local$oneOffSnapshot == null
@@ -33255,6 +33913,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$SubscriptionSnapshotFilterInput<TRes>
   get subscriptionSnapshot {
     final local$subscriptionSnapshot = _instance.subscriptionSnapshot;
@@ -33266,6 +33925,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName {
     final local$fullName = _instance.fullName;
     return local$fullName == null
@@ -33276,6 +33936,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email {
     final local$email = _instance.email;
     return local$email == null
@@ -33286,6 +33947,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get country {
     final local$country = _instance.country;
     return local$country == null
@@ -33296,6 +33958,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount {
     final local$amount = _instance.amount;
     return local$amount == null
@@ -33306,6 +33969,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -33316,6 +33980,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get from {
     final local$from = _instance.from;
     return local$from == null
@@ -33326,6 +33991,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get to {
     final local$to = _instance.to;
     return local$to == null
@@ -33336,6 +34002,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get originContext {
     final local$originContext = _instance.originContext;
     return local$originContext == null
@@ -33346,6 +34013,7 @@ class _CopyWithImpl$Input$InvoiceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get paidAt {
     final local$paidAt = _instance.paidAt;
     return local$paidAt == null
@@ -33363,6 +34031,7 @@ class _CopyWithStubImpl$Input$InvoiceFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$InvoiceFilterInput>? and,
     List<Input$InvoiceFilterInput>? or,
@@ -33383,53 +34052,70 @@ class _CopyWithStubImpl$Input$InvoiceFilterInput<TRes>
     Input$DateTimeOperationFilterInput? paidAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get paymentTransactionId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeInvoiceId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$OneOffSnapshotFilterInput<TRes> get oneOffSnapshot =>
       CopyWith$Input$OneOffSnapshotFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$SubscriptionSnapshotFilterInput<TRes>
   get subscriptionSnapshot =>
       CopyWith$Input$SubscriptionSnapshotFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get country =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get currency =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get from =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get to =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get originContext =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get paidAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -33918,6 +34604,7 @@ class _CopyWithImpl$Input$InvoiceSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? userId = _undefined,
@@ -33961,6 +34648,7 @@ class _CopyWithImpl$Input$InvoiceSortInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$OneOffSnapshotSortInput<TRes> get oneOffSnapshot {
     final local$oneOffSnapshot = _instance.oneOffSnapshot;
     return local$oneOffSnapshot == null
@@ -33971,6 +34659,7 @@ class _CopyWithImpl$Input$InvoiceSortInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$SubscriptionSnapshotSortInput<TRes> get subscriptionSnapshot {
     final local$subscriptionSnapshot = _instance.subscriptionSnapshot;
     return local$subscriptionSnapshot == null
@@ -33988,6 +34677,7 @@ class _CopyWithStubImpl$Input$InvoiceSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? userId,
@@ -34006,9 +34696,11 @@ class _CopyWithStubImpl$Input$InvoiceSortInput<TRes>
     Enum$SortEnumType? paidAt,
   }) => _res;
 
+  @override
   CopyWith$Input$OneOffSnapshotSortInput<TRes> get oneOffSnapshot =>
       CopyWith$Input$OneOffSnapshotSortInput.stub(_res);
 
+  @override
   CopyWith$Input$SubscriptionSnapshotSortInput<TRes> get subscriptionSnapshot =>
       CopyWith$Input$SubscriptionSnapshotSortInput.stub(_res);
 }
@@ -34111,6 +34803,7 @@ class _CopyWithImpl$Input$KeyValuePairOfStringAndStringInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? key = _undefined, Object? value = _undefined}) => _then(
     Input$KeyValuePairOfStringAndStringInput._({
       ..._instance._$data,
@@ -34126,6 +34819,7 @@ class _CopyWithStubImpl$Input$KeyValuePairOfStringAndStringInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? key, String? value}) => _res;
 }
 
@@ -34417,6 +35111,7 @@ class _CopyWithImpl$Input$LastMessageFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -34441,6 +35136,7 @@ class _CopyWithImpl$Input$LastMessageFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$LastMessageFilterInput>? Function(
       Iterable<
@@ -34456,6 +35152,7 @@ class _CopyWithImpl$Input$LastMessageFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$LastMessageFilterInput>? Function(
       Iterable<
@@ -34471,6 +35168,7 @@ class _CopyWithImpl$Input$LastMessageFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get text {
     final local$text = _instance.text;
     return local$text == null
@@ -34481,6 +35179,7 @@ class _CopyWithImpl$Input$LastMessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get senderId {
     final local$senderId = _instance.senderId;
     return local$senderId == null
@@ -34491,6 +35190,7 @@ class _CopyWithImpl$Input$LastMessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get sentAt {
     final local$sentAt = _instance.sentAt;
     return local$sentAt == null
@@ -34501,6 +35201,7 @@ class _CopyWithImpl$Input$LastMessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get isReadBy {
     final local$isReadBy = _instance.isReadBy;
     return local$isReadBy == null
@@ -34518,6 +35219,7 @@ class _CopyWithStubImpl$Input$LastMessageFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$LastMessageFilterInput>? and,
     List<Input$LastMessageFilterInput>? or,
@@ -34527,19 +35229,25 @@ class _CopyWithStubImpl$Input$LastMessageFilterInput<TRes>
     Input$ListStringOperationFilterInput? isReadBy,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get text =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get senderId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get sentAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get isReadBy =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 }
@@ -34690,6 +35398,7 @@ class _CopyWithImpl$Input$LastMessageSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? text = _undefined,
     Object? senderId = _undefined,
@@ -34710,6 +35419,7 @@ class _CopyWithStubImpl$Input$LastMessageSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? text,
     Enum$SortEnumType? senderId,
@@ -35005,6 +35715,7 @@ class _CopyWithImpl$Input$LegalDocumentFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -35030,6 +35741,7 @@ class _CopyWithImpl$Input$LegalDocumentFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$LegalDocumentFilterInput>? Function(
       Iterable<
@@ -35045,6 +35757,7 @@ class _CopyWithImpl$Input$LegalDocumentFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$LegalDocumentFilterInput>? Function(
       Iterable<
@@ -35060,6 +35773,7 @@ class _CopyWithImpl$Input$LegalDocumentFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name {
     final local$name = _instance.name;
     return local$name == null
@@ -35070,6 +35784,7 @@ class _CopyWithImpl$Input$LegalDocumentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get documentUrl {
     final local$documentUrl = _instance.documentUrl;
     return local$documentUrl == null
@@ -35080,6 +35795,7 @@ class _CopyWithImpl$Input$LegalDocumentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DocumentTypeOperationFilterInput<TRes> get documentType {
     final local$documentType = _instance.documentType;
     return local$documentType == null
@@ -35090,6 +35806,7 @@ class _CopyWithImpl$Input$LegalDocumentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get note {
     final local$note = _instance.note;
     return local$note == null
@@ -35107,6 +35824,7 @@ class _CopyWithStubImpl$Input$LegalDocumentFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$LegalDocumentFilterInput>? and,
     List<Input$LegalDocumentFilterInput>? or,
@@ -35116,19 +35834,25 @@ class _CopyWithStubImpl$Input$LegalDocumentFilterInput<TRes>
     Input$StringOperationFilterInput? note,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get documentUrl =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DocumentTypeOperationFilterInput<TRes> get documentType =>
       CopyWith$Input$DocumentTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get note =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 }
@@ -35259,6 +35983,7 @@ class _CopyWithImpl$Input$LegalDocumentInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? documentUrl = _undefined,
@@ -35283,6 +36008,7 @@ class _CopyWithStubImpl$Input$LegalDocumentInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? name,
     String? documentUrl,
@@ -35696,6 +36422,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -35731,6 +36458,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$LegalPolicyFilterInput>? Function(
       Iterable<
@@ -35746,6 +36474,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$LegalPolicyFilterInput>? Function(
       Iterable<
@@ -35761,6 +36490,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -35771,6 +36501,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name {
     final local$name = _instance.name;
     return local$name == null
@@ -35781,6 +36512,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get content {
     final local$content = _instance.content;
     return local$content == null
@@ -35791,6 +36523,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version {
     final local$version = _instance.version;
     return local$version == null
@@ -35801,6 +36534,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$PolicyStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -35811,6 +36545,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get effectiveAt {
     final local$effectiveAt = _instance.effectiveAt;
     return local$effectiveAt == null
@@ -35821,6 +36556,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -35831,6 +36567,7 @@ class _CopyWithImpl$Input$LegalPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -35848,6 +36585,7 @@ class _CopyWithStubImpl$Input$LegalPolicyFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$LegalPolicyFilterInput>? and,
     List<Input$LegalPolicyFilterInput>? or,
@@ -35861,31 +36599,41 @@ class _CopyWithStubImpl$Input$LegalPolicyFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get content =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PolicyStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$PolicyStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get effectiveAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -36174,6 +36922,7 @@ class _CopyWithImpl$Input$LegalPolicySortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -36207,6 +36956,7 @@ class _CopyWithStubImpl$Input$LegalPolicySortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? name,
@@ -36397,6 +37147,7 @@ class _CopyWithImpl$Input$ListByteOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -36412,6 +37163,7 @@ class _CopyWithImpl$Input$ListByteOperationFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$ByteOperationFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -36422,6 +37174,7 @@ class _CopyWithImpl$Input$ListByteOperationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ByteOperationFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -36432,6 +37185,7 @@ class _CopyWithImpl$Input$ListByteOperationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ByteOperationFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -36449,6 +37203,7 @@ class _CopyWithStubImpl$Input$ListByteOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$ByteOperationFilterInput? all,
     Input$ByteOperationFilterInput? none,
@@ -36456,12 +37211,15 @@ class _CopyWithStubImpl$Input$ListByteOperationFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$ByteOperationFilterInput<TRes> get all =>
       CopyWith$Input$ByteOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ByteOperationFilterInput<TRes> get none =>
       CopyWith$Input$ByteOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ByteOperationFilterInput<TRes> get some =>
       CopyWith$Input$ByteOperationFilterInput.stub(_res);
 }
@@ -36654,6 +37412,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfArtistMemberFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -36669,6 +37428,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfArtistMemberFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$ArtistMemberFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -36679,6 +37439,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfArtistMemberFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ArtistMemberFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -36689,6 +37450,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfArtistMemberFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ArtistMemberFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -36709,6 +37471,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfArtistMemberFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$ArtistMemberFilterInput? all,
     Input$ArtistMemberFilterInput? none,
@@ -36716,12 +37479,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfArtistMemberFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$ArtistMemberFilterInput<TRes> get all =>
       CopyWith$Input$ArtistMemberFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ArtistMemberFilterInput<TRes> get none =>
       CopyWith$Input$ArtistMemberFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ArtistMemberFilterInput<TRes> get some =>
       CopyWith$Input$ArtistMemberFilterInput.stub(_res);
 }
@@ -36923,6 +37689,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfContributingArtistFilterInput<
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -36941,6 +37708,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfContributingArtistFilterInput<
     }),
   );
 
+  @override
   CopyWith$Input$ContributingArtistFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -36951,6 +37719,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfContributingArtistFilterInput<
           );
   }
 
+  @override
   CopyWith$Input$ContributingArtistFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -36961,6 +37730,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfContributingArtistFilterInput<
           );
   }
 
+  @override
   CopyWith$Input$ContributingArtistFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -36985,6 +37755,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfContributingArtistFilterInput
 
   TRes _res;
 
+  @override
   call({
     Input$ContributingArtistFilterInput? all,
     Input$ContributingArtistFilterInput? none,
@@ -36992,12 +37763,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfContributingArtistFilterInput
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$ContributingArtistFilterInput<TRes> get all =>
       CopyWith$Input$ContributingArtistFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ContributingArtistFilterInput<TRes> get none =>
       CopyWith$Input$ContributingArtistFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ContributingArtistFilterInput<TRes> get some =>
       CopyWith$Input$ContributingArtistFilterInput.stub(_res);
 }
@@ -37192,6 +37966,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfDeletedForEntryFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -37209,6 +37984,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfDeletedForEntryFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$DeletedForEntryFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -37219,6 +37995,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfDeletedForEntryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DeletedForEntryFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -37229,6 +38006,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfDeletedForEntryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DeletedForEntryFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -37251,6 +38029,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfDeletedForEntryFilterInput<
 
   TRes _res;
 
+  @override
   call({
     Input$DeletedForEntryFilterInput? all,
     Input$DeletedForEntryFilterInput? none,
@@ -37258,12 +38037,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfDeletedForEntryFilterInput<
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$DeletedForEntryFilterInput<TRes> get all =>
       CopyWith$Input$DeletedForEntryFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DeletedForEntryFilterInput<TRes> get none =>
       CopyWith$Input$DeletedForEntryFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DeletedForEntryFilterInput<TRes> get some =>
       CopyWith$Input$DeletedForEntryFilterInput.stub(_res);
 }
@@ -37468,6 +38250,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfEntitlementRoleDefaultFilterInput
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -37486,6 +38269,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfEntitlementRoleDefaultFilterInput
     }),
   );
 
+  @override
   CopyWith$Input$EntitlementRoleDefaultFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -37498,6 +38282,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfEntitlementRoleDefaultFilterInput
           );
   }
 
+  @override
   CopyWith$Input$EntitlementRoleDefaultFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -37510,6 +38295,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfEntitlementRoleDefaultFilterInput
           );
   }
 
+  @override
   CopyWith$Input$EntitlementRoleDefaultFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -37536,6 +38322,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfEntitlementRoleDefaultFilterI
 
   TRes _res;
 
+  @override
   call({
     Input$EntitlementRoleDefaultFilterInput? all,
     Input$EntitlementRoleDefaultFilterInput? none,
@@ -37543,12 +38330,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfEntitlementRoleDefaultFilterI
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$EntitlementRoleDefaultFilterInput<TRes> get all =>
       CopyWith$Input$EntitlementRoleDefaultFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$EntitlementRoleDefaultFilterInput<TRes> get none =>
       CopyWith$Input$EntitlementRoleDefaultFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$EntitlementRoleDefaultFilterInput<TRes> get some =>
       CopyWith$Input$EntitlementRoleDefaultFilterInput.stub(_res);
 }
@@ -37760,6 +38550,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfEntitlementSubscriptionOverrideFi
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -37778,6 +38569,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfEntitlementSubscriptionOverrideFi
     }),
   );
 
+  @override
   CopyWith$Input$EntitlementSubscriptionOverrideFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -37790,6 +38582,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfEntitlementSubscriptionOverrideFi
           );
   }
 
+  @override
   CopyWith$Input$EntitlementSubscriptionOverrideFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -37802,6 +38595,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfEntitlementSubscriptionOverrideFi
           );
   }
 
+  @override
   CopyWith$Input$EntitlementSubscriptionOverrideFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -37828,6 +38622,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfEntitlementSubscriptionOverri
 
   TRes _res;
 
+  @override
   call({
     Input$EntitlementSubscriptionOverrideFilterInput? all,
     Input$EntitlementSubscriptionOverrideFilterInput? none,
@@ -37835,12 +38630,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfEntitlementSubscriptionOverri
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$EntitlementSubscriptionOverrideFilterInput<TRes> get all =>
       CopyWith$Input$EntitlementSubscriptionOverrideFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$EntitlementSubscriptionOverrideFilterInput<TRes> get none =>
       CopyWith$Input$EntitlementSubscriptionOverrideFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$EntitlementSubscriptionOverrideFilterInput<TRes> get some =>
       CopyWith$Input$EntitlementSubscriptionOverrideFilterInput.stub(_res);
 }
@@ -38034,6 +38832,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfLegalDocumentFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -38049,6 +38848,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfLegalDocumentFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$LegalDocumentFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -38059,6 +38859,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfLegalDocumentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LegalDocumentFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -38069,6 +38870,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfLegalDocumentFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LegalDocumentFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -38091,6 +38893,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfLegalDocumentFilterInput<
 
   TRes _res;
 
+  @override
   call({
     Input$LegalDocumentFilterInput? all,
     Input$LegalDocumentFilterInput? none,
@@ -38098,12 +38901,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfLegalDocumentFilterInput<
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$LegalDocumentFilterInput<TRes> get all =>
       CopyWith$Input$LegalDocumentFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LegalDocumentFilterInput<TRes> get none =>
       CopyWith$Input$LegalDocumentFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LegalDocumentFilterInput<TRes> get some =>
       CopyWith$Input$LegalDocumentFilterInput.stub(_res);
 }
@@ -38289,6 +39095,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -38304,6 +39111,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$MetadataFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -38311,6 +39119,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
         : CopyWith$Input$MetadataFilterInput(local$all, (e) => call(all: e));
   }
 
+  @override
   CopyWith$Input$MetadataFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -38318,6 +39127,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
         : CopyWith$Input$MetadataFilterInput(local$none, (e) => call(none: e));
   }
 
+  @override
   CopyWith$Input$MetadataFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -38332,6 +39142,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$MetadataFilterInput? all,
     Input$MetadataFilterInput? none,
@@ -38339,12 +39150,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$MetadataFilterInput<TRes> get all =>
       CopyWith$Input$MetadataFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$MetadataFilterInput<TRes> get none =>
       CopyWith$Input$MetadataFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$MetadataFilterInput<TRes> get some =>
       CopyWith$Input$MetadataFilterInput.stub(_res);
 }
@@ -38548,6 +39362,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput<
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -38566,6 +39381,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput<
     }),
   );
 
+  @override
   CopyWith$Input$PackageOrderDeliveryFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -38576,6 +39392,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput<
           );
   }
 
+  @override
   CopyWith$Input$PackageOrderDeliveryFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -38586,6 +39403,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput<
           );
   }
 
+  @override
   CopyWith$Input$PackageOrderDeliveryFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -38610,6 +39428,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInp
 
   TRes _res;
 
+  @override
   call({
     Input$PackageOrderDeliveryFilterInput? all,
     Input$PackageOrderDeliveryFilterInput? none,
@@ -38617,12 +39436,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInp
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$PackageOrderDeliveryFilterInput<TRes> get all =>
       CopyWith$Input$PackageOrderDeliveryFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PackageOrderDeliveryFilterInput<TRes> get none =>
       CopyWith$Input$PackageOrderDeliveryFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PackageOrderDeliveryFilterInput<TRes> get some =>
       CopyWith$Input$PackageOrderDeliveryFilterInput.stub(_res);
 }
@@ -38824,6 +39646,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfPlaylistTracksInfoFilterInput<
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -38842,6 +39665,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfPlaylistTracksInfoFilterInput<
     }),
   );
 
+  @override
   CopyWith$Input$PlaylistTracksInfoFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -38852,6 +39676,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfPlaylistTracksInfoFilterInput<
           );
   }
 
+  @override
   CopyWith$Input$PlaylistTracksInfoFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -38862,6 +39687,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfPlaylistTracksInfoFilterInput<
           );
   }
 
+  @override
   CopyWith$Input$PlaylistTracksInfoFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -38886,6 +39712,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfPlaylistTracksInfoFilterInput
 
   TRes _res;
 
+  @override
   call({
     Input$PlaylistTracksInfoFilterInput? all,
     Input$PlaylistTracksInfoFilterInput? none,
@@ -38893,12 +39720,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfPlaylistTracksInfoFilterInput
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$PlaylistTracksInfoFilterInput<TRes> get all =>
       CopyWith$Input$PlaylistTracksInfoFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PlaylistTracksInfoFilterInput<TRes> get none =>
       CopyWith$Input$PlaylistTracksInfoFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PlaylistTracksInfoFilterInput<TRes> get some =>
       CopyWith$Input$PlaylistTracksInfoFilterInput.stub(_res);
 }
@@ -39092,6 +39922,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRecordingSplitFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -39109,6 +39940,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRecordingSplitFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$RecordingSplitFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -39119,6 +39951,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRecordingSplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RecordingSplitFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -39129,6 +39962,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRecordingSplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RecordingSplitFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -39151,6 +39985,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfRecordingSplitFilterInput<
 
   TRes _res;
 
+  @override
   call({
     Input$RecordingSplitFilterInput? all,
     Input$RecordingSplitFilterInput? none,
@@ -39158,12 +39993,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfRecordingSplitFilterInput<
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$RecordingSplitFilterInput<TRes> get all =>
       CopyWith$Input$RecordingSplitFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RecordingSplitFilterInput<TRes> get none =>
       CopyWith$Input$RecordingSplitFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RecordingSplitFilterInput<TRes> get some =>
       CopyWith$Input$RecordingSplitFilterInput.stub(_res);
 }
@@ -39356,6 +40194,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRestrictionFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -39371,6 +40210,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRestrictionFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$RestrictionFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -39378,6 +40218,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRestrictionFilterInput<TRes>
         : CopyWith$Input$RestrictionFilterInput(local$all, (e) => call(all: e));
   }
 
+  @override
   CopyWith$Input$RestrictionFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -39388,6 +40229,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRestrictionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RestrictionFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -39408,6 +40250,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfRestrictionFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$RestrictionFilterInput? all,
     Input$RestrictionFilterInput? none,
@@ -39415,12 +40258,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfRestrictionFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$RestrictionFilterInput<TRes> get all =>
       CopyWith$Input$RestrictionFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RestrictionFilterInput<TRes> get none =>
       CopyWith$Input$RestrictionFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RestrictionFilterInput<TRes> get some =>
       CopyWith$Input$RestrictionFilterInput.stub(_res);
 }
@@ -39613,6 +40459,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRoyaltySplitFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -39628,6 +40475,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRoyaltySplitFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$RoyaltySplitFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -39638,6 +40486,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRoyaltySplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RoyaltySplitFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -39648,6 +40497,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfRoyaltySplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RoyaltySplitFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -39668,6 +40518,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfRoyaltySplitFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$RoyaltySplitFilterInput? all,
     Input$RoyaltySplitFilterInput? none,
@@ -39675,12 +40526,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfRoyaltySplitFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$RoyaltySplitFilterInput<TRes> get all =>
       CopyWith$Input$RoyaltySplitFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RoyaltySplitFilterInput<TRes> get none =>
       CopyWith$Input$RoyaltySplitFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RoyaltySplitFilterInput<TRes> get some =>
       CopyWith$Input$RoyaltySplitFilterInput.stub(_res);
 }
@@ -39884,6 +40738,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput<
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -39902,6 +40757,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput<
     }),
   );
 
+  @override
   CopyWith$Input$SubscriptionPlanPriceFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -39912,6 +40768,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput<
           );
   }
 
+  @override
   CopyWith$Input$SubscriptionPlanPriceFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -39922,6 +40779,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput<
           );
   }
 
+  @override
   CopyWith$Input$SubscriptionPlanPriceFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -39946,6 +40804,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterIn
 
   TRes _res;
 
+  @override
   call({
     Input$SubscriptionPlanPriceFilterInput? all,
     Input$SubscriptionPlanPriceFilterInput? none,
@@ -39953,12 +40812,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterIn
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$SubscriptionPlanPriceFilterInput<TRes> get all =>
       CopyWith$Input$SubscriptionPlanPriceFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$SubscriptionPlanPriceFilterInput<TRes> get none =>
       CopyWith$Input$SubscriptionPlanPriceFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$SubscriptionPlanPriceFilterInput<TRes> get some =>
       CopyWith$Input$SubscriptionPlanPriceFilterInput.stub(_res);
 }
@@ -40146,6 +41008,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfSyncedLineFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -40161,6 +41024,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfSyncedLineFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$SyncedLineFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -40168,6 +41032,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfSyncedLineFilterInput<TRes>
         : CopyWith$Input$SyncedLineFilterInput(local$all, (e) => call(all: e));
   }
 
+  @override
   CopyWith$Input$SyncedLineFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -40178,6 +41043,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfSyncedLineFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$SyncedLineFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -40195,6 +41061,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfSyncedLineFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$SyncedLineFilterInput? all,
     Input$SyncedLineFilterInput? none,
@@ -40202,12 +41069,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfSyncedLineFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$SyncedLineFilterInput<TRes> get all =>
       CopyWith$Input$SyncedLineFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$SyncedLineFilterInput<TRes> get none =>
       CopyWith$Input$SyncedLineFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$SyncedLineFilterInput<TRes> get some =>
       CopyWith$Input$SyncedLineFilterInput.stub(_res);
 }
@@ -40395,6 +41265,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfWorkSplitFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -40410,6 +41281,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfWorkSplitFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$WorkSplitFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -40417,6 +41289,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfWorkSplitFilterInput<TRes>
         : CopyWith$Input$WorkSplitFilterInput(local$all, (e) => call(all: e));
   }
 
+  @override
   CopyWith$Input$WorkSplitFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -40424,6 +41297,7 @@ class _CopyWithImpl$Input$ListFilterInputTypeOfWorkSplitFilterInput<TRes>
         : CopyWith$Input$WorkSplitFilterInput(local$none, (e) => call(none: e));
   }
 
+  @override
   CopyWith$Input$WorkSplitFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -40438,6 +41312,7 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfWorkSplitFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$WorkSplitFilterInput? all,
     Input$WorkSplitFilterInput? none,
@@ -40445,12 +41320,15 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfWorkSplitFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$WorkSplitFilterInput<TRes> get all =>
       CopyWith$Input$WorkSplitFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$WorkSplitFilterInput<TRes> get none =>
       CopyWith$Input$WorkSplitFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$WorkSplitFilterInput<TRes> get some =>
       CopyWith$Input$WorkSplitFilterInput.stub(_res);
 }
@@ -40633,6 +41511,7 @@ class _CopyWithImpl$Input$ListFloatOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -40650,6 +41529,7 @@ class _CopyWithImpl$Input$ListFloatOperationFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -40660,6 +41540,7 @@ class _CopyWithImpl$Input$ListFloatOperationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -40670,6 +41551,7 @@ class _CopyWithImpl$Input$ListFloatOperationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -40687,6 +41569,7 @@ class _CopyWithStubImpl$Input$ListFloatOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$FloatOperationFilterInput? all,
     Input$FloatOperationFilterInput? none,
@@ -40694,12 +41577,15 @@ class _CopyWithStubImpl$Input$ListFloatOperationFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get all =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get none =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get some =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 }
@@ -40886,6 +41772,7 @@ class _CopyWithImpl$Input$ListListByteOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -40904,6 +41791,7 @@ class _CopyWithImpl$Input$ListListByteOperationFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$ListByteOperationFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -40914,6 +41802,7 @@ class _CopyWithImpl$Input$ListListByteOperationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListByteOperationFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -40924,6 +41813,7 @@ class _CopyWithImpl$Input$ListListByteOperationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListByteOperationFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -40941,6 +41831,7 @@ class _CopyWithStubImpl$Input$ListListByteOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$ListByteOperationFilterInput? all,
     Input$ListByteOperationFilterInput? none,
@@ -40948,12 +41839,15 @@ class _CopyWithStubImpl$Input$ListListByteOperationFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$ListByteOperationFilterInput<TRes> get all =>
       CopyWith$Input$ListByteOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListByteOperationFilterInput<TRes> get none =>
       CopyWith$Input$ListByteOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListByteOperationFilterInput<TRes> get some =>
       CopyWith$Input$ListByteOperationFilterInput.stub(_res);
 }
@@ -41187,6 +42081,7 @@ class _CopyWithImpl$Input$ListOfUInt32FilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -41205,6 +42100,7 @@ class _CopyWithImpl$Input$ListOfUInt32FilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ListOfUInt32FilterInput>? Function(
       Iterable<
@@ -41220,6 +42116,7 @@ class _CopyWithImpl$Input$ListOfUInt32FilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ListOfUInt32FilterInput>? Function(
       Iterable<
@@ -41235,6 +42132,7 @@ class _CopyWithImpl$Input$ListOfUInt32FilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get capacity {
     final local$capacity = _instance.capacity;
     return local$capacity == null
@@ -41245,6 +42143,7 @@ class _CopyWithImpl$Input$ListOfUInt32FilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get count {
     final local$count = _instance.count;
     return local$count == null
@@ -41262,6 +42161,7 @@ class _CopyWithStubImpl$Input$ListOfUInt32FilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ListOfUInt32FilterInput>? and,
     List<Input$ListOfUInt32FilterInput>? or,
@@ -41269,13 +42169,17 @@ class _CopyWithStubImpl$Input$ListOfUInt32FilterInput<TRes>
     Input$IntOperationFilterInput? count,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get capacity =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get count =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 }
@@ -41461,6 +42365,7 @@ class _CopyWithImpl$Input$ListStringOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? all = _undefined,
     Object? none = _undefined,
@@ -41478,6 +42383,7 @@ class _CopyWithImpl$Input$ListStringOperationFilterInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get all {
     final local$all = _instance.all;
     return local$all == null
@@ -41488,6 +42394,7 @@ class _CopyWithImpl$Input$ListStringOperationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get none {
     final local$none = _instance.none;
     return local$none == null
@@ -41498,6 +42405,7 @@ class _CopyWithImpl$Input$ListStringOperationFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get some {
     final local$some = _instance.some;
     return local$some == null
@@ -41515,6 +42423,7 @@ class _CopyWithStubImpl$Input$ListStringOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Input$StringOperationFilterInput? all,
     Input$StringOperationFilterInput? none,
@@ -41522,12 +42431,15 @@ class _CopyWithStubImpl$Input$ListStringOperationFilterInput<TRes>
     bool? any,
   }) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get all =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get none =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get some =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 }
@@ -42176,6 +43088,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -42237,6 +43150,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ListenerFilterInput>? Function(
       Iterable<CopyWith$Input$ListenerFilterInput<Input$ListenerFilterInput>>?,
@@ -42250,6 +43164,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ListenerFilterInput>? Function(
       Iterable<CopyWith$Input$ListenerFilterInput<Input$ListenerFilterInput>>?,
@@ -42261,6 +43176,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -42271,6 +43187,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -42281,6 +43198,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get displayName {
     final local$displayName = _instance.displayName;
     return local$displayName == null
@@ -42291,6 +43209,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get displayNameUnsigned {
     final local$displayNameUnsigned = _instance.displayNameUnsigned;
     return local$displayNameUnsigned == null
@@ -42301,6 +43220,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email {
     final local$email = _instance.email;
     return local$email == null
@@ -42311,6 +43231,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get avatarImage {
     final local$avatarImage = _instance.avatarImage;
     return local$avatarImage == null
@@ -42321,6 +43242,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get bannerImage {
     final local$bannerImage = _instance.bannerImage;
     return local$bannerImage == null
@@ -42331,6 +43253,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVerified {
     final local$isVerified = _instance.isVerified;
     return local$isVerified == null
@@ -42341,6 +43264,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get verifiedAt {
     final local$verifiedAt = _instance.verifiedAt;
     return local$verifiedAt == null
@@ -42351,6 +43275,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get followerCount {
     final local$followerCount = _instance.followerCount;
     return local$followerCount == null
@@ -42361,6 +43286,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get followingCount {
     final local$followingCount = _instance.followingCount;
     return local$followingCount == null
@@ -42371,6 +43297,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get lastFollowers {
     final local$lastFollowers = _instance.lastFollowers;
     return local$lastFollowers == null
@@ -42381,6 +43308,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get lastFollowings {
     final local$lastFollowings = _instance.lastFollowings;
     return local$lastFollowings == null
@@ -42391,6 +43319,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible {
     final local$isVisible = _instance.isVisible;
     return local$isVisible == null
@@ -42401,6 +43330,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -42411,6 +43341,7 @@ class _CopyWithImpl$Input$ListenerFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -42428,6 +43359,7 @@ class _CopyWithStubImpl$Input$ListenerFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ListenerFilterInput>? and,
     List<Input$ListenerFilterInput>? or,
@@ -42449,55 +43381,73 @@ class _CopyWithStubImpl$Input$ListenerFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get displayName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get displayNameUnsigned =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get avatarImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get bannerImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVerified =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get verifiedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get followerCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get followingCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get lastFollowers =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get lastFollowings =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -42966,6 +43916,7 @@ class _CopyWithImpl$Input$ListenerSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? userId = _undefined,
@@ -43019,6 +43970,7 @@ class _CopyWithStubImpl$Input$ListenerSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? userId,
@@ -43411,6 +44363,7 @@ class _CopyWithImpl$Input$LongOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -43449,6 +44402,7 @@ class _CopyWithStubImpl$Input$LongOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     int? eq,
     int? neq,
@@ -43865,6 +44819,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -43900,6 +44855,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$MessageFilterInput>? Function(
       Iterable<CopyWith$Input$MessageFilterInput<Input$MessageFilterInput>>?,
@@ -43911,6 +44867,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$MessageFilterInput>? Function(
       Iterable<CopyWith$Input$MessageFilterInput<Input$MessageFilterInput>>?,
@@ -43922,6 +44879,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -43932,6 +44890,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get conversationId {
     final local$conversationId = _instance.conversationId;
     return local$conversationId == null
@@ -43942,6 +44901,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get senderId {
     final local$senderId = _instance.senderId;
     return local$senderId == null
@@ -43952,6 +44912,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get receiverId {
     final local$receiverId = _instance.receiverId;
     return local$receiverId == null
@@ -43962,6 +44923,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get text {
     final local$text = _instance.text;
     return local$text == null
@@ -43972,6 +44934,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isRead {
     final local$isRead = _instance.isRead;
     return local$isRead == null
@@ -43982,6 +44945,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get deletedForIds {
     final local$deletedForIds = _instance.deletedForIds;
     return local$deletedForIds == null
@@ -43992,6 +44956,7 @@ class _CopyWithImpl$Input$MessageFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get sentAt {
     final local$sentAt = _instance.sentAt;
     return local$sentAt == null
@@ -44009,6 +44974,7 @@ class _CopyWithStubImpl$Input$MessageFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$MessageFilterInput>? and,
     List<Input$MessageFilterInput>? or,
@@ -44022,31 +44988,41 @@ class _CopyWithStubImpl$Input$MessageFilterInput<TRes>
     Input$DateTimeOperationFilterInput? sentAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get conversationId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get senderId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get receiverId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get text =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isRead =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get deletedForIds =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get sentAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -44306,6 +45282,7 @@ class _CopyWithImpl$Input$MessageSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? conversationId = _undefined,
@@ -44336,6 +45313,7 @@ class _CopyWithStubImpl$Input$MessageSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? conversationId,
@@ -44569,6 +45547,7 @@ class _CopyWithImpl$Input$MetadataFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -44585,6 +45564,7 @@ class _CopyWithImpl$Input$MetadataFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$MetadataFilterInput>? Function(
       Iterable<CopyWith$Input$MetadataFilterInput<Input$MetadataFilterInput>>?,
@@ -44598,6 +45578,7 @@ class _CopyWithImpl$Input$MetadataFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$MetadataFilterInput>? Function(
       Iterable<CopyWith$Input$MetadataFilterInput<Input$MetadataFilterInput>>?,
@@ -44609,6 +45590,7 @@ class _CopyWithImpl$Input$MetadataFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get key {
     final local$key = _instance.key;
     return local$key == null
@@ -44619,6 +45601,7 @@ class _CopyWithImpl$Input$MetadataFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get value {
     final local$value = _instance.value;
     return local$value == null
@@ -44636,6 +45619,7 @@ class _CopyWithStubImpl$Input$MetadataFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$MetadataFilterInput>? and,
     List<Input$MetadataFilterInput>? or,
@@ -44643,13 +45627,17 @@ class _CopyWithStubImpl$Input$MetadataFilterInput<TRes>
     Input$StringOperationFilterInput? value,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get key =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get value =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 }
@@ -44738,6 +45726,7 @@ class _CopyWithImpl$Input$MetadataInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? key = _undefined, Object? value = _undefined}) => _then(
     Input$MetadataInput._({
       ..._instance._$data,
@@ -44753,6 +45742,7 @@ class _CopyWithStubImpl$Input$MetadataInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? key, String? value}) => _res;
 }
 
@@ -45140,6 +46130,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -45172,6 +46163,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$MonthlyStreamCountFilterInput>? Function(
       Iterable<
@@ -45189,6 +46181,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$MonthlyStreamCountFilterInput>? Function(
       Iterable<
@@ -45206,6 +46199,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -45216,6 +46210,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId {
     final local$trackId = _instance.trackId;
     return local$trackId == null
@@ -45226,6 +46221,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get month {
     final local$month = _instance.month;
     return local$month == null
@@ -45236,6 +46232,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get year {
     final local$year = _instance.year;
     return local$year == null
@@ -45246,6 +46243,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get streamCount {
     final local$streamCount = _instance.streamCount;
     return local$streamCount == null
@@ -45256,6 +46254,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -45266,6 +46265,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get processedAt {
     final local$processedAt = _instance.processedAt;
     return local$processedAt == null
@@ -45283,6 +46283,7 @@ class _CopyWithStubImpl$Input$MonthlyStreamCountFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$MonthlyStreamCountFilterInput>? and,
     List<Input$MonthlyStreamCountFilterInput>? or,
@@ -45295,28 +46296,37 @@ class _CopyWithStubImpl$Input$MonthlyStreamCountFilterInput<TRes>
     Input$DateTimeOperationFilterInput? processedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get month =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get year =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get streamCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get processedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -45580,6 +46590,7 @@ class _CopyWithImpl$Input$MonthlyStreamCountSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? trackId = _undefined,
@@ -45611,6 +46622,7 @@ class _CopyWithStubImpl$Input$MonthlyStreamCountSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? trackId,
@@ -45849,6 +46861,7 @@ class _CopyWithImpl$Input$NullableOfAggregationLevelOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -45876,6 +46889,7 @@ class _CopyWithStubImpl$Input$NullableOfAggregationLevelOperationFilterInput<
 
   TRes _res;
 
+  @override
   call({
     Enum$AggregationLevel? eq,
     Enum$AggregationLevel? neq,
@@ -46099,6 +47113,7 @@ class _CopyWithImpl$Input$NullableOfReportActionOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -46121,6 +47136,7 @@ class _CopyWithStubImpl$Input$NullableOfReportActionOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ReportAction? eq,
     Enum$ReportAction? neq,
@@ -46373,6 +47389,7 @@ class _CopyWithImpl$Input$NullableOfReportRelatedContentTypeOperationFilterInput
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -46404,6 +47421,7 @@ class _CopyWithStubImpl$Input$NullableOfReportRelatedContentTypeOperationFilterI
 
   TRes _res;
 
+  @override
   call({
     Enum$ReportRelatedContentType? eq,
     Enum$ReportRelatedContentType? neq,
@@ -46640,6 +47658,7 @@ class _CopyWithImpl$Input$NullableOfRestrictionActionOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -46667,6 +47686,7 @@ class _CopyWithStubImpl$Input$NullableOfRestrictionActionOperationFilterInput<
 
   TRes _res;
 
+  @override
   call({
     Enum$RestrictionAction? eq,
     Enum$RestrictionAction? neq,
@@ -47227,6 +48247,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -47284,6 +48305,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$OneOffSnapshotFilterInput>? Function(
       Iterable<
@@ -47301,6 +48323,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$OneOffSnapshotFilterInput>? Function(
       Iterable<
@@ -47318,6 +48341,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get packageName {
     final local$packageName = _instance.packageName;
     return local$packageName == null
@@ -47328,6 +48352,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get packageAmount {
     final local$packageAmount = _instance.packageAmount;
     return local$packageAmount == null
@@ -47338,6 +48363,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get packageCurrency {
     final local$packageCurrency = _instance.packageCurrency;
     return local$packageCurrency == null
@@ -47348,6 +48374,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get estimateDeliveryDays {
     final local$estimateDeliveryDays = _instance.estimateDeliveryDays;
     return local$estimateDeliveryDays == null
@@ -47358,6 +48385,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get packageDescription {
     final local$packageDescription = _instance.packageDescription;
     return local$packageDescription == null
@@ -47368,6 +48396,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get maxRevision {
     final local$maxRevision = _instance.maxRevision;
     return local$maxRevision == null
@@ -47378,6 +48407,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get serviceDetails {
     final local$serviceDetails = _instance.serviceDetails;
@@ -47391,6 +48421,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ArtistPackageStatusOperationFilterInput<TRes>
   get artistPackageStatus {
     final local$artistPackageStatus = _instance.artistPackageStatus;
@@ -47404,6 +48435,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get deadline {
     final local$deadline = _instance.deadline;
     return local$deadline == null
@@ -47414,6 +48446,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get platformFeePercentage {
     final local$platformFeePercentage = _instance.platformFeePercentage;
     return local$platformFeePercentage == null
@@ -47424,6 +48457,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get artistFeePercentage {
     final local$artistFeePercentage = _instance.artistFeePercentage;
     return local$artistFeePercentage == null
@@ -47434,6 +48468,7 @@ class _CopyWithImpl$Input$OneOffSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$OneOffTypeOperationFilterInput<TRes> get oneOffType {
     final local$oneOffType = _instance.oneOffType;
     return local$oneOffType == null
@@ -47451,6 +48486,7 @@ class _CopyWithStubImpl$Input$OneOffSnapshotFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$OneOffSnapshotFilterInput>? and,
     List<Input$OneOffSnapshotFilterInput>? or,
@@ -47468,45 +48504,59 @@ class _CopyWithStubImpl$Input$OneOffSnapshotFilterInput<TRes>
     Input$OneOffTypeOperationFilterInput? oneOffType,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get packageName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get packageAmount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get packageCurrency =>
       CopyWith$Input$CurrencyTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get estimateDeliveryDays =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get packageDescription =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get maxRevision =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get serviceDetails =>
       CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ArtistPackageStatusOperationFilterInput<TRes>
   get artistPackageStatus =>
       CopyWith$Input$ArtistPackageStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get deadline =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get platformFeePercentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get artistFeePercentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$OneOffTypeOperationFilterInput<TRes> get oneOffType =>
       CopyWith$Input$OneOffTypeOperationFilterInput.stub(_res);
 }
@@ -47907,6 +48957,7 @@ class _CopyWithImpl$Input$OneOffSnapshotSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? packageName = _undefined,
     Object? packageAmount = _undefined,
@@ -47953,6 +49004,7 @@ class _CopyWithStubImpl$Input$OneOffSnapshotSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? packageName,
     Enum$SortEnumType? packageAmount,
@@ -48171,6 +49223,7 @@ class _CopyWithImpl$Input$OneOffTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -48193,6 +49246,7 @@ class _CopyWithStubImpl$Input$OneOffTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$OneOffType? eq,
     Enum$OneOffType? neq,
@@ -48562,6 +49616,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -48594,6 +49649,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$PackageOrderDeliveryFilterInput>? Function(
       Iterable<
@@ -48611,6 +49667,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$PackageOrderDeliveryFilterInput>? Function(
       Iterable<
@@ -48628,6 +49685,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get deliveryFileUrl {
     final local$deliveryFileUrl = _instance.deliveryFileUrl;
     return local$deliveryFileUrl == null
@@ -48638,6 +49696,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get notes {
     final local$notes = _instance.notes;
     return local$notes == null
@@ -48648,6 +49707,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get revisionNumber {
     final local$revisionNumber = _instance.revisionNumber;
     return local$revisionNumber == null
@@ -48658,6 +49718,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get clientFeedback {
     final local$clientFeedback = _instance.clientFeedback;
     return local$clientFeedback == null
@@ -48668,6 +49729,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get requestedAt {
     final local$requestedAt = _instance.requestedAt;
     return local$requestedAt == null
@@ -48678,6 +49740,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get deliveredAt {
     final local$deliveredAt = _instance.deliveredAt;
     return local$deliveredAt == null
@@ -48695,6 +49758,7 @@ class _CopyWithStubImpl$Input$PackageOrderDeliveryFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$PackageOrderDeliveryFilterInput>? and,
     List<Input$PackageOrderDeliveryFilterInput>? or,
@@ -48706,25 +49770,33 @@ class _CopyWithStubImpl$Input$PackageOrderDeliveryFilterInput<TRes>
     Input$DateTimeOperationFilterInput? deliveredAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get deliveryFileUrl =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get notes =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get revisionNumber =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get clientFeedback =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get requestedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get deliveredAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -48924,6 +49996,7 @@ class _CopyWithImpl$Input$PackageOrderDeliveryInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? deliveryFileUrl = _undefined,
     Object? notes = _undefined,
@@ -48953,6 +50026,7 @@ class _CopyWithStubImpl$Input$PackageOrderDeliveryInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? deliveryFileUrl,
     String? notes,
@@ -49681,6 +50755,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -49753,6 +50828,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$PackageOrderFilterInput>? Function(
       Iterable<
@@ -49768,6 +50844,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$PackageOrderFilterInput>? Function(
       Iterable<
@@ -49783,6 +50860,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -49793,6 +50871,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get clientId {
     final local$clientId = _instance.clientId;
     return local$clientId == null
@@ -49803,6 +50882,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get providerId {
     final local$providerId = _instance.providerId;
     return local$providerId == null
@@ -49813,6 +50893,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get artistPackageId {
     final local$artistPackageId = _instance.artistPackageId;
     return local$artistPackageId == null
@@ -49823,6 +50904,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get paymentTransactionId {
     final local$paymentTransactionId = _instance.paymentTransactionId;
     return local$paymentTransactionId == null
@@ -49833,6 +50915,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get conversationId {
     final local$conversationId = _instance.conversationId;
     return local$conversationId == null
@@ -49843,6 +50926,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$PackageOrderStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -49855,6 +50939,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get revisionCount {
     final local$revisionCount = _instance.revisionCount;
     return local$revisionCount == null
@@ -49865,6 +50950,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput<TRes>
   get deliveries {
     final local$deliveries = _instance.deliveries;
@@ -49878,6 +50964,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get deadline {
     final local$deadline = _instance.deadline;
     return local$deadline == null
@@ -49888,6 +50975,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get completedAt {
     final local$completedAt = _instance.completedAt;
     return local$completedAt == null
@@ -49898,6 +50986,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isEscrowReleased {
     final local$isEscrowReleased = _instance.isEscrowReleased;
     return local$isEscrowReleased == null
@@ -49908,6 +50997,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get platformFeePercentage {
     final local$platformFeePercentage = _instance.platformFeePercentage;
     return local$platformFeePercentage == null
@@ -49918,6 +51008,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get artistFeePercentage {
     final local$artistFeePercentage = _instance.artistFeePercentage;
     return local$artistFeePercentage == null
@@ -49928,6 +51019,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ReviewFilterInput<TRes> get review {
     final local$review = _instance.review;
     return local$review == null
@@ -49938,6 +51030,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get backgroundJobId {
     final local$backgroundJobId = _instance.backgroundJobId;
     return local$backgroundJobId == null
@@ -49948,6 +51041,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -49958,6 +51052,7 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -49975,6 +51070,7 @@ class _CopyWithStubImpl$Input$PackageOrderFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$PackageOrderFilterInput>? and,
     List<Input$PackageOrderFilterInput>? or,
@@ -49998,64 +51094,84 @@ class _CopyWithStubImpl$Input$PackageOrderFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get clientId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get providerId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get artistPackageId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get paymentTransactionId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get conversationId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PackageOrderStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$PackageOrderStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get revisionCount =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput<TRes>
   get deliveries =>
       CopyWith$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput.stub(
         _res,
       );
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get deadline =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get completedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isEscrowReleased =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get platformFeePercentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get artistFeePercentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ReviewFilterInput<TRes> get review =>
       CopyWith$Input$ReviewFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get backgroundJobId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -50183,6 +51299,7 @@ class _CopyWithImpl$Input$PackageOrderRefundRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? artistPercentageAmount = _undefined,
@@ -50207,6 +51324,7 @@ class _CopyWithStubImpl$Input$PackageOrderRefundRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? id,
     double? artistPercentageAmount,
@@ -50770,6 +51888,7 @@ class _CopyWithImpl$Input$PackageOrderSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? clientId = _undefined,
@@ -50823,6 +51942,7 @@ class _CopyWithImpl$Input$PackageOrderSortInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$ReviewSortInput<TRes> get review {
     final local$review = _instance.review;
     return local$review == null
@@ -50837,6 +51957,7 @@ class _CopyWithStubImpl$Input$PackageOrderSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? clientId,
@@ -50857,6 +51978,7 @@ class _CopyWithStubImpl$Input$PackageOrderSortInput<TRes>
     Enum$SortEnumType? updatedAt,
   }) => _res;
 
+  @override
   CopyWith$Input$ReviewSortInput<TRes> get review =>
       CopyWith$Input$ReviewSortInput.stub(_res);
 }
@@ -51074,6 +52196,7 @@ class _CopyWithImpl$Input$PackageOrderStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -51096,6 +52219,7 @@ class _CopyWithStubImpl$Input$PackageOrderStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$PackageOrderStatus? eq,
     Enum$PackageOrderStatus? neq,
@@ -51680,6 +52804,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -51738,6 +52863,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$PaymentTransactionFilterInput>? Function(
       Iterable<
@@ -51755,6 +52881,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$PaymentTransactionFilterInput>? Function(
       Iterable<
@@ -51772,6 +52899,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -51782,6 +52910,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -51792,6 +52921,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeCheckoutSessionId {
     final local$stripeCheckoutSessionId = _instance.stripeCheckoutSessionId;
     return local$stripeCheckoutSessionId == null
@@ -51802,6 +52932,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeSubscriptionId {
     final local$stripeSubscriptionId = _instance.stripeSubscriptionId;
     return local$stripeSubscriptionId == null
@@ -51812,6 +52943,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeInvoiceId {
     final local$stripeInvoiceId = _instance.stripeInvoiceId;
     return local$stripeInvoiceId == null
@@ -51822,6 +52954,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePaymentId {
     final local$stripePaymentId = _instance.stripePaymentId;
     return local$stripePaymentId == null
@@ -51832,6 +52965,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get stripePaymentMethod {
     final local$stripePaymentMethod = _instance.stripePaymentMethod;
     return local$stripePaymentMethod == null
@@ -51842,6 +52976,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount {
     final local$amount = _instance.amount;
     return local$amount == null
@@ -51852,6 +52987,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -51862,6 +52998,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$PaymentTransactionStatusOperationFilterInput<TRes>
   get paymentStatus {
     final local$paymentStatus = _instance.paymentStatus;
@@ -51875,6 +53012,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$TransactionStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -51887,6 +53025,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -51897,6 +53036,7 @@ class _CopyWithImpl$Input$PaymentTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -51914,6 +53054,7 @@ class _CopyWithStubImpl$Input$PaymentTransactionFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$PaymentTransactionFilterInput>? and,
     List<Input$PaymentTransactionFilterInput>? or,
@@ -51932,47 +53073,62 @@ class _CopyWithStubImpl$Input$PaymentTransactionFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeCheckoutSessionId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeSubscriptionId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeInvoiceId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePaymentId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get stripePaymentMethod =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get currency =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PaymentTransactionStatusOperationFilterInput<TRes>
   get paymentStatus =>
       CopyWith$Input$PaymentTransactionStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$TransactionStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$TransactionStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -52386,6 +53542,7 @@ class _CopyWithImpl$Input$PaymentTransactionSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? userId = _undefined,
@@ -52432,6 +53589,7 @@ class _CopyWithStubImpl$Input$PaymentTransactionSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? userId,
@@ -52668,6 +53826,7 @@ class _CopyWithImpl$Input$PaymentTransactionStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -52695,6 +53854,7 @@ class _CopyWithStubImpl$Input$PaymentTransactionStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$PaymentTransactionStatus? eq,
     Enum$PaymentTransactionStatus? neq,
@@ -53299,6 +54459,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -53358,6 +54519,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$PayoutTransactionFilterInput>? Function(
       Iterable<
@@ -53375,6 +54537,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$PayoutTransactionFilterInput>? Function(
       Iterable<
@@ -53392,6 +54555,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -53402,6 +54566,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -53412,6 +54577,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get royaltyReportId {
     final local$royaltyReportId = _instance.royaltyReportId;
     return local$royaltyReportId == null
@@ -53422,6 +54588,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeTransferId {
     final local$stripeTransferId = _instance.stripeTransferId;
     return local$stripeTransferId == null
@@ -53432,6 +54599,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePayoutId {
     final local$stripePayoutId = _instance.stripePayoutId;
     return local$stripePayoutId == null
@@ -53442,6 +54610,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get destinationAccountId {
     final local$destinationAccountId = _instance.destinationAccountId;
     return local$destinationAccountId == null
@@ -53452,6 +54621,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount {
     final local$amount = _instance.amount;
     return local$amount == null
@@ -53462,6 +54632,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -53472,6 +54643,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$NullableOfAggregationLevelOperationFilterInput<TRes>
   get level {
     final local$level = _instance.level;
@@ -53485,6 +54657,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -53495,6 +54668,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$PayoutTransactionStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -53507,6 +54681,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get method {
     final local$method = _instance.method;
     return local$method == null
@@ -53517,6 +54692,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -53527,6 +54703,7 @@ class _CopyWithImpl$Input$PayoutTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -53544,6 +54721,7 @@ class _CopyWithStubImpl$Input$PayoutTransactionFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$PayoutTransactionFilterInput>? and,
     List<Input$PayoutTransactionFilterInput>? or,
@@ -53563,50 +54741,66 @@ class _CopyWithStubImpl$Input$PayoutTransactionFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get royaltyReportId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeTransferId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePayoutId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get destinationAccountId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get currency =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$NullableOfAggregationLevelOperationFilterInput<TRes>
   get level =>
       CopyWith$Input$NullableOfAggregationLevelOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PayoutTransactionStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$PayoutTransactionStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get method =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -54069,6 +55263,7 @@ class _CopyWithImpl$Input$PayoutTransactionSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? userId = _undefined,
@@ -54118,6 +55313,7 @@ class _CopyWithStubImpl$Input$PayoutTransactionSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? userId,
@@ -54356,6 +55552,7 @@ class _CopyWithImpl$Input$PayoutTransactionStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -54382,6 +55579,7 @@ class _CopyWithStubImpl$Input$PayoutTransactionStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$PayoutTransactionStatus? eq,
     Enum$PayoutTransactionStatus? neq,
@@ -54593,6 +55791,7 @@ class _CopyWithImpl$Input$PeriodTimeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -54615,6 +55814,7 @@ class _CopyWithStubImpl$Input$PeriodTimeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$PeriodTime? eq,
     Enum$PeriodTime? neq,
@@ -55196,6 +56396,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -55255,6 +56456,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$PlatformRevenueFilterInput>? Function(
       Iterable<
@@ -55272,6 +56474,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$PlatformRevenueFilterInput>? Function(
       Iterable<
@@ -55289,6 +56492,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get subscriptionRevenue {
     final local$subscriptionRevenue = _instance.subscriptionRevenue;
     return local$subscriptionRevenue == null
@@ -55299,6 +56503,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get serviceRevenue {
     final local$serviceRevenue = _instance.serviceRevenue;
     return local$serviceRevenue == null
@@ -55309,6 +56514,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get grossRevenue {
     final local$grossRevenue = _instance.grossRevenue;
     return local$grossRevenue == null
@@ -55319,6 +56525,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get royaltyPayoutAmount {
     final local$royaltyPayoutAmount = _instance.royaltyPayoutAmount;
     return local$royaltyPayoutAmount == null
@@ -55329,6 +56536,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get servicePayoutAmount {
     final local$servicePayoutAmount = _instance.servicePayoutAmount;
     return local$servicePayoutAmount == null
@@ -55339,6 +56547,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get refundAmount {
     final local$refundAmount = _instance.refundAmount;
     return local$refundAmount == null
@@ -55349,6 +56558,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get totalPayoutAmount {
     final local$totalPayoutAmount = _instance.totalPayoutAmount;
     return local$totalPayoutAmount == null
@@ -55359,6 +56569,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get grossDeductions {
     final local$grossDeductions = _instance.grossDeductions;
     return local$grossDeductions == null
@@ -55369,6 +56580,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get commissionProfit {
     final local$commissionProfit = _instance.commissionProfit;
     return local$commissionProfit == null
@@ -55379,6 +56591,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get netProfit {
     final local$netProfit = _instance.netProfit;
     return local$netProfit == null
@@ -55389,6 +56602,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -55399,6 +56613,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -55409,6 +56624,7 @@ class _CopyWithImpl$Input$PlatformRevenueFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -55426,6 +56642,7 @@ class _CopyWithStubImpl$Input$PlatformRevenueFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$PlatformRevenueFilterInput>? and,
     List<Input$PlatformRevenueFilterInput>? or,
@@ -55444,46 +56661,61 @@ class _CopyWithStubImpl$Input$PlatformRevenueFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get subscriptionRevenue =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get serviceRevenue =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get grossRevenue =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get royaltyPayoutAmount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get servicePayoutAmount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get refundAmount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get totalPayoutAmount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get grossDeductions =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get commissionProfit =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get netProfit =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency =>
       CopyWith$Input$CurrencyTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -55937,6 +57169,7 @@ class _CopyWithImpl$Input$PlatformRevenueSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? subscriptionRevenue = _undefined,
     Object? serviceRevenue = _undefined,
@@ -55989,6 +57222,7 @@ class _CopyWithStubImpl$Input$PlatformRevenueSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? subscriptionRevenue,
     Enum$SortEnumType? serviceRevenue,
@@ -56499,6 +57733,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -56544,6 +57779,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$PlaylistFilterInput>? Function(
       Iterable<CopyWith$Input$PlaylistFilterInput<Input$PlaylistFilterInput>>?,
@@ -56557,6 +57793,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$PlaylistFilterInput>? Function(
       Iterable<CopyWith$Input$PlaylistFilterInput<Input$PlaylistFilterInput>>?,
@@ -56568,6 +57805,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -56578,6 +57816,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -56588,6 +57827,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name {
     final local$name = _instance.name;
     return local$name == null
@@ -56598,6 +57838,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get nameUnsigned {
     final local$nameUnsigned = _instance.nameUnsigned;
     return local$nameUnsigned == null
@@ -56608,6 +57849,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -56618,6 +57860,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get coverImage {
     final local$coverImage = _instance.coverImage;
     return local$coverImage == null
@@ -56628,6 +57871,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfPlaylistTracksInfoFilterInput<TRes>
   get tracksInfo {
     final local$tracksInfo = _instance.tracksInfo;
@@ -56641,6 +57885,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isPublic {
     final local$isPublic = _instance.isPublic;
     return local$isPublic == null
@@ -56651,6 +57896,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible {
     final local$isVisible = _instance.isVisible;
     return local$isVisible == null
@@ -56661,6 +57907,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -56671,6 +57918,7 @@ class _CopyWithImpl$Input$PlaylistFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -56688,6 +57936,7 @@ class _CopyWithStubImpl$Input$PlaylistFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$PlaylistFilterInput>? and,
     List<Input$PlaylistFilterInput>? or,
@@ -56704,43 +57953,56 @@ class _CopyWithStubImpl$Input$PlaylistFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get nameUnsigned =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get coverImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfPlaylistTracksInfoFilterInput<TRes>
   get tracksInfo =>
       CopyWith$Input$ListFilterInputTypeOfPlaylistTracksInfoFilterInput.stub(
         _res,
       );
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isPublic =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -57089,6 +58351,7 @@ class _CopyWithImpl$Input$PlaylistSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? userId = _undefined,
@@ -57129,6 +58392,7 @@ class _CopyWithStubImpl$Input$PlaylistSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? userId,
@@ -57380,6 +58644,7 @@ class _CopyWithImpl$Input$PlaylistTracksInfoFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -57399,6 +58664,7 @@ class _CopyWithImpl$Input$PlaylistTracksInfoFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$PlaylistTracksInfoFilterInput>? Function(
       Iterable<
@@ -57416,6 +58682,7 @@ class _CopyWithImpl$Input$PlaylistTracksInfoFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$PlaylistTracksInfoFilterInput>? Function(
       Iterable<
@@ -57433,6 +58700,7 @@ class _CopyWithImpl$Input$PlaylistTracksInfoFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId {
     final local$trackId = _instance.trackId;
     return local$trackId == null
@@ -57443,6 +58711,7 @@ class _CopyWithImpl$Input$PlaylistTracksInfoFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get addedTime {
     final local$addedTime = _instance.addedTime;
     return local$addedTime == null
@@ -57460,6 +58729,7 @@ class _CopyWithStubImpl$Input$PlaylistTracksInfoFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$PlaylistTracksInfoFilterInput>? and,
     List<Input$PlaylistTracksInfoFilterInput>? or,
@@ -57467,13 +58737,17 @@ class _CopyWithStubImpl$Input$PlaylistTracksInfoFilterInput<TRes>
     Input$DateTimeOperationFilterInput? addedTime,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get addedTime =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -57688,6 +58962,7 @@ class _CopyWithImpl$Input$PolicyStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -57710,6 +58985,7 @@ class _CopyWithStubImpl$Input$PolicyStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$PolicyStatus? eq,
     Enum$PolicyStatus? neq,
@@ -57927,6 +59203,7 @@ class _CopyWithImpl$Input$ProcessReportRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? reportId = _undefined,
     Object? status = _undefined,
@@ -57954,6 +59231,7 @@ class _CopyWithImpl$Input$ProcessReportRequestInput<TRes>
     }),
   );
 
+  @override
   TRes restrictionActionDetails(
     Iterable<Input$RestrictionActionDetailInput> Function(
       Iterable<
@@ -57978,6 +59256,7 @@ class _CopyWithStubImpl$Input$ProcessReportRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? reportId,
     Enum$ReportStatus? status,
@@ -57987,6 +59266,7 @@ class _CopyWithStubImpl$Input$ProcessReportRequestInput<TRes>
     String? note,
   }) => _res;
 
+  @override
   restrictionActionDetails(_fn) => _res;
 }
 
@@ -58368,6 +59648,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -58401,6 +59682,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$RecordingFilterInput>? Function(
       Iterable<
@@ -58416,6 +59698,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$RecordingFilterInput>? Function(
       Iterable<
@@ -58431,6 +59714,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -58441,6 +59725,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId {
     final local$trackId = _instance.trackId;
     return local$trackId == null
@@ -58451,6 +59736,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -58461,6 +59747,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfRecordingSplitFilterInput<TRes>
   get recordingSplits {
     final local$recordingSplits = _instance.recordingSplits;
@@ -58474,6 +59761,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version {
     final local$version = _instance.version;
     return local$version == null
@@ -58484,6 +59772,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RecordingStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -58496,6 +59785,7 @@ class _CopyWithImpl$Input$RecordingFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -58513,6 +59803,7 @@ class _CopyWithStubImpl$Input$RecordingFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$RecordingFilterInput>? and,
     List<Input$RecordingFilterInput>? or,
@@ -58525,29 +59816,38 @@ class _CopyWithStubImpl$Input$RecordingFilterInput<TRes>
     Input$DateTimeOperationFilterInput? createdAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfRecordingSplitFilterInput<TRes>
   get recordingSplits =>
       CopyWith$Input$ListFilterInputTypeOfRecordingSplitFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RecordingStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$RecordingStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -58780,6 +60080,7 @@ class _CopyWithImpl$Input$RecordingSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? trackId = _undefined,
@@ -58808,6 +60109,7 @@ class _CopyWithStubImpl$Input$RecordingSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? trackId,
@@ -59081,6 +60383,7 @@ class _CopyWithImpl$Input$RecordingSplitFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -59103,6 +60406,7 @@ class _CopyWithImpl$Input$RecordingSplitFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$RecordingSplitFilterInput>? Function(
       Iterable<
@@ -59120,6 +60424,7 @@ class _CopyWithImpl$Input$RecordingSplitFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$RecordingSplitFilterInput>? Function(
       Iterable<
@@ -59137,6 +60442,7 @@ class _CopyWithImpl$Input$RecordingSplitFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -59147,6 +60453,7 @@ class _CopyWithImpl$Input$RecordingSplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ArtistRoleOperationFilterInput<TRes> get artistRole {
     final local$artistRole = _instance.artistRole;
     return local$artistRole == null
@@ -59157,6 +60464,7 @@ class _CopyWithImpl$Input$RecordingSplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get percentage {
     final local$percentage = _instance.percentage;
     return local$percentage == null
@@ -59174,6 +60482,7 @@ class _CopyWithStubImpl$Input$RecordingSplitFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$RecordingSplitFilterInput>? and,
     List<Input$RecordingSplitFilterInput>? or,
@@ -59182,16 +60491,21 @@ class _CopyWithStubImpl$Input$RecordingSplitFilterInput<TRes>
     Input$DecimalOperationFilterInput? percentage,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ArtistRoleOperationFilterInput<TRes> get artistRole =>
       CopyWith$Input$ArtistRoleOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get percentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 }
@@ -59408,6 +60722,7 @@ class _CopyWithImpl$Input$RecordingStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -59430,6 +60745,7 @@ class _CopyWithStubImpl$Input$RecordingStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$RecordingStatus? eq,
     Enum$RecordingStatus? neq,
@@ -59549,6 +60865,7 @@ class _CopyWithImpl$Input$RedoRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? packageOrderId = _undefined,
     Object? revisionNumber = _undefined,
@@ -59572,6 +60889,7 @@ class _CopyWithStubImpl$Input$RedoRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? packageOrderId, int? revisionNumber, String? clientFeedback}) =>
       _res;
 }
@@ -59788,6 +61106,7 @@ class _CopyWithImpl$Input$RefundReasonTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -59810,6 +61129,7 @@ class _CopyWithStubImpl$Input$RefundReasonTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$RefundReasonType? eq,
     Enum$RefundReasonType? neq,
@@ -60232,6 +61552,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -60270,6 +61591,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$RefundTransactionFilterInput>? Function(
       Iterable<
@@ -60287,6 +61609,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$RefundTransactionFilterInput>? Function(
       Iterable<
@@ -60304,6 +61627,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -60314,6 +61638,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePaymentId {
     final local$stripePaymentId = _instance.stripePaymentId;
     return local$stripePaymentId == null
@@ -60324,6 +61649,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount {
     final local$amount = _instance.amount;
     return local$amount == null
@@ -60334,6 +61660,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -60344,6 +61671,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RefundReasonTypeOperationFilterInput<TRes> get reason {
     final local$reason = _instance.reason;
     return local$reason == null
@@ -60356,6 +61684,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RefundTransactionStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -60368,6 +61697,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -60378,6 +61708,7 @@ class _CopyWithImpl$Input$RefundTransactionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -60395,6 +61726,7 @@ class _CopyWithStubImpl$Input$RefundTransactionFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$RefundTransactionFilterInput>? and,
     List<Input$RefundTransactionFilterInput>? or,
@@ -60408,31 +61740,41 @@ class _CopyWithStubImpl$Input$RefundTransactionFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePaymentId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency =>
       CopyWith$Input$CurrencyTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RefundReasonTypeOperationFilterInput<TRes> get reason =>
       CopyWith$Input$RefundReasonTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RefundTransactionStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$RefundTransactionStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -60722,6 +62064,7 @@ class _CopyWithImpl$Input$RefundTransactionSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? stripePaymentId = _undefined,
@@ -60755,6 +62098,7 @@ class _CopyWithStubImpl$Input$RefundTransactionSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? stripePaymentId,
@@ -60987,6 +62331,7 @@ class _CopyWithImpl$Input$RefundTransactionStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -61013,6 +62358,7 @@ class _CopyWithStubImpl$Input$RefundTransactionStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$RefundTransactionStatus? eq,
     Enum$RefundTransactionStatus? neq,
@@ -61311,6 +62657,7 @@ class _CopyWithImpl$Input$ReleaseInfoFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -61336,6 +62683,7 @@ class _CopyWithImpl$Input$ReleaseInfoFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ReleaseInfoFilterInput>? Function(
       Iterable<
@@ -61351,6 +62699,7 @@ class _CopyWithImpl$Input$ReleaseInfoFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ReleaseInfoFilterInput>? Function(
       Iterable<
@@ -61366,6 +62715,7 @@ class _CopyWithImpl$Input$ReleaseInfoFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isRelease {
     final local$isRelease = _instance.isRelease;
     return local$isRelease == null
@@ -61376,6 +62726,7 @@ class _CopyWithImpl$Input$ReleaseInfoFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get releaseDate {
     final local$releaseDate = _instance.releaseDate;
     return local$releaseDate == null
@@ -61386,6 +62737,7 @@ class _CopyWithImpl$Input$ReleaseInfoFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get releasedAt {
     final local$releasedAt = _instance.releasedAt;
     return local$releasedAt == null
@@ -61396,6 +62748,7 @@ class _CopyWithImpl$Input$ReleaseInfoFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ReleaseStatusOperationFilterInput<TRes> get releaseStatus {
     final local$releaseStatus = _instance.releaseStatus;
     return local$releaseStatus == null
@@ -61415,6 +62768,7 @@ class _CopyWithStubImpl$Input$ReleaseInfoFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ReleaseInfoFilterInput>? and,
     List<Input$ReleaseInfoFilterInput>? or,
@@ -61424,19 +62778,25 @@ class _CopyWithStubImpl$Input$ReleaseInfoFilterInput<TRes>
     Input$ReleaseStatusOperationFilterInput? releaseStatus,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isRelease =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get releaseDate =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get releasedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ReleaseStatusOperationFilterInput<TRes> get releaseStatus =>
       CopyWith$Input$ReleaseStatusOperationFilterInput.stub(_res);
 }
@@ -61591,6 +62951,7 @@ class _CopyWithImpl$Input$ReleaseInfoInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? isRelease = _undefined,
     Object? releaseDate = _undefined,
@@ -61615,6 +62976,7 @@ class _CopyWithStubImpl$Input$ReleaseInfoInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     bool? isRelease,
     DateTime? releaseDate,
@@ -61803,6 +63165,7 @@ class _CopyWithImpl$Input$ReleaseInfoSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? isRelease = _undefined,
     Object? releaseDate = _undefined,
@@ -61829,6 +63192,7 @@ class _CopyWithStubImpl$Input$ReleaseInfoSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? isRelease,
     Enum$SortEnumType? releaseDate,
@@ -62047,6 +63411,7 @@ class _CopyWithImpl$Input$ReleaseStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -62069,6 +63434,7 @@ class _CopyWithStubImpl$Input$ReleaseStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ReleaseStatus? eq,
     Enum$ReleaseStatus? neq,
@@ -62185,6 +63551,7 @@ class _CopyWithImpl$Input$RemoveFromPlaylistRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? trackId = _undefined, Object? playlistId = _undefined}) =>
       _then(
         Input$RemoveFromPlaylistRequestInput._({
@@ -62202,6 +63569,7 @@ class _CopyWithStubImpl$Input$RemoveFromPlaylistRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? trackId, String? playlistId}) => _res;
 }
 
@@ -62303,6 +63671,7 @@ class _CopyWithImpl$Input$RemoveTrackFromAlbumRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? trackId = _undefined, Object? albumId = _undefined}) =>
       _then(
         Input$RemoveTrackFromAlbumRequestInput._({
@@ -62321,6 +63690,7 @@ class _CopyWithStubImpl$Input$RemoveTrackFromAlbumRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? trackId, String? albumId}) => _res;
 }
 
@@ -63066,6 +64436,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -63140,6 +64511,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ReportFilterInput>? Function(
       Iterable<CopyWith$Input$ReportFilterInput<Input$ReportFilterInput>>?,
@@ -63151,6 +64523,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ReportFilterInput>? Function(
       Iterable<CopyWith$Input$ReportFilterInput<Input$ReportFilterInput>>?,
@@ -63162,6 +64535,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -63172,6 +64546,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get reportedUserId {
     final local$reportedUserId = _instance.reportedUserId;
     return local$reportedUserId == null
@@ -63182,6 +64557,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get reporterId {
     final local$reporterId = _instance.reporterId;
     return local$reporterId == null
@@ -63192,6 +64568,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ReportTypeOperationFilterInput<TRes> get reportType {
     final local$reportType = _instance.reportType;
     return local$reportType == null
@@ -63202,6 +64579,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -63212,6 +64590,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ReportStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -63222,6 +64601,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ReportPriorityOperationFilterInput<TRes> get priority {
     final local$priority = _instance.priority;
     return local$priority == null
@@ -63234,6 +64614,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get relatedContentId {
     final local$relatedContentId = _instance.relatedContentId;
     return local$relatedContentId == null
@@ -63244,6 +64625,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$NullableOfReportRelatedContentTypeOperationFilterInput<TRes>
   get relatedContentType {
     final local$relatedContentType = _instance.relatedContentType;
@@ -63257,6 +64639,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get evidences {
     final local$evidences = _instance.evidences;
     return local$evidences == null
@@ -63267,6 +64650,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get assignedModeratorId {
     final local$assignedModeratorId = _instance.assignedModeratorId;
     return local$assignedModeratorId == null
@@ -63277,6 +64661,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$NullableOfReportActionOperationFilterInput<TRes>
   get actionTaken {
     final local$actionTaken = _instance.actionTaken;
@@ -63290,6 +64675,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get note {
     final local$note = _instance.note;
     return local$note == null
@@ -63300,6 +64686,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get resolvedAt {
     final local$resolvedAt = _instance.resolvedAt;
     return local$resolvedAt == null
@@ -63310,6 +64697,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get totalReportsCount {
     final local$totalReportsCount = _instance.totalReportsCount;
     return local$totalReportsCount == null
@@ -63320,6 +64708,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDeleted {
     final local$isDeleted = _instance.isDeleted;
     return local$isDeleted == null
@@ -63330,6 +64719,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get backgroundJobId {
     final local$backgroundJobId = _instance.backgroundJobId;
     return local$backgroundJobId == null
@@ -63340,6 +64730,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -63350,6 +64741,7 @@ class _CopyWithImpl$Input$ReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -63367,6 +64759,7 @@ class _CopyWithStubImpl$Input$ReportFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ReportFilterInput>? and,
     List<Input$ReportFilterInput>? or,
@@ -63392,68 +64785,89 @@ class _CopyWithStubImpl$Input$ReportFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get reportedUserId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get reporterId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ReportTypeOperationFilterInput<TRes> get reportType =>
       CopyWith$Input$ReportTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ReportStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$ReportStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ReportPriorityOperationFilterInput<TRes> get priority =>
       CopyWith$Input$ReportPriorityOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get relatedContentId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$NullableOfReportRelatedContentTypeOperationFilterInput<TRes>
   get relatedContentType =>
       CopyWith$Input$NullableOfReportRelatedContentTypeOperationFilterInput.stub(
         _res,
       );
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get evidences =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get assignedModeratorId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$NullableOfReportActionOperationFilterInput<TRes>
   get actionTaken =>
       CopyWith$Input$NullableOfReportActionOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get note =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get resolvedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get totalReportsCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDeleted =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get backgroundJobId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -63670,6 +65084,7 @@ class _CopyWithImpl$Input$ReportPriorityOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -63692,6 +65107,7 @@ class _CopyWithStubImpl$Input$ReportPriorityOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ReportPriority? eq,
     Enum$ReportPriority? neq,
@@ -64281,6 +65697,7 @@ class _CopyWithImpl$Input$ReportSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? reportedUserId = _undefined,
@@ -64345,6 +65762,7 @@ class _CopyWithStubImpl$Input$ReportSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? reportedUserId,
@@ -64577,6 +65995,7 @@ class _CopyWithImpl$Input$ReportStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -64599,6 +66018,7 @@ class _CopyWithStubImpl$Input$ReportStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ReportStatus? eq,
     Enum$ReportStatus? neq,
@@ -64810,6 +66230,7 @@ class _CopyWithImpl$Input$ReportTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -64832,6 +66253,7 @@ class _CopyWithStubImpl$Input$ReportTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$ReportType? eq,
     Enum$ReportType? neq,
@@ -65068,6 +66490,7 @@ class _CopyWithImpl$Input$RequestBudgetFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -65084,6 +66507,7 @@ class _CopyWithImpl$Input$RequestBudgetFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$RequestBudgetFilterInput>? Function(
       Iterable<
@@ -65099,6 +66523,7 @@ class _CopyWithImpl$Input$RequestBudgetFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$RequestBudgetFilterInput>? Function(
       Iterable<
@@ -65114,6 +66539,7 @@ class _CopyWithImpl$Input$RequestBudgetFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get min {
     final local$min = _instance.min;
     return local$min == null
@@ -65124,6 +66550,7 @@ class _CopyWithImpl$Input$RequestBudgetFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get max {
     final local$max = _instance.max;
     return local$max == null
@@ -65141,6 +66568,7 @@ class _CopyWithStubImpl$Input$RequestBudgetFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$RequestBudgetFilterInput>? and,
     List<Input$RequestBudgetFilterInput>? or,
@@ -65148,13 +66576,17 @@ class _CopyWithStubImpl$Input$RequestBudgetFilterInput<TRes>
     Input$DecimalOperationFilterInput? max,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get min =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get max =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 }
@@ -65246,6 +66678,7 @@ class _CopyWithImpl$Input$RequestBudgetInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? min = _undefined, Object? max = _undefined}) => _then(
     Input$RequestBudgetInput._({
       ..._instance._$data,
@@ -65261,6 +66694,7 @@ class _CopyWithStubImpl$Input$RequestBudgetInput<TRes>
 
   TRes _res;
 
+  @override
   call({double? min, double? max}) => _res;
 }
 
@@ -65379,6 +66813,7 @@ class _CopyWithImpl$Input$RequestBudgetSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? min = _undefined, Object? max = _undefined}) => _then(
     Input$RequestBudgetSortInput._({
       ..._instance._$data,
@@ -65394,6 +66829,7 @@ class _CopyWithStubImpl$Input$RequestBudgetSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({Enum$SortEnumType? min, Enum$SortEnumType? max}) => _res;
 }
 
@@ -65547,6 +66983,7 @@ class _CopyWithImpl$Input$RequestCreatingRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? title = _undefined,
     Object? summary = _undefined,
@@ -65568,6 +67005,7 @@ class _CopyWithImpl$Input$RequestCreatingRequestInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$RequestBudgetInput<TRes> get budget {
     final local$budget = _instance.budget;
     return CopyWith$Input$RequestBudgetInput(
@@ -65583,6 +67021,7 @@ class _CopyWithStubImpl$Input$RequestCreatingRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? title,
     String? summary,
@@ -65591,6 +67030,7 @@ class _CopyWithStubImpl$Input$RequestCreatingRequestInput<TRes>
     Input$RequestBudgetInput? budget,
   }) => _res;
 
+  @override
   CopyWith$Input$RequestBudgetInput<TRes> get budget =>
       CopyWith$Input$RequestBudgetInput.stub(_res);
 }
@@ -66324,6 +67764,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -66395,6 +67836,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$RequestFilterInput>? Function(
       Iterable<CopyWith$Input$RequestFilterInput<Input$RequestFilterInput>>?,
@@ -66406,6 +67848,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$RequestFilterInput>? Function(
       Iterable<CopyWith$Input$RequestFilterInput<Input$RequestFilterInput>>?,
@@ -66417,6 +67860,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -66427,6 +67871,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get requestUserId {
     final local$requestUserId = _instance.requestUserId;
     return local$requestUserId == null
@@ -66437,6 +67882,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get artistId {
     final local$artistId = _instance.artistId;
     return local$artistId == null
@@ -66447,6 +67893,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get packageId {
     final local$packageId = _instance.packageId;
     return local$packageId == null
@@ -66457,6 +67904,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get title {
     final local$title = _instance.title;
     return local$title == null
@@ -66467,6 +67915,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get titleUnsigned {
     final local$titleUnsigned = _instance.titleUnsigned;
     return local$titleUnsigned == null
@@ -66477,6 +67926,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get summary {
     final local$summary = _instance.summary;
     return local$summary == null
@@ -66487,6 +67937,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get summaryUnsigned {
     final local$summaryUnsigned = _instance.summaryUnsigned;
     return local$summaryUnsigned == null
@@ -66497,6 +67948,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get detailDescription {
     final local$detailDescription = _instance.detailDescription;
     return local$detailDescription == null
@@ -66507,6 +67959,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get requirements {
     final local$requirements = _instance.requirements;
     return local$requirements == null
@@ -66517,6 +67970,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RequestBudgetFilterInput<TRes> get budget {
     final local$budget = _instance.budget;
     return local$budget == null
@@ -66527,6 +67981,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get postCreatedTime {
     final local$postCreatedTime = _instance.postCreatedTime;
     return local$postCreatedTime == null
@@ -66537,6 +67992,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -66547,6 +68003,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RequestTypeOperationFilterInput<TRes> get type {
     final local$type = _instance.type;
     return local$type == null
@@ -66557,6 +68014,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -66567,6 +68025,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get deadline {
     final local$deadline = _instance.deadline;
     return local$deadline == null
@@ -66577,6 +68036,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RequestStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -66589,6 +68049,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get requestCreatedTime {
     final local$requestCreatedTime = _instance.requestCreatedTime;
     return local$requestCreatedTime == null
@@ -66599,6 +68060,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get notes {
     final local$notes = _instance.notes;
     return local$notes == null
@@ -66616,6 +68078,7 @@ class _CopyWithStubImpl$Input$RequestFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$RequestFilterInput>? and,
     List<Input$RequestFilterInput>? or,
@@ -66640,64 +68103,85 @@ class _CopyWithStubImpl$Input$RequestFilterInput<TRes>
     Input$StringOperationFilterInput? notes,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get requestUserId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get artistId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get packageId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get title =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get titleUnsigned =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get summary =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get summaryUnsigned =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get detailDescription =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get requirements =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RequestBudgetFilterInput<TRes> get budget =>
       CopyWith$Input$RequestBudgetFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get postCreatedTime =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RequestTypeOperationFilterInput<TRes> get type =>
       CopyWith$Input$RequestTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency =>
       CopyWith$Input$CurrencyTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get deadline =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RequestStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$RequestStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get requestCreatedTime =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get notes =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 }
@@ -67301,6 +68785,7 @@ class _CopyWithImpl$Input$RequestSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? requestUserId = _undefined,
@@ -67356,6 +68841,7 @@ class _CopyWithImpl$Input$RequestSortInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$RequestBudgetSortInput<TRes> get budget {
     final local$budget = _instance.budget;
     return local$budget == null
@@ -67373,6 +68859,7 @@ class _CopyWithStubImpl$Input$RequestSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? requestUserId,
@@ -67395,6 +68882,7 @@ class _CopyWithStubImpl$Input$RequestSortInput<TRes>
     Enum$SortEnumType? notes,
   }) => _res;
 
+  @override
   CopyWith$Input$RequestBudgetSortInput<TRes> get budget =>
       CopyWith$Input$RequestBudgetSortInput.stub(_res);
 }
@@ -67609,6 +69097,7 @@ class _CopyWithImpl$Input$RequestStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -67631,6 +69120,7 @@ class _CopyWithStubImpl$Input$RequestStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$RequestStatus? eq,
     Enum$RequestStatus? neq,
@@ -67847,6 +69337,7 @@ class _CopyWithImpl$Input$RequestTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -67869,6 +69360,7 @@ class _CopyWithStubImpl$Input$RequestTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$RequestType? eq,
     Enum$RequestType? neq,
@@ -68111,6 +69603,7 @@ class _CopyWithImpl$Input$RequestUpdatingRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
@@ -68133,6 +69626,7 @@ class _CopyWithImpl$Input$RequestUpdatingRequestInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$RequestBudgetInput<TRes> get budget {
     final local$budget = _instance.budget;
     return local$budget == null
@@ -68150,6 +69644,7 @@ class _CopyWithStubImpl$Input$RequestUpdatingRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? id,
     String? title,
@@ -68160,6 +69655,7 @@ class _CopyWithStubImpl$Input$RequestUpdatingRequestInput<TRes>
     Enum$RequestStatus? status,
   }) => _res;
 
+  @override
   CopyWith$Input$RequestBudgetInput<TRes> get budget =>
       CopyWith$Input$RequestBudgetInput.stub(_res);
 }
@@ -68273,6 +69769,7 @@ class _CopyWithImpl$Input$RestrictionActionDetailInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? restrictionAction = _undefined,
     Object? note = _undefined,
@@ -68292,6 +69789,7 @@ class _CopyWithStubImpl$Input$RestrictionActionDetailInput<TRes>
 
   TRes _res;
 
+  @override
   call({Enum$RestrictionAction? restrictionAction, String? note}) => _res;
 }
 
@@ -68613,6 +70111,7 @@ class _CopyWithImpl$Input$RestrictionFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -68641,6 +70140,7 @@ class _CopyWithImpl$Input$RestrictionFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$RestrictionFilterInput>? Function(
       Iterable<
@@ -68656,6 +70156,7 @@ class _CopyWithImpl$Input$RestrictionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$RestrictionFilterInput>? Function(
       Iterable<
@@ -68671,6 +70172,7 @@ class _CopyWithImpl$Input$RestrictionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$RestrictionTypeOperationFilterInput<TRes> get type {
     final local$type = _instance.type;
     return local$type == null
@@ -68683,6 +70185,7 @@ class _CopyWithImpl$Input$RestrictionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$NullableOfRestrictionActionOperationFilterInput<TRes>
   get action {
     final local$action = _instance.action;
@@ -68696,6 +70199,7 @@ class _CopyWithImpl$Input$RestrictionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get reason {
     final local$reason = _instance.reason;
     return local$reason == null
@@ -68706,6 +70210,7 @@ class _CopyWithImpl$Input$RestrictionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get restrictedAt {
     final local$restrictedAt = _instance.restrictedAt;
     return local$restrictedAt == null
@@ -68716,6 +70221,7 @@ class _CopyWithImpl$Input$RestrictionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get expired {
     final local$expired = _instance.expired;
     return local$expired == null
@@ -68733,6 +70239,7 @@ class _CopyWithStubImpl$Input$RestrictionFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$RestrictionFilterInput>? and,
     List<Input$RestrictionFilterInput>? or,
@@ -68743,23 +70250,30 @@ class _CopyWithStubImpl$Input$RestrictionFilterInput<TRes>
     Input$DateTimeOperationFilterInput? expired,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$RestrictionTypeOperationFilterInput<TRes> get type =>
       CopyWith$Input$RestrictionTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$NullableOfRestrictionActionOperationFilterInput<TRes>
   get action =>
       CopyWith$Input$NullableOfRestrictionActionOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get reason =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get restrictedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get expired =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -68965,6 +70479,7 @@ class _CopyWithImpl$Input$RestrictionSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? type = _undefined,
     Object? action = _undefined,
@@ -68990,6 +70505,7 @@ class _CopyWithStubImpl$Input$RestrictionSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? type,
     Enum$SortEnumType? action,
@@ -69211,6 +70727,7 @@ class _CopyWithImpl$Input$RestrictionTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -69233,6 +70750,7 @@ class _CopyWithStubImpl$Input$RestrictionTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$RestrictionType? eq,
     Enum$RestrictionType? neq,
@@ -69522,6 +71040,7 @@ class _CopyWithImpl$Input$ReviewFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -69545,6 +71064,7 @@ class _CopyWithImpl$Input$ReviewFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$ReviewFilterInput>? Function(
       Iterable<CopyWith$Input$ReviewFilterInput<Input$ReviewFilterInput>>?,
@@ -69556,6 +71076,7 @@ class _CopyWithImpl$Input$ReviewFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$ReviewFilterInput>? Function(
       Iterable<CopyWith$Input$ReviewFilterInput<Input$ReviewFilterInput>>?,
@@ -69567,6 +71088,7 @@ class _CopyWithImpl$Input$ReviewFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get rating {
     final local$rating = _instance.rating;
     return local$rating == null
@@ -69577,6 +71099,7 @@ class _CopyWithImpl$Input$ReviewFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get content {
     final local$content = _instance.content;
     return local$content == null
@@ -69587,6 +71110,7 @@ class _CopyWithImpl$Input$ReviewFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -69597,6 +71121,7 @@ class _CopyWithImpl$Input$ReviewFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -69614,6 +71139,7 @@ class _CopyWithStubImpl$Input$ReviewFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$ReviewFilterInput>? and,
     List<Input$ReviewFilterInput>? or,
@@ -69623,19 +71149,25 @@ class _CopyWithStubImpl$Input$ReviewFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get rating =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get content =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -69815,6 +71347,7 @@ class _CopyWithImpl$Input$ReviewSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? rating = _undefined,
     Object? content = _undefined,
@@ -69839,6 +71372,7 @@ class _CopyWithStubImpl$Input$ReviewSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? rating,
     Enum$SortEnumType? content,
@@ -70287,6 +71821,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -70327,6 +71862,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$RoyaltyPolicyFilterInput>? Function(
       Iterable<
@@ -70342,6 +71878,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$RoyaltyPolicyFilterInput>? Function(
       Iterable<
@@ -70357,6 +71894,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -70367,6 +71905,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get ratePerStream {
     final local$ratePerStream = _instance.ratePerStream;
     return local$ratePerStream == null
@@ -70377,6 +71916,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -70387,6 +71927,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get recordingPercentage {
     final local$recordingPercentage = _instance.recordingPercentage;
     return local$recordingPercentage == null
@@ -70397,6 +71938,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get workPercentage {
     final local$workPercentage = _instance.workPercentage;
     return local$workPercentage == null
@@ -70407,6 +71949,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version {
     final local$version = _instance.version;
     return local$version == null
@@ -70417,6 +71960,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$PolicyStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -70427,6 +71971,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -70437,6 +71982,7 @@ class _CopyWithImpl$Input$RoyaltyPolicyFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -70454,6 +72000,7 @@ class _CopyWithStubImpl$Input$RoyaltyPolicyFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$RoyaltyPolicyFilterInput>? and,
     List<Input$RoyaltyPolicyFilterInput>? or,
@@ -70468,34 +72015,45 @@ class _CopyWithStubImpl$Input$RoyaltyPolicyFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get ratePerStream =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency =>
       CopyWith$Input$CurrencyTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get recordingPercentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get workPercentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PolicyStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$PolicyStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -70819,6 +72377,7 @@ class _CopyWithImpl$Input$RoyaltyPolicySortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? ratePerStream = _undefined,
@@ -70856,6 +72415,7 @@ class _CopyWithStubImpl$Input$RoyaltyPolicySortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? ratePerStream,
@@ -71279,6 +72839,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -71316,6 +72877,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$RoyaltyReportFilterInput>? Function(
       Iterable<
@@ -71331,6 +72893,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$RoyaltyReportFilterInput>? Function(
       Iterable<
@@ -71346,6 +72909,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -71356,6 +72920,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId {
     final local$trackId = _instance.trackId;
     return local$trackId == null
@@ -71366,6 +72931,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get month {
     final local$month = _instance.month;
     return local$month == null
@@ -71376,6 +72942,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get year {
     final local$year = _instance.year;
     return local$year == null
@@ -71386,6 +72953,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get streamCount {
     final local$streamCount = _instance.streamCount;
     return local$streamCount == null
@@ -71396,6 +72964,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get totalRoyaltyAmount {
     final local$totalRoyaltyAmount = _instance.totalRoyaltyAmount;
     return local$totalRoyaltyAmount == null
@@ -71406,6 +72975,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfRoyaltySplitFilterInput<TRes>
   get royaltySplits {
     final local$royaltySplits = _instance.royaltySplits;
@@ -71419,6 +72989,7 @@ class _CopyWithImpl$Input$RoyaltyReportFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -71436,6 +73007,7 @@ class _CopyWithStubImpl$Input$RoyaltyReportFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$RoyaltyReportFilterInput>? and,
     List<Input$RoyaltyReportFilterInput>? or,
@@ -71449,32 +73021,42 @@ class _CopyWithStubImpl$Input$RoyaltyReportFilterInput<TRes>
     Input$DateTimeOperationFilterInput? createdAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get month =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get year =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get streamCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get totalRoyaltyAmount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfRoyaltySplitFilterInput<TRes>
   get royaltySplits =>
       CopyWith$Input$ListFilterInputTypeOfRoyaltySplitFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -71738,6 +73320,7 @@ class _CopyWithImpl$Input$RoyaltyReportSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? trackId = _undefined,
@@ -71769,6 +73352,7 @@ class _CopyWithStubImpl$Input$RoyaltyReportSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? trackId,
@@ -72127,6 +73711,7 @@ class _CopyWithImpl$Input$RoyaltySplitFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -72157,6 +73742,7 @@ class _CopyWithImpl$Input$RoyaltySplitFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$RoyaltySplitFilterInput>? Function(
       Iterable<
@@ -72172,6 +73758,7 @@ class _CopyWithImpl$Input$RoyaltySplitFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$RoyaltySplitFilterInput>? Function(
       Iterable<
@@ -72187,6 +73774,7 @@ class _CopyWithImpl$Input$RoyaltySplitFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -72197,6 +73785,7 @@ class _CopyWithImpl$Input$RoyaltySplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ArtistRoleOperationFilterInput<TRes> get artistRole {
     final local$artistRole = _instance.artistRole;
     return local$artistRole == null
@@ -72207,6 +73796,7 @@ class _CopyWithImpl$Input$RoyaltySplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get percentage {
     final local$percentage = _instance.percentage;
     return local$percentage == null
@@ -72217,6 +73807,7 @@ class _CopyWithImpl$Input$RoyaltySplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount {
     final local$amount = _instance.amount;
     return local$amount == null
@@ -72227,6 +73818,7 @@ class _CopyWithImpl$Input$RoyaltySplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$AggregationLevelOperationFilterInput<TRes> get level {
     final local$level = _instance.level;
     return local$level == null
@@ -72239,6 +73831,7 @@ class _CopyWithImpl$Input$RoyaltySplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isTransferred {
     final local$isTransferred = _instance.isTransferred;
     return local$isTransferred == null
@@ -72256,6 +73849,7 @@ class _CopyWithStubImpl$Input$RoyaltySplitFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$RoyaltySplitFilterInput>? and,
     List<Input$RoyaltySplitFilterInput>? or,
@@ -72267,25 +73861,33 @@ class _CopyWithStubImpl$Input$RoyaltySplitFilterInput<TRes>
     Input$BooleanOperationFilterInput? isTransferred,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ArtistRoleOperationFilterInput<TRes> get artistRole =>
       CopyWith$Input$ArtistRoleOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get percentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$AggregationLevelOperationFilterInput<TRes> get level =>
       CopyWith$Input$AggregationLevelOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isTransferred =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 }
@@ -72734,6 +74336,7 @@ class _CopyWithImpl$Input$StringOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -72767,6 +74370,7 @@ class _CopyWithImpl$Input$StringOperationFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$StringOperationFilterInput>? Function(
       Iterable<
@@ -72784,6 +74388,7 @@ class _CopyWithImpl$Input$StringOperationFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$StringOperationFilterInput>? Function(
       Iterable<
@@ -72808,6 +74413,7 @@ class _CopyWithStubImpl$Input$StringOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$StringOperationFilterInput>? and,
     List<Input$StringOperationFilterInput>? or,
@@ -72823,8 +74429,10 @@ class _CopyWithStubImpl$Input$StringOperationFilterInput<TRes>
     String? nendsWith,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 }
 
@@ -72930,6 +74538,7 @@ class _CopyWithImpl$Input$StripeProductRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? id = _undefined, Object? stripePriceIds = _undefined}) =>
       _then(
         Input$StripeProductRequestInput._({
@@ -72947,6 +74556,7 @@ class _CopyWithStubImpl$Input$StripeProductRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? id, List<String>? stripePriceIds}) => _res;
 }
 
@@ -73065,6 +74675,7 @@ class _CopyWithImpl$Input$SubmitDeliveryRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? packageOrderId = _undefined,
     Object? deliveryFileUrl = _undefined,
@@ -73087,6 +74698,7 @@ class _CopyWithStubImpl$Input$SubmitDeliveryRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? packageOrderId, String? deliveryFileUrl, String? notes}) =>
       _res;
 }
@@ -73584,6 +75196,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -73628,6 +75241,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$SubscriptionFilterInput>? Function(
       Iterable<
@@ -73643,6 +75257,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$SubscriptionFilterInput>? Function(
       Iterable<
@@ -73658,6 +75273,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -73668,6 +75284,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name {
     final local$name = _instance.name;
     return local$name == null
@@ -73678,6 +75295,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -73688,6 +75306,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get code {
     final local$code = _instance.code;
     return local$code == null
@@ -73698,6 +75317,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get version {
     final local$version = _instance.version;
     return local$version == null
@@ -73708,6 +75328,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount {
     final local$amount = _instance.amount;
     return local$amount == null
@@ -73718,6 +75339,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency {
     final local$currency = _instance.currency;
     return local$currency == null
@@ -73728,6 +75350,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$SubscriptionTierOperationFilterInput<TRes> get tier {
     final local$tier = _instance.tier;
     return local$tier == null
@@ -73740,6 +75363,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$SubscriptionStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -73752,6 +75376,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -73762,6 +75387,7 @@ class _CopyWithImpl$Input$SubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -73779,6 +75405,7 @@ class _CopyWithStubImpl$Input$SubscriptionFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$SubscriptionFilterInput>? and,
     List<Input$SubscriptionFilterInput>? or,
@@ -73795,40 +75422,53 @@ class _CopyWithStubImpl$Input$SubscriptionFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get code =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get version =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get amount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes> get currency =>
       CopyWith$Input$CurrencyTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$SubscriptionTierOperationFilterInput<TRes> get tier =>
       CopyWith$Input$SubscriptionTierOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$SubscriptionStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$SubscriptionStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -74298,6 +75938,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -74346,6 +75987,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$SubscriptionPlanFilterInput>? Function(
       Iterable<
@@ -74363,6 +76005,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$SubscriptionPlanFilterInput>? Function(
       Iterable<
@@ -74380,6 +76023,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -74390,6 +76034,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionId {
     final local$subscriptionId = _instance.subscriptionId;
     return local$subscriptionId == null
@@ -74400,6 +76045,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductId {
     final local$stripeProductId = _instance.stripeProductId;
     return local$stripeProductId == null
@@ -74410,6 +76056,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get stripeProductActive {
     final local$stripeProductActive = _instance.stripeProductActive;
     return local$stripeProductActive == null
@@ -74420,6 +76067,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductName {
     final local$stripeProductName = _instance.stripeProductName;
     return local$stripeProductName == null
@@ -74430,6 +76078,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get stripeProductImages {
     final local$stripeProductImages = _instance.stripeProductImages;
     return local$stripeProductImages == null
@@ -74440,6 +76089,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductType {
     final local$stripeProductType = _instance.stripeProductType;
     return local$stripeProductType == null
@@ -74450,6 +76100,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get stripeProductMetadata {
     final local$stripeProductMetadata = _instance.stripeProductMetadata;
@@ -74463,6 +76114,7 @@ class _CopyWithImpl$Input$SubscriptionPlanFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput<TRes>
   get subscriptionPlanPrices {
     final local$subscriptionPlanPrices = _instance.subscriptionPlanPrices;
@@ -74483,6 +76135,7 @@ class _CopyWithStubImpl$Input$SubscriptionPlanFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$SubscriptionPlanFilterInput>? and,
     List<Input$SubscriptionPlanFilterInput>? or,
@@ -74498,35 +76151,46 @@ class _CopyWithStubImpl$Input$SubscriptionPlanFilterInput<TRes>
     subscriptionPlanPrices,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get stripeProductActive =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get stripeProductImages =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductType =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get stripeProductMetadata =>
       CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput<TRes>
   get subscriptionPlanPrices =>
       CopyWith$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput.stub(
@@ -74970,6 +76634,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -75013,6 +76678,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$SubscriptionPlanPriceFilterInput>? Function(
       Iterable<
@@ -75030,6 +76696,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$SubscriptionPlanPriceFilterInput>? Function(
       Iterable<
@@ -75047,6 +76714,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePriceId {
     final local$stripePriceId = _instance.stripePriceId;
     return local$stripePriceId == null
@@ -75057,6 +76725,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get stripePriceActive {
     final local$stripePriceActive = _instance.stripePriceActive;
     return local$stripePriceActive == null
@@ -75067,6 +76736,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get stripePriceUnitAmount {
     final local$stripePriceUnitAmount = _instance.stripePriceUnitAmount;
     return local$stripePriceUnitAmount == null
@@ -75077,6 +76747,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePriceCurrency {
     final local$stripePriceCurrency = _instance.stripePriceCurrency;
     return local$stripePriceCurrency == null
@@ -75087,6 +76758,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePriceLookupKey {
     final local$stripePriceLookupKey = _instance.stripePriceLookupKey;
     return local$stripePriceLookupKey == null
@@ -75097,6 +76769,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get stripePriceMetadata {
     final local$stripePriceMetadata = _instance.stripePriceMetadata;
@@ -75110,6 +76783,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$PeriodTimeOperationFilterInput<TRes> get interval {
     final local$interval = _instance.interval;
     return local$interval == null
@@ -75120,6 +76794,7 @@ class _CopyWithImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get intervalCount {
     final local$intervalCount = _instance.intervalCount;
     return local$intervalCount == null
@@ -75137,6 +76812,7 @@ class _CopyWithStubImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$SubscriptionPlanPriceFilterInput>? and,
     List<Input$SubscriptionPlanPriceFilterInput>? or,
@@ -75150,32 +76826,42 @@ class _CopyWithStubImpl$Input$SubscriptionPlanPriceFilterInput<TRes>
     Input$LongOperationFilterInput? intervalCount,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePriceId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get stripePriceActive =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get stripePriceUnitAmount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePriceCurrency =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripePriceLookupKey =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get stripePriceMetadata =>
       CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$PeriodTimeOperationFilterInput<TRes> get interval =>
       CopyWith$Input$PeriodTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get intervalCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 }
@@ -75417,6 +77103,7 @@ class _CopyWithImpl$Input$SubscriptionPlanSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? subscriptionId = _undefined,
@@ -75448,6 +77135,7 @@ class _CopyWithStubImpl$Input$SubscriptionPlanSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? subscriptionId,
@@ -76130,6 +77818,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -76206,6 +77895,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$SubscriptionSnapshotFilterInput>? Function(
       Iterable<
@@ -76223,6 +77913,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$SubscriptionSnapshotFilterInput>? Function(
       Iterable<
@@ -76240,6 +77931,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionName {
     final local$subscriptionName = _instance.subscriptionName;
     return local$subscriptionName == null
@@ -76250,6 +77942,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionDescription {
     final local$subscriptionDescription = _instance.subscriptionDescription;
     return local$subscriptionDescription == null
@@ -76260,6 +77953,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionCode {
     final local$subscriptionCode = _instance.subscriptionCode;
     return local$subscriptionCode == null
@@ -76270,6 +77964,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get subscriptionVersion {
     final local$subscriptionVersion = _instance.subscriptionVersion;
     return local$subscriptionVersion == null
@@ -76280,6 +77975,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get subscriptionAmount {
     final local$subscriptionAmount = _instance.subscriptionAmount;
     return local$subscriptionAmount == null
@@ -76290,6 +77986,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes>
   get subscriptionCurrency {
     final local$subscriptionCurrency = _instance.subscriptionCurrency;
@@ -76301,6 +77998,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$SubscriptionTierOperationFilterInput<TRes>
   get subscriptionTier {
     final local$subscriptionTier = _instance.subscriptionTier;
@@ -76314,6 +78012,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$SubscriptionStatusOperationFilterInput<TRes>
   get subscriptionStatus {
     final local$subscriptionStatus = _instance.subscriptionStatus;
@@ -76327,6 +78026,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput<TRes>
   get subscriptionPlanPrices {
     final local$subscriptionPlanPrices = _instance.subscriptionPlanPrices;
@@ -76340,6 +78040,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductId {
     final local$stripeProductId = _instance.stripeProductId;
     return local$stripeProductId == null
@@ -76350,6 +78051,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get stripeProductActive {
     final local$stripeProductActive = _instance.stripeProductActive;
     return local$stripeProductActive == null
@@ -76360,6 +78062,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductName {
     final local$stripeProductName = _instance.stripeProductName;
     return local$stripeProductName == null
@@ -76370,6 +78073,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get stripeProductImages {
     final local$stripeProductImages = _instance.stripeProductImages;
     return local$stripeProductImages == null
@@ -76380,6 +78084,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductType {
     final local$stripeProductType = _instance.stripeProductType;
     return local$stripeProductType == null
@@ -76390,6 +78095,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get stripeProductMetadata {
     final local$stripeProductMetadata = _instance.stripeProductMetadata;
@@ -76410,6 +78116,7 @@ class _CopyWithStubImpl$Input$SubscriptionSnapshotFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$SubscriptionSnapshotFilterInput>? and,
     List<Input$SubscriptionSnapshotFilterInput>? or,
@@ -76431,58 +78138,75 @@ class _CopyWithStubImpl$Input$SubscriptionSnapshotFilterInput<TRes>
     Input$ListFilterInputTypeOfMetadataFilterInput? stripeProductMetadata,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionDescription =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionCode =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$IntOperationFilterInput<TRes> get subscriptionVersion =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get subscriptionAmount =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$CurrencyTypeOperationFilterInput<TRes>
   get subscriptionCurrency =>
       CopyWith$Input$CurrencyTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$SubscriptionTierOperationFilterInput<TRes>
   get subscriptionTier =>
       CopyWith$Input$SubscriptionTierOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$SubscriptionStatusOperationFilterInput<TRes>
   get subscriptionStatus =>
       CopyWith$Input$SubscriptionStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput<TRes>
   get subscriptionPlanPrices =>
       CopyWith$Input$ListFilterInputTypeOfSubscriptionPlanPriceFilterInput.stub(
         _res,
       );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get stripeProductActive =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get stripeProductImages =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeProductType =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput<TRes>
   get stripeProductMetadata =>
       CopyWith$Input$ListFilterInputTypeOfMetadataFilterInput.stub(_res);
@@ -76920,6 +78644,7 @@ class _CopyWithImpl$Input$SubscriptionSnapshotSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? subscriptionName = _undefined,
     Object? subscriptionDescription = _undefined,
@@ -76971,6 +78696,7 @@ class _CopyWithStubImpl$Input$SubscriptionSnapshotSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? subscriptionName,
     Enum$SortEnumType? subscriptionDescription,
@@ -77353,6 +79079,7 @@ class _CopyWithImpl$Input$SubscriptionSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -77392,6 +79119,7 @@ class _CopyWithStubImpl$Input$SubscriptionSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? name,
@@ -77620,6 +79348,7 @@ class _CopyWithImpl$Input$SubscriptionStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -77642,6 +79371,7 @@ class _CopyWithStubImpl$Input$SubscriptionStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SubscriptionStatus? eq,
     Enum$SubscriptionStatus? neq,
@@ -77862,6 +79592,7 @@ class _CopyWithImpl$Input$SubscriptionTierOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -77884,6 +79615,7 @@ class _CopyWithStubImpl$Input$SubscriptionTierOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SubscriptionTier? eq,
     Enum$SubscriptionTier? neq,
@@ -78120,6 +79852,7 @@ class _CopyWithImpl$Input$SyncedLineFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -78137,6 +79870,7 @@ class _CopyWithImpl$Input$SyncedLineFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$SyncedLineFilterInput>? Function(
       Iterable<
@@ -78152,6 +79886,7 @@ class _CopyWithImpl$Input$SyncedLineFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$SyncedLineFilterInput>? Function(
       Iterable<
@@ -78167,6 +79902,7 @@ class _CopyWithImpl$Input$SyncedLineFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get text {
     final local$text = _instance.text;
     return local$text == null
@@ -78177,6 +79913,7 @@ class _CopyWithImpl$Input$SyncedLineFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get time {
     final local$time = _instance.time;
     return local$time == null
@@ -78194,6 +79931,7 @@ class _CopyWithStubImpl$Input$SyncedLineFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$SyncedLineFilterInput>? and,
     List<Input$SyncedLineFilterInput>? or,
@@ -78201,13 +79939,17 @@ class _CopyWithStubImpl$Input$SyncedLineFilterInput<TRes>
     Input$FloatOperationFilterInput? time,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get text =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$FloatOperationFilterInput<TRes> get time =>
       CopyWith$Input$FloatOperationFilterInput.stub(_res);
 }
@@ -78366,6 +80108,7 @@ class _CopyWithImpl$Input$ThreadedCommentsRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? targetId = _undefined,
     Object? commentType = _undefined,
@@ -78394,6 +80137,7 @@ class _CopyWithStubImpl$Input$ThreadedCommentsRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? targetId,
     Enum$CommentType? commentType,
@@ -79407,6 +81151,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -79509,6 +81254,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$TrackFilterInput>? Function(
       Iterable<CopyWith$Input$TrackFilterInput<Input$TrackFilterInput>>?,
@@ -79520,6 +81266,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$TrackFilterInput>? Function(
       Iterable<CopyWith$Input$TrackFilterInput<Input$TrackFilterInput>>?,
@@ -79531,6 +81278,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -79541,6 +81289,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name {
     final local$name = _instance.name;
     return local$name == null
@@ -79551,6 +81300,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get nameUnsigned {
     final local$nameUnsigned = _instance.nameUnsigned;
     return local$nameUnsigned == null
@@ -79561,6 +81311,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -79571,6 +81322,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$TrackTypeOperationFilterInput<TRes> get type {
     final local$type = _instance.type;
     return local$type == null
@@ -79581,6 +81333,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get categoryIds {
     final local$categoryIds = _instance.categoryIds;
     return local$categoryIds == null
@@ -79591,6 +81344,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get tags {
     final local$tags = _instance.tags;
     return local$tags == null
@@ -79601,6 +81355,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get mainArtistIds {
     final local$mainArtistIds = _instance.mainArtistIds;
     return local$mainArtistIds == null
@@ -79611,6 +81366,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get featuredArtistIds {
     final local$featuredArtistIds = _instance.featuredArtistIds;
     return local$featuredArtistIds == null
@@ -79621,6 +81377,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$AudioFeatureFilterInput<TRes> get audioFeature {
     final local$audioFeature = _instance.audioFeature;
     return local$audioFeature == null
@@ -79631,6 +81388,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get alternativeDescription {
     final local$alternativeDescription = _instance.alternativeDescription;
     return local$alternativeDescription == null
@@ -79641,6 +81399,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$AudioFingerprintFilterInput<TRes> get audioFingerprint {
     final local$audioFingerprint = _instance.audioFingerprint;
     return local$audioFingerprint == null
@@ -79651,6 +81410,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get streamCount {
     final local$streamCount = _instance.streamCount;
     return local$streamCount == null
@@ -79661,6 +81421,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get favoriteCount {
     final local$favoriteCount = _instance.favoriteCount;
     return local$favoriteCount == null
@@ -79671,6 +81432,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get coverImage {
     final local$coverImage = _instance.coverImage;
     return local$coverImage == null
@@ -79681,6 +81443,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get previewVideo {
     final local$previewVideo = _instance.previewVideo;
     return local$previewVideo == null
@@ -79691,6 +81454,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isExplicit {
     final local$isExplicit = _instance.isExplicit;
     return local$isExplicit == null
@@ -79701,6 +81465,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get lyrics {
     final local$lyrics = _instance.lyrics;
     return local$lyrics == null
@@ -79711,6 +81476,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfSyncedLineFilterInput<TRes>
   get syncedLyrics {
     final local$syncedLyrics = _instance.syncedLyrics;
@@ -79724,6 +81490,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get popularity {
     final local$popularity = _instance.popularity;
     return local$popularity == null
@@ -79734,6 +81501,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ReleaseInfoFilterInput<TRes> get releaseInfo {
     final local$releaseInfo = _instance.releaseInfo;
     return local$releaseInfo == null
@@ -79744,6 +81512,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RestrictionFilterInput<TRes> get restriction {
     final local$restriction = _instance.restriction;
     return local$restriction == null
@@ -79754,6 +81523,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfLegalDocumentFilterInput<TRes>
   get legalDocuments {
     final local$legalDocuments = _instance.legalDocuments;
@@ -79767,6 +81537,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFloatOperationFilterInput<TRes> get embeddingVector {
     final local$embeddingVector = _instance.embeddingVector;
     return local$embeddingVector == null
@@ -79777,6 +81548,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get createdBy {
     final local$createdBy = _instance.createdBy;
     return local$createdBy == null
@@ -79787,6 +81559,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get updatedBy {
     final local$updatedBy = _instance.updatedBy;
     return local$updatedBy == null
@@ -79797,6 +81570,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -79807,6 +81581,7 @@ class _CopyWithImpl$Input$TrackFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -79824,6 +81599,7 @@ class _CopyWithStubImpl$Input$TrackFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$TrackFilterInput>? and,
     List<Input$TrackFilterInput>? or,
@@ -79857,93 +81633,123 @@ class _CopyWithStubImpl$Input$TrackFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get name =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get nameUnsigned =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$TrackTypeOperationFilterInput<TRes> get type =>
       CopyWith$Input$TrackTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get categoryIds =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get tags =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get mainArtistIds =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListStringOperationFilterInput<TRes> get featuredArtistIds =>
       CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$AudioFeatureFilterInput<TRes> get audioFeature =>
       CopyWith$Input$AudioFeatureFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get alternativeDescription =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$AudioFingerprintFilterInput<TRes> get audioFingerprint =>
       CopyWith$Input$AudioFingerprintFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get streamCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get favoriteCount =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get coverImage =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get previewVideo =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isExplicit =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get lyrics =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfSyncedLineFilterInput<TRes>
   get syncedLyrics =>
       CopyWith$Input$ListFilterInputTypeOfSyncedLineFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get popularity =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ReleaseInfoFilterInput<TRes> get releaseInfo =>
       CopyWith$Input$ReleaseInfoFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$RestrictionFilterInput<TRes> get restriction =>
       CopyWith$Input$RestrictionFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfLegalDocumentFilterInput<TRes>
   get legalDocuments =>
       CopyWith$Input$ListFilterInputTypeOfLegalDocumentFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFloatOperationFilterInput<TRes> get embeddingVector =>
       CopyWith$Input$ListFloatOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get createdBy =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get updatedBy =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -80617,6 +82423,7 @@ class _CopyWithImpl$Input$TrackSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -80685,6 +82492,7 @@ class _CopyWithImpl$Input$TrackSortInput<TRes>
     }),
   );
 
+  @override
   CopyWith$Input$AudioFeatureSortInput<TRes> get audioFeature {
     final local$audioFeature = _instance.audioFeature;
     return local$audioFeature == null
@@ -80695,6 +82503,7 @@ class _CopyWithImpl$Input$TrackSortInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$AudioFingerprintSortInput<TRes> get audioFingerprint {
     final local$audioFingerprint = _instance.audioFingerprint;
     return local$audioFingerprint == null
@@ -80705,6 +82514,7 @@ class _CopyWithImpl$Input$TrackSortInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ReleaseInfoSortInput<TRes> get releaseInfo {
     final local$releaseInfo = _instance.releaseInfo;
     return local$releaseInfo == null
@@ -80715,6 +82525,7 @@ class _CopyWithImpl$Input$TrackSortInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$RestrictionSortInput<TRes> get restriction {
     final local$restriction = _instance.restriction;
     return local$restriction == null
@@ -80732,6 +82543,7 @@ class _CopyWithStubImpl$Input$TrackSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? name,
@@ -80756,15 +82568,19 @@ class _CopyWithStubImpl$Input$TrackSortInput<TRes>
     Enum$SortEnumType? updatedAt,
   }) => _res;
 
+  @override
   CopyWith$Input$AudioFeatureSortInput<TRes> get audioFeature =>
       CopyWith$Input$AudioFeatureSortInput.stub(_res);
 
+  @override
   CopyWith$Input$AudioFingerprintSortInput<TRes> get audioFingerprint =>
       CopyWith$Input$AudioFingerprintSortInput.stub(_res);
 
+  @override
   CopyWith$Input$ReleaseInfoSortInput<TRes> get releaseInfo =>
       CopyWith$Input$ReleaseInfoSortInput.stub(_res);
 
+  @override
   CopyWith$Input$RestrictionSortInput<TRes> get restriction =>
       CopyWith$Input$RestrictionSortInput.stub(_res);
 }
@@ -80967,6 +82783,7 @@ class _CopyWithImpl$Input$TrackTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -80989,6 +82806,7 @@ class _CopyWithStubImpl$Input$TrackTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$TrackType? eq,
     Enum$TrackType? neq,
@@ -81209,6 +83027,7 @@ class _CopyWithImpl$Input$TransactionStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -81231,6 +83050,7 @@ class _CopyWithStubImpl$Input$TransactionStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$TransactionStatus? eq,
     Enum$TransactionStatus? neq,
@@ -81371,6 +83191,7 @@ class _CopyWithImpl$Input$UpdateArtistPackageRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? packageName = _undefined,
@@ -81391,6 +83212,7 @@ class _CopyWithStubImpl$Input$UpdateArtistPackageRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? id, String? packageName, String? description}) => _res;
 }
 
@@ -81678,6 +83500,7 @@ class _CopyWithImpl$Input$UpdateArtistRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? stageName = _undefined,
     Object? biography = _undefined,
@@ -81710,6 +83533,7 @@ class _CopyWithStubImpl$Input$UpdateArtistRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? stageName,
     String? biography,
@@ -81932,6 +83756,7 @@ class _CopyWithImpl$Input$UpdateEntitlementRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? value = _undefined,
     Object? name = _undefined,
@@ -81959,6 +83784,7 @@ class _CopyWithStubImpl$Input$UpdateEntitlementRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     dynamic? value,
     String? name,
@@ -82115,6 +83941,7 @@ class _CopyWithImpl$Input$UpdateEscrowCommissionPolicyRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? version = _undefined,
     Object? platformFeePercentage = _undefined,
@@ -82136,6 +83963,7 @@ class _CopyWithStubImpl$Input$UpdateEscrowCommissionPolicyRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     int? version,
     double? platformFeePercentage,
@@ -82403,6 +84231,7 @@ class _CopyWithImpl$Input$UpdateListenerRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? displayName = _undefined,
     Object? avatarImage = _undefined,
@@ -82433,6 +84262,7 @@ class _CopyWithStubImpl$Input$UpdateListenerRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? displayName,
     String? avatarImage,
@@ -82620,6 +84450,7 @@ class _CopyWithImpl$Input$UpdatePlaylistRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? playlistId = _undefined,
     Object? name = _undefined,
@@ -82645,6 +84476,7 @@ class _CopyWithStubImpl$Input$UpdatePlaylistRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? playlistId,
     String? name,
@@ -82889,6 +84721,7 @@ class _CopyWithImpl$Input$UpdatePriceRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? stripePriceId = _undefined,
     Object? lookupKey = _undefined,
@@ -82911,6 +84744,7 @@ class _CopyWithImpl$Input$UpdatePriceRequestInput<TRes>
     }),
   );
 
+  @override
   TRes metadata(
     Iterable<Input$KeyValuePairOfStringAndStringInput>? Function(
       Iterable<
@@ -82935,6 +84769,7 @@ class _CopyWithStubImpl$Input$UpdatePriceRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? stripePriceId,
     String? lookupKey,
@@ -82944,6 +84779,7 @@ class _CopyWithStubImpl$Input$UpdatePriceRequestInput<TRes>
     List<Input$KeyValuePairOfStringAndStringInput>? metadata,
   }) => _res;
 
+  @override
   metadata(_fn) => _res;
 }
 
@@ -83069,6 +84905,7 @@ class _CopyWithImpl$Input$UpdateReviewRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? packageOrderId = _undefined,
     Object? rating = _undefined,
@@ -83090,6 +84927,7 @@ class _CopyWithStubImpl$Input$UpdateReviewRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? packageOrderId, int? rating, String? comment}) => _res;
 }
 
@@ -83281,6 +85119,7 @@ class _CopyWithImpl$Input$UpdateRoyalPolicyRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? version = _undefined,
     Object? ratePerStream = _undefined,
@@ -83308,6 +85147,7 @@ class _CopyWithStubImpl$Input$UpdateRoyalPolicyRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     int? version,
     double? ratePerStream,
@@ -83418,6 +85258,7 @@ class _CopyWithImpl$Input$UpdateStatusArtistPackageRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? id = _undefined, Object? status = _undefined}) => _then(
     Input$UpdateStatusArtistPackageRequestInput._({
       ..._instance._$data,
@@ -83434,6 +85275,7 @@ class _CopyWithStubImpl$Input$UpdateStatusArtistPackageRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? id, Enum$ArtistPackageStatus? status}) => _res;
 }
 
@@ -83722,6 +85564,7 @@ class _CopyWithImpl$Input$UpdateSubscriptionPlanRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? subscriptionPlanId = _undefined,
     Object? newPrices = _undefined,
@@ -83746,6 +85589,7 @@ class _CopyWithImpl$Input$UpdateSubscriptionPlanRequestInput<TRes>
     }),
   );
 
+  @override
   TRes newPrices(
     Iterable<Input$CreatePriceRequestInput> Function(
       Iterable<
@@ -83761,6 +85605,7 @@ class _CopyWithImpl$Input$UpdateSubscriptionPlanRequestInput<TRes>
     ).toList(),
   );
 
+  @override
   TRes updatePrices(
     Iterable<Input$UpdatePriceRequestInput> Function(
       Iterable<
@@ -83776,6 +85621,7 @@ class _CopyWithImpl$Input$UpdateSubscriptionPlanRequestInput<TRes>
     ).toList(),
   );
 
+  @override
   TRes metadata(
     Iterable<Input$KeyValuePairOfStringAndStringInput>? Function(
       Iterable<
@@ -83800,6 +85646,7 @@ class _CopyWithStubImpl$Input$UpdateSubscriptionPlanRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     String? subscriptionPlanId,
     List<Input$CreatePriceRequestInput>? newPrices,
@@ -83809,10 +85656,13 @@ class _CopyWithStubImpl$Input$UpdateSubscriptionPlanRequestInput<TRes>
     String? name,
   }) => _res;
 
+  @override
   newPrices(_fn) => _res;
 
+  @override
   updatePrices(_fn) => _res;
 
+  @override
   metadata(_fn) => _res;
 }
 
@@ -83913,6 +85763,7 @@ class _CopyWithImpl$Input$UpdateTrackCommentRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? commentId = _undefined, Object? content = _undefined}) =>
       _then(
         Input$UpdateTrackCommentRequestInput._({
@@ -83931,6 +85782,7 @@ class _CopyWithStubImpl$Input$UpdateTrackCommentRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? commentId, String? content}) => _res;
 }
 
@@ -84149,6 +86001,7 @@ class _CopyWithImpl$Input$UserEngagementActionOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -84171,6 +86024,7 @@ class _CopyWithStubImpl$Input$UserEngagementActionOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$UserEngagementAction? eq,
     Enum$UserEngagementAction? neq,
@@ -84564,6 +86418,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -84599,6 +86454,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$UserEngagementFilterInput>? Function(
       Iterable<
@@ -84616,6 +86472,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$UserEngagementFilterInput>? Function(
       Iterable<
@@ -84633,6 +86490,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -84643,6 +86501,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get actorId {
     final local$actorId = _instance.actorId;
     return local$actorId == null
@@ -84653,6 +86512,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$UserEngagementTargetTypeOperationFilterInput<TRes>
   get actorType {
     final local$actorType = _instance.actorType;
@@ -84666,6 +86526,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get targetId {
     final local$targetId = _instance.targetId;
     return local$targetId == null
@@ -84676,6 +86537,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$UserEngagementTargetTypeOperationFilterInput<TRes>
   get targetType {
     final local$targetType = _instance.targetType;
@@ -84689,6 +86551,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$UserEngagementActionOperationFilterInput<TRes> get action {
     final local$action = _instance.action;
     return local$action == null
@@ -84701,6 +86564,7 @@ class _CopyWithImpl$Input$UserEngagementFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -84718,6 +86582,7 @@ class _CopyWithStubImpl$Input$UserEngagementFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$UserEngagementFilterInput>? and,
     List<Input$UserEngagementFilterInput>? or,
@@ -84730,30 +86595,39 @@ class _CopyWithStubImpl$Input$UserEngagementFilterInput<TRes>
     Input$DateTimeOperationFilterInput? createdAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get actorId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$UserEngagementTargetTypeOperationFilterInput<TRes>
   get actorType =>
       CopyWith$Input$UserEngagementTargetTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get targetId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$UserEngagementTargetTypeOperationFilterInput<TRes>
   get targetType =>
       CopyWith$Input$UserEngagementTargetTypeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$UserEngagementActionOperationFilterInput<TRes> get action =>
       CopyWith$Input$UserEngagementActionOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -84831,6 +86705,7 @@ class _CopyWithImpl$Input$UserEngagementRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? targetId = _undefined}) => _then(
     Input$UserEngagementRequestInput._({
       ..._instance._$data,
@@ -84846,6 +86721,7 @@ class _CopyWithStubImpl$Input$UserEngagementRequestInput<TRes>
 
   TRes _res;
 
+  @override
   call({String? targetId}) => _res;
 }
 
@@ -85107,6 +86983,7 @@ class _CopyWithImpl$Input$UserEngagementSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? actorId = _undefined,
@@ -85138,6 +87015,7 @@ class _CopyWithStubImpl$Input$UserEngagementSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? actorId,
@@ -85369,6 +87247,7 @@ class _CopyWithImpl$Input$UserEngagementTargetTypeOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -85396,6 +87275,7 @@ class _CopyWithStubImpl$Input$UserEngagementTargetTypeOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$UserEngagementTargetType? eq,
     Enum$UserEngagementTargetType? neq,
@@ -86134,6 +88014,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -86206,6 +88087,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$UserFilterInput>? Function(
       Iterable<CopyWith$Input$UserFilterInput<Input$UserFilterInput>>?,
@@ -86217,6 +88099,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$UserFilterInput>? Function(
       Iterable<CopyWith$Input$UserFilterInput<Input$UserFilterInput>>?,
@@ -86228,6 +88111,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -86238,6 +88122,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email {
     final local$email = _instance.email;
     return local$email == null
@@ -86248,6 +88133,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get passwordHash {
     final local$passwordHash = _instance.passwordHash;
     return local$passwordHash == null
@@ -86258,6 +88144,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName {
     final local$fullName = _instance.fullName;
     return local$fullName == null
@@ -86268,6 +88155,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$UserGenderOperationFilterInput<TRes> get gender {
     final local$gender = _instance.gender;
     return local$gender == null
@@ -86278,6 +88166,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get birthDate {
     final local$birthDate = _instance.birthDate;
     return local$birthDate == null
@@ -86288,6 +88177,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$UserRoleOperationFilterInput<TRes> get role {
     final local$role = _instance.role;
     return local$role == null
@@ -86298,6 +88188,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get phoneNumber {
     final local$phoneNumber = _instance.phoneNumber;
     return local$phoneNumber == null
@@ -86308,6 +88199,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$UserStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -86318,6 +88210,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isLinkedWithGoogle {
     final local$isLinkedWithGoogle = _instance.isLinkedWithGoogle;
     return local$isLinkedWithGoogle == null
@@ -86328,6 +88221,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeCustomerId {
     final local$stripeCustomerId = _instance.stripeCustomerId;
     return local$stripeCustomerId == null
@@ -86338,6 +88232,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeAccountId {
     final local$stripeAccountId = _instance.stripeAccountId;
     return local$stripeAccountId == null
@@ -86348,6 +88243,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fcmToken {
     final local$fcmToken = _instance.fcmToken;
     return local$fcmToken == null
@@ -86358,6 +88254,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get lastLoginAt {
     final local$lastLoginAt = _instance.lastLoginAt;
     return local$lastLoginAt == null
@@ -86368,6 +88265,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfRestrictionFilterInput<TRes>
   get restrictions {
     final local$restrictions = _instance.restrictions;
@@ -86381,6 +88279,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get createdBy {
     final local$createdBy = _instance.createdBy;
     return local$createdBy == null
@@ -86391,6 +88290,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get updatedBy {
     final local$updatedBy = _instance.updatedBy;
     return local$updatedBy == null
@@ -86401,6 +88301,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -86411,6 +88312,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -86428,6 +88330,7 @@ class _CopyWithStubImpl$Input$UserFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$UserFilterInput>? and,
     List<Input$UserFilterInput>? or,
@@ -86452,65 +88355,86 @@ class _CopyWithStubImpl$Input$UserFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get email =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get passwordHash =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$UserGenderOperationFilterInput<TRes> get gender =>
       CopyWith$Input$UserGenderOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get birthDate =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$UserRoleOperationFilterInput<TRes> get role =>
       CopyWith$Input$UserRoleOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get phoneNumber =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$UserStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$UserStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isLinkedWithGoogle =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeCustomerId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeAccountId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get fcmToken =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get lastLoginAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfRestrictionFilterInput<TRes>
   get restrictions =>
       CopyWith$Input$ListFilterInputTypeOfRestrictionFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get createdBy =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get updatedBy =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -86718,6 +88642,7 @@ class _CopyWithImpl$Input$UserGenderOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -86740,6 +88665,7 @@ class _CopyWithStubImpl$Input$UserGenderOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$UserGender? eq,
     Enum$UserGender? neq,
@@ -86946,6 +88872,7 @@ class _CopyWithImpl$Input$UserRoleOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -86968,6 +88895,7 @@ class _CopyWithStubImpl$Input$UserRoleOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$UserRole? eq,
     Enum$UserRole? neq,
@@ -87549,6 +89477,7 @@ class _CopyWithImpl$Input$UserSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? email = _undefined,
@@ -87610,6 +89539,7 @@ class _CopyWithStubImpl$Input$UserSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? email,
@@ -87835,6 +89765,7 @@ class _CopyWithImpl$Input$UserStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -87857,6 +89788,7 @@ class _CopyWithStubImpl$Input$UserStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$UserStatus? eq,
     Enum$UserStatus? neq,
@@ -88405,6 +90337,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -88455,6 +90388,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$UserSubscriptionFilterInput>? Function(
       Iterable<
@@ -88472,6 +90406,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$UserSubscriptionFilterInput>? Function(
       Iterable<
@@ -88489,6 +90424,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -88499,6 +90435,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -88509,6 +90446,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionId {
     final local$subscriptionId = _instance.subscriptionId;
     return local$subscriptionId == null
@@ -88519,6 +90457,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeSubscriptionId {
     final local$stripeSubscriptionId = _instance.stripeSubscriptionId;
     return local$stripeSubscriptionId == null
@@ -88529,6 +90468,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get periodStart {
     final local$periodStart = _instance.periodStart;
     return local$periodStart == null
@@ -88539,6 +90479,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get periodEnd {
     final local$periodEnd = _instance.periodEnd;
     return local$periodEnd == null
@@ -88549,6 +90490,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get autoRenew {
     final local$autoRenew = _instance.autoRenew;
     return local$autoRenew == null
@@ -88559,6 +90501,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get cancelAtEndOfPeriod {
     final local$cancelAtEndOfPeriod = _instance.cancelAtEndOfPeriod;
     return local$cancelAtEndOfPeriod == null
@@ -88569,6 +90512,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get canceledAt {
     final local$canceledAt = _instance.canceledAt;
     return local$canceledAt == null
@@ -88579,6 +90523,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isActive {
     final local$isActive = _instance.isActive;
     return local$isActive == null
@@ -88589,6 +90534,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -88599,6 +90545,7 @@ class _CopyWithImpl$Input$UserSubscriptionFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -88616,6 +90563,7 @@ class _CopyWithStubImpl$Input$UserSubscriptionFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$UserSubscriptionFilterInput>? and,
     List<Input$UserSubscriptionFilterInput>? or,
@@ -88633,43 +90581,57 @@ class _CopyWithStubImpl$Input$UserSubscriptionFilterInput<TRes>
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get subscriptionId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeSubscriptionId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get periodStart =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get periodEnd =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get autoRenew =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get cancelAtEndOfPeriod =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get canceledAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isActive =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -89085,6 +91047,7 @@ class _CopyWithImpl$Input$UserSubscriptionSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? userId = _undefined,
@@ -89132,6 +91095,7 @@ class _CopyWithStubImpl$Input$UserSubscriptionSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? userId,
@@ -89516,6 +91480,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -89548,6 +91513,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$WorkFilterInput>? Function(
       Iterable<CopyWith$Input$WorkFilterInput<Input$WorkFilterInput>>?,
@@ -89559,6 +91525,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$WorkFilterInput>? Function(
       Iterable<CopyWith$Input$WorkFilterInput<Input$WorkFilterInput>>?,
@@ -89570,6 +91537,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id {
     final local$id = _instance.id;
     return local$id == null
@@ -89580,6 +91548,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId {
     final local$trackId = _instance.trackId;
     return local$trackId == null
@@ -89590,6 +91559,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description {
     final local$description = _instance.description;
     return local$description == null
@@ -89600,6 +91570,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfWorkSplitFilterInput<TRes>
   get workSplits {
     final local$workSplits = _instance.workSplits;
@@ -89613,6 +91584,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version {
     final local$version = _instance.version;
     return local$version == null
@@ -89623,6 +91595,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$WorkStatusOperationFilterInput<TRes> get status {
     final local$status = _instance.status;
     return local$status == null
@@ -89633,6 +91606,7 @@ class _CopyWithImpl$Input$WorkFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -89650,6 +91624,7 @@ class _CopyWithStubImpl$Input$WorkFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$WorkFilterInput>? and,
     List<Input$WorkFilterInput>? or,
@@ -89662,29 +91637,38 @@ class _CopyWithStubImpl$Input$WorkFilterInput<TRes>
     Input$DateTimeOperationFilterInput? createdAt,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get id =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get trackId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get description =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ListFilterInputTypeOfWorkSplitFilterInput<TRes>
   get workSplits =>
       CopyWith$Input$ListFilterInputTypeOfWorkSplitFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$LongOperationFilterInput<TRes> get version =>
       CopyWith$Input$LongOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$WorkStatusOperationFilterInput<TRes> get status =>
       CopyWith$Input$WorkStatusOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 }
@@ -89916,6 +91900,7 @@ class _CopyWithImpl$Input$WorkSortInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? trackId = _undefined,
@@ -89944,6 +91929,7 @@ class _CopyWithStubImpl$Input$WorkSortInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$SortEnumType? id,
     Enum$SortEnumType? trackId,
@@ -90213,6 +92199,7 @@ class _CopyWithImpl$Input$WorkSplitFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? and = _undefined,
     Object? or = _undefined,
@@ -90233,6 +92220,7 @@ class _CopyWithImpl$Input$WorkSplitFilterInput<TRes>
     }),
   );
 
+  @override
   TRes and(
     Iterable<Input$WorkSplitFilterInput>? Function(
       Iterable<
@@ -90248,6 +92236,7 @@ class _CopyWithImpl$Input$WorkSplitFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   TRes or(
     Iterable<Input$WorkSplitFilterInput>? Function(
       Iterable<
@@ -90263,6 +92252,7 @@ class _CopyWithImpl$Input$WorkSplitFilterInput<TRes>
     )?.toList(),
   );
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId {
     final local$userId = _instance.userId;
     return local$userId == null
@@ -90273,6 +92263,7 @@ class _CopyWithImpl$Input$WorkSplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$ArtistRoleOperationFilterInput<TRes> get artistRole {
     final local$artistRole = _instance.artistRole;
     return local$artistRole == null
@@ -90283,6 +92274,7 @@ class _CopyWithImpl$Input$WorkSplitFilterInput<TRes>
           );
   }
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get percentage {
     final local$percentage = _instance.percentage;
     return local$percentage == null
@@ -90300,6 +92292,7 @@ class _CopyWithStubImpl$Input$WorkSplitFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     List<Input$WorkSplitFilterInput>? and,
     List<Input$WorkSplitFilterInput>? or,
@@ -90308,16 +92301,21 @@ class _CopyWithStubImpl$Input$WorkSplitFilterInput<TRes>
     Input$DecimalOperationFilterInput? percentage,
   }) => _res;
 
+  @override
   and(_fn) => _res;
 
+  @override
   or(_fn) => _res;
 
+  @override
   CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$ArtistRoleOperationFilterInput<TRes> get artistRole =>
       CopyWith$Input$ArtistRoleOperationFilterInput.stub(_res);
 
+  @override
   CopyWith$Input$DecimalOperationFilterInput<TRes> get percentage =>
       CopyWith$Input$DecimalOperationFilterInput.stub(_res);
 }
@@ -90525,6 +92523,7 @@ class _CopyWithImpl$Input$WorkStatusOperationFilterInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eq = _undefined,
     Object? neq = _undefined,
@@ -90547,6 +92546,7 @@ class _CopyWithStubImpl$Input$WorkStatusOperationFilterInput<TRes>
 
   TRes _res;
 
+  @override
   call({
     Enum$WorkStatus? eq,
     Enum$WorkStatus? neq,

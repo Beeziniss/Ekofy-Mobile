@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
+//Info: config for dio option
 final dioConfig = Dio(
   BaseOptions(
     baseUrl: dotenv.env['BACKEND_URL']!,
@@ -11,9 +11,4 @@ final dioConfig = Dio(
       return status != null;
     },
   ),
-);
-
-final httpLink = HttpLink(
-  '${dotenv.env['BACKEND_URL']}/graphql',
-  defaultHeaders: {'content-type': 'application/json'},
 );

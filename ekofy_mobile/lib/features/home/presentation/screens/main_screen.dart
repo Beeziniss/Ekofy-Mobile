@@ -37,13 +37,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.primaryBackground,
         leading: _appBarLeading(),
-        actions: [_profileAction(payload)],
+        actions: [_notification(), _profileAction(payload)],
       ),
       body: Query(
         options: QueryOptions(
           document: gql('''
             query CombinedQuery() {
-              tracks(take: 10) {
+              tracks(take: 40) {
                 items {
                   id
                   name
@@ -252,12 +252,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
+  Widget _notification() {
+    return GestureDetector(
+      // onTap: () => ,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Icon(Icons.notifications, size: 30),
+      ),
+    );
+  }
+
   Widget _profileAction(Map<String, dynamic>? payload) {
     return GestureDetector(
       key: _menuKey,
       onTap: () => _showCustomMenu(context, ref),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: CircleAvatar(
           radius: 18,
           backgroundImage: NetworkImage(payload!['avatarImage']),

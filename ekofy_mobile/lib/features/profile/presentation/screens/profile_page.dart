@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_notifier.dart';
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_state.dart';
 import 'package:ekofy_mobile/features/profile/presentation/widgets/profile_header_widget.dart';
@@ -33,10 +34,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final state = ref.read(profileProvider);
-    _displayNameController.text = state.displayName;
-    _emailController.text = state.email;
-    _phoneController.text = state.phone;
-    _birthDateController.text = state.birthDate;
+    _displayNameController.text = state.edited?.displayName ?? '';
+    _emailController.text = state.edited?.email ?? '';
+    _phoneController.text = state.edited?.phoneNumber ?? '';
+    _birthDateController.text = _formatDate(state.edited?.birthDate);
   }
 
   @override
@@ -60,7 +61,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       );
     }
 
-    if (state.profile == null) {
+    if (state.original == null) {
       return const Scaffold(
         backgroundColor: Color(0xFF0B0B0E),
         body: Center(
@@ -77,11 +78,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       body: CustomScrollView(
         slivers: [
           ProfileHeaderWidget(
-            isVerified: state.profile?.isVerified ?? false,
-            bannerImage: state.profile?.bannerImage,
-            avatarImage: state.profile?.avatarImage,
-            displayName: state.displayName,
-            userId: state.profile?.userId ?? '-',
+            isVerified: state.original?.isVerified ?? false,
+            bannerImage: state.original?.bannerImage,
+            avatarImage: state.original?.avatarImage,
+            displayName: state.edited?.displayName ?? '',
+            userId: state.original?.userId ?? '-',
             onEditBanner: () {},
             onEditAvatar: () {},
           ),
@@ -137,10 +138,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     if (_isEditing) {
                       controller.updateField(
                         name: _displayNameController.text,
-                        email: _emailController.text,
                         phone: _phoneController.text,
-                        birth: _birthDateController.text,
-                        gender: state.gender,
+                        birthDate: _parseDate(_birthDateController.text),
+                        // Email không cần vì read-only
                       );
                       controller.submitUpdate();
                     }
@@ -154,23 +154,23 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             const SizedBox(height: 8),
             _isEditing
                 ? _buildEditableField('Display name', _displayNameController)
-                : _kvRow('Display name', state.displayName),
+                : _kvRow('Display name', state.edited?.displayName ?? '-'),
             const SizedBox(height: 8),
             _isEditing
                 ? _buildReadOnlyField('Email', _emailController)
-                : _kvRow('Email', state.email),
+                : _kvRow('Email', state.edited?.email ?? '-'),
             const SizedBox(height: 8),
             _isEditing
                 ? _buildEditableField('Phone number', _phoneController)
-                : _kvRow('Phone number', state.phone),
+                : _kvRow('Phone number', state.edited?.phoneNumber ?? '-'),
             const SizedBox(height: 8),
             _isEditing
                 ? _buildEditableField('Date of Birth', _birthDateController)
-                : _kvRow('Date of Birth', state.birthDate),
+                : _kvRow('Date of Birth', _formatDate(state.edited?.birthDate)),
             const SizedBox(height: 8),
             _isEditing
                 ? _buildGenderDropdown(state, controller)
-                : _kvRow('Gender', _formatGender(state.gender)),
+                : _kvRow('Gender', _formatGender(state.edited?.gender)),
           ],
         ),
       ),
@@ -178,7 +178,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   }
 
   Widget _buildAccountDetailsCard(ProfileState state) {
-    final profile = state.profile!;
+    final profile = state.original!;
     return Card(
       color: const Color(0xFF15151B),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -205,7 +205,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   }
 
   Widget _buildActivitiesCard(ProfileState state) {
-    final user = state.profile?.user.firstOrNull;
+    final user = state.original;
     return Card(
       color: const Color(0xFF15151B),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -251,7 +251,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Widget _buildGenderDropdown(ProfileState state, ProfileNotifier controller) {
     return DropdownButton<Enum$UserGender>(
       dropdownColor: const Color(0xFF15151B),
-      value: state.gender,
+      value: state.edited?.gender,
       items: [
         DropdownMenuItem(
           value: Enum$UserGender.MALE,
@@ -299,6 +299,14 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   String _formatDate(DateTime? date) {
     if (date == null) return '-';
     return '${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}';
+  }
+
+  DateTime? _parseDate(String input) {
+    try {
+      return DateTime.parse(input);
+    } catch (_) {
+      return null;
+    }
   }
 
   String _formatGender(Enum$UserGender? gender) {

@@ -21,7 +21,19 @@ final graphqlClientProvider = Provider<GraphQLClient>((ref) {
     defaultHeaders: {'content-type': 'application/json'},
   );
 
-  final Link link = authLink.concat(httpLink);
+  final errorLink = ErrorLink(
+    onException: (request, forward, exception) {
+      if (exception is ServerException &&
+          exception.parsedResponse!.errors!.any(
+            (e) => e.extensions!.containsValue(401),
+          )) {
+        //TODO: refresh token
+      }
+      return forward(request);
+    },
+  );
+
+  final Link link = errorLink.concat(authLink).concat(httpLink);
 
   return GraphQLClient(link: link, cache: GraphQLCache());
 });

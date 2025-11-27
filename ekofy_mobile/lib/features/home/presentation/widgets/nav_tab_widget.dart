@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-
 class NavTab extends StatefulWidget {
   const NavTab({super.key});
 
@@ -19,6 +18,7 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TabController? controller;
   int selectTab = 0;
+  bool _isSwitched = false;
 
   @override
   void initState() {
@@ -49,7 +49,7 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
         controller: controller,
         children: [
           HomeScreen(scaffoldKey: _scaffoldKey),
-         const LibraryPage(),
+          const LibraryPage(),
           Container(),
           const RequestHubPage(),
         ],
@@ -139,44 +139,76 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
   }
 
   Widget _sideBar() {
-    return Drawer(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(5),
-      ),
-      backgroundColor: AppColors.darkGrey,
+    return SafeArea(
+      child: Drawer(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(5),
+        ),
+        backgroundColor: AppColors.darkGrey,
 
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          // DrawerHeader(
-          //   child: Column(children: [Text('Test'), Text('Just test')]),
-          //   decoration: BoxDecoration(color: AppColors.secondaryBackground),
-          // ),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hmm... đặt gì ở đây bây giờ?',
-                  style: TextStyle(fontSize: 15),
-                ),
-                // Text('The second', style: TextStyle(fontSize: 15)),
-                // Text('The third', style: TextStyle(fontSize: 15)),
-              
-              ],
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            SizedBox(height: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: 4,
+              children: [SvgPicture.asset(AppVectors.logo)],
             ),
-          ),
-          const Divider(height: 1),
-          ListTile(
-            leading: const Icon(Icons.receipt_long, color: Colors.white70),
-            title: const Text('Payment History', style: TextStyle(color: Colors.white)),
-            onTap: () {
-              // Close drawer then navigate
-              Navigator.of(context).pop();
-              context.push('/transactions'); //INFO: Navigate to UI-only transactions list
-            },
-          ),
-        ],
+            SizedBox(height: 30),
+            ListTile(
+              leading: const Icon(Icons.receipt_long, color: Colors.white70),
+              title: const Text(
+                'Payment History',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Close drawer then navigate
+                Navigator.of(context).pop();
+                context.push(
+                  '/transactions',
+                ); //INFO: Navigate to UI-only transactions list
+              },
+            ),
+            const Divider(height: 1),
+            ListTile(
+              leading: const Icon(Icons.wysiwyg, color: Colors.white70),
+              title: const Text(
+                'Request History',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Close drawer then navigate
+                Navigator.of(context).pop();
+                context.push(
+                  '/transactions',
+                ); //INFO: Navigate to UI-only transactions list
+              },
+            ),
+            const Divider(height: 1),
+            ListTile(
+              leading: const Icon(Icons.sunny, color: Colors.white70),
+              title: const Text(
+                'Light Theme',
+                style: TextStyle(color: Colors.white),
+              ),
+              trailing: Switch(
+                value: _isSwitched,
+                onChanged: (value) {
+                  setState(() {
+                    _isSwitched = value;
+                  });
+                },
+              ),
+              onTap: () {
+                // Optional: toggle switch when tapping the whole tile
+                setState(() {
+                  _isSwitched = !_isSwitched;
+                });
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

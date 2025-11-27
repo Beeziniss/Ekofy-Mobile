@@ -11,7 +11,7 @@ final decodeJwtOnInitProvider = FutureProvider((ref) async {
 final homeQueryProvider = Provider((ref) {
   return gql('''
     query CombinedQuery() {
-      tracks(take: 10) {
+      tracks(take: 30) {
         items {
           id
           name
@@ -41,6 +41,6 @@ final tracksWithArtistsProvider =
 final homeQueryOptionsProvider = Provider((ref) {
   return QueryOptions(
     document: ref.watch(homeQueryProvider),
-    variables: const {'take': 10},
+    variables: const {'take': 40},
   );
 });

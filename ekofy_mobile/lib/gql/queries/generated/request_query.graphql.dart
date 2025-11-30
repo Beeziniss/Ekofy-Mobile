@@ -219,6 +219,13 @@ const documentNodeQueryPublicRequestQuery = DocumentNode(
                         selectionSet: null,
                       ),
                       FieldNode(
+                        name: NameNode(value: 'detailDescription'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
                         name: NameNode(value: 'summary'),
                         alias: null,
                         arguments: [],
@@ -704,6 +711,7 @@ class Query$PublicRequestQuery$requests$items {
     required this.id,
     this.title,
     this.titleUnsigned,
+    this.detailDescription,
     this.summary,
     required this.requestUserId,
     this.budget,
@@ -721,6 +729,7 @@ class Query$PublicRequestQuery$requests$items {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$titleUnsigned = json['titleUnsigned'];
+    final l$detailDescription = json['detailDescription'];
     final l$summary = json['summary'];
     final l$requestUserId = json['requestUserId'];
     final l$budget = json['budget'];
@@ -734,6 +743,7 @@ class Query$PublicRequestQuery$requests$items {
       id: (l$id as String),
       title: (l$title as String?),
       titleUnsigned: (l$titleUnsigned as String?),
+      detailDescription: (l$detailDescription as String?),
       summary: (l$summary as String?),
       requestUserId: (l$requestUserId as String),
       budget: l$budget == null
@@ -764,6 +774,8 @@ class Query$PublicRequestQuery$requests$items {
 
   final String? titleUnsigned;
 
+  final String? detailDescription;
+
   final String? summary;
 
   final String requestUserId;
@@ -790,6 +802,8 @@ class Query$PublicRequestQuery$requests$items {
     _resultData['title'] = l$title;
     final l$titleUnsigned = titleUnsigned;
     _resultData['titleUnsigned'] = l$titleUnsigned;
+    final l$detailDescription = detailDescription;
+    _resultData['detailDescription'] = l$detailDescription;
     final l$summary = summary;
     _resultData['summary'] = l$summary;
     final l$requestUserId = requestUserId;
@@ -816,6 +830,7 @@ class Query$PublicRequestQuery$requests$items {
     final l$id = id;
     final l$title = title;
     final l$titleUnsigned = titleUnsigned;
+    final l$detailDescription = detailDescription;
     final l$summary = summary;
     final l$requestUserId = requestUserId;
     final l$budget = budget;
@@ -829,6 +844,7 @@ class Query$PublicRequestQuery$requests$items {
       l$id,
       l$title,
       l$titleUnsigned,
+      l$detailDescription,
       l$summary,
       l$requestUserId,
       l$budget,
@@ -863,6 +879,11 @@ class Query$PublicRequestQuery$requests$items {
     final l$titleUnsigned = titleUnsigned;
     final lOther$titleUnsigned = other.titleUnsigned;
     if (l$titleUnsigned != lOther$titleUnsigned) {
+      return false;
+    }
+    final l$detailDescription = detailDescription;
+    final lOther$detailDescription = other.detailDescription;
+    if (l$detailDescription != lOther$detailDescription) {
       return false;
     }
     final l$summary = summary;
@@ -943,6 +964,7 @@ abstract class CopyWith$Query$PublicRequestQuery$requests$items<TRes> {
     String? id,
     String? title,
     String? titleUnsigned,
+    String? detailDescription,
     String? summary,
     String? requestUserId,
     Query$PublicRequestQuery$requests$items$budget? budget,
@@ -983,6 +1005,7 @@ class _CopyWithImpl$Query$PublicRequestQuery$requests$items<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? titleUnsigned = _undefined,
+    Object? detailDescription = _undefined,
     Object? summary = _undefined,
     Object? requestUserId = _undefined,
     Object? budget = _undefined,
@@ -999,6 +1022,9 @@ class _CopyWithImpl$Query$PublicRequestQuery$requests$items<TRes>
       titleUnsigned: titleUnsigned == _undefined
           ? _instance.titleUnsigned
           : (titleUnsigned as String?),
+      detailDescription: detailDescription == _undefined
+          ? _instance.detailDescription
+          : (detailDescription as String?),
       summary: summary == _undefined ? _instance.summary : (summary as String?),
       requestUserId: requestUserId == _undefined || requestUserId == null
           ? _instance.requestUserId
@@ -1071,6 +1097,7 @@ class _CopyWithStubImpl$Query$PublicRequestQuery$requests$items<TRes>
     String? id,
     String? title,
     String? titleUnsigned,
+    String? detailDescription,
     String? summary,
     String? requestUserId,
     Query$PublicRequestQuery$requests$items$budget? budget,

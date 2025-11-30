@@ -117,38 +117,125 @@
 // });
 
 
+// import 'dart:developer';
+// import 'package:ekofy_mobile/features/profile/data/datasource/profile_api_datasource.dart';
+// import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/legacy.dart';
+// import 'profile_state.dart';
+
+// //============
+// part 'profile_notifier.g.dart';
+// class ProfileNotifier extends StateNotifier<ProfileState> {
+//   final ProfileApiDatasource api;
+//   final Ref ref;
+
+//   ProfileNotifier(this.ref, this.api) : super(const ProfileState()) {
+//     fetchProfile();
+//   }
+
+//   Future<void> fetchProfile() async {
+//     state = state.copyWith(isLoading: true);
+//     try {
+//       final profile = await api.fetchProfile();
+//       state = state.copyWith(
+//         isLoading: false,
+//         original: profile,
+//         edited: profile,
+//       );
+//     } catch (e) {
+//       log("Fetch profile error: $e");
+//       state = state.copyWith(isLoading: false);
+//     }
+//   }
+
+//   void toggleEditing() {
+//     state = state.copyWith(isEditing: !state.isEditing);
+//   }
+
+//   void updateField({
+//     String? name,
+//     String? phone,
+//     DateTime? birthDate,
+//     Enum$UserGender? gender,
+//   }) {
+//     final edited = state.edited;
+//     if (edited == null) return;
+
+//     state = state.copyWith(
+//       edited: edited.copyWith(
+//         displayName: name ?? edited.displayName,
+//         phoneNumber: phone ?? edited.phoneNumber,
+//         birthDate: birthDate ?? edited.birthDate,
+//         gender: gender ?? edited.gender,
+//       ),
+//     );
+//   }
+
+//   Future<void> submitUpdate() async {
+//     final original = state.original;
+//     final edited = state.edited;
+
+//     if (original == null || edited == null) return;
+
+//     try {
+//       await api.updateProfile(original: original, edited: edited);
+//       state = state.copyWith(
+//         original: edited,
+//         isEditing: false,
+//       );
+//     } catch (e) {
+//       log("Update error: $e");
+//     }
+//   }
+// }
+
 import 'dart:developer';
+import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/profile/data/datasource/profile_api_datasource.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/legacy.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'profile_state.dart';
 
-class ProfileNotifier extends StateNotifier<ProfileState> {
-  final ProfileApiDatasource api;
-  final Ref ref;
+part 'profile_notifier.g.dart';
 
-  ProfileNotifier(this.ref, this.api) : super(const ProfileState()) {
-    fetchProfile();
+@riverpod
+class Profile extends _$Profile {
+  ProfileApiDatasource get _api => ref.read(profileApiDatasourceProvider);
+
+  @override
+  FutureOr<ProfileState> build() async {
+    // Fetch profile ngay khi provider được khởi tạo
+    return await _fetchProfile();
   }
 
-  Future<void> fetchProfile() async {
-    state = state.copyWith(isLoading: true);
+  Future<ProfileState> _fetchProfile() async {
     try {
-      final profile = await api.fetchProfile();
-      state = state.copyWith(
+      final profile = await _api.fetchProfile();
+      return ProfileState(
         isLoading: false,
         original: profile,
         edited: profile,
+        isEditing: false,
       );
     } catch (e) {
       log("Fetch profile error: $e");
-      state = state.copyWith(isLoading: false);
+      rethrow; // Để AsyncValue.error có thể catch
     }
   }
 
+  // Refresh profile (public method)
+  Future<void> refresh() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() => _fetchProfile());
+  }
+
   void toggleEditing() {
-    state = state.copyWith(isEditing: !state.isEditing);
+    state.whenData((current) {
+      state = AsyncValue.data(
+        current.copyWith(isEditing: !current.isEditing),
+      );
+    });
   }
 
   void updateField({
@@ -157,33 +244,65 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
     DateTime? birthDate,
     Enum$UserGender? gender,
   }) {
-    final edited = state.edited;
-    if (edited == null) return;
+    state.whenData((current) {
+      final edited = current.edited;
+      if (edited == null) return;
 
-    state = state.copyWith(
-      edited: edited.copyWith(
-        displayName: name ?? edited.displayName,
-        phoneNumber: phone ?? edited.phoneNumber,
-        birthDate: birthDate ?? edited.birthDate,
-        gender: gender ?? edited.gender,
-      ),
-    );
+      state = AsyncValue.data(
+        current.copyWith(
+          edited: edited.copyWith(
+            displayName: name ?? edited.displayName,
+            phoneNumber: phone ?? edited.phoneNumber,
+            birthDate: birthDate ?? edited.birthDate,
+            gender: gender ?? edited.gender,
+          ),
+        ),
+      );
+    });
   }
 
   Future<void> submitUpdate() async {
-    final original = state.original;
-    final edited = state.edited;
+    await state.whenData((current) async {
+      final original = current.original;
+      final edited = current.edited;
+      
+      if (original == null || edited == null) return;
 
-    if (original == null || edited == null) return;
+      try {
+        // Set loading state
+        state = AsyncValue.data(current.copyWith(isLoading: true));
 
-    try {
-      await api.updateProfile(original: original, edited: edited);
-      state = state.copyWith(
-        original: edited,
-        isEditing: false,
+        await _api.updateProfile(original: original, edited: edited);
+
+        // Update success
+        state = AsyncValue.data(
+          current.copyWith(
+            original: edited,
+            isEditing: false,
+            isLoading: false,
+          ),
+        );
+      } catch (e) {
+        log("Update error: $e");
+        
+        // Revert loading state nhưng giữ error
+        state = AsyncValue.data(current.copyWith(isLoading: false));
+        
+        // Có thể throw error để UI handle
+        rethrow;
+      }
+    }).value;
+  }
+
+  // Helper method để cancel editing
+  void cancelEditing() {
+    state.whenData((current) {
+      state = AsyncValue.data(
+        current.copyWith(
+          edited: current.original,
+          isEditing: false,
+        ),
       );
-    } catch (e) {
-      log("Update error: $e");
-    }
+    });
   }
 }

@@ -6,26 +6,26 @@ import 'package:ekofy_mobile/features/request_hub/data/models/request_status.dar
 extension RequestStatusUI on RequestStatus {
   AppStatusStyle get ui {
     switch (this) {
-      case RequestStatus.completed:
+      case RequestStatus.confirmed:
         return const AppStatusStyle(
-          label: 'Completed',
+          label: 'Confirmed',
           bg: Color(0xFFDCFCE7),
           text: Color(0xFF065F46),
           border: Color(0xFF10B981),
         );
-      case RequestStatus.pending:
+      case RequestStatus.open:
         return const AppStatusStyle(
-          label: 'Pending',
+          label: 'Open',
           bg: Color(0xFFFEF9C3),
           text: Color(0xFF92400E),
           border: Color(0xFFF59E0B),
         );
-      case RequestStatus.inProgress:
+      case RequestStatus.cancelled:
         return const AppStatusStyle(
-          label: 'In-progress',
+          label: 'Cancelled',
           bg: Color(0xFFDBEAFE),
-          text: Color(0xFF1D4ED8),
-          border: Color(0xFF3B82F6),
+          text: Color.fromARGB(255, 91, 91, 91),
+          border: Color.fromARGB(255, 70, 70, 70),
         );
       case RequestStatus.rejected:
         return const AppStatusStyle(

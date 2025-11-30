@@ -4,6 +4,7 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class Helper {
   //info: decode payload of jwt
@@ -47,5 +48,18 @@ class Helper {
       log('token expired');
       return true;
     }
+  }
+
+  //info: format định dạng số tiền tệ
+  static String formatCurrency(num value) {
+    if (value % 1 == 0) {
+      return NumberFormat('#,###').format(value); // không thập phân
+    } else {
+      return NumberFormat('#,###.##').format(value); // tối đa 2 thập phân
+    }
+  }
+
+  static String formatDate(DateTime d) {
+    return '${d.day.toString().padLeft(2, '0')}-${d.month.toString().padLeft(2, '0')}-${d.year}';
   }
 }

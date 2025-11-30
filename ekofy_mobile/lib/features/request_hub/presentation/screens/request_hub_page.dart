@@ -1,31 +1,28 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-//INFO: Đang import RequestLocalDataSource (mock). Khi tích hợp API/repository thật, hãy thay thế import này và xóa các chỗ dùng mock để tránh sót.
-import '../../data/datasources/request_local_datasource.dart';
 import '../../data/models/request.dart';
 import '../../data/models/request_status.dart';
+import '../providers/request_hub_notifier.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/filter_chips_row.dart';
 import '../widgets/request_card.dart';
-import 'request_detail_screen.dart';
 import 'create_request_screen.dart';
+import 'request_detail_screen.dart';
 
-class RequestHubPage extends StatefulWidget {
+class RequestHubPage extends ConsumerStatefulWidget {
   const RequestHubPage({super.key});
 
   @override
-  State<RequestHubPage> createState() => _RequestHubPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _RequestHubPageState();
 }
 
-class _RequestHubPageState extends State<RequestHubPage> {
-  //INFO: Sử dụng RequestLocalDataSource (dữ liệu mock). Cần chuyển sang Repository/API thật khi backend sẵn sàng.
-  final _ds = RequestLocalDataSource();
+class _RequestHubPageState extends ConsumerState<RequestHubPage> {
   final _scrollController = ScrollController();
   final _searchCtrl = TextEditingController();
 
-  List<RequestItem> _all = [];
   List<RequestItem> _visible = [];
   RequestStatus? _filter;
   _SortBy _sort = _SortBy.newest;
@@ -36,7 +33,7 @@ class _RequestHubPageState extends State<RequestHubPage> {
   @override
   void initState() {
     super.initState();
-    _load();
+    // Initial load is handled by provider
     _scrollController.addListener(_onScroll);
     _searchCtrl.addListener(_onSearchChanged);
   }
@@ -50,13 +47,7 @@ class _RequestHubPageState extends State<RequestHubPage> {
   }
 
   Future<void> _load() async {
-    //INFO: Gọi dữ liệu từ mock datasource. Đổi sang gọi Repository/API thật và xóa mock khi triển khai backend.
-    final data = await _ds.fetchAll();
-    if (!mounted) return;
-    setState(() {
-      _all = data;
-      _applyFilters(resetPage: true);
-    });
+    await ref.read(requestHubProvider.notifier).fetchPublicRequests();
   }
 
   void _onSearchChanged() {
@@ -76,13 +67,17 @@ class _RequestHubPageState extends State<RequestHubPage> {
   void _applyFilters({bool resetPage = false}) {
     if (resetPage) _page = 1;
     final q = _searchCtrl.text.trim().toLowerCase();
-    Iterable<RequestItem> list = _all;
+    final all = ref.read(requestHubProvider).items;
+    Iterable<RequestItem> list = all;
     if (_filter != null) {
       list = list.where((e) => e.status == _filter);
     }
     if (q.isNotEmpty) {
-      list = list.where((e) =>
-          e.title.toLowerCase().contains(q) || e.description.toLowerCase().contains(q));
+      list = list.where(
+        (e) =>
+            e.title.toLowerCase().contains(q) ||
+            e.detailDescription.toLowerCase().contains(q),
+      );
     }
     final sorted = list.toList()
       ..sort((a, b) {
@@ -106,11 +101,15 @@ class _RequestHubPageState extends State<RequestHubPage> {
 
   void _loadMore() {
     final q = _searchCtrl.text.trim().toLowerCase();
-    Iterable<RequestItem> list = _all;
+    final all = ref.read(requestHubProvider).items;
+    Iterable<RequestItem> list = all;
     if (_filter != null) list = list.where((e) => e.status == _filter);
     if (q.isNotEmpty) {
-      list = list.where((e) =>
-          e.title.toLowerCase().contains(q) || e.description.toLowerCase().contains(q));
+      list = list.where(
+        (e) =>
+            e.title.toLowerCase().contains(q) ||
+            e.detailDescription.toLowerCase().contains(q),
+      );
     }
     final sorted = list.toList()
       ..sort((a, b) {
@@ -137,6 +136,14 @@ class _RequestHubPageState extends State<RequestHubPage> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(requestHubProvider, (previous, next) {
+      if (previous?.items != next.items) {
+        _applyFilters(resetPage: true);
+      }
+    });
+
+    final state = ref.watch(requestHubProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Request Hub'),
@@ -145,7 +152,7 @@ class _RequestHubPageState extends State<RequestHubPage> {
             tooltip: 'Help',
             onPressed: () => _showHelp(context),
             icon: const Icon(Icons.help_outline),
-          )
+          ),
         ],
       ),
       floatingActionButton: Semantics(
@@ -174,12 +181,17 @@ class _RequestHubPageState extends State<RequestHubPage> {
               ),
             ),
             SliverToBoxAdapter(child: _sortRow(context)),
-            if (_visible.isEmpty)
+            if (state.isLoading && _visible.isEmpty)
+              const SliverFillRemaining(
+                child: Center(child: CircularProgressIndicator()),
+              )
+            else if (_visible.isEmpty)
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: EmptyState(
                   title: 'No requests found',
-                  subtitle: 'Try adjusting filters or create your first request',
+                  subtitle:
+                      'Try adjusting filters or create your first request',
                   actionLabel: 'Create first request',
                   onAction: () => _openCreate(context),
                 ),
@@ -191,18 +203,25 @@ class _RequestHubPageState extends State<RequestHubPage> {
                   if (index == _visible.length) {
                     return const Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
-                      child: Center(child: Text('Pull to refresh • Scroll for more')),
+                      child: Center(
+                        child: Text('Pull to refresh • Scroll for more'),
+                      ),
                     );
                   }
                   final item = _visible[index];
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
                     child: RequestCard(
                       item: item,
                       onTap: () => _openDetail(context, item),
                       onViewDetails: () => _openDetail(context, item),
-                      onEdit: () => _placeholder(context, 'Edit not implemented'),
-                      onCancel: () => _placeholder(context, 'Cancel not implemented'),
+                      onEdit: () =>
+                          _placeholder(context, 'Edit not implemented'),
+                      onCancel: () =>
+                          _placeholder(context, 'Cancel not implemented'),
                     ),
                   );
                 },
@@ -242,7 +261,10 @@ class _RequestHubPageState extends State<RequestHubPage> {
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
       child: Row(
         children: [
-          Text('${_visible.length} results', style: const TextStyle(color: Colors.white70)),
+          Text(
+            '${_visible.length} results',
+            style: const TextStyle(color: Colors.white70),
+          ),
           const Spacer(),
           Semantics(
             label: 'Sort requests',
@@ -255,8 +277,14 @@ class _RequestHubPageState extends State<RequestHubPage> {
                   items: const [
                     PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
                     PopupMenuItem(value: _SortBy.oldest, child: Text('Oldest')),
-                    PopupMenuItem(value: _SortBy.amountHigh, child: Text('Amount: High → Low')),
-                    PopupMenuItem(value: _SortBy.amountLow, child: Text('Amount: Low → High')),
+                    PopupMenuItem(
+                      value: _SortBy.amountHigh,
+                      child: Text('Amount: High → Low'),
+                    ),
+                    PopupMenuItem(
+                      value: _SortBy.amountLow,
+                      child: Text('Amount: Low → High'),
+                    ),
                   ],
                 );
                 if (chosen != null) {
@@ -274,15 +302,15 @@ class _RequestHubPageState extends State<RequestHubPage> {
   }
 
   void _openDetail(BuildContext context, RequestItem item) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => RequestDetailScreen(item: item)),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => RequestDetailScreen(item: item)));
   }
 
   void _openCreate(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const CreateRequestScreen()),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const CreateRequestScreen()));
   }
 
   void _showHelp(BuildContext context) {
@@ -290,9 +318,14 @@ class _RequestHubPageState extends State<RequestHubPage> {
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('About Request Hub'),
-        content: const Text('This is a UI-only demo with mock data. Use filters, search, and sort to explore.'),
+        content: const Text(
+          'This is a hub which contains all Open Public request from all listener.',
+        ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
         ],
       ),
     );

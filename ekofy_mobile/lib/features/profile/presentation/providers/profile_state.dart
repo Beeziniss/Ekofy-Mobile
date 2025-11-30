@@ -12,3 +12,4 @@ sealed class ProfileState with _$ProfileState {
     ProfileModel? edited,
   }) = _ProfileState;
 }
+

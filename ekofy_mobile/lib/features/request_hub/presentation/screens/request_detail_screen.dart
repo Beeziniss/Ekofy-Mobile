@@ -1,4 +1,6 @@
+import 'package:ekofy_mobile/core/utils/helper.dart';
 import 'package:ekofy_mobile/features/request_hub/presentation/widgets/request_status_badge.dart';
+import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/info/key_value_table.dart';
@@ -45,12 +47,7 @@ class RequestDetailScreen extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            radius: 24,
-            child: Text(
-              item.type.isNotEmpty ? item.type[0].toUpperCase() : '?',
-            ),
-          ),
+          _typeAvatar(item.requestor.avatarImage, item.requestor.displayName),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -96,23 +93,16 @@ class RequestDetailScreen extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
-          Text(item.description),
+          Text(item.detailDescription),
         ],
       ),
     );
   }
 
   Widget _metadataSection(ThemeData theme) {
-    final id = item.id;
-    final createdAtStr = _formatDate(item.createdAt);
+    final createdAtStr = Helper.formatDate(item.createdAt);
     final user = '—';
     final assigned = '—';
-    final amountStr = item.free
-        ? 'Free'
-        : _formatAmount(item.amount, item.currency);
-    final transactionId = item.status == RequestStatus.completed
-        ? 'TXN-${id.substring(0, 5).toUpperCase()}'
-        : '—';
 
     return Container(
       width: double.infinity,
@@ -130,12 +120,15 @@ class RequestDetailScreen extends StatelessWidget {
           KeyValueTable(
             outlined: false,
             rows: [
-              KeyValueRow(label: 'Request ID', value: Text(id)),
               KeyValueRow(label: 'Created', value: Text(createdAtStr)),
               KeyValueRow(label: 'User', value: Text(user)),
               KeyValueRow(label: 'Assigned to', value: Text(assigned)),
-              KeyValueRow(label: 'Amount', value: Text(amountStr)),
-              KeyValueRow(label: 'Transaction Id', value: Text(transactionId)),
+              KeyValueRow(
+                label: 'Amount',
+                value: Text(
+                  "${Helper.formatCurrency(item.amount)} ${_convertCurrency(item.currency)}",
+                ),
+              ),
             ],
           ),
         ],
@@ -188,40 +181,40 @@ class RequestDetailScreen extends StatelessWidget {
   }
 
   String _primaryActionLabel(RequestStatus status) {
-    switch (status) {
-      case RequestStatus.pending:
-        return 'Contact';
-      case RequestStatus.inProgress:
-        return 'This request is in progress';
-      case RequestStatus.completed:
-        return 'This request has been fulfilled';
-      case RequestStatus.rejected:
-        return 'Request Again';
-    }
+    // switch (status) {
+    //   case RequestStatus.open:
+    return 'Contact';
+    // case RequestStatus.inProgress:
+    //   return 'This request is in progress';
+    // case RequestStatus.completed:
+    //   return 'This request has been fulfilled';
+    // case RequestStatus.rejected:
+    //   return 'Request Again';
+    // }
   }
 
-  String _formatDate(DateTime d) {
-    return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+  void _placeholder(BuildContext context, String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
   }
 
-  String _formatAmount(double amount, String currency) {
-    return '${_currencySymbol(currency)}${amount.toStringAsFixed(2)}';
-  }
-
-  String _currencySymbol(String currency) {
-    switch (currency.toUpperCase()) {
-      case 'USD':
-        return '\u000024';
-      case 'EUR':
-        return '\u000080';
-      case 'VND':
+  String _convertCurrency(Enum$CurrencyType val) {
+    switch (val) {
+      case Enum$CurrencyType.VND:
         return '₫';
       default:
         return '';
     }
   }
 
-  void _placeholder(BuildContext context, String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  Widget _typeAvatar(String? url, String displayName) {
+    return CircleAvatar(
+      radius: 20,
+      backgroundColor: const Color(0xFF2C2C2C),
+      backgroundImage: url != null ? NetworkImage(url) : null,
+      child: Text(
+        url != null ? '' : displayName[0].toUpperCase(),
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
+    );
   }
 }

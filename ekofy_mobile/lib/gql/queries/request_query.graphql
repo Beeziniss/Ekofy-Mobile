@@ -5,6 +5,7 @@ query PublicRequestQuery {
             id
             title
             titleUnsigned
+            detailDescription
             summary
             requestUserId
             budget {

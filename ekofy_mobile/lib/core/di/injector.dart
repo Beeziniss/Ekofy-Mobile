@@ -13,9 +13,13 @@ import 'package:ekofy_mobile/features/auth/presentation/providers/auth_provider.
 import 'package:ekofy_mobile/features/profile/data/datasource/profile_api_datasource.dart';
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_notifier.dart';
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_state.dart';
+import 'package:ekofy_mobile/features/request_hub/data/datasources/request_api_datasource.dart';
+import 'package:ekofy_mobile/features/request_hub/data/repositories/public_request_repository.dart';
+import 'package:ekofy_mobile/features/request_hub/domain/repositories/public_request_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 //* === EXTERNAL INJECT ===
 final dioProvider = Provider<Dio>((ref) {
@@ -34,7 +38,6 @@ final jwtPayloadProvider = StateProvider<Map<String, dynamic>?>((ref) => null);
 
 //* =========
 
-
 //* === INTERNAL INJECT ===
 final helperProvider = Provider<Helper>((ref) {
   return Helper();
@@ -45,7 +48,6 @@ final appConfigProvider = StateNotifierProvider<AppStateNotifier, AppConfig>(
 );
 
 //* =========
-
 
 //* === AUTH INJECT ===
 final authLocalDatasourceProvider = Provider<AuthLocalDatasource>((ref) {
@@ -61,25 +63,35 @@ final authApiDatasourceProvider = Provider<AuthApiDatasource>((ref) {
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   final api = ref.watch(authApiDatasourceProvider);
   final local = ref.watch(authLocalDatasourceProvider);
-  return AuthRepositoryImpl(api, local, ref);
+  return AuthRepositoryImpl(api, local);
 });
 
 final authProvider = NotifierProvider<AuthNotifier, AuthState>(
   () => AuthNotifier(),
 );
 
-
-//* PROFILE INJECT 
-// final profileApiDatasource = Provider<ProfileApiDatasource>((ref) => {
-//   final graphqlApiHandle = ref.watch(graphqlClientProvider);
-//   return ProfileApiDatasource(graphqlClientProvider, ref);
-// });
-
-final profileProvider = StateNotifierProvider<ProfileNotifier, ProfileState>((
-  ref,
-) {
-  final client = ref.watch(graphqlClientProvider);
-  final apiDatasource = ProfileApiDatasource(client, ref);
-  return ProfileNotifier(ref, apiDatasource);
+//* PROFILE INJECT
+final profileApiDatasourceProvider = Provider<ProfileApiDatasource>((ref) {
+  final graphqlApiHandle = ref.watch(graphqlClientProvider);
+  return ProfileApiDatasource(graphqlApiHandle, ref);
 });
+
+// final profileProvider = StateNotifierProvider<ProfileNotifier, ProfileState>((
+//   ref,
+// ) {
+//   final client = ref.watch(graphqlClientProvider);
+//   final apiDatasource = ProfileApiDatasource(client, ref);
+//   return ProfileNotifier(ref, apiDatasource);
+// });
 //* =========
+
+//* REQUEST INJECT
+final requestApiDatasourceProvider = Provider<RequestApiDataSource>((ref) {
+  final client = ref.watch(graphqlClientProvider);
+  return RequestApiDataSource(client);
+});
+
+final requestRepositoryProvider = Provider<RequestRepository>((ref) {
+  final api = ref.watch(requestApiDatasourceProvider);
+  return RequestRepositoryImpl(api);
+});

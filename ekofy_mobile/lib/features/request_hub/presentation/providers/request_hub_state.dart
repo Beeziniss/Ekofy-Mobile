@@ -1,9 +1,15 @@
-// import 'package:ekofy_mobile/gql/queries/generated/request_query.graphql.dart';
+import 'package:ekofy_mobile/features/request_hub/data/models/request.dart';
 
-// class RequestHubState {
-//   final Query$PublicRequestQuery$requests$items? item;
-//   final bool isLoading;
+class RequestHubState {
+  final List<RequestItem> items;
+  final bool isLoading;
 
-//   final String title;
-//   final 
-// }
+  RequestHubState({this.items = const [], this.isLoading = false});
+
+  RequestHubState copyWith({List<RequestItem>? items, bool? isLoading}) {
+    return RequestHubState(
+      items: items ?? this.items,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
+}

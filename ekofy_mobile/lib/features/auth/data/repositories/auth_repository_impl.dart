@@ -7,17 +7,15 @@ import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasourc
 import 'package:ekofy_mobile/features/auth/data/models/request/login_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/register_request.dart';
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApiDatasource authApiDatasource;
   final AuthLocalDatasource authLocalDatasource;
-  final Ref ref;
+
 
   AuthRepositoryImpl(
     this.authApiDatasource,
-    this.authLocalDatasource,
-    this.ref,
+    this.authLocalDatasource
   );
 
   @override

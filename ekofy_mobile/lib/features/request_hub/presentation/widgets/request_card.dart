@@ -1,9 +1,10 @@
+import 'package:ekofy_mobile/core/utils/helper.dart';
 import 'package:ekofy_mobile/features/request_hub/presentation/widgets/request_status_badge.dart';
+import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/request.dart';
 import '../../data/models/request_status.dart';
-
 
 class RequestCard extends StatelessWidget {
   final RequestItem item;
@@ -40,16 +41,20 @@ class RequestCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _typeAvatar(item.type),
+                  _typeAvatar(
+                    item.requestor.avatarImage,
+                    item.requestor.displayName,
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          item.title,
+                          item.requestor.displayName,
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -57,15 +62,33 @@ class RequestCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          item.description,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontSize: 12, color: Color(0xFF9CA3AF)),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.access_time,
+                              size: 14,
+                              color: Colors.grey[500],
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              _relativeTime(item.createdAt),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey[400],
+                              ),
+                            ),
+                          ],
                         ),
+                        const SizedBox(width: 12),
                       ],
                     ),
+                  ),
+                  const SizedBox(width: 8),
+                  _pill(
+                    label:
+                        '${Helper.formatCurrency(item.amount)} ${_convertCurrency(item.currency)}',
+                    color: const Color(0xFF064E3B),
+                    textColor: const Color(0xFFA7F3D0),
                   ),
                   const SizedBox(width: 8),
                   Semantics(
@@ -78,20 +101,27 @@ class RequestCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 12),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.access_time, size: 14, color: Colors.grey[500]),
-                  const SizedBox(width: 4),
-                  Text(_relativeTime(item.createdAt), style: TextStyle(fontSize: 12, color: Colors.grey[400])),
-                  const SizedBox(width: 12),
-                  if (item.free)
-                    _pill(label: 'Free', color: const Color(0xFF064E3B), textColor: const Color(0xFFA7F3D0))
-                  else
-                    _pill(label: _formatAmount(item.amount, item.currency)),
-                  const Spacer(),
-                  RequestStatusBadge(status: item.status),
+                  Text(
+                    item.title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    item.summary,
+                    style: const TextStyle(fontSize: 14, color: Colors.white70),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -107,16 +137,24 @@ class RequestCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
         border: Border.all(color: const Color(0xFF374151), width: 0.6),
       ),
-      child: Text(label, style: TextStyle(fontSize: 11, color: textColor ?? Colors.white70, fontWeight: FontWeight.w600)),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11,
+          color: textColor ?? Colors.white70,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 
-  Widget _typeAvatar(String type) {
+  Widget _typeAvatar(String? url, String displayName) {
     return CircleAvatar(
       radius: 20,
       backgroundColor: const Color(0xFF2C2C2C),
+      backgroundImage: url != null ? NetworkImage(url) : null,
       child: Text(
-        type.isNotEmpty ? type[0].toUpperCase() : '?',
+        url != null ? '' : displayName[0].toUpperCase(),
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
     );
@@ -130,7 +168,7 @@ class RequestCard extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       builder: (_) {
-        final canEdit = item.status == RequestStatus.pending || item.status == RequestStatus.inProgress;
+        final canEdit = item.status == RequestStatus.open;
         return SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -167,23 +205,6 @@ class RequestCard extends StatelessWidget {
     );
   }
 
-  String _formatAmount(double amount, String currency) {
-    return '${_currencySymbol(currency)}${amount.toStringAsFixed(2)}';
-  }
-
-  String _currencySymbol(String currency) {
-    switch (currency.toUpperCase()) {
-      case 'USD':
-        return '\u000024';
-      case 'EUR':
-        return '\u000080';
-      case 'VND':
-        return '₫';
-      default:
-        return '';
-    }
-  }
-
   String _relativeTime(DateTime date) {
     final now = DateTime.now().toUtc();
     final d = date.toUtc();
@@ -193,5 +214,14 @@ class RequestCard extends StatelessWidget {
     if (diff.inHours < 24) return '${diff.inHours}h ago';
     if (diff.inDays < 7) return '${diff.inDays}d ago';
     return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+  }
+
+  String _convertCurrency(Enum$CurrencyType val) {
+    switch (val) {
+      case Enum$CurrencyType.VND:
+        return '₫';
+      default:
+        return '';
+    }
   }
 }

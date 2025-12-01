@@ -1,12 +1,12 @@
+import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/core/utils/helper.dart';
-import 'package:ekofy_mobile/features/request_hub/presentation/widgets/request_status_badge.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/models/request.dart';
-import '../../data/models/request_status.dart';
 
-class RequestCard extends StatelessWidget {
+class RequestCard extends ConsumerWidget {
   final RequestItem item;
   final VoidCallback? onTap;
   final VoidCallback? onViewDetails;
@@ -23,7 +23,7 @@ class RequestCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Semantics(
       button: true,
       label: 'Request card for ${item.title}',
@@ -83,19 +83,13 @@ class RequestCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  _pill(
-                    label:
-                        '${Helper.formatCurrency(item.amount)} ${_convertCurrency(item.currency)}',
-                    color: const Color(0xFF064E3B),
-                    textColor: const Color(0xFFA7F3D0),
-                  ),
+
                   const SizedBox(width: 8),
                   Semantics(
                     label: 'More actions',
                     child: IconButton(
                       icon: const Icon(Icons.more_horiz, color: Colors.white70),
-                      onPressed: () => _showActions(context),
+                      onPressed: () => _showActions(context, ref),
                     ),
                   ),
                 ],
@@ -119,6 +113,18 @@ class RequestCard extends StatelessWidget {
                     style: const TextStyle(fontSize: 14, color: Colors.white70),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(width: 8),
+                  Row(
+                    children: [
+                      Spacer(),
+                      _pill(
+                        label:
+                            '${Helper.formatCurrency(item.budget.min)} ${_convertCurrency(item.currency)} - ${Helper.formatCurrency(item.budget.max)} ${_convertCurrency(item.currency)}',
+                        color: const Color(0xFF064E3B),
+                        textColor: const Color(0xFFA7F3D0),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -153,14 +159,21 @@ class RequestCard extends StatelessWidget {
       radius: 20,
       backgroundColor: const Color(0xFF2C2C2C),
       backgroundImage: url != null ? NetworkImage(url) : null,
-      child: Text(
-        url != null ? '' : displayName[0].toUpperCase(),
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
+      child: url == null || url.isEmpty
+          ? Text(
+              displayName[0].toUpperCase(),
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            )
+          : null, // nếu có url thì không hiển thị chữ
     );
   }
 
-  void _showActions(BuildContext context) {
+  void _showActions(BuildContext context, WidgetRef ref) {
+    final payload = ref.read(jwtPayloadProvider);
+    final currentUserId = payload?['userId'] ?? payload?['sub'];
+    final canEdit =
+        currentUserId != null && currentUserId == item.requestUserId;
+
     showModalBottomSheet(
       context: context,
       backgroundColor: const Color(0xFF111111),
@@ -168,7 +181,7 @@ class RequestCard extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       builder: (_) {
-        final canEdit = item.status == RequestStatus.open;
+        // final canEdit = item.status == RequestStatus.open;
         return SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,

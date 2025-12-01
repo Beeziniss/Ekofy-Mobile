@@ -3,6 +3,7 @@ import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -44,6 +45,7 @@ class EkofyApp extends ConsumerWidget {
     return GraphQLProvider(
       client: ValueNotifier(client),
       child: MaterialApp.router(
+        localizationsDelegates: const [FlutterQuillLocalizations.delegate],
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'BE_Vietnam_Pro',

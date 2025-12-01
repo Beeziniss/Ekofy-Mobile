@@ -16,6 +16,8 @@ import 'package:ekofy_mobile/features/profile/presentation/providers/profile_sta
 import 'package:ekofy_mobile/features/request_hub/data/datasources/request_api_datasource.dart';
 import 'package:ekofy_mobile/features/request_hub/data/repositories/public_request_repository.dart';
 import 'package:ekofy_mobile/features/request_hub/domain/repositories/public_request_repository.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/providers/request_hub_notifier.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/providers/request_hub_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -95,3 +97,9 @@ final requestRepositoryProvider = Provider<RequestRepository>((ref) {
   final api = ref.watch(requestApiDatasourceProvider);
   return RequestRepositoryImpl(api);
 });
+
+final requestHubProvider =
+    StateNotifierProvider<RequestHubNotifier, RequestHubState>((ref) {
+      final requestRepository = ref.read(requestRepositoryProvider);
+      return RequestHubNotifier(requestRepository);
+    });

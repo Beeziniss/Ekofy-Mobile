@@ -67,7 +67,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           final hasException = result.hasException;
           final errorMessage = result.exception?.toString();
 
-          return _HomeBodyContent(
+          return _homeBodyContent(
             tracks: tracks,
             refetch: refetch,
             isLoading: isLoading,
@@ -181,7 +181,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   /// Build home body content based on query state
-  Widget _HomeBodyContent({
+  Widget _homeBodyContent({
     required List<Map<String, dynamic>> tracks,
     VoidCallback? refetch,
     required bool isLoading,
@@ -226,7 +226,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'Tracks',
+                  'New Releases',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ],

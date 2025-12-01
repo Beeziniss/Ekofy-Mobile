@@ -1,18 +1,33 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/core/utils/constants/auth_constant.dart';
+import 'package:ekofy_mobile/core/utils/helper.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 final graphqlClientProvider = Provider<GraphQLClient>((ref) {
-  // authProvider is a NotifierProvider; we need the notifier to call async methods
-  final authNotifier = ref.read(authProvider.notifier);
-
   final AuthLink authLink = AuthLink(
     getToken: () async {
-      // AuthNotifier provides a getToken() async helper
-      final token = await authNotifier.getToken();
-      if (token == null || token.isEmpty) return null;
-      return 'Bearer $token';
+      // Try to get from AppConfig first
+      var token = ref.read(appConfigProvider).token;
+
+      // If not in memory, try local storage
+      if (token == null) {
+        token = await ref.read(authLocalDatasourceProvider).getAccessToken();
+        if (token != null) {
+          // Update cache
+          ref.read(appConfigProvider.notifier).setTokenCache(token);
+        }
+      }
+
+      if (token != null) {
+        // log('GraphQL Token: $token');
+        return 'Bearer $token';
+      }
+      return null;
     },
   );
 
@@ -22,14 +37,62 @@ final graphqlClientProvider = Provider<GraphQLClient>((ref) {
   );
 
   final errorLink = ErrorLink(
-    onException: (request, forward, exception) {
+    onException: (request, forward, exception) async* {
       if (exception is ServerException &&
+          exception.parsedResponse?.errors != null &&
           exception.parsedResponse!.errors!.any(
-            (e) => e.extensions!.containsValue(401),
+            (e) =>
+                e.extensions?['code'] == 'AUTH_NOT_AUTHENTICATED' ||
+                e.extensions?['status'] == 401,
           )) {
-        //TODO: refresh token
+        log('GraphQL Unauthorized. Attempting refresh...');
+        final authLocal = ref.read(authLocalDatasourceProvider);
+        final refreshToken = await authLocal.getRefreshToken();
+
+        if (refreshToken != null) {
+          try {
+            final dio = ref.read(dioProvider);
+            final response = await dio.post(
+              '/auth/refresh-token',
+              data: {'refreshToken': refreshToken},
+              options: Options(
+                headers: {
+                  'content-type': 'application/json',
+                  'requires-token': 'false',
+                },
+              ),
+            );
+
+            final newAccessToken = response.data['accessToken'];
+            final newRefreshToken = response.data['refreshToken'];
+
+            if (newAccessToken != null) {
+              await authLocal.updateToken(
+                AuthConstant.accessToken,
+                newAccessToken,
+              );
+              await authLocal.updateToken(
+                AuthConstant.refreshToken,
+                newRefreshToken,
+              );
+              ref
+                  .read(appConfigProvider.notifier)
+                  .setTokenCache(newAccessToken);
+
+              // Retry request
+              yield* forward(request);
+              return;
+            }
+          } catch (e) {
+            log('GraphQL Refresh failed: $e');
+          }
+        }
+
+        // If refresh failed, logout
+        ref.read(authProvider.notifier).logout();
       }
-      return forward(request);
+
+      throw exception;
     },
   );
 

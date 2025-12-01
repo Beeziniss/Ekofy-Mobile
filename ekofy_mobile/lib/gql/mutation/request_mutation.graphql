@@ -1,0 +1,18 @@
+mutation CreatePublicRequest(
+  $title: String!,
+  $summary: String!,
+  $detailDescription: String!,
+  $duration: Int!,
+  $min: Decimal!,
+  $max: Decimal!
+) {
+  createPublicRequest(
+    request: {
+      title: $title
+      summary: $summary
+      detailDescription: $detailDescription
+      duration: $duration
+      budget: { min: $min, max: $max }
+    }
+  )
+}

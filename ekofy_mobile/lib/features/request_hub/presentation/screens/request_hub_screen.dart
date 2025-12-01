@@ -1,25 +1,25 @@
 import 'dart:async';
 
+import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/models/request.dart';
 import '../../data/models/request_status.dart';
-import '../providers/request_hub_notifier.dart';
 import '../widgets/empty_state.dart';
-import '../widgets/filter_chips_row.dart';
 import '../widgets/request_card.dart';
 import 'create_request_screen.dart';
 import 'request_detail_screen.dart';
 
-class RequestHubPage extends ConsumerStatefulWidget {
-  const RequestHubPage({super.key});
+class RequestHubScreen extends ConsumerStatefulWidget {
+  const RequestHubScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _RequestHubPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _RequestHubScreenState();
 }
 
-class _RequestHubPageState extends ConsumerState<RequestHubPage> {
+class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
   final _scrollController = ScrollController();
   final _searchCtrl = TextEditingController();
 
@@ -171,15 +171,15 @@ class _RequestHubPageState extends ConsumerState<RequestHubPage> {
             const SliverToBoxAdapter(child: SizedBox(height: 12)),
             SliverToBoxAdapter(child: _searchBar()),
             const SliverToBoxAdapter(child: SizedBox(height: 8)),
-            SliverToBoxAdapter(
-              child: FilterChipsRow(
-                selected: _filter,
-                onSelected: (v) {
-                  _filter = v;
-                  _applyFilters(resetPage: true);
-                },
-              ),
-            ),
+            // SliverToBoxAdapter(
+            //   child: FilterChipsRow(
+            //     selected: _filter,
+            //     onSelected: (v) {
+            //       _filter = v;
+            //       _applyFilters(resetPage: true);
+            //     },
+            //   ),
+            // ),
             SliverToBoxAdapter(child: _sortRow(context)),
             if (state.isLoading && _visible.isEmpty)
               const SliverFillRemaining(

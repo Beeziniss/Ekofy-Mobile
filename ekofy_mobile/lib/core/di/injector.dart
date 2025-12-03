@@ -14,14 +14,13 @@ import 'package:ekofy_mobile/features/profile/data/datasource/profile_api_dataso
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_notifier.dart';
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_state.dart';
 import 'package:ekofy_mobile/features/request_hub/data/datasources/request_api_datasource.dart';
-import 'package:ekofy_mobile/features/request_hub/data/repositories/public_request_repository.dart';
-import 'package:ekofy_mobile/features/request_hub/domain/repositories/public_request_repository.dart';
-import 'package:ekofy_mobile/features/request_hub/presentation/providers/request_hub_notifier.dart';
-import 'package:ekofy_mobile/features/request_hub/presentation/providers/request_hub_state.dart';
+import 'package:ekofy_mobile/features/request_hub/data/repositories/request_repository_impl.dart';
+import 'package:ekofy_mobile/features/request_hub/domain/repositories/request_repository.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/providers/public_request/request_notifier.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/providers/public_request/request_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 //* === EXTERNAL INJECT ===
 final dioProvider = Provider<Dio>((ref) {
@@ -98,8 +97,9 @@ final requestRepositoryProvider = Provider<RequestRepository>((ref) {
   return RequestRepositoryImpl(api);
 });
 
-final requestHubProvider =
-    StateNotifierProvider<RequestHubNotifier, RequestHubState>((ref) {
-      final requestRepository = ref.read(requestRepositoryProvider);
-      return RequestHubNotifier(requestRepository);
-    });
+final requestProvider = StateNotifierProvider<RequestNotifier, RequestState>((
+  ref,
+) {
+  final requestRepository = ref.read(requestRepositoryProvider);
+  return RequestNotifier(requestRepository);
+});

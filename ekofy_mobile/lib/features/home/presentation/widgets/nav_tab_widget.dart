@@ -1,8 +1,9 @@
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
+import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/features/home/presentation/screens/main_screen.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
-import 'package:ekofy_mobile/features/request_hub/presentation/screens/request_hub_screen.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/screens/public_request/request_hub_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -178,11 +179,8 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-                // Close drawer then navigate
                 Navigator.of(context).pop();
-                context.push(
-                  '/transactions',
-                ); //INFO: Navigate to UI-only transactions list
+                context.push(RouteName.ownRequests);
               },
             ),
             const Divider(height: 1),

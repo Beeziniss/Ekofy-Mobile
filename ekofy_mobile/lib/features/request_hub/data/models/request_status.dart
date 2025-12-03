@@ -12,7 +12,6 @@ enum RequestStatus {
         return RequestStatus.open;
       case 'rejected':
         return RequestStatus.rejected;
-      case 'canceled':
       case 'cancelled':
         return RequestStatus.cancelled;
       case 'confirmed':

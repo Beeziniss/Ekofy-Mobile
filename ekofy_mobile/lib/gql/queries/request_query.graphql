@@ -24,3 +24,44 @@ query PublicRequestQuery {
         }
     }
 }
+
+query OwnRequestsQuery {
+    ownRequests {
+        totalCount
+        items {
+            id
+            requestUserId
+            artistId
+            packageId
+            title
+            titleUnsigned
+            summary
+            summaryUnsigned
+            detailDescription
+            requirements
+            postCreatedTime
+            updatedAt
+            type
+            currency
+            duration
+            status
+            requestCreatedTime
+            notes
+            budget {
+                min
+                max
+            }
+            artist {
+                id
+                userId
+                stageName
+            }
+            artistPackage {
+                id
+                packageName
+                amount
+                currency
+            }
+        }
+    }
+}

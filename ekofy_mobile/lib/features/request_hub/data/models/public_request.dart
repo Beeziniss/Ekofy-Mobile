@@ -4,7 +4,7 @@ import 'package:ekofy_mobile/gql/queries/generated/request_query.graphql.dart';
 
 import 'request_status.dart';
 
-class RequestItem {
+class PublicRequestItem {
   final String id;
   final String title;
   final String titleUnsigned;
@@ -23,7 +23,7 @@ class RequestItem {
 
   double get amount => budget.min;
 
-  RequestItem({
+  PublicRequestItem({
     required this.id,
     required this.title,
     required this.titleUnsigned,
@@ -41,38 +41,11 @@ class RequestItem {
     required this.requestor,
   });
 
-  factory RequestItem.fromJson(Map<String, dynamic> json) {
-    final amount = (json['amount'] as num).toDouble();
-    return RequestItem(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      detailDescription: json['detailDescription'] as String,
-      type: json['type'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      budget: Budget(min: amount, max: amount),
-      currency: json['currency'] != null
-          ? fromJson$Enum$CurrencyType(json['currency'] as String)
-          : Enum$CurrencyType.VND,
-      free: json['free'] as bool? ?? false,
-      status: RequestStatus.fromString(json['status'] as String),
-      titleUnsigned: '',
-      summary: '',
-      requestUserId: '',
-      postCreatedTime: DateTime.now(),
-      duration: 1,
-      requestor: Requestor(
-        displayName: json['requestor']['displayName'] as String,
-        avatarImage: json['requestor']['avatarImage'] as String,
-        userId: json['requestor']['userId'] as String,
-      ),
-    );
-  }
-
-  factory RequestItem.fromQueryItem(
+  factory PublicRequestItem.fromQueryItem(
     Query$PublicRequestQuery$requests$items item,
   ) {
     final req = item.requestor.isNotEmpty ? item.requestor.first : null;
-    return RequestItem(
+    return PublicRequestItem(
       id: item.id,
       title: item.title ?? '',
       titleUnsigned: item.titleUnsigned ?? '',

@@ -1,13 +1,12 @@
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/core/utils/helper.dart';
+import 'package:ekofy_mobile/features/request_hub/data/models/request_card_model.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/models/request.dart';
-
 class RequestCard extends ConsumerWidget {
-  final RequestItem item;
+  final RequestCardModel item;
   final VoidCallback? onTap;
   final VoidCallback? onViewDetails;
   final VoidCallback? onEdit;
@@ -43,10 +42,7 @@ class RequestCard extends ConsumerWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _typeAvatar(
-                    item.requestor.avatarImage,
-                    item.requestor.displayName,
-                  ),
+                  _typeAvatar(item.requestorAvatar, item.requestorDisplayName),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -54,7 +50,7 @@ class RequestCard extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          item.requestor.displayName,
+                          item.requestorDisplayName,
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -120,7 +116,7 @@ class RequestCard extends ConsumerWidget {
                       Spacer(),
                       _pill(
                         label:
-                            '${Helper.formatCurrency(item.budget.min)} ${_convertCurrency(item.currency)} - ${Helper.formatCurrency(item.budget.max)} ${_convertCurrency(item.currency)}',
+                            '${Helper.formatCurrency(item.minBudget)} ${_convertCurrency(item.currency)} - ${Helper.formatCurrency(item.maxBudget)} ${_convertCurrency(item.currency)}',
                         color: const Color(0xFF064E3B),
                         textColor: const Color(0xFFA7F3D0),
                       ),
@@ -155,16 +151,21 @@ class RequestCard extends ConsumerWidget {
   }
 
   Widget _typeAvatar(String? url, String displayName) {
+    bool isValidUrl =
+        url != null &&
+        url.isNotEmpty &&
+        (url.startsWith('http://') || url.startsWith('https://'));
+
     return CircleAvatar(
       radius: 20,
       backgroundColor: const Color(0xFF2C2C2C),
-      backgroundImage: url != null ? NetworkImage(url) : null,
-      child: url == null || url.isEmpty
+      backgroundImage: isValidUrl ? NetworkImage(url) : null,
+      child: !isValidUrl
           ? Text(
               displayName[0].toUpperCase(),
               style: const TextStyle(fontWeight: FontWeight.bold),
             )
-          : null, // nếu có url thì không hiển thị chữ
+          : null,
     );
   }
 

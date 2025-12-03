@@ -16,3 +16,45 @@ mutation CreatePublicRequest(
     }
   )
 }
+
+mutation UpdatePublicRequest(
+  $id: String!,
+  $title: String,
+  $summary: String,
+  $detailDescription: String,
+  $duration: Int,
+  $min: Decimal,
+  $max: Decimal,
+  $status: RequestStatus
+) {
+  updatePublicRequest(
+    request: {
+      id: $id
+      title: $title
+      summary: $summary
+      detailDescription: $detailDescription
+      duration: $duration
+      budget: { min: $min, max: $max }
+      status: $status
+    }
+  )
+}
+
+
+mutation SendRequest(
+  $publicRequestId: String!,
+  $artistId: String!,
+  $requirements: String,
+  $packageId: String!,
+  $isDirectRequest: Boolean!
+) {
+  sendRequest(
+    request: {
+      publicRequestId: $publicRequestId
+      artistId: $artistId
+      requirements: $requirements
+      packageId: $packageId
+    }
+      isDirectRequest: $isDirectRequest
+  )
+}

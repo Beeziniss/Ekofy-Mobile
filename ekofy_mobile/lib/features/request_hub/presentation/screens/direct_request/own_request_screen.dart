@@ -1,29 +1,31 @@
 import 'dart:async';
 
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/features/request_hub/data/models/own_request.dart';
+import 'package:ekofy_mobile/features/request_hub/data/models/request_card_model.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/screens/direct_request/own_request_detail_screen.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/widgets/filter_chips_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/models/request.dart';
-import '../../data/models/request_status.dart';
-import '../widgets/empty_state.dart';
-import '../widgets/request_card.dart';
-import 'create_request_screen.dart';
-import 'request_detail_screen.dart';
+// import '../../../data/models/public_request.dart';
+import '../../../data/models/request_status.dart';
+import '../../widgets/empty_state.dart';
+import '../../widgets/request_card.dart';
 
-class RequestHubScreen extends ConsumerStatefulWidget {
-  const RequestHubScreen({super.key});
+class OwnRequestScreen extends ConsumerStatefulWidget {
+  const OwnRequestScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _RequestHubScreenState();
+      _OwnRequestScreenState();
 }
 
-class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
+class _OwnRequestScreenState extends ConsumerState<OwnRequestScreen> {
   final _scrollController = ScrollController();
   final _searchCtrl = TextEditingController();
 
-  List<RequestItem> _visible = [];
+  List<OwnRequestItem> _visible = [];
   RequestStatus? _filter;
   _SortBy _sort = _SortBy.newest;
   int _page = 1;
@@ -47,7 +49,7 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
   }
 
   Future<void> _load() async {
-    await ref.read(requestHubProvider.notifier).fetchPublicRequests();
+    await ref.read(requestProvider.notifier).fetchOwnRequests();
   }
 
   void _onSearchChanged() {
@@ -67,8 +69,8 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
   void _applyFilters({bool resetPage = false}) {
     if (resetPage) _page = 1;
     final q = _searchCtrl.text.trim().toLowerCase();
-    final all = ref.read(requestHubProvider).items;
-    Iterable<RequestItem> list = all;
+    final all = ref.read(requestProvider).ownRequestItems;
+    Iterable<OwnRequestItem> list = all;
     if (_filter != null) {
       list = list.where((e) => e.status == _filter);
     }
@@ -82,14 +84,16 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
     final sorted = list.toList()
       ..sort((a, b) {
         switch (_sort) {
-          case _SortBy.newest:
-            return b.createdAt.compareTo(a.createdAt);
-          case _SortBy.oldest:
-            return a.createdAt.compareTo(b.createdAt);
-          case _SortBy.amountHigh:
-            return b.amount.compareTo(a.amount);
-          case _SortBy.amountLow:
-            return a.amount.compareTo(b.amount);
+          // case _SortBy.newest:
+          //   return b.createdAt.compareTo(a.createdAt);
+          // case _SortBy.oldest:
+          //   return a.createdAt.compareTo(b.createdAt);
+          // case _SortBy.amountHigh:
+          //   return b.amount.compareTo(a.amount);
+          // case _SortBy.amountLow:
+          //   return a.amount.compareTo(b.amount);
+          default:
+            return 0;
         }
       });
 
@@ -101,8 +105,8 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
 
   void _loadMore() {
     final q = _searchCtrl.text.trim().toLowerCase();
-    final all = ref.read(requestHubProvider).items;
-    Iterable<RequestItem> list = all;
+    final all = ref.read(requestProvider).ownRequestItems;
+    Iterable<OwnRequestItem> list = all;
     if (_filter != null) list = list.where((e) => e.status == _filter);
     if (q.isNotEmpty) {
       list = list.where(
@@ -114,14 +118,16 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
     final sorted = list.toList()
       ..sort((a, b) {
         switch (_sort) {
-          case _SortBy.newest:
-            return b.createdAt.compareTo(a.createdAt);
-          case _SortBy.oldest:
-            return a.createdAt.compareTo(b.createdAt);
-          case _SortBy.amountHigh:
-            return b.amount.compareTo(a.amount);
-          case _SortBy.amountLow:
-            return a.amount.compareTo(b.amount);
+          // case _SortBy.newest:
+          //   return b.createdAt.compareTo(a.createdAt);
+          // case _SortBy.oldest:
+          //   return a.createdAt.compareTo(b.createdAt);
+          // case _SortBy.amountHigh:
+          //   return b.amount.compareTo(a.amount);
+          // case _SortBy.amountLow:
+          //   return a.amount.compareTo(b.amount);
+          default:
+            return 0;
         }
       });
     final total = sorted.length;
@@ -136,31 +142,20 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(requestHubProvider, (previous, next) {
-      if (previous?.items != next.items) {
+    ref.listen(requestProvider, (previous, next) {
+      if (previous?.publicRequestItems != next.publicRequestItems) {
         _applyFilters(resetPage: true);
       }
     });
 
-    final state = ref.watch(requestHubProvider);
+    final state = ref.watch(requestProvider);
 
     return Scaffold(
+      backgroundColor: const Color(0xFF0B0B0E),
       appBar: AppBar(
-        title: const Text('Request Hub'),
-        actions: [
-          IconButton(
-            tooltip: 'Help',
-            onPressed: () => _showHelp(context),
-            icon: const Icon(Icons.help_outline),
-          ),
-        ],
-      ),
-      floatingActionButton: Semantics(
-        label: 'Create Request',
-        button: true,
-        child: FloatingActionButton(
-          onPressed: () => _openCreate(context),
-          child: const Icon(Icons.add),
+        title: const Text(
+          'Request History',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
       body: RefreshIndicator(
@@ -171,15 +166,15 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
             const SliverToBoxAdapter(child: SizedBox(height: 12)),
             SliverToBoxAdapter(child: _searchBar()),
             const SliverToBoxAdapter(child: SizedBox(height: 8)),
-            // SliverToBoxAdapter(
-            //   child: FilterChipsRow(
-            //     selected: _filter,
-            //     onSelected: (v) {
-            //       _filter = v;
-            //       _applyFilters(resetPage: true);
-            //     },
-            //   ),
-            // ),
+            SliverToBoxAdapter(
+              child: FilterChipsRow(
+                selected: _filter,
+                onSelected: (v) {
+                  _filter = v;
+                  _applyFilters(resetPage: true);
+                },
+              ),
+            ),
             SliverToBoxAdapter(child: _sortRow(context)),
             if (state.isLoading && _visible.isEmpty)
               const SliverFillRemaining(
@@ -193,7 +188,6 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
                   subtitle:
                       'Try adjusting filters or create your first request',
                   actionLabel: 'Create first request',
-                  onAction: () => _openCreate(context),
                 ),
               )
             else
@@ -215,7 +209,7 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
                       vertical: 8,
                     ),
                     child: RequestCard(
-                      item: item,
+                      item: RequestCardModel.fromOwnRequest(item),
                       onTap: () => _openDetail(context, item),
                       onViewDetails: () => _openDetail(context, item),
                       onEdit: () =>
@@ -301,16 +295,10 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
     );
   }
 
-  void _openDetail(BuildContext context, RequestItem item) {
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute(builder: (_) => RequestDetailScreen(item: item)));
-  }
-
-  void _openCreate(BuildContext context) {
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute(builder: (_) => const CreateRequestScreen()));
+  void _openDetail(BuildContext context, OwnRequestItem item) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => OwnRequestDetailScreen(item: item)),
+    );
   }
 
   void _showHelp(BuildContext context) {

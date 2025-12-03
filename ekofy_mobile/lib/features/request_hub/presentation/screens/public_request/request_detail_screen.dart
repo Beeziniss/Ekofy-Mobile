@@ -1,15 +1,13 @@
-import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/utils/helper.dart';
-import 'package:ekofy_mobile/features/request_hub/presentation/widgets/request_status_badge.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
-import '../../../../core/widgets/info/key_value_table.dart';
-import '../../data/models/request.dart';
+import '../../../../../core/widgets/info/key_value_table.dart';
+import '../../../data/models/public_request.dart';
 
 class RequestDetailScreen extends StatelessWidget {
-  final RequestItem item;
+  final PublicRequestItem item;
   const RequestDetailScreen({super.key, required this.item});
 
   @override

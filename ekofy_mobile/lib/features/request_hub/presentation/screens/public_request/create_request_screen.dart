@@ -293,8 +293,8 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
       final htmlDescription = converter.convert();
 
       final result = await ref
-          .read(requestHubProvider.notifier)
-          .createRequest(
+          .read(requestProvider.notifier)
+          .createPublicRequest(
             title: _titleCtrl.text,
             summary: _summaryCtrl.text,
             detailDescription: htmlDescription,

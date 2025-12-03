@@ -7,6 +7,8 @@ import 'package:ekofy_mobile/features/auth/presentation/screens/splash.dart';
 import 'package:ekofy_mobile/features/home/presentation/widgets/nav_tab_widget.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
 import 'package:ekofy_mobile/features/profile/presentation/screens/profile_page.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/screens/direct_request/own_request_screen.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/screens/public_request/request_hub_screen.dart';
 import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_detail_screen.dart';
 import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_history_list_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class RouteName {
   static const String profile = '/profile';
   static const String transactions = '/transactions';
   static const String transactionDetail = '/transactions/:id';
+  static const String requestHub = '/request-hub';
+  static const String ownRequests = '/own-requests';
 
   static const publicRoutes = [home, login, register];
 }
@@ -83,6 +87,14 @@ GoRouter router(WidgetRef ref) {
       GoRoute(
         path: RouteName.otp,
         builder: (context, state) => const OtpScreen(),
+      ),
+      // GoRoute(
+      //   path: RouteName.requestHub,
+      //   builder: (context, state) => const RequestHubScreen(),
+      // ),
+      GoRoute(
+        path: RouteName.ownRequests,
+        builder: (context, state) => const OwnRequestScreen(),
       ),
     ],
   );

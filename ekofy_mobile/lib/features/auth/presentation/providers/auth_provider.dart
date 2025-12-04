@@ -1,4 +1,8 @@
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../core/utils/results/result_type.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
@@ -31,6 +35,43 @@ class AuthNotifier extends Notifier<AuthState> {
       Success() => AuthLoginSuccess(),
       Failure() => AuthLoginFailure(result.message),
     };
+  }
+
+  Future<void> loginWithGoogle() async {
+    state = AuthLoginInProgress();
+    try {
+      final String? serverClientId = dotenv.env['WEB_CLIENT_ID'];
+
+      final GoogleSignIn googleSignIn = GoogleSignIn.instance;
+
+      await googleSignIn.initialize(serverClientId: serverClientId);
+
+      final GoogleSignInAccount? googleUser = await googleSignIn.authenticate();
+
+      if (googleUser == null) {
+        // User canceled the sign-in
+        state = AuthInitial();
+        return;
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final String? idToken = googleAuth.idToken;
+
+      if (idToken == null) {
+        state = AuthLoginFailure('Failed to retrieve Google ID token');
+        return;
+      }
+
+      final result = await _authRepository.loginWithGoogle(idToken);
+
+      state = switch (result) {
+        Success() => AuthLoginSuccess(),
+        Failure() => AuthLoginFailure(result.message),
+      };
+    } catch (e) {
+      state = AuthLoginFailure(e.toString());
+    }
   }
 
   // Register method - Thay thế AuthRegisterStarted event

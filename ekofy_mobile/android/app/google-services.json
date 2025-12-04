@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "644317546946",
+    "project_id": "ekofy-8d865",
+    "storage_bucket": "ekofy-8d865.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644317546946:android:aef657f5a90924d7d26e5b",
+        "android_client_info": {
+          "package_name": "com.example.ekofy_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOxikePwipZTkplV0_gYqWQOlseezgGPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

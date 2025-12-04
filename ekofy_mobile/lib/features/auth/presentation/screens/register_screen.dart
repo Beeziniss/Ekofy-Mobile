@@ -1,23 +1,28 @@
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
+import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
+import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/core/utils/validators.dart';
 import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/login_screen.dart';
 import 'package:ekofy_mobile/core/widgets/button/gradient_border_text_field.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/otp_screen.dart';
+import 'package:ekofy_mobile/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<ConsumerStatefulWidget> createState() {
     return _RegisterScreenState();
   }
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -28,6 +33,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<AuthState>(authProvider, (previous, next) {
+      switch (next) {
+        case AuthLoginSuccess():
+          // trigger authenticate --> login success
+          ref.read(authProvider.notifier).authenticate();
+          break;
+        case AuthAuthenticateSuccess():
+          context.go(RouteName.home);
+          break;
+        default:
+          break;
+      }
+    });
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -317,7 +336,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Widget _loginWithGoogleButtton() {
     return CustomButton(
-      onPressed: () {},
+      onPressed: () {
+        ref.read(authProvider.notifier).loginWithGoogle();
+      },
       title: 'Continue with Google',
       height: 45,
       gradientColors: [

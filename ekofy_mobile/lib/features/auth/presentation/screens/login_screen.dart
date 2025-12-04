@@ -295,7 +295,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Widget _loginWithGoogleButton() {
     return CustomButton(
-      onPressed: () {},
+      onPressed: () {
+        ref.read(authProvider.notifier).loginWithGoogle();
+      },
       title: 'Continue with Google',
       height: 45,
       gradientColors: [

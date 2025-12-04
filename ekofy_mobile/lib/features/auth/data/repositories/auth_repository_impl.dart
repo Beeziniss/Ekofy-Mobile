@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:ekofy_mobile/core/utils/results/result_type.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_api_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasource.dart';
+import 'package:ekofy_mobile/features/auth/data/models/request/google_login_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/login_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/register_request.dart';
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
@@ -102,4 +103,27 @@ class AuthRepositoryImpl implements AuthRepository {
     await authLocalDatasource.removeToken();
     return Success('Logout Successfully.');
   }
+
+  @override
+  Future<ResultType> loginWithGoogle(String googleToken) async {
+    try {
+      final response = await authApiDatasource.loginWithGoogle(GoogleLoginRequest(googleToken: googleToken, isMobile: true));
+      return response.when(
+        success: (res) async {
+          await authLocalDatasource.saveToken(
+            res.result!.accessToken,
+            res.result!.refreshToken,
+          );
+          return Success(null);
+        },
+        failure: (res, status) {
+          return Failure(res);
+        },
+      );
+    } on DioException catch (e) {
+      log('$e');
+      return Failure('Server or Request Error!');
+    }
+  }
+
 }

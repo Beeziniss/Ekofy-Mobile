@@ -2,6 +2,7 @@ import 'package:ekofy_mobile/core/configs/graphql_client_provider.dart';
 import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_theme.dart';
 import 'package:ekofy_mobile/core/providers/theme_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_quill/flutter_quill.dart';
@@ -9,11 +10,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() async {
   // Đảm bảo Flutter đã khởi động đầy đủ
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
 
   await initHiveForFlutter();
 

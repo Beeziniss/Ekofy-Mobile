@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ekofy_mobile/core/configs/api_handle.dart';
 import 'package:ekofy_mobile/core/utils/results/result_type.dart';
+import 'package:ekofy_mobile/features/auth/data/models/request/google_login_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/login_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/register_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/response/login_response.dart';
@@ -52,4 +53,16 @@ class AuthApiDatasource {
       fromJson: (json) => LogoutResponse.fromJson(json),
     );
   }
+
+  Future<ResultType<LoginResponse>> loginWithGoogle(GoogleLoginRequest request) async {
+    final data = {
+      'googleToken': request.googleToken,
+      'isMobile': request.isMobile,
+    };
+    return await api.post<LoginResponse>(
+      path: '/api/authentication/login/listener/google',
+      data: data,
+      fromJson: (json) => LoginResponse.fromJson(json),
+    );
+  } 
 }

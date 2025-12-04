@@ -1,6 +1,7 @@
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/core/utils/helper.dart';
 import 'package:ekofy_mobile/features/request_hub/data/models/request_card_model.dart';
+import 'package:ekofy_mobile/features/request_hub/data/models/request_status.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +11,7 @@ class RequestCard extends ConsumerWidget {
   final VoidCallback? onTap;
   final VoidCallback? onViewDetails;
   final VoidCallback? onEdit;
+  final VoidCallback? onDelete;
   final VoidCallback? onCancel;
 
   const RequestCard({
@@ -18,6 +20,7 @@ class RequestCard extends ConsumerWidget {
     this.onTap,
     this.onViewDetails,
     this.onEdit,
+    this.onDelete,
     this.onCancel,
   });
 
@@ -173,7 +176,13 @@ class RequestCard extends ConsumerWidget {
     final payload = ref.read(jwtPayloadProvider);
     final currentUserId = payload?['userId'] ?? payload?['sub'];
     final canEdit =
-        currentUserId != null && currentUserId == item.requestUserId;
+        currentUserId != null &&
+        currentUserId == item.requestUserId &&
+        item.status == RequestStatus.open;
+    final canDelete =
+        currentUserId != null &&
+        currentUserId == item.requestUserId &&
+        (item.status == RequestStatus.open);
 
     showModalBottomSheet(
       context: context,
@@ -202,6 +211,15 @@ class RequestCard extends ConsumerWidget {
                   onTap: () {
                     Navigator.pop(context);
                     onEdit?.call();
+                  },
+                ),
+              if (canDelete)
+                ListTile(
+                  leading: const Icon(Icons.delete_outline),
+                  title: const Text('Delete'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    onDelete?.call();
                   },
                 ),
               ListTile(

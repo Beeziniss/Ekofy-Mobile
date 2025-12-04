@@ -1,10 +1,9 @@
+import 'package:ekofy_mobile/features/request_hub/data/models/request_type.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/request_status.dart';
-
 class FilterChipsRow extends StatelessWidget {
-  final RequestStatus? selected;
-  final ValueChanged<RequestStatus?> onSelected;
+  final RequestType? selected;
+  final ValueChanged<RequestType?> onSelected;
 
   const FilterChipsRow({
     super.key,
@@ -14,8 +13,10 @@ class FilterChipsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = <(String, RequestStatus?)>[
+    final items = <(String, RequestType?)>[
       ('All', null),
+      ('Public', RequestType.public),
+      ('Direct', RequestType.direct),
       // ('Pending', RequestStatus.pending),
       // ('In-progress', RequestStatus.inProgress),
       // ('Completed', RequestStatus.completed),
@@ -29,8 +30,8 @@ class FilterChipsRow extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, i) {
           final label = items[i].$1;
-          final status = items[i].$2;
-          final isSelected = status == selected;
+          final type = items[i].$2;
+          final isSelected = type == selected;
           return Semantics(
             button: true,
             label: 'Filter $label',
@@ -44,7 +45,7 @@ class FilterChipsRow extends StatelessWidget {
                 ),
               ),
               selected: isSelected,
-              onSelected: (_) => onSelected(status),
+              onSelected: (_) => onSelected(type),
               selectedColor: const Color(0xFF2C2C2C),
               backgroundColor: const Color(0xFF111111),
               shape: StadiumBorder(

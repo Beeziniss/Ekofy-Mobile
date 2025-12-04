@@ -66,6 +66,8 @@ final graphqlClientProvider = Provider<GraphQLClient>((ref) {
             final newAccessToken = response.data['accessToken'];
             final newRefreshToken = response.data['refreshToken'];
 
+            log("new access: " + newAccessToken);
+
             if (newAccessToken != null) {
               await authLocal.updateToken(
                 AuthConstant.accessToken,

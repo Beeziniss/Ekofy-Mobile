@@ -3,13 +3,15 @@ import 'dart:async';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/request_hub/data/models/own_request.dart';
 import 'package:ekofy_mobile/features/request_hub/data/models/request_card_model.dart';
+import 'package:ekofy_mobile/features/request_hub/data/models/request_type.dart';
 import 'package:ekofy_mobile/features/request_hub/presentation/screens/direct_request/own_request_detail_screen.dart';
+import 'package:ekofy_mobile/features/request_hub/presentation/screens/public_request/create_request_screen.dart';
 import 'package:ekofy_mobile/features/request_hub/presentation/widgets/filter_chips_row.dart';
+import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // import '../../../data/models/public_request.dart';
-import '../../../data/models/request_status.dart';
 import '../../widgets/empty_state.dart';
 import '../../widgets/request_card.dart';
 
@@ -26,7 +28,7 @@ class _OwnRequestScreenState extends ConsumerState<OwnRequestScreen> {
   final _searchCtrl = TextEditingController();
 
   List<OwnRequestItem> _visible = [];
-  RequestStatus? _filter;
+  RequestType? _filter;
   _SortBy _sort = _SortBy.newest;
   int _page = 1;
   final int _pageSize = 6;
@@ -35,9 +37,13 @@ class _OwnRequestScreenState extends ConsumerState<OwnRequestScreen> {
   @override
   void initState() {
     super.initState();
-    // Initial load is handled by provider
     _scrollController.addListener(_onScroll);
     _searchCtrl.addListener(_onSearchChanged);
+
+    // Trigger initial load
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _load();
+    });
   }
 
   @override
@@ -72,7 +78,7 @@ class _OwnRequestScreenState extends ConsumerState<OwnRequestScreen> {
     final all = ref.read(requestProvider).ownRequestItems;
     Iterable<OwnRequestItem> list = all;
     if (_filter != null) {
-      list = list.where((e) => e.status == _filter);
+      list = list.where((e) => RequestType.fromEnum(e.type) == _filter);
     }
     if (q.isNotEmpty) {
       list = list.where(
@@ -143,7 +149,7 @@ class _OwnRequestScreenState extends ConsumerState<OwnRequestScreen> {
   @override
   Widget build(BuildContext context) {
     ref.listen(requestProvider, (previous, next) {
-      if (previous?.publicRequestItems != next.publicRequestItems) {
+      if (previous?.ownRequestItems != next.ownRequestItems) {
         _applyFilters(resetPage: true);
       }
     });
@@ -212,10 +218,9 @@ class _OwnRequestScreenState extends ConsumerState<OwnRequestScreen> {
                       item: RequestCardModel.fromOwnRequest(item),
                       onTap: () => _openDetail(context, item),
                       onViewDetails: () => _openDetail(context, item),
-                      onEdit: () =>
-                          _placeholder(context, 'Edit not implemented'),
-                      onCancel: () =>
-                          _placeholder(context, 'Cancel not implemented'),
+                      onEdit: () => _handleEdit(context, item),
+                      onDelete: () => _handleDelete(context, item),
+                      onCancel: () => _handleDelete(context, item),
                     ),
                   );
                 },
@@ -301,18 +306,36 @@ class _OwnRequestScreenState extends ConsumerState<OwnRequestScreen> {
     );
   }
 
-  void _showHelp(BuildContext context) {
+  void _handleEdit(BuildContext context, OwnRequestItem item) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => CreateRequestScreen(editItem: item)),
+    );
+  }
+
+  void _handleDelete(BuildContext context, OwnRequestItem item) {
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: const Text('About Request Hub'),
-        content: const Text(
-          'This is a hub which contains all Open Public request from all listener.',
-        ),
+      builder: (ctx) => AlertDialog(
+        title: const Text('Confirm Delete'),
+        content: const Text('Are you sure you want to delete this request?'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              ref
+                  .read(requestProvider.notifier)
+                  .updatePublicRequest(
+                    id: item.id,
+                    status: Enum$RequestStatus.DELETED,
+                    min: item.budget.min,
+                    max: item.budget.max,
+                  );
+            },
+            child: const Text('Delete', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),

@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/request_hub/data/models/request_card_model.dart';
+import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -105,7 +106,6 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
     final q = _searchCtrl.text.trim().toLowerCase();
     final all = ref.read(requestProvider).publicRequestItems;
     Iterable<PublicRequestItem> list = all;
-    log(all.toString());
     if (_filter != null) list = list.where((e) => e.status == _filter);
     if (q.isNotEmpty) {
       list = list.where(
@@ -221,10 +221,9 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
                       item: RequestCardModel.fromPublicRequest(item),
                       onTap: () => _openDetail(context, item),
                       onViewDetails: () => _openDetail(context, item),
-                      onEdit: () =>
-                          _placeholder(context, 'Edit not implemented'),
-                      onCancel: () =>
-                          _placeholder(context, 'Cancel not implemented'),
+                      onEdit: () => _handleEdit(context, item),
+                      onDelete: () => _handleDelete(context, item),
+                      onCancel: () => _handleDelete(context, item),
                     ),
                   );
                 },
@@ -316,6 +315,44 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
     ).push(MaterialPageRoute(builder: (_) => const CreateRequestScreen()));
   }
 
+  void _handleEdit(BuildContext context, PublicRequestItem item) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => CreateRequestScreen(editPublicItem: item),
+      ),
+    );
+  }
+
+  void _handleDelete(BuildContext context, PublicRequestItem item) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Confirm Delete'),
+        content: const Text('Are you sure you want to delete this request?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              ref
+                  .read(requestProvider.notifier)
+                  .updatePublicRequest(
+                    id: item.id,
+                    status: Enum$RequestStatus.DELETED,
+                    min: item.budget.min,
+                    max: item.budget.max,
+                  );
+            },
+            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _showHelp(BuildContext context) {
     showDialog(
       context: context,
@@ -334,9 +371,9 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
     );
   }
 
-  void _placeholder(BuildContext context, String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
-  }
+  // void _placeholder(BuildContext context, String msg) {
+  //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  // }
 }
 
 enum _SortBy { newest, oldest, amountHigh, amountLow }

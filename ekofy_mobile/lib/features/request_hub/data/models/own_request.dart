@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/features/request_hub/data/models/request_status.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:ekofy_mobile/gql/queries/generated/request_query.graphql.dart';
 
@@ -17,7 +18,7 @@ class OwnRequestItem {
   final Enum$RequestType type;
   final Enum$CurrencyType currency;
   final int duration;
-  final Enum$RequestStatus status;
+  final RequestStatus status;
   final DateTime? requestCreatedTime;
   final String? notes;
   final OwnRequestBudget budget;
@@ -67,23 +68,18 @@ class OwnRequestItem {
       type: item.type,
       currency: item.currency,
       duration: item.duration,
-      status: item.status,
+      status: RequestStatus.fromString(item.status.name),
       requestCreatedTime: item.requestCreatedTime,
       notes: item.notes,
       budget: OwnRequestBudget(
         min: item.budget?.min ?? 0.0,
         max: item.budget?.max ?? 0.0,
       ),
-      artist: item.artist != null
-          ? OwnRequestArtist.fromQueryItem(
-              item.artist as Query$OwnRequestsQuery$ownRequests$items$artist,
-            )
+      artist: item.artist.isNotEmpty
+          ? OwnRequestArtist.fromQueryItem(item.artist.first)
           : null,
-      artistPackage: item.artistPackage != null
-          ? OwnRequestPackage.fromQueryItem(
-              item.artistPackage
-                  as Query$OwnRequestsQuery$ownRequests$items$artistPackage,
-            )
+      artistPackage: item.artistPackage.isNotEmpty
+          ? OwnRequestPackage.fromQueryItem(item.artistPackage.first)
           : null,
     );
   }

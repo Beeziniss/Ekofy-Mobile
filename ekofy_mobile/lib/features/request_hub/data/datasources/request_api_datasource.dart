@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:ekofy_mobile/gql/mutation/generated/request_mutation.graphql.dart';
 import 'package:ekofy_mobile/gql/queries/generated/request_query.graphql.dart';
@@ -46,14 +48,14 @@ class RequestApiDataSource {
     return result;
   }
 
-  Future<void> updatePublicRequest({
+  Future<QueryResult<Mutation$UpdatePublicRequest>> updatePublicRequest({
     required String id,
     String? title,
     String? summary,
     String? detailDescription,
     int? duration,
-    double? min,
-    double? max,
+    required double min,
+    required double max,
     Enum$RequestStatus? status,
   }) async {
     final variables = Variables$Mutation$UpdatePublicRequest(
@@ -67,23 +69,25 @@ class RequestApiDataSource {
       status: status,
     );
 
-    final options =
-        Options$Mutation$UpdatePublicRequest(variables: variables);
-    await client.mutate$UpdatePublicRequest(options);
+    final options = Options$Mutation$UpdatePublicRequest(variables: variables);
+    return await client.mutate$UpdatePublicRequest(options);
   }
 
-  Future<List<Query$OwnRequestsQuery$ownRequests$items>> fetchOwnRequests() async {
+  Future<List<Query$OwnRequestsQuery$ownRequests$items>>
+  fetchOwnRequests() async {
     try {
       final options = Options$Query$OwnRequestsQuery(
         fetchPolicy: FetchPolicy.networkOnly,
       );
 
       final result = await client.query(options);
+
+      if (result.hasException) {
+        log('FetchOwnRequests Error: ${result.exception.toString()}');
+      }
       return result.parsedData?.ownRequests?.items ?? [];
     } catch (e) {
       throw Exception('Failed to fetch own requests: $e');
     }
   }
-
-  
 }

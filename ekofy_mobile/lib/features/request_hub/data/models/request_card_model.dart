@@ -1,5 +1,6 @@
 import 'package:ekofy_mobile/features/request_hub/data/models/own_request.dart';
 import 'package:ekofy_mobile/features/request_hub/data/models/public_request.dart';
+import 'package:ekofy_mobile/features/request_hub/data/models/request_status.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 
 class RequestCardModel {
@@ -13,6 +14,7 @@ class RequestCardModel {
   final String requestUserId;
   final String requestorDisplayName;
   final String? requestorAvatar;
+  final RequestStatus? status;
 
   RequestCardModel({
     required this.id,
@@ -25,6 +27,7 @@ class RequestCardModel {
     required this.requestUserId,
     required this.requestorDisplayName,
     this.requestorAvatar,
+    this.status,
   });
 
   factory RequestCardModel.fromPublicRequest(PublicRequestItem item) {
@@ -39,6 +42,7 @@ class RequestCardModel {
       requestUserId: item.requestUserId,
       requestorDisplayName: item.requestor.displayName,
       requestorAvatar: item.requestor.avatarImage,
+      status: item.status,
     );
   }
 
@@ -54,6 +58,7 @@ class RequestCardModel {
       requestUserId: item.requestUserId,
       requestorDisplayName: 'Me',
       requestorAvatar: null,
+      status: item.status,
     );
   }
 }

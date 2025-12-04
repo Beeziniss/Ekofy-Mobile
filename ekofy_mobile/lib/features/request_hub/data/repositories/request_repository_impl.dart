@@ -3,7 +3,7 @@ import 'package:ekofy_mobile/features/request_hub/domain/repositories/request_re
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:ekofy_mobile/gql/mutation/generated/request_mutation.graphql.dart';
 import 'package:ekofy_mobile/gql/queries/generated/request_query.graphql.dart';
-import 'package:graphql/src/core/query_result.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class RequestRepositoryImpl implements RequestRepository {
   final RequestApiDataSource apiDatasource;
@@ -12,8 +12,8 @@ class RequestRepositoryImpl implements RequestRepository {
 
   @override
   Future<List<Query$PublicRequestQuery$requests$items>>
-  fetchAllPublicRequestData() {
-    return apiDatasource.fetchAllPublicRequest();
+  fetchAllPublicRequestData() async {
+    return await apiDatasource.fetchAllPublicRequest();
   }
 
   @override
@@ -24,8 +24,8 @@ class RequestRepositoryImpl implements RequestRepository {
     required int duration,
     required double min,
     required double max,
-  }) {
-    return apiDatasource.createPublicRequest(
+  }) async {
+    return await apiDatasource.createPublicRequest(
       title: title,
       summary: summary,
       detailDescription: detailDescription,
@@ -36,17 +36,17 @@ class RequestRepositoryImpl implements RequestRepository {
   }
 
   @override
-  Future<void> updatePublicRequest({
+  Future<QueryResult<Mutation$UpdatePublicRequest>> updatePublicRequest({
     required String id,
     String? title,
     String? summary,
     String? detailDescription,
     int? duration,
-    double? min,
-    double? max,
+    required double min,
+    required double max,
     Enum$RequestStatus? status,
-  }) {
-    return apiDatasource.updatePublicRequest(
+  }) async {
+    return await apiDatasource.updatePublicRequest(
       id: id,
       title: title,
       summary: summary,
@@ -59,7 +59,7 @@ class RequestRepositoryImpl implements RequestRepository {
   }
 
   @override
-  Future<List<Query$OwnRequestsQuery$ownRequests$items>> fetchOwnRequests() {
-    return apiDatasource.fetchOwnRequests();
+  Future<List<Query$OwnRequestsQuery$ownRequests$items>> fetchOwnRequests() async {
+    return await apiDatasource.fetchOwnRequests();
   }
 }

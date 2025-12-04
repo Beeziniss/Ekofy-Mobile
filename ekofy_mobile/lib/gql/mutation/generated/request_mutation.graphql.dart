@@ -651,8 +651,8 @@ class Variables$Mutation$UpdatePublicRequest {
     String? summary,
     String? detailDescription,
     int? duration,
-    double? min,
-    double? max,
+    required double min,
+    required double max,
     Enum$RequestStatus? status,
   }) => Variables$Mutation$UpdatePublicRequest._({
     r'id': id,
@@ -660,8 +660,8 @@ class Variables$Mutation$UpdatePublicRequest {
     if (summary != null) r'summary': summary,
     if (detailDescription != null) r'detailDescription': detailDescription,
     if (duration != null) r'duration': duration,
-    if (min != null) r'min': min,
-    if (max != null) r'max': max,
+    r'min': min,
+    r'max': max,
     if (status != null) r'status': status,
   });
 
@@ -689,14 +689,10 @@ class Variables$Mutation$UpdatePublicRequest {
       final l$duration = data['duration'];
       result$data['duration'] = (l$duration as int?);
     }
-    if (data.containsKey('min')) {
-      final l$min = data['min'];
-      result$data['min'] = (l$min as num?)?.toDouble();
-    }
-    if (data.containsKey('max')) {
-      final l$max = data['max'];
-      result$data['max'] = (l$max as num?)?.toDouble();
-    }
+    final l$min = data['min'];
+    result$data['min'] = (l$min as num).toDouble();
+    final l$max = data['max'];
+    result$data['max'] = (l$max as num).toDouble();
     if (data.containsKey('status')) {
       final l$status = data['status'];
       result$data['status'] = l$status == null
@@ -718,9 +714,9 @@ class Variables$Mutation$UpdatePublicRequest {
 
   int? get duration => (_$data['duration'] as int?);
 
-  double? get min => (_$data['min'] as double?);
+  double get min => (_$data['min'] as double);
 
-  double? get max => (_$data['max'] as double?);
+  double get max => (_$data['max'] as double);
 
   Enum$RequestStatus? get status => (_$data['status'] as Enum$RequestStatus?);
 
@@ -744,14 +740,10 @@ class Variables$Mutation$UpdatePublicRequest {
       final l$duration = duration;
       result$data['duration'] = l$duration;
     }
-    if (_$data.containsKey('min')) {
-      final l$min = min;
-      result$data['min'] = l$min;
-    }
-    if (_$data.containsKey('max')) {
-      final l$max = max;
-      result$data['max'] = l$max;
-    }
+    final l$min = min;
+    result$data['min'] = l$min;
+    final l$max = max;
+    result$data['max'] = l$max;
     if (_$data.containsKey('status')) {
       final l$status = status;
       result$data['status'] = l$status == null
@@ -817,17 +809,11 @@ class Variables$Mutation$UpdatePublicRequest {
     }
     final l$min = min;
     final lOther$min = other.min;
-    if (_$data.containsKey('min') != other._$data.containsKey('min')) {
-      return false;
-    }
     if (l$min != lOther$min) {
       return false;
     }
     final l$max = max;
     final lOther$max = other.max;
-    if (_$data.containsKey('max') != other._$data.containsKey('max')) {
-      return false;
-    }
     if (l$max != lOther$max) {
       return false;
     }
@@ -858,8 +844,8 @@ class Variables$Mutation$UpdatePublicRequest {
       _$data.containsKey('summary') ? l$summary : const {},
       _$data.containsKey('detailDescription') ? l$detailDescription : const {},
       _$data.containsKey('duration') ? l$duration : const {},
-      _$data.containsKey('min') ? l$min : const {},
-      _$data.containsKey('max') ? l$max : const {},
+      l$min,
+      l$max,
       _$data.containsKey('status') ? l$status : const {},
     ]);
   }
@@ -917,8 +903,8 @@ class _CopyWithImpl$Variables$Mutation$UpdatePublicRequest<TRes>
       if (detailDescription != _undefined)
         'detailDescription': (detailDescription as String?),
       if (duration != _undefined) 'duration': (duration as int?),
-      if (min != _undefined) 'min': (min as double?),
-      if (max != _undefined) 'max': (max as double?),
+      if (min != _undefined && min != null) 'min': (min as double),
+      if (max != _undefined && max != null) 'max': (max as double),
       if (status != _undefined) 'status': (status as Enum$RequestStatus?),
     }),
   );
@@ -1102,7 +1088,7 @@ const documentNodeMutationUpdatePublicRequest = DocumentNode(
           variable: VariableNode(name: NameNode(value: 'min')),
           type: NamedTypeNode(
             name: NameNode(value: 'Decimal'),
-            isNonNull: false,
+            isNonNull: true,
           ),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
@@ -1111,7 +1097,7 @@ const documentNodeMutationUpdatePublicRequest = DocumentNode(
           variable: VariableNode(name: NameNode(value: 'max')),
           type: NamedTypeNode(
             name: NameNode(value: 'Decimal'),
-            isNonNull: false,
+            isNonNull: true,
           ),
           defaultValue: DefaultValueNode(value: null),
           directives: [],

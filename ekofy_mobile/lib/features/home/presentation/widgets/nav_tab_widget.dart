@@ -1,25 +1,27 @@
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
 import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
+import 'package:ekofy_mobile/core/providers/theme_provider.dart';
 import 'package:ekofy_mobile/features/home/presentation/screens/main_screen.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
 import 'package:ekofy_mobile/features/request_hub/presentation/screens/public_request/request_hub_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class NavTab extends StatefulWidget {
+class NavTab extends ConsumerStatefulWidget {
   const NavTab({super.key});
 
   @override
-  State<StatefulWidget> createState() => _NavTabState();
+  ConsumerState<NavTab> createState() => _NavTabState();
 }
 
-class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
+class _NavTabState extends ConsumerState<NavTab>
+    with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TabController? controller;
   int selectTab = 0;
-  bool _isSwitched = false;
 
   @override
   void initState() {
@@ -45,7 +47,7 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
     return Scaffold(
       key: _scaffoldKey,
       drawer: _sideBar(),
-      backgroundColor: AppColors.primaryBackground,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: TabBarView(
         controller: controller,
         children: [
@@ -59,17 +61,19 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
       //info: config cho bottom nav
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: AppColors.primaryBackground,
-          boxShadow: const [
+          color: Theme.of(context).scaffoldBackgroundColor,
+          boxShadow: [
             BoxShadow(
-              color: AppColors.secondaryBackground,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? AppColors.secondaryBackground
+                  : Colors.grey.withOpacity(0.2),
               blurRadius: 5,
-              offset: Offset(0, -10),
+              offset: const Offset(0, -10),
             ),
           ],
         ),
         child: BottomAppBar(
-          color: AppColors.primaryBackground,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: TabBar(
             splashBorderRadius: BorderRadius.circular(6),
             controller: controller,
@@ -78,7 +82,9 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
             // indicatorAnimation: TabIndicatorAnimation.elastic,
             // indicatorSize: TabBarIndicatorSize.tab,
             dividerColor: Colors.transparent, // hide padding below appbar
-            labelColor: AppColors.purpleIshWhite,
+            labelColor: Theme.of(context).brightness == Brightness.dark
+                ? AppColors.purpleIshWhite
+                : AppColors.deepBlue,
             labelStyle: const TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.bold,
@@ -140,12 +146,17 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
   }
 
   Widget _sideBar() {
+    final themeMode = ref.watch(themeProvider);
+    final isLight = themeMode == ThemeMode.light;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textColor = isLight ? Colors.black87 : Colors.white;
+
     return SafeArea(
       child: Drawer(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(5),
         ),
-        backgroundColor: AppColors.darkGrey,
+        backgroundColor: isLight ? Colors.white : AppColors.darkGrey,
 
         child: ListView(
           padding: EdgeInsets.zero,
@@ -154,14 +165,24 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               spacing: 4,
-              children: [SvgPicture.asset(AppVectors.logo)],
+              children: [
+                SvgPicture.asset(
+                  AppVectors.logo,
+                  colorFilter: isLight
+                      ? const ColorFilter.mode(Colors.black, BlendMode.srcIn)
+                      : null,
+                ),
+              ],
             ),
             SizedBox(height: 30),
             ListTile(
-              leading: const Icon(Icons.receipt_long, color: Colors.white70),
-              title: const Text(
+              leading: Icon(
+                Icons.receipt_long,
+                color: textColor.withOpacity(0.7),
+              ),
+              title: Text(
                 'Payment History',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: textColor),
               ),
               onTap: () {
                 // Close drawer then navigate
@@ -173,10 +194,11 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
             ),
             const Divider(height: 1),
             ListTile(
-              leading: const Icon(Icons.wysiwyg, color: Colors.white70),
-              title: const Text(
+              // ignore: deprecated_member_use
+              leading: Icon(Icons.wysiwyg, color: textColor.withOpacity(0.7)),
+              title: Text(
                 'Request History',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: textColor),
               ),
               onTap: () {
                 Navigator.of(context).pop();
@@ -185,24 +207,17 @@ class _NavTabState extends State<NavTab> with SingleTickerProviderStateMixin {
             ),
             const Divider(height: 1),
             ListTile(
-              leading: const Icon(Icons.sunny, color: Colors.white70),
-              title: const Text(
-                'Light Theme',
-                style: TextStyle(color: Colors.white),
-              ),
+              // ignore: deprecated_member_use
+              leading: Icon(Icons.sunny, color: textColor.withOpacity(0.7)),
+              title: Text('Light Theme', style: TextStyle(color: textColor)),
               trailing: Switch(
-                value: _isSwitched,
+                value: isLight,
                 onChanged: (value) {
-                  setState(() {
-                    _isSwitched = value;
-                  });
+                  ref.read(themeProvider.notifier).toggleTheme(value);
                 },
               ),
               onTap: () {
-                // Optional: toggle switch when tapping the whole tile
-                setState(() {
-                  _isSwitched = !_isSwitched;
-                });
+                ref.read(themeProvider.notifier).toggleTheme(!isLight);
               },
             ),
           ],

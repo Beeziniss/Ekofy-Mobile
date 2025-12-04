@@ -1,13 +1,18 @@
 import 'dart:developer';
 
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/features/request_hub/data/models/own_request.dart';
+import 'package:ekofy_mobile/features/request_hub/data/models/public_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
 
 class CreateRequestScreen extends ConsumerStatefulWidget {
-  const CreateRequestScreen({super.key});
+  final OwnRequestItem? editItem;
+  final PublicRequestItem? editPublicItem;
+
+  const CreateRequestScreen({super.key, this.editItem, this.editPublicItem});
 
   @override
   ConsumerState<CreateRequestScreen> createState() =>
@@ -30,6 +35,35 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
   void initState() {
     super.initState();
     _quillController = QuillController.basic();
+    if (widget.editItem != null) {
+      final item = widget.editItem!;
+      _titleCtrl.text = item.title;
+      _summaryCtrl.text = item.summary;
+      _durationCtrl.text = item.duration.toString();
+      _minBudgetCtrl.text = item.budget.min.toString();
+      _maxBudgetCtrl.text = item.budget.max.toString();
+
+      // Simple HTML strip for now as we don't have a converter
+      final plainText = item.detailDescription.replaceAll(
+        RegExp(r'<[^>]*>'),
+        '',
+      );
+      _quillController.document.insert(0, plainText);
+    } else if (widget.editPublicItem != null) {
+      final item = widget.editPublicItem!;
+      _titleCtrl.text = item.title;
+      _summaryCtrl.text = item.summary;
+      _durationCtrl.text = item.duration.toString();
+      _minBudgetCtrl.text = item.budget.min.toString();
+      _maxBudgetCtrl.text = item.budget.max.toString();
+
+      // Simple HTML strip for now as we don't have a converter
+      final plainText = item.detailDescription.replaceAll(
+        RegExp(r'<[^>]*>'),
+        '',
+      );
+      _quillController.document.insert(0, plainText);
+    }
   }
 
   @override
@@ -45,8 +79,9 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isEdit = widget.editItem != null || widget.editPublicItem != null;
     return Scaffold(
-      appBar: AppBar(title: const Text('Create Request')),
+      appBar: AppBar(title: Text(isEdit ? 'Edit Request' : 'Create Request')),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -84,7 +119,6 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                     ),
                     const SizedBox(height: 24),
                     _buildSectionTitle('Detail Description'),
-                    Text('Detail Description'),
                     const SizedBox(height: 8),
                     Container(
                       decoration: BoxDecoration(
@@ -282,15 +316,36 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
     try {
       final delta = _quillController.document.toDelta();
       final json = delta.toJson();
-      final List<Map<String, dynamic>> ops = json
-          .map((e) => e as Map<String, dynamic>)
-          .toList();
+      final List<Map<String, dynamic>> ops = json.map((e) => e).toList();
 
       final converter = QuillDeltaToHtmlConverter(
         ops,
         ConverterOptions.forEmail(),
       );
       final htmlDescription = converter.convert();
+
+      if (widget.editItem != null || widget.editPublicItem != null) {
+        final id = widget.editItem?.id ?? widget.editPublicItem!.id;
+        await ref
+            .read(requestProvider.notifier)
+            .updatePublicRequest(
+              id: id,
+              title: _titleCtrl.text,
+              summary: _summaryCtrl.text,
+              detailDescription: htmlDescription,
+              duration: int.parse(_durationCtrl.text),
+              min: double.parse(_minBudgetCtrl.text),
+              max: double.parse(_maxBudgetCtrl.text),
+            );
+        if (mounted) {
+          setState(() => _isLoading = false);
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Request updated successfully')),
+          );
+        }
+        return;
+      }
 
       final result = await ref
           .read(requestProvider.notifier)

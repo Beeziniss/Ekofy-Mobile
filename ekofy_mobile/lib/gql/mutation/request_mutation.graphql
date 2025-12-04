@@ -23,8 +23,8 @@ mutation UpdatePublicRequest(
   $summary: String,
   $detailDescription: String,
   $duration: Int,
-  $min: Decimal,
-  $max: Decimal,
+  $min: Decimal!,
+  $max: Decimal!,
   $status: RequestStatus
 ) {
   updatePublicRequest(

@@ -18,7 +18,7 @@ class RouteName {
   static const String home = '/home';
   static const String login = '/login';
   static const String register = '/register';
-  static const String otp = '/otp';
+  static const String otp = '/otp/:email';
   static const String start = '/';
   static const String library = '/library';
   static const String profile = '/profile';
@@ -85,7 +85,7 @@ GoRouter router(WidgetRef ref) {
       ),
       GoRoute(
         path: RouteName.otp,
-        builder: (context, state) => const OtpScreen(),
+        builder: (context, state) => OtpScreen(email: state.pathParameters['email'] ?? ''),
       ),
       // GoRoute(
       //   path: RouteName.requestHub,

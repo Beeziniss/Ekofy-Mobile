@@ -7,17 +7,14 @@ import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasourc
 import 'package:ekofy_mobile/features/auth/data/models/request/google_login_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/login_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/register_request.dart';
+import 'package:ekofy_mobile/features/auth/data/models/request/verify_otp_request.dart';
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApiDatasource authApiDatasource;
   final AuthLocalDatasource authLocalDatasource;
 
-
-  AuthRepositoryImpl(
-    this.authApiDatasource,
-    this.authLocalDatasource
-  );
+  AuthRepositoryImpl(this.authApiDatasource, this.authLocalDatasource);
 
   @override
   Future<ResultType> login({
@@ -33,7 +30,7 @@ class AuthRepositoryImpl implements AuthRepository {
       return response.when(
         success: (res) async {
           await authLocalDatasource.saveToken(
-            res.result!.accessToken,
+            res!.result!.accessToken,
             res.result!.refreshToken,
           );
           // ref.read(appStateProvider.notifier).setUserId(res.result!.userId);
@@ -41,12 +38,12 @@ class AuthRepositoryImpl implements AuthRepository {
         },
 
         failure: (res, status) {
-          return Failure(res);
+          return Failure(res, status);
         },
       );
     } on DioException catch (e) {
       log('$e');
-      return Failure('Server or Request Error!');
+      return Failure('Server or Request Error!', 500);
     }
   }
 
@@ -60,7 +57,7 @@ class AuthRepositoryImpl implements AuthRepository {
       return Success(token);
     } catch (e) {
       log('$e');
-      return Failure('$e');
+      return Failure('$e', 500);
     }
   }
 
@@ -86,14 +83,13 @@ class AuthRepositoryImpl implements AuthRepository {
           displayName: displayName,
         ),
       );
-      response.when(
+      return response.when(
         success: (res) => Success(null),
-        failure: (res, status) => Failure(res),
+        failure: (res, status) => Failure(res, status),
       );
-      return Success('');
     } on DioException catch (e) {
       log('$e');
-      return Failure('Server or Request Error!');
+      return Failure('Server or Request Error!', 500);
     }
   }
 
@@ -107,23 +103,43 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<ResultType> loginWithGoogle(String googleToken) async {
     try {
-      final response = await authApiDatasource.loginWithGoogle(GoogleLoginRequest(googleToken: googleToken, isMobile: true));
+      final response = await authApiDatasource.loginWithGoogle(
+        GoogleLoginRequest(googleToken: googleToken, isMobile: true),
+      );
       return response.when(
         success: (res) async {
           await authLocalDatasource.saveToken(
-            res.result!.accessToken,
+            res!.result!.accessToken,
             res.result!.refreshToken,
           );
           return Success(null);
         },
         failure: (res, status) {
-          return Failure(res);
+          return Failure(res, status);
         },
       );
     } on DioException catch (e) {
       log('$e');
-      return Failure('Server or Request Error!');
+      return Failure('Server or Request Error!', 500);
     }
   }
 
+  @override
+  Future<ResultType> verifyOTP({
+    required String email,
+    required String providedOtp,
+  }) async {
+    try {
+      final response = await authApiDatasource.verifyOTP(
+        VerifyOtpRequest(email: email, providedOtp: providedOtp),
+      );
+      return response..when(
+        success: (res) => Success(res),
+        failure: (res, status) => Failure(res, status),
+      );
+    } on DioException catch (e) {
+      log('$e');
+      return Failure('Server Error!', 500);
+    }
+  }
 }

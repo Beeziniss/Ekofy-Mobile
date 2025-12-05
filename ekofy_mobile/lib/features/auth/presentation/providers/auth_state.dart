@@ -21,7 +21,18 @@ class AuthRegisterSuccess extends AuthState {}
 
 class AuthRegisterFailure extends AuthState {
   final String message;
-  AuthRegisterFailure(this.message);
+  final String status;
+  AuthRegisterFailure(this.message, this.status);
+}
+
+// Verify OTP states
+class AuthVerifyOtpInProgress extends AuthState {}
+
+class AuthVerifyOtpSuccess extends AuthState {}
+
+class AuthVerifyOtpFailure extends AuthState {
+  final String message;
+  AuthVerifyOtpFailure(this.message);
 }
 
 // Authenticate states

@@ -120,12 +120,48 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(message, style: TextStyle(color: Colors.red, fontSize: 16)),
+          Container(
+            padding: EdgeInsets.all(
+              16,
+            ), // Thêm padding để không gian giữa text và border rộng hơn
+            decoration: BoxDecoration(
+              color: Colors.transparent, // Màu nền của container
+              borderRadius: BorderRadius.circular(12), // Bo tròn các góc
+              border: Border.all(
+                color: Colors.white,
+                width: 2,
+              ), // Border đỏ với độ dày là 2
+            ),
+            child: Text(
+              message,
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 16,
+                height: 1.5, // Tăng khoảng cách giữa các dòng
+              ),
+              textAlign: TextAlign.center, // Căn đều chữ
+            ),
+          ),
           const SizedBox(height: 24),
           FilledButton.icon(
             onPressed: _handleRetry,
             label: Text('Retry'),
             icon: Icon(Icons.refresh),
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(
+                AppColors.deepBlue,
+              ), // Đổi màu nền của button
+              foregroundColor: WidgetStateProperty.all(
+                Colors.white,
+              ), // Màu chữ trên button
+              shape: WidgetStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                    8,
+                  ), // Bo tròn góc của button
+                ),
+              ),
+            ),
           ),
         ],
       );

@@ -10,6 +10,8 @@ class GradientBorderTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final List<Color> gradientColors;
+  final bool readOnly;
+  final VoidCallback? onTap;
 
   const GradientBorderTextField({
     super.key,
@@ -21,10 +23,13 @@ class GradientBorderTextField extends StatefulWidget {
     this.validator,
     this.suffixIcon,
     required this.gradientColors,
+    this.readOnly = false,
+    this.onTap,
   });
 
   @override
-  State<GradientBorderTextField> createState() => _GradientBorderTextFieldState();
+  State<GradientBorderTextField> createState() =>
+      _GradientBorderTextFieldState();
 }
 
 class _GradientBorderTextFieldState extends State<GradientBorderTextField> {
@@ -66,8 +71,6 @@ class _GradientBorderTextFieldState extends State<GradientBorderTextField> {
     //         ),
     //       ),
 
-
-        
     //     AnimatedContainer(
     //       duration: const Duration(milliseconds: 200),
     //       padding: const EdgeInsets.all(2),
@@ -97,67 +100,68 @@ class _GradientBorderTextFieldState extends State<GradientBorderTextField> {
     // );
 
     return FormField<String>(
-    validator: widget.validator,
-    autovalidateMode: AutovalidateMode.onUserInteraction,
-    builder: (FormFieldState<String> state) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (widget.label.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Text(
-                widget.label,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
+      validator: widget.validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      builder: (FormFieldState<String> state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (widget.label.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: Text(
+                  widget.label,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
-            ),
 
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            padding: const EdgeInsets.all(2),
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              gradient: _isFocused
-                  ? LinearGradient(colors: widget.gradientColors)
-                  : const LinearGradient(colors: [Colors.white60, Colors.white60]),
-            ),
-            child: Container(
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
                 borderRadius: borderRadius,
-                color: AppColors.secondaryBackground,
+                gradient: _isFocused
+                    ? LinearGradient(colors: widget.gradientColors)
+                    : const LinearGradient(
+                        colors: [Colors.white60, Colors.white60],
+                      ),
               ),
-              child: TextFormField(
-                controller: widget.controller,
-                focusNode: _focusNode,
-                obscureText: widget.obscureText,
-                keyboardType: widget.keyboardType,
-                style: const TextStyle(fontSize: 14, color: Colors.white),
-                decoration: widget.decoration,
-                onChanged: (val) {
-                  state.didChange(val); // cập nhật validator
-                },
-              ),
-            ),
-          ),
-
-          if (state.hasError)
-            Padding(
-              padding: const EdgeInsets.only(top: 6, left: 4),
-              child: Text(
-                state.errorText!,
-                style: const TextStyle(
-                  color: AppColors.error,
-                  fontSize: 14,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: borderRadius,
+                  color: AppColors.secondaryBackground,
+                ),
+                child: TextFormField(
+                  controller: widget.controller,
+                  focusNode: _focusNode,
+                  obscureText: widget.obscureText,
+                  keyboardType: widget.keyboardType,
+                  style: const TextStyle(fontSize: 14, color: Colors.white),
+                  decoration: widget.decoration,
+                  readOnly: widget.readOnly,
+                  onTap: widget.onTap,
+                  onChanged: (val) {
+                    state.didChange(val); // cập nhật validator
+                  },
                 ),
               ),
             ),
-        ],
-      );
-    },
-  );
+
+            if (state.hasError)
+              Padding(
+                padding: const EdgeInsets.only(top: 6, left: 4),
+                child: Text(
+                  state.errorText!,
+                  style: const TextStyle(color: AppColors.error, fontSize: 14),
+                ),
+              ),
+          ],
+        );
+      },
+    );
   }
 }

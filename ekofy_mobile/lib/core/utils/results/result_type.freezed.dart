@@ -119,7 +119,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T data)?  success,TResult Function( String message,  int? statusCode)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T? data)?  success,TResult Function( String message,  int statusCode)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.data);case Failure() when failure != null:
@@ -141,7 +141,7 @@ return failure(_that.message,_that.statusCode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T data)  success,required TResult Function( String message,  int? statusCode)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T? data)  success,required TResult Function( String message,  int statusCode)  failure,}) {final _that = this;
 switch (_that) {
 case Success():
 return success(_that.data);case Failure():
@@ -159,7 +159,7 @@ return failure(_that.message,_that.statusCode);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T data)?  success,TResult? Function( String message,  int? statusCode)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T? data)?  success,TResult? Function( String message,  int statusCode)?  failure,}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.data);case Failure() when failure != null:
@@ -178,7 +178,7 @@ class Success<T> implements ResultType<T> {
   const Success(this.data);
   
 
- final  T data;
+ final  T? data;
 
 /// Create a copy of ResultType
 /// with the given fields replaced by the non-null parameter values.
@@ -210,7 +210,7 @@ abstract mixin class $SuccessCopyWith<T,$Res> implements $ResultTypeCopyWith<T, 
   factory $SuccessCopyWith(Success<T> value, $Res Function(Success<T>) _then) = _$SuccessCopyWithImpl;
 @useResult
 $Res call({
- T data
+ T? data
 });
 
 
@@ -230,7 +230,7 @@ class _$SuccessCopyWithImpl<T,$Res>
 @pragma('vm:prefer-inline') $Res call({Object? data = freezed,}) {
   return _then(Success<T>(
 freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as T,
+as T?,
   ));
 }
 
@@ -241,11 +241,11 @@ as T,
 
 
 class Failure<T> implements ResultType<T> {
-  const Failure(this.message, {this.statusCode});
+  const Failure(this.message, this.statusCode);
   
 
  final  String message;
- final  int? statusCode;
+ final  int statusCode;
 
 /// Create a copy of ResultType
 /// with the given fields replaced by the non-null parameter values.
@@ -277,7 +277,7 @@ abstract mixin class $FailureCopyWith<T,$Res> implements $ResultTypeCopyWith<T, 
   factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) _then) = _$FailureCopyWithImpl;
 @useResult
 $Res call({
- String message, int? statusCode
+ String message, int statusCode
 });
 
 
@@ -294,11 +294,11 @@ class _$FailureCopyWithImpl<T,$Res>
 
 /// Create a copy of ResultType
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,Object? statusCode = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? message = null,Object? statusCode = null,}) {
   return _then(Failure<T>(
 null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,statusCode: freezed == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable
-as int?,
+as String,null == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

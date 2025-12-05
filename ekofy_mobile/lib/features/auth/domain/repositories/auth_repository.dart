@@ -18,4 +18,6 @@ abstract class AuthRepository {
   Future<ResultType> logout();
 
   Future<ResultType> loginWithGoogle(String googleToken);
+
+  Future<ResultType> verifyOTP({required String email, required String providedOtp});
 }

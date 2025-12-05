@@ -7,7 +7,7 @@ import 'package:ekofy_mobile/core/utils/validators.dart';
 import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/login_screen.dart';
 import 'package:ekofy_mobile/core/widgets/button/gradient_border_text_field.dart';
-import 'package:ekofy_mobile/features/auth/presentation/screens/otp_screen.dart';
+import 'package:ekofy_mobile/features/auth/presentation/screens/register_detail_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -318,13 +318,15 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     return CustomButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          // final email = _emailController.text.trim();
-          // final password = _passwordController.text;
-
-          // call api login here
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => OtpScreen()),
+            MaterialPageRoute(
+              builder: (context) => RegisterDetailScreen(
+                email: _emailController.text.trim(),
+                password: _passwordController.text,
+                confirmPassword: _confirmPasswordController.text,
+              ),
+            ),
           );
         }
       },

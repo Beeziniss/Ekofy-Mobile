@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,16 +50,16 @@ class AuthNotifier extends Notifier<AuthState> {
 
       final GoogleSignInAccount? googleUser = await googleSignIn.authenticate();
 
+      log(googleUser?.email ?? 'No Google user email');
       if (googleUser == null) {
         // User canceled the sign-in
         state = AuthInitial();
         return;
       }
 
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
       final String? idToken = googleAuth.idToken;
-
+      log('Google ID Token: $idToken');
       if (idToken == null) {
         state = AuthLoginFailure('Failed to retrieve Google ID token');
         return;

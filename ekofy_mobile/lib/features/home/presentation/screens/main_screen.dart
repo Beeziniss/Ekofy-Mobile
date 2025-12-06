@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/core/utils/notification.dart';
 import 'package:ekofy_mobile/features/home/data/models/menu_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
@@ -20,6 +24,13 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final GlobalKey _menuKey = GlobalKey();
+  NotificationService notificationService = NotificationService();
+
+  @override
+  void initState() {
+    super.initState();
+    notificationService.firebaseInit(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -256,8 +267,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return GestureDetector(
       // onTap: () => ,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Icon(Icons.notifications, size: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: SvgPicture.asset(
+          AppVectors.whiteNotificationIcon,
+          width: 30,
+          height: 30,
+        ),
       ),
     );
   }

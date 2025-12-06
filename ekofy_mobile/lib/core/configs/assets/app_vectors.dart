@@ -18,4 +18,6 @@ class AppVectors {
   static const String hubIconInactive = '${basePath}ic_hub_inactive$format';
   static const String hubIconActive = '${basePath}ic_hub_active$format';
   static const String menuIcon = '${basePath}ic_menu$format';
+  static const String whiteNotificationIcon =
+      '${basePath}notification_active_white$format';
 }

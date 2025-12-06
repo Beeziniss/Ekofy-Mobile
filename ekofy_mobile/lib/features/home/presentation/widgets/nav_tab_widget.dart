@@ -148,7 +148,6 @@ class _NavTabState extends ConsumerState<NavTab>
   Widget _sideBar() {
     final themeMode = ref.watch(themeProvider);
     final isLight = themeMode == ThemeMode.light;
-    final colorScheme = Theme.of(context).colorScheme;
     final textColor = isLight ? Colors.black87 : Colors.white;
 
     return SafeArea(

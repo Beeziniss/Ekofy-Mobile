@@ -40,11 +40,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   void _syncControllers(ProfileState state) {
     final profile = state.edited ?? state.original;
     if (profile != null) {
-      if (_displayNameController.text != (profile.displayName ?? '')) {
-        _displayNameController.text = profile.displayName ?? '';
+      if (_displayNameController.text != (profile.displayName)) {
+        _displayNameController.text = profile.displayName;
       }
-      if (_emailController.text != (profile.email ?? '')) {
-        _emailController.text = profile.email ?? '';
+      if (_emailController.text != (profile.email)) {
+        _emailController.text = profile.email;
       }
       if (_phoneController.text != (profile.phoneNumber ?? '')) {
         _phoneController.text = profile.phoneNumber ?? '';
@@ -116,11 +116,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           body: CustomScrollView(
             slivers: [
               ProfileHeaderWidget(
-                isVerified: profile.isVerified ?? false,
+                isVerified: profile.isVerified,
                 bannerImage: profile.bannerImage,
                 avatarImage: profile.avatarImage,
-                displayName: state.edited?.displayName ?? profile.displayName ?? '',
-                userId: profile.userId ?? '-',
+                displayName: state.edited?.displayName ?? profile.displayName,
+                userId: profile.userId,
                 onEditBanner: () {
                   // TODO: Implement banner edit
                 },
@@ -282,9 +282,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               ),
             ),
             const SizedBox(height: 16),
-            _kvRow('Followers', profile.followerCount?.toString() ?? '0'),
+            _kvRow('Followers', profile.followerCount.toString()),
             const SizedBox(height: 12),
-            _kvRow('Following', profile.followingCount?.toString() ?? '0'),
+            _kvRow('Following', profile.followingCount.toString()),
           ],
         ),
       ),

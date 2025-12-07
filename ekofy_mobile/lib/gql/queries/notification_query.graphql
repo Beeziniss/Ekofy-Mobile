@@ -1,0 +1,18 @@
+query notificationsForUserQuery ($userId: String!) {
+    notificationsForUser(userId: $userId) {
+        totalCount
+        nodes {
+            id
+            actorId
+            targetId
+            relatedId
+            relatedType
+            content
+            url
+            isRead
+            readAt
+            action
+            createdAt
+        }
+    }
+}

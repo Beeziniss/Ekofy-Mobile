@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -13,7 +13,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 class NotificationService {
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
-  Future<void> initialize() async {
+  Future<void> requestNotificationPermission() async {
     // Request permission for iOS
     NotificationSettings settings = await _messaging.requestPermission(
       alert: true,
@@ -36,9 +36,7 @@ class NotificationService {
         log('Message data: ${message.data}');
 
         if (message.notification != null) {
-          log(
-            'Message also contained a notification: ${message.notification}',
-          );
+          log('Message also contained a notification: ${message.notification}');
         }
       });
     } else if (settings.authorizationStatus ==
@@ -50,44 +48,27 @@ class NotificationService {
     }
   }
 
-  Future<String?> getDeviceToken() async {
-    return await _messaging.getToken();
-  }
+  static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
-  void isTokenRefresh() {
-    _messaging.onTokenRefresh.listen((event) {
-      log("Firebase Messaging Token Refreshed: $event");
-      event.toString();
-    });
-  }
+  static Future<void> localNotificationInit() async {
+    const androidInit = AndroidInitializationSettings('ekofy_logo');
+    const iosInit = DarwinInitializationSettings();
 
-  void initLocalNotification(
-    BuildContext context,
-    RemoteMessage message,
-  ) async {
-    var androidInitilization = const AndroidInitializationSettings(
-      '@drawable/logo_ekofy',
-    );
-
-    var iosInitilization = const DarwinInitializationSettings();
-
-    var initilizationsSettings = InitializationSettings(
-      android: androidInitilization,
-      iOS: iosInitilization,
-    );
+    const settings = InitializationSettings(android: androidInit, iOS: iosInit);
 
     await flutterLocalNotificationsPlugin.initialize(
-      initilizationsSettings,
+      settings,
       onDidReceiveNotificationResponse: (NotificationResponse response) {
         log('Notification Clicked: ${response.payload}');
       },
     );
 
-    // Create the channel on the device (Android 8.0+)
-    final channel = AndroidNotificationChannel(
+    // Only create channel ONCE (Android 8.0+)
+    const channel = AndroidNotificationChannel(
       'high_importance_channel',
       'High Importance Notifications',
-      description: 'This channel is used for important notifications.',
+      description: 'Used for important notifications',
       importance: Importance.max,
     );
 
@@ -98,57 +79,72 @@ class NotificationService {
         ?.createNotificationChannel(channel);
   }
 
-  Future<void> showLocalNotification(RemoteMessage message) async {
-    final channel = AndroidNotificationChannel(
-      'high_importance_channel',
-      'High Importance Notifications',
-      description: 'This channel is used for important notifications.',
-      importance: Importance.max,
-    );
+  static Future<void> show(RemoteMessage message) async {
+    final notification = message.notification;
+    final android = notification?.android;
+    final imageUrl = android?.imageUrl ?? notification?.apple?.imageUrl;
 
-    var androidDetails = AndroidNotificationDetails(
-      channel.id,
-      channel.name,
-      channelDescription: channel.description,
+    BigPictureStyleInformation? bigPictureStyle;
+    final dio = Dio();
+
+    if (imageUrl != null) {
+      try {
+        final response = await dio.get<Uint8List>(
+          imageUrl,
+          options: Options(responseType: ResponseType.bytes),
+        );
+
+        final imageBytes = response.data!;
+        final bigPicture = ByteArrayAndroidBitmap(imageBytes);
+
+        bigPictureStyle = BigPictureStyleInformation(
+          bigPicture,
+          contentTitle: notification?.title,
+          summaryText: notification?.body,
+        );
+      } catch (e) {
+        log("Failed to load image: $e");
+      }
+    }
+
+    final androidDetails = AndroidNotificationDetails(
+      message.notification?.android?.channelId ?? 'high_importance_channel',
+      'High Importance Notifications',
       importance: Importance.max,
       priority: Priority.high,
-      ticker: 'ticker',
+      styleInformation: bigPictureStyle,
+      icon: 'ekofy_logo',
+      largeIcon: bigPictureStyle == null
+          ? const DrawableResourceAndroidBitmap('ekofy_logo')
+          : null,
     );
 
-    var iosDetails = const DarwinNotificationDetails(
+    const iosDetails = DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
     );
 
-    var generalNotificationDetails = NotificationDetails(
+    final details = NotificationDetails(
       android: androidDetails,
       iOS: iosDetails,
     );
 
-    final int notificationId = DateTime.now().millisecondsSinceEpoch.remainder(
-      100000,
-    );
+    final id = DateTime.now().millisecondsSinceEpoch.remainder(100000);
     await flutterLocalNotificationsPlugin.show(
-      notificationId,
-      message.notification!.title,
-      message.notification!.body,
-      generalNotificationDetails,
+      id,
+      notification?.title,
+      notification?.body,
+      details,
       payload: 'Notification Payload',
     );
   }
 
-  void firebaseInit(BuildContext context) {
-    {
-      FirebaseMessaging.onMessage.listen((message) {
-        if (kDebugMode) {
-          print('message received: ${message.notification?.body}');
-        }
-        if (Platform.isAndroid) {
-          initLocalNotification(context, message);
-          showLocalNotification(message);
-        }
-      });
-    }
+  static void registerForegroundHandler() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (Platform.isAndroid || Platform.isIOS) {
+        show(message);
+      }
+    });
   }
 }

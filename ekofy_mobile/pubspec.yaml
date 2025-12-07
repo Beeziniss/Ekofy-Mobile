@@ -41,18 +41,13 @@ dependencies:
   dio: ^5.9.0
   graphql_flutter: ^5.2.1
   flutter_secure_storage: ^9.2.4
-  freezed: ^3.2.3
-  build_runner: ^2.3.3
   freezed_annotation: ^3.1.0
-  json_serializable: ^6.5.0
   flutter_dotenv: ^6.0.0
   dart_jsonwebtoken: ^3.3.1
-  graphql_codegen: ^2.0.0
   image_picker: ^1.2.1
   file_picker: ^10.3.7
   path_provider: ^2.1.2
   intl: ^0.20.2
-  riverpod_generator: ^3.0.3
   riverpod_annotation: ^3.0.3
   flutter_quill: ^11.5.0
   vsc_quill_delta_to_html: ^1.0.5
@@ -64,17 +59,29 @@ dependencies:
   firebase_messaging: ^16.0.4
   app_settings: ^7.0.0
   flutter_local_notifications: ^19.5.0
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  freezed: ^3.2.3
+  build_runner: ^2.3.3
+  json_serializable: ^6.5.0
+  graphql_codegen: ^2.0.0
+  flutter_launcher_icons: ^0.14.4
+  riverpod_generator: ^3.0.3
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/logo.png"
+  min_sdk_android: 21
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

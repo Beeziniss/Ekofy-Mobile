@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
-import 'package:ekofy_mobile/features/auth/data/models/request/register_request.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../core/utils/results/result_type.dart';
@@ -104,7 +103,10 @@ class AuthNotifier extends Notifier<AuthState> {
 
     state = switch (result) {
       Success() => AuthRegisterSuccess(),
-      Failure() => AuthRegisterFailure(result.message, result.statusCode.toString()),
+      Failure() => AuthRegisterFailure(
+        result.message,
+        result.statusCode.toString(),
+      ),
     };
   }
 
@@ -136,7 +138,7 @@ class AuthNotifier extends Notifier<AuthState> {
 
   // Logout method - Thay thế AuthLogoutStarted event
   Future<void> logout() async {
-    await _authRepository.logout();
+    await _authRepository.logout(ref);
     state = AuthLogoutSuccess();
   }
 

@@ -7,7 +7,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -16,8 +15,7 @@ import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 @pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(
-    RemoteMessage message) async {
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `Firebase.initializeApp()` before using other Firebase services.
   await Firebase.initializeApp();
@@ -32,8 +30,10 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   final NotificationService notificationService = NotificationService();
-  notificationService.getDeviceToken().then((value) {});
-  notificationService.initialize();
+  // notificationService.getDeviceToken().then((value) {});
+  notificationService.requestNotificationPermission();
+  await NotificationService.localNotificationInit();
+  NotificationService.registerForegroundHandler();
 
   await initHiveForFlutter();
 
@@ -55,7 +55,6 @@ void main() async {
     // ),
   );
 }
-
 
 class EkofyApp extends ConsumerWidget {
   const EkofyApp({super.key});

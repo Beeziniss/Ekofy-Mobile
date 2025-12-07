@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:ekofy_mobile/core/utils/helper.dart';
 import 'package:ekofy_mobile/core/utils/results/result_type.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_api_datasource.dart';
 import 'package:ekofy_mobile/features/auth/data/datasources/auth_local_datasource.dart';
@@ -9,6 +10,8 @@ import 'package:ekofy_mobile/features/auth/data/models/request/login_request.dar
 import 'package:ekofy_mobile/features/auth/data/models/request/register_request.dart';
 import 'package:ekofy_mobile/features/auth/data/models/request/verify_otp_request.dart';
 import 'package:ekofy_mobile/features/auth/domain/repositories/auth_repository.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApiDatasource authApiDatasource;
@@ -33,7 +36,10 @@ class AuthRepositoryImpl implements AuthRepository {
             res!.result!.accessToken,
             res.result!.refreshToken,
           );
-          // ref.read(appStateProvider.notifier).setUserId(res.result!.userId);
+          await FirebaseMessaging.instance.subscribeToTopic(
+            'user_${res.result!.userId}',
+          );
+          await FirebaseMessaging.instance.subscribeToTopic('all_users');
           return Success(null);
         },
 
@@ -94,9 +100,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<ResultType> logout() async {
+  Future<ResultType> logout(Ref ref) async {
     await authApiDatasource.logout();
     await authLocalDatasource.removeToken();
+    final payload = await Helper.decodeJwtUnverified(ref);
+
+    //* if user id exist, unsubscribe from topic
+    final userId = payload?['userId'];
+    if (userId != null){
+      await FirebaseMessaging.instance.unsubscribeFromTopic('user_$userId');
+      await FirebaseMessaging.instance.unsubscribeFromTopic('all_users');
+    }
     return Success('Logout Successfully.');
   }
 

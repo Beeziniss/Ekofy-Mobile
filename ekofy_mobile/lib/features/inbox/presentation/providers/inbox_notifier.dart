@@ -103,4 +103,38 @@ class InboxNotifier extends StateNotifier<InboxState> {
   Future<void> refreshConversations() async {
     await fetchConversations();
   }
+
+  /// Add a new message to the cache (for SignalR real-time updates)
+  void addMessageToConversation(String conversationId, MessageItem message) {
+    final updatedCache = Map<String, List<MessageItem>>.from(
+      state.messagesCache,
+    );
+
+    if (updatedCache.containsKey(conversationId)) {
+      // Check if message already exists (avoid duplicates)
+      final existingMessages = updatedCache[conversationId]!;
+      if (!existingMessages.any((m) => m.id == message.id)) {
+        updatedCache[conversationId] = [...existingMessages, message];
+      }
+    } else {
+      updatedCache[conversationId] = [message];
+    }
+
+    state = state.copyWith(messagesCache: updatedCache);
+  }
+
+  /// Remove a message from the cache (for delete functionality)
+  void removeMessageFromConversation(String conversationId, String messageId) {
+    final updatedCache = Map<String, List<MessageItem>>.from(
+      state.messagesCache,
+    );
+
+    if (updatedCache.containsKey(conversationId)) {
+      updatedCache[conversationId] = updatedCache[conversationId]!
+          .where((m) => m.id != messageId)
+          .toList();
+    }
+
+    state = state.copyWith(messagesCache: updatedCache);
+  }
 }

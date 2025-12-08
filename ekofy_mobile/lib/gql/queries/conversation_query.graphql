@@ -1,0 +1,50 @@
+query Conversations($where: ConversationFilterInput) {
+	conversations(where: $where, order: { lastMessage: { sentAt: DESC } }) {
+		items {
+			id
+			userIds
+			requestId
+			status
+			ownerProfileConversation {
+				avatar
+				nickname
+				artistId
+			}
+			otherProfileConversation {
+				avatar
+				nickname
+				artistId
+			}
+			lastMessage {
+				text
+				senderId
+				sentAt
+				isReadBy
+			}
+		}
+		totalCount
+	}
+}
+
+query Messages($where: MessageFilterInput, $last: Int, $before: String) {
+	messages(where: $where, last: $last, before: $before) {
+		edges {
+			cursor
+			node {
+				id
+				conversationId
+				senderId
+				receiverId
+				isRead
+				text
+				sentAt
+				deletedForIds
+				senderProfileMessages {
+					avatar
+					nickname
+				}
+			}
+		}
+		totalCount
+	}
+}

@@ -11,6 +11,8 @@ import 'package:ekofy_mobile/features/profile/presentation/screens/profile_page.
 import 'package:ekofy_mobile/features/request_hub/presentation/screens/direct_request/own_request_screen.dart';
 import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_detail_screen.dart';
 import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_history_list_screen.dart';
+import 'package:ekofy_mobile/features/inbox/presentation/screens/inbox_screen.dart';
+import 'package:ekofy_mobile/features/inbox/presentation/screens/conversation_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +30,8 @@ class RouteName {
   static const String requestHub = '/request-hub';
   static const String ownRequests = '/own-requests';
   static const String notifications = '/notifications';
+  static const String inbox = '/inbox';
+  static const String conversationDetail = '/inbox/:conversationId';
 
   static const publicRoutes = [home, login, register];
 }
@@ -101,6 +105,17 @@ GoRouter router(WidgetRef ref) {
       GoRoute(
         path: RouteName.notifications,
         builder: (context, state) => const NotificationScreen(),
+      ),
+      GoRoute(
+        path: RouteName.inbox,
+        builder: (context, state) => const InboxScreen(),
+      ),
+      GoRoute(
+        path: RouteName.conversationDetail,
+        builder: (context, state) {
+          final conversationId = state.pathParameters['conversationId']!;
+          return ConversationDetailScreen(conversationId: conversationId);
+        },
       ),
     ],
   );

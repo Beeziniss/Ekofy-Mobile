@@ -5,6 +5,7 @@ import 'package:ekofy_mobile/core/providers/theme_provider.dart';
 import 'package:ekofy_mobile/features/home/presentation/screens/main_screen.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
 import 'package:ekofy_mobile/features/request_hub/presentation/screens/public_request/request_hub_screen.dart';
+import 'package:ekofy_mobile/features/inbox/presentation/screens/inbox_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,7 +27,7 @@ class _NavTabState extends ConsumerState<NavTab>
   @override
   void initState() {
     super.initState();
-    controller = TabController(length: 4, vsync: this);
+    controller = TabController(length: 5, vsync: this);
 
     controller?.addListener(() {
       selectTab = controller?.index ?? 0;
@@ -55,6 +56,7 @@ class _NavTabState extends ConsumerState<NavTab>
           const LibraryPage(),
           Container(),
           const RequestHubScreen(),
+          const InboxScreen(),
         ],
       ),
 
@@ -134,6 +136,16 @@ class _NavTabState extends ConsumerState<NavTab>
                   selectTab == 3
                       ? AppVectors.hubIconActive
                       : AppVectors.hubIconInactive,
+                  width: 25,
+                  height: 25,
+                ),
+              ),
+              Tab(
+                text: 'Inbox',
+                icon: SvgPicture.asset(
+                  selectTab == 4
+                      ? AppVectors.inboxIconActive
+                      : AppVectors.inboxIconInactive,
                   width: 25,
                   height: 25,
                 ),

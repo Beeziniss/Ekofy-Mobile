@@ -27,7 +27,7 @@ class _NavTabState extends ConsumerState<NavTab>
   @override
   void initState() {
     super.initState();
-    controller = TabController(length: 5, vsync: this);
+    controller = TabController(length: 4, vsync: this);
 
     controller?.addListener(() {
       selectTab = controller?.index ?? 0;
@@ -54,7 +54,6 @@ class _NavTabState extends ConsumerState<NavTab>
         children: [
           HomeScreen(scaffoldKey: _scaffoldKey),
           const LibraryPage(),
-          Container(),
           const RequestHubScreen(),
           const InboxScreen(),
         ],
@@ -121,19 +120,9 @@ class _NavTabState extends ConsumerState<NavTab>
                 ),
               ),
               Tab(
-                text: 'Search',
-                icon: SvgPicture.asset(
-                  selectTab == 2
-                      ? AppVectors.searchIconActive
-                      : AppVectors.searchIconInactive,
-                  width: 25,
-                  height: 25,
-                ),
-              ),
-              Tab(
                 text: 'Hub',
                 icon: SvgPicture.asset(
-                  selectTab == 3
+                  selectTab == 2
                       ? AppVectors.hubIconActive
                       : AppVectors.hubIconInactive,
                   width: 25,
@@ -143,7 +132,7 @@ class _NavTabState extends ConsumerState<NavTab>
               Tab(
                 text: 'Inbox',
                 icon: SvgPicture.asset(
-                  selectTab == 4
+                  selectTab == 3
                       ? AppVectors.inboxIconActive
                       : AppVectors.inboxIconInactive,
                   width: 25,

@@ -1,50 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
+import 'package:ekofy_mobile/features/track/data/models/track_model.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 
 class TrackCard extends StatelessWidget {
-  final Map<String, dynamic> track;
+  final TrackModel track;
 
   const TrackCard({super.key, required this.track});
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: SizedBox(
-        width: 120,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                color: Colors.deepPurple.shade100,
-                borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(
-                  image: NetworkImage(track['coverImage']),
-                  fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        context.push('${RouteName.trackDetail}/${track.id}');
+      },
+      child: IntrinsicHeight(
+        child: SizedBox(
+          width: 120,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: Colors.deepPurple.shade100,
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                    image: NetworkImage(track.coverImage),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: const Icon(
+                  Icons.music_note,
+                  size: 40,
+                  color: Colors.white,
                 ),
               ),
-              child: const Icon(
-                Icons.music_note,
-                size: 40,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              track['name'],
-              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const Spacer(),
-            if (track['artistNames'] != null && track['artistNames'].isNotEmpty)
+              const SizedBox(height: 6),
               Text(
-                '${track['artistNames'].join(', ')}',
-                style: TextStyle(fontSize: 11, color: Colors.grey[600]),
+                track.name,
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-          ],
+              const Spacer(),
+              Text(
+                track.artistNames,
+                style: TextStyle(fontSize: 11, color: Colors.grey[600]),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -52,7 +64,7 @@ class TrackCard extends StatelessWidget {
 }
 
 class TracksList extends StatelessWidget {
-  final List<Map<String, dynamic>> tracks;
+  final List<TrackModel> tracks;
   final VoidCallback? refetch;
 
   const TracksList({super.key, required this.tracks, this.refetch});
@@ -112,7 +124,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class HomeBodyContent extends StatelessWidget {
-  final List<Map<String, dynamic>> tracks;
+  final List<TrackModel> tracks;
   final VoidCallback? refetch;
   final bool isLoading;
   final bool hasException;

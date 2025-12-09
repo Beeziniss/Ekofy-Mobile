@@ -39,6 +39,30 @@ class MessageItem {
       ),
     );
   }
+
+  MessageItem copyWith({
+    String? id,
+    String? conversationId,
+    String? senderId,
+    String? receiverId,
+    bool? isRead,
+    String? text,
+    DateTime? sentAt,
+    List<String>? deletedForIds,
+    MessageSenderProfile? senderProfile,
+  }) {
+    return MessageItem(
+      id: id ?? this.id,
+      conversationId: conversationId ?? this.conversationId,
+      senderId: senderId ?? this.senderId,
+      receiverId: receiverId ?? this.receiverId,
+      isRead: isRead ?? this.isRead,
+      text: text ?? this.text,
+      sentAt: sentAt ?? this.sentAt,
+      deletedForIds: deletedForIds ?? this.deletedForIds,
+      senderProfile: senderProfile ?? this.senderProfile,
+    );
+  }
 }
 
 class MessageSenderProfile {

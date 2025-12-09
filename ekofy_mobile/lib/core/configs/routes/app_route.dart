@@ -9,6 +9,7 @@ import 'package:ekofy_mobile/features/library/presentation/screens/library_page.
 import 'package:ekofy_mobile/features/notification/presentation/screens/notification_screen.dart';
 import 'package:ekofy_mobile/features/profile/presentation/screens/profile_page.dart';
 import 'package:ekofy_mobile/features/request_hub/presentation/screens/direct_request/own_request_screen.dart';
+import 'package:ekofy_mobile/features/track/presentation/screens/track_detail_screen.dart';
 import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_detail_screen.dart';
 import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_history_list_screen.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/screens/inbox_screen.dart';
@@ -32,6 +33,7 @@ class RouteName {
   static const String notifications = '/notifications';
   static const String inbox = '/inbox';
   static const String conversationDetail = '/inbox/:conversationId';
+  static const String trackDetail = '/track';
 
   static const publicRoutes = [home, login, register];
 }
@@ -115,6 +117,13 @@ GoRouter router(WidgetRef ref) {
         builder: (context, state) {
           final conversationId = state.pathParameters['conversationId']!;
           return ConversationDetailScreen(conversationId: conversationId);
+        },
+      ),
+      GoRoute(
+        path: '${RouteName.trackDetail}/:id',
+        builder: (context, state) {
+          final trackId = state.pathParameters['id']!;
+          return TrackDetailScreen(trackId: trackId);
         },
       ),
     ],

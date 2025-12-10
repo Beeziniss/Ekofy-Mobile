@@ -13,6 +13,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -40,6 +41,10 @@ void main() async {
   await HiveStore.openBox('graphql');
 
   await dotenv.load(fileName: ".env");
+
+  // Initialize Stripe
+  // Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY'] ?? '';
+  // await Stripe.instance.applySettings();
 
   AndroidOptions getAndroidOptions() =>
       const AndroidOptions(encryptedSharedPreferences: true);

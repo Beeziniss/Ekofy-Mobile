@@ -4,6 +4,7 @@ import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/providers/theme_provider.dart';
 import 'package:ekofy_mobile/features/home/presentation/screens/main_screen.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
+import 'package:ekofy_mobile/features/payment/presentation/screens/payment_screen.dart';
 import 'package:ekofy_mobile/features/request_hub/presentation/screens/public_request/request_hub_screen.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/screens/inbox_screen.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class _NavTabState extends ConsumerState<NavTab>
         children: [
           HomeScreen(scaffoldKey: _scaffoldKey),
           const LibraryPage(),
-          Container(),
+          const PaymentScreen(),
           const RequestHubScreen(),
           const InboxScreen(),
         ],
@@ -121,7 +122,7 @@ class _NavTabState extends ConsumerState<NavTab>
                 ),
               ),
               Tab(
-                text: 'Search',
+                text: 'Payment',
                 icon: SvgPicture.asset(
                   selectTab == 2
                       ? AppVectors.searchIconActive

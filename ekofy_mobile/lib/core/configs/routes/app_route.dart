@@ -13,6 +13,9 @@ import 'package:ekofy_mobile/features/transactions/presentation/screens/transact
 import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_history_list_screen.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/screens/inbox_screen.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/screens/conversation_detail_screen.dart';
+import 'package:ekofy_mobile/features/payment/presentation/screens/payment_screen.dart';
+import 'package:ekofy_mobile/features/payment/presentation/screens/payment_success_screen.dart';
+import 'package:ekofy_mobile/features/payment/presentation/screens/payment_failure_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,6 +35,9 @@ class RouteName {
   static const String notifications = '/notifications';
   static const String inbox = '/inbox';
   static const String conversationDetail = '/inbox/:conversationId';
+  static const String payment = '/payment';
+  static const String paymentSuccess = '/payment/success';
+  static const String paymentFailure = '/payment/failure';
 
   static const publicRoutes = [home, login, register];
 }
@@ -115,6 +121,21 @@ GoRouter router(WidgetRef ref) {
         builder: (context, state) {
           final conversationId = state.pathParameters['conversationId']!;
           return ConversationDetailScreen(conversationId: conversationId);
+        },
+      ),
+      GoRoute(
+        path: RouteName.payment,
+        builder: (context, state) => const PaymentScreen(),
+      ),
+      GoRoute(
+        path: RouteName.paymentSuccess,
+        builder: (context, state) => const PaymentSuccessScreen(),
+      ),
+      GoRoute(
+        path: RouteName.paymentFailure,
+        builder: (context, state) {
+          final message = state.extra as String?;
+          return PaymentFailureScreen(message: message);
         },
       ),
     ],

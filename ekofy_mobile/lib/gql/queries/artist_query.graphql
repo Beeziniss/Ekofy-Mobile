@@ -1,0 +1,44 @@
+query ArtistInLibraryQuery {
+    artists {
+        totalCount
+        items {
+            id
+            userId
+            stageName
+            stageNameUnsigned
+            followerCount
+            avatarImage
+            isVerified
+        }
+    }
+}
+
+# query ArtistProfileQuery($where: ArtistFilterInput!) {
+#     artists(where: $where) {
+#         items {
+#             id
+#             userId
+#             stageName
+#             stageNameUnsigned
+#             bio
+#             avatarImage
+#             bannerImage
+#             socialLinks {
+#                 platform
+#                 url
+#             }
+#             followerCount
+#             isVerified
+#             genres {
+#                 id
+#                 name
+#             }
+#             tracks {
+#                 totalCount
+#             }
+#             albums {
+#                 totalCount
+#             }
+#         }
+#     }
+# }

@@ -41,12 +41,22 @@ class ApiHandle {
     } on DioException catch (e) {
       log(e.toString());
       if (e.response != null) {
-        final message =
-            e.response!.data['message'] ??
-            e.response!.data['detail'] ??
-            e.message ??
-            'Unknown error';
-        return ResultType.failure(message, e.response!.data['status']);
+        String message = e.message ?? 'Unknown error';
+        int statusCode = e.response!.statusCode ?? 400;
+
+        if (e.response!.data is Map<String, dynamic>) {
+          message =
+              e.response!.data['message'] ??
+              e.response!.data['detail'] ??
+              message;
+          if (e.response!.data['status'] is int) {
+            statusCode = e.response!.data['status'];
+          }
+        } else if (e.response!.data is String) {
+          message = e.response!.data;
+        }
+
+        return ResultType.failure(message, statusCode);
       }
       return ResultType.failure(e.message ?? 'Network error', 408);
     } catch (e) {
@@ -78,12 +88,22 @@ class ApiHandle {
     } on DioException catch (e) {
       log(e.toString());
       if (e.response != null) {
-        final message =
-            e.response!.data['message'] ??
-            e.response!.data['detail'] ??
-            e.message ??
-            'Unknown error';
-        return ResultType.failure(message, e.response!.data['status']);
+        String message = e.message ?? 'Unknown error';
+        int statusCode = e.response!.statusCode ?? 400;
+
+        if (e.response!.data is Map<String, dynamic>) {
+          message =
+              e.response!.data['message'] ??
+              e.response!.data['detail'] ??
+              message;
+          if (e.response!.data['status'] is int) {
+            statusCode = e.response!.data['status'];
+          }
+        } else if (e.response!.data is String) {
+          message = e.response!.data;
+        }
+
+        return ResultType.failure(message, statusCode);
       }
       return ResultType.failure(e.message ?? 'Network error', 408);
     } catch (e) {

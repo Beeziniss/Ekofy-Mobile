@@ -27,5 +27,7 @@ abstract class RequestRepository {
     Enum$RequestStatus? status,
   });
 
-  Future<List<Query$OwnRequestsQuery$ownRequests$items>> fetchOwnRequests();
+  Future<List<Query$OwnRequestsQuery$requests$items>> fetchOwnRequests(
+    String requestUserId,
+  );
 }

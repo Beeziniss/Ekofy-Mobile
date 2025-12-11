@@ -36,4 +36,26 @@ class ArtistApiDataSource {
         .whereType<Query$ArtistPackages$artistPackages$items>()
         .toList();
   }
+
+  Future<Query$ArtistDetail$artists$items?> fetchArtistDetail({
+    required String artistId,
+  }) async {
+    final result = await _client.query$ArtistDetail(
+      Options$Query$ArtistDetail(
+        variables: Variables$Query$ArtistDetail(id: artistId),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
+    );
+
+    if (result.hasException) {
+      throw Exception(result.exception.toString());
+    }
+
+    final items = result.parsedData?.artists?.items;
+    if (items == null || items.isEmpty) {
+      return null;
+    }
+
+    return items.first;
+  }
 }

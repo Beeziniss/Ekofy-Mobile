@@ -50,3 +50,18 @@ query ArtistPackageDetails($id: String!) {
         }
     }
 }
+
+query ArtistDetail($id: String!) {
+    artists(where: { id: { eq: $id } }) {
+        items {
+            id
+            userId
+            stageName
+            stageNameUnsigned
+            followerCount
+            bannerImage
+            avatarImage
+            isVerified
+        }
+    }
+}

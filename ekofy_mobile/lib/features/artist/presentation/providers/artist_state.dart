@@ -7,8 +7,9 @@ part 'artist_state.freezed.dart';
 sealed class ArtistState with _$ArtistState {
   const factory ArtistState.initial() = ArtistInitial;
   const factory ArtistState.loading() = ArtistLoading;
-  const factory ArtistState.success(
-    List<Query$ArtistPackages$artistPackages$items> packages,
-  ) = ArtistSuccess;
+  const factory ArtistState.success({
+    required List<Query$ArtistPackages$artistPackages$items> packages,
+    Query$ArtistDetail$artists$items? artist,
+  }) = ArtistSuccess;
   const factory ArtistState.failure(String message) = ArtistFailure;
 }

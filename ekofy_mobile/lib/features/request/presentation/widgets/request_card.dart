@@ -26,6 +26,8 @@ class RequestCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDirect = item.type == Enum$RequestType.DIRECT_REQUEST;
+
     return Semantics(
       button: true,
       label: 'Request card for ${item.title}',
@@ -43,46 +45,21 @@ class RequestCard extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _typeAvatar(item.requestorAvatar, item.requestorDisplayName),
-                  const SizedBox(width: 12),
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          item.requestorDisplayName,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.access_time,
-                              size: 14,
-                              color: Colors.grey[500],
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              _relativeTime(item.createdAt),
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[400],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(width: 12),
-                      ],
+                    child: Text(
+                      isDirect
+                          ? 'Direct request for ${item.artistStageName ?? 'Unknown Artist'}'
+                          : item.title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
-
                   const SizedBox(width: 8),
                   Semantics(
                     label: 'More actions',
@@ -98,30 +75,71 @@ class RequestCard extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item.title,
+                    'Requirements: ',
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.w600,
+                      color: Colors.white,
                     ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 8),
                   Text(
-                    item.summary,
+                    isDirect
+                        ? (item.requirements ?? 'No requirements specified')
+                        : item.summary,
                     style: const TextStyle(fontSize: 14, color: Colors.white70),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(height: 12),
                   Row(
                     children: [
-                      Spacer(),
-                      _pill(
-                        label:
-                            '${Helper.formatCurrency(item.minBudget)} ${_convertCurrency(item.currency)} - ${Helper.formatCurrency(item.maxBudget)} ${_convertCurrency(item.currency)}',
-                        color: const Color(0xFF064E3B),
-                        textColor: const Color(0xFFA7F3D0),
+                      if (!isDirect) ...[
+                        Icon(Icons.price_check_sharp, size: 16),
+                        const SizedBox(width: 8),
+                        Text(
+                          '${Helper.formatCurrency(item.minBudget)} ${_convertCurrency(item.currency)} - ${Helper.formatCurrency(item.maxBudget)} ${_convertCurrency(item.currency)}',
+                          // color: const Color(0xFF064E3B),
+                          // textColor: const Color(0xFFA7F3D0),
+                        ),
+                        const SizedBox(width: 8),
+                      ] else ...[
+                        Icon(Icons.price_check_sharp, size: 16),
+                        const SizedBox(width: 8),
+                        Text(
+                          item.amount != null
+                              ? '${Helper.formatCurrency(item.amount!)} ${_convertCurrency(item.currency)}'
+                              : 'Amount not specified',
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                    ],
+                  ),
+                  if (item.duration != null) ...[
+                    Row(
+                      children: [
+                        Icon(Icons.schedule, size: 16),
+                        const SizedBox(width: 8),
+                        Text('${item.duration} days', style: const TextStyle()),
+                        Spacer(),
+                        if (item.status != null)
+                          _pill(
+                            label: item.status!.name.toUpperCase(),
+                            color: _getStatusColor(item.status!),
+                            textColor: Colors.white,
+                          ),
+                      ],
+                    ),
+                  ],
+                  Row(
+                    children: [
+                      Icon(Icons.calendar_today, size: 16),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Created date: ${_relativeTime(item.createdAt)}',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white54,
+                        ),
                       ),
                     ],
                   ),
@@ -132,6 +150,23 @@ class RequestCard extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  Color _getStatusColor(RequestStatus status) {
+    switch (status) {
+      case RequestStatus.open:
+        return Colors.yellow.withOpacity(0.2);
+      case RequestStatus.pending:
+        return Colors.green.withOpacity(0.2);
+      case RequestStatus.confirmed:
+        return Colors.purple.withOpacity(0.2);
+      case RequestStatus.rejected:
+        return Colors.red.withOpacity(0.2);
+      case RequestStatus.closed:
+        return Colors.deepOrangeAccent.withOpacity(0.2);
+      default:
+        return Colors.grey.withOpacity(0.2);
+    }
   }
 
   Widget _pill({required String label, Color? color, Color? textColor}) {

@@ -50,7 +50,7 @@ class OwnRequestItem {
   });
 
   factory OwnRequestItem.fromQueryItem(
-    Query$OwnRequestsQuery$ownRequests$items item,
+    Query$OwnRequestsQuery$requests$items item,
   ) {
     return OwnRequestItem(
       id: item.id,
@@ -100,7 +100,7 @@ class OwnRequestArtist {
   OwnRequestArtist({required this.id, required this.userId, this.stageName});
 
   factory OwnRequestArtist.fromQueryItem(
-    Query$OwnRequestsQuery$ownRequests$items$artist item,
+    Query$OwnRequestsQuery$requests$items$artist item,
   ) {
     return OwnRequestArtist(
       id: item.id,
@@ -124,7 +124,7 @@ class OwnRequestPackage {
   });
 
   factory OwnRequestPackage.fromQueryItem(
-    Query$OwnRequestsQuery$ownRequests$items$artistPackage item,
+    Query$OwnRequestsQuery$requests$items$artistPackage item,
   ) {
     return OwnRequestPackage(
       id: item.id,

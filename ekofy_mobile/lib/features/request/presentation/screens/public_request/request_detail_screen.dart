@@ -21,8 +21,8 @@ class RequestDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _noteSection(theme),
-              const SizedBox(height: 16),
+              // _noteSection(theme),
+              // const SizedBox(height: 16),
               _headerSection(theme),
               const SizedBox(height: 16),
               _detailSection(theme),

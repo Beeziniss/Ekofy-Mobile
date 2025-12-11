@@ -1423,33 +1423,124 @@ class _CopyWithStubImpl$Query$PublicRequestQuery$requests$items$requestor<TRes>
   }) => _res;
 }
 
+class Variables$Query$OwnRequestsQuery {
+  factory Variables$Query$OwnRequestsQuery({required String requestUserId}) =>
+      Variables$Query$OwnRequestsQuery._({r'requestUserId': requestUserId});
+
+  Variables$Query$OwnRequestsQuery._(this._$data);
+
+  factory Variables$Query$OwnRequestsQuery.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$requestUserId = data['requestUserId'];
+    result$data['requestUserId'] = (l$requestUserId as String);
+    return Variables$Query$OwnRequestsQuery._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get requestUserId => (_$data['requestUserId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$requestUserId = requestUserId;
+    result$data['requestUserId'] = l$requestUserId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$OwnRequestsQuery<Variables$Query$OwnRequestsQuery>
+  get copyWith => CopyWith$Variables$Query$OwnRequestsQuery(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$OwnRequestsQuery ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$requestUserId = requestUserId;
+    final lOther$requestUserId = other.requestUserId;
+    if (l$requestUserId != lOther$requestUserId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$requestUserId = requestUserId;
+    return Object.hashAll([l$requestUserId]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$OwnRequestsQuery<TRes> {
+  factory CopyWith$Variables$Query$OwnRequestsQuery(
+    Variables$Query$OwnRequestsQuery instance,
+    TRes Function(Variables$Query$OwnRequestsQuery) then,
+  ) = _CopyWithImpl$Variables$Query$OwnRequestsQuery;
+
+  factory CopyWith$Variables$Query$OwnRequestsQuery.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$OwnRequestsQuery;
+
+  TRes call({String? requestUserId});
+}
+
+class _CopyWithImpl$Variables$Query$OwnRequestsQuery<TRes>
+    implements CopyWith$Variables$Query$OwnRequestsQuery<TRes> {
+  _CopyWithImpl$Variables$Query$OwnRequestsQuery(this._instance, this._then);
+
+  final Variables$Query$OwnRequestsQuery _instance;
+
+  final TRes Function(Variables$Query$OwnRequestsQuery) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? requestUserId = _undefined}) => _then(
+    Variables$Query$OwnRequestsQuery._({
+      ..._instance._$data,
+      if (requestUserId != _undefined && requestUserId != null)
+        'requestUserId': (requestUserId as String),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Variables$Query$OwnRequestsQuery<TRes>
+    implements CopyWith$Variables$Query$OwnRequestsQuery<TRes> {
+  _CopyWithStubImpl$Variables$Query$OwnRequestsQuery(this._res);
+
+  TRes _res;
+
+  call({String? requestUserId}) => _res;
+}
+
 class Query$OwnRequestsQuery {
   Query$OwnRequestsQuery({
-    this.ownRequests,
+    this.requests,
     this.$__typename = 'QueryInitialization',
   });
 
   factory Query$OwnRequestsQuery.fromJson(Map<String, dynamic> json) {
-    final l$ownRequests = json['ownRequests'];
+    final l$requests = json['requests'];
     final l$$__typename = json['__typename'];
     return Query$OwnRequestsQuery(
-      ownRequests: l$ownRequests == null
+      requests: l$requests == null
           ? null
-          : Query$OwnRequestsQuery$ownRequests.fromJson(
-              (l$ownRequests as Map<String, dynamic>),
+          : Query$OwnRequestsQuery$requests.fromJson(
+              (l$requests as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Query$OwnRequestsQuery$ownRequests? ownRequests;
+  final Query$OwnRequestsQuery$requests? requests;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$ownRequests = ownRequests;
-    _resultData['ownRequests'] = l$ownRequests?.toJson();
+    final l$requests = requests;
+    _resultData['requests'] = l$requests?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1457,9 +1548,9 @@ class Query$OwnRequestsQuery {
 
   @override
   int get hashCode {
-    final l$ownRequests = ownRequests;
+    final l$requests = requests;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$ownRequests, l$$__typename]);
+    return Object.hashAll([l$requests, l$$__typename]);
   }
 
   @override
@@ -1470,9 +1561,9 @@ class Query$OwnRequestsQuery {
     if (other is! Query$OwnRequestsQuery || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$ownRequests = ownRequests;
-    final lOther$ownRequests = other.ownRequests;
-    if (l$ownRequests != lOther$ownRequests) {
+    final l$requests = requests;
+    final lOther$requests = other.requests;
+    if (l$requests != lOther$requests) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -1498,11 +1589,8 @@ abstract class CopyWith$Query$OwnRequestsQuery<TRes> {
   factory CopyWith$Query$OwnRequestsQuery.stub(TRes res) =
       _CopyWithStubImpl$Query$OwnRequestsQuery;
 
-  TRes call({
-    Query$OwnRequestsQuery$ownRequests? ownRequests,
-    String? $__typename,
-  });
-  CopyWith$Query$OwnRequestsQuery$ownRequests<TRes> get ownRequests;
+  TRes call({Query$OwnRequestsQuery$requests? requests, String? $__typename});
+  CopyWith$Query$OwnRequestsQuery$requests<TRes> get requests;
 }
 
 class _CopyWithImpl$Query$OwnRequestsQuery<TRes>
@@ -1516,26 +1604,26 @@ class _CopyWithImpl$Query$OwnRequestsQuery<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? ownRequests = _undefined,
+    Object? requests = _undefined,
     Object? $__typename = _undefined,
   }) => _then(
     Query$OwnRequestsQuery(
-      ownRequests: ownRequests == _undefined
-          ? _instance.ownRequests
-          : (ownRequests as Query$OwnRequestsQuery$ownRequests?),
+      requests: requests == _undefined
+          ? _instance.requests
+          : (requests as Query$OwnRequestsQuery$requests?),
       $__typename: $__typename == _undefined || $__typename == null
           ? _instance.$__typename
           : ($__typename as String),
     ),
   );
 
-  CopyWith$Query$OwnRequestsQuery$ownRequests<TRes> get ownRequests {
-    final local$ownRequests = _instance.ownRequests;
-    return local$ownRequests == null
-        ? CopyWith$Query$OwnRequestsQuery$ownRequests.stub(_then(_instance))
-        : CopyWith$Query$OwnRequestsQuery$ownRequests(
-            local$ownRequests,
-            (e) => call(ownRequests: e),
+  CopyWith$Query$OwnRequestsQuery$requests<TRes> get requests {
+    final local$requests = _instance.requests;
+    return local$requests == null
+        ? CopyWith$Query$OwnRequestsQuery$requests.stub(_then(_instance))
+        : CopyWith$Query$OwnRequestsQuery$requests(
+            local$requests,
+            (e) => call(requests: e),
           );
   }
 }
@@ -1546,13 +1634,11 @@ class _CopyWithStubImpl$Query$OwnRequestsQuery<TRes>
 
   TRes _res;
 
-  call({
-    Query$OwnRequestsQuery$ownRequests? ownRequests,
-    String? $__typename,
-  }) => _res;
+  call({Query$OwnRequestsQuery$requests? requests, String? $__typename}) =>
+      _res;
 
-  CopyWith$Query$OwnRequestsQuery$ownRequests<TRes> get ownRequests =>
-      CopyWith$Query$OwnRequestsQuery$ownRequests.stub(_res);
+  CopyWith$Query$OwnRequestsQuery$requests<TRes> get requests =>
+      CopyWith$Query$OwnRequestsQuery$requests.stub(_res);
 }
 
 const documentNodeQueryOwnRequestsQuery = DocumentNode(
@@ -1560,14 +1646,42 @@ const documentNodeQueryOwnRequestsQuery = DocumentNode(
     OperationDefinitionNode(
       type: OperationType.query,
       name: NameNode(value: 'OwnRequestsQuery'),
-      variableDefinitions: [],
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'requestUserId')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'ownRequests'),
+            name: NameNode(value: 'requests'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'requestUserId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: 'eq'),
+                            value: VariableNode(
+                              name: NameNode(value: 'requestUserId'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
@@ -1867,6 +1981,7 @@ class Options$Query$OwnRequestsQuery
     extends graphql.QueryOptions<Query$OwnRequestsQuery> {
   Options$Query$OwnRequestsQuery({
     String? operationName,
+    required Variables$Query$OwnRequestsQuery variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1878,6 +1993,7 @@ class Options$Query$OwnRequestsQuery
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
+         variables: variables.toJson(),
          operationName: operationName,
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -1911,6 +2027,7 @@ class WatchOptions$Query$OwnRequestsQuery
     extends graphql.WatchQueryOptions<Query$OwnRequestsQuery> {
   WatchOptions$Query$OwnRequestsQuery({
     String? operationName,
+    required Variables$Query$OwnRequestsQuery variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1922,6 +2039,7 @@ class WatchOptions$Query$OwnRequestsQuery
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+         variables: variables.toJson(),
          operationName: operationName,
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -1940,38 +2058,46 @@ class WatchOptions$Query$OwnRequestsQuery
 class FetchMoreOptions$Query$OwnRequestsQuery extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$OwnRequestsQuery({
     required graphql.UpdateQuery updateQuery,
+    required Variables$Query$OwnRequestsQuery variables,
   }) : super(
          updateQuery: updateQuery,
+         variables: variables.toJson(),
          document: documentNodeQueryOwnRequestsQuery,
        );
 }
 
 extension ClientExtension$Query$OwnRequestsQuery on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$OwnRequestsQuery>> query$OwnRequestsQuery([
-    Options$Query$OwnRequestsQuery? options,
-  ]) async => await this.query(options ?? Options$Query$OwnRequestsQuery());
+  Future<graphql.QueryResult<Query$OwnRequestsQuery>> query$OwnRequestsQuery(
+    Options$Query$OwnRequestsQuery options,
+  ) async => await this.query(options);
 
-  graphql.ObservableQuery<Query$OwnRequestsQuery> watchQuery$OwnRequestsQuery([
-    WatchOptions$Query$OwnRequestsQuery? options,
-  ]) => this.watchQuery(options ?? WatchOptions$Query$OwnRequestsQuery());
+  graphql.ObservableQuery<Query$OwnRequestsQuery> watchQuery$OwnRequestsQuery(
+    WatchOptions$Query$OwnRequestsQuery options,
+  ) => this.watchQuery(options);
 
   void writeQuery$OwnRequestsQuery({
     required Query$OwnRequestsQuery data,
+    required Variables$Query$OwnRequestsQuery variables,
     bool broadcast = true,
   }) => this.writeQuery(
     graphql.Request(
       operation: graphql.Operation(document: documentNodeQueryOwnRequestsQuery),
+      variables: variables.toJson(),
     ),
     data: data.toJson(),
     broadcast: broadcast,
   );
 
-  Query$OwnRequestsQuery? readQuery$OwnRequestsQuery({bool optimistic = true}) {
+  Query$OwnRequestsQuery? readQuery$OwnRequestsQuery({
+    required Variables$Query$OwnRequestsQuery variables,
+    bool optimistic = true,
+  }) {
     final result = this.readQuery(
       graphql.Request(
         operation: graphql.Operation(
           document: documentNodeQueryOwnRequestsQuery,
         ),
+        variables: variables.toJson(),
       ),
       optimistic: optimistic,
     );
@@ -1980,45 +2106,37 @@ extension ClientExtension$Query$OwnRequestsQuery on graphql.GraphQLClient {
 }
 
 graphql_flutter.QueryHookResult<Query$OwnRequestsQuery>
-useQuery$OwnRequestsQuery([Options$Query$OwnRequestsQuery? options]) =>
-    graphql_flutter.useQuery(options ?? Options$Query$OwnRequestsQuery());
-graphql.ObservableQuery<Query$OwnRequestsQuery> useWatchQuery$OwnRequestsQuery([
-  WatchOptions$Query$OwnRequestsQuery? options,
-]) => graphql_flutter.useWatchQuery(
-  options ?? WatchOptions$Query$OwnRequestsQuery(),
-);
+useQuery$OwnRequestsQuery(Options$Query$OwnRequestsQuery options) =>
+    graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$OwnRequestsQuery> useWatchQuery$OwnRequestsQuery(
+  WatchOptions$Query$OwnRequestsQuery options,
+) => graphql_flutter.useWatchQuery(options);
 
 class Query$OwnRequestsQuery$Widget
     extends graphql_flutter.Query<Query$OwnRequestsQuery> {
   Query$OwnRequestsQuery$Widget({
     widgets.Key? key,
-    Options$Query$OwnRequestsQuery? options,
+    required Options$Query$OwnRequestsQuery options,
     required graphql_flutter.QueryBuilder<Query$OwnRequestsQuery> builder,
-  }) : super(
-         key: key,
-         options: options ?? Options$Query$OwnRequestsQuery(),
-         builder: builder,
-       );
+  }) : super(key: key, options: options, builder: builder);
 }
 
-class Query$OwnRequestsQuery$ownRequests {
-  Query$OwnRequestsQuery$ownRequests({
+class Query$OwnRequestsQuery$requests {
+  Query$OwnRequestsQuery$requests({
     required this.totalCount,
     this.items,
-    this.$__typename = 'OwnRequestsCollectionSegment',
+    this.$__typename = 'RequestsCollectionSegment',
   });
 
-  factory Query$OwnRequestsQuery$ownRequests.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory Query$OwnRequestsQuery$requests.fromJson(Map<String, dynamic> json) {
     final l$totalCount = json['totalCount'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
-    return Query$OwnRequestsQuery$ownRequests(
+    return Query$OwnRequestsQuery$requests(
       totalCount: (l$totalCount as int),
       items: (l$items as List<dynamic>?)
           ?.map(
-            (e) => Query$OwnRequestsQuery$ownRequests$items.fromJson(
+            (e) => Query$OwnRequestsQuery$requests$items.fromJson(
               (e as Map<String, dynamic>),
             ),
           )
@@ -2029,7 +2147,7 @@ class Query$OwnRequestsQuery$ownRequests {
 
   final int totalCount;
 
-  final List<Query$OwnRequestsQuery$ownRequests$items>? items;
+  final List<Query$OwnRequestsQuery$requests$items>? items;
 
   final String $__typename;
 
@@ -2061,7 +2179,7 @@ class Query$OwnRequestsQuery$ownRequests {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$OwnRequestsQuery$ownRequests ||
+    if (other is! Query$OwnRequestsQuery$requests ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2095,33 +2213,31 @@ class Query$OwnRequestsQuery$ownRequests {
   }
 }
 
-extension UtilityExtension$Query$OwnRequestsQuery$ownRequests
-    on Query$OwnRequestsQuery$ownRequests {
-  CopyWith$Query$OwnRequestsQuery$ownRequests<
-    Query$OwnRequestsQuery$ownRequests
-  >
-  get copyWith => CopyWith$Query$OwnRequestsQuery$ownRequests(this, (i) => i);
+extension UtilityExtension$Query$OwnRequestsQuery$requests
+    on Query$OwnRequestsQuery$requests {
+  CopyWith$Query$OwnRequestsQuery$requests<Query$OwnRequestsQuery$requests>
+  get copyWith => CopyWith$Query$OwnRequestsQuery$requests(this, (i) => i);
 }
 
-abstract class CopyWith$Query$OwnRequestsQuery$ownRequests<TRes> {
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests(
-    Query$OwnRequestsQuery$ownRequests instance,
-    TRes Function(Query$OwnRequestsQuery$ownRequests) then,
-  ) = _CopyWithImpl$Query$OwnRequestsQuery$ownRequests;
+abstract class CopyWith$Query$OwnRequestsQuery$requests<TRes> {
+  factory CopyWith$Query$OwnRequestsQuery$requests(
+    Query$OwnRequestsQuery$requests instance,
+    TRes Function(Query$OwnRequestsQuery$requests) then,
+  ) = _CopyWithImpl$Query$OwnRequestsQuery$requests;
 
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests.stub(TRes res) =
-      _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests;
+  factory CopyWith$Query$OwnRequestsQuery$requests.stub(TRes res) =
+      _CopyWithStubImpl$Query$OwnRequestsQuery$requests;
 
   TRes call({
     int? totalCount,
-    List<Query$OwnRequestsQuery$ownRequests$items>? items,
+    List<Query$OwnRequestsQuery$requests$items>? items,
     String? $__typename,
   });
   TRes items(
-    Iterable<Query$OwnRequestsQuery$ownRequests$items>? Function(
+    Iterable<Query$OwnRequestsQuery$requests$items>? Function(
       Iterable<
-        CopyWith$Query$OwnRequestsQuery$ownRequests$items<
-          Query$OwnRequestsQuery$ownRequests$items
+        CopyWith$Query$OwnRequestsQuery$requests$items<
+          Query$OwnRequestsQuery$requests$items
         >
       >?,
     )
@@ -2129,13 +2245,13 @@ abstract class CopyWith$Query$OwnRequestsQuery$ownRequests<TRes> {
   );
 }
 
-class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests<TRes>
-    implements CopyWith$Query$OwnRequestsQuery$ownRequests<TRes> {
-  _CopyWithImpl$Query$OwnRequestsQuery$ownRequests(this._instance, this._then);
+class _CopyWithImpl$Query$OwnRequestsQuery$requests<TRes>
+    implements CopyWith$Query$OwnRequestsQuery$requests<TRes> {
+  _CopyWithImpl$Query$OwnRequestsQuery$requests(this._instance, this._then);
 
-  final Query$OwnRequestsQuery$ownRequests _instance;
+  final Query$OwnRequestsQuery$requests _instance;
 
-  final TRes Function(Query$OwnRequestsQuery$ownRequests) _then;
+  final TRes Function(Query$OwnRequestsQuery$requests) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -2144,13 +2260,13 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests<TRes>
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) => _then(
-    Query$OwnRequestsQuery$ownRequests(
+    Query$OwnRequestsQuery$requests(
       totalCount: totalCount == _undefined || totalCount == null
           ? _instance.totalCount
           : (totalCount as int),
       items: items == _undefined
           ? _instance.items
-          : (items as List<Query$OwnRequestsQuery$ownRequests$items>?),
+          : (items as List<Query$OwnRequestsQuery$requests$items>?),
       $__typename: $__typename == _undefined || $__typename == null
           ? _instance.$__typename
           : ($__typename as String),
@@ -2158,10 +2274,10 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests<TRes>
   );
 
   TRes items(
-    Iterable<Query$OwnRequestsQuery$ownRequests$items>? Function(
+    Iterable<Query$OwnRequestsQuery$requests$items>? Function(
       Iterable<
-        CopyWith$Query$OwnRequestsQuery$ownRequests$items<
-          Query$OwnRequestsQuery$ownRequests$items
+        CopyWith$Query$OwnRequestsQuery$requests$items<
+          Query$OwnRequestsQuery$requests$items
         >
       >?,
     )
@@ -2169,29 +2285,29 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests<TRes>
   ) => call(
     items: _fn(
       _instance.items?.map(
-        (e) => CopyWith$Query$OwnRequestsQuery$ownRequests$items(e, (i) => i),
+        (e) => CopyWith$Query$OwnRequestsQuery$requests$items(e, (i) => i),
       ),
     )?.toList(),
   );
 }
 
-class _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests<TRes>
-    implements CopyWith$Query$OwnRequestsQuery$ownRequests<TRes> {
-  _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests(this._res);
+class _CopyWithStubImpl$Query$OwnRequestsQuery$requests<TRes>
+    implements CopyWith$Query$OwnRequestsQuery$requests<TRes> {
+  _CopyWithStubImpl$Query$OwnRequestsQuery$requests(this._res);
 
   TRes _res;
 
   call({
     int? totalCount,
-    List<Query$OwnRequestsQuery$ownRequests$items>? items,
+    List<Query$OwnRequestsQuery$requests$items>? items,
     String? $__typename,
   }) => _res;
 
   items(_fn) => _res;
 }
 
-class Query$OwnRequestsQuery$ownRequests$items {
-  Query$OwnRequestsQuery$ownRequests$items({
+class Query$OwnRequestsQuery$requests$items {
+  Query$OwnRequestsQuery$requests$items({
     required this.id,
     required this.requestUserId,
     this.artistId,
@@ -2216,7 +2332,7 @@ class Query$OwnRequestsQuery$ownRequests$items {
     this.$__typename = 'Request',
   });
 
-  factory Query$OwnRequestsQuery$ownRequests$items.fromJson(
+  factory Query$OwnRequestsQuery$requests$items.fromJson(
     Map<String, dynamic> json,
   ) {
     final l$id = json['id'];
@@ -2241,7 +2357,7 @@ class Query$OwnRequestsQuery$ownRequests$items {
     final l$artist = json['artist'];
     final l$artistPackage = json['artistPackage'];
     final l$$__typename = json['__typename'];
-    return Query$OwnRequestsQuery$ownRequests$items(
+    return Query$OwnRequestsQuery$requests$items(
       id: (l$id as String),
       requestUserId: (l$requestUserId as String),
       artistId: (l$artistId as String?),
@@ -2268,22 +2384,21 @@ class Query$OwnRequestsQuery$ownRequests$items {
       notes: (l$notes as String?),
       budget: l$budget == null
           ? null
-          : Query$OwnRequestsQuery$ownRequests$items$budget.fromJson(
+          : Query$OwnRequestsQuery$requests$items$budget.fromJson(
               (l$budget as Map<String, dynamic>),
             ),
       artist: (l$artist as List<dynamic>)
           .map(
-            (e) => Query$OwnRequestsQuery$ownRequests$items$artist.fromJson(
+            (e) => Query$OwnRequestsQuery$requests$items$artist.fromJson(
               (e as Map<String, dynamic>),
             ),
           )
           .toList(),
       artistPackage: (l$artistPackage as List<dynamic>)
           .map(
-            (e) =>
-                Query$OwnRequestsQuery$ownRequests$items$artistPackage.fromJson(
-                  (e as Map<String, dynamic>),
-                ),
+            (e) => Query$OwnRequestsQuery$requests$items$artistPackage.fromJson(
+              (e as Map<String, dynamic>),
+            ),
           )
           .toList(),
       $__typename: (l$$__typename as String),
@@ -2326,12 +2441,11 @@ class Query$OwnRequestsQuery$ownRequests$items {
 
   final String? notes;
 
-  final Query$OwnRequestsQuery$ownRequests$items$budget? budget;
+  final Query$OwnRequestsQuery$requests$items$budget? budget;
 
-  final List<Query$OwnRequestsQuery$ownRequests$items$artist> artist;
+  final List<Query$OwnRequestsQuery$requests$items$artist> artist;
 
-  final List<Query$OwnRequestsQuery$ownRequests$items$artistPackage>
-  artistPackage;
+  final List<Query$OwnRequestsQuery$requests$items$artistPackage> artistPackage;
 
   final String $__typename;
 
@@ -2441,7 +2555,7 @@ class Query$OwnRequestsQuery$ownRequests$items {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$OwnRequestsQuery$ownRequests$items ||
+    if (other is! Query$OwnRequestsQuery$requests$items ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2573,23 +2687,23 @@ class Query$OwnRequestsQuery$ownRequests$items {
   }
 }
 
-extension UtilityExtension$Query$OwnRequestsQuery$ownRequests$items
-    on Query$OwnRequestsQuery$ownRequests$items {
-  CopyWith$Query$OwnRequestsQuery$ownRequests$items<
-    Query$OwnRequestsQuery$ownRequests$items
+extension UtilityExtension$Query$OwnRequestsQuery$requests$items
+    on Query$OwnRequestsQuery$requests$items {
+  CopyWith$Query$OwnRequestsQuery$requests$items<
+    Query$OwnRequestsQuery$requests$items
   >
   get copyWith =>
-      CopyWith$Query$OwnRequestsQuery$ownRequests$items(this, (i) => i);
+      CopyWith$Query$OwnRequestsQuery$requests$items(this, (i) => i);
 }
 
-abstract class CopyWith$Query$OwnRequestsQuery$ownRequests$items<TRes> {
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests$items(
-    Query$OwnRequestsQuery$ownRequests$items instance,
-    TRes Function(Query$OwnRequestsQuery$ownRequests$items) then,
-  ) = _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items;
+abstract class CopyWith$Query$OwnRequestsQuery$requests$items<TRes> {
+  factory CopyWith$Query$OwnRequestsQuery$requests$items(
+    Query$OwnRequestsQuery$requests$items instance,
+    TRes Function(Query$OwnRequestsQuery$requests$items) then,
+  ) = _CopyWithImpl$Query$OwnRequestsQuery$requests$items;
 
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests$items.stub(TRes res) =
-      _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items;
+  factory CopyWith$Query$OwnRequestsQuery$requests$items.stub(TRes res) =
+      _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items;
 
   TRes call({
     String? id,
@@ -2610,27 +2724,27 @@ abstract class CopyWith$Query$OwnRequestsQuery$ownRequests$items<TRes> {
     Enum$RequestStatus? status,
     DateTime? requestCreatedTime,
     String? notes,
-    Query$OwnRequestsQuery$ownRequests$items$budget? budget,
-    List<Query$OwnRequestsQuery$ownRequests$items$artist>? artist,
-    List<Query$OwnRequestsQuery$ownRequests$items$artistPackage>? artistPackage,
+    Query$OwnRequestsQuery$requests$items$budget? budget,
+    List<Query$OwnRequestsQuery$requests$items$artist>? artist,
+    List<Query$OwnRequestsQuery$requests$items$artistPackage>? artistPackage,
     String? $__typename,
   });
-  CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget<TRes> get budget;
+  CopyWith$Query$OwnRequestsQuery$requests$items$budget<TRes> get budget;
   TRes artist(
-    Iterable<Query$OwnRequestsQuery$ownRequests$items$artist> Function(
+    Iterable<Query$OwnRequestsQuery$requests$items$artist> Function(
       Iterable<
-        CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist<
-          Query$OwnRequestsQuery$ownRequests$items$artist
+        CopyWith$Query$OwnRequestsQuery$requests$items$artist<
+          Query$OwnRequestsQuery$requests$items$artist
         >
       >,
     )
     _fn,
   );
   TRes artistPackage(
-    Iterable<Query$OwnRequestsQuery$ownRequests$items$artistPackage> Function(
+    Iterable<Query$OwnRequestsQuery$requests$items$artistPackage> Function(
       Iterable<
-        CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage<
-          Query$OwnRequestsQuery$ownRequests$items$artistPackage
+        CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage<
+          Query$OwnRequestsQuery$requests$items$artistPackage
         >
       >,
     )
@@ -2638,16 +2752,16 @@ abstract class CopyWith$Query$OwnRequestsQuery$ownRequests$items<TRes> {
   );
 }
 
-class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items<TRes>
-    implements CopyWith$Query$OwnRequestsQuery$ownRequests$items<TRes> {
-  _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items(
+class _CopyWithImpl$Query$OwnRequestsQuery$requests$items<TRes>
+    implements CopyWith$Query$OwnRequestsQuery$requests$items<TRes> {
+  _CopyWithImpl$Query$OwnRequestsQuery$requests$items(
     this._instance,
     this._then,
   );
 
-  final Query$OwnRequestsQuery$ownRequests$items _instance;
+  final Query$OwnRequestsQuery$requests$items _instance;
 
-  final TRes Function(Query$OwnRequestsQuery$ownRequests$items) _then;
+  final TRes Function(Query$OwnRequestsQuery$requests$items) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -2675,7 +2789,7 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items<TRes>
     Object? artistPackage = _undefined,
     Object? $__typename = _undefined,
   }) => _then(
-    Query$OwnRequestsQuery$ownRequests$items(
+    Query$OwnRequestsQuery$requests$items(
       id: id == _undefined || id == null ? _instance.id : (id as String),
       requestUserId: requestUserId == _undefined || requestUserId == null
           ? _instance.requestUserId
@@ -2724,39 +2838,37 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items<TRes>
       notes: notes == _undefined ? _instance.notes : (notes as String?),
       budget: budget == _undefined
           ? _instance.budget
-          : (budget as Query$OwnRequestsQuery$ownRequests$items$budget?),
+          : (budget as Query$OwnRequestsQuery$requests$items$budget?),
       artist: artist == _undefined || artist == null
           ? _instance.artist
-          : (artist as List<Query$OwnRequestsQuery$ownRequests$items$artist>),
+          : (artist as List<Query$OwnRequestsQuery$requests$items$artist>),
       artistPackage: artistPackage == _undefined || artistPackage == null
           ? _instance.artistPackage
           : (artistPackage
-                as List<
-                  Query$OwnRequestsQuery$ownRequests$items$artistPackage
-                >),
+                as List<Query$OwnRequestsQuery$requests$items$artistPackage>),
       $__typename: $__typename == _undefined || $__typename == null
           ? _instance.$__typename
           : ($__typename as String),
     ),
   );
 
-  CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget<TRes> get budget {
+  CopyWith$Query$OwnRequestsQuery$requests$items$budget<TRes> get budget {
     final local$budget = _instance.budget;
     return local$budget == null
-        ? CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget.stub(
+        ? CopyWith$Query$OwnRequestsQuery$requests$items$budget.stub(
             _then(_instance),
           )
-        : CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget(
+        : CopyWith$Query$OwnRequestsQuery$requests$items$budget(
             local$budget,
             (e) => call(budget: e),
           );
   }
 
   TRes artist(
-    Iterable<Query$OwnRequestsQuery$ownRequests$items$artist> Function(
+    Iterable<Query$OwnRequestsQuery$requests$items$artist> Function(
       Iterable<
-        CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist<
-          Query$OwnRequestsQuery$ownRequests$items$artist
+        CopyWith$Query$OwnRequestsQuery$requests$items$artist<
+          Query$OwnRequestsQuery$requests$items$artist
         >
       >,
     )
@@ -2764,19 +2876,17 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items<TRes>
   ) => call(
     artist: _fn(
       _instance.artist.map(
-        (e) => CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist(
-          e,
-          (i) => i,
-        ),
+        (e) =>
+            CopyWith$Query$OwnRequestsQuery$requests$items$artist(e, (i) => i),
       ),
     ).toList(),
   );
 
   TRes artistPackage(
-    Iterable<Query$OwnRequestsQuery$ownRequests$items$artistPackage> Function(
+    Iterable<Query$OwnRequestsQuery$requests$items$artistPackage> Function(
       Iterable<
-        CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage<
-          Query$OwnRequestsQuery$ownRequests$items$artistPackage
+        CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage<
+          Query$OwnRequestsQuery$requests$items$artistPackage
         >
       >,
     )
@@ -2784,7 +2894,7 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items<TRes>
   ) => call(
     artistPackage: _fn(
       _instance.artistPackage.map(
-        (e) => CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage(
+        (e) => CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage(
           e,
           (i) => i,
         ),
@@ -2793,9 +2903,9 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items<TRes>
   );
 }
 
-class _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items<TRes>
-    implements CopyWith$Query$OwnRequestsQuery$ownRequests$items<TRes> {
-  _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items(this._res);
+class _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items<TRes>
+    implements CopyWith$Query$OwnRequestsQuery$requests$items<TRes> {
+  _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items(this._res);
 
   TRes _res;
 
@@ -2818,34 +2928,34 @@ class _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items<TRes>
     Enum$RequestStatus? status,
     DateTime? requestCreatedTime,
     String? notes,
-    Query$OwnRequestsQuery$ownRequests$items$budget? budget,
-    List<Query$OwnRequestsQuery$ownRequests$items$artist>? artist,
-    List<Query$OwnRequestsQuery$ownRequests$items$artistPackage>? artistPackage,
+    Query$OwnRequestsQuery$requests$items$budget? budget,
+    List<Query$OwnRequestsQuery$requests$items$artist>? artist,
+    List<Query$OwnRequestsQuery$requests$items$artistPackage>? artistPackage,
     String? $__typename,
   }) => _res;
 
-  CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget<TRes> get budget =>
-      CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget.stub(_res);
+  CopyWith$Query$OwnRequestsQuery$requests$items$budget<TRes> get budget =>
+      CopyWith$Query$OwnRequestsQuery$requests$items$budget.stub(_res);
 
   artist(_fn) => _res;
 
   artistPackage(_fn) => _res;
 }
 
-class Query$OwnRequestsQuery$ownRequests$items$budget {
-  Query$OwnRequestsQuery$ownRequests$items$budget({
+class Query$OwnRequestsQuery$requests$items$budget {
+  Query$OwnRequestsQuery$requests$items$budget({
     required this.min,
     required this.max,
     this.$__typename = 'RequestBudget',
   });
 
-  factory Query$OwnRequestsQuery$ownRequests$items$budget.fromJson(
+  factory Query$OwnRequestsQuery$requests$items$budget.fromJson(
     Map<String, dynamic> json,
   ) {
     final l$min = json['min'];
     final l$max = json['max'];
     final l$$__typename = json['__typename'];
-    return Query$OwnRequestsQuery$ownRequests$items$budget(
+    return Query$OwnRequestsQuery$requests$items$budget(
       min: (l$min as num).toDouble(),
       max: (l$max as num).toDouble(),
       $__typename: (l$$__typename as String),
@@ -2882,7 +2992,7 @@ class Query$OwnRequestsQuery$ownRequests$items$budget {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$OwnRequestsQuery$ownRequests$items$budget ||
+    if (other is! Query$OwnRequestsQuery$requests$items$budget ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2905,38 +3015,37 @@ class Query$OwnRequestsQuery$ownRequests$items$budget {
   }
 }
 
-extension UtilityExtension$Query$OwnRequestsQuery$ownRequests$items$budget
-    on Query$OwnRequestsQuery$ownRequests$items$budget {
-  CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget<
-    Query$OwnRequestsQuery$ownRequests$items$budget
+extension UtilityExtension$Query$OwnRequestsQuery$requests$items$budget
+    on Query$OwnRequestsQuery$requests$items$budget {
+  CopyWith$Query$OwnRequestsQuery$requests$items$budget<
+    Query$OwnRequestsQuery$requests$items$budget
   >
   get copyWith =>
-      CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget(this, (i) => i);
+      CopyWith$Query$OwnRequestsQuery$requests$items$budget(this, (i) => i);
 }
 
-abstract class CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget<TRes> {
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget(
-    Query$OwnRequestsQuery$ownRequests$items$budget instance,
-    TRes Function(Query$OwnRequestsQuery$ownRequests$items$budget) then,
-  ) = _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$budget;
+abstract class CopyWith$Query$OwnRequestsQuery$requests$items$budget<TRes> {
+  factory CopyWith$Query$OwnRequestsQuery$requests$items$budget(
+    Query$OwnRequestsQuery$requests$items$budget instance,
+    TRes Function(Query$OwnRequestsQuery$requests$items$budget) then,
+  ) = _CopyWithImpl$Query$OwnRequestsQuery$requests$items$budget;
 
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget.stub(
-    TRes res,
-  ) = _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$budget;
+  factory CopyWith$Query$OwnRequestsQuery$requests$items$budget.stub(TRes res) =
+      _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$budget;
 
   TRes call({double? min, double? max, String? $__typename});
 }
 
-class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$budget<TRes>
-    implements CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget<TRes> {
-  _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$budget(
+class _CopyWithImpl$Query$OwnRequestsQuery$requests$items$budget<TRes>
+    implements CopyWith$Query$OwnRequestsQuery$requests$items$budget<TRes> {
+  _CopyWithImpl$Query$OwnRequestsQuery$requests$items$budget(
     this._instance,
     this._then,
   );
 
-  final Query$OwnRequestsQuery$ownRequests$items$budget _instance;
+  final Query$OwnRequestsQuery$requests$items$budget _instance;
 
-  final TRes Function(Query$OwnRequestsQuery$ownRequests$items$budget) _then;
+  final TRes Function(Query$OwnRequestsQuery$requests$items$budget) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -2945,7 +3054,7 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$budget<TRes>
     Object? max = _undefined,
     Object? $__typename = _undefined,
   }) => _then(
-    Query$OwnRequestsQuery$ownRequests$items$budget(
+    Query$OwnRequestsQuery$requests$items$budget(
       min: min == _undefined || min == null ? _instance.min : (min as double),
       max: max == _undefined || max == null ? _instance.max : (max as double),
       $__typename: $__typename == _undefined || $__typename == null
@@ -2955,31 +3064,31 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$budget<TRes>
   );
 }
 
-class _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$budget<TRes>
-    implements CopyWith$Query$OwnRequestsQuery$ownRequests$items$budget<TRes> {
-  _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$budget(this._res);
+class _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$budget<TRes>
+    implements CopyWith$Query$OwnRequestsQuery$requests$items$budget<TRes> {
+  _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$budget(this._res);
 
   TRes _res;
 
   call({double? min, double? max, String? $__typename}) => _res;
 }
 
-class Query$OwnRequestsQuery$ownRequests$items$artist {
-  Query$OwnRequestsQuery$ownRequests$items$artist({
+class Query$OwnRequestsQuery$requests$items$artist {
+  Query$OwnRequestsQuery$requests$items$artist({
     required this.id,
     required this.userId,
     required this.stageName,
     this.$__typename = 'Artist',
   });
 
-  factory Query$OwnRequestsQuery$ownRequests$items$artist.fromJson(
+  factory Query$OwnRequestsQuery$requests$items$artist.fromJson(
     Map<String, dynamic> json,
   ) {
     final l$id = json['id'];
     final l$userId = json['userId'];
     final l$stageName = json['stageName'];
     final l$$__typename = json['__typename'];
-    return Query$OwnRequestsQuery$ownRequests$items$artist(
+    return Query$OwnRequestsQuery$requests$items$artist(
       id: (l$id as String),
       userId: (l$userId as String),
       stageName: (l$stageName as String),
@@ -3022,7 +3131,7 @@ class Query$OwnRequestsQuery$ownRequests$items$artist {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$OwnRequestsQuery$ownRequests$items$artist ||
+    if (other is! Query$OwnRequestsQuery$requests$items$artist ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -3050,24 +3159,23 @@ class Query$OwnRequestsQuery$ownRequests$items$artist {
   }
 }
 
-extension UtilityExtension$Query$OwnRequestsQuery$ownRequests$items$artist
-    on Query$OwnRequestsQuery$ownRequests$items$artist {
-  CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist<
-    Query$OwnRequestsQuery$ownRequests$items$artist
+extension UtilityExtension$Query$OwnRequestsQuery$requests$items$artist
+    on Query$OwnRequestsQuery$requests$items$artist {
+  CopyWith$Query$OwnRequestsQuery$requests$items$artist<
+    Query$OwnRequestsQuery$requests$items$artist
   >
   get copyWith =>
-      CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist(this, (i) => i);
+      CopyWith$Query$OwnRequestsQuery$requests$items$artist(this, (i) => i);
 }
 
-abstract class CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist<TRes> {
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist(
-    Query$OwnRequestsQuery$ownRequests$items$artist instance,
-    TRes Function(Query$OwnRequestsQuery$ownRequests$items$artist) then,
-  ) = _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artist;
+abstract class CopyWith$Query$OwnRequestsQuery$requests$items$artist<TRes> {
+  factory CopyWith$Query$OwnRequestsQuery$requests$items$artist(
+    Query$OwnRequestsQuery$requests$items$artist instance,
+    TRes Function(Query$OwnRequestsQuery$requests$items$artist) then,
+  ) = _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artist;
 
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist.stub(
-    TRes res,
-  ) = _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$artist;
+  factory CopyWith$Query$OwnRequestsQuery$requests$items$artist.stub(TRes res) =
+      _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artist;
 
   TRes call({
     String? id,
@@ -3077,16 +3185,16 @@ abstract class CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist<TRes> {
   });
 }
 
-class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artist<TRes>
-    implements CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist<TRes> {
-  _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artist(
+class _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artist<TRes>
+    implements CopyWith$Query$OwnRequestsQuery$requests$items$artist<TRes> {
+  _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artist(
     this._instance,
     this._then,
   );
 
-  final Query$OwnRequestsQuery$ownRequests$items$artist _instance;
+  final Query$OwnRequestsQuery$requests$items$artist _instance;
 
-  final TRes Function(Query$OwnRequestsQuery$ownRequests$items$artist) _then;
+  final TRes Function(Query$OwnRequestsQuery$requests$items$artist) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -3096,7 +3204,7 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artist<TRes>
     Object? stageName = _undefined,
     Object? $__typename = _undefined,
   }) => _then(
-    Query$OwnRequestsQuery$ownRequests$items$artist(
+    Query$OwnRequestsQuery$requests$items$artist(
       id: id == _undefined || id == null ? _instance.id : (id as String),
       userId: userId == _undefined || userId == null
           ? _instance.userId
@@ -3111,9 +3219,9 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artist<TRes>
   );
 }
 
-class _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$artist<TRes>
-    implements CopyWith$Query$OwnRequestsQuery$ownRequests$items$artist<TRes> {
-  _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$artist(this._res);
+class _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artist<TRes>
+    implements CopyWith$Query$OwnRequestsQuery$requests$items$artist<TRes> {
+  _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artist(this._res);
 
   TRes _res;
 
@@ -3121,8 +3229,8 @@ class _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$artist<TRes>
       _res;
 }
 
-class Query$OwnRequestsQuery$ownRequests$items$artistPackage {
-  Query$OwnRequestsQuery$ownRequests$items$artistPackage({
+class Query$OwnRequestsQuery$requests$items$artistPackage {
+  Query$OwnRequestsQuery$requests$items$artistPackage({
     required this.id,
     required this.packageName,
     required this.amount,
@@ -3130,7 +3238,7 @@ class Query$OwnRequestsQuery$ownRequests$items$artistPackage {
     this.$__typename = 'ArtistPackage',
   });
 
-  factory Query$OwnRequestsQuery$ownRequests$items$artistPackage.fromJson(
+  factory Query$OwnRequestsQuery$requests$items$artistPackage.fromJson(
     Map<String, dynamic> json,
   ) {
     final l$id = json['id'];
@@ -3138,7 +3246,7 @@ class Query$OwnRequestsQuery$ownRequests$items$artistPackage {
     final l$amount = json['amount'];
     final l$currency = json['currency'];
     final l$$__typename = json['__typename'];
-    return Query$OwnRequestsQuery$ownRequests$items$artistPackage(
+    return Query$OwnRequestsQuery$requests$items$artistPackage(
       id: (l$id as String),
       packageName: (l$packageName as String),
       amount: (l$amount as num).toDouble(),
@@ -3193,7 +3301,7 @@ class Query$OwnRequestsQuery$ownRequests$items$artistPackage {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$OwnRequestsQuery$ownRequests$items$artistPackage ||
+    if (other is! Query$OwnRequestsQuery$requests$items$artistPackage ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -3226,29 +3334,28 @@ class Query$OwnRequestsQuery$ownRequests$items$artistPackage {
   }
 }
 
-extension UtilityExtension$Query$OwnRequestsQuery$ownRequests$items$artistPackage
-    on Query$OwnRequestsQuery$ownRequests$items$artistPackage {
-  CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage<
-    Query$OwnRequestsQuery$ownRequests$items$artistPackage
+extension UtilityExtension$Query$OwnRequestsQuery$requests$items$artistPackage
+    on Query$OwnRequestsQuery$requests$items$artistPackage {
+  CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage<
+    Query$OwnRequestsQuery$requests$items$artistPackage
   >
-  get copyWith =>
-      CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage(
-        this,
-        (i) => i,
-      );
+  get copyWith => CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage(
+    this,
+    (i) => i,
+  );
 }
 
-abstract class CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage<
+abstract class CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage<
   TRes
 > {
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage(
-    Query$OwnRequestsQuery$ownRequests$items$artistPackage instance,
-    TRes Function(Query$OwnRequestsQuery$ownRequests$items$artistPackage) then,
-  ) = _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artistPackage;
+  factory CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage(
+    Query$OwnRequestsQuery$requests$items$artistPackage instance,
+    TRes Function(Query$OwnRequestsQuery$requests$items$artistPackage) then,
+  ) = _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artistPackage;
 
-  factory CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage.stub(
+  factory CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage.stub(
     TRes res,
-  ) = _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$artistPackage;
+  ) = _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artistPackage;
 
   TRes call({
     String? id,
@@ -3259,17 +3366,17 @@ abstract class CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage<
   });
 }
 
-class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artistPackage<TRes>
+class _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artistPackage<TRes>
     implements
-        CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage<TRes> {
-  _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artistPackage(
+        CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage<TRes> {
+  _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artistPackage(
     this._instance,
     this._then,
   );
 
-  final Query$OwnRequestsQuery$ownRequests$items$artistPackage _instance;
+  final Query$OwnRequestsQuery$requests$items$artistPackage _instance;
 
-  final TRes Function(Query$OwnRequestsQuery$ownRequests$items$artistPackage)
+  final TRes Function(Query$OwnRequestsQuery$requests$items$artistPackage)
   _then;
 
   static const _undefined = <dynamic, dynamic>{};
@@ -3281,7 +3388,7 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artistPackage<TRes>
     Object? currency = _undefined,
     Object? $__typename = _undefined,
   }) => _then(
-    Query$OwnRequestsQuery$ownRequests$items$artistPackage(
+    Query$OwnRequestsQuery$requests$items$artistPackage(
       id: id == _undefined || id == null ? _instance.id : (id as String),
       packageName: packageName == _undefined || packageName == null
           ? _instance.packageName
@@ -3299,12 +3406,12 @@ class _CopyWithImpl$Query$OwnRequestsQuery$ownRequests$items$artistPackage<TRes>
   );
 }
 
-class _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$artistPackage<
+class _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artistPackage<
   TRes
 >
     implements
-        CopyWith$Query$OwnRequestsQuery$ownRequests$items$artistPackage<TRes> {
-  _CopyWithStubImpl$Query$OwnRequestsQuery$ownRequests$items$artistPackage(
+        CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage<TRes> {
+  _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artistPackage(
     this._res,
   );
 

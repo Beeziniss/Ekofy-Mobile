@@ -2,8 +2,10 @@ import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 
 enum RequestStatus {
   rejected,
+  pending,
   open,
   confirmed,
+  closed,
   cancelled;
 
   static RequestStatus fromString(String value) {
@@ -16,8 +18,10 @@ enum RequestStatus {
         return RequestStatus.cancelled;
       case 'confirmed':
         return RequestStatus.confirmed;
+      case 'pending':
+        return RequestStatus.pending;
       default:
-        return RequestStatus.cancelled;
+        return RequestStatus.closed;
     }
   }
 
@@ -31,8 +35,10 @@ enum RequestStatus {
         return RequestStatus.cancelled;
       case Enum$RequestStatus.CONFIRMED:
         return RequestStatus.confirmed;
+      case Enum$RequestStatus.PENDING:
+        return RequestStatus.pending;
       default:
-        return RequestStatus.cancelled;
+        return RequestStatus.closed;
     }
   }
 
@@ -46,6 +52,10 @@ enum RequestStatus {
         return 'Confirmed';
       case RequestStatus.cancelled:
         return 'Cancelled';
+      case RequestStatus.closed:
+        return 'Closed';
+      case RequestStatus.pending:
+        return 'Pending';
     }
   }
 }

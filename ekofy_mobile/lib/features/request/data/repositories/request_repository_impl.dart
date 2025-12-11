@@ -59,7 +59,7 @@ class RequestRepositoryImpl implements RequestRepository {
   }
 
   @override
-  Future<List<Query$OwnRequestsQuery$ownRequests$items>> fetchOwnRequests() async {
-    return await apiDatasource.fetchOwnRequests();
+  Future<List<Query$OwnRequestsQuery$requests$items>> fetchOwnRequests(String requestUserId) async {
+    return await apiDatasource.fetchOwnRequests(requestUserId);
   }
 }

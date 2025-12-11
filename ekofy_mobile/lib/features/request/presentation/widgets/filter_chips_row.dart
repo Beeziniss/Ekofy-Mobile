@@ -14,13 +14,9 @@ class FilterChipsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = <(String, RequestType?)>[
-      ('All', null),
+      // ('All', null),
       ('Public', RequestType.public),
       ('Direct', RequestType.direct),
-      // ('Pending', RequestStatus.pending),
-      // ('In-progress', RequestStatus.inProgress),
-      // ('Completed', RequestStatus.completed),
-      // ('Rejected', RequestStatus.rejected),
     ];
 
     return SizedBox(

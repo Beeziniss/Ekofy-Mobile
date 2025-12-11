@@ -73,10 +73,10 @@ class RequestApiDataSource {
     return await client.mutate$UpdatePublicRequest(options);
   }
 
-  Future<List<Query$OwnRequestsQuery$ownRequests$items>>
-  fetchOwnRequests() async {
+  Future<List<Query$OwnRequestsQuery$requests$items>> fetchOwnRequests(String requestUserId) async {
     try {
       final options = Options$Query$OwnRequestsQuery(
+        variables: Variables$Query$OwnRequestsQuery(requestUserId: requestUserId),
         fetchPolicy: FetchPolicy.networkOnly,
       );
 
@@ -85,7 +85,7 @@ class RequestApiDataSource {
       if (result.hasException) {
         log('FetchOwnRequests Error: ${result.exception.toString()}');
       }
-      return result.parsedData?.ownRequests?.items ?? [];
+      return result.parsedData?.requests?.items ?? [];
     } catch (e) {
       throw Exception('Failed to fetch own requests: $e');
     }

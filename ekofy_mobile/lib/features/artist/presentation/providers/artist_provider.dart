@@ -27,7 +27,8 @@ class Artist extends _$Artist {
       final packages = await _dataSource.fetchArtistPackages(
         artistId: artistId,
       );
-      state = ArtistState.success(packages);
+      final artist = await _dataSource.fetchArtistDetail(artistId: artistId);
+      state = ArtistState.success(packages: packages, artist: artist);
     } catch (e) {
       state = ArtistState.failure(e.toString());
     }

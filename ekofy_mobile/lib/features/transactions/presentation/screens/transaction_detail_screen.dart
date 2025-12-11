@@ -1,34 +1,31 @@
+import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/transactions/domain/models/transaction_status.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../data/repositories/mock_transaction_repository.dart';
-import '../../data/repositories/transaction_repository.dart';
 import '../../domain/models/transaction_item.dart';
 import '../widgets/transaction_status_badge.dart';
 
-class TransactionDetailScreen extends StatefulWidget {
+class TransactionDetailScreen extends ConsumerStatefulWidget {
   final String transactionId;
-  final TransactionRepository repository;
-  TransactionDetailScreen({
-    super.key,
-    required this.transactionId,
-    TransactionRepository? repository,
-  }) : repository =
-           repository ?? MockTransactionRepository(); //INFO: default mock repo
+  const TransactionDetailScreen({super.key, required this.transactionId});
 
   @override
-  State<TransactionDetailScreen> createState() =>
+  ConsumerState<TransactionDetailScreen> createState() =>
       _TransactionDetailScreenState();
 }
 
-class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
+class _TransactionDetailScreenState
+    extends ConsumerState<TransactionDetailScreen> {
   late Future<TransactionItem?> _future;
 
   @override
   void initState() {
     super.initState();
-    _future = widget.repository.getById(widget.transactionId);
+    _future = ref
+        .read(transactionRepositoryProvider)
+        .getById(widget.transactionId);
   }
 
   @override
@@ -106,12 +103,26 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
             _kv('Amount', formatAmountMajor(item.amountMinor, item.currency)),
             const SizedBox(height: 8),
             _kv('Created', _formatDateTime(item.createdAt)),
-            const SizedBox(height: 8),
-            _kv('Stripe Payment Id', item.stripePaymentId),
+            if (item.stripePaymentId != null) ...[
+              const SizedBox(height: 8),
+              _kv('Stripe Payment Id', item.stripePaymentId!),
+            ],
             const SizedBox(height: 8),
             _kv('Payment Methods', item.paymentMethods.join(', ')),
             const SizedBox(height: 8),
             _kv('Status', item.status.label),
+            if (item.packageName != null) ...[
+              const SizedBox(height: 8),
+              _kv('Package', item.packageName!),
+            ],
+            if (item.fullName != null) ...[
+              const SizedBox(height: 8),
+              _kv('Full Name', item.fullName!),
+            ],
+            if (item.email != null) ...[
+              const SizedBox(height: 8),
+              _kv('Email', item.email!),
+            ],
           ],
         ),
       ),

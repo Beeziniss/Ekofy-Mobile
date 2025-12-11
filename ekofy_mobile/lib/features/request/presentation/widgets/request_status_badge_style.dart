@@ -31,8 +31,22 @@ extension RequestStatusUI on RequestStatus {
         return const AppStatusStyle(
           label: 'Rejected',
           bg: Color(0xFFFEE2E2),
-          text: Color(0xFF7F1D1D),
-          border: Color(0xFFEF4444),
+          text: Color(0xFFEF4444),
+          border: Color(0xFFFEE2E2),
+        );
+      case RequestStatus.closed:
+        return const AppStatusStyle(
+          label: 'Closed',
+          bg: Color(0xFFDBEAFE),
+          text: Color.fromARGB(255, 91, 91, 91),
+          border: Color.fromARGB(255, 70, 70, 70),
+        );
+      case RequestStatus.pending:
+        return const AppStatusStyle(
+          label: 'Pending',
+          bg: Color(0xFFD1FAE5),
+          text: Color.fromARGB(255, 95, 95, 6),
+          border: Color.fromARGB(255, 185, 174, 16),
         );
     }
   }

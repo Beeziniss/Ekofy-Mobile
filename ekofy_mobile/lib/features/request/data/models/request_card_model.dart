@@ -15,6 +15,11 @@ class RequestCardModel {
   final String requestorDisplayName;
   final String? requestorAvatar;
   final RequestStatus? status;
+  final String? artistStageName;
+  final String? requirements;
+  final int? duration;
+  final Enum$RequestType? type;
+  final double? amount;
 
   RequestCardModel({
     required this.id,
@@ -28,6 +33,11 @@ class RequestCardModel {
     required this.requestorDisplayName,
     this.requestorAvatar,
     this.status,
+    this.artistStageName,
+    this.requirements,
+    this.duration,
+    this.type,
+    this.amount,
   });
 
   factory RequestCardModel.fromPublicRequest(PublicRequestItem item) {
@@ -43,6 +53,8 @@ class RequestCardModel {
       requestorDisplayName: item.requestor.displayName,
       requestorAvatar: item.requestor.avatarImage,
       status: item.status,
+      duration: item.duration,
+      type: Enum$RequestType.PUBLIC_REQUEST,
     );
   }
 
@@ -51,7 +63,7 @@ class RequestCardModel {
       id: item.id,
       title: item.title,
       summary: item.summary,
-      createdAt: item.postCreatedTime,
+      createdAt: item.requestCreatedTime!,
       minBudget: item.budget.min,
       maxBudget: item.budget.max,
       currency: item.currency,
@@ -59,6 +71,11 @@ class RequestCardModel {
       requestorDisplayName: 'Me',
       requestorAvatar: null,
       status: item.status,
+      artistStageName: item.artist?.stageName,
+      requirements: item.requirements,
+      duration: item.duration,
+      type: item.type,
+      amount: item.artistPackage!.amount,
     );
   }
 }

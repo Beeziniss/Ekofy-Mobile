@@ -1,5 +1,6 @@
 import '../../generated/schema.graphql.dart';
 import 'dart:async';
+import 'dart:core';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -1982,4 +1983,1663 @@ class Mutation$SendRequest$Widget
            result,
          ),
        );
+}
+
+class Variables$Mutation$ChangeRequestStatus {
+  factory Variables$Mutation$ChangeRequestStatus({
+    required String requestId,
+    required Enum$RequestStatus status,
+  }) => Variables$Mutation$ChangeRequestStatus._({
+    r'requestId': requestId,
+    r'status': status,
+  });
+
+  Variables$Mutation$ChangeRequestStatus._(this._$data);
+
+  factory Variables$Mutation$ChangeRequestStatus.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    final l$requestId = data['requestId'];
+    result$data['requestId'] = (l$requestId as String);
+    final l$status = data['status'];
+    result$data['status'] = fromJson$Enum$RequestStatus((l$status as String));
+    return Variables$Mutation$ChangeRequestStatus._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get requestId => (_$data['requestId'] as String);
+
+  Enum$RequestStatus get status => (_$data['status'] as Enum$RequestStatus);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$requestId = requestId;
+    result$data['requestId'] = l$requestId;
+    final l$status = status;
+    result$data['status'] = toJson$Enum$RequestStatus(l$status);
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$ChangeRequestStatus<
+    Variables$Mutation$ChangeRequestStatus
+  >
+  get copyWith =>
+      CopyWith$Variables$Mutation$ChangeRequestStatus(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$ChangeRequestStatus ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$requestId = requestId;
+    final lOther$requestId = other.requestId;
+    if (l$requestId != lOther$requestId) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$requestId = requestId;
+    final l$status = status;
+    return Object.hashAll([l$requestId, l$status]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$ChangeRequestStatus<TRes> {
+  factory CopyWith$Variables$Mutation$ChangeRequestStatus(
+    Variables$Mutation$ChangeRequestStatus instance,
+    TRes Function(Variables$Mutation$ChangeRequestStatus) then,
+  ) = _CopyWithImpl$Variables$Mutation$ChangeRequestStatus;
+
+  factory CopyWith$Variables$Mutation$ChangeRequestStatus.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$ChangeRequestStatus;
+
+  TRes call({String? requestId, Enum$RequestStatus? status});
+}
+
+class _CopyWithImpl$Variables$Mutation$ChangeRequestStatus<TRes>
+    implements CopyWith$Variables$Mutation$ChangeRequestStatus<TRes> {
+  _CopyWithImpl$Variables$Mutation$ChangeRequestStatus(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$ChangeRequestStatus _instance;
+
+  final TRes Function(Variables$Mutation$ChangeRequestStatus) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? requestId = _undefined, Object? status = _undefined}) =>
+      _then(
+        Variables$Mutation$ChangeRequestStatus._({
+          ..._instance._$data,
+          if (requestId != _undefined && requestId != null)
+            'requestId': (requestId as String),
+          if (status != _undefined && status != null)
+            'status': (status as Enum$RequestStatus),
+        }),
+      );
+}
+
+class _CopyWithStubImpl$Variables$Mutation$ChangeRequestStatus<TRes>
+    implements CopyWith$Variables$Mutation$ChangeRequestStatus<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$ChangeRequestStatus(this._res);
+
+  TRes _res;
+
+  call({String? requestId, Enum$RequestStatus? status}) => _res;
+}
+
+class Mutation$ChangeRequestStatus {
+  Mutation$ChangeRequestStatus({
+    required this.changeRequestStatus,
+    this.$__typename = 'MutationInitialization',
+  });
+
+  factory Mutation$ChangeRequestStatus.fromJson(Map<String, dynamic> json) {
+    final l$changeRequestStatus = json['changeRequestStatus'];
+    final l$$__typename = json['__typename'];
+    return Mutation$ChangeRequestStatus(
+      changeRequestStatus: (l$changeRequestStatus as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool changeRequestStatus;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$changeRequestStatus = changeRequestStatus;
+    _resultData['changeRequestStatus'] = l$changeRequestStatus;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$changeRequestStatus = changeRequestStatus;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$changeRequestStatus, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$ChangeRequestStatus ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$changeRequestStatus = changeRequestStatus;
+    final lOther$changeRequestStatus = other.changeRequestStatus;
+    if (l$changeRequestStatus != lOther$changeRequestStatus) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ChangeRequestStatus
+    on Mutation$ChangeRequestStatus {
+  CopyWith$Mutation$ChangeRequestStatus<Mutation$ChangeRequestStatus>
+  get copyWith => CopyWith$Mutation$ChangeRequestStatus(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ChangeRequestStatus<TRes> {
+  factory CopyWith$Mutation$ChangeRequestStatus(
+    Mutation$ChangeRequestStatus instance,
+    TRes Function(Mutation$ChangeRequestStatus) then,
+  ) = _CopyWithImpl$Mutation$ChangeRequestStatus;
+
+  factory CopyWith$Mutation$ChangeRequestStatus.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ChangeRequestStatus;
+
+  TRes call({bool? changeRequestStatus, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$ChangeRequestStatus<TRes>
+    implements CopyWith$Mutation$ChangeRequestStatus<TRes> {
+  _CopyWithImpl$Mutation$ChangeRequestStatus(this._instance, this._then);
+
+  final Mutation$ChangeRequestStatus _instance;
+
+  final TRes Function(Mutation$ChangeRequestStatus) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? changeRequestStatus = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Mutation$ChangeRequestStatus(
+      changeRequestStatus:
+          changeRequestStatus == _undefined || changeRequestStatus == null
+          ? _instance.changeRequestStatus
+          : (changeRequestStatus as bool),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+}
+
+class _CopyWithStubImpl$Mutation$ChangeRequestStatus<TRes>
+    implements CopyWith$Mutation$ChangeRequestStatus<TRes> {
+  _CopyWithStubImpl$Mutation$ChangeRequestStatus(this._res);
+
+  TRes _res;
+
+  call({bool? changeRequestStatus, String? $__typename}) => _res;
+}
+
+const documentNodeMutationChangeRequestStatus = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'ChangeRequestStatus'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'requestId')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'status')),
+          type: NamedTypeNode(
+            name: NameNode(value: 'RequestStatus'),
+            isNonNull: true,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'changeRequestStatus'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'request'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'requestId'),
+                      value: VariableNode(name: NameNode(value: 'requestId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'status'),
+                      value: VariableNode(name: NameNode(value: 'status')),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ],
+      ),
+    ),
+  ],
+);
+Mutation$ChangeRequestStatus _parserFn$Mutation$ChangeRequestStatus(
+  Map<String, dynamic> data,
+) => Mutation$ChangeRequestStatus.fromJson(data);
+typedef OnMutationCompleted$Mutation$ChangeRequestStatus =
+    FutureOr<void> Function(
+      Map<String, dynamic>?,
+      Mutation$ChangeRequestStatus?,
+    );
+
+class Options$Mutation$ChangeRequestStatus
+    extends graphql.MutationOptions<Mutation$ChangeRequestStatus> {
+  Options$Mutation$ChangeRequestStatus({
+    String? operationName,
+    required Variables$Mutation$ChangeRequestStatus variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$ChangeRequestStatus? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$ChangeRequestStatus? onCompleted,
+    graphql.OnMutationUpdate<Mutation$ChangeRequestStatus>? update,
+    graphql.OnError? onError,
+  }) : onCompletedWithParsed = onCompleted,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         onCompleted: onCompleted == null
+             ? null
+             : (data) => onCompleted(
+                 data,
+                 data == null
+                     ? null
+                     : _parserFn$Mutation$ChangeRequestStatus(data),
+               ),
+         update: update,
+         onError: onError,
+         document: documentNodeMutationChangeRequestStatus,
+         parserFn: _parserFn$Mutation$ChangeRequestStatus,
+       );
+
+  final OnMutationCompleted$Mutation$ChangeRequestStatus? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onCompleted == null
+        ? super.properties
+        : super.properties.where((property) => property != onCompleted),
+    onCompletedWithParsed,
+  ];
+}
+
+class WatchOptions$Mutation$ChangeRequestStatus
+    extends graphql.WatchQueryOptions<Mutation$ChangeRequestStatus> {
+  WatchOptions$Mutation$ChangeRequestStatus({
+    String? operationName,
+    required Variables$Mutation$ChangeRequestStatus variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$ChangeRequestStatus? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeMutationChangeRequestStatus,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFn$Mutation$ChangeRequestStatus,
+       );
+}
+
+extension ClientExtension$Mutation$ChangeRequestStatus
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$ChangeRequestStatus>>
+  mutate$ChangeRequestStatus(
+    Options$Mutation$ChangeRequestStatus options,
+  ) async => await this.mutate(options);
+
+  graphql.ObservableQuery<Mutation$ChangeRequestStatus>
+  watchMutation$ChangeRequestStatus(
+    WatchOptions$Mutation$ChangeRequestStatus options,
+  ) => this.watchMutation(options);
+}
+
+class Mutation$ChangeRequestStatus$HookResult {
+  Mutation$ChangeRequestStatus$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$ChangeRequestStatus runMutation;
+
+  final graphql.QueryResult<Mutation$ChangeRequestStatus> result;
+}
+
+Mutation$ChangeRequestStatus$HookResult useMutation$ChangeRequestStatus([
+  WidgetOptions$Mutation$ChangeRequestStatus? options,
+]) {
+  final result = graphql_flutter.useMutation(
+    options ?? WidgetOptions$Mutation$ChangeRequestStatus(),
+  );
+  return Mutation$ChangeRequestStatus$HookResult(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
+          variables.toJson(),
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+        ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$ChangeRequestStatus>
+useWatchMutation$ChangeRequestStatus(
+  WatchOptions$Mutation$ChangeRequestStatus options,
+) => graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$ChangeRequestStatus
+    extends graphql.MutationOptions<Mutation$ChangeRequestStatus> {
+  WidgetOptions$Mutation$ChangeRequestStatus({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$ChangeRequestStatus? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$ChangeRequestStatus? onCompleted,
+    graphql.OnMutationUpdate<Mutation$ChangeRequestStatus>? update,
+    graphql.OnError? onError,
+  }) : onCompletedWithParsed = onCompleted,
+       super(
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         onCompleted: onCompleted == null
+             ? null
+             : (data) => onCompleted(
+                 data,
+                 data == null
+                     ? null
+                     : _parserFn$Mutation$ChangeRequestStatus(data),
+               ),
+         update: update,
+         onError: onError,
+         document: documentNodeMutationChangeRequestStatus,
+         parserFn: _parserFn$Mutation$ChangeRequestStatus,
+       );
+
+  final OnMutationCompleted$Mutation$ChangeRequestStatus? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onCompleted == null
+        ? super.properties
+        : super.properties.where((property) => property != onCompleted),
+    onCompletedWithParsed,
+  ];
+}
+
+typedef RunMutation$Mutation$ChangeRequestStatus =
+    graphql.MultiSourceResult<Mutation$ChangeRequestStatus> Function(
+      Variables$Mutation$ChangeRequestStatus, {
+      Object? optimisticResult,
+      Mutation$ChangeRequestStatus? typedOptimisticResult,
+    });
+typedef Builder$Mutation$ChangeRequestStatus =
+    widgets.Widget Function(
+      RunMutation$Mutation$ChangeRequestStatus,
+      graphql.QueryResult<Mutation$ChangeRequestStatus>?,
+    );
+
+class Mutation$ChangeRequestStatus$Widget
+    extends graphql_flutter.Mutation<Mutation$ChangeRequestStatus> {
+  Mutation$ChangeRequestStatus$Widget({
+    widgets.Key? key,
+    WidgetOptions$Mutation$ChangeRequestStatus? options,
+    required Builder$Mutation$ChangeRequestStatus builder,
+  }) : super(
+         key: key,
+         options: options ?? WidgetOptions$Mutation$ChangeRequestStatus(),
+         builder: (run, result) => builder(
+           (variables, {optimisticResult, typedOptimisticResult}) => run(
+             variables.toJson(),
+             optimisticResult:
+                 optimisticResult ?? typedOptimisticResult?.toJson(),
+           ),
+           result,
+         ),
+       );
+}
+
+class Variables$Mutation$CreatePaymentCheckoutSession {
+  factory Variables$Mutation$CreatePaymentCheckoutSession({
+    required String packageId,
+    required String requestId,
+    required String successUrl,
+    required String cancelUrl,
+    required bool isSavePaymentMethod,
+    required bool isReceiptEmail,
+    required String requirements,
+    required List<Input$PackageOrderDeliveryInput> deliveries,
+    required int duration,
+  }) => Variables$Mutation$CreatePaymentCheckoutSession._({
+    r'packageId': packageId,
+    r'requestId': requestId,
+    r'successUrl': successUrl,
+    r'cancelUrl': cancelUrl,
+    r'isSavePaymentMethod': isSavePaymentMethod,
+    r'isReceiptEmail': isReceiptEmail,
+    r'requirements': requirements,
+    r'deliveries': deliveries,
+    r'duration': duration,
+  });
+
+  Variables$Mutation$CreatePaymentCheckoutSession._(this._$data);
+
+  factory Variables$Mutation$CreatePaymentCheckoutSession.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    final l$packageId = data['packageId'];
+    result$data['packageId'] = (l$packageId as String);
+    final l$requestId = data['requestId'];
+    result$data['requestId'] = (l$requestId as String);
+    final l$successUrl = data['successUrl'];
+    result$data['successUrl'] = (l$successUrl as String);
+    final l$cancelUrl = data['cancelUrl'];
+    result$data['cancelUrl'] = (l$cancelUrl as String);
+    final l$isSavePaymentMethod = data['isSavePaymentMethod'];
+    result$data['isSavePaymentMethod'] = (l$isSavePaymentMethod as bool);
+    final l$isReceiptEmail = data['isReceiptEmail'];
+    result$data['isReceiptEmail'] = (l$isReceiptEmail as bool);
+    final l$requirements = data['requirements'];
+    result$data['requirements'] = (l$requirements as String);
+    final l$deliveries = data['deliveries'];
+    result$data['deliveries'] = (l$deliveries as List<dynamic>)
+        .map(
+          (e) => Input$PackageOrderDeliveryInput.fromJson(
+            (e as Map<String, dynamic>),
+          ),
+        )
+        .toList();
+    final l$duration = data['duration'];
+    result$data['duration'] = (l$duration as int);
+    return Variables$Mutation$CreatePaymentCheckoutSession._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get packageId => (_$data['packageId'] as String);
+
+  String get requestId => (_$data['requestId'] as String);
+
+  String get successUrl => (_$data['successUrl'] as String);
+
+  String get cancelUrl => (_$data['cancelUrl'] as String);
+
+  bool get isSavePaymentMethod => (_$data['isSavePaymentMethod'] as bool);
+
+  bool get isReceiptEmail => (_$data['isReceiptEmail'] as bool);
+
+  String get requirements => (_$data['requirements'] as String);
+
+  List<Input$PackageOrderDeliveryInput> get deliveries =>
+      (_$data['deliveries'] as List<Input$PackageOrderDeliveryInput>);
+
+  int get duration => (_$data['duration'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$packageId = packageId;
+    result$data['packageId'] = l$packageId;
+    final l$requestId = requestId;
+    result$data['requestId'] = l$requestId;
+    final l$successUrl = successUrl;
+    result$data['successUrl'] = l$successUrl;
+    final l$cancelUrl = cancelUrl;
+    result$data['cancelUrl'] = l$cancelUrl;
+    final l$isSavePaymentMethod = isSavePaymentMethod;
+    result$data['isSavePaymentMethod'] = l$isSavePaymentMethod;
+    final l$isReceiptEmail = isReceiptEmail;
+    result$data['isReceiptEmail'] = l$isReceiptEmail;
+    final l$requirements = requirements;
+    result$data['requirements'] = l$requirements;
+    final l$deliveries = deliveries;
+    result$data['deliveries'] = l$deliveries.map((e) => e.toJson()).toList();
+    final l$duration = duration;
+    result$data['duration'] = l$duration;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$CreatePaymentCheckoutSession<
+    Variables$Mutation$CreatePaymentCheckoutSession
+  >
+  get copyWith =>
+      CopyWith$Variables$Mutation$CreatePaymentCheckoutSession(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$CreatePaymentCheckoutSession ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$packageId = packageId;
+    final lOther$packageId = other.packageId;
+    if (l$packageId != lOther$packageId) {
+      return false;
+    }
+    final l$requestId = requestId;
+    final lOther$requestId = other.requestId;
+    if (l$requestId != lOther$requestId) {
+      return false;
+    }
+    final l$successUrl = successUrl;
+    final lOther$successUrl = other.successUrl;
+    if (l$successUrl != lOther$successUrl) {
+      return false;
+    }
+    final l$cancelUrl = cancelUrl;
+    final lOther$cancelUrl = other.cancelUrl;
+    if (l$cancelUrl != lOther$cancelUrl) {
+      return false;
+    }
+    final l$isSavePaymentMethod = isSavePaymentMethod;
+    final lOther$isSavePaymentMethod = other.isSavePaymentMethod;
+    if (l$isSavePaymentMethod != lOther$isSavePaymentMethod) {
+      return false;
+    }
+    final l$isReceiptEmail = isReceiptEmail;
+    final lOther$isReceiptEmail = other.isReceiptEmail;
+    if (l$isReceiptEmail != lOther$isReceiptEmail) {
+      return false;
+    }
+    final l$requirements = requirements;
+    final lOther$requirements = other.requirements;
+    if (l$requirements != lOther$requirements) {
+      return false;
+    }
+    final l$deliveries = deliveries;
+    final lOther$deliveries = other.deliveries;
+    if (l$deliveries.length != lOther$deliveries.length) {
+      return false;
+    }
+    for (int i = 0; i < l$deliveries.length; i++) {
+      final l$deliveries$entry = l$deliveries[i];
+      final lOther$deliveries$entry = lOther$deliveries[i];
+      if (l$deliveries$entry != lOther$deliveries$entry) {
+        return false;
+      }
+    }
+    final l$duration = duration;
+    final lOther$duration = other.duration;
+    if (l$duration != lOther$duration) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$packageId = packageId;
+    final l$requestId = requestId;
+    final l$successUrl = successUrl;
+    final l$cancelUrl = cancelUrl;
+    final l$isSavePaymentMethod = isSavePaymentMethod;
+    final l$isReceiptEmail = isReceiptEmail;
+    final l$requirements = requirements;
+    final l$deliveries = deliveries;
+    final l$duration = duration;
+    return Object.hashAll([
+      l$packageId,
+      l$requestId,
+      l$successUrl,
+      l$cancelUrl,
+      l$isSavePaymentMethod,
+      l$isReceiptEmail,
+      l$requirements,
+      Object.hashAll(l$deliveries.map((v) => v)),
+      l$duration,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$CreatePaymentCheckoutSession<TRes> {
+  factory CopyWith$Variables$Mutation$CreatePaymentCheckoutSession(
+    Variables$Mutation$CreatePaymentCheckoutSession instance,
+    TRes Function(Variables$Mutation$CreatePaymentCheckoutSession) then,
+  ) = _CopyWithImpl$Variables$Mutation$CreatePaymentCheckoutSession;
+
+  factory CopyWith$Variables$Mutation$CreatePaymentCheckoutSession.stub(
+    TRes res,
+  ) = _CopyWithStubImpl$Variables$Mutation$CreatePaymentCheckoutSession;
+
+  TRes call({
+    String? packageId,
+    String? requestId,
+    String? successUrl,
+    String? cancelUrl,
+    bool? isSavePaymentMethod,
+    bool? isReceiptEmail,
+    String? requirements,
+    List<Input$PackageOrderDeliveryInput>? deliveries,
+    int? duration,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$CreatePaymentCheckoutSession<TRes>
+    implements CopyWith$Variables$Mutation$CreatePaymentCheckoutSession<TRes> {
+  _CopyWithImpl$Variables$Mutation$CreatePaymentCheckoutSession(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$CreatePaymentCheckoutSession _instance;
+
+  final TRes Function(Variables$Mutation$CreatePaymentCheckoutSession) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? packageId = _undefined,
+    Object? requestId = _undefined,
+    Object? successUrl = _undefined,
+    Object? cancelUrl = _undefined,
+    Object? isSavePaymentMethod = _undefined,
+    Object? isReceiptEmail = _undefined,
+    Object? requirements = _undefined,
+    Object? deliveries = _undefined,
+    Object? duration = _undefined,
+  }) => _then(
+    Variables$Mutation$CreatePaymentCheckoutSession._({
+      ..._instance._$data,
+      if (packageId != _undefined && packageId != null)
+        'packageId': (packageId as String),
+      if (requestId != _undefined && requestId != null)
+        'requestId': (requestId as String),
+      if (successUrl != _undefined && successUrl != null)
+        'successUrl': (successUrl as String),
+      if (cancelUrl != _undefined && cancelUrl != null)
+        'cancelUrl': (cancelUrl as String),
+      if (isSavePaymentMethod != _undefined && isSavePaymentMethod != null)
+        'isSavePaymentMethod': (isSavePaymentMethod as bool),
+      if (isReceiptEmail != _undefined && isReceiptEmail != null)
+        'isReceiptEmail': (isReceiptEmail as bool),
+      if (requirements != _undefined && requirements != null)
+        'requirements': (requirements as String),
+      if (deliveries != _undefined && deliveries != null)
+        'deliveries': (deliveries as List<Input$PackageOrderDeliveryInput>),
+      if (duration != _undefined && duration != null)
+        'duration': (duration as int),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Variables$Mutation$CreatePaymentCheckoutSession<TRes>
+    implements CopyWith$Variables$Mutation$CreatePaymentCheckoutSession<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$CreatePaymentCheckoutSession(this._res);
+
+  TRes _res;
+
+  call({
+    String? packageId,
+    String? requestId,
+    String? successUrl,
+    String? cancelUrl,
+    bool? isSavePaymentMethod,
+    bool? isReceiptEmail,
+    String? requirements,
+    List<Input$PackageOrderDeliveryInput>? deliveries,
+    int? duration,
+  }) => _res;
+}
+
+class Mutation$CreatePaymentCheckoutSession {
+  Mutation$CreatePaymentCheckoutSession({
+    required this.createPaymentCheckoutSession,
+    this.$__typename = 'MutationInitialization',
+  });
+
+  factory Mutation$CreatePaymentCheckoutSession.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$createPaymentCheckoutSession = json['createPaymentCheckoutSession'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreatePaymentCheckoutSession(
+      createPaymentCheckoutSession:
+          Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession.fromJson(
+            (l$createPaymentCheckoutSession as Map<String, dynamic>),
+          ),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession
+  createPaymentCheckoutSession;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$createPaymentCheckoutSession = createPaymentCheckoutSession;
+    _resultData['createPaymentCheckoutSession'] = l$createPaymentCheckoutSession
+        .toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$createPaymentCheckoutSession = createPaymentCheckoutSession;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$createPaymentCheckoutSession, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreatePaymentCheckoutSession ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createPaymentCheckoutSession = createPaymentCheckoutSession;
+    final lOther$createPaymentCheckoutSession =
+        other.createPaymentCheckoutSession;
+    if (l$createPaymentCheckoutSession != lOther$createPaymentCheckoutSession) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreatePaymentCheckoutSession
+    on Mutation$CreatePaymentCheckoutSession {
+  CopyWith$Mutation$CreatePaymentCheckoutSession<
+    Mutation$CreatePaymentCheckoutSession
+  >
+  get copyWith =>
+      CopyWith$Mutation$CreatePaymentCheckoutSession(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$CreatePaymentCheckoutSession<TRes> {
+  factory CopyWith$Mutation$CreatePaymentCheckoutSession(
+    Mutation$CreatePaymentCheckoutSession instance,
+    TRes Function(Mutation$CreatePaymentCheckoutSession) then,
+  ) = _CopyWithImpl$Mutation$CreatePaymentCheckoutSession;
+
+  factory CopyWith$Mutation$CreatePaymentCheckoutSession.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreatePaymentCheckoutSession;
+
+  TRes call({
+    Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession?
+    createPaymentCheckoutSession,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession<
+    TRes
+  >
+  get createPaymentCheckoutSession;
+}
+
+class _CopyWithImpl$Mutation$CreatePaymentCheckoutSession<TRes>
+    implements CopyWith$Mutation$CreatePaymentCheckoutSession<TRes> {
+  _CopyWithImpl$Mutation$CreatePaymentCheckoutSession(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreatePaymentCheckoutSession _instance;
+
+  final TRes Function(Mutation$CreatePaymentCheckoutSession) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? createPaymentCheckoutSession = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Mutation$CreatePaymentCheckoutSession(
+      createPaymentCheckoutSession:
+          createPaymentCheckoutSession == _undefined ||
+              createPaymentCheckoutSession == null
+          ? _instance.createPaymentCheckoutSession
+          : (createPaymentCheckoutSession
+                as Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+
+  CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession<
+    TRes
+  >
+  get createPaymentCheckoutSession {
+    final local$createPaymentCheckoutSession =
+        _instance.createPaymentCheckoutSession;
+    return CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession(
+      local$createPaymentCheckoutSession,
+      (e) => call(createPaymentCheckoutSession: e),
+    );
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreatePaymentCheckoutSession<TRes>
+    implements CopyWith$Mutation$CreatePaymentCheckoutSession<TRes> {
+  _CopyWithStubImpl$Mutation$CreatePaymentCheckoutSession(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession?
+    createPaymentCheckoutSession,
+    String? $__typename,
+  }) => _res;
+
+  CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession<
+    TRes
+  >
+  get createPaymentCheckoutSession =>
+      CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession.stub(
+        _res,
+      );
+}
+
+const documentNodeMutationCreatePaymentCheckoutSession = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'CreatePaymentCheckoutSession'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'packageId')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'requestId')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'successUrl')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'cancelUrl')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'isSavePaymentMethod')),
+          type: NamedTypeNode(
+            name: NameNode(value: 'Boolean'),
+            isNonNull: true,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'isReceiptEmail')),
+          type: NamedTypeNode(
+            name: NameNode(value: 'Boolean'),
+            isNonNull: true,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'requirements')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'deliveries')),
+          type: ListTypeNode(
+            type: NamedTypeNode(
+              name: NameNode(value: 'PackageOrderDeliveryInput'),
+              isNonNull: true,
+            ),
+            isNonNull: true,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'duration')),
+          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'createPaymentCheckoutSession'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'createPaymentCheckoutSessionRequest'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'packageId'),
+                      value: VariableNode(name: NameNode(value: 'packageId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'requestId'),
+                      value: VariableNode(name: NameNode(value: 'requestId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'successUrl'),
+                      value: VariableNode(name: NameNode(value: 'successUrl')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'cancelUrl'),
+                      value: VariableNode(name: NameNode(value: 'cancelUrl')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'isSavePaymentMethod'),
+                      value: VariableNode(
+                        name: NameNode(value: 'isSavePaymentMethod'),
+                      ),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'isReceiptEmail'),
+                      value: VariableNode(
+                        name: NameNode(value: 'isReceiptEmail'),
+                      ),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'requirements'),
+                      value: VariableNode(
+                        name: NameNode(value: 'requirements'),
+                      ),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'deliveries'),
+                      value: VariableNode(name: NameNode(value: 'deliveries')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'duration'),
+                      value: VariableNode(name: NameNode(value: 'duration')),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'url'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'successUrl'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'cancelUrl'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'status'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'created'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'expired'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'mode'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ],
+      ),
+    ),
+  ],
+);
+Mutation$CreatePaymentCheckoutSession
+_parserFn$Mutation$CreatePaymentCheckoutSession(Map<String, dynamic> data) =>
+    Mutation$CreatePaymentCheckoutSession.fromJson(data);
+typedef OnMutationCompleted$Mutation$CreatePaymentCheckoutSession =
+    FutureOr<void> Function(
+      Map<String, dynamic>?,
+      Mutation$CreatePaymentCheckoutSession?,
+    );
+
+class Options$Mutation$CreatePaymentCheckoutSession
+    extends graphql.MutationOptions<Mutation$CreatePaymentCheckoutSession> {
+  Options$Mutation$CreatePaymentCheckoutSession({
+    String? operationName,
+    required Variables$Mutation$CreatePaymentCheckoutSession variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreatePaymentCheckoutSession? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$CreatePaymentCheckoutSession? onCompleted,
+    graphql.OnMutationUpdate<Mutation$CreatePaymentCheckoutSession>? update,
+    graphql.OnError? onError,
+  }) : onCompletedWithParsed = onCompleted,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         onCompleted: onCompleted == null
+             ? null
+             : (data) => onCompleted(
+                 data,
+                 data == null
+                     ? null
+                     : _parserFn$Mutation$CreatePaymentCheckoutSession(data),
+               ),
+         update: update,
+         onError: onError,
+         document: documentNodeMutationCreatePaymentCheckoutSession,
+         parserFn: _parserFn$Mutation$CreatePaymentCheckoutSession,
+       );
+
+  final OnMutationCompleted$Mutation$CreatePaymentCheckoutSession?
+  onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onCompleted == null
+        ? super.properties
+        : super.properties.where((property) => property != onCompleted),
+    onCompletedWithParsed,
+  ];
+}
+
+class WatchOptions$Mutation$CreatePaymentCheckoutSession
+    extends graphql.WatchQueryOptions<Mutation$CreatePaymentCheckoutSession> {
+  WatchOptions$Mutation$CreatePaymentCheckoutSession({
+    String? operationName,
+    required Variables$Mutation$CreatePaymentCheckoutSession variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreatePaymentCheckoutSession? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeMutationCreatePaymentCheckoutSession,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFn$Mutation$CreatePaymentCheckoutSession,
+       );
+}
+
+extension ClientExtension$Mutation$CreatePaymentCheckoutSession
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$CreatePaymentCheckoutSession>>
+  mutate$CreatePaymentCheckoutSession(
+    Options$Mutation$CreatePaymentCheckoutSession options,
+  ) async => await this.mutate(options);
+
+  graphql.ObservableQuery<Mutation$CreatePaymentCheckoutSession>
+  watchMutation$CreatePaymentCheckoutSession(
+    WatchOptions$Mutation$CreatePaymentCheckoutSession options,
+  ) => this.watchMutation(options);
+}
+
+class Mutation$CreatePaymentCheckoutSession$HookResult {
+  Mutation$CreatePaymentCheckoutSession$HookResult(
+    this.runMutation,
+    this.result,
+  );
+
+  final RunMutation$Mutation$CreatePaymentCheckoutSession runMutation;
+
+  final graphql.QueryResult<Mutation$CreatePaymentCheckoutSession> result;
+}
+
+Mutation$CreatePaymentCheckoutSession$HookResult
+useMutation$CreatePaymentCheckoutSession([
+  WidgetOptions$Mutation$CreatePaymentCheckoutSession? options,
+]) {
+  final result = graphql_flutter.useMutation(
+    options ?? WidgetOptions$Mutation$CreatePaymentCheckoutSession(),
+  );
+  return Mutation$CreatePaymentCheckoutSession$HookResult(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
+          variables.toJson(),
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+        ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$CreatePaymentCheckoutSession>
+useWatchMutation$CreatePaymentCheckoutSession(
+  WatchOptions$Mutation$CreatePaymentCheckoutSession options,
+) => graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$CreatePaymentCheckoutSession
+    extends graphql.MutationOptions<Mutation$CreatePaymentCheckoutSession> {
+  WidgetOptions$Mutation$CreatePaymentCheckoutSession({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreatePaymentCheckoutSession? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$CreatePaymentCheckoutSession? onCompleted,
+    graphql.OnMutationUpdate<Mutation$CreatePaymentCheckoutSession>? update,
+    graphql.OnError? onError,
+  }) : onCompletedWithParsed = onCompleted,
+       super(
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         onCompleted: onCompleted == null
+             ? null
+             : (data) => onCompleted(
+                 data,
+                 data == null
+                     ? null
+                     : _parserFn$Mutation$CreatePaymentCheckoutSession(data),
+               ),
+         update: update,
+         onError: onError,
+         document: documentNodeMutationCreatePaymentCheckoutSession,
+         parserFn: _parserFn$Mutation$CreatePaymentCheckoutSession,
+       );
+
+  final OnMutationCompleted$Mutation$CreatePaymentCheckoutSession?
+  onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onCompleted == null
+        ? super.properties
+        : super.properties.where((property) => property != onCompleted),
+    onCompletedWithParsed,
+  ];
+}
+
+typedef RunMutation$Mutation$CreatePaymentCheckoutSession =
+    graphql.MultiSourceResult<Mutation$CreatePaymentCheckoutSession> Function(
+      Variables$Mutation$CreatePaymentCheckoutSession, {
+      Object? optimisticResult,
+      Mutation$CreatePaymentCheckoutSession? typedOptimisticResult,
+    });
+typedef Builder$Mutation$CreatePaymentCheckoutSession =
+    widgets.Widget Function(
+      RunMutation$Mutation$CreatePaymentCheckoutSession,
+      graphql.QueryResult<Mutation$CreatePaymentCheckoutSession>?,
+    );
+
+class Mutation$CreatePaymentCheckoutSession$Widget
+    extends graphql_flutter.Mutation<Mutation$CreatePaymentCheckoutSession> {
+  Mutation$CreatePaymentCheckoutSession$Widget({
+    widgets.Key? key,
+    WidgetOptions$Mutation$CreatePaymentCheckoutSession? options,
+    required Builder$Mutation$CreatePaymentCheckoutSession builder,
+  }) : super(
+         key: key,
+         options:
+             options ?? WidgetOptions$Mutation$CreatePaymentCheckoutSession(),
+         builder: (run, result) => builder(
+           (variables, {optimisticResult, typedOptimisticResult}) => run(
+             variables.toJson(),
+             optimisticResult:
+                 optimisticResult ?? typedOptimisticResult?.toJson(),
+           ),
+           result,
+         ),
+       );
+}
+
+class Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession {
+  Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession({
+    required this.id,
+    required this.url,
+    required this.successUrl,
+    required this.cancelUrl,
+    required this.status,
+    required this.created,
+    required this.expired,
+    required this.mode,
+    this.$__typename = 'CheckoutSessionResponse',
+  });
+
+  factory Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$id = json['id'];
+    final l$url = json['url'];
+    final l$successUrl = json['successUrl'];
+    final l$cancelUrl = json['cancelUrl'];
+    final l$status = json['status'];
+    final l$created = json['created'];
+    final l$expired = json['expired'];
+    final l$mode = json['mode'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession(
+      id: (l$id as String),
+      url: (l$url as String),
+      successUrl: (l$successUrl as String),
+      cancelUrl: (l$cancelUrl as String),
+      status: (l$status as String),
+      created: DateTime.parse((l$created as String)),
+      expired: DateTime.parse((l$expired as String)),
+      mode: (l$mode as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String url;
+
+  final String successUrl;
+
+  final String cancelUrl;
+
+  final String status;
+
+  final DateTime created;
+
+  final DateTime expired;
+
+  final String mode;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$url = url;
+    _resultData['url'] = l$url;
+    final l$successUrl = successUrl;
+    _resultData['successUrl'] = l$successUrl;
+    final l$cancelUrl = cancelUrl;
+    _resultData['cancelUrl'] = l$cancelUrl;
+    final l$status = status;
+    _resultData['status'] = l$status;
+    final l$created = created;
+    _resultData['created'] = l$created.toIso8601String();
+    final l$expired = expired;
+    _resultData['expired'] = l$expired.toIso8601String();
+    final l$mode = mode;
+    _resultData['mode'] = l$mode;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$url = url;
+    final l$successUrl = successUrl;
+    final l$cancelUrl = cancelUrl;
+    final l$status = status;
+    final l$created = created;
+    final l$expired = expired;
+    final l$mode = mode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$url,
+      l$successUrl,
+      l$cancelUrl,
+      l$status,
+      l$created,
+      l$expired,
+      l$mode,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$url = url;
+    final lOther$url = other.url;
+    if (l$url != lOther$url) {
+      return false;
+    }
+    final l$successUrl = successUrl;
+    final lOther$successUrl = other.successUrl;
+    if (l$successUrl != lOther$successUrl) {
+      return false;
+    }
+    final l$cancelUrl = cancelUrl;
+    final lOther$cancelUrl = other.cancelUrl;
+    if (l$cancelUrl != lOther$cancelUrl) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$created = created;
+    final lOther$created = other.created;
+    if (l$created != lOther$created) {
+      return false;
+    }
+    final l$expired = expired;
+    final lOther$expired = other.expired;
+    if (l$expired != lOther$expired) {
+      return false;
+    }
+    final l$mode = mode;
+    final lOther$mode = other.mode;
+    if (l$mode != lOther$mode) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession
+    on Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession {
+  CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession<
+    Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession
+  >
+  get copyWith =>
+      CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession<
+  TRes
+> {
+  factory CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession(
+    Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession instance,
+    TRes Function(
+      Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession,
+    )
+    then,
+  ) = _CopyWithImpl$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession;
+
+  factory CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession.stub(
+    TRes res,
+  ) = _CopyWithStubImpl$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession;
+
+  TRes call({
+    String? id,
+    String? url,
+    String? successUrl,
+    String? cancelUrl,
+    String? status,
+    DateTime? created,
+    DateTime? expired,
+    String? mode,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession<
+  TRes
+>
+    implements
+        CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession<
+          TRes
+        > {
+  _CopyWithImpl$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession
+  _instance;
+
+  final TRes Function(
+    Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession,
+  )
+  _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? url = _undefined,
+    Object? successUrl = _undefined,
+    Object? cancelUrl = _undefined,
+    Object? status = _undefined,
+    Object? created = _undefined,
+    Object? expired = _undefined,
+    Object? mode = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession(
+      id: id == _undefined || id == null ? _instance.id : (id as String),
+      url: url == _undefined || url == null ? _instance.url : (url as String),
+      successUrl: successUrl == _undefined || successUrl == null
+          ? _instance.successUrl
+          : (successUrl as String),
+      cancelUrl: cancelUrl == _undefined || cancelUrl == null
+          ? _instance.cancelUrl
+          : (cancelUrl as String),
+      status: status == _undefined || status == null
+          ? _instance.status
+          : (status as String),
+      created: created == _undefined || created == null
+          ? _instance.created
+          : (created as DateTime),
+      expired: expired == _undefined || expired == null
+          ? _instance.expired
+          : (expired as DateTime),
+      mode: mode == _undefined || mode == null
+          ? _instance.mode
+          : (mode as String),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+}
+
+class _CopyWithStubImpl$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession<
+  TRes
+>
+    implements
+        CopyWith$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession<
+          TRes
+        > {
+  _CopyWithStubImpl$Mutation$CreatePaymentCheckoutSession$createPaymentCheckoutSession(
+    this._res,
+  );
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? url,
+    String? successUrl,
+    String? cancelUrl,
+    String? status,
+    DateTime? created,
+    DateTime? expired,
+    String? mode,
+    String? $__typename,
+  }) => _res;
 }

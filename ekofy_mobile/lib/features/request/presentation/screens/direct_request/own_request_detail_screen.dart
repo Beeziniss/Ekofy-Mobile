@@ -1,13 +1,101 @@
+import 'dart:async';
+
+import 'package:app_links/app_links.dart';
+import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
+import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/utils/helper.dart';
+import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
 import 'package:ekofy_mobile/core/widgets/info/key_value_table.dart';
 import 'package:ekofy_mobile/features/request/data/models/own_request.dart';
+import 'package:ekofy_mobile/features/request/data/models/request_status.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
+import 'package:ekofy_mobile/gql/mutation/generated/request_mutation.graphql.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class OwnRequestDetailScreen extends StatelessWidget {
+class OwnRequestDetailScreen extends ConsumerStatefulWidget {
   final OwnRequestItem item;
   const OwnRequestDetailScreen({super.key, required this.item});
+
+  @override
+  ConsumerState<OwnRequestDetailScreen> createState() =>
+      _OwnRequestDetailScreenState();
+}
+
+class _OwnRequestDetailScreenState
+    extends ConsumerState<OwnRequestDetailScreen> {
+  late AppLinks _appLinks;
+  StreamSubscription<Uri>? _linkSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _initDeepLinkListener();
+  }
+
+  @override
+  void dispose() {
+    _linkSubscription?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _initDeepLinkListener() async {
+    _appLinks = AppLinks();
+
+    // Handle deep link when app is in background or terminated
+    try {
+      final initialLink = await _appLinks.getInitialLink();
+      if (initialLink != null) {
+        _handleDeepLink(initialLink);
+      }
+    } catch (e) {
+      debugPrint('Initial link error: $e');
+    }
+
+    // Handle deep link when app is in foreground
+    _linkSubscription = _appLinks.uriLinkStream.listen(
+      (Uri? uri) {
+        if (uri != null) {
+          _handleDeepLink(uri);
+        }
+      },
+      onError: (err) {
+        debugPrint('Deep link error: $err');
+      },
+    );
+  }
+
+  void _handleDeepLink(Uri uri) {
+    // Expected format: ekofy://app/payment/success or ekofy://app/payment/failure
+    if (uri.scheme == 'ekofy' && uri.host == 'app') {
+      if (uri.path.contains('/payment/success')) {
+        Fluttertoast.showToast(
+          msg: "Payment Successful",
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+        );
+        if (mounted) context.go(RouteName.paymentSuccess);
+      } else if (uri.path.contains('/payment/failure') ||
+          uri.path.contains('/payment/cancel')) {
+        Fluttertoast.showToast(
+          msg: "Payment Failed",
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+        if (mounted) {
+          context.go(
+            RouteName.paymentFailure,
+            extra: "Payment was not completed.",
+          );
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +108,15 @@ class OwnRequestDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _noteSection(theme),
-              const SizedBox(height: 16),
+              // _noteSection(theme),
+              // const SizedBox(height: 16),
               _headerSection(theme),
               const SizedBox(height: 16),
               _detailSection(theme),
               const SizedBox(height: 16),
               _metadataSection(theme),
-              // const SizedBox(height: 24),
-              // _actionsSection(context),
+              const SizedBox(height: 24),
+              _actionsSection(context),
             ],
           ),
         ),
@@ -80,35 +168,41 @@ class OwnRequestDetailScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: const Color(0xFF2C2C2C)),
       ),
-      // child: Row(
-      //   crossAxisAlignment: CrossAxisAlignment.start,
-      //   children: [
-      //     _typeAvatar(item.requestor.avatarImage, item.requestor.displayName),
-      //     const SizedBox(width: 12),
-      //     Expanded(
-      //       child: Column(
-      //         crossAxisAlignment: CrossAxisAlignment.start,
-      //         children: [
-      //           Text(
-      //             item.requestor.displayName,
-      //             style: const TextStyle(
-      //               fontSize: 18,
-      //               fontWeight: FontWeight.w600,
-      //             ),
-      //           ),
-      //           const SizedBox(height: 4),
-      //           Text(
-      //             item.type,
-      //             style: theme.textTheme.bodySmall?.copyWith(
-      //               color: Colors.white70,
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //     // RequestStatusBadge(status: item.status),
-      //   ],
-      // ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _typeAvatar(
+            widget
+                .item
+                .artist
+                ?.stageName, // Using stageName as fallback for avatar text
+            widget.item.artist?.stageName ?? 'Unknown',
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.item.artist?.stageName ?? 'Unknown Artist',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  widget.item.type.name,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: Colors.white70,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // RequestStatusBadge(status: item.status),
+        ],
+      ),
     );
   }
 
@@ -127,7 +221,7 @@ class OwnRequestDetailScreen extends StatelessWidget {
           const Text('Details', style: TextStyle(fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
           HtmlWidget(
-            item.detailDescription,
+            widget.item.detailDescription,
             textStyle: theme.textTheme.bodyMedium,
           ),
         ],
@@ -157,12 +251,12 @@ class OwnRequestDetailScreen extends StatelessWidget {
               // KeyValueRow(label: 'Created', value: Text(createdAtStr)),
               KeyValueRow(
                 label: 'Duration',
-                value: Text("${item.duration} day(s)"),
+                value: Text("${widget.item.duration} day(s)"),
               ),
               KeyValueRow(
                 label: 'Budget',
                 value: Text(
-                  "${Helper.formatCurrency(item.budget.min)} ${_convertCurrency(item.currency)} - ${Helper.formatCurrency(item.budget.max)} ${_convertCurrency(item.currency)}",
+                  "${Helper.formatCurrency(widget.item.budget.min)} ${_convertCurrency(widget.item.currency)} - ${Helper.formatCurrency(widget.item.budget.max)} ${_convertCurrency(widget.item.currency)}",
                 ),
               ),
             ],
@@ -172,49 +266,100 @@ class OwnRequestDetailScreen extends StatelessWidget {
     );
   }
 
-  // Widget _actionsSection(BuildContext context) {
-  //   final primaryLabel = _primaryActionLabel(item.status);
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.stretch,
-  //     children: [
-  //       Row(
-  //         children: [
-  //           Expanded(
-  //             child: Semantics(
-  //               button: true,
-  //               label: primaryLabel,
-  //               child: ElevatedButton(
-  //                 onPressed: () =>
-  //                     _placeholder(context, '$primaryLabel (mock)'),
-  //                 child: Text(primaryLabel),
-  //               ),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       const SizedBox(height: 8),
-  //       Row(
-  //         children: [
-  //           Expanded(
-  //             child: OutlinedButton.icon(
-  //               onPressed: () => _placeholder(context, 'Share (mock)'),
-  //               icon: const Icon(Icons.share),
-  //               label: const Text('Share'),
-  //             ),
-  //           ),
-  //           const SizedBox(width: 12),
-  //           Expanded(
-  //             child: OutlinedButton.icon(
-  //               onPressed: () => _placeholder(context, 'Download (mock)'),
-  //               icon: const Icon(Icons.download),
-  //               label: const Text('Download'),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ],
-  //   );
-  // }
+  Widget _actionsSection(BuildContext context) {
+    if (widget.item.status == RequestStatus.pending) {
+      return Mutation$ChangeRequestStatus$Widget(
+        options: WidgetOptions$Mutation$ChangeRequestStatus(
+          onCompleted: (data, data2) {
+            Fluttertoast.showToast(
+              msg: "Request cancelled successfully",
+              backgroundColor: Colors.green,
+            );
+            Navigator.pop(context);
+          },
+          onError: (error) {
+            Fluttertoast.showToast(
+              msg:
+                  "Error: ${error?.graphqlErrors.firstOrNull?.message ?? error.toString()}",
+              backgroundColor: AppColors.error,
+            );
+          },
+        ),
+        builder: (runMutation, result) {
+          return CustomButton(
+            title: result?.isLoading == true
+                ? 'Cancelling...'
+                : 'Cancel Request',
+            height: 48,
+            onPressed: () {
+              if (result?.isLoading == true) return;
+              runMutation(
+                Variables$Mutation$ChangeRequestStatus(
+                  requestId: widget.item.id,
+                  status: Enum$RequestStatus.CANCELED,
+                ),
+              );
+            },
+            gradientColors: [Colors.red, Colors.redAccent],
+          );
+        },
+      );
+    }
+
+    if (widget.item.status != RequestStatus.confirmed) {
+      return const SizedBox.shrink();
+    }
+
+    return Mutation$CreatePaymentCheckoutSession$Widget(
+      options: WidgetOptions$Mutation$CreatePaymentCheckoutSession(
+        onCompleted: (data, data2) async {
+          final urlStr = data?['createPaymentCheckoutSession']?['url'];
+          if (urlStr != null) {
+            final Uri url = Uri.parse(urlStr);
+            if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+              Fluttertoast.showToast(msg: "Could not launch payment URL");
+            }
+          }
+        },
+        onError: (error) {
+          Fluttertoast.showToast(
+            msg:
+                "Error: ${error?.graphqlErrors.firstOrNull?.message ?? error.toString()}",
+            backgroundColor: AppColors.error,
+          );
+        },
+      ),
+      builder: (runMutation, result) {
+        return CustomButton(
+          title: result?.isLoading == true ? 'Processing...' : 'Pay',
+          height: 48,
+          onPressed: () {
+            if (result?.isLoading == true) return;
+            if (widget.item.packageId == null) {
+              Fluttertoast.showToast(msg: "Package ID is missing");
+              return;
+            }
+
+            runMutation(
+              Variables$Mutation$CreatePaymentCheckoutSession(
+                packageId: widget.item.packageId!,
+                requestId: widget.item.id,
+                successUrl: "ekofy://app/payment/success",
+                cancelUrl: "ekofy://app/payment/cancel",
+                isSavePaymentMethod: false,
+                isReceiptEmail: true,
+                requirements: widget.item.requirements ?? '',
+                duration: widget.item.duration,
+                deliveries:
+                    [], // Assuming empty for now or derived from package
+              ),
+            );
+          },
+          gradientColors: [AppColors.deepBlue, AppColors.violet],
+        );
+      },
+    );
+  }
 
   //String _primaryActionLabel(RequestStatus status) {
   // switch (status) {

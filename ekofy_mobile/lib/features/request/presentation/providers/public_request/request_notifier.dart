@@ -1,17 +1,20 @@
 import 'dart:developer';
+import 'package:ekofy_mobile/core/utils/helper.dart';
 import 'package:ekofy_mobile/features/request/data/models/own_request.dart';
 import 'package:ekofy_mobile/features/request/data/models/public_request.dart';
 import 'package:ekofy_mobile/features/request/domain/repositories/request_repository.dart';
 import 'package:ekofy_mobile/features/request/presentation/providers/public_request/request_state.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:ekofy_mobile/gql/mutation/generated/request_mutation.graphql.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class RequestNotifier extends StateNotifier<RequestState> {
+  final Ref ref;
   final RequestRepository repository;
 
-  RequestNotifier(this.repository) : super(RequestState()) {
+  RequestNotifier(this.ref, this.repository) : super(RequestState()) {
     fetchPublicRequests();
     fetchOwnRequests();
   }
@@ -32,10 +35,18 @@ class RequestNotifier extends StateNotifier<RequestState> {
   }
 
   Future<void> fetchOwnRequests() async {
+    var payload = await Helper.decodeJwtUnverified(ref);
     state = state.copyWith(isLoading: true);
     try {
-      final result = await repository.fetchOwnRequests();
+      final userId = payload?['userId'] ?? payload?['sub'];
+      if (userId == null) {
+        log('User ID not found in token');
+        state = state.copyWith(isLoading: false);
+        return;
+      }
+      final result = await repository.fetchOwnRequests(userId);
       final items = result.map((e) => OwnRequestItem.fromQueryItem(e)).toList();
+      log(items.length.toString());
       state = state.copyWith(ownRequestItems: items, isLoading: false);
     } catch (e) {
       log('Own requests fetch error: $e');

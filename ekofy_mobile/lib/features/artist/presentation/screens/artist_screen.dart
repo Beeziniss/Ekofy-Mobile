@@ -17,6 +17,7 @@ class ArtistScreen extends ConsumerStatefulWidget {
 class _ArtistScreenState extends ConsumerState<ArtistScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  late ArtistState artistState;
 
   @override
   void initState() {
@@ -29,7 +30,7 @@ class _ArtistScreenState extends ConsumerState<ArtistScreen>
 
   @override
   Widget build(BuildContext context) {
-    final artistState = ref.watch(artistProvider);
+    artistState = ref.watch(artistProvider);
 
     return Scaffold(
       backgroundColor: const Color(0xFF0B0B0E),
@@ -114,6 +115,12 @@ class _ArtistScreenState extends ConsumerState<ArtistScreen>
   }
 
   Widget _artistHeader() {
+    final artistState = ref.watch(artistProvider);
+    final artist = switch (artistState) {
+      ArtistSuccess(artist: final a) => a,
+      _ => null,
+    };
+
     return SliverAppBar(
       pinned: true,
       stretch: true,
@@ -123,30 +130,30 @@ class _ArtistScreenState extends ConsumerState<ArtistScreen>
         background: Stack(
           fit: StackFit.expand,
           children: [
-            // bannerImage == null
-            //     ? Container(
-            //         decoration: const BoxDecoration(
-            //           gradient: LinearGradient(
-            //             begin: Alignment.topLeft,
-            //             end: Alignment.bottomRight,
-            //             colors: [Color(0xFF1D1D25), Color(0xFF121219)],
-            //           ),
-            //         ),
-            //       )
-            //     :
-            Image.network(
-              'https://wallpaperaccess.com/full/1556608.jpg',
-              fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0xFF1D1D25), Color(0xFF121219)],
+            artistState is ArtistSuccess &&
+                    artistState.artist?.bannerImage == null
+                ? Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [AppColors.violet, AppColors.deepBlue],
+                      ),
+                    ),
+                  )
+                : Image.network(
+                    'https://tse1.mm.bing.net/th/id/OIP.gNWwTsRmIy7efeSBBpiD4AHaEU?cb=ucfimg2&ucfimg=1&w=2500&h=1456&rs=1&pid=ImgDetMain&o=7&rm=3',
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Color(0xFF1D1D25), Color(0xFF121219)],
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
             Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -163,7 +170,7 @@ class _ArtistScreenState extends ConsumerState<ArtistScreen>
               right: 16,
               bottom: 8,
               child: Text(
-                'Alabastar KPOP',
+                artist?.stageName ?? 'Loading...',
                 softWrap: true,
                 overflow: TextOverflow.visible,
                 maxLines: 3,
@@ -182,18 +189,26 @@ class _ArtistScreenState extends ConsumerState<ArtistScreen>
   }
 
   Widget _followButton() {
+    final artist = switch (artistState) {
+      ArtistSuccess(artist: final a) => a,
+      _ => null,
+    };
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(25.0, 0, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Followers: 1234'),
+          Text('Followers: ${artist?.followerCount ?? 0}'),
           SizedBox(height: 5),
           Row(
             children: [
               CircleAvatar(
                 radius: 20,
                 backgroundColor: const Color(0xFF22222A),
+                backgroundImage: artist?.avatarImage != null
+                    ? NetworkImage(artist!.avatarImage!)
+                    : null,
               ),
               SizedBox(width: 16),
               CustomButton(

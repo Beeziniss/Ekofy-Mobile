@@ -40,7 +40,7 @@ final class ArtistProvider extends $NotifierProvider<Artist, ArtistState> {
   }
 }
 
-String _$artistHash() => r'5674f9f45c155ab273c664131e1acd22045a991d';
+String _$artistHash() => r'39c5e0a12640ea960e3776869903a85079b446ea';
 
 abstract class _$Artist extends $Notifier<ArtistState> {
   ArtistState build();

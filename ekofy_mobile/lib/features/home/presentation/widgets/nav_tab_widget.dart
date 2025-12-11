@@ -55,7 +55,7 @@ class _NavTabState extends ConsumerState<NavTab>
         children: [
           HomeScreen(scaffoldKey: _scaffoldKey),
           const LibraryPage(),
-          const PaymentScreen(),
+          // const PaymentScreen(),
           const RequestHubScreen(),
           const InboxScreen(),
         ],
@@ -121,16 +121,16 @@ class _NavTabState extends ConsumerState<NavTab>
                   height: 25,
                 ),
               ),
-              Tab(
-                text: 'Payment',
-                icon: SvgPicture.asset(
-                  selectTab == 2
-                      ? AppVectors.searchIconActive
-                      : AppVectors.searchIconInactive,
-                  width: 25,
-                  height: 25,
-                ),
-              ),
+              // Tab(
+              //   text: 'Payment',
+              //   icon: SvgPicture.asset(
+              //     selectTab == 2
+              //         ? AppVectors.searchIconActive
+              //         : AppVectors.searchIconInactive,
+              //     width: 25,
+              //     height: 25,
+              //   ),
+              // ),
               Tab(
                 text: 'Hub',
                 icon: SvgPicture.asset(

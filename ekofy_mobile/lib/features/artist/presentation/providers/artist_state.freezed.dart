@@ -125,12 +125,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<Query$ArtistPackages$artistPackages$items> packages)?  success,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<Query$ArtistPackages$artistPackages$items> packages,  Query$ArtistDetail$artists$items? artist)?  success,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case ArtistInitial() when initial != null:
 return initial();case ArtistLoading() when loading != null:
 return loading();case ArtistSuccess() when success != null:
-return success(_that.packages);case ArtistFailure() when failure != null:
+return success(_that.packages,_that.artist);case ArtistFailure() when failure != null:
 return failure(_that.message);case _:
   return orElse();
 
@@ -149,12 +149,12 @@ return failure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<Query$ArtistPackages$artistPackages$items> packages)  success,required TResult Function( String message)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<Query$ArtistPackages$artistPackages$items> packages,  Query$ArtistDetail$artists$items? artist)  success,required TResult Function( String message)  failure,}) {final _that = this;
 switch (_that) {
 case ArtistInitial():
 return initial();case ArtistLoading():
 return loading();case ArtistSuccess():
-return success(_that.packages);case ArtistFailure():
+return success(_that.packages,_that.artist);case ArtistFailure():
 return failure(_that.message);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -169,12 +169,12 @@ return failure(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<Query$ArtistPackages$artistPackages$items> packages)?  success,TResult? Function( String message)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<Query$ArtistPackages$artistPackages$items> packages,  Query$ArtistDetail$artists$items? artist)?  success,TResult? Function( String message)?  failure,}) {final _that = this;
 switch (_that) {
 case ArtistInitial() when initial != null:
 return initial();case ArtistLoading() when loading != null:
 return loading();case ArtistSuccess() when success != null:
-return success(_that.packages);case ArtistFailure() when failure != null:
+return success(_that.packages,_that.artist);case ArtistFailure() when failure != null:
 return failure(_that.message);case _:
   return null;
 
@@ -251,7 +251,7 @@ String toString() {
 
 
 class ArtistSuccess implements ArtistState {
-  const ArtistSuccess(final  List<Query$ArtistPackages$artistPackages$items> packages): _packages = packages;
+  const ArtistSuccess({required final  List<Query$ArtistPackages$artistPackages$items> packages, this.artist}): _packages = packages;
   
 
  final  List<Query$ArtistPackages$artistPackages$items> _packages;
@@ -261,6 +261,7 @@ class ArtistSuccess implements ArtistState {
   return EqualUnmodifiableListView(_packages);
 }
 
+ final  Query$ArtistDetail$artists$items? artist;
 
 /// Create a copy of ArtistState
 /// with the given fields replaced by the non-null parameter values.
@@ -272,16 +273,16 @@ $ArtistSuccessCopyWith<ArtistSuccess> get copyWith => _$ArtistSuccessCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ArtistSuccess&&const DeepCollectionEquality().equals(other._packages, _packages));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ArtistSuccess&&const DeepCollectionEquality().equals(other._packages, _packages)&&(identical(other.artist, artist) || other.artist == artist));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_packages));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_packages),artist);
 
 @override
 String toString() {
-  return 'ArtistState.success(packages: $packages)';
+  return 'ArtistState.success(packages: $packages, artist: $artist)';
 }
 
 
@@ -292,7 +293,7 @@ abstract mixin class $ArtistSuccessCopyWith<$Res> implements $ArtistStateCopyWit
   factory $ArtistSuccessCopyWith(ArtistSuccess value, $Res Function(ArtistSuccess) _then) = _$ArtistSuccessCopyWithImpl;
 @useResult
 $Res call({
- List<Query$ArtistPackages$artistPackages$items> packages
+ List<Query$ArtistPackages$artistPackages$items> packages, Query$ArtistDetail$artists$items? artist
 });
 
 
@@ -309,10 +310,11 @@ class _$ArtistSuccessCopyWithImpl<$Res>
 
 /// Create a copy of ArtistState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? packages = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? packages = null,Object? artist = freezed,}) {
   return _then(ArtistSuccess(
-null == packages ? _self._packages : packages // ignore: cast_nullable_to_non_nullable
-as List<Query$ArtistPackages$artistPackages$items>,
+packages: null == packages ? _self._packages : packages // ignore: cast_nullable_to_non_nullable
+as List<Query$ArtistPackages$artistPackages$items>,artist: freezed == artist ? _self.artist : artist // ignore: cast_nullable_to_non_nullable
+as Query$ArtistDetail$artists$items?,
   ));
 }
 

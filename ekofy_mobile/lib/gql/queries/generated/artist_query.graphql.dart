@@ -3112,3 +3112,917 @@ class _CopyWithStubImpl$Query$ArtistPackageDetails$artistPackages$items$serviceD
 
   call({String? key, String? value, String? $__typename}) => _res;
 }
+
+class Variables$Query$ArtistDetail {
+  factory Variables$Query$ArtistDetail({required String id}) =>
+      Variables$Query$ArtistDetail._({r'id': id});
+
+  Variables$Query$ArtistDetail._(this._$data);
+
+  factory Variables$Query$ArtistDetail.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    return Variables$Query$ArtistDetail._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$ArtistDetail<Variables$Query$ArtistDetail>
+  get copyWith => CopyWith$Variables$Query$ArtistDetail(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$ArtistDetail ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$ArtistDetail<TRes> {
+  factory CopyWith$Variables$Query$ArtistDetail(
+    Variables$Query$ArtistDetail instance,
+    TRes Function(Variables$Query$ArtistDetail) then,
+  ) = _CopyWithImpl$Variables$Query$ArtistDetail;
+
+  factory CopyWith$Variables$Query$ArtistDetail.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$ArtistDetail;
+
+  TRes call({String? id});
+}
+
+class _CopyWithImpl$Variables$Query$ArtistDetail<TRes>
+    implements CopyWith$Variables$Query$ArtistDetail<TRes> {
+  _CopyWithImpl$Variables$Query$ArtistDetail(this._instance, this._then);
+
+  final Variables$Query$ArtistDetail _instance;
+
+  final TRes Function(Variables$Query$ArtistDetail) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? id = _undefined}) => _then(
+    Variables$Query$ArtistDetail._({
+      ..._instance._$data,
+      if (id != _undefined && id != null) 'id': (id as String),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Variables$Query$ArtistDetail<TRes>
+    implements CopyWith$Variables$Query$ArtistDetail<TRes> {
+  _CopyWithStubImpl$Variables$Query$ArtistDetail(this._res);
+
+  TRes _res;
+
+  call({String? id}) => _res;
+}
+
+class Query$ArtistDetail {
+  Query$ArtistDetail({this.artists, this.$__typename = 'QueryInitialization'});
+
+  factory Query$ArtistDetail.fromJson(Map<String, dynamic> json) {
+    final l$artists = json['artists'];
+    final l$$__typename = json['__typename'];
+    return Query$ArtistDetail(
+      artists: l$artists == null
+          ? null
+          : Query$ArtistDetail$artists.fromJson(
+              (l$artists as Map<String, dynamic>),
+            ),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$ArtistDetail$artists? artists;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$artists = artists;
+    _resultData['artists'] = l$artists?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$artists = artists;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$artists, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$ArtistDetail || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$artists = artists;
+    final lOther$artists = other.artists;
+    if (l$artists != lOther$artists) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$ArtistDetail on Query$ArtistDetail {
+  CopyWith$Query$ArtistDetail<Query$ArtistDetail> get copyWith =>
+      CopyWith$Query$ArtistDetail(this, (i) => i);
+}
+
+abstract class CopyWith$Query$ArtistDetail<TRes> {
+  factory CopyWith$Query$ArtistDetail(
+    Query$ArtistDetail instance,
+    TRes Function(Query$ArtistDetail) then,
+  ) = _CopyWithImpl$Query$ArtistDetail;
+
+  factory CopyWith$Query$ArtistDetail.stub(TRes res) =
+      _CopyWithStubImpl$Query$ArtistDetail;
+
+  TRes call({Query$ArtistDetail$artists? artists, String? $__typename});
+  CopyWith$Query$ArtistDetail$artists<TRes> get artists;
+}
+
+class _CopyWithImpl$Query$ArtistDetail<TRes>
+    implements CopyWith$Query$ArtistDetail<TRes> {
+  _CopyWithImpl$Query$ArtistDetail(this._instance, this._then);
+
+  final Query$ArtistDetail _instance;
+
+  final TRes Function(Query$ArtistDetail) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? artists = _undefined, Object? $__typename = _undefined}) =>
+      _then(
+        Query$ArtistDetail(
+          artists: artists == _undefined
+              ? _instance.artists
+              : (artists as Query$ArtistDetail$artists?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+        ),
+      );
+
+  CopyWith$Query$ArtistDetail$artists<TRes> get artists {
+    final local$artists = _instance.artists;
+    return local$artists == null
+        ? CopyWith$Query$ArtistDetail$artists.stub(_then(_instance))
+        : CopyWith$Query$ArtistDetail$artists(
+            local$artists,
+            (e) => call(artists: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Query$ArtistDetail<TRes>
+    implements CopyWith$Query$ArtistDetail<TRes> {
+  _CopyWithStubImpl$Query$ArtistDetail(this._res);
+
+  TRes _res;
+
+  call({Query$ArtistDetail$artists? artists, String? $__typename}) => _res;
+
+  CopyWith$Query$ArtistDetail$artists<TRes> get artists =>
+      CopyWith$Query$ArtistDetail$artists.stub(_res);
+}
+
+const documentNodeQueryArtistDetail = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'ArtistDetail'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'id')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'artists'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: 'eq'),
+                            value: VariableNode(name: NameNode(value: 'id')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'items'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'userId'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'stageName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'stageNameUnsigned'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'followerCount'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'bannerImage'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'avatarImage'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'isVerified'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ],
+      ),
+    ),
+  ],
+);
+Query$ArtistDetail _parserFn$Query$ArtistDetail(Map<String, dynamic> data) =>
+    Query$ArtistDetail.fromJson(data);
+typedef OnQueryComplete$Query$ArtistDetail =
+    FutureOr<void> Function(Map<String, dynamic>?, Query$ArtistDetail?);
+
+class Options$Query$ArtistDetail
+    extends graphql.QueryOptions<Query$ArtistDetail> {
+  Options$Query$ArtistDetail({
+    String? operationName,
+    required Variables$Query$ArtistDetail variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$ArtistDetail? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$ArtistDetail? onComplete,
+    graphql.OnQueryError? onError,
+  }) : onCompleteWithParsed = onComplete,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         pollInterval: pollInterval,
+         context: context,
+         onComplete: onComplete == null
+             ? null
+             : (data) => onComplete(
+                 data,
+                 data == null ? null : _parserFn$Query$ArtistDetail(data),
+               ),
+         onError: onError,
+         document: documentNodeQueryArtistDetail,
+         parserFn: _parserFn$Query$ArtistDetail,
+       );
+
+  final OnQueryComplete$Query$ArtistDetail? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onComplete == null
+        ? super.properties
+        : super.properties.where((property) => property != onComplete),
+    onCompleteWithParsed,
+  ];
+}
+
+class WatchOptions$Query$ArtistDetail
+    extends graphql.WatchQueryOptions<Query$ArtistDetail> {
+  WatchOptions$Query$ArtistDetail({
+    String? operationName,
+    required Variables$Query$ArtistDetail variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$ArtistDetail? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeQueryArtistDetail,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFn$Query$ArtistDetail,
+       );
+}
+
+class FetchMoreOptions$Query$ArtistDetail extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$ArtistDetail({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$ArtistDetail variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQueryArtistDetail,
+       );
+}
+
+extension ClientExtension$Query$ArtistDetail on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$ArtistDetail>> query$ArtistDetail(
+    Options$Query$ArtistDetail options,
+  ) async => await this.query(options);
+
+  graphql.ObservableQuery<Query$ArtistDetail> watchQuery$ArtistDetail(
+    WatchOptions$Query$ArtistDetail options,
+  ) => this.watchQuery(options);
+
+  void writeQuery$ArtistDetail({
+    required Query$ArtistDetail data,
+    required Variables$Query$ArtistDetail variables,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(document: documentNodeQueryArtistDetail),
+      variables: variables.toJson(),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+
+  Query$ArtistDetail? readQuery$ArtistDetail({
+    required Variables$Query$ArtistDetail variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryArtistDetail),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$ArtistDetail.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$ArtistDetail> useQuery$ArtistDetail(
+  Options$Query$ArtistDetail options,
+) => graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$ArtistDetail> useWatchQuery$ArtistDetail(
+  WatchOptions$Query$ArtistDetail options,
+) => graphql_flutter.useWatchQuery(options);
+
+class Query$ArtistDetail$Widget
+    extends graphql_flutter.Query<Query$ArtistDetail> {
+  Query$ArtistDetail$Widget({
+    widgets.Key? key,
+    required Options$Query$ArtistDetail options,
+    required graphql_flutter.QueryBuilder<Query$ArtistDetail> builder,
+  }) : super(key: key, options: options, builder: builder);
+}
+
+class Query$ArtistDetail$artists {
+  Query$ArtistDetail$artists({
+    this.items,
+    this.$__typename = 'ArtistsCollectionSegment',
+  });
+
+  factory Query$ArtistDetail$artists.fromJson(Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$ArtistDetail$artists(
+      items: (l$items as List<dynamic>?)
+          ?.map(
+            (e) => Query$ArtistDetail$artists$items.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$ArtistDetail$artists$items>? items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items?.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$items == null ? null : Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$ArtistDetail$artists ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != null && lOther$items != null) {
+      if (l$items.length != lOther$items.length) {
+        return false;
+      }
+      for (int i = 0; i < l$items.length; i++) {
+        final l$items$entry = l$items[i];
+        final lOther$items$entry = lOther$items[i];
+        if (l$items$entry != lOther$items$entry) {
+          return false;
+        }
+      }
+    } else if (l$items != lOther$items) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$ArtistDetail$artists
+    on Query$ArtistDetail$artists {
+  CopyWith$Query$ArtistDetail$artists<Query$ArtistDetail$artists>
+  get copyWith => CopyWith$Query$ArtistDetail$artists(this, (i) => i);
+}
+
+abstract class CopyWith$Query$ArtistDetail$artists<TRes> {
+  factory CopyWith$Query$ArtistDetail$artists(
+    Query$ArtistDetail$artists instance,
+    TRes Function(Query$ArtistDetail$artists) then,
+  ) = _CopyWithImpl$Query$ArtistDetail$artists;
+
+  factory CopyWith$Query$ArtistDetail$artists.stub(TRes res) =
+      _CopyWithStubImpl$Query$ArtistDetail$artists;
+
+  TRes call({
+    List<Query$ArtistDetail$artists$items>? items,
+    String? $__typename,
+  });
+  TRes items(
+    Iterable<Query$ArtistDetail$artists$items>? Function(
+      Iterable<
+        CopyWith$Query$ArtistDetail$artists$items<
+          Query$ArtistDetail$artists$items
+        >
+      >?,
+    )
+    _fn,
+  );
+}
+
+class _CopyWithImpl$Query$ArtistDetail$artists<TRes>
+    implements CopyWith$Query$ArtistDetail$artists<TRes> {
+  _CopyWithImpl$Query$ArtistDetail$artists(this._instance, this._then);
+
+  final Query$ArtistDetail$artists _instance;
+
+  final TRes Function(Query$ArtistDetail$artists) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? items = _undefined, Object? $__typename = _undefined}) =>
+      _then(
+        Query$ArtistDetail$artists(
+          items: items == _undefined
+              ? _instance.items
+              : (items as List<Query$ArtistDetail$artists$items>?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+        ),
+      );
+
+  TRes items(
+    Iterable<Query$ArtistDetail$artists$items>? Function(
+      Iterable<
+        CopyWith$Query$ArtistDetail$artists$items<
+          Query$ArtistDetail$artists$items
+        >
+      >?,
+    )
+    _fn,
+  ) => call(
+    items: _fn(
+      _instance.items?.map(
+        (e) => CopyWith$Query$ArtistDetail$artists$items(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+}
+
+class _CopyWithStubImpl$Query$ArtistDetail$artists<TRes>
+    implements CopyWith$Query$ArtistDetail$artists<TRes> {
+  _CopyWithStubImpl$Query$ArtistDetail$artists(this._res);
+
+  TRes _res;
+
+  call({List<Query$ArtistDetail$artists$items>? items, String? $__typename}) =>
+      _res;
+
+  items(_fn) => _res;
+}
+
+class Query$ArtistDetail$artists$items {
+  Query$ArtistDetail$artists$items({
+    required this.id,
+    required this.userId,
+    required this.stageName,
+    required this.stageNameUnsigned,
+    required this.followerCount,
+    this.bannerImage,
+    this.avatarImage,
+    required this.isVerified,
+    this.$__typename = 'Artist',
+  });
+
+  factory Query$ArtistDetail$artists$items.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$userId = json['userId'];
+    final l$stageName = json['stageName'];
+    final l$stageNameUnsigned = json['stageNameUnsigned'];
+    final l$followerCount = json['followerCount'];
+    final l$bannerImage = json['bannerImage'];
+    final l$avatarImage = json['avatarImage'];
+    final l$isVerified = json['isVerified'];
+    final l$$__typename = json['__typename'];
+    return Query$ArtistDetail$artists$items(
+      id: (l$id as String),
+      userId: (l$userId as String),
+      stageName: (l$stageName as String),
+      stageNameUnsigned: (l$stageNameUnsigned as String),
+      followerCount: (l$followerCount as int),
+      bannerImage: (l$bannerImage as String?),
+      avatarImage: (l$avatarImage as String?),
+      isVerified: (l$isVerified as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String userId;
+
+  final String stageName;
+
+  final String stageNameUnsigned;
+
+  final int followerCount;
+
+  final String? bannerImage;
+
+  final String? avatarImage;
+
+  final bool isVerified;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
+    final l$stageName = stageName;
+    _resultData['stageName'] = l$stageName;
+    final l$stageNameUnsigned = stageNameUnsigned;
+    _resultData['stageNameUnsigned'] = l$stageNameUnsigned;
+    final l$followerCount = followerCount;
+    _resultData['followerCount'] = l$followerCount;
+    final l$bannerImage = bannerImage;
+    _resultData['bannerImage'] = l$bannerImage;
+    final l$avatarImage = avatarImage;
+    _resultData['avatarImage'] = l$avatarImage;
+    final l$isVerified = isVerified;
+    _resultData['isVerified'] = l$isVerified;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$userId = userId;
+    final l$stageName = stageName;
+    final l$stageNameUnsigned = stageNameUnsigned;
+    final l$followerCount = followerCount;
+    final l$bannerImage = bannerImage;
+    final l$avatarImage = avatarImage;
+    final l$isVerified = isVerified;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$userId,
+      l$stageName,
+      l$stageNameUnsigned,
+      l$followerCount,
+      l$bannerImage,
+      l$avatarImage,
+      l$isVerified,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$ArtistDetail$artists$items ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$stageName = stageName;
+    final lOther$stageName = other.stageName;
+    if (l$stageName != lOther$stageName) {
+      return false;
+    }
+    final l$stageNameUnsigned = stageNameUnsigned;
+    final lOther$stageNameUnsigned = other.stageNameUnsigned;
+    if (l$stageNameUnsigned != lOther$stageNameUnsigned) {
+      return false;
+    }
+    final l$followerCount = followerCount;
+    final lOther$followerCount = other.followerCount;
+    if (l$followerCount != lOther$followerCount) {
+      return false;
+    }
+    final l$bannerImage = bannerImage;
+    final lOther$bannerImage = other.bannerImage;
+    if (l$bannerImage != lOther$bannerImage) {
+      return false;
+    }
+    final l$avatarImage = avatarImage;
+    final lOther$avatarImage = other.avatarImage;
+    if (l$avatarImage != lOther$avatarImage) {
+      return false;
+    }
+    final l$isVerified = isVerified;
+    final lOther$isVerified = other.isVerified;
+    if (l$isVerified != lOther$isVerified) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$ArtistDetail$artists$items
+    on Query$ArtistDetail$artists$items {
+  CopyWith$Query$ArtistDetail$artists$items<Query$ArtistDetail$artists$items>
+  get copyWith => CopyWith$Query$ArtistDetail$artists$items(this, (i) => i);
+}
+
+abstract class CopyWith$Query$ArtistDetail$artists$items<TRes> {
+  factory CopyWith$Query$ArtistDetail$artists$items(
+    Query$ArtistDetail$artists$items instance,
+    TRes Function(Query$ArtistDetail$artists$items) then,
+  ) = _CopyWithImpl$Query$ArtistDetail$artists$items;
+
+  factory CopyWith$Query$ArtistDetail$artists$items.stub(TRes res) =
+      _CopyWithStubImpl$Query$ArtistDetail$artists$items;
+
+  TRes call({
+    String? id,
+    String? userId,
+    String? stageName,
+    String? stageNameUnsigned,
+    int? followerCount,
+    String? bannerImage,
+    String? avatarImage,
+    bool? isVerified,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$ArtistDetail$artists$items<TRes>
+    implements CopyWith$Query$ArtistDetail$artists$items<TRes> {
+  _CopyWithImpl$Query$ArtistDetail$artists$items(this._instance, this._then);
+
+  final Query$ArtistDetail$artists$items _instance;
+
+  final TRes Function(Query$ArtistDetail$artists$items) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? userId = _undefined,
+    Object? stageName = _undefined,
+    Object? stageNameUnsigned = _undefined,
+    Object? followerCount = _undefined,
+    Object? bannerImage = _undefined,
+    Object? avatarImage = _undefined,
+    Object? isVerified = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Query$ArtistDetail$artists$items(
+      id: id == _undefined || id == null ? _instance.id : (id as String),
+      userId: userId == _undefined || userId == null
+          ? _instance.userId
+          : (userId as String),
+      stageName: stageName == _undefined || stageName == null
+          ? _instance.stageName
+          : (stageName as String),
+      stageNameUnsigned:
+          stageNameUnsigned == _undefined || stageNameUnsigned == null
+          ? _instance.stageNameUnsigned
+          : (stageNameUnsigned as String),
+      followerCount: followerCount == _undefined || followerCount == null
+          ? _instance.followerCount
+          : (followerCount as int),
+      bannerImage: bannerImage == _undefined
+          ? _instance.bannerImage
+          : (bannerImage as String?),
+      avatarImage: avatarImage == _undefined
+          ? _instance.avatarImage
+          : (avatarImage as String?),
+      isVerified: isVerified == _undefined || isVerified == null
+          ? _instance.isVerified
+          : (isVerified as bool),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+}
+
+class _CopyWithStubImpl$Query$ArtistDetail$artists$items<TRes>
+    implements CopyWith$Query$ArtistDetail$artists$items<TRes> {
+  _CopyWithStubImpl$Query$ArtistDetail$artists$items(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? userId,
+    String? stageName,
+    String? stageNameUnsigned,
+    int? followerCount,
+    String? bannerImage,
+    String? avatarImage,
+    bool? isVerified,
+    String? $__typename,
+  }) => _res;
+}

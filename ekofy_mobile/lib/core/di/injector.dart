@@ -34,6 +34,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 final dioProvider = Provider<Dio>((ref) {
   dioConfig;
   dioConfig.interceptors.add(AuthInterceptor(ref));
+  dioConfig.interceptors.addAll([ErrorInterceptor()]);
   return dioConfig;
 });
 

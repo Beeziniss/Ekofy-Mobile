@@ -1,0 +1,424 @@
+import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
+import 'package:ekofy_mobile/features/track/data/models/track_model.dart';
+import 'package:ekofy_mobile/features/track/presentation/providers/track_providers.dart';
+import 'package:ekofy_mobile/features/track/presentation/widgets/audio_player_controls.dart';
+import 'package:ekofy_mobile/features/track/presentation/widgets/audio_progress_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+class TrackDetailScreen extends ConsumerWidget {
+  final String trackId;
+
+  const TrackDetailScreen({super.key, required this.trackId});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final trackState = ref.watch(trackDetailProvider(trackId));
+
+    return Scaffold(
+      backgroundColor: AppColors.primaryBackground,
+      body: trackState.when(
+        data: (track) {
+          if (track == null) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Track not found'),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => context.pop(),
+                    child: const Text('Go Back'),
+                  ),
+                ],
+              ),
+            );
+          }
+          return _buildTrackDetail(context, track);
+        },
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, stack) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, size: 60, color: Colors.red),
+              const SizedBox(height: 16),
+              Text(
+                'Error: ${error.toString()}',
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.red),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () => context.pop(),
+                child: const Text('Go Back'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTrackDetail(BuildContext context, TrackModel track) {
+    return Consumer(
+      builder: (context, ref, child) {
+        return Scaffold(
+          appBar: AppBar(
+        backgroundColor: AppColors.primaryBackground,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => context.pop(),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.more_vert, color: Colors.white),
+            onPressed: () => _showMoreOptions(context, track),
+          ),
+        ],
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Track cover image
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Image.network(
+                    track.coverImage,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: Colors.deepPurple.shade100,
+                        child: const Icon(
+                          Icons.music_note,
+                          size: 100,
+                          color: Colors.white,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+
+            // Track info with heart icon
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () =>
+                              _showTrackNameDialog(context, track.name),
+                          child: Text(
+                            track.name,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          track.artistNames,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      // TODO: Implement favorite toggle
+                    },
+                    icon: Icon(
+                      track.checkTrackInFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: track.checkTrackInFavorite
+                          ? Colors.green
+                          : Colors.white,
+                      size: 28,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            // Progress bar
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: AudioProgressBar(
+                onSeek: (position) {
+                  final service = ref.read(audioPlayerServiceProvider);
+                  service.seek(position);
+                },
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // Playback controls
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: AudioPlayerControls(
+                onPlayPause: () => _handlePlayPause(ref, track),
+                onNext: () {
+                  final service = ref.read(audioPlayerServiceProvider);
+                  service.seekToNext();
+                },
+                onPrevious: () {
+                  final service = ref.read(audioPlayerServiceProvider);
+                  service.seekToPrevious();
+                },
+                onShuffle: () {
+                  final service = ref.read(audioPlayerServiceProvider);
+                  service.toggleShuffleMode();
+                },
+                onRepeat: () {
+                  final service = ref.read(audioPlayerServiceProvider);
+                  service.toggleLoopMode();
+                },
+              ),
+            ),
+
+            const SizedBox(height: 32),
+
+            // Artists section
+            if (track.mainArtists.isNotEmpty) ...[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Artists',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    ...track.mainArtists.map((artist) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.grey[800],
+                            backgroundImage: artist.avatarImage != null
+                                ? NetworkImage(artist.avatarImage!)
+                                : null,
+                            child: artist.avatarImage == null
+                                ? Text(
+                                    artist.stageName[0].toUpperCase(),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                : null,
+                          ),
+                          title: Text(
+                            artist.stageName,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          subtitle: artist.followerCount != null
+                              ? Text(
+                                  '${artist.followerCount} followers',
+                                  style: TextStyle(color: Colors.grey[400]),
+                                )
+                              : Text(
+                                  'Artist',
+                                  style: TextStyle(color: Colors.grey[400]),
+                                ),
+                          trailing: artist.checkUserFollowing != null
+                              ? OutlinedButton(
+                                  onPressed: () {
+                                    // TODO: Implement follow/unfollow
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    side: BorderSide(
+                                      color: artist.checkUserFollowing!
+                                          ? Colors.grey[600]!
+                                          : Colors.blue,
+                                    ),
+                                    foregroundColor: artist.checkUserFollowing!
+                                        ? Colors.grey[400]
+                                        : Colors.blue,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 4,
+                                    ),
+                                  ),
+                                  child: Text(
+                                    artist.checkUserFollowing!
+                                        ? 'Following'
+                                        : 'Follow',
+                                  ),
+                                )
+                              : const Icon(
+                                  Icons.chevron_right,
+                                  color: Colors.white,
+                                ),
+                          onTap: () {
+                            // TODO: Navigate to artist detail
+                          },
+                        ),
+                      );
+                    }).toList(),
+                  ],
+                ),
+              ),
+            ],
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _handlePlayPause(WidgetRef ref, TrackModel track) async {
+    final service = ref.read(audioPlayerServiceProvider);
+    final currentTrack = service.currentTrack;
+    
+    try {
+      if (currentTrack?.id == track.id) {
+        // Same track - toggle play/pause
+        if (service.isPlaying) {
+          await service.pause();
+        } else {
+          await service.play();
+        }
+      } else {
+        // Different track - load and play
+        await service.playTrack(track);
+        ref.read(currentTrackProvider.notifier).state = track;
+      }
+    } catch (e) {
+      print('Error handling play/pause: $e');
+      // Show error snackbar
+      if (ref.context.mounted) {
+        ScaffoldMessenger.of(ref.context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to play track: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  void _showTrackNameDialog(BuildContext context, String trackName) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.secondaryBackground,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: const Text(
+          'Track Name',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        content: Text(
+          trackName,
+          style: const TextStyle(color: Colors.white, fontSize: 16),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close', style: TextStyle(color: Colors.blue)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showMoreOptions(BuildContext context, TrackModel track) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.secondaryBackground,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 8),
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey[600],
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(height: 20),
+              ListTile(
+                leading: const Icon(Icons.playlist_add, color: Colors.white),
+                title: const Text(
+                  'Add to playlist',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  // TODO: Implement add to playlist
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.share, color: Colors.white),
+                title: const Text(
+                  'Share',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  // TODO: Implement share
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.info_outline, color: Colors.white),
+                title: const Text(
+                  'View artist',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  // TODO: Navigate to artist detail
+                },
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+        );
+      },
+    );
+  }
+}

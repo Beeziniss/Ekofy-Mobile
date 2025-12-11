@@ -52,12 +52,14 @@ class _ConversationDetailScreenState
       _signalRNotifier = createConversationSignalRNotifier(token);
 
       // Set up event listeners
-      _signalRNotifier!.onMessageReceived((message) {
-        log('Received message: ${message.id} ${message.senderProfile}');
+      _signalRNotifier!.onMessageReceived((message, senderProfile) {
+        log('Received message: ${message.id} from ${senderProfile.nickname}');
         if (message.conversationId == widget.conversationId) {
+          // Merge the separate senderProfile into the message
+          final updatedMessage = message.copyWith(senderProfile: senderProfile);
           ref
               .read(inboxProvider.notifier)
-              .addMessageToConversation(widget.conversationId, message);
+              .addMessageToConversation(widget.conversationId, updatedMessage);
           // Auto-scroll to bottom when receiving a message
           WidgetsBinding.instance.addPostFrameCallback((_) {
             _scrollToBottom(animate: true);

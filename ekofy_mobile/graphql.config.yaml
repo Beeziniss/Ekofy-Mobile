@@ -1,0 +1,2 @@
+schema: "lib/gql/schema.graphql"
+documents: "lib/**/*.{graphql,dart}"

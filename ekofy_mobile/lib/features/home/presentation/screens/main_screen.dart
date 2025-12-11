@@ -3,12 +3,12 @@ import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/core/utils/notification.dart';
 import 'package:ekofy_mobile/features/home/data/models/menu_enum.dart';
+import 'package:ekofy_mobile/features/track/presentation/providers/track_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:ekofy_mobile/features/home/presentation/providers/home_providers.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -27,6 +27,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void initState() {
     super.initState();
     // notificationService.firebaseInit(context);
+    // Fetch tracks when screen initializes
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(trackListProvider.notifier).fetchTracks(12);
+    });
   }
 
   @override
@@ -35,6 +39,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     ref.watch(decodeJwtOnInitProvider);
 
     final payload = ref.watch(jwtPayloadProvider);
+    final trackListState = ref.watch(trackListProvider);
 
     if (payload == null) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
@@ -47,71 +52,41 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         leading: _appBarLeading(),
         actions: [_notification(), _profileAction(payload)],
       ),
-      body: Query(
-        options: QueryOptions(
-          document: gql('''
-            query CombinedQuery() {
-              tracks(take: 40) {
-                items {
-                  id
-                  name
-                  mainArtistIds
-                  coverImage
-                }
-              }
-              artists {
-                items {
-                  id
-                  stageName
-                }
-              }
-            }
-          '''),
-          variables: const {'take': 10},
-        ),
-        builder: (result, {refetch, fetchMore}) {
-          final tracks = _parseTracksData(result);
-          final isLoading = result.isLoading;
-          final hasException = result.hasException;
-          final errorMessage = result.exception?.toString();
+      body: trackListState.isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : trackListState.error != null
+          ? _errorWidget(
+              trackListState.error!,
+              () => ref.read(trackListProvider.notifier).fetchTracks(12),
+            )
+          : _homeBodyContent(
+              tracks: trackListState.tracks,
+              refetch: () =>
+                  ref.read(trackListProvider.notifier).fetchTracks(12),
+            ),
+    );
+  }
 
-          return _homeBodyContent(
-            tracks: tracks,
-            refetch: refetch,
-            isLoading: isLoading,
-            hasException: hasException,
-            errorMessage: errorMessage,
-          );
-        },
+  Widget _errorWidget(String errorMessage, VoidCallback onRetry) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.error_outline, size: 60, color: Colors.red),
+          const SizedBox(height: 16),
+          Text(
+            'Error: $errorMessage',
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.red),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(onPressed: onRetry, child: const Text('Retry')),
+        ],
       ),
     );
   }
 
-  /// Parse tracks data from GraphQL result
-  List<Map<String, dynamic>> _parseTracksData(QueryResult result) {
-    return (result.data?['tracks']['items'] as List?)
-            ?.map((track) {
-              final artistIds = List<String>.from(track['mainArtistIds'] ?? []);
-              final artistNames = (result.data?['artists']['items'] as List?)
-                  ?.where((artist) => artistIds.contains(artist['id']))
-                  .map((artist) => artist['stageName'] as String)
-                  .toList();
-              return {
-                'id': track['id'],
-                'name': track['name'],
-                'coverImage': track['coverImage'],
-                'artistNames': artistNames,
-              };
-            })
-            .whereType<Map<String, dynamic>>()
-            .toList() ??
-        [];
-  }
-
-  Widget _buildTracksList(
-    List<Map<String, dynamic>> tracks,
-    VoidCallback? refetch,
-  ) {
+  Widget _buildTracksList(tracks, VoidCallback? refetch) {
     if (tracks.isEmpty) {
       return Padding(
         padding: const EdgeInsets.all(30),
@@ -138,47 +113,53 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           itemBuilder: (context, index) {
             final track = tracks[index];
 
-            return IntrinsicHeight(
-              child: SizedBox(
-                width: 120,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple.shade100,
-                        borderRadius: BorderRadius.circular(12),
-                        image: DecorationImage(
-                          image: NetworkImage(track['coverImage']),
-                          fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                // Navigate to track detail
+                context.push('${RouteName.trackDetail}/${track.id}');
+              },
+              child: IntrinsicHeight(
+                child: SizedBox(
+                  width: 120,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.deepPurple.shade100,
+                          borderRadius: BorderRadius.circular(12),
+                          image: DecorationImage(
+                            image: NetworkImage(track.coverImage),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.music_note,
+                          size: 40,
+                          color: Colors.white,
                         ),
                       ),
-                      child: const Icon(
-                        Icons.music_note,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      track['name'],
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const Spacer(),
-                    if (track['artistNames'] != null &&
-                        track['artistNames'].isNotEmpty)
+                      const SizedBox(height: 6),
                       Text(
-                        '${track['artistNames'].join(', ')}',
-                        style: TextStyle(fontSize: 11, color: Colors.grey[600]),
+                        track.name,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                  ],
+                      const Spacer(),
+                      Text(
+                        track.artistNames,
+                        style: TextStyle(fontSize: 11, color: Colors.grey[600]),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -189,39 +170,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   /// Build home body content based on query state
-  Widget _homeBodyContent({
-    required List<Map<String, dynamic>> tracks,
-    VoidCallback? refetch,
-    required bool isLoading,
-    required bool hasException,
-    String? errorMessage,
-  }) {
-    if (isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (hasException) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.error_outline, size: 60, color: Colors.red),
-            const SizedBox(height: 16),
-            Text(
-              'Error: ${errorMessage ?? 'Unknown error'}',
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.red),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => refetch?.call(),
-              child: const Text('Retry'),
-            ),
-          ],
-        ),
-      );
-    }
-
+  Widget _homeBodyContent({required tracks, VoidCallback? refetch}) {
     return SingleChildScrollView(
       padding: const EdgeInsets.only(bottom: 30),
       child: Column(

@@ -45,7 +45,7 @@ class ConversationSignalRNotifier extends ChangeNotifier {
   String? _error;
   final String accessToken;
 
-  Function(MessageItem)? _onMessageReceived;
+  Function(MessageItem, MessageSenderProfile)? _onMessageReceived;
   Function(MessageItem)? _onMessageSent;
   Function(MessageDeletedData)? _onMessageDeleted;
   Function(String)? _onException;
@@ -158,13 +158,20 @@ class ConversationSignalRNotifier extends ChangeNotifier {
   }
 
   void _handleReceiveMessage(List<Object?>? arguments) {
-    if (arguments == null || arguments.isEmpty) return;
+    if (arguments == null || arguments.length < 2) return;
 
     try {
       final messageData = arguments[0] as Map<String, dynamic>;
+      final senderProfileData = arguments[1] as Map<String, dynamic>;
+
       final message = _parseMessageFromSignalR(messageData);
-      log('Message received: ${message.id}');
-      _onMessageReceived?.call(message);
+      final senderProfile = MessageSenderProfile(
+        avatar: senderProfileData['avatar'] as String?,
+        nickname: senderProfileData['nickname'] as String?,
+      );
+
+      log('Message received: ${message.id} from ${senderProfile.nickname}');
+      _onMessageReceived?.call(message, senderProfile);
     } catch (e) {
       log('Error handling received message: $e');
     }
@@ -232,7 +239,7 @@ class ConversationSignalRNotifier extends ChangeNotifier {
   }
 
   // Event callback setters
-  void onMessageReceived(Function(MessageItem) callback) {
+  void onMessageReceived(Function(MessageItem, MessageSenderProfile) callback) {
     _onMessageReceived = callback;
   }
 

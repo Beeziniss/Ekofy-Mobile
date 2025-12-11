@@ -9,6 +9,7 @@ class KeyValueRow {
 class KeyValueTable extends StatelessWidget {
   final List<KeyValueRow> rows;
   final EdgeInsetsGeometry padding;
+
   /// When true, draws an outlined container and alternating row backgrounds.
   /// When false, renders a simple list suitable for embedding inside another block.
   final bool outlined;
@@ -27,10 +28,15 @@ class KeyValueTable extends StatelessWidget {
       children: [
         for (int i = 0; i < rows.length; i++)
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12).add(padding),
+            padding: EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 12,
+            ).add(padding),
             decoration: outlined
                 ? BoxDecoration(
-                    color: i % 2 == 0 ? const Color(0xFF111111) : const Color(0xFF0F0F0F),
+                    color: i % 2 == 0
+                        ? const Color(0xFF111111)
+                        : const Color(0xFF0F0F0F),
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(i == 0 ? 12 : 0),
                       bottom: Radius.circular(i == rows.length - 1 ? 12 : 0),
@@ -41,8 +47,13 @@ class KeyValueTable extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 130,
-                  child: Text(rows[i].label, style: theme.textTheme.bodySmall?.copyWith(color: Colors.white70)),
+                  width: 80,
+                  child: Text(
+                    rows[i].label,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: Colors.white70,
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 8),
                 Expanded(child: rows[i].value),

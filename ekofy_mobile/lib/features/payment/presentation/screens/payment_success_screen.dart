@@ -18,8 +18,8 @@ class PaymentSuccessScreen extends StatelessWidget {
             const Text('Payment Successful!', style: TextStyle(fontSize: 24)),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => context.go(RouteName.payment),
-              child: const Text('Go Payment'),
+              onPressed: () => context.go(RouteName.home),
+              child: const Text('Return Home'),
             ),
           ],
         ),

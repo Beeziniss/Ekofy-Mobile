@@ -1,0 +1,22 @@
+query InvoicesByUserId ($userId: String!) {
+    invoicesByUserId(userId: $userId) {
+        totalCount
+        items {
+            id
+            fullName
+            email
+            amount
+            currency
+            from
+            to
+            paidAt
+            transaction {
+                paymentStatus
+                stripePaymentMethod
+            }
+            oneOffSnapshot {
+                packageName
+            }
+        }
+    }
+}

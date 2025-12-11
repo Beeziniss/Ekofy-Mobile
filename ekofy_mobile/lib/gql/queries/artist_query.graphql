@@ -13,32 +13,55 @@ query ArtistInLibraryQuery {
     }
 }
 
-# query ArtistProfileQuery($where: ArtistFilterInput!) {
-#     artists(where: $where) {
-#         items {
-#             id
-#             userId
-#             stageName
-#             stageNameUnsigned
-#             bio
-#             avatarImage
-#             bannerImage
-#             socialLinks {
-#                 platform
-#                 url
-#             }
-#             followerCount
-#             isVerified
-#             genres {
-#                 id
-#                 name
-#             }
-#             tracks {
-#                 totalCount
-#             }
-#             albums {
-#                 totalCount
-#             }
-#         }
-#     }
-# }
+query ArtistPackages($artistId: String!, $take: Int, $skip: Int) {
+    artistPackages(
+        where: { artistId: { eq: $artistId }, status: { eq: ENABLED }, isDelete: { eq: false } }
+        take: $take
+        skip: $skip
+    ) {
+        totalCount
+        items {
+            id
+            packageName
+            amount
+            currency
+            description
+            isDelete
+        }
+    }
+}
+
+query ArtistPackageDetails($id: String!) {
+    artistPackages(where: { id: { eq: $id } }) {
+        totalCount
+        items {
+            id
+            artistId
+            packageName
+            amount
+            currency
+            estimateDeliveryDays
+            description
+            maxRevision
+            serviceDetails {
+                key
+                value
+            }
+        }
+    }
+}
+
+query ArtistDetail($id: String!) {
+    artists(where: { id: { eq: $id } }) {
+        items {
+            id
+            userId
+            stageName
+            stageNameUnsigned
+            followerCount
+            bannerImage
+            avatarImage
+            isVerified
+        }
+    }
+}

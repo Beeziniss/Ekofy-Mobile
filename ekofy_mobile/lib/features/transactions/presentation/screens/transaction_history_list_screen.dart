@@ -1,27 +1,27 @@
+import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../data/repositories/mock_transaction_repository.dart';
-import '../../data/repositories/transaction_repository.dart';
 import '../../domain/models/transaction_item.dart';
 import '../widgets/transaction_status_badge.dart';
 
-class TransactionHistoryListScreen extends StatefulWidget {
-  final TransactionRepository repository;
-  TransactionHistoryListScreen({super.key, TransactionRepository? repository})
-      : repository = repository ?? MockTransactionRepository(); //INFO: default mock repo
+class TransactionHistoryListScreen extends ConsumerStatefulWidget {
+  const TransactionHistoryListScreen({super.key});
 
   @override
-  State<TransactionHistoryListScreen> createState() => _TransactionHistoryListScreenState();
+  ConsumerState<TransactionHistoryListScreen> createState() =>
+      _TransactionHistoryListScreenState();
 }
 
-class _TransactionHistoryListScreenState extends State<TransactionHistoryListScreen> {
+class _TransactionHistoryListScreenState
+    extends ConsumerState<TransactionHistoryListScreen> {
   late Future<List<TransactionItem>> _future;
 
   @override
   void initState() {
     super.initState();
-    _future = widget.repository.listTransactions();
+    _future = ref.read(transactionRepositoryProvider).listTransactions();
   }
 
   @override
@@ -29,13 +29,14 @@ class _TransactionHistoryListScreenState extends State<TransactionHistoryListScr
     return Scaffold(
       backgroundColor: const Color(0xFF0B0B0E),
       appBar: AppBar(
-        title: const Text('Payment History', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-        
+        title: const Text(
+          'Payment History',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          
           Expanded(
             child: FutureBuilder<List<TransactionItem>>(
               future: _future,
@@ -45,22 +46,34 @@ class _TransactionHistoryListScreenState extends State<TransactionHistoryListScr
                 }
                 if (snapshot.hasError) {
                   return Center(
-                    child: Text('Failed to load transactions', style: const TextStyle(color: Colors.white70)),
+                    child: Text(
+                      'Failed to load transactions',
+                      style: const TextStyle(color: Colors.white70),
+                    ),
                   );
                 }
                 final data = snapshot.data ?? const [];
                 if (data.isEmpty) {
                   return const Center(
-                    child: Text('No transactions found.', style: TextStyle(color: Colors.white70)),
+                    child: Text(
+                      'No transactions found.',
+                      style: TextStyle(color: Colors.white70),
+                    ),
                   );
                 }
                 return ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   itemCount: data.length,
                   separatorBuilder: (_, __) => const SizedBox(height: 12),
                   itemBuilder: (context, i) {
                     final t = data[i];
-                    return _TransactionCard(item: t, onTap: () => context.push('/transactions/${t.id}'));
+                    return _TransactionCard(
+                      item: t,
+                      onTap: () => context.push('/transactions/${t.id}'),
+                    );
                   },
                 );
               },
@@ -92,18 +105,39 @@ class _TransactionCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text(formatShortId(item.id),
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
-                  const Spacer(),
-                  TransactionStatusBadge(status: item.status),
+                  Text(
+                    formatShortId(item.id),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  // const Spacer(),
+                  // TransactionStatusBadge(status: item.status),
                 ],
               ),
               const SizedBox(height: 8),
               Text(
                 formatAmountMajor(item.amountMinor, item.currency),
-                style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               const SizedBox(height: 4),
+              if (item.from != null && item.to != null) ...[
+                Text(
+                  'From: ${item.from!}',
+                  style: const TextStyle(color: Colors.white70, fontSize: 13),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'To: ${item.to!}',
+                  style: const TextStyle(color: Colors.white70, fontSize: 13),
+                ),
+                const SizedBox(height: 4),
+              ],
               Text(
                 _formatDate(item.createdAt),
                 style: const TextStyle(color: Colors.white54, fontSize: 12),

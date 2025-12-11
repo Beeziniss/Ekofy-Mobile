@@ -13,16 +13,19 @@ import 'package:ekofy_mobile/features/auth/presentation/providers/auth_provider.
 import 'package:ekofy_mobile/features/profile/data/datasource/profile_api_datasource.dart';
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_notifier.dart';
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_state.dart';
-import 'package:ekofy_mobile/features/request_hub/data/datasources/request_api_datasource.dart';
-import 'package:ekofy_mobile/features/request_hub/data/repositories/request_repository_impl.dart';
-import 'package:ekofy_mobile/features/request_hub/domain/repositories/request_repository.dart';
-import 'package:ekofy_mobile/features/request_hub/presentation/providers/public_request/request_notifier.dart';
-import 'package:ekofy_mobile/features/request_hub/presentation/providers/public_request/request_state.dart';
+import 'package:ekofy_mobile/features/request/data/datasources/request_api_datasource.dart';
+import 'package:ekofy_mobile/features/request/data/repositories/request_repository_impl.dart';
+import 'package:ekofy_mobile/features/request/domain/repositories/request_repository.dart';
+import 'package:ekofy_mobile/features/request/presentation/providers/public_request/request_notifier.dart';
+import 'package:ekofy_mobile/features/request/presentation/providers/public_request/request_state.dart';
 import 'package:ekofy_mobile/features/inbox/data/datasource/inbox_api_datasource.dart';
 import 'package:ekofy_mobile/features/inbox/data/repositories/inbox_repository_impl.dart';
 import 'package:ekofy_mobile/features/inbox/domain/repositories/inbox_repository.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/providers/inbox_notifier.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/providers/inbox_state.dart';
+import 'package:ekofy_mobile/features/transactions/data/datasource/transaction_api_datasource.dart';
+import 'package:ekofy_mobile/features/transactions/data/repositories/transaction_repository.dart';
+import 'package:ekofy_mobile/features/transactions/data/repositories/transaction_repository_impl.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -106,7 +109,7 @@ final requestProvider = StateNotifierProvider<RequestNotifier, RequestState>((
   ref,
 ) {
   final requestRepository = ref.read(requestRepositoryProvider);
-  return RequestNotifier(requestRepository);
+  return RequestNotifier(ref, requestRepository);
 });
 
 //* INBOX INJECT
@@ -123,5 +126,19 @@ final inboxRepositoryProvider = Provider<InboxRepository>((ref) {
 final inboxProvider = StateNotifierProvider<InboxNotifier, InboxState>((ref) {
   final inboxRepository = ref.read(inboxRepositoryProvider);
   return InboxNotifier(inboxRepository, ref);
+});
+//* =========
+
+//* TRANSACTION INJECT
+final transactionApiDatasourceProvider = Provider<TransactionApiDatasource>((
+  ref,
+) {
+  final client = ref.watch(graphqlClientProvider);
+  return TransactionApiDatasource(client);
+});
+
+final transactionRepositoryProvider = Provider<TransactionRepository>((ref) {
+  final datasource = ref.watch(transactionApiDatasourceProvider);
+  return TransactionRepositoryImpl(datasource, ref);
 });
 //* =========

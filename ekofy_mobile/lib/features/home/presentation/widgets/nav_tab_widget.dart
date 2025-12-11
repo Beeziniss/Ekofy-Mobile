@@ -5,7 +5,7 @@ import 'package:ekofy_mobile/core/providers/theme_provider.dart';
 import 'package:ekofy_mobile/features/home/presentation/screens/main_screen.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
 import 'package:ekofy_mobile/features/payment/presentation/screens/payment_screen.dart';
-import 'package:ekofy_mobile/features/request_hub/presentation/screens/public_request/request_hub_screen.dart';
+import 'package:ekofy_mobile/features/request/presentation/screens/public_request/request_hub_screen.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/screens/inbox_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,7 +55,7 @@ class _NavTabState extends ConsumerState<NavTab>
         children: [
           HomeScreen(scaffoldKey: _scaffoldKey),
           const LibraryPage(),
-          const PaymentScreen(),
+          // const PaymentScreen(),
           const RequestHubScreen(),
           const InboxScreen(),
         ],
@@ -121,16 +121,16 @@ class _NavTabState extends ConsumerState<NavTab>
                   height: 25,
                 ),
               ),
-              Tab(
-                text: 'Payment',
-                icon: SvgPicture.asset(
-                  selectTab == 2
-                      ? AppVectors.searchIconActive
-                      : AppVectors.searchIconInactive,
-                  width: 25,
-                  height: 25,
-                ),
-              ),
+              // Tab(
+              //   text: 'Payment',
+              //   icon: SvgPicture.asset(
+              //     selectTab == 2
+              //         ? AppVectors.searchIconActive
+              //         : AppVectors.searchIconInactive,
+              //     width: 25,
+              //     height: 25,
+              //   ),
+              // ),
               Tab(
                 text: 'Hub',
                 icon: SvgPicture.asset(
@@ -202,6 +202,21 @@ class _NavTabState extends ConsumerState<NavTab>
                 context.push(
                   '/transactions',
                 ); //INFO: Navigate to UI-only transactions list
+              },
+            ),
+            const Divider(height: 1),
+            ListTile(
+              leading: Icon(
+                Icons.card_travel_sharp,
+                color: textColor.withOpacity(0.7),
+              ),
+              title: Text('Order History', style: TextStyle(color: textColor)),
+              onTap: () {
+                // Close drawer then navigate
+                // Navigator.of(context).pop();
+                // context.push(
+                //   '/transactions',
+                // );
               },
             ),
             const Divider(height: 1),

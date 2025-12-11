@@ -1,23 +1,32 @@
-
 import 'package:ekofy_mobile/features/transactions/domain/models/transaction_status.dart';
 
 class TransactionItem {
   final String id;
-  final String stripePaymentId;
+  final String? stripePaymentId;
   final int amountMinor; //INFO: minor units (e.g. cents)
   final String currency; // e.g. "USD"
   final DateTime createdAt;
-  final TransactionStatus status;
+  // final TransactionStatus status;
   final List<String> paymentMethods; // e.g. ["CARD", "WALLET"]
+  final String? packageName;
+  final String? fullName;
+  final String? email;
+  final String? from;
+  final String? to;
 
   const TransactionItem({
     required this.id,
-    required this.stripePaymentId,
+    this.stripePaymentId,
     required this.amountMinor,
     required this.currency,
     required this.createdAt,
-    required this.status,
+    // required this.status,
     required this.paymentMethods,
+    this.packageName,
+    this.fullName,
+    this.email,
+    this.from,
+    this.to,
   });
 }
 

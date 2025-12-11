@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:ekofy_mobile/features/library/presentation/providers/library_provider.dart';
+import 'package:ekofy_mobile/features/library/presentation/providers/library_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/datasources/library_mock_datasource.dart';
 import '../../data/models/library_models.dart';
@@ -13,14 +16,14 @@ import '../widgets/album_card.dart';
 import '../widgets/artist_card.dart';
 import '../widgets/user_tile.dart';
 
-class LibraryPage extends StatefulWidget {
+class LibraryPage extends ConsumerStatefulWidget {
   const LibraryPage({super.key});
 
   @override
-  State<LibraryPage> createState() => _LibraryPageState();
+  ConsumerState<LibraryPage> createState() => _LibraryPageState();
 }
 
-class _LibraryPageState extends State<LibraryPage>
+class _LibraryPageState extends ConsumerState<LibraryPage>
     with SingleTickerProviderStateMixin {
   //INFO: Sử dụng LibraryMockDataSource (mock). Thay bằng Repository/API thật khi backend sẵn sàng.
   final _ds = LibraryMockDataSource();
@@ -52,7 +55,6 @@ class _LibraryPageState extends State<LibraryPage>
   List<AppUser> _allFollowers = [];
   List<AppUser> _visibleFollowers = [];
 
- 
   // UI states
   String? _currentlyPlayingPlaylistId;
   // Removed grid mode and favorites in Library per new spec
@@ -61,7 +63,7 @@ class _LibraryPageState extends State<LibraryPage>
   @override
   void initState() {
     super.initState();
-  _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
     _tabController.addListener(() {
       if (_activeTab != _tabController.index) {
         setState(() => _activeTab = _tabController.index);
@@ -71,6 +73,10 @@ class _LibraryPageState extends State<LibraryPage>
       _searchCtrls[i].addListener(() => _onSearchChanged(i));
     }
     _loadInitial();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(libraryProvider.notifier).fetchArtists();
+    });
   }
 
   @override
@@ -322,7 +328,6 @@ class _LibraryPageState extends State<LibraryPage>
     _applyFollowersFilters();
     setState(() => _isLoading[4] = false);
   }
-
 
   // ----- UI -----
   @override
@@ -680,7 +685,9 @@ class _LibraryPageState extends State<LibraryPage>
                         showFavorite: true,
                         onToggleFavorite: () {
                           // Toggle to unfavorite and remove from list
-                          final idx = _allTracks.indexWhere((e) => e.id == t.id);
+                          final idx = _allTracks.indexWhere(
+                            (e) => e.id == t.id,
+                          );
                           if (idx != -1) {
                             setState(() {
                               _allTracks[idx] = Track(
@@ -696,7 +703,9 @@ class _LibraryPageState extends State<LibraryPage>
                           }
                           if (mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Removed from favorites')),
+                              const SnackBar(
+                                content: Text('Removed from favorites'),
+                              ),
                             );
                           }
                         },
@@ -712,7 +721,9 @@ class _LibraryPageState extends State<LibraryPage>
                   child: Center(
                     child: Text(
                       _hasMore[1]
-                          ? (_isLoading[1] ? 'Loading more…' : 'Scroll for more')
+                          ? (_isLoading[1]
+                                ? 'Loading more…'
+                                : 'Scroll for more')
                           : 'No more items',
                       style: const TextStyle(color: Colors.white70),
                     ),
@@ -786,8 +797,9 @@ class _LibraryPageState extends State<LibraryPage>
                   childAspectRatio: 0.9,
                 ),
                 delegate: SliverChildBuilderDelegate((context, index) {
-                  if (index >= _visibleAlbums.length)
+                  if (index >= _visibleAlbums.length) {
                     return _playlistSkeleton();
+                  }
                   final a = _visibleAlbums[index];
                   return AlbumCard(album: a, showFavorite: false);
                 }, childCount: _visibleAlbums.length + (_isLoading[2] ? 6 : 0)),
@@ -816,63 +828,72 @@ class _LibraryPageState extends State<LibraryPage>
 
   // ----- Artists Tab -----
   Widget _buildArtistsTab(BuildContext context) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: (n) {
-        if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120)
-          _loadMoreArtists();
-        return false;
-      },
-      child: RefreshIndicator(
-        onRefresh: () => _loadArtists(reset: true),
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: _searchBar(3, hint: 'Search artists…')),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              sliver: SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: _gridCols(context),
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: 0.95,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    if (index >= _visibleArtists.length)
-                      return _playlistSkeleton();
-                    final a = _visibleArtists[index];
-                    final isFollowing = _followingArtistIds.contains(a.id);
-                    return ArtistCard(
-                      artist: a,
-                      isFollowing: isFollowing,
-                      onToggleFollow: () => setState(() {
-                        if (isFollowing) {
-                          _followingArtistIds.remove(a.id);
-                        } else {
-                          _followingArtistIds.add(a.id);
-                        }
-                      }),
-                    );
-                  },
-                  childCount: _visibleArtists.length + (_isLoading[3] ? 6 : 0),
-                ),
-              ),
-            ),
-          ],
-        ),
+    final libraryState = ref.watch(libraryProvider);
+
+    return libraryState.when(
+      initial: () => const SizedBox.shrink(),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      failure: (msg) => Center(
+        child: Text('Error: $msg', style: const TextStyle(color: Colors.white)),
       ),
+      success: (artists) {
+        final q = _searchCtrls[3].text.trim().toLowerCase();
+        final visibleArtists = artists
+            .where((e) => e.stageName.toLowerCase().contains(q))
+            .toList();
+
+        return RefreshIndicator(
+          onRefresh: () => ref.read(libraryProvider.notifier).fetchArtists(),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: _searchBar(3, hint: 'Search artists…')),
+              if (visibleArtists.isEmpty)
+                const SliverFillRemaining(
+                  child: Center(
+                    child: Text(
+                      'No artists found',
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                )
+              else
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  sliver: SliverGrid(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: _gridCols(context),
+                      mainAxisSpacing: 8,
+                      crossAxisSpacing: 8,
+                      childAspectRatio: 0.95,
+                    ),
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final a = visibleArtists[index];
+                      // Since this is "Artists In Library", they are followed.
+                      return ArtistCard(
+                        artist: a,
+                        onToggleFollow: () {
+                          ref.read(libraryProvider.notifier).toggleFollow(a.id);
+                        },
+                      );
+                    }, childCount: visibleArtists.length),
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
     );
   }
 
   // moved to ArtistCard widget
 
-  
   // ----- Followers Tab -----
   Widget _buildFollowersTab(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: (n) {
-        if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120)
+        if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120) {
           _loadMoreFollowers();
+        }
         return false;
       },
       child: RefreshIndicator(

@@ -58,3 +58,32 @@ mutation SendRequest(
       isDirectRequest: $isDirectRequest
   )
 }
+
+mutation ChangeRequestStatus ($requestId: String!, $status: RequestStatus!) {
+    changeRequestStatus(request: { requestId: $requestId, status: $status })
+}
+
+mutation CreatePaymentCheckoutSession ($packageId: String!, $requestId: String!, $successUrl: String!, $cancelUrl: String!, $isSavePaymentMethod: Boolean!, $isReceiptEmail: Boolean!, $requirements: String!, $deliveries: [PackageOrderDeliveryInput!]!, $duration: Int!) {
+    createPaymentCheckoutSession(
+        createPaymentCheckoutSessionRequest: {
+            packageId: $packageId
+            requestId: $requestId
+            successUrl: $successUrl
+            cancelUrl: $cancelUrl
+            isSavePaymentMethod: $isSavePaymentMethod
+            isReceiptEmail: $isReceiptEmail
+            requirements: $requirements
+            deliveries: $deliveries
+            duration: $duration
+        }
+    ) {
+        id
+        url
+        successUrl
+        cancelUrl
+        status
+        created
+        expired
+        mode
+    }
+}

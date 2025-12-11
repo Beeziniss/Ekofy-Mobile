@@ -1,0 +1,16 @@
+mutation SendRequest (
+    $publicRequestId: String,
+    $artistId: String!, 
+    $requirements: String, 
+    $packageId: String!
+    $isDirectRequest: Boolean!) {
+    sendRequest(
+        request: { 
+            artistId: $artistId, 
+            requirements: $requirements, 
+            packageId: $packageId 
+            publicRequestId: $publicRequestId
+        }
+        isDirectRequest: $isDirectRequest
+    )
+}

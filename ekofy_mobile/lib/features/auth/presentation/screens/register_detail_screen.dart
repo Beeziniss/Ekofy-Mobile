@@ -46,7 +46,7 @@ class _RegisterDetailScreenState extends ConsumerState<RegisterDetailScreen> {
         context.push('/otp/${widget.email}');
       } else if (next is AuthRegisterFailure) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(next.message + ' - ' + next.status)),
+          SnackBar(content: Text('${next.message} - ${next.status}')),
         );
       }
     });

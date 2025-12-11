@@ -1,0 +1,7 @@
+mutation FollowArtist ($targetId: String!) {
+    followUser(
+        request: { 
+            targetId: $targetId
+        }
+    )
+}

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/features/artist/presentation/screens/artist_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/login_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/otp_screen.dart';
 import 'package:ekofy_mobile/features/auth/presentation/screens/register_screen.dart';
@@ -8,7 +9,7 @@ import 'package:ekofy_mobile/features/home/presentation/widgets/nav_tab_widget.d
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
 import 'package:ekofy_mobile/features/notification/presentation/screens/notification_screen.dart';
 import 'package:ekofy_mobile/features/profile/presentation/screens/profile_page.dart';
-import 'package:ekofy_mobile/features/request_hub/presentation/screens/direct_request/own_request_screen.dart';
+import 'package:ekofy_mobile/features/request/presentation/screens/direct_request/own_request_screen.dart';
 import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_detail_screen.dart';
 import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_history_list_screen.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/screens/inbox_screen.dart';
@@ -38,6 +39,7 @@ class RouteName {
   static const String payment = '/payment';
   static const String paymentSuccess = '/payment/success';
   static const String paymentFailure = '/payment/failure';
+  static const String artistDetail = '/artist/:artistId';
 
   static const publicRoutes = [home, login, register];
 }
@@ -136,6 +138,13 @@ GoRouter router(WidgetRef ref) {
         builder: (context, state) {
           final message = state.extra as String?;
           return PaymentFailureScreen(message: message);
+        },
+      ),
+      GoRoute(
+        path: RouteName.artistDetail,
+        builder: (context, state) {
+          final artistId = state.pathParameters['artistId']!;
+          return ArtistScreen(artistId: artistId);
         },
       ),
     ],

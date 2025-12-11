@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -61,5 +62,33 @@ class Helper {
 
   static String formatDate(DateTime d) {
     return '${d.day.toString().padLeft(2, '0')}-${d.month.toString().padLeft(2, '0')}-${d.year}';
+  }
+
+  static String convertCurrencyCodeToSymbol(Enum$CurrencyType currency) {
+    switch (currency) {
+      case Enum$CurrencyType.USD:
+        return '\$';
+      case Enum$CurrencyType.EUR:
+        return '€';
+      case Enum$CurrencyType.GBP:
+        return '£';
+      case Enum$CurrencyType.JPY:
+        return '¥';
+      case Enum$CurrencyType.VND:
+        return '₫';
+      default:
+        return currency.name; // Return the code itself if symbol is not known
+    }
+  }
+
+  static String getLimitedDescription(String description, int maxWords) {
+    final words = description.split(' ');
+
+    if (words.length > maxWords) {
+      // Cắt bớt và thêm '...' vào cuối
+      return '${words.sublist(0, maxWords).join(' ')}...';
+    } else {
+      return description;
+    }
   }
 }

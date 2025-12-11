@@ -39,21 +39,21 @@ class TransactionRepositoryImpl implements TransactionRepository {
   TransactionItem _mapToDomain(
     Query$InvoicesByUserId$invoicesByUserId$items e,
   ) {
-    TransactionStatus status = TransactionStatus.unknown;
-    if (e.transaction.isNotEmpty) {
-      final paidTx = e.transaction.any(
-        (t) =>
-            t.paymentStatus == Enum$PaymentTransactionStatus.PAID ||
-            t.paymentStatus == Enum$PaymentTransactionStatus.PAID,
-      );
-      if (paidTx) {
-        status = TransactionStatus.paid;
-      } else {
-        status = _mapStatus(e.transaction.last.paymentStatus);
-      }
-    } else {
-      status = TransactionStatus.unpaid;
-    }
+    // TransactionStatus status = TransactionStatus.unknown;
+    // if (e.transaction.isNotEmpty) {
+    //   final paidTx = e.transaction.any(
+    //     (t) =>
+    //         t.paymentStatus == Enum$PaymentTransactionStatus.PAID ||
+    //         t.paymentStatus == Enum$PaymentTransactionStatus.PAID,
+    //   );
+    //   if (paidTx) {
+    //     status = TransactionStatus.paid;
+    //   } else {
+    //     status = _mapStatus(e.transaction.last.paymentStatus);
+    //   }
+    // } else {
+    //   status = TransactionStatus.unpaid;
+    // }
 
     final paymentMethods = e.transaction
         .map((t) => t.stripePaymentMethod)
@@ -66,11 +66,13 @@ class TransactionRepositoryImpl implements TransactionRepository {
       amountMinor: (e.amount * 100).toInt(),
       currency: e.currency,
       createdAt: e.paidAt,
-      status: status,
+      // status: status,
       paymentMethods: paymentMethods,
       packageName: e.oneOffSnapshot?.packageName,
       fullName: e.fullName,
       email: e.email,
+      from: e.from,
+      to: e.to,
     );
   }
 

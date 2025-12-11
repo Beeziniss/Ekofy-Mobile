@@ -15,7 +15,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OwnRequestDetailScreen extends ConsumerStatefulWidget {
@@ -112,6 +111,8 @@ class _OwnRequestDetailScreenState
               // const SizedBox(height: 16),
               _headerSection(theme),
               const SizedBox(height: 16),
+              _packageInformationSection(theme),
+              const SizedBox(height: 16),
               _detailSection(theme),
               const SizedBox(height: 16),
               _metadataSection(theme),
@@ -124,41 +125,41 @@ class _OwnRequestDetailScreenState
     );
   }
 
-  Widget _noteSection(ThemeData theme) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Color(0xFFFEF9C3),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Color(0xFFF59E0B)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(Icons.book, color: const Color(0xFF92400E)),
-              const Text(
-                'Note',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF92400E),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'The mobile app is just now supporting features for listener. Please access our web app as an artist to apply.',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: const Color(0xFF92400E),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _noteSection(ThemeData theme) {
+  //   return Container(
+  //     width: double.infinity,
+  //     padding: const EdgeInsets.all(16),
+  //     decoration: BoxDecoration(
+  //       color: Color(0xFFFEF9C3),
+  //       borderRadius: BorderRadius.circular(12),
+  //       border: Border.all(color: Color(0xFFF59E0B)),
+  //     ),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Row(
+  //           children: [
+  //             Icon(Icons.book, color: const Color(0xFF92400E)),
+  //             const Text(
+  //               'Note',
+  //               style: TextStyle(
+  //                 fontWeight: FontWeight.w600,
+  //                 color: Color(0xFF92400E),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(height: 8),
+  //         Text(
+  //           'The mobile app is just now supporting features for listener. Please access our web app as an artist to apply.',
+  //           style: theme.textTheme.bodyMedium?.copyWith(
+  //             color: const Color(0xFF92400E),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _headerSection(ThemeData theme) {
     return Container(
@@ -175,7 +176,7 @@ class _OwnRequestDetailScreenState
             widget
                 .item
                 .artist
-                ?.stageName, // Using stageName as fallback for avatar text
+                ?.avatarUrl, // Using stageName as fallback for avatar text
             widget.item.artist?.stageName ?? 'Unknown',
           ),
           const SizedBox(width: 12),
@@ -218,10 +219,13 @@ class _OwnRequestDetailScreenState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Details', style: TextStyle(fontWeight: FontWeight.w600)),
+          const Text(
+            'Requirements',
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
           const SizedBox(height: 8),
           HtmlWidget(
-            widget.item.detailDescription,
+            widget.item.requirements ?? 'No requirements specified.',
             textStyle: theme.textTheme.bodyMedium,
           ),
         ],
@@ -230,8 +234,6 @@ class _OwnRequestDetailScreenState
   }
 
   Widget _metadataSection(ThemeData theme) {
-    // final createdAtStr = Helper.formatDate(item.createdAt);
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -253,16 +255,22 @@ class _OwnRequestDetailScreenState
                 label: 'Duration',
                 value: Text("${widget.item.duration} day(s)"),
               ),
-              KeyValueRow(
-                label: 'Budget',
-                value: Text(
-                  "${Helper.formatCurrency(widget.item.budget.min)} ${_convertCurrency(widget.item.currency)} - ${Helper.formatCurrency(widget.item.budget.max)} ${_convertCurrency(widget.item.currency)}",
-                ),
-              ),
+              KeyValueRow(label: 'Budget', value: _budgetSection()),
             ],
           ),
         ],
       ),
+    );
+  }
+
+  Widget _budgetSection() {
+    if (widget.item.type == Enum$RequestType.DIRECT_REQUEST) {
+      return Text(
+        "${Helper.formatCurrency(widget.item.artistPackage?.amount ?? 0)} ${_convertCurrency(widget.item.currency)}",
+      );
+    }
+    return Text(
+      "${Helper.formatCurrency(widget.item.budget.min)} ${_convertCurrency(widget.item.currency)} - ${Helper.formatCurrency(widget.item.budget.max)} ${_convertCurrency(widget.item.currency)}",
     );
   }
 
@@ -372,6 +380,41 @@ class _OwnRequestDetailScreenState
   // case RequestStatus.rejected:
   //   return 'Request Again';
   // }
+  Widget _packageInformationSection(ThemeData theme) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFF0F0F0F),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF2C2C2C)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Package Details',
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 8),
+          KeyValueTable(
+            outlined: false,
+            rows: [
+              // KeyValueRow(label: 'Created', value: Text(createdAtStr)),
+              KeyValueRow(
+                label: 'Name',
+                value: Text("${widget.item.artistPackage!.packageName}"),
+              ),
+              KeyValueRow(
+                label: 'Description',
+                value: Text(widget.item.artistPackage!.description),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 // void _placeholder(BuildContext context, String msg) {

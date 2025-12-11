@@ -55,12 +55,19 @@ query OwnRequestsQuery ($requestUserId: String!) {
                 id
                 userId
                 stageName
+                avatarImage
             }
             artistPackage {
                 id
                 packageName
                 amount
                 currency
+                description
+                maxRevision
+                serviceDetails {
+                    key
+                    value
+                }
             }
         }
     }

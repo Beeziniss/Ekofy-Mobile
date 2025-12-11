@@ -212,6 +212,7 @@ class _ArtistPackageDetailState extends ConsumerState<ArtistPackageDetail> {
                     (detail) => Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Icon(
                             Icons.check_circle_outline,
@@ -219,10 +220,13 @@ class _ArtistPackageDetailState extends ConsumerState<ArtistPackageDetail> {
                             size: 20,
                           ),
                           const SizedBox(width: 8),
-                          Text(
-                            '${detail.key}: ${detail.value}',
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(color: Colors.grey[300]),
+                          Expanded(
+                            child: Text(
+                              '${detail.key}: ${detail.value}',
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.grey[300]),
+                              softWrap: true,
+                            ),
                           ),
                         ],
                       ),

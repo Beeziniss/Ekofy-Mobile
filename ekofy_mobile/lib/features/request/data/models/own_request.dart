@@ -96,8 +96,14 @@ class OwnRequestArtist {
   final String id;
   final String userId;
   final String? stageName;
+  final String? avatarUrl;
 
-  OwnRequestArtist({required this.id, required this.userId, this.stageName});
+  OwnRequestArtist({
+    required this.id,
+    required this.userId,
+    this.stageName,
+    this.avatarUrl,
+  });
 
   factory OwnRequestArtist.fromQueryItem(
     Query$OwnRequestsQuery$requests$items$artist item,
@@ -106,6 +112,7 @@ class OwnRequestArtist {
       id: item.id,
       userId: item.userId,
       stageName: item.stageName,
+      avatarUrl: item.avatarImage,
     );
   }
 }
@@ -115,12 +122,18 @@ class OwnRequestPackage {
   final String? packageName;
   final double amount;
   final Enum$CurrencyType currency;
+  final String description;
+  final int maxRevision;
+  final List<ServiceDetail> serviceDetails;
 
   OwnRequestPackage({
     required this.id,
     this.packageName,
     required this.amount,
     required this.currency,
+    required this.description,
+    required this.maxRevision,
+    required this.serviceDetails,
   });
 
   factory OwnRequestPackage.fromQueryItem(
@@ -131,6 +144,18 @@ class OwnRequestPackage {
       packageName: item.packageName,
       amount: item.amount,
       currency: item.currency,
+      description: item.description ?? '',
+      maxRevision: item.maxRevision,
+      serviceDetails: item.serviceDetails
+          .map((detail) => ServiceDetail(key: detail.key, value: detail.value))
+          .toList(),
     );
   }
+}
+
+class ServiceDetail {
+  final String key;
+  final String value;
+
+  ServiceDetail({required this.key, required this.value});
 }

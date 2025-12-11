@@ -206,6 +206,21 @@ class _NavTabState extends ConsumerState<NavTab>
             ),
             const Divider(height: 1),
             ListTile(
+              leading: Icon(
+                Icons.card_travel_sharp,
+                color: textColor.withOpacity(0.7),
+              ),
+              title: Text('Order History', style: TextStyle(color: textColor)),
+              onTap: () {
+                // Close drawer then navigate
+                // Navigator.of(context).pop();
+                // context.push(
+                //   '/transactions',
+                // );
+              },
+            ),
+            const Divider(height: 1),
+            ListTile(
               // ignore: deprecated_member_use
               leading: Icon(Icons.wysiwyg, color: textColor.withOpacity(0.7)),
               title: Text(

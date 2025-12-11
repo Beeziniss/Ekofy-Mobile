@@ -1885,6 +1885,13 @@ const documentNodeQueryOwnRequestsQuery = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
+                              name: NameNode(value: 'avatarImage'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
                               name: NameNode(value: '__typename'),
                               alias: null,
                               arguments: [],
@@ -1928,6 +1935,51 @@ const documentNodeQueryOwnRequestsQuery = DocumentNode(
                               arguments: [],
                               directives: [],
                               selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'description'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'maxRevision'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'serviceDetails'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: SelectionSetNode(
+                                selections: [
+                                  FieldNode(
+                                    name: NameNode(value: 'key'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null,
+                                  ),
+                                  FieldNode(
+                                    name: NameNode(value: 'value'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null,
+                                  ),
+                                  FieldNode(
+                                    name: NameNode(value: '__typename'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null,
+                                  ),
+                                ],
+                              ),
                             ),
                             FieldNode(
                               name: NameNode(value: '__typename'),
@@ -3078,6 +3130,7 @@ class Query$OwnRequestsQuery$requests$items$artist {
     required this.id,
     required this.userId,
     required this.stageName,
+    this.avatarImage,
     this.$__typename = 'Artist',
   });
 
@@ -3087,11 +3140,13 @@ class Query$OwnRequestsQuery$requests$items$artist {
     final l$id = json['id'];
     final l$userId = json['userId'];
     final l$stageName = json['stageName'];
+    final l$avatarImage = json['avatarImage'];
     final l$$__typename = json['__typename'];
     return Query$OwnRequestsQuery$requests$items$artist(
       id: (l$id as String),
       userId: (l$userId as String),
       stageName: (l$stageName as String),
+      avatarImage: (l$avatarImage as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -3101,6 +3156,8 @@ class Query$OwnRequestsQuery$requests$items$artist {
   final String userId;
 
   final String stageName;
+
+  final String? avatarImage;
 
   final String $__typename;
 
@@ -3112,6 +3169,8 @@ class Query$OwnRequestsQuery$requests$items$artist {
     _resultData['userId'] = l$userId;
     final l$stageName = stageName;
     _resultData['stageName'] = l$stageName;
+    final l$avatarImage = avatarImage;
+    _resultData['avatarImage'] = l$avatarImage;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -3122,8 +3181,15 @@ class Query$OwnRequestsQuery$requests$items$artist {
     final l$id = id;
     final l$userId = userId;
     final l$stageName = stageName;
+    final l$avatarImage = avatarImage;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$userId, l$stageName, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$userId,
+      l$stageName,
+      l$avatarImage,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -3148,6 +3214,11 @@ class Query$OwnRequestsQuery$requests$items$artist {
     final l$stageName = stageName;
     final lOther$stageName = other.stageName;
     if (l$stageName != lOther$stageName) {
+      return false;
+    }
+    final l$avatarImage = avatarImage;
+    final lOther$avatarImage = other.avatarImage;
+    if (l$avatarImage != lOther$avatarImage) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -3181,6 +3252,7 @@ abstract class CopyWith$Query$OwnRequestsQuery$requests$items$artist<TRes> {
     String? id,
     String? userId,
     String? stageName,
+    String? avatarImage,
     String? $__typename,
   });
 }
@@ -3202,6 +3274,7 @@ class _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artist<TRes>
     Object? id = _undefined,
     Object? userId = _undefined,
     Object? stageName = _undefined,
+    Object? avatarImage = _undefined,
     Object? $__typename = _undefined,
   }) => _then(
     Query$OwnRequestsQuery$requests$items$artist(
@@ -3212,6 +3285,9 @@ class _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artist<TRes>
       stageName: stageName == _undefined || stageName == null
           ? _instance.stageName
           : (stageName as String),
+      avatarImage: avatarImage == _undefined
+          ? _instance.avatarImage
+          : (avatarImage as String?),
       $__typename: $__typename == _undefined || $__typename == null
           ? _instance.$__typename
           : ($__typename as String),
@@ -3225,8 +3301,13 @@ class _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artist<TRes>
 
   TRes _res;
 
-  call({String? id, String? userId, String? stageName, String? $__typename}) =>
-      _res;
+  call({
+    String? id,
+    String? userId,
+    String? stageName,
+    String? avatarImage,
+    String? $__typename,
+  }) => _res;
 }
 
 class Query$OwnRequestsQuery$requests$items$artistPackage {
@@ -3235,6 +3316,9 @@ class Query$OwnRequestsQuery$requests$items$artistPackage {
     required this.packageName,
     required this.amount,
     required this.currency,
+    this.description,
+    required this.maxRevision,
+    required this.serviceDetails,
     this.$__typename = 'ArtistPackage',
   });
 
@@ -3245,12 +3329,25 @@ class Query$OwnRequestsQuery$requests$items$artistPackage {
     final l$packageName = json['packageName'];
     final l$amount = json['amount'];
     final l$currency = json['currency'];
+    final l$description = json['description'];
+    final l$maxRevision = json['maxRevision'];
+    final l$serviceDetails = json['serviceDetails'];
     final l$$__typename = json['__typename'];
     return Query$OwnRequestsQuery$requests$items$artistPackage(
       id: (l$id as String),
       packageName: (l$packageName as String),
       amount: (l$amount as num).toDouble(),
       currency: fromJson$Enum$CurrencyType((l$currency as String)),
+      description: (l$description as String?),
+      maxRevision: (l$maxRevision as int),
+      serviceDetails: (l$serviceDetails as List<dynamic>)
+          .map(
+            (e) =>
+                Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails.fromJson(
+                  (e as Map<String, dynamic>),
+                ),
+          )
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
@@ -3262,6 +3359,13 @@ class Query$OwnRequestsQuery$requests$items$artistPackage {
   final double amount;
 
   final Enum$CurrencyType currency;
+
+  final String? description;
+
+  final int maxRevision;
+
+  final List<Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails>
+  serviceDetails;
 
   final String $__typename;
 
@@ -3275,6 +3379,14 @@ class Query$OwnRequestsQuery$requests$items$artistPackage {
     _resultData['amount'] = l$amount;
     final l$currency = currency;
     _resultData['currency'] = toJson$Enum$CurrencyType(l$currency);
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$maxRevision = maxRevision;
+    _resultData['maxRevision'] = l$maxRevision;
+    final l$serviceDetails = serviceDetails;
+    _resultData['serviceDetails'] = l$serviceDetails
+        .map((e) => e.toJson())
+        .toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -3286,12 +3398,18 @@ class Query$OwnRequestsQuery$requests$items$artistPackage {
     final l$packageName = packageName;
     final l$amount = amount;
     final l$currency = currency;
+    final l$description = description;
+    final l$maxRevision = maxRevision;
+    final l$serviceDetails = serviceDetails;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$packageName,
       l$amount,
       l$currency,
+      l$description,
+      l$maxRevision,
+      Object.hashAll(l$serviceDetails.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -3324,6 +3442,28 @@ class Query$OwnRequestsQuery$requests$items$artistPackage {
     final lOther$currency = other.currency;
     if (l$currency != lOther$currency) {
       return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$maxRevision = maxRevision;
+    final lOther$maxRevision = other.maxRevision;
+    if (l$maxRevision != lOther$maxRevision) {
+      return false;
+    }
+    final l$serviceDetails = serviceDetails;
+    final lOther$serviceDetails = other.serviceDetails;
+    if (l$serviceDetails.length != lOther$serviceDetails.length) {
+      return false;
+    }
+    for (int i = 0; i < l$serviceDetails.length; i++) {
+      final l$serviceDetails$entry = l$serviceDetails[i];
+      final lOther$serviceDetails$entry = lOther$serviceDetails[i];
+      if (l$serviceDetails$entry != lOther$serviceDetails$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -3362,8 +3502,23 @@ abstract class CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage<
     String? packageName,
     double? amount,
     Enum$CurrencyType? currency,
+    String? description,
+    int? maxRevision,
+    List<Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails>?
+    serviceDetails,
     String? $__typename,
   });
+  TRes serviceDetails(
+    Iterable<Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails>
+    Function(
+      Iterable<
+        CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails<
+          Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails
+        >
+      >,
+    )
+    _fn,
+  );
 }
 
 class _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artistPackage<TRes>
@@ -3386,6 +3541,9 @@ class _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artistPackage<TRes>
     Object? packageName = _undefined,
     Object? amount = _undefined,
     Object? currency = _undefined,
+    Object? description = _undefined,
+    Object? maxRevision = _undefined,
+    Object? serviceDetails = _undefined,
     Object? $__typename = _undefined,
   }) => _then(
     Query$OwnRequestsQuery$requests$items$artistPackage(
@@ -3399,10 +3557,44 @@ class _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artistPackage<TRes>
       currency: currency == _undefined || currency == null
           ? _instance.currency
           : (currency as Enum$CurrencyType),
+      description: description == _undefined
+          ? _instance.description
+          : (description as String?),
+      maxRevision: maxRevision == _undefined || maxRevision == null
+          ? _instance.maxRevision
+          : (maxRevision as int),
+      serviceDetails: serviceDetails == _undefined || serviceDetails == null
+          ? _instance.serviceDetails
+          : (serviceDetails
+                as List<
+                  Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails
+                >),
       $__typename: $__typename == _undefined || $__typename == null
           ? _instance.$__typename
           : ($__typename as String),
     ),
+  );
+
+  TRes serviceDetails(
+    Iterable<Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails>
+    Function(
+      Iterable<
+        CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails<
+          Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails
+        >
+      >,
+    )
+    _fn,
+  ) => call(
+    serviceDetails: _fn(
+      _instance.serviceDetails.map(
+        (e) =>
+            CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails(
+              e,
+              (i) => i,
+            ),
+      ),
+    ).toList(),
   );
 }
 
@@ -3422,6 +3614,171 @@ class _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artistPackage<
     String? packageName,
     double? amount,
     Enum$CurrencyType? currency,
+    String? description,
+    int? maxRevision,
+    List<Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails>?
+    serviceDetails,
     String? $__typename,
   }) => _res;
+
+  serviceDetails(_fn) => _res;
+}
+
+class Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails {
+  Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails({
+    required this.key,
+    required this.value,
+    this.$__typename = 'Metadata',
+  });
+
+  factory Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$key = json['key'];
+    final l$value = json['value'];
+    final l$$__typename = json['__typename'];
+    return Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails(
+      key: (l$key as String),
+      value: (l$value as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String key;
+
+  final String value;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$key = key;
+    _resultData['key'] = l$key;
+    final l$value = value;
+    _resultData['value'] = l$value;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$key = key;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$key, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$key = key;
+    final lOther$key = other.key;
+    if (l$key != lOther$key) {
+      return false;
+    }
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails
+    on Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails {
+  CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails<
+    Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails
+  >
+  get copyWith =>
+      CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails<
+  TRes
+> {
+  factory CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails(
+    Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails instance,
+    TRes Function(
+      Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails,
+    )
+    then,
+  ) = _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails;
+
+  factory CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails.stub(
+    TRes res,
+  ) = _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails;
+
+  TRes call({String? key, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails<
+  TRes
+>
+    implements
+        CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails<
+          TRes
+        > {
+  _CopyWithImpl$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails(
+    this._instance,
+    this._then,
+  );
+
+  final Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails
+  _instance;
+
+  final TRes Function(
+    Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails,
+  )
+  _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? key = _undefined,
+    Object? value = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails(
+      key: key == _undefined || key == null ? _instance.key : (key as String),
+      value: value == _undefined || value == null
+          ? _instance.value
+          : (value as String),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+}
+
+class _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails<
+  TRes
+>
+    implements
+        CopyWith$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails<
+          TRes
+        > {
+  _CopyWithStubImpl$Query$OwnRequestsQuery$requests$items$artistPackage$serviceDetails(
+    this._res,
+  );
+
+  TRes _res;
+
+  call({String? key, String? value, String? $__typename}) => _res;
 }

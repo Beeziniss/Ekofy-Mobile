@@ -112,8 +112,8 @@ class _TransactionCard extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const Spacer(),
-                  TransactionStatusBadge(status: item.status),
+                  // const Spacer(),
+                  // TransactionStatusBadge(status: item.status),
                 ],
               ),
               const SizedBox(height: 8),
@@ -126,6 +126,18 @@ class _TransactionCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
+              if (item.from != null && item.to != null) ...[
+                Text(
+                  'From: ${item.from!}',
+                  style: const TextStyle(color: Colors.white70, fontSize: 13),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'To: ${item.to!}',
+                  style: const TextStyle(color: Colors.white70, fontSize: 13),
+                ),
+                const SizedBox(height: 4),
+              ],
               Text(
                 _formatDate(item.createdAt),
                 style: const TextStyle(color: Colors.white54, fontSize: 12),

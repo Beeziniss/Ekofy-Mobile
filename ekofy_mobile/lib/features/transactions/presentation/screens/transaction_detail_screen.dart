@@ -96,7 +96,7 @@ class _TransactionDetailScreenState
                   ),
                 ),
                 const Spacer(),
-                TransactionStatusBadge(status: item.status),
+                // TransactionStatusBadge(status: item.status),
               ],
             ),
             const SizedBox(height: 12),
@@ -110,7 +110,7 @@ class _TransactionDetailScreenState
             const SizedBox(height: 8),
             _kv('Payment Methods', item.paymentMethods.join(', ')),
             const SizedBox(height: 8),
-            _kv('Status', item.status.label),
+            // _kv('Status', item.status.label),
             if (item.packageName != null) ...[
               const SizedBox(height: 8),
               _kv('Package', item.packageName!),
@@ -122,6 +122,10 @@ class _TransactionDetailScreenState
             if (item.email != null) ...[
               const SizedBox(height: 8),
               _kv('Email', item.email!),
+            ],
+            if (item.from != null && item.to != null) ...[
+              const SizedBox(height: 8),
+              _kv('From', '${item.from!}\n -> ${item.to!}'),
             ],
           ],
         ),

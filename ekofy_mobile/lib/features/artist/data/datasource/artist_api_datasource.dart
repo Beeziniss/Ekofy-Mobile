@@ -8,7 +8,7 @@ class ArtistApiDataSource {
 
   Future<List<Query$ArtistPackages$artistPackages$items>> fetchArtistPackages({
     required String artistId,
-    int take = 20,
+    int take = 10,
     int skip = 0,
   }) async {
     final result = await _client.query$ArtistPackages(

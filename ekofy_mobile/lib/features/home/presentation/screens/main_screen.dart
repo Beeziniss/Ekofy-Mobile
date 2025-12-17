@@ -29,7 +29,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // notificationService.firebaseInit(context);
     // Fetch tracks when screen initializes
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(trackListProvider.notifier).fetchTracks(12);
+      ref.read(trackListProvider.notifier).fetchTracks(10);
     });
   }
 
@@ -57,12 +57,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           : trackListState.error != null
           ? _errorWidget(
               trackListState.error!,
-              () => ref.read(trackListProvider.notifier).fetchTracks(12),
+              () => ref.read(trackListProvider.notifier).fetchTracks(10),
             )
           : _homeBodyContent(
               tracks: trackListState.tracks,
               refetch: () =>
-                  ref.read(trackListProvider.notifier).fetchTracks(12),
+                  ref.read(trackListProvider.notifier).fetchTracks(10),
             ),
     );
   }

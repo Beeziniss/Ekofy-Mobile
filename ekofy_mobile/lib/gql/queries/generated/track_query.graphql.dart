@@ -1612,7 +1612,12 @@ const documentNodeQueryTrackDetail = DocumentNode(
                       FieldNode(
                         name: NameNode(value: 'mainArtists'),
                         alias: null,
-                        arguments: [],
+                        arguments: [
+                          ArgumentNode(
+                            name: NameNode(value: 'take'),
+                            value: IntValueNode(value: '3'),
+                          ),
+                        ],
                         directives: [],
                         selectionSet: SelectionSetNode(
                           selections: [

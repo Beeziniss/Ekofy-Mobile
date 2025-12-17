@@ -27,7 +27,7 @@ query TrackDetail($where: TrackFilterInput, $take: Int!) {
 			favoriteCount
 			streamCount
 			mainArtistIds
-			mainArtists {
+			mainArtists (take: 3) {
 				items {
 					id
 					stageName

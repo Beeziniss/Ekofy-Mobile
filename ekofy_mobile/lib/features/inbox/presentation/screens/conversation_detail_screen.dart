@@ -128,6 +128,18 @@ class _ConversationDetailScreenState
   }
 
   void _loadMessages() async {
+    // Check if conversation exists in state, if not fetch it
+    final inboxState = ref.read(inboxProvider);
+    final conversationExists = inboxState.conversations.any(
+      (c) => c.id == widget.conversationId,
+    );
+
+    if (!conversationExists) {
+      await ref
+          .read(inboxProvider.notifier)
+          .fetchConversationById(widget.conversationId);
+    }
+
     await ref
         .read(inboxProvider.notifier)
         .fetchMessages(widget.conversationId, last: 30);
@@ -249,10 +261,46 @@ class _ConversationDetailScreenState
     final messages = inboxState.getMessagesForConversation(
       widget.conversationId,
     );
-    final conversation = inboxState.conversations.firstWhere(
+    final conversationIndex = inboxState.conversations.indexWhere(
       (c) => c.id == widget.conversationId,
-      orElse: () => inboxState.conversations.first,
     );
+
+    if (conversationIndex == -1) {
+      if (inboxState.error != null) {
+        return Scaffold(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            elevation: 0,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
+              ),
+              onPressed: () => context.pop(),
+            ),
+          ),
+          body: Center(child: Text('Error: ${inboxState.error}')),
+        );
+      }
+      return Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
+            ),
+            onPressed: () => context.pop(),
+          ),
+        ),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    final conversation = inboxState.conversations[conversationIndex];
 
     // Determine which profile to show
     final isOwner = conversation.ownerProfile.artistId == currentUserId;

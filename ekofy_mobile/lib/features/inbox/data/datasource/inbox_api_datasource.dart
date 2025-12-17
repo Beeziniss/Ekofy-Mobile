@@ -1,4 +1,5 @@
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
+import 'package:ekofy_mobile/gql/mutation/generated/conversation.graphql.dart';
 import 'package:ekofy_mobile/gql/queries/generated/conversation_query.graphql.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -6,6 +7,28 @@ class InboxApiDatasource {
   final GraphQLClient client;
 
   InboxApiDatasource(this.client);
+
+  /// Add a general conversation with a user
+  Future<String?> addConversationGeneral(String userId) async {
+    try {
+      final variables = Variables$Mutation$AddConversationGeneral(
+        userId: userId,
+      );
+      final options = Options$Mutation$AddConversationGeneral(
+        variables: variables,
+      );
+
+      final result = await client.mutate$AddConversationGeneral(options);
+
+      if (result.hasException) {
+        throw Exception('Failed to add conversation: ${result.exception}');
+      }
+
+      return result.parsedData?.addConversationGeneral;
+    } catch (e) {
+      throw Exception('Failed to add conversation: $e');
+    }
+  }
 
   /// Fetch conversations with optional filters
   Future<List<Query$Conversations$conversations$items>> fetchConversations({

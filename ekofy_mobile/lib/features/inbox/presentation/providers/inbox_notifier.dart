@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:ekofy_mobile/core/utils/helper.dart';
+import 'package:ekofy_mobile/features/inbox/data/models/conversation_model.dart';
 import 'package:ekofy_mobile/features/inbox/data/models/message_model.dart';
 import 'package:ekofy_mobile/features/inbox/domain/repositories/inbox_repository.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/providers/inbox_state.dart';
@@ -97,6 +98,41 @@ class InboxNotifier extends StateNotifier<InboxState> {
   /// Clear selected conversation
   void clearSelection() {
     state = state.copyWith(selectedConversationId: null);
+  }
+
+  /// Fetch a single conversation by ID and add/update it in the state
+  Future<void> fetchConversationById(String conversationId) async {
+    state = state.copyWith(isLoading: true, error: null);
+    try {
+      final conversation = await repository.fetchConversationById(
+        conversationId,
+      );
+      if (conversation != null) {
+        final updatedConversations = List<ConversationItem>.from(
+          state.conversations,
+        );
+        final index = updatedConversations.indexWhere(
+          (c) => c.id == conversation.id,
+        );
+        if (index != -1) {
+          updatedConversations[index] = conversation;
+        } else {
+          updatedConversations.insert(0, conversation);
+        }
+        state = state.copyWith(
+          conversations: updatedConversations,
+          isLoading: false,
+        );
+      } else {
+        state = state.copyWith(
+          isLoading: false,
+          error: 'Conversation not found',
+        );
+      }
+    } catch (e) {
+      log('Inbox fetch conversation by id error: $e');
+      state = state.copyWith(isLoading: false, error: e.toString());
+    }
   }
 
   /// Refresh conversations

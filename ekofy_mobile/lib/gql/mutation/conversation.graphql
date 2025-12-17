@@ -1,0 +1,16 @@
+mutation AddConversationGeneral($userId: String!) {
+    addConversationGeneral(
+        otherUserId: $userId
+    )
+}
+
+mutation AddConversationFromRequestHub(
+    $otherUserId: String, 
+    $requestId: String) {
+    addConversationFromRequestHub(
+        request: { 
+            otherUserId: $otherUserId, 
+            requestId: $requestId 
+        }
+    )
+}

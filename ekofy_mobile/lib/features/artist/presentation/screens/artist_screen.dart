@@ -1,3 +1,5 @@
+import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
 import 'package:ekofy_mobile/features/artist/presentation/providers/artist_provider.dart';
@@ -222,7 +224,26 @@ class _ArtistScreenState extends ConsumerState<ArtistScreen>
               SizedBox(width: 8),
               Text('|'),
               SizedBox(width: 8),
-              Icon(Icons.message_rounded, color: Colors.white70),
+              IconButton(
+                onPressed: () async {
+                  if (artist?.userId == null) return;
+                  try {
+                    final conversationId = await ref
+                        .read(inboxApiDatasourceProvider)
+                        .addConversationGeneral(artist!.userId!);
+                    if (conversationId != null && context.mounted) {
+                      context.push('/inbox/$conversationId');
+                    }
+                  } catch (e) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Failed to start chat: $e')),
+                      );
+                    }
+                  }
+                },
+                icon: Icon(Icons.message_rounded, color: Colors.white70),
+              ),
             ],
           ),
         ],

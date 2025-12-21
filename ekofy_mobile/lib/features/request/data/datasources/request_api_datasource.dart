@@ -73,10 +73,14 @@ class RequestApiDataSource {
     return await client.mutate$UpdatePublicRequest(options);
   }
 
-  Future<List<Query$OwnRequestsQuery$requests$items>> fetchOwnRequests(String requestUserId) async {
+  Future<List<Query$OwnRequestsQuery$requests$items>> fetchOwnRequests(
+    String requestUserId,
+  ) async {
     try {
       final options = Options$Query$OwnRequestsQuery(
-        variables: Variables$Query$OwnRequestsQuery(requestUserId: requestUserId),
+        variables: Variables$Query$OwnRequestsQuery(
+          requestUserId: requestUserId,
+        ),
         fetchPolicy: FetchPolicy.networkOnly,
       );
 
@@ -88,6 +92,35 @@ class RequestApiDataSource {
       return result.parsedData?.requests?.items ?? [];
     } catch (e) {
       throw Exception('Failed to fetch own requests: $e');
+    }
+  }
+
+  Future<bool> sendRequest({
+    String? publicRequestId,
+    required String artistId,
+    String? requirements,
+    required String packageId,
+    required bool isDirectRequest,
+  }) async {
+    try {
+      final variables = Variables$Mutation$SendRequest(
+        publicRequestId: publicRequestId,
+        artistId: artistId,
+        requirements: requirements,
+        packageId: packageId,
+        isDirectRequest: isDirectRequest,
+      );
+
+      final options = Options$Mutation$SendRequest(variables: variables);
+      final result = await client.mutate$SendRequest(options);
+
+      if (result.hasException) {
+        throw Exception('Failed to send request: ${result.exception}');
+      }
+
+      return result.parsedData?.sendRequest ?? false;
+    } catch (e) {
+      throw Exception('Failed to send request: $e');
     }
   }
 }

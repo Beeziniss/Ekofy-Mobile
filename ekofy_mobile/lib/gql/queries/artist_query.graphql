@@ -65,3 +65,12 @@ query ArtistDetail($id: String!) {
         }
     }
 }
+
+query getArtistIdFromPackage ($packageId: String!) {
+    artistPackages(where: { id: { eq: $packageId } }) {
+        totalCount
+        items {
+            artistId
+        }
+    }
+}

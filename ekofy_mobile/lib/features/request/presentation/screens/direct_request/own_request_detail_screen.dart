@@ -9,7 +9,10 @@ import 'package:ekofy_mobile/core/widgets/info/key_value_table.dart';
 import 'package:ekofy_mobile/features/request/data/models/own_request.dart';
 import 'package:ekofy_mobile/features/request/data/models/request_status.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
+import 'package:ekofy_mobile/features/profile/presentation/providers/profile_notifier.dart';
 import 'package:ekofy_mobile/gql/mutation/generated/request_mutation.graphql.dart';
+import 'package:ekofy_mobile/gql/queries/generated/artist_query.graphql.dart';
+import 'package:ekofy_mobile/gql/queries/generated/conversation_query.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -318,52 +321,116 @@ class _OwnRequestDetailScreenState
       return const SizedBox.shrink();
     }
 
-    return Mutation$CreatePaymentCheckoutSession$Widget(
-      options: WidgetOptions$Mutation$CreatePaymentCheckoutSession(
-        onCompleted: (data, data2) async {
-          final urlStr = data?['createPaymentCheckoutSession']?['url'];
-          if (urlStr != null) {
-            final Uri url = Uri.parse(urlStr);
-            if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-              Fluttertoast.showToast(msg: "Could not launch payment URL");
-            }
-          }
+    if (widget.item.packageId == null) {
+      return CustomButton(
+        title: 'Pay',
+        height: 48,
+        onPressed: () {
+          Fluttertoast.showToast(msg: "Package ID is missing");
         },
-        onError: (error) {
-          Fluttertoast.showToast(
-            msg:
-                "Error: ${error?.graphqlErrors.firstOrNull?.message ?? error.toString()}",
-            backgroundColor: AppColors.error,
-          );
-        },
-      ),
-      builder: (runMutation, result) {
-        return CustomButton(
-          title: result?.isLoading == true ? 'Processing...' : 'Pay',
-          height: 48,
-          onPressed: () {
-            if (result?.isLoading == true) return;
-            if (widget.item.packageId == null) {
-              Fluttertoast.showToast(msg: "Package ID is missing");
-              return;
-            }
+        gradientColors: [AppColors.deepBlue, AppColors.violet],
+      );
+    }
 
-            runMutation(
-              Variables$Mutation$CreatePaymentCheckoutSession(
-                packageId: widget.item.packageId!,
-                requestId: widget.item.id,
-                successUrl: "ekofy://app/payment/success",
-                cancelUrl: "ekofy://app/payment/cancel",
-                isSavePaymentMethod: false,
-                isReceiptEmail: true,
-                requirements: widget.item.requirements ?? '',
-                duration: widget.item.duration,
-                deliveries:
-                    [], // Assuming empty for now or derived from package
+    // Lấy artistId trực tiếp từ widget.item thay vì query
+    final artistId = widget.item.artist?.userId;
+    final profileState = ref.watch(profileProvider);
+    final currentUserId = profileState.value?.original?.userId;
+
+    if (profileState.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (artistId == null || currentUserId == null) {
+      return const Text(
+        "Error: Missing user information",
+        style: TextStyle(color: Colors.red),
+      );
+    }
+
+    return Query$getConversationIdFromRequest$Widget(
+      options: Options$Query$getConversationIdFromRequest(
+        variables: Variables$Query$getConversationIdFromRequest(
+          userId: currentUserId,
+          requestId: widget.item.id,
+          artistId: artistId,
+        ),
+      ),
+      builder: (resultConv, {fetchMore, refetch}) {
+        if (resultConv.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (resultConv.hasException) {
+          return Column(
+            children: [
+              Text(
+                "Error loading conversation: ${resultConv.exception.toString()}",
+                style: const TextStyle(color: Colors.red),
               ),
+              const SizedBox(height: 8),
+              TextButton(
+                onPressed: () => refetch?.call(),
+                child: const Text("Retry"),
+              ),
+            ],
+          );
+        }
+
+        final conversationId = resultConv
+            .parsedData
+            ?.conversationsByUserId
+            ?.items
+            ?.firstOrNull
+            ?.id;
+
+        return Mutation$CreatePaymentCheckoutSession$Widget(
+          options: WidgetOptions$Mutation$CreatePaymentCheckoutSession(
+            onCompleted: (data, data2) async {
+              final urlStr = data?['createPaymentCheckoutSession']?['url'];
+              if (urlStr != null) {
+                final Uri url = Uri.parse(urlStr);
+                if (!await launchUrl(
+                  url,
+                  mode: LaunchMode.externalApplication,
+                )) {
+                  Fluttertoast.showToast(msg: "Could not launch payment URL");
+                }
+              }
+            },
+            onError: (error) {
+              Fluttertoast.showToast(
+                msg:
+                    "Error: ${error?.graphqlErrors.firstOrNull?.message ?? error.toString()}",
+                backgroundColor: AppColors.error,
+              );
+            },
+          ),
+          builder: (runMutation, result) {
+            return CustomButton(
+              title: result?.isLoading == true ? 'Processing...' : 'Pay',
+              height: 48,
+              onPressed: () {
+                if (result?.isLoading == true) return;
+
+                runMutation(
+                  Variables$Mutation$CreatePaymentCheckoutSession(
+                    packageId: widget.item.packageId!,
+                    requestId: widget.item.id,
+                    successUrl: "ekofy://app/payment/success",
+                    cancelUrl: "ekofy://app/payment/cancel",
+                    isSavePaymentMethod: false,
+                    isReceiptEmail: true,
+                    requirements: widget.item.requirements ?? '',
+                    duration: widget.item.duration,
+                    conversationId: conversationId,
+                    deliveries: [],
+                  ),
+                );
+              },
+              gradientColors: [AppColors.deepBlue, AppColors.violet],
             );
           },
-          gradientColors: [AppColors.deepBlue, AppColors.violet],
         );
       },
     );

@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/gql/queries/generated/artist_package_query.graphql.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:ekofy_mobile/gql/queries/generated/artist_query.graphql.dart';
 
@@ -5,6 +6,26 @@ class ArtistApiDataSource {
   final GraphQLClient _client;
 
   ArtistApiDataSource(this._client);
+
+  Future<
+    List<Query$ArtistPackagesInConversation$artistPackagesInConversation$items>
+  >
+  fetchArtistPackagesInConversation({required String artistId}) async {
+    final result = await _client.query$ArtistPackagesInConversation(
+      Options$Query$ArtistPackagesInConversation(
+        variables: Variables$Query$ArtistPackagesInConversation(
+          artistId: artistId,
+        ),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
+    );
+
+    if (result.hasException) {
+      throw Exception(result.exception.toString());
+    }
+
+    return result.parsedData?.artistPackagesInConversation?.items ?? [];
+  }
 
   Future<List<Query$ArtistPackages$artistPackages$items>> fetchArtistPackages({
     required String artistId,

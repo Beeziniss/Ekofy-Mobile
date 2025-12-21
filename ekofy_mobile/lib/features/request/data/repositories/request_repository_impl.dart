@@ -59,7 +59,26 @@ class RequestRepositoryImpl implements RequestRepository {
   }
 
   @override
-  Future<List<Query$OwnRequestsQuery$requests$items>> fetchOwnRequests(String requestUserId) async {
+  Future<List<Query$OwnRequestsQuery$requests$items>> fetchOwnRequests(
+    String requestUserId,
+  ) async {
     return await apiDatasource.fetchOwnRequests(requestUserId);
+  }
+
+  @override
+  Future<bool> sendRequest({
+    String? publicRequestId,
+    required String artistId,
+    String? requirements,
+    required String packageId,
+    required bool isDirectRequest,
+  }) async {
+    return await apiDatasource.sendRequest(
+      publicRequestId: publicRequestId,
+      artistId: artistId,
+      requirements: requirements,
+      packageId: packageId,
+      isDirectRequest: isDirectRequest,
+    );
   }
 }

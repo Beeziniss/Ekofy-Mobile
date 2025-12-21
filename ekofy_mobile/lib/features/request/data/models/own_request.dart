@@ -24,6 +24,7 @@ class OwnRequestItem {
   final OwnRequestBudget budget;
   final OwnRequestArtist? artist;
   final OwnRequestPackage? artistPackage;
+  final String? conversationId;
 
   OwnRequestItem({
     required this.id,
@@ -47,6 +48,7 @@ class OwnRequestItem {
     required this.budget,
     this.artist,
     this.artistPackage,
+    this.conversationId,
   });
 
   factory OwnRequestItem.fromQueryItem(

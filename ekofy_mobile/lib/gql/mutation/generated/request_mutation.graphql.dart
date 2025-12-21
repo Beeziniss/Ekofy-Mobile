@@ -1395,13 +1395,13 @@ class Mutation$UpdatePublicRequest$Widget
 
 class Variables$Mutation$SendRequest {
   factory Variables$Mutation$SendRequest({
-    required String publicRequestId,
+    String? publicRequestId,
     required String artistId,
     String? requirements,
     required String packageId,
     required bool isDirectRequest,
   }) => Variables$Mutation$SendRequest._({
-    r'publicRequestId': publicRequestId,
+    if (publicRequestId != null) r'publicRequestId': publicRequestId,
     r'artistId': artistId,
     if (requirements != null) r'requirements': requirements,
     r'packageId': packageId,
@@ -1412,8 +1412,10 @@ class Variables$Mutation$SendRequest {
 
   factory Variables$Mutation$SendRequest.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$publicRequestId = data['publicRequestId'];
-    result$data['publicRequestId'] = (l$publicRequestId as String);
+    if (data.containsKey('publicRequestId')) {
+      final l$publicRequestId = data['publicRequestId'];
+      result$data['publicRequestId'] = (l$publicRequestId as String?);
+    }
     final l$artistId = data['artistId'];
     result$data['artistId'] = (l$artistId as String);
     if (data.containsKey('requirements')) {
@@ -1429,7 +1431,7 @@ class Variables$Mutation$SendRequest {
 
   Map<String, dynamic> _$data;
 
-  String get publicRequestId => (_$data['publicRequestId'] as String);
+  String? get publicRequestId => (_$data['publicRequestId'] as String?);
 
   String get artistId => (_$data['artistId'] as String);
 
@@ -1441,8 +1443,10 @@ class Variables$Mutation$SendRequest {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$publicRequestId = publicRequestId;
-    result$data['publicRequestId'] = l$publicRequestId;
+    if (_$data.containsKey('publicRequestId')) {
+      final l$publicRequestId = publicRequestId;
+      result$data['publicRequestId'] = l$publicRequestId;
+    }
     final l$artistId = artistId;
     result$data['artistId'] = l$artistId;
     if (_$data.containsKey('requirements')) {
@@ -1470,6 +1474,10 @@ class Variables$Mutation$SendRequest {
     }
     final l$publicRequestId = publicRequestId;
     final lOther$publicRequestId = other.publicRequestId;
+    if (_$data.containsKey('publicRequestId') !=
+        other._$data.containsKey('publicRequestId')) {
+      return false;
+    }
     if (l$publicRequestId != lOther$publicRequestId) {
       return false;
     }
@@ -1508,7 +1516,7 @@ class Variables$Mutation$SendRequest {
     final l$packageId = packageId;
     final l$isDirectRequest = isDirectRequest;
     return Object.hashAll([
-      l$publicRequestId,
+      _$data.containsKey('publicRequestId') ? l$publicRequestId : const {},
       l$artistId,
       _$data.containsKey('requirements') ? l$requirements : const {},
       l$packageId,
@@ -1554,8 +1562,8 @@ class _CopyWithImpl$Variables$Mutation$SendRequest<TRes>
   }) => _then(
     Variables$Mutation$SendRequest._({
       ..._instance._$data,
-      if (publicRequestId != _undefined && publicRequestId != null)
-        'publicRequestId': (publicRequestId as String),
+      if (publicRequestId != _undefined)
+        'publicRequestId': (publicRequestId as String?),
       if (artistId != _undefined && artistId != null)
         'artistId': (artistId as String),
       if (requirements != _undefined) 'requirements': (requirements as String?),
@@ -1698,7 +1706,10 @@ const documentNodeMutationSendRequest = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'publicRequestId')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(
+            name: NameNode(value: 'String'),
+            isNonNull: false,
+          ),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -2495,6 +2506,7 @@ class Variables$Mutation$CreatePaymentCheckoutSession {
     required String requirements,
     required List<Input$PackageOrderDeliveryInput> deliveries,
     required int duration,
+    String? conversationId,
   }) => Variables$Mutation$CreatePaymentCheckoutSession._({
     r'packageId': packageId,
     r'requestId': requestId,
@@ -2505,6 +2517,7 @@ class Variables$Mutation$CreatePaymentCheckoutSession {
     r'requirements': requirements,
     r'deliveries': deliveries,
     r'duration': duration,
+    if (conversationId != null) r'conversationId': conversationId,
   });
 
   Variables$Mutation$CreatePaymentCheckoutSession._(this._$data);
@@ -2537,6 +2550,10 @@ class Variables$Mutation$CreatePaymentCheckoutSession {
         .toList();
     final l$duration = data['duration'];
     result$data['duration'] = (l$duration as int);
+    if (data.containsKey('conversationId')) {
+      final l$conversationId = data['conversationId'];
+      result$data['conversationId'] = (l$conversationId as String?);
+    }
     return Variables$Mutation$CreatePaymentCheckoutSession._(result$data);
   }
 
@@ -2561,6 +2578,8 @@ class Variables$Mutation$CreatePaymentCheckoutSession {
 
   int get duration => (_$data['duration'] as int);
 
+  String? get conversationId => (_$data['conversationId'] as String?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$packageId = packageId;
@@ -2581,6 +2600,10 @@ class Variables$Mutation$CreatePaymentCheckoutSession {
     result$data['deliveries'] = l$deliveries.map((e) => e.toJson()).toList();
     final l$duration = duration;
     result$data['duration'] = l$duration;
+    if (_$data.containsKey('conversationId')) {
+      final l$conversationId = conversationId;
+      result$data['conversationId'] = l$conversationId;
+    }
     return result$data;
   }
 
@@ -2651,6 +2674,15 @@ class Variables$Mutation$CreatePaymentCheckoutSession {
     if (l$duration != lOther$duration) {
       return false;
     }
+    final l$conversationId = conversationId;
+    final lOther$conversationId = other.conversationId;
+    if (_$data.containsKey('conversationId') !=
+        other._$data.containsKey('conversationId')) {
+      return false;
+    }
+    if (l$conversationId != lOther$conversationId) {
+      return false;
+    }
     return true;
   }
 
@@ -2665,6 +2697,7 @@ class Variables$Mutation$CreatePaymentCheckoutSession {
     final l$requirements = requirements;
     final l$deliveries = deliveries;
     final l$duration = duration;
+    final l$conversationId = conversationId;
     return Object.hashAll([
       l$packageId,
       l$requestId,
@@ -2675,6 +2708,7 @@ class Variables$Mutation$CreatePaymentCheckoutSession {
       l$requirements,
       Object.hashAll(l$deliveries.map((v) => v)),
       l$duration,
+      _$data.containsKey('conversationId') ? l$conversationId : const {},
     ]);
   }
 }
@@ -2699,6 +2733,7 @@ abstract class CopyWith$Variables$Mutation$CreatePaymentCheckoutSession<TRes> {
     String? requirements,
     List<Input$PackageOrderDeliveryInput>? deliveries,
     int? duration,
+    String? conversationId,
   });
 }
 
@@ -2725,6 +2760,7 @@ class _CopyWithImpl$Variables$Mutation$CreatePaymentCheckoutSession<TRes>
     Object? requirements = _undefined,
     Object? deliveries = _undefined,
     Object? duration = _undefined,
+    Object? conversationId = _undefined,
   }) => _then(
     Variables$Mutation$CreatePaymentCheckoutSession._({
       ..._instance._$data,
@@ -2746,6 +2782,8 @@ class _CopyWithImpl$Variables$Mutation$CreatePaymentCheckoutSession<TRes>
         'deliveries': (deliveries as List<Input$PackageOrderDeliveryInput>),
       if (duration != _undefined && duration != null)
         'duration': (duration as int),
+      if (conversationId != _undefined)
+        'conversationId': (conversationId as String?),
     }),
   );
 }
@@ -2766,6 +2804,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreatePaymentCheckoutSession<TRes>
     String? requirements,
     List<Input$PackageOrderDeliveryInput>? deliveries,
     int? duration,
+    String? conversationId,
   }) => _res;
 }
 
@@ -3000,6 +3039,15 @@ const documentNodeMutationCreatePaymentCheckoutSession = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'conversationId')),
+          type: NamedTypeNode(
+            name: NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
@@ -3053,6 +3101,12 @@ const documentNodeMutationCreatePaymentCheckoutSession = DocumentNode(
                     ObjectFieldNode(
                       name: NameNode(value: 'duration'),
                       value: VariableNode(name: NameNode(value: 'duration')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'conversationId'),
+                      value: VariableNode(
+                        name: NameNode(value: 'conversationId'),
+                      ),
                     ),
                   ],
                 ),

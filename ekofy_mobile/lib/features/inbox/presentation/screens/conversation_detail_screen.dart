@@ -3,10 +3,14 @@ import 'dart:developer';
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/core/utils/helper.dart';
+import 'package:ekofy_mobile/features/artist/presentation/providers/artist_provider.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/providers/conversation_signalr_provider.dart';
-import 'package:ekofy_mobile/features/inbox/presentation/widgets/message_bubble.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/widgets/chat_input.dart';
+import 'package:ekofy_mobile/features/inbox/presentation/widgets/message_bubble.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/widgets/profile_info_sheet.dart';
+import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
+import 'package:ekofy_mobile/gql/queries/generated/artist_package_query.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -306,7 +310,7 @@ class _ConversationDetailScreenState
     final conversation = inboxState.conversations[conversationIndex];
 
     // Determine which profile to show
-    final isOwner = conversation.ownerProfile.artistId == currentUserId;
+    final isOwner = conversation.ownerProfile.artistId != currentUserId;
     final otherProfile = isOwner
         ? conversation.otherProfile
         : conversation.ownerProfile;
@@ -360,6 +364,27 @@ class _ConversationDetailScreenState
           ],
         ),
         actions: [
+          if (conversation.status == Enum$ConversationStatus.PENDING)
+            IconButton(
+              icon: Icon(
+                Icons.add_circle_outline,
+                color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
+              ),
+              tooltip: 'Create Request',
+              onPressed: () {
+                if (otherProfile.artistId != null) {
+                  _showCreateRequestModal(
+                    context,
+                    otherProfile.artistId!,
+                    conversation.requestId,
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('This user is not an artist')),
+                  );
+                }
+              },
+            ),
           IconButton(
             icon: Icon(
               Icons.more_horiz,
@@ -499,5 +524,275 @@ class _ConversationDetailScreenState
     } else {
       return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
     }
+  }
+
+  void _showCreateRequestModal(
+    BuildContext context,
+    String artistId,
+    String? publicRequestId,
+  ) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => _CreateRequestModal(
+        artistId: artistId,
+        publicRequestId: publicRequestId,
+      ),
+    );
+  }
+}
+
+class _CreateRequestModal extends ConsumerStatefulWidget {
+  final String artistId;
+  final String? publicRequestId;
+
+  const _CreateRequestModal({required this.artistId, this.publicRequestId});
+
+  @override
+  ConsumerState<_CreateRequestModal> createState() =>
+      _CreateRequestModalState();
+}
+
+class _CreateRequestModalState extends ConsumerState<_CreateRequestModal> {
+  bool _isLoading = true;
+  List<Query$ArtistPackagesInConversation$artistPackagesInConversation$items>
+  _packages = [];
+  String? _selectedPackageId;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchPackages();
+  }
+
+  Future<void> _fetchPackages() async {
+    try {
+      final packages = await ref
+          .read(artistApiDataSourceProvider)
+          .fetchArtistPackagesInConversation(artistId: widget.artistId);
+      if (mounted) {
+        setState(() {
+          _packages = packages;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      log('Error fetching packages: $e');
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _sendRequest() async {
+    if (_selectedPackageId == null) return;
+
+    try {
+      final success = await ref
+          .read(requestProvider.notifier)
+          .sendRequest(
+            publicRequestId: widget.publicRequestId,
+            artistId: widget.artistId,
+            packageId: _selectedPackageId!,
+            isDirectRequest: widget.publicRequestId == null,
+          );
+
+      if (mounted) {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              success ? 'Request sent successfully' : 'Failed to send request',
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: $e')));
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.7,
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              'Select Package',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
+          Expanded(
+            child: _isLoading
+                ? Center(
+                    child: Image.asset(AppImages.loader, gaplessPlayback: true),
+                  )
+                : _packages.isEmpty
+                ? const Center(child: Text('No packages found'))
+                : ListView.builder(
+                    itemCount: _packages.length,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemBuilder: (context, index) {
+                      final package = _packages[index];
+                      final isSelected = _selectedPackageId == package.id;
+
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectedPackageId = package.id;
+                          });
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? AppColors.violet.withOpacity(0.1)
+                                : (isDark
+                                      ? const Color(0xFF1C1C1C)
+                                      : Colors.grey[100]),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: isSelected
+                                  ? AppColors.violet
+                                  : Colors.transparent,
+                              width: 2,
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      package.packageName,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: isDark
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    '${Helper.formatCurrency(package.amount)} ${package.currency}',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.violet,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                package.description ?? '',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: isDark
+                                      ? Colors.white70
+                                      : Colors.black54,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.timer,
+                                    size: 16,
+                                    color: isDark
+                                        ? Colors.white54
+                                        : Colors.black45,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    '${package.estimateDeliveryDays} days',
+                                    style: TextStyle(
+                                      color: isDark
+                                          ? Colors.white54
+                                          : Colors.black45,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Icon(
+                                    Icons.refresh,
+                                    size: 16,
+                                    color: isDark
+                                        ? Colors.white54
+                                        : Colors.black45,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    '${package.maxRevision} revisions',
+                                    style: TextStyle(
+                                      color: isDark
+                                          ? Colors.white54
+                                          : Colors.black45,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _selectedPackageId == null ? null : _sendRequest,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.violet,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  disabledBackgroundColor: AppColors.violet.withOpacity(0.3),
+                ),
+                child: const Text(
+                  'Send Request',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

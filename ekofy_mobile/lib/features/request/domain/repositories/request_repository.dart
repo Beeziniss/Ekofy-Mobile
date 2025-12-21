@@ -30,4 +30,12 @@ abstract class RequestRepository {
   Future<List<Query$OwnRequestsQuery$requests$items>> fetchOwnRequests(
     String requestUserId,
   );
+
+  Future<bool> sendRequest({
+    String? publicRequestId,
+    required String artistId,
+    String? requirements,
+    required String packageId,
+    required bool isDirectRequest,
+  });
 }

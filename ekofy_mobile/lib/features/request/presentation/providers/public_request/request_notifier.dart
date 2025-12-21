@@ -108,4 +108,25 @@ class RequestNotifier extends StateNotifier<RequestState> {
 
     return result;
   }
+
+  Future<bool> sendRequest({
+    String? publicRequestId,
+    required String artistId,
+    String? requirements,
+    required String packageId,
+    required bool isDirectRequest,
+  }) async {
+    try {
+      return await repository.sendRequest(
+        publicRequestId: publicRequestId,
+        artistId: artistId,
+        requirements: requirements,
+        packageId: packageId,
+        isDirectRequest: isDirectRequest,
+      );
+    } catch (e) {
+      log('Send request error: $e');
+      return false;
+    }
+  }
 }

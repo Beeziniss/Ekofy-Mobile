@@ -42,7 +42,7 @@ mutation UpdatePublicRequest(
 
 
 mutation SendRequest(
-  $publicRequestId: String!,
+  $publicRequestId: String,
   $artistId: String!,
   $requirements: String,
   $packageId: String!,
@@ -63,7 +63,7 @@ mutation ChangeRequestStatus ($requestId: String!, $status: RequestStatus!) {
     changeRequestStatus(request: { requestId: $requestId, status: $status })
 }
 
-mutation CreatePaymentCheckoutSession ($packageId: String!, $requestId: String!, $successUrl: String!, $cancelUrl: String!, $isSavePaymentMethod: Boolean!, $isReceiptEmail: Boolean!, $requirements: String!, $deliveries: [PackageOrderDeliveryInput!]!, $duration: Int!) {
+mutation CreatePaymentCheckoutSession ($packageId: String!, $requestId: String!, $successUrl: String!, $cancelUrl: String!, $isSavePaymentMethod: Boolean!, $isReceiptEmail: Boolean!, $requirements: String!, $deliveries: [PackageOrderDeliveryInput!]!, $duration: Int!, $conversationId: String) {
     createPaymentCheckoutSession(
         createPaymentCheckoutSessionRequest: {
             packageId: $packageId
@@ -75,6 +75,7 @@ mutation CreatePaymentCheckoutSession ($packageId: String!, $requestId: String!,
             requirements: $requirements
             deliveries: $deliveries
             duration: $duration
+            conversationId: $conversationId
         }
     ) {
         id

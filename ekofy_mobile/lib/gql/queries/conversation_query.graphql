@@ -48,3 +48,14 @@ query Messages($where: MessageFilterInput, $last: Int, $before: String) {
 		totalCount
 	}
 }
+
+query getConversationIdFromRequest($userId: String!, $requestId: String, $artistId: String!) {
+    conversationsByUserId(
+        where: { requestId: { eq: $requestId }, userIds: { some: { eq: $artistId } } }
+        userId: $userId
+    ) {
+        items {
+            id
+        }
+    }
+}

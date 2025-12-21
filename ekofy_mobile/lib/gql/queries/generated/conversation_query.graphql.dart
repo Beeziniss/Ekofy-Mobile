@@ -3189,3 +3189,940 @@ class _CopyWithStubImpl$Query$Messages$messages$edges$node$senderProfileMessages
 
   call({String? avatar, String? nickname, String? $__typename}) => _res;
 }
+
+class Variables$Query$getConversationIdFromRequest {
+  factory Variables$Query$getConversationIdFromRequest({
+    required String userId,
+    String? requestId,
+    required String artistId,
+  }) => Variables$Query$getConversationIdFromRequest._({
+    r'userId': userId,
+    if (requestId != null) r'requestId': requestId,
+    r'artistId': artistId,
+  });
+
+  Variables$Query$getConversationIdFromRequest._(this._$data);
+
+  factory Variables$Query$getConversationIdFromRequest.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
+    if (data.containsKey('requestId')) {
+      final l$requestId = data['requestId'];
+      result$data['requestId'] = (l$requestId as String?);
+    }
+    final l$artistId = data['artistId'];
+    result$data['artistId'] = (l$artistId as String);
+    return Variables$Query$getConversationIdFromRequest._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get userId => (_$data['userId'] as String);
+
+  String? get requestId => (_$data['requestId'] as String?);
+
+  String get artistId => (_$data['artistId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
+    if (_$data.containsKey('requestId')) {
+      final l$requestId = requestId;
+      result$data['requestId'] = l$requestId;
+    }
+    final l$artistId = artistId;
+    result$data['artistId'] = l$artistId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$getConversationIdFromRequest<
+    Variables$Query$getConversationIdFromRequest
+  >
+  get copyWith =>
+      CopyWith$Variables$Query$getConversationIdFromRequest(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$getConversationIdFromRequest ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$requestId = requestId;
+    final lOther$requestId = other.requestId;
+    if (_$data.containsKey('requestId') !=
+        other._$data.containsKey('requestId')) {
+      return false;
+    }
+    if (l$requestId != lOther$requestId) {
+      return false;
+    }
+    final l$artistId = artistId;
+    final lOther$artistId = other.artistId;
+    if (l$artistId != lOther$artistId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    final l$requestId = requestId;
+    final l$artistId = artistId;
+    return Object.hashAll([
+      l$userId,
+      _$data.containsKey('requestId') ? l$requestId : const {},
+      l$artistId,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$getConversationIdFromRequest<TRes> {
+  factory CopyWith$Variables$Query$getConversationIdFromRequest(
+    Variables$Query$getConversationIdFromRequest instance,
+    TRes Function(Variables$Query$getConversationIdFromRequest) then,
+  ) = _CopyWithImpl$Variables$Query$getConversationIdFromRequest;
+
+  factory CopyWith$Variables$Query$getConversationIdFromRequest.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$getConversationIdFromRequest;
+
+  TRes call({String? userId, String? requestId, String? artistId});
+}
+
+class _CopyWithImpl$Variables$Query$getConversationIdFromRequest<TRes>
+    implements CopyWith$Variables$Query$getConversationIdFromRequest<TRes> {
+  _CopyWithImpl$Variables$Query$getConversationIdFromRequest(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$getConversationIdFromRequest _instance;
+
+  final TRes Function(Variables$Query$getConversationIdFromRequest) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? userId = _undefined,
+    Object? requestId = _undefined,
+    Object? artistId = _undefined,
+  }) => _then(
+    Variables$Query$getConversationIdFromRequest._({
+      ..._instance._$data,
+      if (userId != _undefined && userId != null) 'userId': (userId as String),
+      if (requestId != _undefined) 'requestId': (requestId as String?),
+      if (artistId != _undefined && artistId != null)
+        'artistId': (artistId as String),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Variables$Query$getConversationIdFromRequest<TRes>
+    implements CopyWith$Variables$Query$getConversationIdFromRequest<TRes> {
+  _CopyWithStubImpl$Variables$Query$getConversationIdFromRequest(this._res);
+
+  TRes _res;
+
+  call({String? userId, String? requestId, String? artistId}) => _res;
+}
+
+class Query$getConversationIdFromRequest {
+  Query$getConversationIdFromRequest({
+    this.conversationsByUserId,
+    this.$__typename = 'QueryInitialization',
+  });
+
+  factory Query$getConversationIdFromRequest.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$conversationsByUserId = json['conversationsByUserId'];
+    final l$$__typename = json['__typename'];
+    return Query$getConversationIdFromRequest(
+      conversationsByUserId: l$conversationsByUserId == null
+          ? null
+          : Query$getConversationIdFromRequest$conversationsByUserId.fromJson(
+              (l$conversationsByUserId as Map<String, dynamic>),
+            ),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$getConversationIdFromRequest$conversationsByUserId?
+  conversationsByUserId;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$conversationsByUserId = conversationsByUserId;
+    _resultData['conversationsByUserId'] = l$conversationsByUserId?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$conversationsByUserId = conversationsByUserId;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$conversationsByUserId, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$getConversationIdFromRequest ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$conversationsByUserId = conversationsByUserId;
+    final lOther$conversationsByUserId = other.conversationsByUserId;
+    if (l$conversationsByUserId != lOther$conversationsByUserId) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getConversationIdFromRequest
+    on Query$getConversationIdFromRequest {
+  CopyWith$Query$getConversationIdFromRequest<
+    Query$getConversationIdFromRequest
+  >
+  get copyWith => CopyWith$Query$getConversationIdFromRequest(this, (i) => i);
+}
+
+abstract class CopyWith$Query$getConversationIdFromRequest<TRes> {
+  factory CopyWith$Query$getConversationIdFromRequest(
+    Query$getConversationIdFromRequest instance,
+    TRes Function(Query$getConversationIdFromRequest) then,
+  ) = _CopyWithImpl$Query$getConversationIdFromRequest;
+
+  factory CopyWith$Query$getConversationIdFromRequest.stub(TRes res) =
+      _CopyWithStubImpl$Query$getConversationIdFromRequest;
+
+  TRes call({
+    Query$getConversationIdFromRequest$conversationsByUserId?
+    conversationsByUserId,
+    String? $__typename,
+  });
+  CopyWith$Query$getConversationIdFromRequest$conversationsByUserId<TRes>
+  get conversationsByUserId;
+}
+
+class _CopyWithImpl$Query$getConversationIdFromRequest<TRes>
+    implements CopyWith$Query$getConversationIdFromRequest<TRes> {
+  _CopyWithImpl$Query$getConversationIdFromRequest(this._instance, this._then);
+
+  final Query$getConversationIdFromRequest _instance;
+
+  final TRes Function(Query$getConversationIdFromRequest) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? conversationsByUserId = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Query$getConversationIdFromRequest(
+      conversationsByUserId: conversationsByUserId == _undefined
+          ? _instance.conversationsByUserId
+          : (conversationsByUserId
+                as Query$getConversationIdFromRequest$conversationsByUserId?),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+
+  CopyWith$Query$getConversationIdFromRequest$conversationsByUserId<TRes>
+  get conversationsByUserId {
+    final local$conversationsByUserId = _instance.conversationsByUserId;
+    return local$conversationsByUserId == null
+        ? CopyWith$Query$getConversationIdFromRequest$conversationsByUserId.stub(
+            _then(_instance),
+          )
+        : CopyWith$Query$getConversationIdFromRequest$conversationsByUserId(
+            local$conversationsByUserId,
+            (e) => call(conversationsByUserId: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Query$getConversationIdFromRequest<TRes>
+    implements CopyWith$Query$getConversationIdFromRequest<TRes> {
+  _CopyWithStubImpl$Query$getConversationIdFromRequest(this._res);
+
+  TRes _res;
+
+  call({
+    Query$getConversationIdFromRequest$conversationsByUserId?
+    conversationsByUserId,
+    String? $__typename,
+  }) => _res;
+
+  CopyWith$Query$getConversationIdFromRequest$conversationsByUserId<TRes>
+  get conversationsByUserId =>
+      CopyWith$Query$getConversationIdFromRequest$conversationsByUserId.stub(
+        _res,
+      );
+}
+
+const documentNodeQuerygetConversationIdFromRequest = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'getConversationIdFromRequest'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'requestId')),
+          type: NamedTypeNode(
+            name: NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'artistId')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'conversationsByUserId'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'requestId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: 'eq'),
+                            value: VariableNode(
+                              name: NameNode(value: 'requestId'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'userIds'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: 'some'),
+                            value: ObjectValueNode(
+                              fields: [
+                                ObjectFieldNode(
+                                  name: NameNode(value: 'eq'),
+                                  value: VariableNode(
+                                    name: NameNode(value: 'artistId'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'userId'),
+                value: VariableNode(name: NameNode(value: 'userId')),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'items'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ],
+      ),
+    ),
+  ],
+);
+Query$getConversationIdFromRequest _parserFn$Query$getConversationIdFromRequest(
+  Map<String, dynamic> data,
+) => Query$getConversationIdFromRequest.fromJson(data);
+typedef OnQueryComplete$Query$getConversationIdFromRequest =
+    FutureOr<void> Function(
+      Map<String, dynamic>?,
+      Query$getConversationIdFromRequest?,
+    );
+
+class Options$Query$getConversationIdFromRequest
+    extends graphql.QueryOptions<Query$getConversationIdFromRequest> {
+  Options$Query$getConversationIdFromRequest({
+    String? operationName,
+    required Variables$Query$getConversationIdFromRequest variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$getConversationIdFromRequest? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$getConversationIdFromRequest? onComplete,
+    graphql.OnQueryError? onError,
+  }) : onCompleteWithParsed = onComplete,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         pollInterval: pollInterval,
+         context: context,
+         onComplete: onComplete == null
+             ? null
+             : (data) => onComplete(
+                 data,
+                 data == null
+                     ? null
+                     : _parserFn$Query$getConversationIdFromRequest(data),
+               ),
+         onError: onError,
+         document: documentNodeQuerygetConversationIdFromRequest,
+         parserFn: _parserFn$Query$getConversationIdFromRequest,
+       );
+
+  final OnQueryComplete$Query$getConversationIdFromRequest?
+  onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onComplete == null
+        ? super.properties
+        : super.properties.where((property) => property != onComplete),
+    onCompleteWithParsed,
+  ];
+}
+
+class WatchOptions$Query$getConversationIdFromRequest
+    extends graphql.WatchQueryOptions<Query$getConversationIdFromRequest> {
+  WatchOptions$Query$getConversationIdFromRequest({
+    String? operationName,
+    required Variables$Query$getConversationIdFromRequest variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$getConversationIdFromRequest? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeQuerygetConversationIdFromRequest,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFn$Query$getConversationIdFromRequest,
+       );
+}
+
+class FetchMoreOptions$Query$getConversationIdFromRequest
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$getConversationIdFromRequest({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$getConversationIdFromRequest variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQuerygetConversationIdFromRequest,
+       );
+}
+
+extension ClientExtension$Query$getConversationIdFromRequest
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$getConversationIdFromRequest>>
+  query$getConversationIdFromRequest(
+    Options$Query$getConversationIdFromRequest options,
+  ) async => await this.query(options);
+
+  graphql.ObservableQuery<Query$getConversationIdFromRequest>
+  watchQuery$getConversationIdFromRequest(
+    WatchOptions$Query$getConversationIdFromRequest options,
+  ) => this.watchQuery(options);
+
+  void writeQuery$getConversationIdFromRequest({
+    required Query$getConversationIdFromRequest data,
+    required Variables$Query$getConversationIdFromRequest variables,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(
+        document: documentNodeQuerygetConversationIdFromRequest,
+      ),
+      variables: variables.toJson(),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+
+  Query$getConversationIdFromRequest? readQuery$getConversationIdFromRequest({
+    required Variables$Query$getConversationIdFromRequest variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(
+          document: documentNodeQuerygetConversationIdFromRequest,
+        ),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Query$getConversationIdFromRequest.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$getConversationIdFromRequest>
+useQuery$getConversationIdFromRequest(
+  Options$Query$getConversationIdFromRequest options,
+) => graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$getConversationIdFromRequest>
+useWatchQuery$getConversationIdFromRequest(
+  WatchOptions$Query$getConversationIdFromRequest options,
+) => graphql_flutter.useWatchQuery(options);
+
+class Query$getConversationIdFromRequest$Widget
+    extends graphql_flutter.Query<Query$getConversationIdFromRequest> {
+  Query$getConversationIdFromRequest$Widget({
+    widgets.Key? key,
+    required Options$Query$getConversationIdFromRequest options,
+    required graphql_flutter.QueryBuilder<Query$getConversationIdFromRequest>
+    builder,
+  }) : super(key: key, options: options, builder: builder);
+}
+
+class Query$getConversationIdFromRequest$conversationsByUserId {
+  Query$getConversationIdFromRequest$conversationsByUserId({
+    this.items,
+    this.$__typename = 'ConversationsByUserIdCollectionSegment',
+  });
+
+  factory Query$getConversationIdFromRequest$conversationsByUserId.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$getConversationIdFromRequest$conversationsByUserId(
+      items: (l$items as List<dynamic>?)
+          ?.map(
+            (e) =>
+                Query$getConversationIdFromRequest$conversationsByUserId$items.fromJson(
+                  (e as Map<String, dynamic>),
+                ),
+          )
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$getConversationIdFromRequest$conversationsByUserId$items>?
+  items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items?.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$items == null ? null : Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$getConversationIdFromRequest$conversationsByUserId ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != null && lOther$items != null) {
+      if (l$items.length != lOther$items.length) {
+        return false;
+      }
+      for (int i = 0; i < l$items.length; i++) {
+        final l$items$entry = l$items[i];
+        final lOther$items$entry = lOther$items[i];
+        if (l$items$entry != lOther$items$entry) {
+          return false;
+        }
+      }
+    } else if (l$items != lOther$items) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getConversationIdFromRequest$conversationsByUserId
+    on Query$getConversationIdFromRequest$conversationsByUserId {
+  CopyWith$Query$getConversationIdFromRequest$conversationsByUserId<
+    Query$getConversationIdFromRequest$conversationsByUserId
+  >
+  get copyWith =>
+      CopyWith$Query$getConversationIdFromRequest$conversationsByUserId(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$getConversationIdFromRequest$conversationsByUserId<
+  TRes
+> {
+  factory CopyWith$Query$getConversationIdFromRequest$conversationsByUserId(
+    Query$getConversationIdFromRequest$conversationsByUserId instance,
+    TRes Function(Query$getConversationIdFromRequest$conversationsByUserId)
+    then,
+  ) = _CopyWithImpl$Query$getConversationIdFromRequest$conversationsByUserId;
+
+  factory CopyWith$Query$getConversationIdFromRequest$conversationsByUserId.stub(
+    TRes res,
+  ) = _CopyWithStubImpl$Query$getConversationIdFromRequest$conversationsByUserId;
+
+  TRes call({
+    List<Query$getConversationIdFromRequest$conversationsByUserId$items>? items,
+    String? $__typename,
+  });
+  TRes items(
+    Iterable<Query$getConversationIdFromRequest$conversationsByUserId$items>?
+    Function(
+      Iterable<
+        CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items<
+          Query$getConversationIdFromRequest$conversationsByUserId$items
+        >
+      >?,
+    )
+    _fn,
+  );
+}
+
+class _CopyWithImpl$Query$getConversationIdFromRequest$conversationsByUserId<
+  TRes
+>
+    implements
+        CopyWith$Query$getConversationIdFromRequest$conversationsByUserId<
+          TRes
+        > {
+  _CopyWithImpl$Query$getConversationIdFromRequest$conversationsByUserId(
+    this._instance,
+    this._then,
+  );
+
+  final Query$getConversationIdFromRequest$conversationsByUserId _instance;
+
+  final TRes Function(Query$getConversationIdFromRequest$conversationsByUserId)
+  _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Query$getConversationIdFromRequest$conversationsByUserId(
+      items: items == _undefined
+          ? _instance.items
+          : (items
+                as List<
+                  Query$getConversationIdFromRequest$conversationsByUserId$items
+                >?),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+
+  TRes items(
+    Iterable<Query$getConversationIdFromRequest$conversationsByUserId$items>?
+    Function(
+      Iterable<
+        CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items<
+          Query$getConversationIdFromRequest$conversationsByUserId$items
+        >
+      >?,
+    )
+    _fn,
+  ) => call(
+    items: _fn(
+      _instance.items?.map(
+        (e) =>
+            CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items(
+              e,
+              (i) => i,
+            ),
+      ),
+    )?.toList(),
+  );
+}
+
+class _CopyWithStubImpl$Query$getConversationIdFromRequest$conversationsByUserId<
+  TRes
+>
+    implements
+        CopyWith$Query$getConversationIdFromRequest$conversationsByUserId<
+          TRes
+        > {
+  _CopyWithStubImpl$Query$getConversationIdFromRequest$conversationsByUserId(
+    this._res,
+  );
+
+  TRes _res;
+
+  call({
+    List<Query$getConversationIdFromRequest$conversationsByUserId$items>? items,
+    String? $__typename,
+  }) => _res;
+
+  items(_fn) => _res;
+}
+
+class Query$getConversationIdFromRequest$conversationsByUserId$items {
+  Query$getConversationIdFromRequest$conversationsByUserId$items({
+    required this.id,
+    this.$__typename = 'Conversation',
+  });
+
+  factory Query$getConversationIdFromRequest$conversationsByUserId$items.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$getConversationIdFromRequest$conversationsByUserId$items(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Query$getConversationIdFromRequest$conversationsByUserId$items ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getConversationIdFromRequest$conversationsByUserId$items
+    on Query$getConversationIdFromRequest$conversationsByUserId$items {
+  CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items<
+    Query$getConversationIdFromRequest$conversationsByUserId$items
+  >
+  get copyWith =>
+      CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items<
+  TRes
+> {
+  factory CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items(
+    Query$getConversationIdFromRequest$conversationsByUserId$items instance,
+    TRes Function(
+      Query$getConversationIdFromRequest$conversationsByUserId$items,
+    )
+    then,
+  ) = _CopyWithImpl$Query$getConversationIdFromRequest$conversationsByUserId$items;
+
+  factory CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items.stub(
+    TRes res,
+  ) = _CopyWithStubImpl$Query$getConversationIdFromRequest$conversationsByUserId$items;
+
+  TRes call({String? id, String? $__typename});
+}
+
+class _CopyWithImpl$Query$getConversationIdFromRequest$conversationsByUserId$items<
+  TRes
+>
+    implements
+        CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items<
+          TRes
+        > {
+  _CopyWithImpl$Query$getConversationIdFromRequest$conversationsByUserId$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$getConversationIdFromRequest$conversationsByUserId$items
+  _instance;
+
+  final TRes Function(
+    Query$getConversationIdFromRequest$conversationsByUserId$items,
+  )
+  _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? id = _undefined, Object? $__typename = _undefined}) =>
+      _then(
+        Query$getConversationIdFromRequest$conversationsByUserId$items(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+        ),
+      );
+}
+
+class _CopyWithStubImpl$Query$getConversationIdFromRequest$conversationsByUserId$items<
+  TRes
+>
+    implements
+        CopyWith$Query$getConversationIdFromRequest$conversationsByUserId$items<
+          TRes
+        > {
+  _CopyWithStubImpl$Query$getConversationIdFromRequest$conversationsByUserId$items(
+    this._res,
+  );
+
+  TRes _res;
+
+  call({String? id, String? $__typename}) => _res;
+}

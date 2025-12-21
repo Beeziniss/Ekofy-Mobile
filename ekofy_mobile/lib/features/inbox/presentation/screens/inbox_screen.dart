@@ -24,7 +24,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     _tabController?.addListener(_onTabChanged);
 
     // Load conversations on init
@@ -46,6 +46,9 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
             break;
           case 2:
             _selectedStatus = Enum$ConversationStatus.COMPLETED;
+            break;
+          case 3:
+            _selectedStatus = Enum$ConversationStatus.PENDING;
             break;
         }
       });
@@ -119,26 +122,26 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text('General'),
-                  if (_selectedStatus == null &&
-                      inboxState.conversations.isNotEmpty)
-                    Container(
-                      margin: const EdgeInsets.only(left: 8),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.grey,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        '${inboxState.conversations.length}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  // if (_selectedStatus == null &&
+                  //     inboxState.conversations.isNotEmpty)
+                  //   Container(
+                  //     margin: const EdgeInsets.all(8),
+                  //     padding: const EdgeInsets.symmetric(
+                  //       horizontal: 10,
+                  //       vertical: 2,
+                  //     ),
+                  //     decoration: BoxDecoration(
+                  //       color: AppColors.grey,
+                  //       borderRadius: BorderRadius.circular(5),
+                  //     ),
+                  //     child: Text(
+                  //       '${inboxState.conversations.length}',
+                  //       style: const TextStyle(
+                  //         fontSize: 8,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //   ),
                 ],
               ),
             ),
@@ -147,30 +150,58 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text('Working'),
-                  if (_selectedStatus == Enum$ConversationStatus.IN_PROGRESS &&
-                      inboxState.conversations.isNotEmpty)
-                    Container(
-                      margin: const EdgeInsets.only(left: 8),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.violet,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        '${inboxState.conversations.length}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  // if (_selectedStatus == Enum$ConversationStatus.IN_PROGRESS &&
+                  //     inboxState.conversations.isNotEmpty)
+                  //   Container(
+                  //     margin: const EdgeInsets.all(8),
+                  //     padding: const EdgeInsets.symmetric(
+                  //       horizontal: 10,
+                  //       vertical: 2,
+                  //     ),
+                  //     decoration: BoxDecoration(
+                  //       color: AppColors.violet,
+                  //       borderRadius: BorderRadius.circular(5),
+                  //     ),
+                  //     child: Text(
+                  //       '${inboxState.conversations.length}',
+                  //       style: const TextStyle(
+                  //         fontSize: 8,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //   ),
                 ],
               ),
             ),
             const Tab(text: 'Archived'),
+            Tab(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('Public'),
+                  // if (_selectedStatus == Enum$ConversationStatus.PENDING &&
+                  //     inboxState.conversations.isNotEmpty)
+                  //   Container(
+                  //     margin: const EdgeInsets.all(8),
+                  //     padding: const EdgeInsets.symmetric(
+                  //       horizontal: 10,
+                  //       vertical: 2,
+                  //     ),
+                  //     decoration: BoxDecoration(
+                  //       color: AppColors.violet,
+                  //       borderRadius: BorderRadius.circular(5),
+                  //     ),
+                  //     child: Text(
+                  //       '${inboxState.conversations.length}',
+                  //       style: const TextStyle(
+                  //         fontSize: 8,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //   ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -210,6 +241,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
             : TabBarView(
                 controller: _tabController,
                 children: [
+                  _buildConversationList(inboxState, isDark),
                   _buildConversationList(inboxState, isDark),
                   _buildConversationList(inboxState, isDark),
                   _buildConversationList(inboxState, isDark),

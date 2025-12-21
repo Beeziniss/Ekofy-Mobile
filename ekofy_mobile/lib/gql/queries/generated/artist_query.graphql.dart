@@ -4026,3 +4026,824 @@ class _CopyWithStubImpl$Query$ArtistDetail$artists$items<TRes>
     String? $__typename,
   }) => _res;
 }
+
+class Variables$Query$getArtistIdFromPackage {
+  factory Variables$Query$getArtistIdFromPackage({required String packageId}) =>
+      Variables$Query$getArtistIdFromPackage._({r'packageId': packageId});
+
+  Variables$Query$getArtistIdFromPackage._(this._$data);
+
+  factory Variables$Query$getArtistIdFromPackage.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    final l$packageId = data['packageId'];
+    result$data['packageId'] = (l$packageId as String);
+    return Variables$Query$getArtistIdFromPackage._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get packageId => (_$data['packageId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$packageId = packageId;
+    result$data['packageId'] = l$packageId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$getArtistIdFromPackage<
+    Variables$Query$getArtistIdFromPackage
+  >
+  get copyWith =>
+      CopyWith$Variables$Query$getArtistIdFromPackage(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$getArtistIdFromPackage ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$packageId = packageId;
+    final lOther$packageId = other.packageId;
+    if (l$packageId != lOther$packageId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$packageId = packageId;
+    return Object.hashAll([l$packageId]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$getArtistIdFromPackage<TRes> {
+  factory CopyWith$Variables$Query$getArtistIdFromPackage(
+    Variables$Query$getArtistIdFromPackage instance,
+    TRes Function(Variables$Query$getArtistIdFromPackage) then,
+  ) = _CopyWithImpl$Variables$Query$getArtistIdFromPackage;
+
+  factory CopyWith$Variables$Query$getArtistIdFromPackage.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$getArtistIdFromPackage;
+
+  TRes call({String? packageId});
+}
+
+class _CopyWithImpl$Variables$Query$getArtistIdFromPackage<TRes>
+    implements CopyWith$Variables$Query$getArtistIdFromPackage<TRes> {
+  _CopyWithImpl$Variables$Query$getArtistIdFromPackage(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$getArtistIdFromPackage _instance;
+
+  final TRes Function(Variables$Query$getArtistIdFromPackage) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? packageId = _undefined}) => _then(
+    Variables$Query$getArtistIdFromPackage._({
+      ..._instance._$data,
+      if (packageId != _undefined && packageId != null)
+        'packageId': (packageId as String),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Variables$Query$getArtistIdFromPackage<TRes>
+    implements CopyWith$Variables$Query$getArtistIdFromPackage<TRes> {
+  _CopyWithStubImpl$Variables$Query$getArtistIdFromPackage(this._res);
+
+  TRes _res;
+
+  call({String? packageId}) => _res;
+}
+
+class Query$getArtistIdFromPackage {
+  Query$getArtistIdFromPackage({
+    this.artistPackages,
+    this.$__typename = 'QueryInitialization',
+  });
+
+  factory Query$getArtistIdFromPackage.fromJson(Map<String, dynamic> json) {
+    final l$artistPackages = json['artistPackages'];
+    final l$$__typename = json['__typename'];
+    return Query$getArtistIdFromPackage(
+      artistPackages: l$artistPackages == null
+          ? null
+          : Query$getArtistIdFromPackage$artistPackages.fromJson(
+              (l$artistPackages as Map<String, dynamic>),
+            ),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$getArtistIdFromPackage$artistPackages? artistPackages;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$artistPackages = artistPackages;
+    _resultData['artistPackages'] = l$artistPackages?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$artistPackages = artistPackages;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$artistPackages, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$getArtistIdFromPackage ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$artistPackages = artistPackages;
+    final lOther$artistPackages = other.artistPackages;
+    if (l$artistPackages != lOther$artistPackages) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getArtistIdFromPackage
+    on Query$getArtistIdFromPackage {
+  CopyWith$Query$getArtistIdFromPackage<Query$getArtistIdFromPackage>
+  get copyWith => CopyWith$Query$getArtistIdFromPackage(this, (i) => i);
+}
+
+abstract class CopyWith$Query$getArtistIdFromPackage<TRes> {
+  factory CopyWith$Query$getArtistIdFromPackage(
+    Query$getArtistIdFromPackage instance,
+    TRes Function(Query$getArtistIdFromPackage) then,
+  ) = _CopyWithImpl$Query$getArtistIdFromPackage;
+
+  factory CopyWith$Query$getArtistIdFromPackage.stub(TRes res) =
+      _CopyWithStubImpl$Query$getArtistIdFromPackage;
+
+  TRes call({
+    Query$getArtistIdFromPackage$artistPackages? artistPackages,
+    String? $__typename,
+  });
+  CopyWith$Query$getArtistIdFromPackage$artistPackages<TRes> get artistPackages;
+}
+
+class _CopyWithImpl$Query$getArtistIdFromPackage<TRes>
+    implements CopyWith$Query$getArtistIdFromPackage<TRes> {
+  _CopyWithImpl$Query$getArtistIdFromPackage(this._instance, this._then);
+
+  final Query$getArtistIdFromPackage _instance;
+
+  final TRes Function(Query$getArtistIdFromPackage) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? artistPackages = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Query$getArtistIdFromPackage(
+      artistPackages: artistPackages == _undefined
+          ? _instance.artistPackages
+          : (artistPackages as Query$getArtistIdFromPackage$artistPackages?),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+
+  CopyWith$Query$getArtistIdFromPackage$artistPackages<TRes>
+  get artistPackages {
+    final local$artistPackages = _instance.artistPackages;
+    return local$artistPackages == null
+        ? CopyWith$Query$getArtistIdFromPackage$artistPackages.stub(
+            _then(_instance),
+          )
+        : CopyWith$Query$getArtistIdFromPackage$artistPackages(
+            local$artistPackages,
+            (e) => call(artistPackages: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Query$getArtistIdFromPackage<TRes>
+    implements CopyWith$Query$getArtistIdFromPackage<TRes> {
+  _CopyWithStubImpl$Query$getArtistIdFromPackage(this._res);
+
+  TRes _res;
+
+  call({
+    Query$getArtistIdFromPackage$artistPackages? artistPackages,
+    String? $__typename,
+  }) => _res;
+
+  CopyWith$Query$getArtistIdFromPackage$artistPackages<TRes>
+  get artistPackages =>
+      CopyWith$Query$getArtistIdFromPackage$artistPackages.stub(_res);
+}
+
+const documentNodeQuerygetArtistIdFromPackage = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'getArtistIdFromPackage'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'packageId')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'artistPackages'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: 'eq'),
+                            value: VariableNode(
+                              name: NameNode(value: 'packageId'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'totalCount'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'items'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'artistId'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ],
+      ),
+    ),
+  ],
+);
+Query$getArtistIdFromPackage _parserFn$Query$getArtistIdFromPackage(
+  Map<String, dynamic> data,
+) => Query$getArtistIdFromPackage.fromJson(data);
+typedef OnQueryComplete$Query$getArtistIdFromPackage =
+    FutureOr<void> Function(
+      Map<String, dynamic>?,
+      Query$getArtistIdFromPackage?,
+    );
+
+class Options$Query$getArtistIdFromPackage
+    extends graphql.QueryOptions<Query$getArtistIdFromPackage> {
+  Options$Query$getArtistIdFromPackage({
+    String? operationName,
+    required Variables$Query$getArtistIdFromPackage variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$getArtistIdFromPackage? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$getArtistIdFromPackage? onComplete,
+    graphql.OnQueryError? onError,
+  }) : onCompleteWithParsed = onComplete,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         pollInterval: pollInterval,
+         context: context,
+         onComplete: onComplete == null
+             ? null
+             : (data) => onComplete(
+                 data,
+                 data == null
+                     ? null
+                     : _parserFn$Query$getArtistIdFromPackage(data),
+               ),
+         onError: onError,
+         document: documentNodeQuerygetArtistIdFromPackage,
+         parserFn: _parserFn$Query$getArtistIdFromPackage,
+       );
+
+  final OnQueryComplete$Query$getArtistIdFromPackage? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onComplete == null
+        ? super.properties
+        : super.properties.where((property) => property != onComplete),
+    onCompleteWithParsed,
+  ];
+}
+
+class WatchOptions$Query$getArtistIdFromPackage
+    extends graphql.WatchQueryOptions<Query$getArtistIdFromPackage> {
+  WatchOptions$Query$getArtistIdFromPackage({
+    String? operationName,
+    required Variables$Query$getArtistIdFromPackage variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$getArtistIdFromPackage? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeQuerygetArtistIdFromPackage,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFn$Query$getArtistIdFromPackage,
+       );
+}
+
+class FetchMoreOptions$Query$getArtistIdFromPackage
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$getArtistIdFromPackage({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$getArtistIdFromPackage variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQuerygetArtistIdFromPackage,
+       );
+}
+
+extension ClientExtension$Query$getArtistIdFromPackage
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$getArtistIdFromPackage>>
+  query$getArtistIdFromPackage(
+    Options$Query$getArtistIdFromPackage options,
+  ) async => await this.query(options);
+
+  graphql.ObservableQuery<Query$getArtistIdFromPackage>
+  watchQuery$getArtistIdFromPackage(
+    WatchOptions$Query$getArtistIdFromPackage options,
+  ) => this.watchQuery(options);
+
+  void writeQuery$getArtistIdFromPackage({
+    required Query$getArtistIdFromPackage data,
+    required Variables$Query$getArtistIdFromPackage variables,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(
+        document: documentNodeQuerygetArtistIdFromPackage,
+      ),
+      variables: variables.toJson(),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+
+  Query$getArtistIdFromPackage? readQuery$getArtistIdFromPackage({
+    required Variables$Query$getArtistIdFromPackage variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(
+          document: documentNodeQuerygetArtistIdFromPackage,
+        ),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Query$getArtistIdFromPackage.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$getArtistIdFromPackage>
+useQuery$getArtistIdFromPackage(Options$Query$getArtistIdFromPackage options) =>
+    graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$getArtistIdFromPackage>
+useWatchQuery$getArtistIdFromPackage(
+  WatchOptions$Query$getArtistIdFromPackage options,
+) => graphql_flutter.useWatchQuery(options);
+
+class Query$getArtistIdFromPackage$Widget
+    extends graphql_flutter.Query<Query$getArtistIdFromPackage> {
+  Query$getArtistIdFromPackage$Widget({
+    widgets.Key? key,
+    required Options$Query$getArtistIdFromPackage options,
+    required graphql_flutter.QueryBuilder<Query$getArtistIdFromPackage> builder,
+  }) : super(key: key, options: options, builder: builder);
+}
+
+class Query$getArtistIdFromPackage$artistPackages {
+  Query$getArtistIdFromPackage$artistPackages({
+    required this.totalCount,
+    this.items,
+    this.$__typename = 'ArtistPackagesCollectionSegment',
+  });
+
+  factory Query$getArtistIdFromPackage$artistPackages.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$totalCount = json['totalCount'];
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$getArtistIdFromPackage$artistPackages(
+      totalCount: (l$totalCount as int),
+      items: (l$items as List<dynamic>?)
+          ?.map(
+            (e) => Query$getArtistIdFromPackage$artistPackages$items.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int totalCount;
+
+  final List<Query$getArtistIdFromPackage$artistPackages$items>? items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$totalCount = totalCount;
+    _resultData['totalCount'] = l$totalCount;
+    final l$items = items;
+    _resultData['items'] = l$items?.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$totalCount = totalCount;
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$totalCount,
+      l$items == null ? null : Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$getArtistIdFromPackage$artistPackages ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$totalCount = totalCount;
+    final lOther$totalCount = other.totalCount;
+    if (l$totalCount != lOther$totalCount) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != null && lOther$items != null) {
+      if (l$items.length != lOther$items.length) {
+        return false;
+      }
+      for (int i = 0; i < l$items.length; i++) {
+        final l$items$entry = l$items[i];
+        final lOther$items$entry = lOther$items[i];
+        if (l$items$entry != lOther$items$entry) {
+          return false;
+        }
+      }
+    } else if (l$items != lOther$items) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getArtistIdFromPackage$artistPackages
+    on Query$getArtistIdFromPackage$artistPackages {
+  CopyWith$Query$getArtistIdFromPackage$artistPackages<
+    Query$getArtistIdFromPackage$artistPackages
+  >
+  get copyWith =>
+      CopyWith$Query$getArtistIdFromPackage$artistPackages(this, (i) => i);
+}
+
+abstract class CopyWith$Query$getArtistIdFromPackage$artistPackages<TRes> {
+  factory CopyWith$Query$getArtistIdFromPackage$artistPackages(
+    Query$getArtistIdFromPackage$artistPackages instance,
+    TRes Function(Query$getArtistIdFromPackage$artistPackages) then,
+  ) = _CopyWithImpl$Query$getArtistIdFromPackage$artistPackages;
+
+  factory CopyWith$Query$getArtistIdFromPackage$artistPackages.stub(TRes res) =
+      _CopyWithStubImpl$Query$getArtistIdFromPackage$artistPackages;
+
+  TRes call({
+    int? totalCount,
+    List<Query$getArtistIdFromPackage$artistPackages$items>? items,
+    String? $__typename,
+  });
+  TRes items(
+    Iterable<Query$getArtistIdFromPackage$artistPackages$items>? Function(
+      Iterable<
+        CopyWith$Query$getArtistIdFromPackage$artistPackages$items<
+          Query$getArtistIdFromPackage$artistPackages$items
+        >
+      >?,
+    )
+    _fn,
+  );
+}
+
+class _CopyWithImpl$Query$getArtistIdFromPackage$artistPackages<TRes>
+    implements CopyWith$Query$getArtistIdFromPackage$artistPackages<TRes> {
+  _CopyWithImpl$Query$getArtistIdFromPackage$artistPackages(
+    this._instance,
+    this._then,
+  );
+
+  final Query$getArtistIdFromPackage$artistPackages _instance;
+
+  final TRes Function(Query$getArtistIdFromPackage$artistPackages) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? totalCount = _undefined,
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Query$getArtistIdFromPackage$artistPackages(
+      totalCount: totalCount == _undefined || totalCount == null
+          ? _instance.totalCount
+          : (totalCount as int),
+      items: items == _undefined
+          ? _instance.items
+          : (items as List<Query$getArtistIdFromPackage$artistPackages$items>?),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+
+  TRes items(
+    Iterable<Query$getArtistIdFromPackage$artistPackages$items>? Function(
+      Iterable<
+        CopyWith$Query$getArtistIdFromPackage$artistPackages$items<
+          Query$getArtistIdFromPackage$artistPackages$items
+        >
+      >?,
+    )
+    _fn,
+  ) => call(
+    items: _fn(
+      _instance.items?.map(
+        (e) => CopyWith$Query$getArtistIdFromPackage$artistPackages$items(
+          e,
+          (i) => i,
+        ),
+      ),
+    )?.toList(),
+  );
+}
+
+class _CopyWithStubImpl$Query$getArtistIdFromPackage$artistPackages<TRes>
+    implements CopyWith$Query$getArtistIdFromPackage$artistPackages<TRes> {
+  _CopyWithStubImpl$Query$getArtistIdFromPackage$artistPackages(this._res);
+
+  TRes _res;
+
+  call({
+    int? totalCount,
+    List<Query$getArtistIdFromPackage$artistPackages$items>? items,
+    String? $__typename,
+  }) => _res;
+
+  items(_fn) => _res;
+}
+
+class Query$getArtistIdFromPackage$artistPackages$items {
+  Query$getArtistIdFromPackage$artistPackages$items({
+    required this.artistId,
+    this.$__typename = 'ArtistPackage',
+  });
+
+  factory Query$getArtistIdFromPackage$artistPackages$items.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$artistId = json['artistId'];
+    final l$$__typename = json['__typename'];
+    return Query$getArtistIdFromPackage$artistPackages$items(
+      artistId: (l$artistId as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String artistId;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$artistId = artistId;
+    _resultData['artistId'] = l$artistId;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$artistId = artistId;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$artistId, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$getArtistIdFromPackage$artistPackages$items ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$artistId = artistId;
+    final lOther$artistId = other.artistId;
+    if (l$artistId != lOther$artistId) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getArtistIdFromPackage$artistPackages$items
+    on Query$getArtistIdFromPackage$artistPackages$items {
+  CopyWith$Query$getArtistIdFromPackage$artistPackages$items<
+    Query$getArtistIdFromPackage$artistPackages$items
+  >
+  get copyWith => CopyWith$Query$getArtistIdFromPackage$artistPackages$items(
+    this,
+    (i) => i,
+  );
+}
+
+abstract class CopyWith$Query$getArtistIdFromPackage$artistPackages$items<
+  TRes
+> {
+  factory CopyWith$Query$getArtistIdFromPackage$artistPackages$items(
+    Query$getArtistIdFromPackage$artistPackages$items instance,
+    TRes Function(Query$getArtistIdFromPackage$artistPackages$items) then,
+  ) = _CopyWithImpl$Query$getArtistIdFromPackage$artistPackages$items;
+
+  factory CopyWith$Query$getArtistIdFromPackage$artistPackages$items.stub(
+    TRes res,
+  ) = _CopyWithStubImpl$Query$getArtistIdFromPackage$artistPackages$items;
+
+  TRes call({String? artistId, String? $__typename});
+}
+
+class _CopyWithImpl$Query$getArtistIdFromPackage$artistPackages$items<TRes>
+    implements
+        CopyWith$Query$getArtistIdFromPackage$artistPackages$items<TRes> {
+  _CopyWithImpl$Query$getArtistIdFromPackage$artistPackages$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$getArtistIdFromPackage$artistPackages$items _instance;
+
+  final TRes Function(Query$getArtistIdFromPackage$artistPackages$items) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? artistId = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Query$getArtistIdFromPackage$artistPackages$items(
+      artistId: artistId == _undefined || artistId == null
+          ? _instance.artistId
+          : (artistId as String),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+}
+
+class _CopyWithStubImpl$Query$getArtistIdFromPackage$artistPackages$items<TRes>
+    implements
+        CopyWith$Query$getArtistIdFromPackage$artistPackages$items<TRes> {
+  _CopyWithStubImpl$Query$getArtistIdFromPackage$artistPackages$items(
+    this._res,
+  );
+
+  TRes _res;
+
+  call({String? artistId, String? $__typename}) => _res;
+}

@@ -19,10 +19,11 @@ class ConversationCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final jwtPayload = ref.read(jwtPayloadProvider);
-    final currentUserId = jwtPayload?['sub'] as String?;
+    final currentUserId =
+        jwtPayload?['sub'] ?? jwtPayload?['userId'] as String?;
 
     // Determine which profile to show (the other user's profile)
-    final isOwner = conversation.ownerProfile.artistId == currentUserId;
+    final isOwner = conversation.ownerProfile.artistId != currentUserId;
     final displayProfile = isOwner
         ? conversation.otherProfile
         : conversation.ownerProfile;

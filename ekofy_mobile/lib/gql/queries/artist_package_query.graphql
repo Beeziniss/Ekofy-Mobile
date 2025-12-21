@@ -1,0 +1,21 @@
+query ArtistPackagesInConversation($artistId: String!) {
+    artistPackagesInConversation(
+        artistId: $artistId
+        where: { status: { eq: ENABLED }, isDelete: { eq: false } }
+    ) {
+        totalCount
+        items {
+            id
+            packageName
+            amount
+            currency
+            maxRevision
+            estimateDeliveryDays
+            description
+            serviceDetails {
+                key
+                value
+            }
+        }
+    }
+}

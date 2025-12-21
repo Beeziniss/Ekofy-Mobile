@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
@@ -73,8 +74,8 @@ class _ArtistScreenState extends ConsumerState<ArtistScreen>
                   Container(), // Placeholder for Albums
                   Container(), // Placeholder for Playlists
                   switch (artistState) {
-                    ArtistInitial() || ArtistLoading() => const Center(
-                      child: CircularProgressIndicator(color: AppColors.violet),
+                    ArtistInitial() || ArtistLoading() => Center(
+                      child: Image.asset(AppImages.loader, gaplessPlayback: true),
                     ),
                     ArtistFailure(message: final msg) => Center(
                       child: Text(

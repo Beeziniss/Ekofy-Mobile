@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/providers/conversation_signalr_provider.dart';
@@ -296,7 +297,9 @@ class _ConversationDetailScreenState
             onPressed: () => context.pop(),
           ),
         ),
-        body: const Center(child: CircularProgressIndicator()),
+        body: Center(
+          child: Image.asset(AppImages.loader, gaplessPlayback: true),
+        ),
       );
     }
 
@@ -381,7 +384,9 @@ class _ConversationDetailScreenState
           // Messages list
           Expanded(
             child: inboxState.isLoading && messages == null
-                ? const Center(child: CircularProgressIndicator())
+                ? Center(
+                    child: Image.asset(AppImages.loader, gaplessPlayback: true),
+                  )
                 : messages == null || messages.isEmpty
                 ? Center(
                     child: Column(
@@ -413,10 +418,13 @@ class _ConversationDetailScreenState
                     itemCount: messages.length + (_isLoadingMore ? 1 : 0),
                     itemBuilder: (context, index) {
                       if (index == 0 && _isLoadingMore) {
-                        return const Center(
+                        return Center(
                           child: Padding(
                             padding: EdgeInsets.all(16.0),
-                            child: CircularProgressIndicator(),
+                            child: Image.asset(
+                              AppImages.loader,
+                              gaplessPlayback: true,
+                            ),
                           ),
                         );
                       }

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/widgets/conversation_card.dart';
@@ -178,7 +179,9 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
           _loadConversations();
         },
         child: inboxState.isLoading
-            ? const Center(child: CircularProgressIndicator())
+            ? Center(
+                child: Image.asset(AppImages.loader, gaplessPlayback: true),
+              )
             : inboxState.error != null
             ? Center(
                 child: Column(

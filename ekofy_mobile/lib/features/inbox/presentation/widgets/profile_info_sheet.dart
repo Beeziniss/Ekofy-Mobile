@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/configs/graphql_client_provider.dart';
 import 'package:ekofy_mobile/features/inbox/data/models/conversation_model.dart';
@@ -91,10 +92,13 @@ class _ProfileInfoSheetState extends ConsumerState<ProfileInfoSheet> {
               children: [
                 // Orders section
                 if (_isLoading)
-                  const Center(
+                  Center(
                     child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: CircularProgressIndicator(),
+                      padding: const EdgeInsets.all(20.0),
+                      child: Image.asset(
+                        AppImages.loader,
+                        gaplessPlayback: true,
+                      ),
                     ),
                   )
                 else if (_orders != null && _orders!.isNotEmpty) ...[

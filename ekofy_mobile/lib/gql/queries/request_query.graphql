@@ -1,5 +1,7 @@
 query PublicRequestQuery {
-    requests(where: { type: { eq: PUBLIC_REQUEST }, status: { eq: OPEN } }) {
+    requests(where: { type: { eq: PUBLIC_REQUEST }, status: { eq: OPEN } }
+        order: { postCreatedTime: DESC }
+    ) {
         totalCount
         items {
             id
@@ -26,7 +28,9 @@ query PublicRequestQuery {
 }
 
 query OwnRequestsQuery ($requestUserId: String!) {
-    requests (where: { requestUserId: { eq: $requestUserId } }) {
+    requests(where: { requestUserId: { eq: $requestUserId } } 
+        order: [{ requestCreatedTime: DESC }, { postCreatedTime: DESC }]
+    ) {
         totalCount
         items {
             id

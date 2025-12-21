@@ -105,7 +105,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
       body: Center(
         child:
             // state is PaymentLoading
-            //     ? const CircularProgressIndicator()
+            //     ? const Image.asset(AppImages.loader, gaplessPlayback: true)
             //     :
             ElevatedButton(
               onPressed: _launchPaymentUrl,

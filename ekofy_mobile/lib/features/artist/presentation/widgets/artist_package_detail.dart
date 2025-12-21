@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/utils/helper.dart';
 import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
@@ -126,8 +127,8 @@ class _ArtistPackageDetailState extends ConsumerState<ArtistPackageDetail> {
         ),
         builder: (result, {fetchMore, refetch}) {
           if (result.isLoading) {
-            return const Center(
-              child: CircularProgressIndicator(color: AppColors.violet),
+            return Center(
+              child: Image.asset(AppImages.loader, gaplessPlayback: true),
             );
           }
 

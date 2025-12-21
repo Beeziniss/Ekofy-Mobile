@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/notification/presentation/providers/notification_provider.dart';
@@ -44,7 +45,9 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
     hubConnection = HubConnectionBuilder()
         .withUrl(
           hubUrl,
-          options: HttpConnectionOptions(accessTokenFactory: () => Future.value(token)),
+          options: HttpConnectionOptions(
+            accessTokenFactory: () => Future.value(token),
+          ),
         )
         .withAutomaticReconnect()
         .build();
@@ -79,7 +82,9 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     if (!_isSignalRConnected) {
-      return const Center(child: CircularProgressIndicator());
+      return Center(
+        child: Image.asset(AppImages.loader, gaplessPlayback: true),
+      );
     }
 
     // final payload = await Helper.decodeJwtUnverified(ref);
@@ -109,7 +114,9 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
         options: ref.read(notificationQueryOptionsProvider(userId)),
         builder: (result, {fetchMore, refetch}) {
           if (result.isLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: Image.asset(AppImages.loader, gaplessPlayback: true),
+            );
           }
 
           if (result.hasException) {

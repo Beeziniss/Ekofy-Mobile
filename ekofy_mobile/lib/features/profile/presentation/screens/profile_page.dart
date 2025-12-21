@@ -1,7 +1,9 @@
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_notifier.dart';
 import 'package:ekofy_mobile/features/profile/presentation/providers/profile_state.dart';
 import 'package:ekofy_mobile/features/profile/presentation/widgets/profile_header_widget.dart';
-import 'package:ekofy_mobile/gql/generated/schema.graphql.dart' show Enum$UserGender;
+import 'package:ekofy_mobile/gql/generated/schema.graphql.dart'
+    show Enum$UserGender;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -62,9 +64,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
     return asyncState.when(
       // Loading state
-      loading: () => const Scaffold(
+      loading: () => Scaffold(
         backgroundColor: Color(0xFF0B0B0E),
-        body: Center(child: CircularProgressIndicator()),
+        body: Center(
+          child: Image.asset(AppImages.loader, gaplessPlayback: true),
+        ),
       ),
 
       // Error state
@@ -208,7 +212,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               const LinearProgressIndicator(),
             ],
             const SizedBox(height: 16),
-            
+
             // Display Name
             isEditing
                 ? _buildEditableField(
@@ -220,13 +224,13 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   )
                 : _kvRow('Display name', state.edited?.displayName ?? '-'),
             const SizedBox(height: 12),
-            
+
             // Email (read-only)
             isEditing
                 ? _buildReadOnlyField('Email', _emailController)
                 : _kvRow('Email', state.edited?.email ?? '-'),
             const SizedBox(height: 12),
-            
+
             // Phone Number
             isEditing
                 ? _buildEditableField(
@@ -238,7 +242,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   )
                 : _kvRow('Phone number', state.edited?.phoneNumber ?? '-'),
             const SizedBox(height: 12),
-            
+
             // Date of Birth
             isEditing
                 ? _buildDatePickerField(
@@ -252,7 +256,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   )
                 : _kvRow('Date of Birth', _formatDate(state.edited?.birthDate)),
             const SizedBox(height: 12),
-            
+
             // Gender
             isEditing
                 ? _buildGenderDropdown(state, notifier)
@@ -322,7 +326,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Future<void> _handleSave(BuildContext context, Profile notifier) async {
     try {
       await notifier.submitUpdate();
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -418,10 +422,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       children: [
         const SizedBox(
           width: 120,
-          child: Text(
-            'Gender',
-            style: TextStyle(color: Colors.white70),
-          ),
+          child: Text('Gender', style: TextStyle(color: Colors.white70)),
         ),
         const SizedBox(width: 8),
         Expanded(
@@ -486,10 +487,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       children: [
         SizedBox(
           width: 120,
-          child: Text(
-            key,
-            style: const TextStyle(color: Colors.white70),
-          ),
+          child: Text(key, style: const TextStyle(color: Colors.white70)),
         ),
         const SizedBox(width: 8),
         Expanded(

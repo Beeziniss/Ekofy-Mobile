@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/features/track/data/models/track_model.dart';
 import 'package:ekofy_mobile/features/track/presentation/providers/track_providers.dart';
@@ -37,7 +38,9 @@ class TrackDetailScreen extends ConsumerWidget {
           }
           return _buildTrackDetail(context, track);
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => Center(
+          child: Image.asset(AppImages.loader, gaplessPlayback: true),
+        ),
         error: (error, stack) => Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

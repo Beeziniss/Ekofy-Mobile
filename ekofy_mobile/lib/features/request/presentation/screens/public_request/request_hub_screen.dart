@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
 
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/request/data/models/request_card_model.dart';
 import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
@@ -32,13 +32,24 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
   int _page = 1;
   final int _pageSize = 6;
   Timer? _debounce;
+  bool _isInit = true;
 
   @override
   void initState() {
     super.initState();
-    // Initial load is handled by provider
     _scrollController.addListener(_onScroll);
     _searchCtrl.addListener(_onSearchChanged);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _applyFilters(resetPage: true);
+      _load().then((_) {
+        if (mounted) {
+          setState(() {
+            _isInit = false;
+          });
+        }
+      });
+    });
   }
 
   @override
@@ -184,9 +195,11 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
             //   ),
             // ),
             SliverToBoxAdapter(child: _sortRow(context)),
-            if (state.isLoading && _visible.isEmpty)
-              const SliverFillRemaining(
-                child: Center(child: CircularProgressIndicator()),
+            if ((state.isLoading || _isInit) && _visible.isEmpty)
+              SliverFillRemaining(
+                child: Center(
+                  child: Image.asset(AppImages.loader, gaplessPlayback: true),
+                ),
               )
             else if (_visible.isEmpty)
               SliverFillRemaining(

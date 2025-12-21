@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/features/track/data/models/track_model.dart';
@@ -142,7 +143,9 @@ class HomeBodyContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return Center(
+        child: Image.asset(AppImages.loader, gaplessPlayback: true),
+      );
     }
 
     if (hasException) {

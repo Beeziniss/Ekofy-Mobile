@@ -94,7 +94,7 @@ final isPlaying = ref.watch(playingStreamProvider);
 // Access the data
 position.when(
   data: (pos) => Text('Position: ${AudioPlayerService.formatDuration(pos)}'),
-  loading: () => CircularProgressIndicator(),
+  loading: () => Image.asset(AppImages.loader, gaplessPlayback: true),
   error: (e, _) => Text('Error: $e'),
 );
 ```

@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
@@ -42,7 +43,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final trackListState = ref.watch(trackListProvider);
 
     if (payload == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return Scaffold(
+        body: Center(
+          child: Image.asset(AppImages.loader, gaplessPlayback: true),
+        ),
+      );
     }
 
     return Scaffold(
@@ -53,7 +58,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         actions: [_notification(), _profileAction(payload)],
       ),
       body: trackListState.isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(
+              child: Image.asset(AppImages.loader, gaplessPlayback: true),
+            )
           : trackListState.error != null
           ? _errorWidget(
               trackListState.error!,

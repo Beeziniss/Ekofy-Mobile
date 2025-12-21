@@ -1,3 +1,4 @@
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/transactions/domain/models/transaction_status.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,9 @@ class _TransactionDetailScreenState
         future: _future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: Image.asset(AppImages.loader, gaplessPlayback: true),
+            );
           }
           final item = snapshot.data;
           if (item == null) {

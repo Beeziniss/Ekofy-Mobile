@@ -4,7 +4,6 @@ import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/providers/theme_provider.dart';
 import 'package:ekofy_mobile/features/home/presentation/screens/main_screen.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
-import 'package:ekofy_mobile/features/payment/presentation/screens/payment_screen.dart';
 import 'package:ekofy_mobile/features/request/presentation/screens/public_request/request_hub_screen.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/screens/inbox_screen.dart';
 import 'package:flutter/material.dart';

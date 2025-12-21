@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/request/data/models/own_request.dart';
 import 'package:ekofy_mobile/features/request/data/models/request_card_model.dart';
@@ -183,8 +184,10 @@ class _OwnRequestScreenState extends ConsumerState<OwnRequestScreen> {
             ),
             SliverToBoxAdapter(child: _sortRow(context)),
             if (state.isLoading && _visible.isEmpty)
-              const SliverFillRemaining(
-                child: Center(child: CircularProgressIndicator()),
+              SliverFillRemaining(
+                child: Center(
+                  child: Image.asset(AppImages.loader, gaplessPlayback: true),
+                ),
               )
             else if (_visible.isEmpty)
               SliverFillRemaining(

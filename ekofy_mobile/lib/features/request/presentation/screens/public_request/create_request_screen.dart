@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/request/data/models/own_request.dart';
 import 'package:ekofy_mobile/features/request/data/models/public_request.dart';
@@ -264,13 +265,10 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                                 foregroundColor: Colors.white,
                               ),
                               child: _isLoading
-                                  ? const SizedBox(
+                                  ? SizedBox(
                                       width: 20,
                                       height: 20,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        color: Colors.white,
-                                      ),
+                                      child: Image.asset(AppImages.loader, gaplessPlayback: true),
                                     )
                                   : const Text('Submit'),
                             ),

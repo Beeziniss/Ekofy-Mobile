@@ -179,6 +179,17 @@ const documentNodeQueryPublicRequestQuery = DocumentNode(
                   ],
                 ),
               ),
+              ArgumentNode(
+                name: NameNode(value: 'order'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'postCreatedTime'),
+                      value: EnumValueNode(name: NameNode(value: 'DESC')),
+                    ),
+                  ],
+                ),
+              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
@@ -1677,6 +1688,29 @@ const documentNodeQueryOwnRequestsQuery = DocumentNode(
                           ),
                         ],
                       ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'order'),
+                value: ListValueNode(
+                  values: [
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'requestCreatedTime'),
+                          value: EnumValueNode(name: NameNode(value: 'DESC')),
+                        ),
+                      ],
+                    ),
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'postCreatedTime'),
+                          value: EnumValueNode(name: NameNode(value: 'DESC')),
+                        ),
+                      ],
                     ),
                   ],
                 ),

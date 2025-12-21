@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/features/library/presentation/providers/library_provider.dart';
 import 'package:ekofy_mobile/features/library/presentation/providers/library_state.dart';
 import 'package:flutter/material.dart';
@@ -832,7 +833,9 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
 
     return libraryState.when(
       initial: () => const SizedBox.shrink(),
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => Center(
+        child: Image.asset(AppImages.loader, gaplessPlayback: true),
+      ),
       failure: (msg) => Center(
         child: Text('Error: $msg', style: const TextStyle(color: Colors.white)),
       ),

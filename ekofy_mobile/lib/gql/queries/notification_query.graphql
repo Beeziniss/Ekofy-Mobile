@@ -16,3 +16,12 @@ query notificationsForUserQuery ($userId: String!) {
         }
     }
 }
+
+query checkReadNotification($userId: String!) {
+    notificationsForUser(
+        userId: $userId
+        where: { isRead: { eq: true } }
+    ) {
+        totalCount
+    }
+}

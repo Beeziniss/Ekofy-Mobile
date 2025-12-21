@@ -1,0 +1,86 @@
+query PackageOrdersList ($clientId: String!) {
+    packageOrders(
+        where: {
+            clientId: {
+                eq: $clientId
+            }
+        }
+    ) {
+        totalCount
+        items {
+            id
+            status
+            clientId
+            providerId
+            artistPackageId
+            duration
+            startedAt
+            freezedTime
+            client {
+                displayName
+                avatarImage
+            }
+            provider {
+                avatarImage
+                stageName
+            }
+        }
+    }
+}
+
+query PackageOrderDetail ($orderId: String!) {
+    packageOrders(
+        where: {
+            id: {
+                eq: $orderId
+            }
+        }
+    ) {
+        totalCount
+        items {
+            id
+            status
+            clientId
+            providerId
+            artistPackageId
+            createdAt
+            revisionCount
+            duration
+            startedAt
+            freezedTime
+            requirements
+            deliveries {
+                notes
+                revisionNumber
+                deliveredAt
+                deliveryFileUrl
+                clientFeedback
+            }
+            review {
+                rating
+                content
+                createdAt
+                updatedAt
+            }
+            package {
+                id
+                amount
+                packageName
+                estimateDeliveryDays
+                maxRevision
+                serviceDetails {
+                    value
+                }
+            }
+            client {
+                displayName
+                avatarImage
+            }
+            provider {
+                avatarImage
+                stageName
+                email
+            }
+        }
+    }
+}

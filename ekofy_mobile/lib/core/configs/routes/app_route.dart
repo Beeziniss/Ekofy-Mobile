@@ -8,14 +8,15 @@ import 'package:ekofy_mobile/features/auth/presentation/screens/splash.dart';
 import 'package:ekofy_mobile/features/home/presentation/widgets/nav_tab_widget.dart';
 import 'package:ekofy_mobile/features/library/presentation/screens/library_page.dart';
 import 'package:ekofy_mobile/features/notification/presentation/screens/notification_screen.dart';
+import 'package:ekofy_mobile/features/order/presentation/screens/order_detail_screen.dart';
+import 'package:ekofy_mobile/features/order/presentation/screens/order_list_screen.dart';
 import 'package:ekofy_mobile/features/profile/presentation/screens/profile_page.dart';
 import 'package:ekofy_mobile/features/request/presentation/screens/direct_request/own_request_screen.dart';
 import 'package:ekofy_mobile/features/track/presentation/screens/track_detail_screen.dart';
-import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_detail_screen.dart';
-import 'package:ekofy_mobile/features/transactions/presentation/screens/transaction_history_list_screen.dart';
+import 'package:ekofy_mobile/features/transaction/presentation/screens/transaction_detail_screen.dart';
+import 'package:ekofy_mobile/features/transaction/presentation/screens/transaction_history_list_screen.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/screens/inbox_screen.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/screens/conversation_detail_screen.dart';
-import 'package:ekofy_mobile/features/payment/presentation/screens/payment_screen.dart';
 import 'package:ekofy_mobile/features/payment/presentation/screens/payment_success_screen.dart';
 import 'package:ekofy_mobile/features/payment/presentation/screens/payment_failure_screen.dart';
 import 'package:flutter/material.dart';
@@ -37,11 +38,13 @@ class RouteName {
   static const String notifications = '/notifications';
   static const String inbox = '/inbox';
   static const String conversationDetail = '/inbox/:conversationId';
-  static const String payment = '/payment';
+  // static const String payment = '/payment';
   static const String paymentSuccess = '/payment/success';
   static const String paymentFailure = '/payment/failure';
   static const String artistDetail = '/artist/:artistId';
   static const String trackDetail = '/track';
+  static const String order = '/orders';
+  static const String orderDetail = '/orders/:id';
 
   static const publicRoutes = [home, login, register];
 }
@@ -127,10 +130,10 @@ GoRouter router(WidgetRef ref) {
           return ConversationDetailScreen(conversationId: conversationId);
         },
       ),
-      GoRoute(
-        path: RouteName.payment,
-        builder: (context, state) => const PaymentScreen(),
-      ),
+      // GoRoute(
+      //   path: RouteName.payment,
+      //   builder: (context, state) => const PaymentScreen(),
+      // ),
       GoRoute(
         path: RouteName.paymentSuccess,
         builder: (context, state) => const PaymentSuccessScreen(),
@@ -154,6 +157,17 @@ GoRouter router(WidgetRef ref) {
         builder: (context, state) {
           final trackId = state.pathParameters['id']!;
           return TrackDetailScreen(trackId: trackId);
+        },
+      ),
+      GoRoute(
+        path: RouteName.order,
+        builder: (context, state) => const OrderListScreen(),
+      ),
+      GoRoute(
+        path: RouteName.orderDetail,
+        builder: (context, state) {
+          final orderId = state.pathParameters['id']!;
+          return OrderDetailScreen(orderId: orderId);
         },
       ),
     ],

@@ -211,11 +211,9 @@ class _NavTabState extends ConsumerState<NavTab>
               ),
               title: Text('Order History', style: TextStyle(color: textColor)),
               onTap: () {
-                // Close drawer then navigate
-                // Navigator.of(context).pop();
-                // context.push(
-                //   '/transactions',
-                // );
+                //Close drawer then navigate
+                Navigator.of(context).pop();
+                context.push('/orders');
               },
             ),
             const Divider(height: 1),

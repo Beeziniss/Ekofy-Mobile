@@ -1,6 +1,6 @@
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
-import 'package:ekofy_mobile/features/transactions/domain/models/transaction_status.dart';
+import 'package:ekofy_mobile/features/transaction/domain/models/transaction_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

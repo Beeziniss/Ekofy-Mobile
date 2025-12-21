@@ -1123,3 +1123,596 @@ class _CopyWithStubImpl$Query$notificationsForUserQuery$notificationsForUser$nod
     String? $__typename,
   }) => _res;
 }
+
+class Variables$Query$checkReadNotification {
+  factory Variables$Query$checkReadNotification({required String userId}) =>
+      Variables$Query$checkReadNotification._({r'userId': userId});
+
+  Variables$Query$checkReadNotification._(this._$data);
+
+  factory Variables$Query$checkReadNotification.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
+    return Variables$Query$checkReadNotification._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get userId => (_$data['userId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$checkReadNotification<
+    Variables$Query$checkReadNotification
+  >
+  get copyWith =>
+      CopyWith$Variables$Query$checkReadNotification(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$checkReadNotification ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$checkReadNotification<TRes> {
+  factory CopyWith$Variables$Query$checkReadNotification(
+    Variables$Query$checkReadNotification instance,
+    TRes Function(Variables$Query$checkReadNotification) then,
+  ) = _CopyWithImpl$Variables$Query$checkReadNotification;
+
+  factory CopyWith$Variables$Query$checkReadNotification.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$checkReadNotification;
+
+  TRes call({String? userId});
+}
+
+class _CopyWithImpl$Variables$Query$checkReadNotification<TRes>
+    implements CopyWith$Variables$Query$checkReadNotification<TRes> {
+  _CopyWithImpl$Variables$Query$checkReadNotification(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$checkReadNotification _instance;
+
+  final TRes Function(Variables$Query$checkReadNotification) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? userId = _undefined}) => _then(
+    Variables$Query$checkReadNotification._({
+      ..._instance._$data,
+      if (userId != _undefined && userId != null) 'userId': (userId as String),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Variables$Query$checkReadNotification<TRes>
+    implements CopyWith$Variables$Query$checkReadNotification<TRes> {
+  _CopyWithStubImpl$Variables$Query$checkReadNotification(this._res);
+
+  TRes _res;
+
+  call({String? userId}) => _res;
+}
+
+class Query$checkReadNotification {
+  Query$checkReadNotification({
+    this.notificationsForUser,
+    this.$__typename = 'QueryInitialization',
+  });
+
+  factory Query$checkReadNotification.fromJson(Map<String, dynamic> json) {
+    final l$notificationsForUser = json['notificationsForUser'];
+    final l$$__typename = json['__typename'];
+    return Query$checkReadNotification(
+      notificationsForUser: l$notificationsForUser == null
+          ? null
+          : Query$checkReadNotification$notificationsForUser.fromJson(
+              (l$notificationsForUser as Map<String, dynamic>),
+            ),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$checkReadNotification$notificationsForUser? notificationsForUser;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$notificationsForUser = notificationsForUser;
+    _resultData['notificationsForUser'] = l$notificationsForUser?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$notificationsForUser = notificationsForUser;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$notificationsForUser, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$checkReadNotification ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$notificationsForUser = notificationsForUser;
+    final lOther$notificationsForUser = other.notificationsForUser;
+    if (l$notificationsForUser != lOther$notificationsForUser) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$checkReadNotification
+    on Query$checkReadNotification {
+  CopyWith$Query$checkReadNotification<Query$checkReadNotification>
+  get copyWith => CopyWith$Query$checkReadNotification(this, (i) => i);
+}
+
+abstract class CopyWith$Query$checkReadNotification<TRes> {
+  factory CopyWith$Query$checkReadNotification(
+    Query$checkReadNotification instance,
+    TRes Function(Query$checkReadNotification) then,
+  ) = _CopyWithImpl$Query$checkReadNotification;
+
+  factory CopyWith$Query$checkReadNotification.stub(TRes res) =
+      _CopyWithStubImpl$Query$checkReadNotification;
+
+  TRes call({
+    Query$checkReadNotification$notificationsForUser? notificationsForUser,
+    String? $__typename,
+  });
+  CopyWith$Query$checkReadNotification$notificationsForUser<TRes>
+  get notificationsForUser;
+}
+
+class _CopyWithImpl$Query$checkReadNotification<TRes>
+    implements CopyWith$Query$checkReadNotification<TRes> {
+  _CopyWithImpl$Query$checkReadNotification(this._instance, this._then);
+
+  final Query$checkReadNotification _instance;
+
+  final TRes Function(Query$checkReadNotification) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? notificationsForUser = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Query$checkReadNotification(
+      notificationsForUser: notificationsForUser == _undefined
+          ? _instance.notificationsForUser
+          : (notificationsForUser
+                as Query$checkReadNotification$notificationsForUser?),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+
+  CopyWith$Query$checkReadNotification$notificationsForUser<TRes>
+  get notificationsForUser {
+    final local$notificationsForUser = _instance.notificationsForUser;
+    return local$notificationsForUser == null
+        ? CopyWith$Query$checkReadNotification$notificationsForUser.stub(
+            _then(_instance),
+          )
+        : CopyWith$Query$checkReadNotification$notificationsForUser(
+            local$notificationsForUser,
+            (e) => call(notificationsForUser: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Query$checkReadNotification<TRes>
+    implements CopyWith$Query$checkReadNotification<TRes> {
+  _CopyWithStubImpl$Query$checkReadNotification(this._res);
+
+  TRes _res;
+
+  call({
+    Query$checkReadNotification$notificationsForUser? notificationsForUser,
+    String? $__typename,
+  }) => _res;
+
+  CopyWith$Query$checkReadNotification$notificationsForUser<TRes>
+  get notificationsForUser =>
+      CopyWith$Query$checkReadNotification$notificationsForUser.stub(_res);
+}
+
+const documentNodeQuerycheckReadNotification = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'checkReadNotification'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'notificationsForUser'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'userId'),
+                value: VariableNode(name: NameNode(value: 'userId')),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'isRead'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: 'eq'),
+                            value: BooleanValueNode(value: true),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'totalCount'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ],
+      ),
+    ),
+  ],
+);
+Query$checkReadNotification _parserFn$Query$checkReadNotification(
+  Map<String, dynamic> data,
+) => Query$checkReadNotification.fromJson(data);
+typedef OnQueryComplete$Query$checkReadNotification =
+    FutureOr<void> Function(
+      Map<String, dynamic>?,
+      Query$checkReadNotification?,
+    );
+
+class Options$Query$checkReadNotification
+    extends graphql.QueryOptions<Query$checkReadNotification> {
+  Options$Query$checkReadNotification({
+    String? operationName,
+    required Variables$Query$checkReadNotification variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$checkReadNotification? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$checkReadNotification? onComplete,
+    graphql.OnQueryError? onError,
+  }) : onCompleteWithParsed = onComplete,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         pollInterval: pollInterval,
+         context: context,
+         onComplete: onComplete == null
+             ? null
+             : (data) => onComplete(
+                 data,
+                 data == null
+                     ? null
+                     : _parserFn$Query$checkReadNotification(data),
+               ),
+         onError: onError,
+         document: documentNodeQuerycheckReadNotification,
+         parserFn: _parserFn$Query$checkReadNotification,
+       );
+
+  final OnQueryComplete$Query$checkReadNotification? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onComplete == null
+        ? super.properties
+        : super.properties.where((property) => property != onComplete),
+    onCompleteWithParsed,
+  ];
+}
+
+class WatchOptions$Query$checkReadNotification
+    extends graphql.WatchQueryOptions<Query$checkReadNotification> {
+  WatchOptions$Query$checkReadNotification({
+    String? operationName,
+    required Variables$Query$checkReadNotification variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$checkReadNotification? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeQuerycheckReadNotification,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFn$Query$checkReadNotification,
+       );
+}
+
+class FetchMoreOptions$Query$checkReadNotification
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$checkReadNotification({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$checkReadNotification variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQuerycheckReadNotification,
+       );
+}
+
+extension ClientExtension$Query$checkReadNotification on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$checkReadNotification>>
+  query$checkReadNotification(
+    Options$Query$checkReadNotification options,
+  ) async => await this.query(options);
+
+  graphql.ObservableQuery<Query$checkReadNotification>
+  watchQuery$checkReadNotification(
+    WatchOptions$Query$checkReadNotification options,
+  ) => this.watchQuery(options);
+
+  void writeQuery$checkReadNotification({
+    required Query$checkReadNotification data,
+    required Variables$Query$checkReadNotification variables,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(
+        document: documentNodeQuerycheckReadNotification,
+      ),
+      variables: variables.toJson(),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+
+  Query$checkReadNotification? readQuery$checkReadNotification({
+    required Variables$Query$checkReadNotification variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(
+          document: documentNodeQuerycheckReadNotification,
+        ),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$checkReadNotification.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$checkReadNotification>
+useQuery$checkReadNotification(Options$Query$checkReadNotification options) =>
+    graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$checkReadNotification>
+useWatchQuery$checkReadNotification(
+  WatchOptions$Query$checkReadNotification options,
+) => graphql_flutter.useWatchQuery(options);
+
+class Query$checkReadNotification$Widget
+    extends graphql_flutter.Query<Query$checkReadNotification> {
+  Query$checkReadNotification$Widget({
+    widgets.Key? key,
+    required Options$Query$checkReadNotification options,
+    required graphql_flutter.QueryBuilder<Query$checkReadNotification> builder,
+  }) : super(key: key, options: options, builder: builder);
+}
+
+class Query$checkReadNotification$notificationsForUser {
+  Query$checkReadNotification$notificationsForUser({
+    required this.totalCount,
+    this.$__typename = 'NotificationsForUserConnection',
+  });
+
+  factory Query$checkReadNotification$notificationsForUser.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$totalCount = json['totalCount'];
+    final l$$__typename = json['__typename'];
+    return Query$checkReadNotification$notificationsForUser(
+      totalCount: (l$totalCount as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int totalCount;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$totalCount = totalCount;
+    _resultData['totalCount'] = l$totalCount;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$totalCount = totalCount;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$totalCount, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$checkReadNotification$notificationsForUser ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$totalCount = totalCount;
+    final lOther$totalCount = other.totalCount;
+    if (l$totalCount != lOther$totalCount) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$checkReadNotification$notificationsForUser
+    on Query$checkReadNotification$notificationsForUser {
+  CopyWith$Query$checkReadNotification$notificationsForUser<
+    Query$checkReadNotification$notificationsForUser
+  >
+  get copyWith =>
+      CopyWith$Query$checkReadNotification$notificationsForUser(this, (i) => i);
+}
+
+abstract class CopyWith$Query$checkReadNotification$notificationsForUser<TRes> {
+  factory CopyWith$Query$checkReadNotification$notificationsForUser(
+    Query$checkReadNotification$notificationsForUser instance,
+    TRes Function(Query$checkReadNotification$notificationsForUser) then,
+  ) = _CopyWithImpl$Query$checkReadNotification$notificationsForUser;
+
+  factory CopyWith$Query$checkReadNotification$notificationsForUser.stub(
+    TRes res,
+  ) = _CopyWithStubImpl$Query$checkReadNotification$notificationsForUser;
+
+  TRes call({int? totalCount, String? $__typename});
+}
+
+class _CopyWithImpl$Query$checkReadNotification$notificationsForUser<TRes>
+    implements CopyWith$Query$checkReadNotification$notificationsForUser<TRes> {
+  _CopyWithImpl$Query$checkReadNotification$notificationsForUser(
+    this._instance,
+    this._then,
+  );
+
+  final Query$checkReadNotification$notificationsForUser _instance;
+
+  final TRes Function(Query$checkReadNotification$notificationsForUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? totalCount = _undefined,
+    Object? $__typename = _undefined,
+  }) => _then(
+    Query$checkReadNotification$notificationsForUser(
+      totalCount: totalCount == _undefined || totalCount == null
+          ? _instance.totalCount
+          : (totalCount as int),
+      $__typename: $__typename == _undefined || $__typename == null
+          ? _instance.$__typename
+          : ($__typename as String),
+    ),
+  );
+}
+
+class _CopyWithStubImpl$Query$checkReadNotification$notificationsForUser<TRes>
+    implements CopyWith$Query$checkReadNotification$notificationsForUser<TRes> {
+  _CopyWithStubImpl$Query$checkReadNotification$notificationsForUser(this._res);
+
+  TRes _res;
+
+  call({int? totalCount, String? $__typename}) => _res;
+}

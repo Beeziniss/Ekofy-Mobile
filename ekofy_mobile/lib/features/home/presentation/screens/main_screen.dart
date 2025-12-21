@@ -58,9 +58,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         actions: [_notification(), _profileAction(payload)],
       ),
       body: trackListState.isLoading
-          ? Center(
-              child: Image.asset(AppImages.loader, gaplessPlayback: true),
-            )
+          ? Center(child: Image.asset(AppImages.loader, gaplessPlayback: true))
           : trackListState.error != null
           ? _errorWidget(
               trackListState.error!,
@@ -190,13 +188,54 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'New Releases',
+                  'New releases for you',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    // context.push(RouteName.allNewReleases);
+                  },
+                  child: const Text(
+                    'View All',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: AppColors.purpleIshWhite,
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
           _buildTracksList(tracks, refetch),
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Top Genres',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    // context.push(RouteName.allNewReleases);
+                  },
+                  child: const Text(
+                    'View All',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: AppColors.purpleIshWhite,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

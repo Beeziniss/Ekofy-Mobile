@@ -23,9 +23,14 @@ import 'package:ekofy_mobile/features/inbox/data/repositories/inbox_repository_i
 import 'package:ekofy_mobile/features/inbox/domain/repositories/inbox_repository.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/providers/inbox_notifier.dart';
 import 'package:ekofy_mobile/features/inbox/presentation/providers/inbox_state.dart';
-import 'package:ekofy_mobile/features/transactions/data/datasource/transaction_api_datasource.dart';
-import 'package:ekofy_mobile/features/transactions/data/repositories/transaction_repository.dart';
-import 'package:ekofy_mobile/features/transactions/data/repositories/transaction_repository_impl.dart';
+import 'package:ekofy_mobile/features/transaction/data/datasource/transaction_api_datasource.dart';
+import 'package:ekofy_mobile/features/transaction/data/repositories/transaction_repository.dart';
+import 'package:ekofy_mobile/features/transaction/data/repositories/transaction_repository_impl.dart';
+import 'package:ekofy_mobile/features/order/data/datasources/order_api_datasource.dart';
+import 'package:ekofy_mobile/features/order/data/repositories/order_repository_impl.dart';
+import 'package:ekofy_mobile/features/order/domain/repositories/order_repository.dart';
+import 'package:ekofy_mobile/features/order/presentation/providers/order_notifier.dart';
+import 'package:ekofy_mobile/features/order/presentation/providers/order_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -141,5 +146,22 @@ final transactionApiDatasourceProvider = Provider<TransactionApiDatasource>((
 final transactionRepositoryProvider = Provider<TransactionRepository>((ref) {
   final datasource = ref.watch(transactionApiDatasourceProvider);
   return TransactionRepositoryImpl(datasource, ref);
+});
+//* =========
+
+//* ORDER INJECT
+final orderApiDatasourceProvider = Provider<OrderApiDatasource>((ref) {
+  final client = ref.watch(graphqlClientProvider);
+  return OrderApiDatasource(client);
+});
+
+final orderRepositoryProvider = Provider<OrderRepository>((ref) {
+  final api = ref.watch(orderApiDatasourceProvider);
+  return OrderRepositoryImpl(api);
+});
+
+final orderProvider = StateNotifierProvider<OrderNotifier, OrderState>((ref) {
+  final orderRepository = ref.read(orderRepositoryProvider);
+  return OrderNotifier(ref, orderRepository);
 });
 //* =========

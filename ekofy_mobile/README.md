@@ -1,18 +1,33 @@
-# ekofy_mobile
+## 🔧 Installation
 
-A new Flutter project.
+1. Clone the repository:
+```bash
+git clone https://github.com/Beeziniss/Ekofy-Mobile.git
+cd Ekofy-Mobile/ekofy_mobile
+```
 
-## Getting Started
+2. Install dependencies:
+```bash
+flutter pub get
+```
 
-This project is a starting point for a Flutter application.
+3. Generate code (if using code generation):
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
 
-A few resources to get you started if this is your first Flutter project:
+4. Run the application:
+```bash
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🏃 Development
 
-Testing:
-- `test/home_request_card_test.dart` contains a sample widget test for `RequestCard`.
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Code Generation
+```bash
+# Watch mode - auto-generate on changes
+dart run build_runner watch --delete-conflicting-outputs
+
+# One-time generation
+dart run build_runner build --delete-conflicting-outputs
+```

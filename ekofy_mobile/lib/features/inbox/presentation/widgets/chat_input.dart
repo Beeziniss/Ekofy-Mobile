@@ -29,15 +29,15 @@ class ChatInput extends StatelessWidget {
         child: Row(
           children: [
             // Attachment button
-            IconButton(
-              icon: Icon(
-                Icons.add_circle_outline,
-                color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
-              ),
-              onPressed: () {
-                // TODO: Implement attachment
-              },
-            ),
+            // IconButton(
+            //   icon: Icon(
+            //     Icons.add_circle_outline,
+            //     color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
+            //   ),
+            //   onPressed: () {
+            //     // TODO: Implement attachment
+            //   },
+            // ),
             const SizedBox(width: 8),
             // Text input
             Expanded(

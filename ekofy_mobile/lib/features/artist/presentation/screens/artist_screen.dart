@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/gql/generated/schema.graphql.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
@@ -8,6 +11,16 @@ import 'package:ekofy_mobile/features/artist/presentation/providers/artist_state
 import 'package:ekofy_mobile/features/artist/presentation/widgets/artist_package_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ekofy_mobile/gql/queries/generated/track_query.graphql.dart';
+import 'package:ekofy_mobile/gql/queries/generated/playlist_query.graphql.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:ekofy_mobile/features/library/presentation/widgets/track_tile.dart';
+import 'package:ekofy_mobile/features/library/presentation/widgets/album_card.dart';
+import 'package:ekofy_mobile/features/library/presentation/widgets/playlist_card.dart';
+import 'package:ekofy_mobile/features/library/data/models/library_models.dart'
+    as lib_models;
+import 'package:ekofy_mobile/features/track/presentation/providers/track_providers.dart';
+import 'package:ekofy_mobile/features/track/data/models/track_model.dart';
 
 class ArtistScreen extends ConsumerStatefulWidget {
   final String artistId;
@@ -70,12 +83,284 @@ class _ArtistScreenState extends ConsumerState<ArtistScreen>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  Container(), // Placeholder for Tracks
-                  Container(), // Placeholder for Albums
-                  Container(), // Placeholder for Playlists
+                  // Tracks Tab
+                  Builder(
+                    builder: (context) {
+                      final artistState = ref.watch(artistProvider);
+                      final userId = switch (artistState) {
+                        ArtistSuccess(artist: final a) => a?.userId,
+                        _ => null,
+                      };
+
+                      if (userId == null) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+
+                      return Query$TrackInfinite$Widget(
+                        options: Options$Query$TrackInfinite(
+                          variables: Variables$Query$TrackInfinite(
+                            take: 10,
+                            skip: 0,
+                            artistId: userId,
+                          ),
+                          fetchPolicy: FetchPolicy.cacheAndNetwork,
+                        ),
+                        builder: (result, {fetchMore, refetch}) {
+                          if (result.isLoading && result.data == null) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          if (result.hasException) {
+                            return Center(
+                              child: Text(
+                                'Error: ${result.exception.toString()}',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                            );
+                          }
+                          final tracks = result.parsedData?.tracks?.items ?? [];
+                          if (tracks.isEmpty) {
+                            return const Center(
+                              child: Text(
+                                'No tracks found',
+                                style: TextStyle(color: Colors.white70),
+                              ),
+                            );
+                          }
+                          return ListView.builder(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
+                            itemCount: tracks.length,
+                            itemBuilder: (context, index) {
+                              final item = tracks[index];
+                              final track = lib_models.Track(
+                                id: item.id,
+                                name: item.name,
+                                artistName:
+                                    item.mainArtists?.items
+                                        ?.map((e) => e.stageName)
+                                        .join(', ') ??
+                                    '',
+                                albumArt: item.coverImage,
+                                duration: 0,
+                                isFavorited: item.checkTrackInFavorite ?? false,
+                              );
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: TrackTile(
+                                  track: track,
+                                  onPlay: () {
+                                    final trackModel = TrackModel(
+                                      id: item.id,
+                                      name: item.name,
+                                      coverImage: item.coverImage,
+                                      mainArtistIds: item.mainArtistIds,
+                                      mainArtists:
+                                          item.mainArtists?.items
+                                              ?.map(
+                                                (a) => ArtistModel(
+                                                  id: a.id,
+                                                  stageName: a.stageName,
+                                                ),
+                                              )
+                                              .toList() ??
+                                          [],
+                                      checkTrackInFavorite:
+                                          item.checkTrackInFavorite ?? false,
+                                    );
+                                    ref
+                                        .read(audioPlayerServiceProvider)
+                                        .playTrack(trackModel);
+                                  },
+                                  isFavorited: track.isFavorited,
+                                  onToggleFavorite: () {},
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
+
+                  Builder(
+                    builder: (context) {
+                      final artistState = ref.watch(artistProvider);
+                      final userId = switch (artistState) {
+                        ArtistSuccess(artist: final a) => a?.userId,
+                        _ => null,
+                      };
+
+                      if (userId == null) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+
+                      return Query$Albums$Widget(
+                    options: Options$Query$Albums(
+                      variables: Variables$Query$Albums(
+                        take: 5,
+                        skip: 0,
+                        where: Input$AlbumFilterInput(
+                          // Assuming mainArtistIds is used for filtering albums by artist
+                          // If this fails, it might be artistId
+                          createdBy: Input$StringOperationFilterInput(
+                            eq: userId,
+                          ),
+                          isVisible: Input$BooleanOperationFilterInput(
+                            eq: true,
+                          ),
+                        ),
+                      ),
+                      fetchPolicy: FetchPolicy.cacheAndNetwork,
+                    ),
+                    builder: (result, {fetchMore, refetch}) {
+                      if (result.isLoading && result.data == null) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      if (result.hasException) {
+                        return Center(
+                          child: Text(
+                            'Error: ${result.exception.toString()}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }
+                      final albums = result.parsedData?.albums?.items ?? [];
+                      if (albums.isEmpty) {
+                        return const Center(
+                          child: Text(
+                            'No albums found',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        );
+                      }
+                      return GridView.builder(
+                        padding: const EdgeInsets.all(16),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                              childAspectRatio: 0.75,
+                            ),
+                        itemCount: albums.length,
+                        itemBuilder: (context, index) {
+                          final item = albums[index];
+                          final album = lib_models.Album(
+                            id: item.id,
+                            name: item.name,
+                            artistName: '', // Not in query
+                            albumArt: item.coverImage,
+                            isFavorited: item.checkAlbumInFavorite,
+                          );
+                          return AlbumCard(
+                            album: album,
+                            isFavorited: album.isFavorited,
+                            onToggleFavorite: () {},
+                          );
+                        },
+                      );
+                    },
+                  );
+                    },
+                  ),
+
+                  // Albums Tab
+                  
+
+                  // Playlists Tab
+                  Builder(
+                    builder: (context) {
+                      final artistState = ref.watch(artistProvider);
+                      if (artistState is! ArtistSuccess ||
+                          artistState.artist == null) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      final userId = artistState.artist!.userId;
+                      if (userId == null) {
+                        return const Center(
+                          child: Text(
+                            'No playlists available',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        );
+                      }
+                      return Query$PlaylistsPublic$Widget(
+                        options: Options$Query$PlaylistsPublic(
+                          variables: Variables$Query$PlaylistsPublic(
+                            userId: userId,
+                            take: 12,
+                            skip: 0,
+                            name: "",
+                          ),
+                          fetchPolicy: FetchPolicy.cacheAndNetwork,
+                        ),
+                        builder: (result, {fetchMore, refetch}) {
+                          if (result.isLoading && result.data == null) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          if (result.hasException) {
+                            return Center(
+                              child: Text(
+                                'Error: ${result.exception.toString()}',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                            );
+                          }
+                          final playlists =
+                              result.parsedData?.playlists?.items ?? [];
+                          if (playlists.isEmpty) {
+                            return const Center(
+                              child: Text(
+                                'No playlists found',
+                                style: TextStyle(color: Colors.white70),
+                              ),
+                            );
+                          }
+                          return GridView.builder(
+                            padding: const EdgeInsets.all(16),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 16,
+                                  childAspectRatio: 0.75,
+                                ),
+                            itemCount: playlists.length,
+                            itemBuilder: (context, index) {
+                              final item = playlists[index];
+                              final playlist = lib_models.Playlist(
+                                id: item.id,
+                                name: item.name,
+                                coverImage: item.coverImage,
+                                isPublic: item.isPublic ?? true,
+                                userId: item.userId,
+                                isFavorited:
+                                    item.checkPlaylistInFavorite ?? false,
+                              );
+                              return PlaylistCard(
+                                playlist: playlist,
+                                isPlaying: false,
+                                onTogglePlay: () {},
+                                onMore: () {},
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
                   switch (artistState) {
                     ArtistInitial() || ArtistLoading() => Center(
-                      child: Image.asset(AppImages.loader, gaplessPlayback: true),
+                      child: Image.asset(
+                        AppImages.loader,
+                        gaplessPlayback: true,
+                      ),
                     ),
                     ArtistFailure(message: final msg) => Center(
                       child: Text(

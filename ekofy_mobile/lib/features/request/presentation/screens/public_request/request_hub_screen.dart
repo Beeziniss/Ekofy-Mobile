@@ -160,7 +160,7 @@ class _RequestHubScreenState extends ConsumerState<RequestHubScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Request Hub'),
+        title: const Text('Request Hub',style: TextStyle(fontWeight: FontWeight.bold),),
         actions: [
           IconButton(
             tooltip: 'Help',

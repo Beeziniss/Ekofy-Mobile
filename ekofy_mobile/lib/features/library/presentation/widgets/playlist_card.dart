@@ -31,13 +31,16 @@ class PlaylistCard extends StatelessWidget {
               children: [
                 Positioned.fill(
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(12),
+                    ),
                     child: playlist.coverImage == null
                         ? Container(color: const Color(0xFF22222A))
-                        : Image.asset(
+                        : Image.network(
                             playlist.coverImage!,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => Container(color: const Color(0xFF22222A)),
+                            errorBuilder: (_, __, ___) =>
+                                Container(color: const Color(0xFF22222A)),
                           ),
                   ),
                 ),
@@ -59,7 +62,7 @@ class PlaylistCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -84,7 +87,7 @@ class PlaylistCard extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

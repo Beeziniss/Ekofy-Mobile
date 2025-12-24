@@ -12,7 +12,7 @@ class MessagesResult {
 abstract class InboxRepository {
   Future<List<ConversationItem>> fetchConversations({
     String? userId,
-    Enum$ConversationStatus? status,
+    List<Enum$ConversationStatus>? statuses,
   });
 
   Future<ConversationItem?> fetchConversationById(String conversationId);

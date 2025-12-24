@@ -269,6 +269,17 @@ const documentNodeQuerynotificationsForUserQuery = DocumentNode(
                 name: NameNode(value: 'userId'),
                 value: VariableNode(name: NameNode(value: 'userId')),
               ),
+              ArgumentNode(
+                name: NameNode(value: 'order'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'createdAt'),
+                      value: EnumValueNode(name: NameNode(value: 'DESC')),
+                    ),
+                  ],
+                ),
+              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
@@ -330,7 +341,7 @@ const documentNodeQuerynotificationsForUserQuery = DocumentNode(
                         selectionSet: null,
                       ),
                       FieldNode(
-                        name: NameNode(value: 'url'),
+                        name: NameNode(value: 'mobileUrl'),
                         alias: null,
                         arguments: [],
                         directives: [],
@@ -785,7 +796,7 @@ class Query$notificationsForUserQuery$notificationsForUser$nodes {
     this.relatedId,
     this.relatedType,
     required this.content,
-    this.url,
+    this.mobileUrl,
     required this.isRead,
     this.readAt,
     required this.action,
@@ -802,7 +813,7 @@ class Query$notificationsForUserQuery$notificationsForUser$nodes {
     final l$relatedId = json['relatedId'];
     final l$relatedType = json['relatedType'];
     final l$content = json['content'];
-    final l$url = json['url'];
+    final l$mobileUrl = json['mobileUrl'];
     final l$isRead = json['isRead'];
     final l$readAt = json['readAt'];
     final l$action = json['action'];
@@ -817,7 +828,7 @@ class Query$notificationsForUserQuery$notificationsForUser$nodes {
           ? null
           : fromJson$Enum$NotificationRelatedType((l$relatedType as String)),
       content: (l$content as String),
-      url: (l$url as String?),
+      mobileUrl: (l$mobileUrl as String?),
       isRead: (l$isRead as bool),
       readAt: l$readAt == null ? null : DateTime.parse((l$readAt as String)),
       action: fromJson$Enum$NotificationActionType((l$action as String)),
@@ -838,7 +849,7 @@ class Query$notificationsForUserQuery$notificationsForUser$nodes {
 
   final String content;
 
-  final String? url;
+  final String? mobileUrl;
 
   final bool isRead;
 
@@ -866,8 +877,8 @@ class Query$notificationsForUserQuery$notificationsForUser$nodes {
         : toJson$Enum$NotificationRelatedType(l$relatedType);
     final l$content = content;
     _resultData['content'] = l$content;
-    final l$url = url;
-    _resultData['url'] = l$url;
+    final l$mobileUrl = mobileUrl;
+    _resultData['mobileUrl'] = l$mobileUrl;
     final l$isRead = isRead;
     _resultData['isRead'] = l$isRead;
     final l$readAt = readAt;
@@ -889,7 +900,7 @@ class Query$notificationsForUserQuery$notificationsForUser$nodes {
     final l$relatedId = relatedId;
     final l$relatedType = relatedType;
     final l$content = content;
-    final l$url = url;
+    final l$mobileUrl = mobileUrl;
     final l$isRead = isRead;
     final l$readAt = readAt;
     final l$action = action;
@@ -902,7 +913,7 @@ class Query$notificationsForUserQuery$notificationsForUser$nodes {
       l$relatedId,
       l$relatedType,
       l$content,
-      l$url,
+      l$mobileUrl,
       l$isRead,
       l$readAt,
       l$action,
@@ -950,9 +961,9 @@ class Query$notificationsForUserQuery$notificationsForUser$nodes {
     if (l$content != lOther$content) {
       return false;
     }
-    final l$url = url;
-    final lOther$url = other.url;
-    if (l$url != lOther$url) {
+    final l$mobileUrl = mobileUrl;
+    final lOther$mobileUrl = other.mobileUrl;
+    if (l$mobileUrl != lOther$mobileUrl) {
       return false;
     }
     final l$isRead = isRead;
@@ -1016,7 +1027,7 @@ abstract class CopyWith$Query$notificationsForUserQuery$notificationsForUser$nod
     String? relatedId,
     Enum$NotificationRelatedType? relatedType,
     String? content,
-    String? url,
+    String? mobileUrl,
     bool? isRead,
     DateTime? readAt,
     Enum$NotificationActionType? action,
@@ -1053,7 +1064,7 @@ class _CopyWithImpl$Query$notificationsForUserQuery$notificationsForUser$nodes<
     Object? relatedId = _undefined,
     Object? relatedType = _undefined,
     Object? content = _undefined,
-    Object? url = _undefined,
+    Object? mobileUrl = _undefined,
     Object? isRead = _undefined,
     Object? readAt = _undefined,
     Object? action = _undefined,
@@ -1077,7 +1088,9 @@ class _CopyWithImpl$Query$notificationsForUserQuery$notificationsForUser$nodes<
       content: content == _undefined || content == null
           ? _instance.content
           : (content as String),
-      url: url == _undefined ? _instance.url : (url as String?),
+      mobileUrl: mobileUrl == _undefined
+          ? _instance.mobileUrl
+          : (mobileUrl as String?),
       isRead: isRead == _undefined || isRead == null
           ? _instance.isRead
           : (isRead as bool),
@@ -1115,7 +1128,7 @@ class _CopyWithStubImpl$Query$notificationsForUserQuery$notificationsForUser$nod
     String? relatedId,
     Enum$NotificationRelatedType? relatedType,
     String? content,
-    String? url,
+    String? mobileUrl,
     bool? isRead,
     DateTime? readAt,
     Enum$NotificationActionType? action,
@@ -1396,7 +1409,7 @@ const documentNodeQuerycheckReadNotification = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: BooleanValueNode(value: true),
+                            value: BooleanValueNode(value: false),
                           ),
                         ],
                       ),

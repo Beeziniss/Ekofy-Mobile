@@ -3,11 +3,11 @@ import 'package:ekofy_mobile/features/transaction/domain/models/transaction_stat
 class TransactionItem {
   final String id;
   final String? stripePaymentId;
-  final int amountMinor; //INFO: minor units (e.g. cents)
-  final String currency; // e.g. "USD"
+  final int amountMinor;
+  final String currency;
   final DateTime createdAt;
   // final TransactionStatus status;
-  final List<String> paymentMethods; // e.g. ["CARD", "WALLET"]
+  final List<String> paymentMethods;
   final String? packageName;
   final String? fullName;
   final String? email;
@@ -38,5 +38,10 @@ String formatShortId(String id) {
 String formatAmountMajor(int minor, String currency) {
   //INFO: Simple formatting without intl; convert cents to major units with 2 decimals.
   final major = minor / 100.0;
-  return '${major.toStringAsFixed(2)} $currency';
+  if (currency == 'vnd') {
+    currency = '₫';
+  } else {
+    currency = '\$';
+  }
+  return '${major.toStringAsFixed(0)} $currency';
 }

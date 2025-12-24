@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
+import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/core/widgets/button/custom_button.dart';
 import 'package:ekofy_mobile/features/request/data/models/own_request.dart';
 import 'package:ekofy_mobile/features/request/data/models/public_request.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,7 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
   final _minBudgetCtrl = TextEditingController();
   final _maxBudgetCtrl = TextEditingController();
   late final QuillController _quillController;
+  String? _descriptionError;
 
   bool _isLoading = false;
 
@@ -100,6 +103,7 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                       decoration: const InputDecoration(
                         labelText: 'Title',
                         hintText: 'Enter request title',
+                        hintStyle: TextStyle(color: Colors.grey),
                         border: OutlineInputBorder(),
                       ),
                       validator: (v) => (v == null || v.trim().isEmpty)
@@ -112,11 +116,18 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                       decoration: const InputDecoration(
                         labelText: 'Summary',
                         hintText: 'Short summary of the request',
+                        hintStyle: TextStyle(color: Colors.grey),
                         border: OutlineInputBorder(),
                       ),
-                      validator: (v) => (v == null || v.trim().isEmpty)
-                          ? 'Summary is required'
-                          : null,
+                      validator: (v) {
+                        if (v == null || v.trim().isEmpty) {
+                          return 'Summary is required';
+                        }
+                        if (v.length > 1000) {
+                          return 'Summary must be less than 500 characters';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 24),
                     _buildSectionTitle('Detail Description'),
@@ -168,8 +179,13 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                             height: 200,
                             child: QuillEditor.basic(
                               controller: _quillController,
-                              config: const QuillEditorConfig(
-                                padding: EdgeInsets.all(16),
+                              config: QuillEditorConfig(
+                                padding: const EdgeInsets.all(16),
+                                onTapOutside: (event, focusNode) {
+                                  setState(() {
+                                    _descriptionError = _validateDescription();
+                                  });
+                                },
 
                                 // sharedConfigurations: QuillSharedConfig(
                                 //   locale: Locale('en'),
@@ -177,17 +193,41 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                               ),
                             ),
                           ),
+                          if (_descriptionError != null)
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.error_outline,
+                                    size: 16,
+                                    color: Colors.red.shade700,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                      _descriptionError!,
+                                      style: TextStyle(
+                                        color: Colors.red.shade700,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 24),
-                    _buildSectionTitle('Logistics'),
+                    _buildSectionTitle('Estimated deadline'),
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: _durationCtrl,
                       decoration: const InputDecoration(
                         labelText: 'Duration (days)',
                         hintText: 'e.g. 7',
+                        hintStyle: TextStyle(color: Colors.grey),
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.timer_outlined),
                       ),
@@ -198,20 +238,25 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                         }
                         final n = int.tryParse(v);
                         if (n == null) return 'Enter a valid integer';
-                        if (n <= 0) return 'Duration must be positive';
+                        if (n <= 0 || n >= 365)
+                          return 'Duration must be greater or equal 1 and less than 365';
                         return null;
                       },
                     ),
+                    const SizedBox(height: 24),
+                    _buildSectionTitle('Budget'),
                     const SizedBox(height: 16),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: TextFormField(
                             controller: _minBudgetCtrl,
                             decoration: const InputDecoration(
-                              labelText: 'Min Budget',
+                              labelText: 'Min',
                               prefixText: '₫ ',
                               border: OutlineInputBorder(),
+                              helperText: 'Min 1.000 ₫',
                             ),
                             keyboardType: const TextInputType.numberWithOptions(
                               decimal: true,
@@ -222,7 +267,7 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                               }
                               final n = double.tryParse(v);
                               if (n == null) return 'Invalid number';
-                              if (n < 0) return 'Cannot be negative';
+                              if (n < 1000) return 'Min 1.000 ₫';
                               return null;
                             },
                           ),
@@ -232,9 +277,10 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                           child: TextFormField(
                             controller: _maxBudgetCtrl,
                             decoration: const InputDecoration(
-                              labelText: 'Max Budget',
+                              labelText: 'Max',
                               prefixText: '₫ ',
                               border: OutlineInputBorder(),
+                              helperText: 'Max 100 million ₫',
                             ),
                             keyboardType: const TextInputType.numberWithOptions(
                               decimal: true,
@@ -245,7 +291,14 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                               }
                               final n = double.tryParse(v);
                               if (n == null) return 'Invalid number';
-                              if (n < 0) return 'Cannot be negative';
+                              if (n > 100000000) return 'Max 100 million ₫';
+
+                              final minVal = double.tryParse(
+                                _minBudgetCtrl.text,
+                              );
+                              if (minVal != null && n < minVal) {
+                                return 'Must be >= Min';
+                              }
                               return null;
                             },
                           ),
@@ -261,9 +314,12 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                                 ? null
                                 : () => Navigator.pop(context),
                             style: OutlinedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              padding: const EdgeInsets.symmetric(vertical: 12),
                             ),
-                            child: const Text('Cancel'),
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(color: AppColors.purpleIshWhite),
+                            ),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -277,19 +333,23 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 16,
                                 ),
-                                backgroundColor: Theme.of(context).primaryColor,
-                                foregroundColor: Colors.white,
+                                backgroundColor: Colors.deepPurple,
+                                foregroundColor: Colors.deepPurple,
                               ),
                               child: _isLoading
                                   ? SizedBox(
                                       width: 20,
                                       height: 20,
-                                      child: Image.asset(
-                                        AppImages.loader,
-                                        gaplessPlayback: true,
-                                      ),
+                                      child: CircularProgressIndicator(),
                                     )
-                                  : const Text('Submit'),
+                                  : const Text(
+                                      'Submit',
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.purpleIshWhite,
+                                      ),
+                                    ),
                             ),
                           ),
                         ),
@@ -403,5 +463,29 @@ class _CreateRequestScreenState extends ConsumerState<CreateRequestScreen> {
         );
       }
     }
+  }
+
+  String? _validateDescription() {
+    // Lấy plain text
+    final plainText = _quillController.document.toPlainText().trim();
+
+    // Convert Delta to HTML
+    final delta = _quillController.document.toDelta();
+    final converter = QuillDeltaToHtmlConverter(
+      delta.toJson(),
+      ConverterOptions.forEmail(), // Hoặc ConverterOptions()
+    );
+    final htmlContent = converter.convert();
+
+    // Validate
+    if (plainText.isEmpty) {
+      return 'Description is required';
+    }
+
+    if (htmlContent.length >= 500) {
+      return 'Description must be less than 500 characters (including formatting)';
+    }
+
+    return null;
   }
 }

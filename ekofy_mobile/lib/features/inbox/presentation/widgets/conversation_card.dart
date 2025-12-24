@@ -93,7 +93,9 @@ class ConversationCard extends ConsumerWidget {
                       // Time
                       if (lastMessage?.sentAt != null)
                         Text(
-                          _formatTime(lastMessage!.sentAt!),
+                          _formatTime(
+                            lastMessage!.sentAt!.add(const Duration(hours: 7)),
+                          ),
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 12,

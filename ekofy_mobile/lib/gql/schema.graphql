@@ -36,26 +36,11 @@ type Album {
   thumbnailImage: String
   releaseInfo: ReleaseInfo!
   isVisible: Boolean!
+  createdBy: String!
   createdAt: DateTime!
   updatedAt: DateTime
-  tracks(
-    skip: Int
-    take: Int
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): TracksCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  artists(
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): [Artist!]! @cost(weight: "10")
+  tracks(skip: Int take: Int where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): TracksCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  artists(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
   checkAlbumInFavorite: Boolean! @cost(weight: "10")
 }
 
@@ -87,18 +72,9 @@ type ApprovalHistory {
   action: HistoryActionType!
   notes: String
   snapshot: JSON!
-  user(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
-  track(
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): [Track!]! @cost(weight: "10")
-  approvedBy(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  track(where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): [Track!]! @cost(weight: "10")
+  approvedBy(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
 }
 
 type Artist {
@@ -127,24 +103,8 @@ type Artist {
   netRevenue: Decimal!
   createdAt: DateTime!
   updatedAt: DateTime
-  user(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
-  categories(
-    skip: Int
-    take: Int
-    where: CategoryFilterInput @cost(weight: "10")
-    order: [CategorySortInput!] @cost(weight: "10")
-  ): CategoriesCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  categories(skip: Int take: Int where: CategoryFilterInput @cost(weight: "10") order: [CategorySortInput!] @cost(weight: "10")): CategoriesCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
 }
 
 type ArtistInfo {
@@ -176,12 +136,11 @@ type ArtistPackage {
   serviceDetails: [Metadata!]!
   status: ArtistPackageStatus!
   isDelete: Boolean!
+  isCustom: Boolean!
+  customPackageInfo: CustomArtistPackageInfo
   createdAt: DateTime!
   updatedAt: DateTime
-  artist(
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): [Artist!]! @cost(weight: "10")
+  artist(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
   review: ReviewResponse! @cost(weight: "10")
 }
 
@@ -292,64 +251,13 @@ type CombinedUploadRequest {
   track: TrackTempRequest!
   work: WorkTempRequest!
   recording: RecordingTempRequest!
+  approvalPriority: ApprovalPriorityStatus!
   requestedAt: DateTime!
   createdBy: String!
-  workUsers(
-    skip: Int
-    take: Int
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): WorkUsersCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  recordingUsers(
-    skip: Int
-    take: Int
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): RecordingUsersCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  mainArtists(
-    skip: Int
-    take: Int
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): MainArtistsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  featuredArtists(
-    skip: Int
-    take: Int
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): FeaturedArtistsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  workUsers(skip: Int take: Int where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): WorkUsersCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  recordingUsers(skip: Int take: Int where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): RecordingUsersCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  mainArtists(skip: Int take: Int where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): MainArtistsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  featuredArtists(skip: Int take: Int where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): FeaturedArtistsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
 }
 
 type Comment {
@@ -371,22 +279,10 @@ type Comment {
   isVisible: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime
-  user(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
-  listener(
-    where: ListenerFilterInput @cost(weight: "10")
-    order: [ListenerSortInput!] @cost(weight: "10")
-  ): [Listener!]! @cost(weight: "10")
-  artist(
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): [Artist!]! @cost(weight: "10")
-  track(
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): [Track!]! @cost(weight: "10")
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  listener(where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): [Listener!]! @cost(weight: "10")
+  artist(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
+  track(where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): [Track!]! @cost(weight: "10")
 }
 
 type CommentRepliesResponse {
@@ -515,6 +411,11 @@ type CreateWorkSplitRequest {
   percentage: Decimal!
 }
 
+type CustomArtistPackageInfo {
+  conversationId: String
+  clientId: String!
+}
+
 type DeletedForEntry {
   userId: String!
   isDeleted: Boolean!
@@ -607,6 +508,12 @@ type FeaturedArtistsCollectionSegment {
   totalCount: Int! @cost(weight: "10")
 }
 
+type FingerprintConfidencePolicy {
+  id: String!
+  rejectThreshold: Float!
+  manualReviewThreshold: Float!
+}
+
 "A segment of a collection."
 type FollowersCollectionSegment {
   "Information to aid in pagination."
@@ -660,7 +567,7 @@ type Invoice {
   id: String!
   userId: String!
   paymentTransactionId: String!
-  stripeInvoiceId: String!
+  stripeInvoiceId: String
   oneOffSnapshot: OneOffSnapshot
   subscriptionSnapshot: SubscriptionSnapshot
   fullName: String!
@@ -672,14 +579,8 @@ type Invoice {
   to: String!
   originContext: String
   paidAt: DateTime!
-  user(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
-  transaction(
-    where: PaymentTransactionFilterInput @cost(weight: "10")
-    order: [PaymentTransactionSortInput!] @cost(weight: "10")
-  ): [PaymentTransaction!]! @cost(weight: "10")
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  transaction(where: PaymentTransactionFilterInput @cost(weight: "10") order: [PaymentTransactionSortInput!] @cost(weight: "10")): [PaymentTransaction!]! @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -716,7 +617,7 @@ type LegalDocument {
   name: String!
   documentUrl: String!
   documentType: DocumentType!
-  note: String!
+  note: String
 }
 
 "A segment of a collection."
@@ -756,38 +657,9 @@ type Listener {
   isVisible: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime
-  user(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
-  followingsUser(
-    skip: Int
-    take: Int
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): FollowingsUserCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  followersUser(
-    skip: Int
-    take: Int
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): FollowersUserCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  followingsUser(skip: Int take: Int where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): FollowingsUserCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  followersUser(skip: Int take: Int where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): FollowersUserCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
 }
 
 type ListenerInfo {
@@ -879,10 +751,7 @@ type MonthlyStreamCount {
   streamCount: Long!
   createdAt: DateTime!
   processedAt: DateTime
-  track(
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): [Track!]! @cost(weight: "10")
+  track(where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): [Track!]! @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -896,373 +765,125 @@ type MonthlyStreamCountsCollectionSegment {
 
 type MutationInitialization {
   initialize: String!
-  createMomoPaymentQR(
-    createMomoPaymentRequest: CreateMomoPaymentRequestInput!
-  ): MomoPaymentResponse! @allowAnonymous @cost(weight: "10")
-  createMomoPaymentVisa(
-    createMomoPaymentRequest: CreateMomoPaymentRequestInput!
-  ): MomoPaymentResponse! @allowAnonymous @cost(weight: "10")
-  createAlbum(createAlbumRequest: CreateAlbumRequestInput!): Boolean!
-    @authorize(roles: ["Artist"])
-    @cost(weight: "10")
-  addToFavoriteAlbum(albumId: String!, isAdding: Boolean!): Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  addTrackToAlbum(
-    addTrackToAlbumRequest: AddTrackToAlbumRequestInput!
-  ): Boolean! @authorize(roles: ["Artist"]) @cost(weight: "10")
-  removeTrackFromAlbum(
-    removeTrackFromAlbumRequest: RemoveTrackFromAlbumRequestInput!
-  ): Boolean! @authorize(roles: ["Artist"]) @cost(weight: "10")
-  deleteAlbum(albumId: String!): Boolean!
-    @authorize(roles: ["Artist"])
-    @cost(weight: "10")
-  createArtistPackage(
-    createRequest: CreateArtistPackageRequestInput!
-  ): Boolean!
-    @authorize(roles: ["Artist"])
-    @authorize(roles: ["Artist"])
-    @authorize(roles: ["Artist"])
-    @cost(weight: "10")
-  updateArtistPackage(
-    updateRequest: UpdateArtistPackageRequestInput!
-  ): Boolean!
-    @authorize(roles: ["Artist"])
-    @authorize(roles: ["Artist"])
-    @authorize(roles: ["Artist"])
-    @cost(weight: "10")
-  changeArtistPackageStatus(
-    updateStatusRequest: UpdateStatusArtistPackageRequestInput!
-  ): Boolean!
-    @authorize(roles: ["Artist"])
-    @authorize(roles: ["Artist"])
-    @authorize(roles: ["Artist"])
-    @cost(weight: "10")
-  deleteArtistPackage(artistPackageId: String!): Boolean!
-    @authorize(roles: ["Artist"])
-    @authorize(roles: ["Artist"])
-    @authorize(roles: ["Artist"])
-    @cost(weight: "10")
-  updateArtistProfile(updateArtistRequest: UpdateArtistRequestInput!): Boolean!
-    @authorize(roles: ["Artist"])
-    @cost(weight: "10")
-  approveArtistRegistration(
-    request: ArtistRegistrationApprovalRequestInput!
-  ): Boolean! @authorize(roles: ["Moderator"]) @cost(weight: "10")
-  rejectArtistRegistration(
-    request: ArtistRegistrationApprovalRequestInput!
-  ): Boolean! @authorize(roles: ["Moderator"]) @cost(weight: "10")
-  computeArtistRevenueByArtistId(artistId: String!): ArtistRevenueResponse!
-    @authorize(roles: ["Admin", "Artist", "Moderator"])
-    @cost(weight: "10")
-  registerArtistManual(
-    createArtistRequest: CreateArtistRequestInput!
-  ): Boolean! @cost(weight: "10")
-  createBillingPortalConfiguration(
-    createBillingPortalConfigurationRequest: CreateBillingPortalConfigurationRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  createCustomerPortalSession(returnUrl: String!, version: Long!): String!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  createCategory(categoryRequest: CreateCategoryRequestInput!): Boolean!
-    @cost(weight: "10")
-  updateCategory(updateCategoryRequest: UpdateCategoryRequestInput!): Boolean!
-    @cost(weight: "10")
+  createMomoPaymentQR(createMomoPaymentRequest: CreateMomoPaymentRequestInput!): MomoPaymentResponse! @allowAnonymous @cost(weight: "10")
+  createMomoPaymentVisa(createMomoPaymentRequest: CreateMomoPaymentRequestInput!): MomoPaymentResponse! @allowAnonymous @cost(weight: "10")
+  createAlbum(createAlbumRequest: CreateAlbumRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  addToFavoriteAlbum(albumId: String! isAdding: Boolean!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  addTrackToAlbum(addTrackToAlbumRequest: AddTrackToAlbumRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  removeTrackFromAlbum(removeTrackFromAlbumRequest: RemoveTrackFromAlbumRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  deleteAlbum(albumId: String!): Boolean! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  createArtistPackage(createRequest: CreateArtistPackageRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  updateArtistPackage(updateRequest: UpdateArtistPackageRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  changeArtistPackageStatus(updateStatusRequest: UpdateStatusArtistPackageRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  deleteArtistPackage(artistPackageId: String!): Boolean! @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  createCustomArtistPackage(createRequest: CreateCustomArtistPackageRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  updateCustomPackage(updateRequest: UpdateCustomArtistPackageRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  deleteCustomArtistPackage(artistPackageId: String!): Boolean! @authorize(roles: [ "Artist" ]) @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  updateArtistProfile(updateArtistRequest: UpdateArtistRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  approveArtistRegistration(request: ArtistRegistrationApprovalRequestInput!): Boolean! @authorize(roles: [ "Moderator" ]) @cost(weight: "10")
+  rejectArtistRegistration(request: ArtistRegistrationApprovalRequestInput!): Boolean! @authorize(roles: [ "Moderator" ]) @cost(weight: "10")
+  computeArtistRevenueByArtistId(artistId: String!): ArtistRevenueResponse! @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @cost(weight: "10")
+  registerArtistManual(createArtistRequest: CreateArtistRequestInput!): Boolean! @cost(weight: "10")
+  createBillingPortalConfiguration(createBillingPortalConfigurationRequest: CreateBillingPortalConfigurationRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  createCustomerPortalSession(returnUrl: String! version: Long!): String! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  createCategory(categoryRequest: CreateCategoryRequestInput!): Boolean! @cost(weight: "10")
+  updateCategory(updateCategoryRequest: UpdateCategoryRequestInput!): Boolean! @cost(weight: "10")
   softDeleteCategory(categoryId: String!): Boolean! @cost(weight: "10")
-  hardDeleteCategory(
-    deleteCategoryRequest: DeleteCategoryRequestInput!
-  ): Boolean! @cost(weight: "10")
-  updateConversationStatus(
-    conversationId: String!
-    status: ConversationStatus!
-  ): Boolean!
-    @authorize(roles: ["Artist", "Listener", "Moderator"])
-    @cost(weight: "10")
-  addConversationGeneral(otherUserId: String!): String!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  addConversationFromRequestHub(
-    request: CreateConversationRequestInput!
-  ): String! @authorize(roles: ["Artist", "Listener"]) @cost(weight: "10")
-  createComment(request: CreateCommentRequestInput!): Boolean!
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @cost(weight: "10")
-  updateComment(request: UpdateTrackCommentRequestInput!): Boolean!
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @cost(weight: "10")
-  deleteComment(request: DeleteCommentRequestInput!): Boolean!
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @cost(weight: "10")
-  createCoupon(createCouponRequest: CreateCouponRequestInput!): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  deprecateCoupon(couponIds: [String!]!): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  deleteCoupon(couponIds: [String!]!): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  seedEntitlements(password: String!): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  createEntitlement(
-    createEntitlementRequest: CreateEntitlementRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  entitlementUserCount(code: String!): Long!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  deactiveEntitlement(code: String!): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  reactiveEntitlement(code: String!): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  updateListenerProfile(
-    updateListenerRequest: UpdateListenerRequestInput!
-  ): Boolean! @authorize(roles: ["Listener"]) @cost(weight: "10")
-  sendRedoRequest(request: RedoRequestInput!): Boolean!
-    @authorize(roles: ["Listener"])
-    @cost(weight: "10")
-  refundPartially(request: PackageOrderRefundRequestInput!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  submitDelivery(request: SubmitDeliveryRequestInput!): Boolean!
-    @authorize(roles: ["Artist"])
-    @cost(weight: "10")
-  approveDelivery(packageOrderId: String!): Boolean!
-    @authorize(roles: ["Listener"])
-    @cost(weight: "10")
-  acceptRequestByArtist(packageOrderId: String!): Boolean!
-    @authorize(roles: ["Artist"])
-    @cost(weight: "10")
-  switchStatusByRequestor(request: ChangeOrderStatusRequestInput!): Boolean!
-    @authorize(roles: ["Listener"])
-    @cost(weight: "10")
-  createReview(createReviewRequest: CreateReviewRequestInput!): Boolean!
-    @authorize(roles: ["Listener"])
-    @cost(weight: "10")
-  updateReview(updateReviewRequest: UpdateReviewRequestInput!): Boolean!
-    @authorize(roles: ["Admin", "Listener", "Moderator"])
-    @cost(weight: "10")
-  deleteReviewHard(reviewId: String!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  createExpressConnectedAccount(
-    refreshUrl: String! = "https://ekofy.com/refresh"
-    returnUrl: String! = "https://ekofy.com/return"
-  ): AccountLinkResponse! @authorize(roles: ["Artist"]) @cost(weight: "10")
-  createPaymentCheckoutSession(
-    createPaymentCheckoutSessionRequest: CreatePaymentCheckoutSessionRequestInput!
-  ): CheckoutSessionResponse!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  refund(
-    paymentIntentId: String!
-    amount: Decimal!
-    refundReasonType: RefundReasonType!
-  ): Boolean!
-    @authorize(roles: ["Artist", "Listener", "Moderator"])
-    @cost(weight: "10")
-  createSubscriptionCheckoutSession(
-    createCheckoutSessionRequest: CreateSubscriptionCheckoutSessionRequestInput!
-  ): CheckoutSessionResponse!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  cancelSubscriptionAtPeriodEnd: Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  resumeSubscription: Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  createPlaylist(createPlaylistRequest: CreatePlaylistRequestInput!): Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  updatePlaylist(updatePlaylistRequest: UpdatePlaylistRequestInput!): Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  addToFavoritePlaylist(playlistId: String!, isAdding: Boolean!): Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  addToPlaylist(addToPlaylistRequest: AddToPlaylistRequestInput!): Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  removeFromPlaylist(
-    removeFromPlaylistRequest: RemoveFromPlaylistRequestInput!
-  ): Boolean! @authorize(roles: ["Artist", "Listener"]) @cost(weight: "10")
-  deletePlaylist(playlistId: String!): Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  seedEscrowCommissionPolicyData(password: String!): Boolean!
-    @allowAnonymous
-    @cost(weight: "10")
-  createEscrowCommissionPolicy(
-    createRequest: CreateEscrowCommissionPolicyRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  updateEscrowCommissionPolicy(
-    updateRequest: UpdateEscrowCommissionPolicyRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  downgradeEscrowCommissionPolicyVersion(version: Long): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  createLegalPolicy(
-    createLegalPolicyRequest: CreateLegalPolicyRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  seedRoyaltyPolicyData(password: String!): Boolean!
-    @allowAnonymous
-    @cost(weight: "10")
-  createRoyaltyPolicy(
-    createRoyalPolicyRequest: CreateRoyalPolicyRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  updateRoyaltyPolicy(
-    updateRoyalPolicyRequest: UpdateRoyalPolicyRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
+  hardDeleteCategory(deleteCategoryRequest: DeleteCategoryRequestInput!): Boolean! @cost(weight: "10")
+  updateConversationStatus(conversationId: String! status: ConversationStatus!): Boolean! @authorize(roles: [ "Artist", "Listener", "Moderator" ]) @cost(weight: "10")
+  addConversationGeneral(otherUserId: String!): String! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  addConversationFromRequestHub(request: CreateConversationRequestInput!): String! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  createComment(request: CreateCommentRequestInput!): Boolean! @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @cost(weight: "10")
+  updateComment(request: UpdateTrackCommentRequestInput!): Boolean! @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @cost(weight: "10")
+  deleteComment(request: DeleteCommentRequestInput!): Boolean! @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @cost(weight: "10")
+  createCoupon(createCouponRequest: CreateCouponRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  deprecateCoupon(couponIds: [String!]!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  deleteCoupon(couponIds: [String!]!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  seedEntitlements(password: String!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  createEntitlement(createEntitlementRequest: CreateEntitlementRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  entitlementUserCount(code: String!): Long! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  deactiveEntitlement(code: String!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  reactiveEntitlement(code: String!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  updateListenerProfile(updateListenerRequest: UpdateListenerRequestInput!): Boolean! @authorize(roles: [ "Listener" ]) @cost(weight: "10")
+  sendSingleNotification(userId: String title: String! body: String! channelId: String! data: [KeyValuePairOfStringAndStringInput!]): Boolean! @authorize(roles: [ "Listener" ]) @cost(weight: "10")
+  sendRedoRequest(request: RedoRequestInput!): Boolean! @authorize(roles: [ "Listener" ]) @cost(weight: "10")
+  refundAndEscrow(request: PackageOrderRefundRequestInput!): Boolean! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  submitDelivery(request: SubmitDeliveryRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  approveDelivery(packageOrderId: String!): Boolean! @authorize(roles: [ "Listener" ]) @cost(weight: "10")
+  acceptRequestByArtist(packageOrderId: String!): Boolean! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  switchStatusByRequestor(request: ChangeOrderStatusRequestInput!): Boolean! @authorize(roles: [ "Artist", "Listener", "Moderator" ]) @cost(weight: "10")
+  createReview(createReviewRequest: CreateReviewRequestInput!): Boolean! @authorize(roles: [ "Listener" ]) @cost(weight: "10")
+  updateReview(updateReviewRequest: UpdateReviewRequestInput!): Boolean! @authorize(roles: [ "Admin", "Listener", "Moderator" ]) @cost(weight: "10")
+  deleteReviewHard(reviewId: String!): Boolean! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  createExpressConnectedAccount(refreshUrl: String! = "https:\/\/ekofy.com\/refresh" returnUrl: String! = "https:\/\/ekofy.com\/return"): AccountLinkResponse! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  createPaymentCheckoutSession(createPaymentCheckoutSessionRequest: CreatePaymentCheckoutSessionRequestInput!): CheckoutSessionResponse! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  refund(paymentIntentId: String! amount: Decimal! refundReasonType: RefundReasonType!): Boolean! @authorize(roles: [ "Artist", "Listener", "Moderator" ]) @cost(weight: "10")
+  createSubscriptionCheckoutSession(createCheckoutSessionRequest: CreateSubscriptionCheckoutSessionRequestInput!): CheckoutSessionResponse! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  cancelSubscriptionAtPeriodEnd: Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  resumeSubscription: Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  createPlaylist(createPlaylistRequest: CreatePlaylistRequestInput!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  updatePlaylist(updatePlaylistRequest: UpdatePlaylistRequestInput!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  addToFavoritePlaylist(playlistId: String! isAdding: Boolean!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  addToPlaylist(addToPlaylistRequest: AddToPlaylistRequestInput!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  removeFromPlaylist(removeFromPlaylistRequest: RemoveFromPlaylistRequestInput!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  deletePlaylist(playlistId: String!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  seedEscrowCommissionPolicyData(password: String!): Boolean! @allowAnonymous @cost(weight: "10")
+  createEscrowCommissionPolicy(createRequest: CreateEscrowCommissionPolicyRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  updateEscrowCommissionPolicy(updateRequest: UpdateEscrowCommissionPolicyRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  downgradeEscrowCommissionPolicyVersion(version: Long): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  switchEscrowCommissionPolicyToLatestVersion: Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  createLegalPolicy(createLegalPolicyRequest: CreateLegalPolicyRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  seedRoyaltyPolicyData(password: String!): Boolean! @allowAnonymous @cost(weight: "10")
+  createRoyaltyPolicy(createRoyalPolicyRequest: CreateRoyalPolicyRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  updateRoyaltyPolicy(updateRoyalPolicyRequest: UpdateRoyalPolicyRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  switchToLatestVersion: Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
   downgradeRoyaltyPolicyVersion(version: Long): Boolean! @cost(weight: "10")
-  processTrackStreamingMetric(
-    trackId: String!
-    actionType: PopularityActionType!
-  ): Boolean! @allowAnonymous @cost(weight: "10")
-  processTrackEngagementMetric(
-    trackId: String!
-    actionType: PopularityActionType!
-  ): Boolean! @allowAnonymous @cost(weight: "10")
-  processTrackDiscovery(
-    trackId: String!
-    actionType: PopularityActionType!
-  ): Boolean! @allowAnonymous @cost(weight: "10")
-  processArtistEngagement(
-    artistId: String!
-    actionType: PopularityActionType!
-  ): Boolean! @allowAnonymous @cost(weight: "10")
-  processArtistDiscovery(
-    artistId: String!
-    actionType: PopularityActionType!
-  ): Boolean! @allowAnonymous @cost(weight: "10")
-  createReport(request: CreateReportRequestInput!): Boolean!
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @cost(weight: "10")
-  assignReportToModerator(reportId: String!, moderatorId: String!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @authorize(roles: ["Admin", "Moderator"])
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  processReport(request: ProcessReportRequestInput!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @authorize(roles: ["Admin", "Moderator"])
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  updateReportPriority(reportId: String!, priority: String!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  deleteReport(reportId: String!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  escalateReport(reportId: String!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  restoreUser(reportId: String!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  restoreContent(reportId: String!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  sendRequest(
-    request: CreateDirectRequestInput!
-    isDirectRequest: Boolean! = false
-  ): Boolean! @authorize(roles: ["Listener"]) @cost(weight: "10")
-  changeRequestStatus(request: ChangeStatusRequestInput!): Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  createPublicRequest(request: RequestCreatingRequestInput!): Boolean!
-    @authorize(roles: ["Listener"])
-    @cost(weight: "10")
-  updatePublicRequest(request: RequestUpdatingRequestInput!): Boolean!
-    @authorize(roles: ["Listener"])
-    @cost(weight: "10")
-  blockPublicRequest(requestId: String!): Boolean!
-    @authorize(roles: ["Moderator"])
-    @cost(weight: "10")
+  processTrackStreamingMetric(trackId: String! actionType: PopularityActionType!): Boolean! @allowAnonymous @cost(weight: "10")
+  processTrackEngagementMetric(trackId: String! actionType: PopularityActionType!): Boolean! @allowAnonymous @cost(weight: "10")
+  processTrackDiscovery(trackId: String! actionType: PopularityActionType!): Boolean! @allowAnonymous @cost(weight: "10")
+  processArtistEngagement(artistId: String! actionType: PopularityActionType!): Boolean! @allowAnonymous @cost(weight: "10")
+  processArtistDiscovery(artistId: String! actionType: PopularityActionType!): Boolean! @allowAnonymous @cost(weight: "10")
+  createReport(request: CreateReportRequestInput!): Boolean! @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @cost(weight: "10")
+  assignReportToModerator(reportId: String! moderatorId: String!): Boolean! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  processReport(request: ProcessReportRequestInput!): Boolean! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  restoreUser(reportId: String!): Boolean! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  restoreContent(reportId: String!): Boolean! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  updateReportPriority(reportId: String! priority: String!): Boolean! @cost(weight: "10")
+  deleteReport(reportId: String!): Boolean! @cost(weight: "10")
+  escalateReport(reportId: String!): Boolean! @cost(weight: "10")
+  sendRequest(request: CreateDirectRequestInput! isDirectRequest: Boolean! = false): Boolean! @authorize(roles: [ "Listener" ]) @cost(weight: "10")
+  changeRequestStatus(request: ChangeStatusRequestInput!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  createPublicRequest(request: RequestCreatingRequestInput!): Boolean! @authorize(roles: [ "Listener" ]) @cost(weight: "10")
+  updatePublicRequest(request: RequestUpdatingRequestInput!): Boolean! @authorize(roles: [ "Listener" ]) @cost(weight: "10")
+  blockPublicRequest(requestId: String!): Boolean! @authorize(roles: [ "Moderator" ]) @cost(weight: "10")
   computePlatformRevenue: PlatformRevenue! @allowAnonymous @cost(weight: "10")
-  createSubscription(
-    createSubscriptionRequest: CreateSubscriptionRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  createSubscriptionPlan(
-    createSubScriptionPlanRequest: CreateSubScriptionPlanRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  updateSubscriptionPlan(
-    updateSubscriptionPlanRequest: UpdateSubscriptionPlanRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  activateSubscription(subscriptionId: String!): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  testTransferMoneyToArtist(
-    artistAccountId: String!
-    amount: Decimal!
-  ): TransferResponse! @allowAnonymous
-  seedMonthlyStreamCountByTrackId(
-    trackId: String!
-    streamCount: Long!
-    month: Int!
-    year: Int!
-  ): Boolean! @allowAnonymous @cost(weight: "10")
-  testGenrateMonthlyRoyaltyReportsAynsc(month: Int!, year: Int!): Boolean!
-    @allowAnonymous
-    @cost(weight: "10")
-  upsertTopTrackCount(trackId: String!): Boolean!
-    @authorize(roles: ["Listener"])
-    @authorize(roles: ["Listener"])
-    @authorize(roles: ["Listener"])
-    @cost(weight: "10")
-  uploadTrackFingerprint(
-    file: Upload!
-    trackId: String!
-    trackName: String!
-    artistName: String!
-    artistId: String!
-  ): String! @cost(weight: "10")
-  uploadTrack(
-    file: Upload!
-    createTrackRequest: CreateTrackRequestInput!
-    createWorkRequest: CreateWorkRequestInput!
-    createRecordingRequest: CreateRecordingRequestInput!
-    isTesting: Boolean! = false
-  ): Boolean! @authorize(roles: ["Artist"]) @cost(weight: "10")
-  approveTrackUploadRequest(uploadId: String!): Boolean!
-    @authorize(roles: ["Moderator"])
-    @cost(weight: "10")
-  rejectTrackUploadRequest(uploadId: String!, reasonReject: String!): Boolean!
-    @authorize(roles: ["Moderator"])
-    @cost(weight: "10")
-  addToFavoriteTrack(trackId: String!, isAdding: Boolean!): Boolean!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  createModerator(
-    createModeratorRequest: CreateModeratorRequestInput!
-  ): Boolean! @authorize(roles: ["Admin"]) @cost(weight: "10")
-  createAdmin(createAdminRequest: CreateAdminRequestInput!): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
-  followUser(request: UserEngagementRequestInput!): Boolean!
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @cost(weight: "10")
-  unfollowUser(request: UserEngagementRequestInput!): Boolean!
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @cost(weight: "10")
-  banUser(targetUserId: String!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  unbanUser(targetUserId: String!): Boolean!
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  deleteUserManual(userId: String!): Boolean!
-    @authorize(roles: ["Admin"])
-    @cost(weight: "10")
+  createSubscription(createSubscriptionRequest: CreateSubscriptionRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  createSubscriptionPlan(createSubScriptionPlanRequest: CreateSubScriptionPlanRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  updateSubscriptionPlan(updateSubscriptionPlanRequest: UpdateSubscriptionPlanRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  activateSubscription(subscriptionId: String!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  testTransferMoneyToArtist(artistAccountId: String! amount: Decimal!): TransferResponse! @allowAnonymous
+  seedMonthlyStreamCountByTrackId(trackId: String! streamCount: Long! month: Int! year: Int!): Boolean! @allowAnonymous @cost(weight: "10")
+  testCalculateRoyaltyForTracks(month: Int! year: Int!): Boolean! @allowAnonymous @cost(weight: "10")
+  testGenrateMonthlyRoyaltyReportsAynsc(month: Int! year: Int!): Boolean! @allowAnonymous @cost(weight: "10")
+  seedDataFingerprint: Boolean! @cost(weight: "10")
+  testInstantPayout(accountId: String! amount: Long!): Boolean! @cost(weight: "10")
+  testTopup(amount: Long!): Boolean! @cost(weight: "10")
+  testDateComparing: Boolean! @cost(weight: "10")
+  uploadTrackFingerprint(file: Upload! trackId: String! trackName: String! artistName: String! artistId: String!): String! @cost(weight: "10")
+  updateFingerprintConfidencePolicy(updateRequest: UpdateFingerprintConfidencePolicyRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  uploadTrack(file: Upload! createTrackRequest: CreateTrackRequestInput! createWorkRequest: CreateWorkRequestInput! createRecordingRequest: CreateRecordingRequestInput! isTesting: Boolean! = false): Boolean! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  approveTrackUploadRequest(uploadId: String!): Boolean! @authorize(roles: [ "Moderator" ]) @cost(weight: "10")
+  rejectTrackUploadRequest(uploadId: String! reasonReject: String! isCancled: Boolean! = false): Boolean! @authorize(roles: [ "Artist", "Moderator" ]) @cost(weight: "10")
+  updateMetadataTrack(updateTrackRequest: UpdateTrackRequestInput!): Boolean! @authorize(roles: [ "Artist" ]) @cost(weight: "10")
+  addToFavoriteTrack(trackId: String! isAdding: Boolean!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  upsertStreamCount(trackId: String!): Boolean! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  createModerator(createModeratorRequest: CreateModeratorRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  createAdmin(createAdminRequest: CreateAdminRequestInput!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  followUser(request: UserEngagementRequestInput!): Boolean! @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @cost(weight: "10")
+  unfollowUser(request: UserEngagementRequestInput!): Boolean! @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @cost(weight: "10")
+  banUser(targetUserId: String!): Boolean! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  unbanUser(targetUserId: String!): Boolean! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  deleteUserManual(userId: String!): Boolean! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
 }
 
 type Notification {
@@ -1273,14 +894,17 @@ type Notification {
   relatedType: NotificationRelatedType
   content: String!
   url: String
+  mobileUrl: String
   isRead: Boolean!
   readAt: DateTime
   action: NotificationActionType!
   createdAt: DateTime!
-  actor(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
+  actor(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  target(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  actorListener(where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): [Listener!]! @cost(weight: "10")
+  targetListener(where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): [Listener!]! @cost(weight: "10")
+  actorArtist(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
+  targetArtist(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
 }
 
 "A connection to a list of items."
@@ -1362,10 +986,13 @@ type PackageOrder {
   providerId: String!
   artistPackageId: String!
   paymentTransactionId: String!
+  payoutTransactionId: String
   conversationId: String!
   requirements: String!
   status: PackageOrderStatus!
   revisionCount: Int!
+  disputedReason: String
+  refundReason: String
   deliveries: [PackageOrderDelivery!]!
   duration: Int!
   freezedTime: TimeSpan!
@@ -1380,22 +1007,10 @@ type PackageOrder {
   overdueJobId: String
   createdAt: DateTime!
   updatedAt: DateTime
-  package(
-    where: ArtistPackageFilterInput @cost(weight: "10")
-    order: [ArtistPackageSortInput!] @cost(weight: "10")
-  ): [ArtistPackage!]! @cost(weight: "10")
-  client(
-    where: ListenerFilterInput @cost(weight: "10")
-    order: [ListenerSortInput!] @cost(weight: "10")
-  ): [Listener!]! @cost(weight: "10")
-  provider(
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): [Artist!]! @cost(weight: "10")
-  paymentTransaction(
-    where: PaymentTransactionFilterInput @cost(weight: "10")
-    order: [PaymentTransactionSortInput!] @cost(weight: "10")
-  ): [PaymentTransaction!]! @cost(weight: "10")
+  package(where: ArtistPackageFilterInput @cost(weight: "10") order: [ArtistPackageSortInput!] @cost(weight: "10")): [ArtistPackage!]! @cost(weight: "10")
+  client(where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): [Listener!]! @cost(weight: "10")
+  provider(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
+  paymentTransaction(where: PaymentTransactionFilterInput @cost(weight: "10") order: [PaymentTransactionSortInput!] @cost(weight: "10")): [PaymentTransaction!]! @cost(weight: "10")
 }
 
 type PackageOrderDelivery {
@@ -1452,10 +1067,9 @@ type PaymentTransaction {
   status: TransactionStatus!
   createdAt: DateTime!
   updatedAt: DateTime
-  user(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  listener(where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): [Listener!]! @cost(weight: "10")
+  artist(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -1491,6 +1105,9 @@ type PayoutTransaction {
   method: String
   createdAt: DateTime!
   updatedAt: DateTime
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  listener(where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): [Listener!]! @cost(weight: "10")
+  artist(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -1562,32 +1179,10 @@ type Playlist {
   isVisible: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime
-  user(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
-  listener(
-    where: ListenerFilterInput @cost(weight: "10")
-    order: [ListenerSortInput!] @cost(weight: "10")
-  ): [Listener!]! @cost(weight: "10")
-  artist(
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): [Artist!]! @cost(weight: "10")
-  tracks(
-    skip: Int
-    take: Int
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): TracksCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  listener(where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): [Listener!]! @cost(weight: "10")
+  artist(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
+  tracks(skip: Int take: Int where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): TracksCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
   checkPlaylistInFavorite: Boolean! @cost(weight: "10")
 }
 
@@ -1625,877 +1220,86 @@ type QueryAudioFingerprintResponse {
 
 type QueryInitialization {
   initialize: String!
-  albums(
-    skip: Int
-    take: Int
-    where: AlbumFilterInput @cost(weight: "10")
-    order: [AlbumSortInput!] @cost(weight: "10")
-  ): AlbumsCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  favoriteAlbums(
-    skip: Int
-    take: Int
-    where: AlbumFilterInput @cost(weight: "10")
-    order: [AlbumSortInput!] @cost(weight: "10")
-  ): FavoriteAlbumsCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  searchAlbums(
-    skip: Int
-    take: Int
-    name: String!
-    where: AlbumFilterInput @cost(weight: "10")
-    order: [AlbumSortInput!] @cost(weight: "10")
-  ): SearchAlbumsCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  checkAlbumInFavorite(albumId: String!): Boolean!
-    @allowAnonymous
-    @cost(weight: "10")
-  approvalHistories(
-    skip: Int
-    take: Int
-    where: ApprovalHistoryFilterInput @cost(weight: "10")
-    order: [ApprovalHistorySortInput!] @cost(weight: "10")
-  ): ApprovalHistoriesCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  artistPackages(
-    skip: Int
-    take: Int
-    where: ArtistPackageFilterInput @cost(weight: "10")
-    order: [ArtistPackageSortInput!] @cost(weight: "10")
-  ): ArtistPackagesCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  artistPackagesInConversation(
-    skip: Int
-    take: Int
-    artistId: String!
-    where: ArtistPackageFilterInput @cost(weight: "10")
-    order: [ArtistPackageSortInput!] @cost(weight: "10")
-  ): ArtistPackagesInConversationCollectionSegment
-    @authorize(roles: ["Artist", "Listener"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  artists(
-    skip: Int
-    take: Int
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): ArtistsCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  searchArtists(
-    skip: Int
-    take: Int
-    stageName: String!
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): SearchArtistsCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  pendingArtistRegistrations(
-    pageNumber: Int! = 1
-    pageSize: Int! = 20
-  ): PaginatedDataOfPendingArtistRegistrationResponse!
-    @authorize(roles: ["Moderator"])
-    @cost(weight: "10")
-  pendingArtistRegistrationById(
-    artistRegistrationId: String!
-  ): PendingArtistRegistrationResponse!
-    @authorize(roles: ["Moderator"])
-    @cost(weight: "10")
-  categories(
-    skip: Int
-    take: Int
-    where: CategoryFilterInput @cost(weight: "10")
-    order: [CategorySortInput!] @cost(weight: "10")
-  ): CategoriesCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  messages(
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the last _n_ elements from the list."
-    last: Int
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    where: MessageFilterInput @cost(weight: "10")
-    order: [MessageSortInput!] @cost(weight: "10")
-  ): MessagesConnection
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["first", "last"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["edges", "nodes"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  conversations(
-    skip: Int
-    take: Int
-    where: ConversationFilterInput @cost(weight: "10")
-    order: [ConversationSortInput!] @cost(weight: "10")
-  ): ConversationsCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  conversationsByUserId(
-    skip: Int
-    take: Int
-    userId: String!
-    where: ConversationFilterInput @cost(weight: "10")
-    order: [ConversationSortInput!] @cost(weight: "10")
-  ): ConversationsByUserIdCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  threadedComments(
-    request: ThreadedCommentsRequestInput!
-  ): ThreadedCommentsResponse! @cost(weight: "10")
-  commentReplies(request: CommentRepliesRequestInput!): CommentRepliesResponse!
-    @cost(weight: "10")
-  commentThread(request: CommentThreadRequestInput!): [CommentResponse!]!
-    @cost(weight: "10")
+  albums(skip: Int take: Int where: AlbumFilterInput @cost(weight: "10") order: [AlbumSortInput!] @cost(weight: "10")): AlbumsCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  favoriteAlbums(skip: Int take: Int where: AlbumFilterInput @cost(weight: "10") order: [AlbumSortInput!] @cost(weight: "10")): FavoriteAlbumsCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  searchAlbums(skip: Int take: Int name: String! where: AlbumFilterInput @cost(weight: "10") order: [AlbumSortInput!] @cost(weight: "10")): SearchAlbumsCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  checkAlbumInFavorite(albumId: String!): Boolean! @allowAnonymous @cost(weight: "10")
+  approvalHistories(skip: Int take: Int where: ApprovalHistoryFilterInput @cost(weight: "10") order: [ApprovalHistorySortInput!] @cost(weight: "10")): ApprovalHistoriesCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  artistPackages(skip: Int take: Int where: ArtistPackageFilterInput @cost(weight: "10") order: [ArtistPackageSortInput!] @cost(weight: "10")): ArtistPackagesCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  artistPackagesInConversation(skip: Int take: Int artistId: String! where: ArtistPackageFilterInput @cost(weight: "10") order: [ArtistPackageSortInput!] @cost(weight: "10")): ArtistPackagesInConversationCollectionSegment @authorize(roles: [ "Artist", "Listener" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  artists(skip: Int take: Int where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): ArtistsCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  searchArtists(skip: Int take: Int stageName: String! where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): SearchArtistsCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  pendingArtistRegistrations(pageNumber: Int! = 1 pageSize: Int! = 20): PaginatedDataOfPendingArtistRegistrationResponse! @authorize(roles: [ "Moderator" ]) @cost(weight: "10")
+  pendingArtistRegistrationById(artistRegistrationId: String!): PendingArtistRegistrationResponse! @authorize(roles: [ "Moderator" ]) @cost(weight: "10")
+  categories(skip: Int take: Int where: CategoryFilterInput @cost(weight: "10") order: [CategorySortInput!] @cost(weight: "10")): CategoriesCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  messages("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: MessageFilterInput @cost(weight: "10") order: [MessageSortInput!] @cost(weight: "10")): MessagesConnection @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  conversations(skip: Int take: Int where: ConversationFilterInput @cost(weight: "10") order: [ConversationSortInput!] @cost(weight: "10")): ConversationsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  conversationsByUserId(skip: Int take: Int userId: String! where: ConversationFilterInput @cost(weight: "10") order: [ConversationSortInput!] @cost(weight: "10")): ConversationsByUserIdCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  trackComments(skip: Int take: Int where: CommentFilterInput @cost(weight: "10") order: [CommentSortInput!] @cost(weight: "10")): TrackCommentsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  requestHubComments(skip: Int take: Int where: CommentFilterInput @cost(weight: "10") order: [CommentSortInput!] @cost(weight: "10")): RequestHubCommentsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  threadedComments(request: ThreadedCommentsRequestInput!): ThreadedCommentsResponse! @cost(weight: "10")
+  commentReplies(request: CommentRepliesRequestInput!): CommentRepliesResponse! @cost(weight: "10")
+  commentThread(request: CommentThreadRequestInput!): [CommentResponse!]! @cost(weight: "10")
   commentDepth(commentId: String!): Int! @cost(weight: "10")
-  isCommentInThread(commentId: String!, threadRootId: String!): Boolean!
-    @cost(weight: "10")
-  coupons(
-    skip: Int
-    take: Int
-    where: CouponFilterInput @cost(weight: "10")
-    order: [CouponSortInput!] @cost(weight: "10")
-  ): CouponsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  entitlements(
-    skip: Int
-    take: Int
-    where: EntitlementFilterInput @cost(weight: "10")
-    order: [EntitlementSortInput!] @cost(weight: "10")
-  ): EntitlementsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  invoices(
-    skip: Int
-    take: Int
-    where: InvoiceFilterInput @cost(weight: "10")
-    order: [InvoiceSortInput!] @cost(weight: "10")
-  ): InvoicesCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  invoicesByUserId(
-    skip: Int
-    take: Int
-    userId: String!
-    where: InvoiceFilterInput @cost(weight: "10")
-    order: [InvoiceSortInput!] @cost(weight: "10")
-  ): InvoicesByUserIdCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  listeners(
-    skip: Int
-    take: Int
-    where: ListenerFilterInput @cost(weight: "10")
-    order: [ListenerSortInput!] @cost(weight: "10")
-  ): ListenersCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  searchListeners(
-    skip: Int
-    take: Int
-    displayName: String!
-    where: ListenerFilterInput @cost(weight: "10")
-    order: [ListenerSortInput!] @cost(weight: "10")
-  ): SearchListenersCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  monthlyStreamCounts(
-    skip: Int
-    take: Int
-    where: MonthlyStreamCountFilterInput @cost(weight: "10")
-    order: [MonthlyStreamCountSortInput!] @cost(weight: "10")
-  ): MonthlyStreamCountsCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  notifications(
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the last _n_ elements from the list."
-    last: Int
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    where: NotificationFilterInput @cost(weight: "10")
-    order: [NotificationSortInput!] @cost(weight: "10")
-  ): NotificationsConnection
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["first", "last"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["edges", "nodes"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  notificationsForUser(
-    userId: String!
-    "Returns the first _n_ elements from the list."
-    first: Int
-    "Returns the elements in the list that come after the specified cursor."
-    after: String
-    "Returns the last _n_ elements from the list."
-    last: Int
-    "Returns the elements in the list that come before the specified cursor."
-    before: String
-    where: NotificationFilterInput @cost(weight: "10")
-    order: [NotificationSortInput!] @cost(weight: "10")
-  ): NotificationsForUserConnection
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["first", "last"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["edges", "nodes"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  packageOrders(
-    skip: Int
-    take: Int
-    where: PackageOrderFilterInput @cost(weight: "10")
-    order: [PackageOrderSortInput!] @cost(weight: "10")
-  ): PackageOrdersCollectionSegment
-    @authorize(roles: ["Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  playlists(
-    skip: Int
-    take: Int
-    where: PlaylistFilterInput @cost(weight: "10")
-    order: [PlaylistSortInput!] @cost(weight: "10")
-  ): PlaylistsCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  ownPlaylists(
-    skip: Int
-    take: Int
-    where: PlaylistFilterInput @cost(weight: "10")
-    order: [PlaylistSortInput!] @cost(weight: "10")
-  ): OwnPlaylistsCollectionSegment
-    @authorize(roles: ["Artist", "Listener"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  favoritePlaylists(
-    skip: Int
-    take: Int
-    where: PlaylistFilterInput @cost(weight: "10")
-    order: [PlaylistSortInput!] @cost(weight: "10")
-  ): FavoritePlaylistsCollectionSegment
-    @authorize(roles: ["Artist", "Listener"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  searchPlaylists(
-    skip: Int
-    take: Int
-    name: String!
-    where: PlaylistFilterInput @cost(weight: "10")
-    order: [PlaylistSortInput!] @cost(weight: "10")
-  ): SearchPlaylistsCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  escrowCommissionPolicies(
-    skip: Int
-    take: Int
-    where: EscrowCommissionPolicyFilterInput @cost(weight: "10")
-    order: [EscrowCommissionPolicySortInput!] @cost(weight: "10")
-  ): EscrowCommissionPoliciesCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  legalPolicies(
-    skip: Int
-    take: Int
-    where: LegalPolicyFilterInput @cost(weight: "10")
-    order: [LegalPolicySortInput!] @cost(weight: "10")
-  ): LegalPoliciesCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  royaltyPolicies(
-    skip: Int
-    take: Int
-    where: RoyaltyPolicyFilterInput @cost(weight: "10")
-    order: [RoyaltyPolicySortInput!] @cost(weight: "10")
-  ): RoyaltyPoliciesCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  recordings(
-    skip: Int
-    take: Int
-    where: RecordingFilterInput @cost(weight: "10")
-    order: [RecordingSortInput!] @cost(weight: "10")
-  ): RecordingsCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  metadataRecordingUploadRequest(uploadId: String!): RecordingTempRequest!
-    @authorize(roles: ["Admin", "Artist", "Moderator"])
-    @cost(weight: "10")
-  reports(
-    skip: Int
-    take: Int
-    where: ReportFilterInput @cost(weight: "10")
-    order: [ReportSortInput!] @cost(weight: "10")
-  ): ReportsCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  reportStatistics: ReportStatisticsResponse!
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  requests(
-    skip: Int
-    take: Int
-    where: RequestFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): RequestsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  isCommentInThread(commentId: String! threadRootId: String!): Boolean! @cost(weight: "10")
+  coupons(skip: Int take: Int where: CouponFilterInput @cost(weight: "10") order: [CouponSortInput!] @cost(weight: "10")): CouponsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  entitlements(skip: Int take: Int where: EntitlementFilterInput @cost(weight: "10") order: [EntitlementSortInput!] @cost(weight: "10")): EntitlementsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  invoices(skip: Int take: Int where: InvoiceFilterInput @cost(weight: "10") order: [InvoiceSortInput!] @cost(weight: "10")): InvoicesCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  invoicesByUserId(skip: Int take: Int userId: String! where: InvoiceFilterInput @cost(weight: "10") order: [InvoiceSortInput!] @cost(weight: "10")): InvoicesByUserIdCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  listeners(skip: Int take: Int where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): ListenersCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  searchListeners(skip: Int take: Int displayName: String! where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): SearchListenersCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  monthlyStreamCounts(skip: Int take: Int where: MonthlyStreamCountFilterInput @cost(weight: "10") order: [MonthlyStreamCountSortInput!] @cost(weight: "10")): MonthlyStreamCountsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  notifications("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: NotificationFilterInput @cost(weight: "10") order: [NotificationSortInput!] @cost(weight: "10")): NotificationsConnection @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  notificationsForUser(userId: String! "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: NotificationFilterInput @cost(weight: "10") order: [NotificationSortInput!] @cost(weight: "10")): NotificationsForUserConnection @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  packageOrders(skip: Int take: Int where: PackageOrderFilterInput @cost(weight: "10") order: [PackageOrderSortInput!] @cost(weight: "10")): PackageOrdersCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  playlists(skip: Int take: Int where: PlaylistFilterInput @cost(weight: "10") order: [PlaylistSortInput!] @cost(weight: "10")): PlaylistsCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  ownPlaylists(skip: Int take: Int where: PlaylistFilterInput @cost(weight: "10") order: [PlaylistSortInput!] @cost(weight: "10")): OwnPlaylistsCollectionSegment @authorize(roles: [ "Artist", "Listener" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  favoritePlaylists(skip: Int take: Int where: PlaylistFilterInput @cost(weight: "10") order: [PlaylistSortInput!] @cost(weight: "10")): FavoritePlaylistsCollectionSegment @authorize(roles: [ "Artist", "Listener" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  searchPlaylists(skip: Int take: Int name: String! where: PlaylistFilterInput @cost(weight: "10") order: [PlaylistSortInput!] @cost(weight: "10")): SearchPlaylistsCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  escrowCommissionPolicies(skip: Int take: Int where: EscrowCommissionPolicyFilterInput @cost(weight: "10") order: [EscrowCommissionPolicySortInput!] @cost(weight: "10")): EscrowCommissionPoliciesCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  legalPolicies(skip: Int take: Int where: LegalPolicyFilterInput @cost(weight: "10") order: [LegalPolicySortInput!] @cost(weight: "10")): LegalPoliciesCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  royaltyPolicies(skip: Int take: Int where: RoyaltyPolicyFilterInput @cost(weight: "10") order: [RoyaltyPolicySortInput!] @cost(weight: "10")): RoyaltyPoliciesCollectionSegment @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  recordings(skip: Int take: Int where: RecordingFilterInput @cost(weight: "10") order: [RecordingSortInput!] @cost(weight: "10")): RecordingsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  metadataRecordingUploadRequest(uploadId: String!): RecordingTempRequest! @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @cost(weight: "10")
+  reports(skip: Int take: Int where: ReportFilterInput @cost(weight: "10") order: [ReportSortInput!] @cost(weight: "10")): ReportsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  reportStatistics: ReportStatisticsResponse! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  requests(skip: Int take: Int where: RequestFilterInput @cost(weight: "10") order: [RequestSortInput!] @cost(weight: "10")): RequestsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
   requestDetailById(requestId: String!): Request @cost(weight: "10")
-  searchRequests(
-    skip: Int
-    take: Int
-    searchTerm: String!
-    isIndividual: Boolean!
-    where: RequestFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): SearchRequestsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  ownRequests(
-    skip: Int
-    take: Int
-    where: RequestFilterInput @cost(weight: "10")
-  ): OwnRequestsCollectionSegment
-    @authorize(roles: ["Listener"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  platformRevenues(
-    skip: Int
-    take: Int
-    where: PlatformRevenueFilterInput @cost(weight: "10")
-    order: [PlatformRevenueSortInput!] @cost(weight: "10")
-  ): PlatformRevenuesCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  royaltyReports(
-    skip: Int
-    take: Int
-    where: RoyaltyReportFilterInput @cost(weight: "10")
-    order: [RoyaltyReportSortInput!] @cost(weight: "10")
-  ): RoyaltyReportsCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  subscriptionPlans(
-    skip: Int
-    take: Int
-    where: SubscriptionPlanFilterInput @cost(weight: "10")
-    order: [SubscriptionPlanSortInput!] @cost(weight: "10")
-  ): SubscriptionPlansCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  subscriptions(
-    skip: Int
-    take: Int
-    where: SubscriptionFilterInput @cost(weight: "10")
-    order: [SubscriptionSortInput!] @cost(weight: "10")
-  ): SubscriptionsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  topTracks: [TopTrackResponse!]!
-    @authorize(roles: ["Listener"])
-    @cost(weight: "10")
-  queryTracks(file: Upload!): [QueryAudioFingerprintResponse!]!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  queryTrack(file: Upload!): QueryAudioFingerprintResponse!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  tracks(
-    skip: Int
-    take: Int
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): TracksCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  favoriteTracks(
-    skip: Int
-    take: Int
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): FavoriteTracksCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  searchTracks(
-    skip: Int
-    take: Int
-    name: String!
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): SearchTracksCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  pendingTrackUploadRequests(
-    pageNumber: Int! = 1
-    pageSize: Int! = 20
-  ): PaginatedDataOfCombinedUploadRequest!
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  pendingTrackUploadRequestById(uploadId: String!): CombinedUploadRequest!
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  metadataTrackUploadRequest(uploadId: String!): TrackTempRequest!
-    @authorize(roles: ["Admin", "Moderator"])
-    @cost(weight: "10")
-  originalFileTrackUploadRequest(trackId: String!): String!
-    @authorize(roles: ["Admin", "Moderator"])
-  trackBySemanticSearch(term: String!): [Track!]!
-    @authorize(roles: ["Artist", "Listener"])
-    @cost(weight: "10")
-  recommendedTracksByTrackId(
-    skip: Int
-    take: Int
-    algorithm: RecommendationAlgorithm!
-    trackId: String!
-    audioFeatureWeight: AudioFeatureWeightInput!
-    limit: Int!
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): RecommendedTracksByTrackIdCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  paymentTransactions(
-    skip: Int
-    take: Int
-    where: PaymentTransactionFilterInput @cost(weight: "10")
-    order: [PaymentTransactionSortInput!] @cost(weight: "10")
-  ): PaymentTransactionsCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  payoutTransactions(
-    skip: Int
-    take: Int
-    where: PayoutTransactionFilterInput @cost(weight: "10")
-    order: [PayoutTransactionSortInput!] @cost(weight: "10")
-  ): PayoutTransactionsCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  refundTransactions(
-    skip: Int
-    take: Int
-    where: RefundTransactionFilterInput @cost(weight: "10")
-    order: [RefundTransactionSortInput!] @cost(weight: "10")
-  ): RefundTransactionsCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  userEngagement(
-    skip: Int
-    take: Int
-    where: UserEngagementFilterInput @cost(weight: "10")
-    order: [UserEngagementSortInput!] @cost(weight: "10")
-  ): UserEngagementCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  users(
-    skip: Int
-    take: Int
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): UsersCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  followers(
-    skip: Int
-    take: Int
-    userId: String
-    artistId: String
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): FollowersCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  followings(
-    skip: Int
-    take: Int
-    userId: String
-    artistId: String
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): FollowingsCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  paymentTransactionsByUserId(
-    skip: Int
-    take: Int
-    userId: String!
-    where: PaymentTransactionFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): PaymentTransactionsByUserIdCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Listener", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  userSubscriptions(
-    skip: Int
-    take: Int
-    where: UserSubscriptionFilterInput @cost(weight: "10")
-    order: [UserSubscriptionSortInput!] @cost(weight: "10")
-  ): UserSubscriptionsCollectionSegment
-    @allowAnonymous
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  works(
-    skip: Int
-    take: Int
-    where: WorkFilterInput @cost(weight: "10")
-    order: [WorkSortInput!] @cost(weight: "10")
-  ): WorksCollectionSegment
-    @authorize(roles: ["Admin", "Artist", "Moderator"])
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  metadataWorkUploadRequest(uploadId: String!): WorkTempRequest!
-    @authorize(roles: ["Admin", "Artist", "Moderator"])
-    @cost(weight: "10")
+  searchRequests(skip: Int take: Int searchTerm: String! isIndividual: Boolean! where: RequestFilterInput @cost(weight: "10") order: [RequestSortInput!] @cost(weight: "10")): SearchRequestsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  ownRequests(skip: Int take: Int where: RequestFilterInput @cost(weight: "10") order: [RequestSortInput!] @cost(weight: "10")): OwnRequestsCollectionSegment @authorize(roles: [ "Listener" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  platformRevenues(skip: Int take: Int where: PlatformRevenueFilterInput @cost(weight: "10") order: [PlatformRevenueSortInput!] @cost(weight: "10")): PlatformRevenuesCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  royaltyReports(skip: Int take: Int where: RoyaltyReportFilterInput @cost(weight: "10") order: [RoyaltyReportSortInput!] @cost(weight: "10")): RoyaltyReportsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  subscriptionPlans(skip: Int take: Int where: SubscriptionPlanFilterInput @cost(weight: "10") order: [SubscriptionPlanSortInput!] @cost(weight: "10")): SubscriptionPlansCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  subscriptions(skip: Int take: Int where: SubscriptionFilterInput @cost(weight: "10") order: [SubscriptionSortInput!] @cost(weight: "10")): SubscriptionsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  topTracks(skip: Int take: Int where: TopTrackFilterInput @cost(weight: "10") order: [TopTrackInfoSortInput!] @cost(weight: "10")): TopTracksCollectionSegment @authorize(roles: [ "Artist", "Listener" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ]) @cost(weight: "10")
+  queryTracks(file: Upload!): [QueryAudioFingerprintResponse!]! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  queryTracksForRecording(file: Upload!): [QueryAudioFingerprintResponse!]! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  queryTrack(file: Upload!): QueryAudioFingerprintResponse! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  fingerprintConfidencePolicy(where: FingerprintConfidencePolicyFilterInput @cost(weight: "10") order: [FingerprintConfidencePolicySortInput!] @cost(weight: "10")): FingerprintConfidencePolicy! @authorize(roles: [ "Admin" ]) @cost(weight: "10")
+  trackDailyMetrics(skip: Int take: Int where: TrackDailyMetricFilterInput @cost(weight: "10") order: [TrackDailyMetricSortInput!] @cost(weight: "10")): TrackDailyMetricsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 1000, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ]) @cost(weight: "10")
+  tracks(skip: Int take: Int where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): TracksCollectionSegment @allowAnonymous @listSize(assumedSize: 1000, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ]) @cost(weight: "10")
+  favoriteTracks(skip: Int take: Int where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): FavoriteTracksCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  searchTracks(skip: Int take: Int name: String! where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): SearchTracksCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  pendingTrackUploadRequests(userId: String priority: ApprovalPriorityStatus pageNumber: Int! = 1 pageSize: Int! = 20): PaginatedDataOfCombinedUploadRequest! @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @cost(weight: "10")
+  pendingTrackUploadRequestById(uploadId: String! priority: ApprovalPriorityStatus): CombinedUploadRequest! @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @cost(weight: "10")
+  metadataTrackUploadRequest(uploadId: String!): TrackTempRequest! @authorize(roles: [ "Admin", "Moderator" ]) @cost(weight: "10")
+  originalFileTrackUploadRequest(trackId: String!): String! @authorize(roles: [ "Admin", "Moderator" ])
+  trackBySemanticSearch(term: String!): [Track!]! @authorize(roles: [ "Artist", "Listener" ]) @cost(weight: "10")
+  recommendedTracksByTrackId(skip: Int take: Int algorithm: RecommendationAlgorithm! trackId: String! audioFeatureWeight: AudioFeatureWeightInput! limit: Int! where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): RecommendedTracksByTrackIdCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  searchPaymentTransactions(skip: Int take: Int searchTerm: String where: PaymentTransactionFilterInput @cost(weight: "10") order: [PaymentTransactionSortInput!] @cost(weight: "10")): SearchPaymentTransactionsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  searchPayoutTransactions(skip: Int take: Int searchTerm: String where: PayoutTransactionFilterInput @cost(weight: "10") order: [PayoutTransactionSortInput!] @cost(weight: "10")): SearchPayoutTransactionsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  searchRefundTransactions(skip: Int take: Int searchTerm: String where: RefundTransactionFilterInput @cost(weight: "10") order: [RefundTransactionSortInput!] @cost(weight: "10")): SearchRefundTransactionsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  paymentTransactions(skip: Int take: Int where: PaymentTransactionFilterInput @cost(weight: "10") order: [PaymentTransactionSortInput!] @cost(weight: "10")): PaymentTransactionsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  payoutTransactions(skip: Int take: Int where: PayoutTransactionFilterInput @cost(weight: "10") order: [PayoutTransactionSortInput!] @cost(weight: "10")): PayoutTransactionsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  refundTransactions(skip: Int take: Int userId: String where: RefundTransactionFilterInput @cost(weight: "10") order: [RefundTransactionSortInput!] @cost(weight: "10")): RefundTransactionsCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  userEngagement(skip: Int take: Int where: UserEngagementFilterInput @cost(weight: "10") order: [UserEngagementSortInput!] @cost(weight: "10")): UserEngagementCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  users(skip: Int take: Int where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): UsersCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  followers(skip: Int take: Int userId: String artistId: String where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): FollowersCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  followings(skip: Int take: Int userId: String artistId: String where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): FollowingsCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  paymentTransactionsByUserId(skip: Int take: Int userId: String! where: PaymentTransactionFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): PaymentTransactionsByUserIdCollectionSegment @authorize(roles: [ "Admin", "Artist", "Listener", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  userSubscriptions(skip: Int take: Int where: UserSubscriptionFilterInput @cost(weight: "10") order: [UserSubscriptionSortInput!] @cost(weight: "10")): UserSubscriptionsCollectionSegment @allowAnonymous @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  works(skip: Int take: Int where: WorkFilterInput @cost(weight: "10") order: [WorkSortInput!] @cost(weight: "10")): WorksCollectionSegment @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  metadataWorkUploadRequest(uploadId: String!): WorkTempRequest! @authorize(roles: [ "Admin", "Artist", "Moderator" ]) @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -2515,24 +1319,8 @@ type Recording {
   version: Long!
   status: RecordingStatus!
   createdAt: DateTime!
-  track(
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): [Track!]! @cost(weight: "10")
-  users(
-    skip: Int
-    take: Int
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): UsersCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  track(where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): [Track!]! @cost(weight: "10")
+  users(skip: Int take: Int where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): UsersCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
 }
 
 type RecordingSplit {
@@ -2574,6 +1362,9 @@ type RefundTransaction {
   status: RefundTransactionStatus!
   createdAt: DateTime!
   updatedAt: DateTime
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  listener(where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): [Listener!]! @cost(weight: "10")
+  artist(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -2612,32 +1403,14 @@ type Report {
   backgroundJobId: String
   createdAt: DateTime!
   updatedAt: DateTime
-  userReporter(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
+  userReporter(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
   nicknameReporter: String! @cost(weight: "10")
   nicknameReported: String! @cost(weight: "10")
-  userReported(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
-  userAssignedTo(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
-  track(
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): [Track!]! @cost(weight: "10")
-  comment(
-    where: CommentFilterInput @cost(weight: "10")
-    order: [CommentSortInput!] @cost(weight: "10")
-  ): [Comment!]! @cost(weight: "10")
-  request(
-    where: RequestFilterInput @cost(weight: "10")
-    order: [RequestSortInput!] @cost(weight: "10")
-  ): [Request!]! @cost(weight: "10")
+  userReported(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  userAssignedTo(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  track(where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): [Track!]! @cost(weight: "10")
+  comment(where: CommentFilterInput @cost(weight: "10") order: [CommentSortInput!] @cost(weight: "10")): [Comment!]! @cost(weight: "10")
+  request(where: RequestFilterInput @cost(weight: "10") order: [RequestSortInput!] @cost(weight: "10")): [Request!]! @cost(weight: "10")
 }
 
 type ReportStatisticsResponse {
@@ -2665,6 +1438,7 @@ type Request {
   requestUserId: String!
   artistId: String
   packageId: String
+  orderId: String
   title: String
   titleUnsigned: String
   summary: String
@@ -2680,23 +1454,23 @@ type Request {
   status: RequestStatus!
   requestCreatedTime: DateTime
   notes: String
-  requestor(
-    where: ListenerFilterInput @cost(weight: "10")
-    order: [ListenerSortInput!] @cost(weight: "10")
-  ): [Listener!]! @cost(weight: "10")
-  artist(
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): [Artist!]! @cost(weight: "10")
-  artistPackage(
-    where: ArtistPackageFilterInput @cost(weight: "10")
-    order: [ArtistPackageSortInput!] @cost(weight: "10")
-  ): [ArtistPackage!]! @cost(weight: "10")
+  requestor(where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): [Listener!]! @cost(weight: "10")
+  artist(where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): [Artist!]! @cost(weight: "10")
+  artistPackage(where: ArtistPackageFilterInput @cost(weight: "10") order: [ArtistPackageSortInput!] @cost(weight: "10")): [ArtistPackage!]! @cost(weight: "10")
 }
 
 type RequestBudget {
   min: Decimal!
   max: Decimal!
+}
+
+"A segment of a collection."
+type RequestHubCommentsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Comment!]
+  totalCount: Int! @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -2759,24 +1533,8 @@ type RoyaltyReport {
   totalRoyaltyAmount: Decimal!
   royaltySplits: [RoyaltySplit!]!
   createdAt: DateTime!
-  track(
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): [Track!]! @cost(weight: "10")
-  users(
-    skip: Int
-    take: Int
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): UsersCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  track(where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): [Track!]! @cost(weight: "10")
+  users(skip: Int take: Int where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): UsersCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -2825,11 +1583,38 @@ type SearchListenersCollectionSegment {
 }
 
 "A segment of a collection."
+type SearchPaymentTransactionsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [PaymentTransaction!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type SearchPayoutTransactionsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [PayoutTransaction!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
 type SearchPlaylistsCollectionSegment {
   "Information to aid in pagination."
   pageInfo: CollectionSegmentInfo!
   "A flattened list of the items."
   items: [Playlist!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type SearchRefundTransactionsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [RefundTransaction!]
   totalCount: Int! @cost(weight: "10")
 }
 
@@ -2880,10 +1665,7 @@ type SubscriptionPlan {
   stripeProductType: String!
   stripeProductMetadata: [Metadata!]
   subscriptionPlanPrices: [SubscriptionPlanPrice!]!
-  subscription(
-    where: SubscriptionFilterInput @cost(weight: "10")
-    order: [SubscriptionSortInput!] @cost(weight: "10")
-  ): [Subscription!]! @cost(weight: "10")
+  subscription(where: SubscriptionFilterInput @cost(weight: "10") order: [SubscriptionSortInput!] @cost(weight: "10")): [Subscription!]! @cost(weight: "10")
 }
 
 type SubscriptionPlanPrice {
@@ -2952,13 +1734,27 @@ type TopReportedUserResponse {
   reportCount: Int!
 }
 
+type TopTrack {
+  id: String!
+  userId: String!
+  tracksInfo: [TopTrackInfo!]!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
 type TopTrackInfo {
+  track: Track @cost(weight: "10")
   trackId: String!
   playedCount: Int!
 }
 
-type TopTrackResponse {
-  tracksInfo: [TopTrackInfo!]!
+"A segment of a collection."
+type TopTracksCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [TopTrack!]
+  totalCount: Int! @cost(weight: "10")
 }
 
 type Track {
@@ -2988,49 +1784,39 @@ type Track {
   updatedBy: String
   createdAt: DateTime!
   updatedAt: DateTime
-  mainArtists(
-    skip: Int
-    take: Int
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): MainArtistsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  featuredArtists(
-    skip: Int
-    take: Int
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): FeaturedArtistsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  categories(
-    skip: Int
-    take: Int
-    where: CategoryFilterInput @cost(weight: "10")
-    order: [CategorySortInput!] @cost(weight: "10")
-  ): CategoriesCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  mainArtists(skip: Int take: Int where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): MainArtistsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  featuredArtists(skip: Int take: Int where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): FeaturedArtistsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  categories(skip: Int take: Int where: CategoryFilterInput @cost(weight: "10") order: [CategorySortInput!] @cost(weight: "10")): CategoriesCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
   checkTrackInFavorite: Boolean! @cost(weight: "10")
+}
+
+"A segment of a collection."
+type TrackCommentsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [Comment!]
+  totalCount: Int! @cost(weight: "10")
+}
+
+type TrackDailyMetric {
+  id: String!
+  trackId: String!
+  streamCount: Long!
+  downloadCount: Long!
+  favoriteCount: Long!
+  commentCount: Long!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"A segment of a collection."
+type TrackDailyMetricsCollectionSegment {
+  "Information to aid in pagination."
+  pageInfo: CollectionSegmentInfo!
+  "A flattened list of the items."
+  items: [TrackDailyMetric!]
+  totalCount: Int! @cost(weight: "10")
 }
 
 type TrackTempRequest {
@@ -3038,6 +1824,7 @@ type TrackTempRequest {
   name: String!
   description: String
   type: TrackType!
+  createdByArtistId: String
   mainArtistIds: [String!]!
   featuredArtistIds: [String!]!
   categoryIds: [String!]!
@@ -3074,6 +1861,7 @@ type User {
   id: String!
   email: String!
   fullName: String!
+  fullNameUnsigned: String!
   gender: UserGender!
   birthDate: DateTime!
   role: UserRole!
@@ -3089,6 +1877,8 @@ type User {
   createdAt: DateTime!
   updatedAt: DateTime
   checkUserFollowing: Boolean! @cost(weight: "10")
+  listeners(skip: Int take: Int where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): ListenersCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  artists(skip: Int take: Int where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): ArtistsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
 }
 
 type UserEngagement {
@@ -3099,62 +1889,10 @@ type UserEngagement {
   targetType: UserEngagementTargetType!
   action: UserEngagementAction!
   createdAt: DateTime!
-  artists(
-    skip: Int
-    take: Int
-    where: ArtistFilterInput @cost(weight: "10")
-    order: [ArtistSortInput!] @cost(weight: "10")
-  ): ArtistsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  listeners(
-    skip: Int
-    take: Int
-    where: ListenerFilterInput @cost(weight: "10")
-    order: [ListenerSortInput!] @cost(weight: "10")
-  ): ListenersCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  tracks(
-    skip: Int
-    take: Int
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): TracksCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
-  playlists(
-    skip: Int
-    take: Int
-    where: PlaylistFilterInput @cost(weight: "10")
-    order: [PlaylistSortInput!] @cost(weight: "10")
-  ): PlaylistsCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  artists(skip: Int take: Int where: ArtistFilterInput @cost(weight: "10") order: [ArtistSortInput!] @cost(weight: "10")): ArtistsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  listeners(skip: Int take: Int where: ListenerFilterInput @cost(weight: "10") order: [ListenerSortInput!] @cost(weight: "10")): ListenersCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  tracks(skip: Int take: Int where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): TracksCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  playlists(skip: Int take: Int where: PlaylistFilterInput @cost(weight: "10") order: [PlaylistSortInput!] @cost(weight: "10")): PlaylistsCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -3179,14 +1917,8 @@ type UserSubscription {
   isActive: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime
-  user(
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): [User!]! @cost(weight: "10")
-  subscription(
-    where: SubscriptionFilterInput @cost(weight: "10")
-    order: [SubscriptionSortInput!] @cost(weight: "10")
-  ): [Subscription!]! @cost(weight: "10")
+  user(where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): [User!]! @cost(weight: "10")
+  subscription(where: SubscriptionFilterInput @cost(weight: "10") order: [SubscriptionSortInput!] @cost(weight: "10")): [Subscription!]! @cost(weight: "10")
 }
 
 "A segment of a collection."
@@ -3215,24 +1947,8 @@ type Work {
   version: Long!
   status: WorkStatus!
   createdAt: DateTime!
-  track(
-    where: TrackFilterInput @cost(weight: "10")
-    order: [TrackSortInput!] @cost(weight: "10")
-  ): [Track!]! @cost(weight: "10")
-  users(
-    skip: Int
-    take: Int
-    where: UserFilterInput @cost(weight: "10")
-    order: [UserSortInput!] @cost(weight: "10")
-  ): UsersCollectionSegment
-    @listSize(
-      assumedSize: 50
-      slicingArguments: ["take"]
-      slicingArgumentDefaultValue: 10
-      sizedFields: ["items"]
-      requireOneSlicingArgument: false
-    )
-    @cost(weight: "10")
+  track(where: TrackFilterInput @cost(weight: "10") order: [TrackSortInput!] @cost(weight: "10")): [Track!]! @cost(weight: "10")
+  users(skip: Int take: Int where: UserFilterInput @cost(weight: "10") order: [UserSortInput!] @cost(weight: "10")): UsersCollectionSegment @listSize(assumedSize: 50, slicingArguments: [ "take" ], slicingArgumentDefaultValue: 10, sizedFields: [ "items" ], requireOneSlicingArgument: false) @cost(weight: "10")
 }
 
 type WorkSplit {
@@ -3330,6 +2046,7 @@ input AlbumFilterInput {
   thumbnailImage: StringOperationFilterInput
   releaseInfo: ReleaseInfoFilterInput
   isVisible: BooleanOperationFilterInput
+  createdBy: StringOperationFilterInput
   createdAt: DateTimeOperationFilterInput
   updatedAt: DateTimeOperationFilterInput
 }
@@ -3344,6 +2061,7 @@ input AlbumSortInput {
   thumbnailImage: SortEnumType @cost(weight: "10")
   releaseInfo: ReleaseInfoSortInput @cost(weight: "10")
   isVisible: SortEnumType @cost(weight: "10")
+  createdBy: SortEnumType @cost(weight: "10")
   createdAt: SortEnumType @cost(weight: "10")
   updatedAt: SortEnumType @cost(weight: "10")
 }
@@ -3442,6 +2160,8 @@ input ArtistPackageFilterInput {
   serviceDetails: ListFilterInputTypeOfMetadataFilterInput
   status: ArtistPackageStatusOperationFilterInput
   isDelete: BooleanOperationFilterInput
+  isCustom: BooleanOperationFilterInput
+  customPackageInfo: CustomArtistPackageInfoFilterInput
   createdAt: DateTimeOperationFilterInput
   updatedAt: DateTimeOperationFilterInput
 }
@@ -3457,6 +2177,8 @@ input ArtistPackageSortInput {
   maxRevision: SortEnumType @cost(weight: "10")
   status: SortEnumType @cost(weight: "10")
   isDelete: SortEnumType @cost(weight: "10")
+  isCustom: SortEnumType @cost(weight: "10")
+  customPackageInfo: CustomArtistPackageInfoSortInput @cost(weight: "10")
   createdAt: SortEnumType @cost(weight: "10")
   updatedAt: SortEnumType @cost(weight: "10")
 }
@@ -3628,6 +2350,7 @@ input CategoryTypeOperationFilterInput {
 input ChangeOrderStatusRequestInput {
   id: String!
   status: PackageOrderStatus!
+  reason: String
 }
 
 input ChangeStatusRequestInput {
@@ -3869,6 +2592,18 @@ input CreateCouponRequestInput {
   status: CouponStatus!
 }
 
+input CreateCustomArtistPackageRequestInput {
+  packageName: String!
+  artistId: String!
+  conversationId: String!
+  clientId: String!
+  amount: Decimal!
+  estimateDeliveryDays: Int!
+  description: String
+  maxRevision: Int!
+  serviceDetails: [MetadataInput!]!
+}
+
 input CreateDirectRequestInput {
   publicRequestId: String
   artistId: String!
@@ -3878,16 +2613,12 @@ input CreateDirectRequestInput {
 
 input CreateEntitlementRequestInput {
   defaultValues: EntitlementValue!
+  subscriptionOverrides: EntitlementValue!
   name: String!
   code: String!
   description: String!
   valueType: EntitlementValueType!
-  subscriptionOverrides: [CreateEntitlementSubscriptionOverrideRequestInput!]!
   isActive: Boolean!
-}
-
-input CreateEntitlementSubscriptionOverrideRequestInput {
-  subscriptionCode: String!
 }
 
 input CreateEscrowCommissionPolicyRequestInput {
@@ -3999,6 +2730,7 @@ input CreateSubscriptionRequestInput {
 input CreateTrackRequestInput {
   name: String!
   description: String
+  createdByArtistId: String
   mainArtistIds: [String!]!
   featuredArtistIds: [String!]!
   categoryIds: [String!]!
@@ -4012,6 +2744,7 @@ input CreateTrackRequestInput {
   releaseStatus: ReleaseStatus!
   legalDocuments: [LegalDocumentInput!]!
   isOriginal: Boolean!
+  createdByUserId: String
 }
 
 input CreateWorkRequestInput {
@@ -4030,6 +2763,18 @@ input CurrencyTypeOperationFilterInput {
   neq: CurrencyType @cost(weight: "10")
   in: [CurrencyType!] @cost(weight: "10")
   nin: [CurrencyType!] @cost(weight: "10")
+}
+
+input CustomArtistPackageInfoFilterInput {
+  and: [CustomArtistPackageInfoFilterInput!]
+  or: [CustomArtistPackageInfoFilterInput!]
+  conversationId: StringOperationFilterInput
+  clientId: StringOperationFilterInput
+}
+
+input CustomArtistPackageInfoSortInput {
+  conversationId: SortEnumType @cost(weight: "10")
+  clientId: SortEnumType @cost(weight: "10")
 }
 
 input DateTimeOperationFilterInput {
@@ -4151,6 +2896,20 @@ input EscrowCommissionPolicySortInput {
   status: SortEnumType @cost(weight: "10")
   createdAt: SortEnumType @cost(weight: "10")
   updatedAt: SortEnumType @cost(weight: "10")
+}
+
+input FingerprintConfidencePolicyFilterInput {
+  and: [FingerprintConfidencePolicyFilterInput!]
+  or: [FingerprintConfidencePolicyFilterInput!]
+  id: StringOperationFilterInput
+  rejectThreshold: FloatOperationFilterInput
+  manualReviewThreshold: FloatOperationFilterInput
+}
+
+input FingerprintConfidencePolicySortInput {
+  id: SortEnumType @cost(weight: "10")
+  rejectThreshold: SortEnumType @cost(weight: "10")
+  manualReviewThreshold: SortEnumType @cost(weight: "10")
 }
 
 input FloatOperationFilterInput {
@@ -4302,7 +3061,7 @@ input LegalDocumentInput {
   name: String!
   documentUrl: String!
   documentType: DocumentType!
-  note: String!
+  note: String
 }
 
 input LegalPolicyFilterInput {
@@ -4431,6 +3190,13 @@ input ListFilterInputTypeOfSyncedLineFilterInput {
   all: SyncedLineFilterInput @cost(weight: "10")
   none: SyncedLineFilterInput @cost(weight: "10")
   some: SyncedLineFilterInput @cost(weight: "10")
+  any: Boolean @cost(weight: "10")
+}
+
+input ListFilterInputTypeOfTopTrackInfoFilterInput {
+  all: TopTrackInfoFilterInput @cost(weight: "10")
+  none: TopTrackInfoFilterInput @cost(weight: "10")
+  some: TopTrackInfoFilterInput @cost(weight: "10")
   any: Boolean @cost(weight: "10")
 }
 
@@ -4596,6 +3362,7 @@ input NotificationFilterInput {
   relatedType: NullableOfNotificationRelatedTypeOperationFilterInput
   content: StringOperationFilterInput
   url: StringOperationFilterInput
+  mobileUrl: StringOperationFilterInput
   isRead: BooleanOperationFilterInput
   readAt: DateTimeOperationFilterInput
   action: NotificationActionTypeOperationFilterInput
@@ -4610,6 +3377,7 @@ input NotificationSortInput {
   relatedType: SortEnumType @cost(weight: "10")
   content: SortEnumType @cost(weight: "10")
   url: SortEnumType @cost(weight: "10")
+  mobileUrl: SortEnumType @cost(weight: "10")
   isRead: SortEnumType @cost(weight: "10")
   readAt: SortEnumType @cost(weight: "10")
   action: SortEnumType @cost(weight: "10")
@@ -4717,10 +3485,13 @@ input PackageOrderFilterInput {
   providerId: StringOperationFilterInput
   artistPackageId: StringOperationFilterInput
   paymentTransactionId: StringOperationFilterInput
+  payoutTransactionId: StringOperationFilterInput
   conversationId: StringOperationFilterInput
   requirements: StringOperationFilterInput
   status: PackageOrderStatusOperationFilterInput
   revisionCount: IntOperationFilterInput
+  disputedReason: StringOperationFilterInput
+  refundReason: StringOperationFilterInput
   deliveries: ListFilterInputTypeOfPackageOrderDeliveryFilterInput
   duration: IntOperationFilterInput
   freezedTime: TimeSpanOperationFilterInput
@@ -4741,6 +3512,7 @@ input PackageOrderRefundRequestInput {
   id: String!
   artistPercentageAmount: Decimal!
   requestorPercentageAmount: Decimal!
+  refundReason: String!
 }
 
 input PackageOrderSortInput {
@@ -4749,10 +3521,13 @@ input PackageOrderSortInput {
   providerId: SortEnumType @cost(weight: "10")
   artistPackageId: SortEnumType @cost(weight: "10")
   paymentTransactionId: SortEnumType @cost(weight: "10")
+  payoutTransactionId: SortEnumType @cost(weight: "10")
   conversationId: SortEnumType @cost(weight: "10")
   requirements: SortEnumType @cost(weight: "10")
   status: SortEnumType @cost(weight: "10")
   revisionCount: SortEnumType @cost(weight: "10")
+  disputedReason: SortEnumType @cost(weight: "10")
+  refundReason: SortEnumType @cost(weight: "10")
   duration: SortEnumType @cost(weight: "10")
   freezedTime: SortEnumType @cost(weight: "10")
   startedAt: SortEnumType @cost(weight: "10")
@@ -5169,6 +3944,7 @@ input RequestFilterInput {
   requestUserId: StringOperationFilterInput
   artistId: StringOperationFilterInput
   packageId: StringOperationFilterInput
+  orderId: StringOperationFilterInput
   title: StringOperationFilterInput
   titleUnsigned: StringOperationFilterInput
   summary: StringOperationFilterInput
@@ -5191,6 +3967,7 @@ input RequestSortInput {
   requestUserId: SortEnumType @cost(weight: "10")
   artistId: SortEnumType @cost(weight: "10")
   packageId: SortEnumType @cost(weight: "10")
+  orderId: SortEnumType @cost(weight: "10")
   title: SortEnumType @cost(weight: "10")
   titleUnsigned: SortEnumType @cost(weight: "10")
   summary: SortEnumType @cost(weight: "10")
@@ -5511,6 +4288,52 @@ input TimeSpanOperationFilterInput {
   nlte: TimeSpan @cost(weight: "10")
 }
 
+input TopTrackFilterInput {
+  and: [TopTrackFilterInput!]
+  or: [TopTrackFilterInput!]
+  id: StringOperationFilterInput
+  userId: StringOperationFilterInput
+  tracksInfo: ListFilterInputTypeOfTopTrackInfoFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input TopTrackInfoFilterInput {
+  and: [TopTrackInfoFilterInput!]
+  or: [TopTrackInfoFilterInput!]
+  trackId: StringOperationFilterInput
+  playedCount: IntOperationFilterInput
+}
+
+input TopTrackInfoSortInput {
+  trackId: SortEnumType @cost(weight: "10")
+  playedCount: SortEnumType @cost(weight: "10")
+}
+
+input TrackDailyMetricFilterInput {
+  and: [TrackDailyMetricFilterInput!]
+  or: [TrackDailyMetricFilterInput!]
+  id: StringOperationFilterInput
+  trackId: StringOperationFilterInput
+  streamCount: LongOperationFilterInput
+  downloadCount: LongOperationFilterInput
+  favoriteCount: LongOperationFilterInput
+  commentCount: LongOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input TrackDailyMetricSortInput {
+  id: SortEnumType @cost(weight: "10")
+  trackId: SortEnumType @cost(weight: "10")
+  streamCount: SortEnumType @cost(weight: "10")
+  downloadCount: SortEnumType @cost(weight: "10")
+  favoriteCount: SortEnumType @cost(weight: "10")
+  commentCount: SortEnumType @cost(weight: "10")
+  createdAt: SortEnumType @cost(weight: "10")
+  updatedAt: SortEnumType @cost(weight: "10")
+}
+
 input TrackFilterInput {
   and: [TrackFilterInput!]
   or: [TrackFilterInput!]
@@ -5610,6 +4433,16 @@ input UpdateCategoryRequestInput {
   isVisible: Boolean
 }
 
+input UpdateCustomArtistPackageRequestInput {
+  id: String!
+  packageName: String
+  amount: Decimal
+  estimateDeliveryDays: Int
+  description: String
+  serviceDetails: [MetadataInput!]
+  maxRevision: Int
+}
+
 input UpdateEntitlementRequestInput {
   value: EntitlementValue
   name: String
@@ -5623,6 +4456,11 @@ input UpdateEscrowCommissionPolicyRequestInput {
   version: Long!
   platformFeePercentage: Decimal
   currency: CurrencyType
+}
+
+input UpdateFingerprintConfidencePolicyRequestInput {
+  rejectThreshold: Float!
+  manualReviewThreshold: Float!
 }
 
 input UpdateListenerRequestInput {
@@ -5686,6 +4524,14 @@ input UpdateTrackCommentRequestInput {
   content: String!
 }
 
+input UpdateTrackRequestInput {
+  trackId: String!
+  description: String
+  categoryIds: [String!]
+  tags: [String!]
+  isPublic: Boolean
+}
+
 input UserEngagementActionOperationFilterInput {
   eq: UserEngagementAction @cost(weight: "10")
   neq: UserEngagementAction @cost(weight: "10")
@@ -5733,6 +4579,7 @@ input UserFilterInput {
   email: StringOperationFilterInput
   passwordHash: StringOperationFilterInput
   fullName: StringOperationFilterInput
+  fullNameUnsigned: StringOperationFilterInput
   gender: UserGenderOperationFilterInput
   birthDate: DateTimeOperationFilterInput
   role: UserRoleOperationFilterInput
@@ -5741,7 +4588,7 @@ input UserFilterInput {
   isLinkedWithGoogle: BooleanOperationFilterInput
   stripeCustomerId: StringOperationFilterInput
   stripeAccountId: StringOperationFilterInput
-  fcmToken: StringOperationFilterInput
+  fcmToken: ListStringOperationFilterInput
   lastLoginAt: DateTimeOperationFilterInput
   restrictions: ListFilterInputTypeOfRestrictionFilterInput
   createdBy: StringOperationFilterInput
@@ -5769,6 +4616,7 @@ input UserSortInput {
   email: SortEnumType @cost(weight: "10")
   passwordHash: SortEnumType @cost(weight: "10")
   fullName: SortEnumType @cost(weight: "10")
+  fullNameUnsigned: SortEnumType @cost(weight: "10")
   gender: SortEnumType @cost(weight: "10")
   birthDate: SortEnumType @cost(weight: "10")
   role: SortEnumType @cost(weight: "10")
@@ -5777,7 +4625,6 @@ input UserSortInput {
   isLinkedWithGoogle: SortEnumType @cost(weight: "10")
   stripeCustomerId: SortEnumType @cost(weight: "10")
   stripeAccountId: SortEnumType @cost(weight: "10")
-  fcmToken: SortEnumType @cost(weight: "10")
   lastLoginAt: SortEnumType @cost(weight: "10")
   createdBy: SortEnumType @cost(weight: "10")
   updatedBy: SortEnumType @cost(weight: "10")
@@ -5887,11 +4734,19 @@ enum ApplyPolicy {
   VALIDATION
 }
 
+enum ApprovalPriorityStatus {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
 enum ApprovalType {
   TRACK_UPLOAD
   WORK_UPLOAD
   RECORDING_UPLOAD
   ARTIST_REGISTRATION
+  DISPUTE_RESOLUTION
 }
 
 enum ArtistPackageStatus {
@@ -6017,6 +4872,7 @@ enum EntitlementValueType {
 enum HistoryActionType {
   APPROVED
   REJECTED
+  CANCELED
   REQUEST_CHANGE
   DISMISSED
 }
@@ -6055,6 +4911,9 @@ enum NotificationActionType {
   REQUEST_REJECTED
   ORDER_CREATED
   ORDER_COMPLETED
+  ORDER_CONTINUED
+  ORDER_DISPUTED
+  ORDER_REFUNDED
   ORDER_DEADLINE
   RELEASE
   OTHER
@@ -6122,7 +4981,6 @@ enum PeriodTime {
 enum PolicyStatus {
   ACTIVE
   INACTIVE
-  PENDING
 }
 
 enum PolicyType {
@@ -6226,6 +5084,8 @@ enum ReportType {
   FAKE_ACCOUNT
   SCAM_OR_FRAUD
   SELF_HARM_OR_DANGEROUS_CONTENT
+  PRIVACY_VIOLATION
+  UNAPPROVED_UPLOADED_TRACK
   OTHER
 }
 
@@ -6354,46 +5214,22 @@ enum WorkStatus {
 directive @allowAnonymous repeatable on FIELD_DEFINITION
 
 "The authorize directive."
-directive @authorize(
-  "The name of the authorization policy that determines access to the annotated resource."
-  policy: String
-  "Roles that are allowed to access the annotated resource."
-  roles: [String!]
-  "Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase."
-  apply: ApplyPolicy! = BEFORE_RESOLVER
-) repeatable on OBJECT | FIELD_DEFINITION
+directive @authorize("The name of the authorization policy that determines access to the annotated resource." policy: String "Roles that are allowed to access the annotated resource." roles: [String!] "Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase." apply: ApplyPolicy! = BEFORE_RESOLVER) repeatable on OBJECT | FIELD_DEFINITION
 
 "The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
-directive @cost(
-  "The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc."
-  weight: String!
-) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
+directive @cost("The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc." weight: String!) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
 
 "The purpose of the `@listSize` directive is to either inform the static analysis about the size of returned lists (if that information is statically available), or to point the analysis to where to find that information."
-directive @listSize(
-  "The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field."
-  assumedSize: Int
-  "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments."
-  slicingArguments: [String!]
-  "The `slicingArgumentDefaultValue` argument can be used to define a default value for a slicing argument, which is used if the argument is not present in a query."
-  slicingArgumentDefaultValue: Int
-  "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields."
-  sizedFields: [String!]
-  "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error."
-  requireOneSlicingArgument: Boolean! = true
-) on FIELD_DEFINITION
+directive @listSize("The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field." assumedSize: Int "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments." slicingArguments: [String!] "The `slicingArgumentDefaultValue` argument can be used to define a default value for a slicing argument, which is used if the argument is not present in a query." slicingArgumentDefaultValue: Int "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields." sizedFields: [String!] "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error." requireOneSlicingArgument: Boolean! = true) on FIELD_DEFINITION
 
 "The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
-directive @specifiedBy(
-  "The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types."
-  url: String!
-) on SCALAR
+directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
 
 "The `Byte` scalar type represents non-fractional whole numeric values. Byte can represent values between 0 and 255."
 scalar Byte
 
 "The `DateTime` scalar represents an ISO-8601 compliant date time type."
-scalar DateTime @specifiedBy(url: "https://www.graphql-scalars.com/date-time")
+scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
 
 "The `Decimal` scalar type represents a decimal floating-point number."
 scalar Decimal

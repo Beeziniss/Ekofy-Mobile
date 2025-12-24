@@ -191,10 +191,7 @@ class _NavTabState extends ConsumerState<NavTab>
                 Icons.receipt_long,
                 color: textColor.withOpacity(0.7),
               ),
-              title: Text(
-                'Payment History',
-                style: TextStyle(color: textColor),
-              ),
+              title: Text('Invoices', style: TextStyle(color: textColor)),
               onTap: () {
                 // Close drawer then navigate
                 Navigator.of(context).pop();

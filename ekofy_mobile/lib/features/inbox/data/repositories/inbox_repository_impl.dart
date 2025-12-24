@@ -12,28 +12,20 @@ class InboxRepositoryImpl implements InboxRepository {
   @override
   Future<List<ConversationItem>> fetchConversations({
     String? userId,
-    Enum$ConversationStatus? status,
+    List<Enum$ConversationStatus>? statuses,
   }) async {
     try {
-      // Build the filter similar to the JS example:
-      // const where: ConversationFilterInput = {
-      //   userIds: { some: { eq: userId } },
-      // };
-      // if (status) {
-      //   where.status = { eq: status };
-      // }
-
       Input$ConversationFilterInput? where;
 
-      if (userId != null || status != null) {
+      if (userId != null || (statuses != null && statuses.isNotEmpty)) {
         where = Input$ConversationFilterInput(
           userIds: userId != null
               ? Input$ListStringOperationFilterInput(
                   some: Input$StringOperationFilterInput(eq: userId),
                 )
               : null,
-          status: status != null
-              ? Input$ConversationStatusOperationFilterInput(eq: status)
+          status: (statuses != null && statuses.isNotEmpty)
+              ? Input$ConversationStatusOperationFilterInput($in: statuses)
               : null,
         );
       }

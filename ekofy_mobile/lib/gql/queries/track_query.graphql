@@ -44,3 +44,58 @@ query TrackDetail($where: TrackFilterInput, $take: Int!) {
 		}
 	}
 }
+
+
+query TrackFavorite($take: Int!, $skip: Int!) {
+  favoriteTracks(take: $take, skip: $skip, order: {createdAt: DESC}) {
+    totalCount
+    items {
+      id
+      name
+      coverImage
+      mainArtistIds
+      mainArtists {
+        items {
+          id
+          stageName
+        }
+      }
+      streamCount
+      checkTrackInFavorite
+      createdAt
+      isExplicit
+    }
+  }
+}
+    
+	
+query TrackInfinite($take: Int!, $skip: Int!, $artistId: String!) {
+  tracks(take: $take, skip: $skip, order: {streamCount : DESC}, where: {
+            createdBy: { eq: $artistId }
+            releaseInfo: { isRelease: { eq: true } }
+            restriction: { type: { eq: NONE } }
+        }) {
+    totalCount
+    items {
+      id
+      name
+      coverImage
+      mainArtistIds
+      createdAt
+      isExplicit
+      mainArtists {
+        items {
+          id
+          stageName
+        }
+      }
+      checkTrackInFavorite
+      streamCount
+      favoriteCount
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}
+    

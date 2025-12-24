@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/configs/assets/app_vectors.dart';
 import 'package:ekofy_mobile/core/configs/theme/app_colors.dart';
@@ -11,6 +13,10 @@ import 'package:go_router/go_router.dart';
 import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ekofy_mobile/features/home/presentation/providers/home_providers.dart';
+import 'package:ekofy_mobile/gql/queries/generated/notification_query.graphql.dart';
+import 'package:ekofy_mobile/gql/queries/generated/playlist_query.graphql.dart';
+import 'package:ekofy_mobile/gql/queries/generated/track_query.graphql.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -55,7 +61,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.primaryBackground,
         leading: _appBarLeading(),
-        actions: [_notification(), _profileAction(payload)],
+        actions: [_notification(payload), _profileAction(payload)],
       ),
       body: trackListState.isLoading
           ? Center(child: Image.asset(AppImages.loader, gaplessPlayback: true))
@@ -216,25 +222,224 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'Top Genres',
+                  'Playlists you\'ll love',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    // context.push(RouteName.allNewReleases);
-                  },
-                  child: const Text(
-                    'View All',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      color: AppColors.purpleIshWhite,
-                    ),
+                // const Spacer(),
+                // GestureDetector(
+                //   onTap: () {
+                //     // context.push(RouteName.allNewReleases);
+                //   },
+                //   child: const Text(
+                //     'View All',
+                //     style: TextStyle(
+                //       fontWeight: FontWeight.w500,
+                //       fontSize: 14,
+                //       color: AppColors.purpleIshWhite,
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
+          ),
+          Query$PlaylistsHome$Widget(
+            options: Options$Query$PlaylistsHome(
+              variables: Variables$Query$PlaylistsHome(take: 10, skip: 0),
+              fetchPolicy: FetchPolicy.cacheAndNetwork,
+            ),
+            builder: (result, {fetchMore, refetch}) {
+              if (result.isLoading && result.data == null) {
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: CircularProgressIndicator(),
                   ),
+                );
+              }
+
+              final playlists = result.parsedData?.playlists?.items ?? [];
+
+              if (playlists.isEmpty) {
+                return const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Center(child: Text('No playlists available')),
+                );
+              }
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: SizedBox(
+                  height: 190,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: playlists.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    itemBuilder: (context, index) {
+                      final playlist = playlists[index];
+                      return GestureDetector(
+                        onTap: () {
+                          // Navigate to playlist detail
+                          // context.push('${RouteName.playlistDetail}/${playlist.id}');
+                        },
+                        child: IntrinsicHeight(
+                          child: SizedBox(
+                            width: 120,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    color: Colors.deepPurple.shade100,
+                                    borderRadius: BorderRadius.circular(12),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        playlist.coverImage ??
+                                            'https://www.iphonefaq.org/files/styles/large/public/apple_music.jpg',
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  child: playlist.coverImage == null
+                                      ? const Icon(
+                                          Icons.music_note,
+                                          size: 40,
+                                          color: Colors.white,
+                                        )
+                                      : null,
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  playlist.name,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Tracks you love',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ],
             ),
+          ),
+          Query$TrackFavorite$Widget(
+            options: Options$Query$TrackFavorite(
+              variables: Variables$Query$TrackFavorite(take: 10, skip: 0),
+              fetchPolicy: FetchPolicy.cacheAndNetwork,
+            ),
+            builder: (result, {fetchMore, refetch}) {
+              if (result.isLoading && result.data == null) {
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+
+              final tracks = result.parsedData?.favoriteTracks?.items ?? [];
+
+              if (tracks.isEmpty) {
+                return const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Center(child: Text('No favorite tracks available')),
+                );
+              }
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: SizedBox(
+                  height: 190,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: tracks.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    itemBuilder: (context, index) {
+                      final track = tracks[index];
+                      return GestureDetector(
+                        onTap: () {
+                          // Navigate to track detail
+                          context.push('${RouteName.trackDetail}/${track.id}');
+                        },
+                        child: IntrinsicHeight(
+                          child: SizedBox(
+                            width: 120,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    color: Colors.deepPurple.shade100,
+                                    borderRadius: BorderRadius.circular(12),
+                                    image: DecorationImage(
+                                      image: NetworkImage(track.coverImage),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  child: const Icon(
+                                    Icons.music_note,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  track.name,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const Spacer(),
+                                Text(
+                                  track.mainArtists?.items
+                                          ?.map((e) => e.stageName)
+                                          .join(', ') ??
+                                      '',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: Colors.grey[600],
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -255,17 +460,43 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _notification() {
-    return GestureDetector(
-      onTap: () => context.push(RouteName.notifications),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: SvgPicture.asset(
-          AppVectors.whiteNotificationIcon,
-          width: 30,
-          height: 30,
+  Widget _notification(Map<String, dynamic>? payload) {
+    final userId = payload?['userId'];
+
+    if (userId == null) {
+      return GestureDetector(
+        onTap: () => context.push(RouteName.notifications),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: SvgPicture.asset(
+            AppVectors.whiteNotificationIcon,
+            width: 30,
+            height: 30,
+          ),
         ),
+      );
+    }
+
+    return Query$checkReadNotification$Widget(
+      options: Options$Query$checkReadNotification(
+        variables: Variables$Query$checkReadNotification(userId: userId),
+        fetchPolicy: FetchPolicy.networkOnly,
       ),
+      builder: (result, {fetchMore, refetch}) {
+        final totalCount =
+            result.parsedData?.notificationsForUser?.totalCount ?? 0;
+        final icon = totalCount > 0
+            ? AppVectors.whiteActiveNotificationIcon
+            : AppVectors.whiteNotificationIcon;
+
+        return GestureDetector(
+          onTap: () => context.push(RouteName.notifications),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: SvgPicture.asset(icon, width: 30, height: 30),
+          ),
+        );
+      },
     );
   }
 

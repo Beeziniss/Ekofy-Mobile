@@ -1,11 +1,11 @@
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
 import 'package:ekofy_mobile/core/di/injector.dart';
+import 'package:ekofy_mobile/core/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../domain/models/transaction_item.dart';
-import '../widgets/transaction_status_badge.dart';
 
 class TransactionHistoryListScreen extends ConsumerStatefulWidget {
   const TransactionHistoryListScreen({super.key});
@@ -31,7 +31,7 @@ class _TransactionHistoryListScreenState
       backgroundColor: const Color(0xFF0B0B0E),
       appBar: AppBar(
         title: const Text(
-          'Payment History',
+          'Invoices',
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
@@ -121,7 +121,7 @@ class _TransactionCard extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                formatAmountMajor(item.amountMinor, item.currency),
+                'Amount: ${formatAmountMajor(item.amountMinor, item.currency)}',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
@@ -142,7 +142,7 @@ class _TransactionCard extends StatelessWidget {
                 const SizedBox(height: 4),
               ],
               Text(
-                _formatDate(item.createdAt),
+                _formatDate(item.createdAt.add(const Duration(hours: 7))),
                 style: const TextStyle(color: Colors.white54, fontSize: 12),
               ),
             ],
@@ -153,6 +153,6 @@ class _TransactionCard extends StatelessWidget {
   }
 
   String _formatDate(DateTime d) {
-    return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+    return '${d.day.toString().padLeft(2, '0')}-${d.month.toString().padLeft(2, '0')}-${d.year}   ${d.hour}:${d.minute.toString().padLeft(2, '0')}';
   }
 }

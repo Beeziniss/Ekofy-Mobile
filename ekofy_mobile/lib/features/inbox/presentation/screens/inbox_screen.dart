@@ -19,7 +19,9 @@ class InboxScreen extends ConsumerStatefulWidget {
 class _InboxScreenState extends ConsumerState<InboxScreen>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
-  Enum$ConversationStatus? _selectedStatus = Enum$ConversationStatus.NONE;
+  List<Enum$ConversationStatus> _selectedStatuses = [
+    Enum$ConversationStatus.NONE,
+  ];
 
   @override
   void initState() {
@@ -38,17 +40,21 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
       setState(() {
         switch (_tabController!.index) {
           case 0:
-            _selectedStatus =
-                Enum$ConversationStatus.NONE; // General - all conversations
+            _selectedStatuses = [
+              Enum$ConversationStatus.NONE,
+            ]; // General - all conversations
             break;
           case 1:
-            _selectedStatus = Enum$ConversationStatus.IN_PROGRESS;
+            _selectedStatuses = [Enum$ConversationStatus.IN_PROGRESS];
             break;
           case 2:
-            _selectedStatus = Enum$ConversationStatus.COMPLETED;
+            _selectedStatuses = [Enum$ConversationStatus.COMPLETED];
             break;
           case 3:
-            _selectedStatus = Enum$ConversationStatus.PENDING;
+            _selectedStatuses = [
+              Enum$ConversationStatus.PENDING,
+              Enum$ConversationStatus.CONFIRMED_PAYMENT,
+            ];
             break;
         }
       });
@@ -57,10 +63,10 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
   }
 
   void _loadConversations() {
-    log('Loading conversations with status: $_selectedStatus');
+    log('Loading conversations with status: $_selectedStatuses');
     ref
         .read(inboxProvider.notifier)
-        .fetchConversations(status: _selectedStatus);
+        .fetchConversations(statuses: _selectedStatuses);
   }
 
   @override
@@ -81,31 +87,29 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Icon(
-            Icons.chat_bubble_outline,
-            color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
-          ),
+          // child: Icon(
+          //   Icons.chat_bubble_outline,
+          //   color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
+          // ),
         ),
         title: Text(
           'Conversation',
           style: TextStyle(
-            fontFamily: 'Poppins',
             fontWeight: FontWeight.bold,
-            fontSize: 20,
             color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
-            ),
-            onPressed: () {
-              // TODO: Implement search
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(
+        //       Icons.search,
+        //       color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
+        //     ),
+        //     onPressed: () {
+        //       // TODO: Implement search
+        //     },
+        //   ),
+        // ],
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: isDark ? AppColors.violet : AppColors.deepBlue,
@@ -264,9 +268,9 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
             ),
             const SizedBox(height: 16),
             Text(
-              _selectedStatus == Enum$ConversationStatus.IN_PROGRESS
+              _selectedStatuses.contains(Enum$ConversationStatus.IN_PROGRESS)
                   ? 'Active ongoing conversations'
-                  : 'No messages yet',
+                  : 'No conversation before!',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 16,

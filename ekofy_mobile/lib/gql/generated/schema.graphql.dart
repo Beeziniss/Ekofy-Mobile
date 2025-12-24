@@ -1663,6 +1663,7 @@ class Input$AlbumFilterInput {
     Input$StringOperationFilterInput? thumbnailImage,
     Input$ReleaseInfoFilterInput? releaseInfo,
     Input$BooleanOperationFilterInput? isVisible,
+    Input$StringOperationFilterInput? createdBy,
     Input$DateTimeOperationFilterInput? createdAt,
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => Input$AlbumFilterInput._({
@@ -1680,6 +1681,7 @@ class Input$AlbumFilterInput {
     if (thumbnailImage != null) r'thumbnailImage': thumbnailImage,
     if (releaseInfo != null) r'releaseInfo': releaseInfo,
     if (isVisible != null) r'isVisible': isVisible,
+    if (createdBy != null) r'createdBy': createdBy,
     if (createdAt != null) r'createdAt': createdAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
   });
@@ -1792,6 +1794,14 @@ class Input$AlbumFilterInput {
               (l$isVisible as Map<String, dynamic>),
             );
     }
+    if (data.containsKey('createdBy')) {
+      final l$createdBy = data['createdBy'];
+      result$data['createdBy'] = l$createdBy == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$createdBy as Map<String, dynamic>),
+            );
+    }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
       result$data['createdAt'] = l$createdAt == null
@@ -1854,6 +1864,9 @@ class Input$AlbumFilterInput {
   Input$BooleanOperationFilterInput? get isVisible =>
       (_$data['isVisible'] as Input$BooleanOperationFilterInput?);
 
+  Input$StringOperationFilterInput? get createdBy =>
+      (_$data['createdBy'] as Input$StringOperationFilterInput?);
+
   Input$DateTimeOperationFilterInput? get createdAt =>
       (_$data['createdAt'] as Input$DateTimeOperationFilterInput?);
 
@@ -1913,6 +1926,10 @@ class Input$AlbumFilterInput {
     if (_$data.containsKey('isVisible')) {
       final l$isVisible = isVisible;
       result$data['isVisible'] = l$isVisible?.toJson();
+    }
+    if (_$data.containsKey('createdBy')) {
+      final l$createdBy = createdBy;
+      result$data['createdBy'] = l$createdBy?.toJson();
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -2070,6 +2087,15 @@ class Input$AlbumFilterInput {
     if (l$isVisible != lOther$isVisible) {
       return false;
     }
+    final l$createdBy = createdBy;
+    final lOther$createdBy = other.createdBy;
+    if (_$data.containsKey('createdBy') !=
+        other._$data.containsKey('createdBy')) {
+      return false;
+    }
+    if (l$createdBy != lOther$createdBy) {
+      return false;
+    }
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (_$data.containsKey('createdAt') !=
@@ -2106,6 +2132,7 @@ class Input$AlbumFilterInput {
     final l$thumbnailImage = thumbnailImage;
     final l$releaseInfo = releaseInfo;
     final l$isVisible = isVisible;
+    final l$createdBy = createdBy;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
@@ -2132,6 +2159,7 @@ class Input$AlbumFilterInput {
       _$data.containsKey('thumbnailImage') ? l$thumbnailImage : const {},
       _$data.containsKey('releaseInfo') ? l$releaseInfo : const {},
       _$data.containsKey('isVisible') ? l$isVisible : const {},
+      _$data.containsKey('createdBy') ? l$createdBy : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
     ]);
@@ -2162,6 +2190,7 @@ abstract class CopyWith$Input$AlbumFilterInput<TRes> {
     Input$StringOperationFilterInput? thumbnailImage,
     Input$ReleaseInfoFilterInput? releaseInfo,
     Input$BooleanOperationFilterInput? isVisible,
+    Input$StringOperationFilterInput? createdBy,
     Input$DateTimeOperationFilterInput? createdAt,
     Input$DateTimeOperationFilterInput? updatedAt,
   });
@@ -2189,6 +2218,7 @@ abstract class CopyWith$Input$AlbumFilterInput<TRes> {
   CopyWith$Input$StringOperationFilterInput<TRes> get thumbnailImage;
   CopyWith$Input$ReleaseInfoFilterInput<TRes> get releaseInfo;
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible;
+  CopyWith$Input$StringOperationFilterInput<TRes> get createdBy;
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt;
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt;
 }
@@ -2217,6 +2247,7 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
     Object? thumbnailImage = _undefined,
     Object? releaseInfo = _undefined,
     Object? isVisible = _undefined,
+    Object? createdBy = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
   }) => _then(
@@ -2247,6 +2278,8 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
         'releaseInfo': (releaseInfo as Input$ReleaseInfoFilterInput?),
       if (isVisible != _undefined)
         'isVisible': (isVisible as Input$BooleanOperationFilterInput?),
+      if (createdBy != _undefined)
+        'createdBy': (createdBy as Input$StringOperationFilterInput?),
       if (createdAt != _undefined)
         'createdAt': (createdAt as Input$DateTimeOperationFilterInput?),
       if (updatedAt != _undefined)
@@ -2389,6 +2422,16 @@ class _CopyWithImpl$Input$AlbumFilterInput<TRes>
           );
   }
 
+  CopyWith$Input$StringOperationFilterInput<TRes> get createdBy {
+    final local$createdBy = _instance.createdBy;
+    return local$createdBy == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$createdBy,
+            (e) => call(createdBy: e),
+          );
+  }
+
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -2431,6 +2474,7 @@ class _CopyWithStubImpl$Input$AlbumFilterInput<TRes>
     Input$StringOperationFilterInput? thumbnailImage,
     Input$ReleaseInfoFilterInput? releaseInfo,
     Input$BooleanOperationFilterInput? isVisible,
+    Input$StringOperationFilterInput? createdBy,
     Input$DateTimeOperationFilterInput? createdAt,
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
@@ -2475,6 +2519,9 @@ class _CopyWithStubImpl$Input$AlbumFilterInput<TRes>
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isVisible =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  CopyWith$Input$StringOperationFilterInput<TRes> get createdBy =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
@@ -2493,6 +2540,7 @@ class Input$AlbumSortInput {
     Enum$SortEnumType? thumbnailImage,
     Input$ReleaseInfoSortInput? releaseInfo,
     Enum$SortEnumType? isVisible,
+    Enum$SortEnumType? createdBy,
     Enum$SortEnumType? createdAt,
     Enum$SortEnumType? updatedAt,
   }) => Input$AlbumSortInput._({
@@ -2505,6 +2553,7 @@ class Input$AlbumSortInput {
     if (thumbnailImage != null) r'thumbnailImage': thumbnailImage,
     if (releaseInfo != null) r'releaseInfo': releaseInfo,
     if (isVisible != null) r'isVisible': isVisible,
+    if (createdBy != null) r'createdBy': createdBy,
     if (createdAt != null) r'createdAt': createdAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
   });
@@ -2569,6 +2618,12 @@ class Input$AlbumSortInput {
           ? null
           : fromJson$Enum$SortEnumType((l$isVisible as String));
     }
+    if (data.containsKey('createdBy')) {
+      final l$createdBy = data['createdBy'];
+      result$data['createdBy'] = l$createdBy == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$createdBy as String));
+    }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
       result$data['createdAt'] = l$createdAt == null
@@ -2609,6 +2664,9 @@ class Input$AlbumSortInput {
 
   Enum$SortEnumType? get isVisible =>
       (_$data['isVisible'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get createdBy =>
+      (_$data['createdBy'] as Enum$SortEnumType?);
 
   Enum$SortEnumType? get createdAt =>
       (_$data['createdAt'] as Enum$SortEnumType?);
@@ -2667,6 +2725,12 @@ class Input$AlbumSortInput {
       result$data['isVisible'] = l$isVisible == null
           ? null
           : toJson$Enum$SortEnumType(l$isVisible);
+    }
+    if (_$data.containsKey('createdBy')) {
+      final l$createdBy = createdBy;
+      result$data['createdBy'] = l$createdBy == null
+          ? null
+          : toJson$Enum$SortEnumType(l$createdBy);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -2772,6 +2836,15 @@ class Input$AlbumSortInput {
     if (l$isVisible != lOther$isVisible) {
       return false;
     }
+    final l$createdBy = createdBy;
+    final lOther$createdBy = other.createdBy;
+    if (_$data.containsKey('createdBy') !=
+        other._$data.containsKey('createdBy')) {
+      return false;
+    }
+    if (l$createdBy != lOther$createdBy) {
+      return false;
+    }
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (_$data.containsKey('createdAt') !=
@@ -2804,6 +2877,7 @@ class Input$AlbumSortInput {
     final l$thumbnailImage = thumbnailImage;
     final l$releaseInfo = releaseInfo;
     final l$isVisible = isVisible;
+    final l$createdBy = createdBy;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
@@ -2816,6 +2890,7 @@ class Input$AlbumSortInput {
       _$data.containsKey('thumbnailImage') ? l$thumbnailImage : const {},
       _$data.containsKey('releaseInfo') ? l$releaseInfo : const {},
       _$data.containsKey('isVisible') ? l$isVisible : const {},
+      _$data.containsKey('createdBy') ? l$createdBy : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
     ]);
@@ -2841,6 +2916,7 @@ abstract class CopyWith$Input$AlbumSortInput<TRes> {
     Enum$SortEnumType? thumbnailImage,
     Input$ReleaseInfoSortInput? releaseInfo,
     Enum$SortEnumType? isVisible,
+    Enum$SortEnumType? createdBy,
     Enum$SortEnumType? createdAt,
     Enum$SortEnumType? updatedAt,
   });
@@ -2867,6 +2943,7 @@ class _CopyWithImpl$Input$AlbumSortInput<TRes>
     Object? thumbnailImage = _undefined,
     Object? releaseInfo = _undefined,
     Object? isVisible = _undefined,
+    Object? createdBy = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
   }) => _then(
@@ -2887,6 +2964,8 @@ class _CopyWithImpl$Input$AlbumSortInput<TRes>
         'releaseInfo': (releaseInfo as Input$ReleaseInfoSortInput?),
       if (isVisible != _undefined)
         'isVisible': (isVisible as Enum$SortEnumType?),
+      if (createdBy != _undefined)
+        'createdBy': (createdBy as Enum$SortEnumType?),
       if (createdAt != _undefined)
         'createdAt': (createdAt as Enum$SortEnumType?),
       if (updatedAt != _undefined)
@@ -2921,6 +3000,7 @@ class _CopyWithStubImpl$Input$AlbumSortInput<TRes>
     Enum$SortEnumType? thumbnailImage,
     Input$ReleaseInfoSortInput? releaseInfo,
     Enum$SortEnumType? isVisible,
+    Enum$SortEnumType? createdBy,
     Enum$SortEnumType? createdAt,
     Enum$SortEnumType? updatedAt,
   }) => _res;
@@ -6298,6 +6378,8 @@ class Input$ArtistPackageFilterInput {
     Input$ListFilterInputTypeOfMetadataFilterInput? serviceDetails,
     Input$ArtistPackageStatusOperationFilterInput? status,
     Input$BooleanOperationFilterInput? isDelete,
+    Input$BooleanOperationFilterInput? isCustom,
+    Input$CustomArtistPackageInfoFilterInput? customPackageInfo,
     Input$DateTimeOperationFilterInput? createdAt,
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => Input$ArtistPackageFilterInput._({
@@ -6315,6 +6397,8 @@ class Input$ArtistPackageFilterInput {
     if (serviceDetails != null) r'serviceDetails': serviceDetails,
     if (status != null) r'status': status,
     if (isDelete != null) r'isDelete': isDelete,
+    if (isCustom != null) r'isCustom': isCustom,
+    if (customPackageInfo != null) r'customPackageInfo': customPackageInfo,
     if (createdAt != null) r'createdAt': createdAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
   });
@@ -6431,6 +6515,22 @@ class Input$ArtistPackageFilterInput {
               (l$isDelete as Map<String, dynamic>),
             );
     }
+    if (data.containsKey('isCustom')) {
+      final l$isCustom = data['isCustom'];
+      result$data['isCustom'] = l$isCustom == null
+          ? null
+          : Input$BooleanOperationFilterInput.fromJson(
+              (l$isCustom as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('customPackageInfo')) {
+      final l$customPackageInfo = data['customPackageInfo'];
+      result$data['customPackageInfo'] = l$customPackageInfo == null
+          ? null
+          : Input$CustomArtistPackageInfoFilterInput.fromJson(
+              (l$customPackageInfo as Map<String, dynamic>),
+            );
+    }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
       result$data['createdAt'] = l$createdAt == null
@@ -6492,6 +6592,13 @@ class Input$ArtistPackageFilterInput {
   Input$BooleanOperationFilterInput? get isDelete =>
       (_$data['isDelete'] as Input$BooleanOperationFilterInput?);
 
+  Input$BooleanOperationFilterInput? get isCustom =>
+      (_$data['isCustom'] as Input$BooleanOperationFilterInput?);
+
+  Input$CustomArtistPackageInfoFilterInput? get customPackageInfo =>
+      (_$data['customPackageInfo']
+          as Input$CustomArtistPackageInfoFilterInput?);
+
   Input$DateTimeOperationFilterInput? get createdAt =>
       (_$data['createdAt'] as Input$DateTimeOperationFilterInput?);
 
@@ -6551,6 +6658,14 @@ class Input$ArtistPackageFilterInput {
     if (_$data.containsKey('isDelete')) {
       final l$isDelete = isDelete;
       result$data['isDelete'] = l$isDelete?.toJson();
+    }
+    if (_$data.containsKey('isCustom')) {
+      final l$isCustom = isCustom;
+      result$data['isCustom'] = l$isCustom?.toJson();
+    }
+    if (_$data.containsKey('customPackageInfo')) {
+      final l$customPackageInfo = customPackageInfo;
+      result$data['customPackageInfo'] = l$customPackageInfo?.toJson();
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -6709,6 +6824,24 @@ class Input$ArtistPackageFilterInput {
     if (l$isDelete != lOther$isDelete) {
       return false;
     }
+    final l$isCustom = isCustom;
+    final lOther$isCustom = other.isCustom;
+    if (_$data.containsKey('isCustom') !=
+        other._$data.containsKey('isCustom')) {
+      return false;
+    }
+    if (l$isCustom != lOther$isCustom) {
+      return false;
+    }
+    final l$customPackageInfo = customPackageInfo;
+    final lOther$customPackageInfo = other.customPackageInfo;
+    if (_$data.containsKey('customPackageInfo') !=
+        other._$data.containsKey('customPackageInfo')) {
+      return false;
+    }
+    if (l$customPackageInfo != lOther$customPackageInfo) {
+      return false;
+    }
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (_$data.containsKey('createdAt') !=
@@ -6745,6 +6878,8 @@ class Input$ArtistPackageFilterInput {
     final l$serviceDetails = serviceDetails;
     final l$status = status;
     final l$isDelete = isDelete;
+    final l$isCustom = isCustom;
+    final l$customPackageInfo = customPackageInfo;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
@@ -6771,6 +6906,8 @@ class Input$ArtistPackageFilterInput {
       _$data.containsKey('serviceDetails') ? l$serviceDetails : const {},
       _$data.containsKey('status') ? l$status : const {},
       _$data.containsKey('isDelete') ? l$isDelete : const {},
+      _$data.containsKey('isCustom') ? l$isCustom : const {},
+      _$data.containsKey('customPackageInfo') ? l$customPackageInfo : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
     ]);
@@ -6800,6 +6937,8 @@ abstract class CopyWith$Input$ArtistPackageFilterInput<TRes> {
     Input$ListFilterInputTypeOfMetadataFilterInput? serviceDetails,
     Input$ArtistPackageStatusOperationFilterInput? status,
     Input$BooleanOperationFilterInput? isDelete,
+    Input$BooleanOperationFilterInput? isCustom,
+    Input$CustomArtistPackageInfoFilterInput? customPackageInfo,
     Input$DateTimeOperationFilterInput? createdAt,
     Input$DateTimeOperationFilterInput? updatedAt,
   });
@@ -6831,6 +6970,8 @@ abstract class CopyWith$Input$ArtistPackageFilterInput<TRes> {
   get serviceDetails;
   CopyWith$Input$ArtistPackageStatusOperationFilterInput<TRes> get status;
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDelete;
+  CopyWith$Input$BooleanOperationFilterInput<TRes> get isCustom;
+  CopyWith$Input$CustomArtistPackageInfoFilterInput<TRes> get customPackageInfo;
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt;
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt;
 }
@@ -6859,6 +7000,8 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
     Object? serviceDetails = _undefined,
     Object? status = _undefined,
     Object? isDelete = _undefined,
+    Object? isCustom = _undefined,
+    Object? customPackageInfo = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
   }) => _then(
@@ -6890,6 +7033,11 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
         'status': (status as Input$ArtistPackageStatusOperationFilterInput?),
       if (isDelete != _undefined)
         'isDelete': (isDelete as Input$BooleanOperationFilterInput?),
+      if (isCustom != _undefined)
+        'isCustom': (isCustom as Input$BooleanOperationFilterInput?),
+      if (customPackageInfo != _undefined)
+        'customPackageInfo':
+            (customPackageInfo as Input$CustomArtistPackageInfoFilterInput?),
       if (createdAt != _undefined)
         'createdAt': (createdAt as Input$DateTimeOperationFilterInput?),
       if (updatedAt != _undefined)
@@ -7042,6 +7190,29 @@ class _CopyWithImpl$Input$ArtistPackageFilterInput<TRes>
           );
   }
 
+  CopyWith$Input$BooleanOperationFilterInput<TRes> get isCustom {
+    final local$isCustom = _instance.isCustom;
+    return local$isCustom == null
+        ? CopyWith$Input$BooleanOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$BooleanOperationFilterInput(
+            local$isCustom,
+            (e) => call(isCustom: e),
+          );
+  }
+
+  CopyWith$Input$CustomArtistPackageInfoFilterInput<TRes>
+  get customPackageInfo {
+    final local$customPackageInfo = _instance.customPackageInfo;
+    return local$customPackageInfo == null
+        ? CopyWith$Input$CustomArtistPackageInfoFilterInput.stub(
+            _then(_instance),
+          )
+        : CopyWith$Input$CustomArtistPackageInfoFilterInput(
+            local$customPackageInfo,
+            (e) => call(customPackageInfo: e),
+          );
+  }
+
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -7083,6 +7254,8 @@ class _CopyWithStubImpl$Input$ArtistPackageFilterInput<TRes>
     Input$ListFilterInputTypeOfMetadataFilterInput? serviceDetails,
     Input$ArtistPackageStatusOperationFilterInput? status,
     Input$BooleanOperationFilterInput? isDelete,
+    Input$BooleanOperationFilterInput? isCustom,
+    Input$CustomArtistPackageInfoFilterInput? customPackageInfo,
     Input$DateTimeOperationFilterInput? createdAt,
     Input$DateTimeOperationFilterInput? updatedAt,
   }) => _res;
@@ -7125,6 +7298,13 @@ class _CopyWithStubImpl$Input$ArtistPackageFilterInput<TRes>
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isDelete =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
+  CopyWith$Input$BooleanOperationFilterInput<TRes> get isCustom =>
+      CopyWith$Input$BooleanOperationFilterInput.stub(_res);
+
+  CopyWith$Input$CustomArtistPackageInfoFilterInput<TRes>
+  get customPackageInfo =>
+      CopyWith$Input$CustomArtistPackageInfoFilterInput.stub(_res);
+
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
 
@@ -7144,6 +7324,8 @@ class Input$ArtistPackageSortInput {
     Enum$SortEnumType? maxRevision,
     Enum$SortEnumType? status,
     Enum$SortEnumType? isDelete,
+    Enum$SortEnumType? isCustom,
+    Input$CustomArtistPackageInfoSortInput? customPackageInfo,
     Enum$SortEnumType? createdAt,
     Enum$SortEnumType? updatedAt,
   }) => Input$ArtistPackageSortInput._({
@@ -7158,6 +7340,8 @@ class Input$ArtistPackageSortInput {
     if (maxRevision != null) r'maxRevision': maxRevision,
     if (status != null) r'status': status,
     if (isDelete != null) r'isDelete': isDelete,
+    if (isCustom != null) r'isCustom': isCustom,
+    if (customPackageInfo != null) r'customPackageInfo': customPackageInfo,
     if (createdAt != null) r'createdAt': createdAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
   });
@@ -7226,6 +7410,20 @@ class Input$ArtistPackageSortInput {
           ? null
           : fromJson$Enum$SortEnumType((l$isDelete as String));
     }
+    if (data.containsKey('isCustom')) {
+      final l$isCustom = data['isCustom'];
+      result$data['isCustom'] = l$isCustom == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$isCustom as String));
+    }
+    if (data.containsKey('customPackageInfo')) {
+      final l$customPackageInfo = data['customPackageInfo'];
+      result$data['customPackageInfo'] = l$customPackageInfo == null
+          ? null
+          : Input$CustomArtistPackageInfoSortInput.fromJson(
+              (l$customPackageInfo as Map<String, dynamic>),
+            );
+    }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
       result$data['createdAt'] = l$createdAt == null
@@ -7266,6 +7464,11 @@ class Input$ArtistPackageSortInput {
   Enum$SortEnumType? get status => (_$data['status'] as Enum$SortEnumType?);
 
   Enum$SortEnumType? get isDelete => (_$data['isDelete'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get isCustom => (_$data['isCustom'] as Enum$SortEnumType?);
+
+  Input$CustomArtistPackageInfoSortInput? get customPackageInfo =>
+      (_$data['customPackageInfo'] as Input$CustomArtistPackageInfoSortInput?);
 
   Enum$SortEnumType? get createdAt =>
       (_$data['createdAt'] as Enum$SortEnumType?);
@@ -7332,6 +7535,16 @@ class Input$ArtistPackageSortInput {
       result$data['isDelete'] = l$isDelete == null
           ? null
           : toJson$Enum$SortEnumType(l$isDelete);
+    }
+    if (_$data.containsKey('isCustom')) {
+      final l$isCustom = isCustom;
+      result$data['isCustom'] = l$isCustom == null
+          ? null
+          : toJson$Enum$SortEnumType(l$isCustom);
+    }
+    if (_$data.containsKey('customPackageInfo')) {
+      final l$customPackageInfo = customPackageInfo;
+      result$data['customPackageInfo'] = l$customPackageInfo?.toJson();
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -7447,6 +7660,24 @@ class Input$ArtistPackageSortInput {
     if (l$isDelete != lOther$isDelete) {
       return false;
     }
+    final l$isCustom = isCustom;
+    final lOther$isCustom = other.isCustom;
+    if (_$data.containsKey('isCustom') !=
+        other._$data.containsKey('isCustom')) {
+      return false;
+    }
+    if (l$isCustom != lOther$isCustom) {
+      return false;
+    }
+    final l$customPackageInfo = customPackageInfo;
+    final lOther$customPackageInfo = other.customPackageInfo;
+    if (_$data.containsKey('customPackageInfo') !=
+        other._$data.containsKey('customPackageInfo')) {
+      return false;
+    }
+    if (l$customPackageInfo != lOther$customPackageInfo) {
+      return false;
+    }
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (_$data.containsKey('createdAt') !=
@@ -7480,6 +7711,8 @@ class Input$ArtistPackageSortInput {
     final l$maxRevision = maxRevision;
     final l$status = status;
     final l$isDelete = isDelete;
+    final l$isCustom = isCustom;
+    final l$customPackageInfo = customPackageInfo;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
@@ -7495,6 +7728,8 @@ class Input$ArtistPackageSortInput {
       _$data.containsKey('maxRevision') ? l$maxRevision : const {},
       _$data.containsKey('status') ? l$status : const {},
       _$data.containsKey('isDelete') ? l$isDelete : const {},
+      _$data.containsKey('isCustom') ? l$isCustom : const {},
+      _$data.containsKey('customPackageInfo') ? l$customPackageInfo : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
     ]);
@@ -7521,9 +7756,12 @@ abstract class CopyWith$Input$ArtistPackageSortInput<TRes> {
     Enum$SortEnumType? maxRevision,
     Enum$SortEnumType? status,
     Enum$SortEnumType? isDelete,
+    Enum$SortEnumType? isCustom,
+    Input$CustomArtistPackageInfoSortInput? customPackageInfo,
     Enum$SortEnumType? createdAt,
     Enum$SortEnumType? updatedAt,
   });
+  CopyWith$Input$CustomArtistPackageInfoSortInput<TRes> get customPackageInfo;
 }
 
 class _CopyWithImpl$Input$ArtistPackageSortInput<TRes>
@@ -7547,6 +7785,8 @@ class _CopyWithImpl$Input$ArtistPackageSortInput<TRes>
     Object? maxRevision = _undefined,
     Object? status = _undefined,
     Object? isDelete = _undefined,
+    Object? isCustom = _undefined,
+    Object? customPackageInfo = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
   }) => _then(
@@ -7566,12 +7806,26 @@ class _CopyWithImpl$Input$ArtistPackageSortInput<TRes>
         'maxRevision': (maxRevision as Enum$SortEnumType?),
       if (status != _undefined) 'status': (status as Enum$SortEnumType?),
       if (isDelete != _undefined) 'isDelete': (isDelete as Enum$SortEnumType?),
+      if (isCustom != _undefined) 'isCustom': (isCustom as Enum$SortEnumType?),
+      if (customPackageInfo != _undefined)
+        'customPackageInfo':
+            (customPackageInfo as Input$CustomArtistPackageInfoSortInput?),
       if (createdAt != _undefined)
         'createdAt': (createdAt as Enum$SortEnumType?),
       if (updatedAt != _undefined)
         'updatedAt': (updatedAt as Enum$SortEnumType?),
     }),
   );
+
+  CopyWith$Input$CustomArtistPackageInfoSortInput<TRes> get customPackageInfo {
+    final local$customPackageInfo = _instance.customPackageInfo;
+    return local$customPackageInfo == null
+        ? CopyWith$Input$CustomArtistPackageInfoSortInput.stub(_then(_instance))
+        : CopyWith$Input$CustomArtistPackageInfoSortInput(
+            local$customPackageInfo,
+            (e) => call(customPackageInfo: e),
+          );
+  }
 }
 
 class _CopyWithStubImpl$Input$ArtistPackageSortInput<TRes>
@@ -7591,9 +7845,14 @@ class _CopyWithStubImpl$Input$ArtistPackageSortInput<TRes>
     Enum$SortEnumType? maxRevision,
     Enum$SortEnumType? status,
     Enum$SortEnumType? isDelete,
+    Enum$SortEnumType? isCustom,
+    Input$CustomArtistPackageInfoSortInput? customPackageInfo,
     Enum$SortEnumType? createdAt,
     Enum$SortEnumType? updatedAt,
   }) => _res;
+
+  CopyWith$Input$CustomArtistPackageInfoSortInput<TRes> get customPackageInfo =>
+      CopyWith$Input$CustomArtistPackageInfoSortInput.stub(_res);
 }
 
 class Input$ArtistPackageStatusOperationFilterInput {
@@ -13348,7 +13607,12 @@ class Input$ChangeOrderStatusRequestInput {
   factory Input$ChangeOrderStatusRequestInput({
     required String id,
     required Enum$PackageOrderStatus status,
-  }) => Input$ChangeOrderStatusRequestInput._({r'id': id, r'status': status});
+    String? reason,
+  }) => Input$ChangeOrderStatusRequestInput._({
+    r'id': id,
+    r'status': status,
+    if (reason != null) r'reason': reason,
+  });
 
   Input$ChangeOrderStatusRequestInput._(this._$data);
 
@@ -13362,6 +13626,10 @@ class Input$ChangeOrderStatusRequestInput {
     result$data['status'] = fromJson$Enum$PackageOrderStatus(
       (l$status as String),
     );
+    if (data.containsKey('reason')) {
+      final l$reason = data['reason'];
+      result$data['reason'] = (l$reason as String?);
+    }
     return Input$ChangeOrderStatusRequestInput._(result$data);
   }
 
@@ -13372,12 +13640,18 @@ class Input$ChangeOrderStatusRequestInput {
   Enum$PackageOrderStatus get status =>
       (_$data['status'] as Enum$PackageOrderStatus);
 
+  String? get reason => (_$data['reason'] as String?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
     final l$status = status;
     result$data['status'] = toJson$Enum$PackageOrderStatus(l$status);
+    if (_$data.containsKey('reason')) {
+      final l$reason = reason;
+      result$data['reason'] = l$reason;
+    }
     return result$data;
   }
 
@@ -13405,6 +13679,14 @@ class Input$ChangeOrderStatusRequestInput {
     if (l$status != lOther$status) {
       return false;
     }
+    final l$reason = reason;
+    final lOther$reason = other.reason;
+    if (_$data.containsKey('reason') != other._$data.containsKey('reason')) {
+      return false;
+    }
+    if (l$reason != lOther$reason) {
+      return false;
+    }
     return true;
   }
 
@@ -13412,7 +13694,12 @@ class Input$ChangeOrderStatusRequestInput {
   int get hashCode {
     final l$id = id;
     final l$status = status;
-    return Object.hashAll([l$id, l$status]);
+    final l$reason = reason;
+    return Object.hashAll([
+      l$id,
+      l$status,
+      _$data.containsKey('reason') ? l$reason : const {},
+    ]);
   }
 }
 
@@ -13425,7 +13712,7 @@ abstract class CopyWith$Input$ChangeOrderStatusRequestInput<TRes> {
   factory CopyWith$Input$ChangeOrderStatusRequestInput.stub(TRes res) =
       _CopyWithStubImpl$Input$ChangeOrderStatusRequestInput;
 
-  TRes call({String? id, Enum$PackageOrderStatus? status});
+  TRes call({String? id, Enum$PackageOrderStatus? status, String? reason});
 }
 
 class _CopyWithImpl$Input$ChangeOrderStatusRequestInput<TRes>
@@ -13438,12 +13725,17 @@ class _CopyWithImpl$Input$ChangeOrderStatusRequestInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? id = _undefined, Object? status = _undefined}) => _then(
+  TRes call({
+    Object? id = _undefined,
+    Object? status = _undefined,
+    Object? reason = _undefined,
+  }) => _then(
     Input$ChangeOrderStatusRequestInput._({
       ..._instance._$data,
       if (id != _undefined && id != null) 'id': (id as String),
       if (status != _undefined && status != null)
         'status': (status as Enum$PackageOrderStatus),
+      if (reason != _undefined) 'reason': (reason as String?),
     }),
   );
 }
@@ -13454,7 +13746,7 @@ class _CopyWithStubImpl$Input$ChangeOrderStatusRequestInput<TRes>
 
   TRes _res;
 
-  call({String? id, Enum$PackageOrderStatus? status}) => _res;
+  call({String? id, Enum$PackageOrderStatus? status, String? reason}) => _res;
 }
 
 class Input$ChangeStatusRequestInput {
@@ -21272,6 +21564,315 @@ class _CopyWithStubImpl$Input$CreateCouponRequestInput<TRes>
   }) => _res;
 }
 
+class Input$CreateCustomArtistPackageRequestInput {
+  factory Input$CreateCustomArtistPackageRequestInput({
+    required String packageName,
+    required String artistId,
+    required String conversationId,
+    required String clientId,
+    required double amount,
+    required int estimateDeliveryDays,
+    String? description,
+    required int maxRevision,
+    required List<Input$MetadataInput> serviceDetails,
+  }) => Input$CreateCustomArtistPackageRequestInput._({
+    r'packageName': packageName,
+    r'artistId': artistId,
+    r'conversationId': conversationId,
+    r'clientId': clientId,
+    r'amount': amount,
+    r'estimateDeliveryDays': estimateDeliveryDays,
+    if (description != null) r'description': description,
+    r'maxRevision': maxRevision,
+    r'serviceDetails': serviceDetails,
+  });
+
+  Input$CreateCustomArtistPackageRequestInput._(this._$data);
+
+  factory Input$CreateCustomArtistPackageRequestInput.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    final l$packageName = data['packageName'];
+    result$data['packageName'] = (l$packageName as String);
+    final l$artistId = data['artistId'];
+    result$data['artistId'] = (l$artistId as String);
+    final l$conversationId = data['conversationId'];
+    result$data['conversationId'] = (l$conversationId as String);
+    final l$clientId = data['clientId'];
+    result$data['clientId'] = (l$clientId as String);
+    final l$amount = data['amount'];
+    result$data['amount'] = (l$amount as num).toDouble();
+    final l$estimateDeliveryDays = data['estimateDeliveryDays'];
+    result$data['estimateDeliveryDays'] = (l$estimateDeliveryDays as int);
+    if (data.containsKey('description')) {
+      final l$description = data['description'];
+      result$data['description'] = (l$description as String?);
+    }
+    final l$maxRevision = data['maxRevision'];
+    result$data['maxRevision'] = (l$maxRevision as int);
+    final l$serviceDetails = data['serviceDetails'];
+    result$data['serviceDetails'] = (l$serviceDetails as List<dynamic>)
+        .map((e) => Input$MetadataInput.fromJson((e as Map<String, dynamic>)))
+        .toList();
+    return Input$CreateCustomArtistPackageRequestInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get packageName => (_$data['packageName'] as String);
+
+  String get artistId => (_$data['artistId'] as String);
+
+  String get conversationId => (_$data['conversationId'] as String);
+
+  String get clientId => (_$data['clientId'] as String);
+
+  double get amount => (_$data['amount'] as double);
+
+  int get estimateDeliveryDays => (_$data['estimateDeliveryDays'] as int);
+
+  String? get description => (_$data['description'] as String?);
+
+  int get maxRevision => (_$data['maxRevision'] as int);
+
+  List<Input$MetadataInput> get serviceDetails =>
+      (_$data['serviceDetails'] as List<Input$MetadataInput>);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$packageName = packageName;
+    result$data['packageName'] = l$packageName;
+    final l$artistId = artistId;
+    result$data['artistId'] = l$artistId;
+    final l$conversationId = conversationId;
+    result$data['conversationId'] = l$conversationId;
+    final l$clientId = clientId;
+    result$data['clientId'] = l$clientId;
+    final l$amount = amount;
+    result$data['amount'] = l$amount;
+    final l$estimateDeliveryDays = estimateDeliveryDays;
+    result$data['estimateDeliveryDays'] = l$estimateDeliveryDays;
+    if (_$data.containsKey('description')) {
+      final l$description = description;
+      result$data['description'] = l$description;
+    }
+    final l$maxRevision = maxRevision;
+    result$data['maxRevision'] = l$maxRevision;
+    final l$serviceDetails = serviceDetails;
+    result$data['serviceDetails'] = l$serviceDetails
+        .map((e) => e.toJson())
+        .toList();
+    return result$data;
+  }
+
+  CopyWith$Input$CreateCustomArtistPackageRequestInput<
+    Input$CreateCustomArtistPackageRequestInput
+  >
+  get copyWith =>
+      CopyWith$Input$CreateCustomArtistPackageRequestInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$CreateCustomArtistPackageRequestInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$packageName = packageName;
+    final lOther$packageName = other.packageName;
+    if (l$packageName != lOther$packageName) {
+      return false;
+    }
+    final l$artistId = artistId;
+    final lOther$artistId = other.artistId;
+    if (l$artistId != lOther$artistId) {
+      return false;
+    }
+    final l$conversationId = conversationId;
+    final lOther$conversationId = other.conversationId;
+    if (l$conversationId != lOther$conversationId) {
+      return false;
+    }
+    final l$clientId = clientId;
+    final lOther$clientId = other.clientId;
+    if (l$clientId != lOther$clientId) {
+      return false;
+    }
+    final l$amount = amount;
+    final lOther$amount = other.amount;
+    if (l$amount != lOther$amount) {
+      return false;
+    }
+    final l$estimateDeliveryDays = estimateDeliveryDays;
+    final lOther$estimateDeliveryDays = other.estimateDeliveryDays;
+    if (l$estimateDeliveryDays != lOther$estimateDeliveryDays) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (_$data.containsKey('description') !=
+        other._$data.containsKey('description')) {
+      return false;
+    }
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$maxRevision = maxRevision;
+    final lOther$maxRevision = other.maxRevision;
+    if (l$maxRevision != lOther$maxRevision) {
+      return false;
+    }
+    final l$serviceDetails = serviceDetails;
+    final lOther$serviceDetails = other.serviceDetails;
+    if (l$serviceDetails.length != lOther$serviceDetails.length) {
+      return false;
+    }
+    for (int i = 0; i < l$serviceDetails.length; i++) {
+      final l$serviceDetails$entry = l$serviceDetails[i];
+      final lOther$serviceDetails$entry = lOther$serviceDetails[i];
+      if (l$serviceDetails$entry != lOther$serviceDetails$entry) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$packageName = packageName;
+    final l$artistId = artistId;
+    final l$conversationId = conversationId;
+    final l$clientId = clientId;
+    final l$amount = amount;
+    final l$estimateDeliveryDays = estimateDeliveryDays;
+    final l$description = description;
+    final l$maxRevision = maxRevision;
+    final l$serviceDetails = serviceDetails;
+    return Object.hashAll([
+      l$packageName,
+      l$artistId,
+      l$conversationId,
+      l$clientId,
+      l$amount,
+      l$estimateDeliveryDays,
+      _$data.containsKey('description') ? l$description : const {},
+      l$maxRevision,
+      Object.hashAll(l$serviceDetails.map((v) => v)),
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$CreateCustomArtistPackageRequestInput<TRes> {
+  factory CopyWith$Input$CreateCustomArtistPackageRequestInput(
+    Input$CreateCustomArtistPackageRequestInput instance,
+    TRes Function(Input$CreateCustomArtistPackageRequestInput) then,
+  ) = _CopyWithImpl$Input$CreateCustomArtistPackageRequestInput;
+
+  factory CopyWith$Input$CreateCustomArtistPackageRequestInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$CreateCustomArtistPackageRequestInput;
+
+  TRes call({
+    String? packageName,
+    String? artistId,
+    String? conversationId,
+    String? clientId,
+    double? amount,
+    int? estimateDeliveryDays,
+    String? description,
+    int? maxRevision,
+    List<Input$MetadataInput>? serviceDetails,
+  });
+  TRes serviceDetails(
+    Iterable<Input$MetadataInput> Function(
+      Iterable<CopyWith$Input$MetadataInput<Input$MetadataInput>>,
+    )
+    _fn,
+  );
+}
+
+class _CopyWithImpl$Input$CreateCustomArtistPackageRequestInput<TRes>
+    implements CopyWith$Input$CreateCustomArtistPackageRequestInput<TRes> {
+  _CopyWithImpl$Input$CreateCustomArtistPackageRequestInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$CreateCustomArtistPackageRequestInput _instance;
+
+  final TRes Function(Input$CreateCustomArtistPackageRequestInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? packageName = _undefined,
+    Object? artistId = _undefined,
+    Object? conversationId = _undefined,
+    Object? clientId = _undefined,
+    Object? amount = _undefined,
+    Object? estimateDeliveryDays = _undefined,
+    Object? description = _undefined,
+    Object? maxRevision = _undefined,
+    Object? serviceDetails = _undefined,
+  }) => _then(
+    Input$CreateCustomArtistPackageRequestInput._({
+      ..._instance._$data,
+      if (packageName != _undefined && packageName != null)
+        'packageName': (packageName as String),
+      if (artistId != _undefined && artistId != null)
+        'artistId': (artistId as String),
+      if (conversationId != _undefined && conversationId != null)
+        'conversationId': (conversationId as String),
+      if (clientId != _undefined && clientId != null)
+        'clientId': (clientId as String),
+      if (amount != _undefined && amount != null) 'amount': (amount as double),
+      if (estimateDeliveryDays != _undefined && estimateDeliveryDays != null)
+        'estimateDeliveryDays': (estimateDeliveryDays as int),
+      if (description != _undefined) 'description': (description as String?),
+      if (maxRevision != _undefined && maxRevision != null)
+        'maxRevision': (maxRevision as int),
+      if (serviceDetails != _undefined && serviceDetails != null)
+        'serviceDetails': (serviceDetails as List<Input$MetadataInput>),
+    }),
+  );
+
+  TRes serviceDetails(
+    Iterable<Input$MetadataInput> Function(
+      Iterable<CopyWith$Input$MetadataInput<Input$MetadataInput>>,
+    )
+    _fn,
+  ) => call(
+    serviceDetails: _fn(
+      _instance.serviceDetails.map(
+        (e) => CopyWith$Input$MetadataInput(e, (i) => i),
+      ),
+    ).toList(),
+  );
+}
+
+class _CopyWithStubImpl$Input$CreateCustomArtistPackageRequestInput<TRes>
+    implements CopyWith$Input$CreateCustomArtistPackageRequestInput<TRes> {
+  _CopyWithStubImpl$Input$CreateCustomArtistPackageRequestInput(this._res);
+
+  TRes _res;
+
+  call({
+    String? packageName,
+    String? artistId,
+    String? conversationId,
+    String? clientId,
+    double? amount,
+    int? estimateDeliveryDays,
+    String? description,
+    int? maxRevision,
+    List<Input$MetadataInput>? serviceDetails,
+  }) => _res;
+
+  serviceDetails(_fn) => _res;
+}
+
 class Input$CreateDirectRequestInput {
   factory Input$CreateDirectRequestInput({
     String? publicRequestId,
@@ -21452,20 +22053,19 @@ class _CopyWithStubImpl$Input$CreateDirectRequestInput<TRes>
 class Input$CreateEntitlementRequestInput {
   factory Input$CreateEntitlementRequestInput({
     required dynamic defaultValues,
+    required dynamic subscriptionOverrides,
     required String name,
     required String code,
     required String description,
     required Enum$EntitlementValueType valueType,
-    required List<Input$CreateEntitlementSubscriptionOverrideRequestInput>
-    subscriptionOverrides,
     required bool isActive,
   }) => Input$CreateEntitlementRequestInput._({
     r'defaultValues': defaultValues,
+    r'subscriptionOverrides': subscriptionOverrides,
     r'name': name,
     r'code': code,
     r'description': description,
     r'valueType': valueType,
-    r'subscriptionOverrides': subscriptionOverrides,
     r'isActive': isActive,
   });
 
@@ -21477,6 +22077,8 @@ class Input$CreateEntitlementRequestInput {
     final result$data = <String, dynamic>{};
     final l$defaultValues = data['defaultValues'];
     result$data['defaultValues'] = (l$defaultValues as dynamic);
+    final l$subscriptionOverrides = data['subscriptionOverrides'];
+    result$data['subscriptionOverrides'] = (l$subscriptionOverrides as dynamic);
     final l$name = data['name'];
     result$data['name'] = (l$name as String);
     final l$code = data['code'];
@@ -21487,16 +22089,6 @@ class Input$CreateEntitlementRequestInput {
     result$data['valueType'] = fromJson$Enum$EntitlementValueType(
       (l$valueType as String),
     );
-    final l$subscriptionOverrides = data['subscriptionOverrides'];
-    result$data['subscriptionOverrides'] =
-        (l$subscriptionOverrides as List<dynamic>)
-            .map(
-              (e) =>
-                  Input$CreateEntitlementSubscriptionOverrideRequestInput.fromJson(
-                    (e as Map<String, dynamic>),
-                  ),
-            )
-            .toList();
     final l$isActive = data['isActive'];
     result$data['isActive'] = (l$isActive as bool);
     return Input$CreateEntitlementRequestInput._(result$data);
@@ -21505,6 +22097,9 @@ class Input$CreateEntitlementRequestInput {
   Map<String, dynamic> _$data;
 
   dynamic get defaultValues => (_$data['defaultValues'] as dynamic);
+
+  dynamic get subscriptionOverrides =>
+      (_$data['subscriptionOverrides'] as dynamic);
 
   String get name => (_$data['name'] as String);
 
@@ -21515,17 +22110,14 @@ class Input$CreateEntitlementRequestInput {
   Enum$EntitlementValueType get valueType =>
       (_$data['valueType'] as Enum$EntitlementValueType);
 
-  List<Input$CreateEntitlementSubscriptionOverrideRequestInput>
-  get subscriptionOverrides =>
-      (_$data['subscriptionOverrides']
-          as List<Input$CreateEntitlementSubscriptionOverrideRequestInput>);
-
   bool get isActive => (_$data['isActive'] as bool);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$defaultValues = defaultValues;
     result$data['defaultValues'] = l$defaultValues;
+    final l$subscriptionOverrides = subscriptionOverrides;
+    result$data['subscriptionOverrides'] = l$subscriptionOverrides;
     final l$name = name;
     result$data['name'] = l$name;
     final l$code = code;
@@ -21534,10 +22126,6 @@ class Input$CreateEntitlementRequestInput {
     result$data['description'] = l$description;
     final l$valueType = valueType;
     result$data['valueType'] = toJson$Enum$EntitlementValueType(l$valueType);
-    final l$subscriptionOverrides = subscriptionOverrides;
-    result$data['subscriptionOverrides'] = l$subscriptionOverrides
-        .map((e) => e.toJson())
-        .toList();
     final l$isActive = isActive;
     result$data['isActive'] = l$isActive;
     return result$data;
@@ -21562,6 +22150,11 @@ class Input$CreateEntitlementRequestInput {
     if (l$defaultValues != lOther$defaultValues) {
       return false;
     }
+    final l$subscriptionOverrides = subscriptionOverrides;
+    final lOther$subscriptionOverrides = other.subscriptionOverrides;
+    if (l$subscriptionOverrides != lOther$subscriptionOverrides) {
+      return false;
+    }
     final l$name = name;
     final lOther$name = other.name;
     if (l$name != lOther$name) {
@@ -21582,19 +22175,6 @@ class Input$CreateEntitlementRequestInput {
     if (l$valueType != lOther$valueType) {
       return false;
     }
-    final l$subscriptionOverrides = subscriptionOverrides;
-    final lOther$subscriptionOverrides = other.subscriptionOverrides;
-    if (l$subscriptionOverrides.length != lOther$subscriptionOverrides.length) {
-      return false;
-    }
-    for (int i = 0; i < l$subscriptionOverrides.length; i++) {
-      final l$subscriptionOverrides$entry = l$subscriptionOverrides[i];
-      final lOther$subscriptionOverrides$entry =
-          lOther$subscriptionOverrides[i];
-      if (l$subscriptionOverrides$entry != lOther$subscriptionOverrides$entry) {
-        return false;
-      }
-    }
     final l$isActive = isActive;
     final lOther$isActive = other.isActive;
     if (l$isActive != lOther$isActive) {
@@ -21606,19 +22186,19 @@ class Input$CreateEntitlementRequestInput {
   @override
   int get hashCode {
     final l$defaultValues = defaultValues;
+    final l$subscriptionOverrides = subscriptionOverrides;
     final l$name = name;
     final l$code = code;
     final l$description = description;
     final l$valueType = valueType;
-    final l$subscriptionOverrides = subscriptionOverrides;
     final l$isActive = isActive;
     return Object.hashAll([
       l$defaultValues,
+      l$subscriptionOverrides,
       l$name,
       l$code,
       l$description,
       l$valueType,
-      Object.hashAll(l$subscriptionOverrides.map((v) => v)),
       l$isActive,
     ]);
   }
@@ -21635,24 +22215,13 @@ abstract class CopyWith$Input$CreateEntitlementRequestInput<TRes> {
 
   TRes call({
     dynamic? defaultValues,
+    dynamic? subscriptionOverrides,
     String? name,
     String? code,
     String? description,
     Enum$EntitlementValueType? valueType,
-    List<Input$CreateEntitlementSubscriptionOverrideRequestInput>?
-    subscriptionOverrides,
     bool? isActive,
   });
-  TRes subscriptionOverrides(
-    Iterable<Input$CreateEntitlementSubscriptionOverrideRequestInput> Function(
-      Iterable<
-        CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput<
-          Input$CreateEntitlementSubscriptionOverrideRequestInput
-        >
-      >,
-    )
-    _fn,
-  );
 }
 
 class _CopyWithImpl$Input$CreateEntitlementRequestInput<TRes>
@@ -21667,52 +22236,28 @@ class _CopyWithImpl$Input$CreateEntitlementRequestInput<TRes>
 
   TRes call({
     Object? defaultValues = _undefined,
+    Object? subscriptionOverrides = _undefined,
     Object? name = _undefined,
     Object? code = _undefined,
     Object? description = _undefined,
     Object? valueType = _undefined,
-    Object? subscriptionOverrides = _undefined,
     Object? isActive = _undefined,
   }) => _then(
     Input$CreateEntitlementRequestInput._({
       ..._instance._$data,
       if (defaultValues != _undefined && defaultValues != null)
         'defaultValues': (defaultValues as dynamic),
+      if (subscriptionOverrides != _undefined && subscriptionOverrides != null)
+        'subscriptionOverrides': (subscriptionOverrides as dynamic),
       if (name != _undefined && name != null) 'name': (name as String),
       if (code != _undefined && code != null) 'code': (code as String),
       if (description != _undefined && description != null)
         'description': (description as String),
       if (valueType != _undefined && valueType != null)
         'valueType': (valueType as Enum$EntitlementValueType),
-      if (subscriptionOverrides != _undefined && subscriptionOverrides != null)
-        'subscriptionOverrides':
-            (subscriptionOverrides
-                as List<
-                  Input$CreateEntitlementSubscriptionOverrideRequestInput
-                >),
       if (isActive != _undefined && isActive != null)
         'isActive': (isActive as bool),
     }),
-  );
-
-  TRes subscriptionOverrides(
-    Iterable<Input$CreateEntitlementSubscriptionOverrideRequestInput> Function(
-      Iterable<
-        CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput<
-          Input$CreateEntitlementSubscriptionOverrideRequestInput
-        >
-      >,
-    )
-    _fn,
-  ) => call(
-    subscriptionOverrides: _fn(
-      _instance.subscriptionOverrides.map(
-        (e) => CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput(
-          e,
-          (i) => i,
-        ),
-      ),
-    ).toList(),
   );
 }
 
@@ -21724,135 +22269,13 @@ class _CopyWithStubImpl$Input$CreateEntitlementRequestInput<TRes>
 
   call({
     dynamic? defaultValues,
+    dynamic? subscriptionOverrides,
     String? name,
     String? code,
     String? description,
     Enum$EntitlementValueType? valueType,
-    List<Input$CreateEntitlementSubscriptionOverrideRequestInput>?
-    subscriptionOverrides,
     bool? isActive,
   }) => _res;
-
-  subscriptionOverrides(_fn) => _res;
-}
-
-class Input$CreateEntitlementSubscriptionOverrideRequestInput {
-  factory Input$CreateEntitlementSubscriptionOverrideRequestInput({
-    required String subscriptionCode,
-  }) => Input$CreateEntitlementSubscriptionOverrideRequestInput._({
-    r'subscriptionCode': subscriptionCode,
-  });
-
-  Input$CreateEntitlementSubscriptionOverrideRequestInput._(this._$data);
-
-  factory Input$CreateEntitlementSubscriptionOverrideRequestInput.fromJson(
-    Map<String, dynamic> data,
-  ) {
-    final result$data = <String, dynamic>{};
-    final l$subscriptionCode = data['subscriptionCode'];
-    result$data['subscriptionCode'] = (l$subscriptionCode as String);
-    return Input$CreateEntitlementSubscriptionOverrideRequestInput._(
-      result$data,
-    );
-  }
-
-  Map<String, dynamic> _$data;
-
-  String get subscriptionCode => (_$data['subscriptionCode'] as String);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    final l$subscriptionCode = subscriptionCode;
-    result$data['subscriptionCode'] = l$subscriptionCode;
-    return result$data;
-  }
-
-  CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput<
-    Input$CreateEntitlementSubscriptionOverrideRequestInput
-  >
-  get copyWith =>
-      CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput(
-        this,
-        (i) => i,
-      );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Input$CreateEntitlementSubscriptionOverrideRequestInput ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$subscriptionCode = subscriptionCode;
-    final lOther$subscriptionCode = other.subscriptionCode;
-    if (l$subscriptionCode != lOther$subscriptionCode) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$subscriptionCode = subscriptionCode;
-    return Object.hashAll([l$subscriptionCode]);
-  }
-}
-
-abstract class CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput<
-  TRes
-> {
-  factory CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput(
-    Input$CreateEntitlementSubscriptionOverrideRequestInput instance,
-    TRes Function(Input$CreateEntitlementSubscriptionOverrideRequestInput) then,
-  ) = _CopyWithImpl$Input$CreateEntitlementSubscriptionOverrideRequestInput;
-
-  factory CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput.stub(
-    TRes res,
-  ) = _CopyWithStubImpl$Input$CreateEntitlementSubscriptionOverrideRequestInput;
-
-  TRes call({String? subscriptionCode});
-}
-
-class _CopyWithImpl$Input$CreateEntitlementSubscriptionOverrideRequestInput<
-  TRes
->
-    implements
-        CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput<TRes> {
-  _CopyWithImpl$Input$CreateEntitlementSubscriptionOverrideRequestInput(
-    this._instance,
-    this._then,
-  );
-
-  final Input$CreateEntitlementSubscriptionOverrideRequestInput _instance;
-
-  final TRes Function(Input$CreateEntitlementSubscriptionOverrideRequestInput)
-  _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? subscriptionCode = _undefined}) => _then(
-    Input$CreateEntitlementSubscriptionOverrideRequestInput._({
-      ..._instance._$data,
-      if (subscriptionCode != _undefined && subscriptionCode != null)
-        'subscriptionCode': (subscriptionCode as String),
-    }),
-  );
-}
-
-class _CopyWithStubImpl$Input$CreateEntitlementSubscriptionOverrideRequestInput<
-  TRes
->
-    implements
-        CopyWith$Input$CreateEntitlementSubscriptionOverrideRequestInput<TRes> {
-  _CopyWithStubImpl$Input$CreateEntitlementSubscriptionOverrideRequestInput(
-    this._res,
-  );
-
-  TRes _res;
-
-  call({String? subscriptionCode}) => _res;
 }
 
 class Input$CreateEscrowCommissionPolicyRequestInput {
@@ -24599,6 +25022,7 @@ class Input$CreateTrackRequestInput {
   factory Input$CreateTrackRequestInput({
     required String name,
     String? description,
+    String? createdByArtistId,
     required List<String> mainArtistIds,
     required List<String> featuredArtistIds,
     required List<String> categoryIds,
@@ -24612,9 +25036,11 @@ class Input$CreateTrackRequestInput {
     required Enum$ReleaseStatus releaseStatus,
     required List<Input$LegalDocumentInput> legalDocuments,
     required bool isOriginal,
+    String? createdByUserId,
   }) => Input$CreateTrackRequestInput._({
     r'name': name,
     if (description != null) r'description': description,
+    if (createdByArtistId != null) r'createdByArtistId': createdByArtistId,
     r'mainArtistIds': mainArtistIds,
     r'featuredArtistIds': featuredArtistIds,
     r'categoryIds': categoryIds,
@@ -24628,6 +25054,7 @@ class Input$CreateTrackRequestInput {
     r'releaseStatus': releaseStatus,
     r'legalDocuments': legalDocuments,
     r'isOriginal': isOriginal,
+    if (createdByUserId != null) r'createdByUserId': createdByUserId,
   });
 
   Input$CreateTrackRequestInput._(this._$data);
@@ -24639,6 +25066,10 @@ class Input$CreateTrackRequestInput {
     if (data.containsKey('description')) {
       final l$description = data['description'];
       result$data['description'] = (l$description as String?);
+    }
+    if (data.containsKey('createdByArtistId')) {
+      final l$createdByArtistId = data['createdByArtistId'];
+      result$data['createdByArtistId'] = (l$createdByArtistId as String?);
     }
     final l$mainArtistIds = data['mainArtistIds'];
     result$data['mainArtistIds'] = (l$mainArtistIds as List<dynamic>)
@@ -24688,6 +25119,10 @@ class Input$CreateTrackRequestInput {
         .toList();
     final l$isOriginal = data['isOriginal'];
     result$data['isOriginal'] = (l$isOriginal as bool);
+    if (data.containsKey('createdByUserId')) {
+      final l$createdByUserId = data['createdByUserId'];
+      result$data['createdByUserId'] = (l$createdByUserId as String?);
+    }
     return Input$CreateTrackRequestInput._(result$data);
   }
 
@@ -24696,6 +25131,8 @@ class Input$CreateTrackRequestInput {
   String get name => (_$data['name'] as String);
 
   String? get description => (_$data['description'] as String?);
+
+  String? get createdByArtistId => (_$data['createdByArtistId'] as String?);
 
   List<String> get mainArtistIds => (_$data['mainArtistIds'] as List<String>);
 
@@ -24726,6 +25163,8 @@ class Input$CreateTrackRequestInput {
 
   bool get isOriginal => (_$data['isOriginal'] as bool);
 
+  String? get createdByUserId => (_$data['createdByUserId'] as String?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$name = name;
@@ -24733,6 +25172,10 @@ class Input$CreateTrackRequestInput {
     if (_$data.containsKey('description')) {
       final l$description = description;
       result$data['description'] = l$description;
+    }
+    if (_$data.containsKey('createdByArtistId')) {
+      final l$createdByArtistId = createdByArtistId;
+      result$data['createdByArtistId'] = l$createdByArtistId;
     }
     final l$mainArtistIds = mainArtistIds;
     result$data['mainArtistIds'] = l$mainArtistIds.map((e) => e).toList();
@@ -24770,6 +25213,10 @@ class Input$CreateTrackRequestInput {
         .toList();
     final l$isOriginal = isOriginal;
     result$data['isOriginal'] = l$isOriginal;
+    if (_$data.containsKey('createdByUserId')) {
+      final l$createdByUserId = createdByUserId;
+      result$data['createdByUserId'] = l$createdByUserId;
+    }
     return result$data;
   }
 
@@ -24797,6 +25244,15 @@ class Input$CreateTrackRequestInput {
       return false;
     }
     if (l$description != lOther$description) {
+      return false;
+    }
+    final l$createdByArtistId = createdByArtistId;
+    final lOther$createdByArtistId = other.createdByArtistId;
+    if (_$data.containsKey('createdByArtistId') !=
+        other._$data.containsKey('createdByArtistId')) {
+      return false;
+    }
+    if (l$createdByArtistId != lOther$createdByArtistId) {
       return false;
     }
     final l$mainArtistIds = mainArtistIds;
@@ -24910,6 +25366,15 @@ class Input$CreateTrackRequestInput {
     if (l$isOriginal != lOther$isOriginal) {
       return false;
     }
+    final l$createdByUserId = createdByUserId;
+    final lOther$createdByUserId = other.createdByUserId;
+    if (_$data.containsKey('createdByUserId') !=
+        other._$data.containsKey('createdByUserId')) {
+      return false;
+    }
+    if (l$createdByUserId != lOther$createdByUserId) {
+      return false;
+    }
     return true;
   }
 
@@ -24917,6 +25382,7 @@ class Input$CreateTrackRequestInput {
   int get hashCode {
     final l$name = name;
     final l$description = description;
+    final l$createdByArtistId = createdByArtistId;
     final l$mainArtistIds = mainArtistIds;
     final l$featuredArtistIds = featuredArtistIds;
     final l$categoryIds = categoryIds;
@@ -24930,9 +25396,11 @@ class Input$CreateTrackRequestInput {
     final l$releaseStatus = releaseStatus;
     final l$legalDocuments = legalDocuments;
     final l$isOriginal = isOriginal;
+    final l$createdByUserId = createdByUserId;
     return Object.hashAll([
       l$name,
       _$data.containsKey('description') ? l$description : const {},
+      _$data.containsKey('createdByArtistId') ? l$createdByArtistId : const {},
       Object.hashAll(l$mainArtistIds.map((v) => v)),
       Object.hashAll(l$featuredArtistIds.map((v) => v)),
       Object.hashAll(l$categoryIds.map((v) => v)),
@@ -24946,6 +25414,7 @@ class Input$CreateTrackRequestInput {
       l$releaseStatus,
       Object.hashAll(l$legalDocuments.map((v) => v)),
       l$isOriginal,
+      _$data.containsKey('createdByUserId') ? l$createdByUserId : const {},
     ]);
   }
 }
@@ -24962,6 +25431,7 @@ abstract class CopyWith$Input$CreateTrackRequestInput<TRes> {
   TRes call({
     String? name,
     String? description,
+    String? createdByArtistId,
     List<String>? mainArtistIds,
     List<String>? featuredArtistIds,
     List<String>? categoryIds,
@@ -24975,6 +25445,7 @@ abstract class CopyWith$Input$CreateTrackRequestInput<TRes> {
     Enum$ReleaseStatus? releaseStatus,
     List<Input$LegalDocumentInput>? legalDocuments,
     bool? isOriginal,
+    String? createdByUserId,
   });
   TRes legalDocuments(
     Iterable<Input$LegalDocumentInput> Function(
@@ -24997,6 +25468,7 @@ class _CopyWithImpl$Input$CreateTrackRequestInput<TRes>
   TRes call({
     Object? name = _undefined,
     Object? description = _undefined,
+    Object? createdByArtistId = _undefined,
     Object? mainArtistIds = _undefined,
     Object? featuredArtistIds = _undefined,
     Object? categoryIds = _undefined,
@@ -25010,11 +25482,14 @@ class _CopyWithImpl$Input$CreateTrackRequestInput<TRes>
     Object? releaseStatus = _undefined,
     Object? legalDocuments = _undefined,
     Object? isOriginal = _undefined,
+    Object? createdByUserId = _undefined,
   }) => _then(
     Input$CreateTrackRequestInput._({
       ..._instance._$data,
       if (name != _undefined && name != null) 'name': (name as String),
       if (description != _undefined) 'description': (description as String?),
+      if (createdByArtistId != _undefined)
+        'createdByArtistId': (createdByArtistId as String?),
       if (mainArtistIds != _undefined && mainArtistIds != null)
         'mainArtistIds': (mainArtistIds as List<String>),
       if (featuredArtistIds != _undefined && featuredArtistIds != null)
@@ -25037,6 +25512,8 @@ class _CopyWithImpl$Input$CreateTrackRequestInput<TRes>
         'legalDocuments': (legalDocuments as List<Input$LegalDocumentInput>),
       if (isOriginal != _undefined && isOriginal != null)
         'isOriginal': (isOriginal as bool),
+      if (createdByUserId != _undefined)
+        'createdByUserId': (createdByUserId as String?),
     }),
   );
 
@@ -25063,6 +25540,7 @@ class _CopyWithStubImpl$Input$CreateTrackRequestInput<TRes>
   call({
     String? name,
     String? description,
+    String? createdByArtistId,
     List<String>? mainArtistIds,
     List<String>? featuredArtistIds,
     List<String>? categoryIds,
@@ -25076,6 +25554,7 @@ class _CopyWithStubImpl$Input$CreateTrackRequestInput<TRes>
     Enum$ReleaseStatus? releaseStatus,
     List<Input$LegalDocumentInput>? legalDocuments,
     bool? isOriginal,
+    String? createdByUserId,
   }) => _res;
 
   legalDocuments(_fn) => _res;
@@ -25625,6 +26104,495 @@ class _CopyWithStubImpl$Input$CurrencyTypeOperationFilterInput<TRes>
     List<Enum$CurrencyType>? $in,
     List<Enum$CurrencyType>? nin,
   }) => _res;
+}
+
+class Input$CustomArtistPackageInfoFilterInput {
+  factory Input$CustomArtistPackageInfoFilterInput({
+    List<Input$CustomArtistPackageInfoFilterInput>? and,
+    List<Input$CustomArtistPackageInfoFilterInput>? or,
+    Input$StringOperationFilterInput? conversationId,
+    Input$StringOperationFilterInput? clientId,
+  }) => Input$CustomArtistPackageInfoFilterInput._({
+    if (and != null) r'and': and,
+    if (or != null) r'or': or,
+    if (conversationId != null) r'conversationId': conversationId,
+    if (clientId != null) r'clientId': clientId,
+  });
+
+  Input$CustomArtistPackageInfoFilterInput._(this._$data);
+
+  factory Input$CustomArtistPackageInfoFilterInput.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('and')) {
+      final l$and = data['and'];
+      result$data['and'] = (l$and as List<dynamic>?)
+          ?.map(
+            (e) => Input$CustomArtistPackageInfoFilterInput.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList();
+    }
+    if (data.containsKey('or')) {
+      final l$or = data['or'];
+      result$data['or'] = (l$or as List<dynamic>?)
+          ?.map(
+            (e) => Input$CustomArtistPackageInfoFilterInput.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList();
+    }
+    if (data.containsKey('conversationId')) {
+      final l$conversationId = data['conversationId'];
+      result$data['conversationId'] = l$conversationId == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$conversationId as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('clientId')) {
+      final l$clientId = data['clientId'];
+      result$data['clientId'] = l$clientId == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$clientId as Map<String, dynamic>),
+            );
+    }
+    return Input$CustomArtistPackageInfoFilterInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Input$CustomArtistPackageInfoFilterInput>? get and =>
+      (_$data['and'] as List<Input$CustomArtistPackageInfoFilterInput>?);
+
+  List<Input$CustomArtistPackageInfoFilterInput>? get or =>
+      (_$data['or'] as List<Input$CustomArtistPackageInfoFilterInput>?);
+
+  Input$StringOperationFilterInput? get conversationId =>
+      (_$data['conversationId'] as Input$StringOperationFilterInput?);
+
+  Input$StringOperationFilterInput? get clientId =>
+      (_$data['clientId'] as Input$StringOperationFilterInput?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('and')) {
+      final l$and = and;
+      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('or')) {
+      final l$or = or;
+      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('conversationId')) {
+      final l$conversationId = conversationId;
+      result$data['conversationId'] = l$conversationId?.toJson();
+    }
+    if (_$data.containsKey('clientId')) {
+      final l$clientId = clientId;
+      result$data['clientId'] = l$clientId?.toJson();
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$CustomArtistPackageInfoFilterInput<
+    Input$CustomArtistPackageInfoFilterInput
+  >
+  get copyWith =>
+      CopyWith$Input$CustomArtistPackageInfoFilterInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$CustomArtistPackageInfoFilterInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$and = and;
+    final lOther$and = other.and;
+    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
+      return false;
+    }
+    if (l$and != null && lOther$and != null) {
+      if (l$and.length != lOther$and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$and.length; i++) {
+        final l$and$entry = l$and[i];
+        final lOther$and$entry = lOther$and[i];
+        if (l$and$entry != lOther$and$entry) {
+          return false;
+        }
+      }
+    } else if (l$and != lOther$and) {
+      return false;
+    }
+    final l$or = or;
+    final lOther$or = other.or;
+    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
+      return false;
+    }
+    if (l$or != null && lOther$or != null) {
+      if (l$or.length != lOther$or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$or.length; i++) {
+        final l$or$entry = l$or[i];
+        final lOther$or$entry = lOther$or[i];
+        if (l$or$entry != lOther$or$entry) {
+          return false;
+        }
+      }
+    } else if (l$or != lOther$or) {
+      return false;
+    }
+    final l$conversationId = conversationId;
+    final lOther$conversationId = other.conversationId;
+    if (_$data.containsKey('conversationId') !=
+        other._$data.containsKey('conversationId')) {
+      return false;
+    }
+    if (l$conversationId != lOther$conversationId) {
+      return false;
+    }
+    final l$clientId = clientId;
+    final lOther$clientId = other.clientId;
+    if (_$data.containsKey('clientId') !=
+        other._$data.containsKey('clientId')) {
+      return false;
+    }
+    if (l$clientId != lOther$clientId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$and = and;
+    final l$or = or;
+    final l$conversationId = conversationId;
+    final l$clientId = clientId;
+    return Object.hashAll([
+      _$data.containsKey('and')
+          ? l$and == null
+                ? null
+                : Object.hashAll(l$and.map((v) => v))
+          : const {},
+      _$data.containsKey('or')
+          ? l$or == null
+                ? null
+                : Object.hashAll(l$or.map((v) => v))
+          : const {},
+      _$data.containsKey('conversationId') ? l$conversationId : const {},
+      _$data.containsKey('clientId') ? l$clientId : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$CustomArtistPackageInfoFilterInput<TRes> {
+  factory CopyWith$Input$CustomArtistPackageInfoFilterInput(
+    Input$CustomArtistPackageInfoFilterInput instance,
+    TRes Function(Input$CustomArtistPackageInfoFilterInput) then,
+  ) = _CopyWithImpl$Input$CustomArtistPackageInfoFilterInput;
+
+  factory CopyWith$Input$CustomArtistPackageInfoFilterInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$CustomArtistPackageInfoFilterInput;
+
+  TRes call({
+    List<Input$CustomArtistPackageInfoFilterInput>? and,
+    List<Input$CustomArtistPackageInfoFilterInput>? or,
+    Input$StringOperationFilterInput? conversationId,
+    Input$StringOperationFilterInput? clientId,
+  });
+  TRes and(
+    Iterable<Input$CustomArtistPackageInfoFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$CustomArtistPackageInfoFilterInput<
+          Input$CustomArtistPackageInfoFilterInput
+        >
+      >?,
+    )
+    _fn,
+  );
+  TRes or(
+    Iterable<Input$CustomArtistPackageInfoFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$CustomArtistPackageInfoFilterInput<
+          Input$CustomArtistPackageInfoFilterInput
+        >
+      >?,
+    )
+    _fn,
+  );
+  CopyWith$Input$StringOperationFilterInput<TRes> get conversationId;
+  CopyWith$Input$StringOperationFilterInput<TRes> get clientId;
+}
+
+class _CopyWithImpl$Input$CustomArtistPackageInfoFilterInput<TRes>
+    implements CopyWith$Input$CustomArtistPackageInfoFilterInput<TRes> {
+  _CopyWithImpl$Input$CustomArtistPackageInfoFilterInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$CustomArtistPackageInfoFilterInput _instance;
+
+  final TRes Function(Input$CustomArtistPackageInfoFilterInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? and = _undefined,
+    Object? or = _undefined,
+    Object? conversationId = _undefined,
+    Object? clientId = _undefined,
+  }) => _then(
+    Input$CustomArtistPackageInfoFilterInput._({
+      ..._instance._$data,
+      if (and != _undefined)
+        'and': (and as List<Input$CustomArtistPackageInfoFilterInput>?),
+      if (or != _undefined)
+        'or': (or as List<Input$CustomArtistPackageInfoFilterInput>?),
+      if (conversationId != _undefined)
+        'conversationId': (conversationId as Input$StringOperationFilterInput?),
+      if (clientId != _undefined)
+        'clientId': (clientId as Input$StringOperationFilterInput?),
+    }),
+  );
+
+  TRes and(
+    Iterable<Input$CustomArtistPackageInfoFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$CustomArtistPackageInfoFilterInput<
+          Input$CustomArtistPackageInfoFilterInput
+        >
+      >?,
+    )
+    _fn,
+  ) => call(
+    and: _fn(
+      _instance.and?.map(
+        (e) => CopyWith$Input$CustomArtistPackageInfoFilterInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+
+  TRes or(
+    Iterable<Input$CustomArtistPackageInfoFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$CustomArtistPackageInfoFilterInput<
+          Input$CustomArtistPackageInfoFilterInput
+        >
+      >?,
+    )
+    _fn,
+  ) => call(
+    or: _fn(
+      _instance.or?.map(
+        (e) => CopyWith$Input$CustomArtistPackageInfoFilterInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get conversationId {
+    final local$conversationId = _instance.conversationId;
+    return local$conversationId == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$conversationId,
+            (e) => call(conversationId: e),
+          );
+  }
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get clientId {
+    final local$clientId = _instance.clientId;
+    return local$clientId == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$clientId,
+            (e) => call(clientId: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Input$CustomArtistPackageInfoFilterInput<TRes>
+    implements CopyWith$Input$CustomArtistPackageInfoFilterInput<TRes> {
+  _CopyWithStubImpl$Input$CustomArtistPackageInfoFilterInput(this._res);
+
+  TRes _res;
+
+  call({
+    List<Input$CustomArtistPackageInfoFilterInput>? and,
+    List<Input$CustomArtistPackageInfoFilterInput>? or,
+    Input$StringOperationFilterInput? conversationId,
+    Input$StringOperationFilterInput? clientId,
+  }) => _res;
+
+  and(_fn) => _res;
+
+  or(_fn) => _res;
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get conversationId =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get clientId =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+}
+
+class Input$CustomArtistPackageInfoSortInput {
+  factory Input$CustomArtistPackageInfoSortInput({
+    Enum$SortEnumType? conversationId,
+    Enum$SortEnumType? clientId,
+  }) => Input$CustomArtistPackageInfoSortInput._({
+    if (conversationId != null) r'conversationId': conversationId,
+    if (clientId != null) r'clientId': clientId,
+  });
+
+  Input$CustomArtistPackageInfoSortInput._(this._$data);
+
+  factory Input$CustomArtistPackageInfoSortInput.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('conversationId')) {
+      final l$conversationId = data['conversationId'];
+      result$data['conversationId'] = l$conversationId == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$conversationId as String));
+    }
+    if (data.containsKey('clientId')) {
+      final l$clientId = data['clientId'];
+      result$data['clientId'] = l$clientId == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$clientId as String));
+    }
+    return Input$CustomArtistPackageInfoSortInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$SortEnumType? get conversationId =>
+      (_$data['conversationId'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get clientId => (_$data['clientId'] as Enum$SortEnumType?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('conversationId')) {
+      final l$conversationId = conversationId;
+      result$data['conversationId'] = l$conversationId == null
+          ? null
+          : toJson$Enum$SortEnumType(l$conversationId);
+    }
+    if (_$data.containsKey('clientId')) {
+      final l$clientId = clientId;
+      result$data['clientId'] = l$clientId == null
+          ? null
+          : toJson$Enum$SortEnumType(l$clientId);
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$CustomArtistPackageInfoSortInput<
+    Input$CustomArtistPackageInfoSortInput
+  >
+  get copyWith =>
+      CopyWith$Input$CustomArtistPackageInfoSortInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$CustomArtistPackageInfoSortInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$conversationId = conversationId;
+    final lOther$conversationId = other.conversationId;
+    if (_$data.containsKey('conversationId') !=
+        other._$data.containsKey('conversationId')) {
+      return false;
+    }
+    if (l$conversationId != lOther$conversationId) {
+      return false;
+    }
+    final l$clientId = clientId;
+    final lOther$clientId = other.clientId;
+    if (_$data.containsKey('clientId') !=
+        other._$data.containsKey('clientId')) {
+      return false;
+    }
+    if (l$clientId != lOther$clientId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$conversationId = conversationId;
+    final l$clientId = clientId;
+    return Object.hashAll([
+      _$data.containsKey('conversationId') ? l$conversationId : const {},
+      _$data.containsKey('clientId') ? l$clientId : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$CustomArtistPackageInfoSortInput<TRes> {
+  factory CopyWith$Input$CustomArtistPackageInfoSortInput(
+    Input$CustomArtistPackageInfoSortInput instance,
+    TRes Function(Input$CustomArtistPackageInfoSortInput) then,
+  ) = _CopyWithImpl$Input$CustomArtistPackageInfoSortInput;
+
+  factory CopyWith$Input$CustomArtistPackageInfoSortInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$CustomArtistPackageInfoSortInput;
+
+  TRes call({Enum$SortEnumType? conversationId, Enum$SortEnumType? clientId});
+}
+
+class _CopyWithImpl$Input$CustomArtistPackageInfoSortInput<TRes>
+    implements CopyWith$Input$CustomArtistPackageInfoSortInput<TRes> {
+  _CopyWithImpl$Input$CustomArtistPackageInfoSortInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$CustomArtistPackageInfoSortInput _instance;
+
+  final TRes Function(Input$CustomArtistPackageInfoSortInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? conversationId = _undefined,
+    Object? clientId = _undefined,
+  }) => _then(
+    Input$CustomArtistPackageInfoSortInput._({
+      ..._instance._$data,
+      if (conversationId != _undefined)
+        'conversationId': (conversationId as Enum$SortEnumType?),
+      if (clientId != _undefined) 'clientId': (clientId as Enum$SortEnumType?),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Input$CustomArtistPackageInfoSortInput<TRes>
+    implements CopyWith$Input$CustomArtistPackageInfoSortInput<TRes> {
+  _CopyWithStubImpl$Input$CustomArtistPackageInfoSortInput(this._res);
+
+  TRes _res;
+
+  call({Enum$SortEnumType? conversationId, Enum$SortEnumType? clientId}) =>
+      _res;
 }
 
 class Input$DateTimeOperationFilterInput {
@@ -30129,6 +31097,585 @@ class _CopyWithStubImpl$Input$EscrowCommissionPolicySortInput<TRes>
     Enum$SortEnumType? status,
     Enum$SortEnumType? createdAt,
     Enum$SortEnumType? updatedAt,
+  }) => _res;
+}
+
+class Input$FingerprintConfidencePolicyFilterInput {
+  factory Input$FingerprintConfidencePolicyFilterInput({
+    List<Input$FingerprintConfidencePolicyFilterInput>? and,
+    List<Input$FingerprintConfidencePolicyFilterInput>? or,
+    Input$StringOperationFilterInput? id,
+    Input$FloatOperationFilterInput? rejectThreshold,
+    Input$FloatOperationFilterInput? manualReviewThreshold,
+  }) => Input$FingerprintConfidencePolicyFilterInput._({
+    if (and != null) r'and': and,
+    if (or != null) r'or': or,
+    if (id != null) r'id': id,
+    if (rejectThreshold != null) r'rejectThreshold': rejectThreshold,
+    if (manualReviewThreshold != null)
+      r'manualReviewThreshold': manualReviewThreshold,
+  });
+
+  Input$FingerprintConfidencePolicyFilterInput._(this._$data);
+
+  factory Input$FingerprintConfidencePolicyFilterInput.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('and')) {
+      final l$and = data['and'];
+      result$data['and'] = (l$and as List<dynamic>?)
+          ?.map(
+            (e) => Input$FingerprintConfidencePolicyFilterInput.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList();
+    }
+    if (data.containsKey('or')) {
+      final l$or = data['or'];
+      result$data['or'] = (l$or as List<dynamic>?)
+          ?.map(
+            (e) => Input$FingerprintConfidencePolicyFilterInput.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList();
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$id as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('rejectThreshold')) {
+      final l$rejectThreshold = data['rejectThreshold'];
+      result$data['rejectThreshold'] = l$rejectThreshold == null
+          ? null
+          : Input$FloatOperationFilterInput.fromJson(
+              (l$rejectThreshold as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('manualReviewThreshold')) {
+      final l$manualReviewThreshold = data['manualReviewThreshold'];
+      result$data['manualReviewThreshold'] = l$manualReviewThreshold == null
+          ? null
+          : Input$FloatOperationFilterInput.fromJson(
+              (l$manualReviewThreshold as Map<String, dynamic>),
+            );
+    }
+    return Input$FingerprintConfidencePolicyFilterInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Input$FingerprintConfidencePolicyFilterInput>? get and =>
+      (_$data['and'] as List<Input$FingerprintConfidencePolicyFilterInput>?);
+
+  List<Input$FingerprintConfidencePolicyFilterInput>? get or =>
+      (_$data['or'] as List<Input$FingerprintConfidencePolicyFilterInput>?);
+
+  Input$StringOperationFilterInput? get id =>
+      (_$data['id'] as Input$StringOperationFilterInput?);
+
+  Input$FloatOperationFilterInput? get rejectThreshold =>
+      (_$data['rejectThreshold'] as Input$FloatOperationFilterInput?);
+
+  Input$FloatOperationFilterInput? get manualReviewThreshold =>
+      (_$data['manualReviewThreshold'] as Input$FloatOperationFilterInput?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('and')) {
+      final l$and = and;
+      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('or')) {
+      final l$or = or;
+      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('rejectThreshold')) {
+      final l$rejectThreshold = rejectThreshold;
+      result$data['rejectThreshold'] = l$rejectThreshold?.toJson();
+    }
+    if (_$data.containsKey('manualReviewThreshold')) {
+      final l$manualReviewThreshold = manualReviewThreshold;
+      result$data['manualReviewThreshold'] = l$manualReviewThreshold?.toJson();
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$FingerprintConfidencePolicyFilterInput<
+    Input$FingerprintConfidencePolicyFilterInput
+  >
+  get copyWith =>
+      CopyWith$Input$FingerprintConfidencePolicyFilterInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$FingerprintConfidencePolicyFilterInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$and = and;
+    final lOther$and = other.and;
+    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
+      return false;
+    }
+    if (l$and != null && lOther$and != null) {
+      if (l$and.length != lOther$and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$and.length; i++) {
+        final l$and$entry = l$and[i];
+        final lOther$and$entry = lOther$and[i];
+        if (l$and$entry != lOther$and$entry) {
+          return false;
+        }
+      }
+    } else if (l$and != lOther$and) {
+      return false;
+    }
+    final l$or = or;
+    final lOther$or = other.or;
+    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
+      return false;
+    }
+    if (l$or != null && lOther$or != null) {
+      if (l$or.length != lOther$or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$or.length; i++) {
+        final l$or$entry = l$or[i];
+        final lOther$or$entry = lOther$or[i];
+        if (l$or$entry != lOther$or$entry) {
+          return false;
+        }
+      }
+    } else if (l$or != lOther$or) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$rejectThreshold = rejectThreshold;
+    final lOther$rejectThreshold = other.rejectThreshold;
+    if (_$data.containsKey('rejectThreshold') !=
+        other._$data.containsKey('rejectThreshold')) {
+      return false;
+    }
+    if (l$rejectThreshold != lOther$rejectThreshold) {
+      return false;
+    }
+    final l$manualReviewThreshold = manualReviewThreshold;
+    final lOther$manualReviewThreshold = other.manualReviewThreshold;
+    if (_$data.containsKey('manualReviewThreshold') !=
+        other._$data.containsKey('manualReviewThreshold')) {
+      return false;
+    }
+    if (l$manualReviewThreshold != lOther$manualReviewThreshold) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$and = and;
+    final l$or = or;
+    final l$id = id;
+    final l$rejectThreshold = rejectThreshold;
+    final l$manualReviewThreshold = manualReviewThreshold;
+    return Object.hashAll([
+      _$data.containsKey('and')
+          ? l$and == null
+                ? null
+                : Object.hashAll(l$and.map((v) => v))
+          : const {},
+      _$data.containsKey('or')
+          ? l$or == null
+                ? null
+                : Object.hashAll(l$or.map((v) => v))
+          : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('rejectThreshold') ? l$rejectThreshold : const {},
+      _$data.containsKey('manualReviewThreshold')
+          ? l$manualReviewThreshold
+          : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$FingerprintConfidencePolicyFilterInput<TRes> {
+  factory CopyWith$Input$FingerprintConfidencePolicyFilterInput(
+    Input$FingerprintConfidencePolicyFilterInput instance,
+    TRes Function(Input$FingerprintConfidencePolicyFilterInput) then,
+  ) = _CopyWithImpl$Input$FingerprintConfidencePolicyFilterInput;
+
+  factory CopyWith$Input$FingerprintConfidencePolicyFilterInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$FingerprintConfidencePolicyFilterInput;
+
+  TRes call({
+    List<Input$FingerprintConfidencePolicyFilterInput>? and,
+    List<Input$FingerprintConfidencePolicyFilterInput>? or,
+    Input$StringOperationFilterInput? id,
+    Input$FloatOperationFilterInput? rejectThreshold,
+    Input$FloatOperationFilterInput? manualReviewThreshold,
+  });
+  TRes and(
+    Iterable<Input$FingerprintConfidencePolicyFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$FingerprintConfidencePolicyFilterInput<
+          Input$FingerprintConfidencePolicyFilterInput
+        >
+      >?,
+    )
+    _fn,
+  );
+  TRes or(
+    Iterable<Input$FingerprintConfidencePolicyFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$FingerprintConfidencePolicyFilterInput<
+          Input$FingerprintConfidencePolicyFilterInput
+        >
+      >?,
+    )
+    _fn,
+  );
+  CopyWith$Input$StringOperationFilterInput<TRes> get id;
+  CopyWith$Input$FloatOperationFilterInput<TRes> get rejectThreshold;
+  CopyWith$Input$FloatOperationFilterInput<TRes> get manualReviewThreshold;
+}
+
+class _CopyWithImpl$Input$FingerprintConfidencePolicyFilterInput<TRes>
+    implements CopyWith$Input$FingerprintConfidencePolicyFilterInput<TRes> {
+  _CopyWithImpl$Input$FingerprintConfidencePolicyFilterInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$FingerprintConfidencePolicyFilterInput _instance;
+
+  final TRes Function(Input$FingerprintConfidencePolicyFilterInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? and = _undefined,
+    Object? or = _undefined,
+    Object? id = _undefined,
+    Object? rejectThreshold = _undefined,
+    Object? manualReviewThreshold = _undefined,
+  }) => _then(
+    Input$FingerprintConfidencePolicyFilterInput._({
+      ..._instance._$data,
+      if (and != _undefined)
+        'and': (and as List<Input$FingerprintConfidencePolicyFilterInput>?),
+      if (or != _undefined)
+        'or': (or as List<Input$FingerprintConfidencePolicyFilterInput>?),
+      if (id != _undefined) 'id': (id as Input$StringOperationFilterInput?),
+      if (rejectThreshold != _undefined)
+        'rejectThreshold':
+            (rejectThreshold as Input$FloatOperationFilterInput?),
+      if (manualReviewThreshold != _undefined)
+        'manualReviewThreshold':
+            (manualReviewThreshold as Input$FloatOperationFilterInput?),
+    }),
+  );
+
+  TRes and(
+    Iterable<Input$FingerprintConfidencePolicyFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$FingerprintConfidencePolicyFilterInput<
+          Input$FingerprintConfidencePolicyFilterInput
+        >
+      >?,
+    )
+    _fn,
+  ) => call(
+    and: _fn(
+      _instance.and?.map(
+        (e) =>
+            CopyWith$Input$FingerprintConfidencePolicyFilterInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+
+  TRes or(
+    Iterable<Input$FingerprintConfidencePolicyFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$FingerprintConfidencePolicyFilterInput<
+          Input$FingerprintConfidencePolicyFilterInput
+        >
+      >?,
+    )
+    _fn,
+  ) => call(
+    or: _fn(
+      _instance.or?.map(
+        (e) =>
+            CopyWith$Input$FingerprintConfidencePolicyFilterInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get id {
+    final local$id = _instance.id;
+    return local$id == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$id,
+            (e) => call(id: e),
+          );
+  }
+
+  CopyWith$Input$FloatOperationFilterInput<TRes> get rejectThreshold {
+    final local$rejectThreshold = _instance.rejectThreshold;
+    return local$rejectThreshold == null
+        ? CopyWith$Input$FloatOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$FloatOperationFilterInput(
+            local$rejectThreshold,
+            (e) => call(rejectThreshold: e),
+          );
+  }
+
+  CopyWith$Input$FloatOperationFilterInput<TRes> get manualReviewThreshold {
+    final local$manualReviewThreshold = _instance.manualReviewThreshold;
+    return local$manualReviewThreshold == null
+        ? CopyWith$Input$FloatOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$FloatOperationFilterInput(
+            local$manualReviewThreshold,
+            (e) => call(manualReviewThreshold: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Input$FingerprintConfidencePolicyFilterInput<TRes>
+    implements CopyWith$Input$FingerprintConfidencePolicyFilterInput<TRes> {
+  _CopyWithStubImpl$Input$FingerprintConfidencePolicyFilterInput(this._res);
+
+  TRes _res;
+
+  call({
+    List<Input$FingerprintConfidencePolicyFilterInput>? and,
+    List<Input$FingerprintConfidencePolicyFilterInput>? or,
+    Input$StringOperationFilterInput? id,
+    Input$FloatOperationFilterInput? rejectThreshold,
+    Input$FloatOperationFilterInput? manualReviewThreshold,
+  }) => _res;
+
+  and(_fn) => _res;
+
+  or(_fn) => _res;
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get id =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$FloatOperationFilterInput<TRes> get rejectThreshold =>
+      CopyWith$Input$FloatOperationFilterInput.stub(_res);
+
+  CopyWith$Input$FloatOperationFilterInput<TRes> get manualReviewThreshold =>
+      CopyWith$Input$FloatOperationFilterInput.stub(_res);
+}
+
+class Input$FingerprintConfidencePolicySortInput {
+  factory Input$FingerprintConfidencePolicySortInput({
+    Enum$SortEnumType? id,
+    Enum$SortEnumType? rejectThreshold,
+    Enum$SortEnumType? manualReviewThreshold,
+  }) => Input$FingerprintConfidencePolicySortInput._({
+    if (id != null) r'id': id,
+    if (rejectThreshold != null) r'rejectThreshold': rejectThreshold,
+    if (manualReviewThreshold != null)
+      r'manualReviewThreshold': manualReviewThreshold,
+  });
+
+  Input$FingerprintConfidencePolicySortInput._(this._$data);
+
+  factory Input$FingerprintConfidencePolicySortInput.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$id as String));
+    }
+    if (data.containsKey('rejectThreshold')) {
+      final l$rejectThreshold = data['rejectThreshold'];
+      result$data['rejectThreshold'] = l$rejectThreshold == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$rejectThreshold as String));
+    }
+    if (data.containsKey('manualReviewThreshold')) {
+      final l$manualReviewThreshold = data['manualReviewThreshold'];
+      result$data['manualReviewThreshold'] = l$manualReviewThreshold == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$manualReviewThreshold as String));
+    }
+    return Input$FingerprintConfidencePolicySortInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$SortEnumType? get id => (_$data['id'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get rejectThreshold =>
+      (_$data['rejectThreshold'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get manualReviewThreshold =>
+      (_$data['manualReviewThreshold'] as Enum$SortEnumType?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJson$Enum$SortEnumType(l$id);
+    }
+    if (_$data.containsKey('rejectThreshold')) {
+      final l$rejectThreshold = rejectThreshold;
+      result$data['rejectThreshold'] = l$rejectThreshold == null
+          ? null
+          : toJson$Enum$SortEnumType(l$rejectThreshold);
+    }
+    if (_$data.containsKey('manualReviewThreshold')) {
+      final l$manualReviewThreshold = manualReviewThreshold;
+      result$data['manualReviewThreshold'] = l$manualReviewThreshold == null
+          ? null
+          : toJson$Enum$SortEnumType(l$manualReviewThreshold);
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$FingerprintConfidencePolicySortInput<
+    Input$FingerprintConfidencePolicySortInput
+  >
+  get copyWith =>
+      CopyWith$Input$FingerprintConfidencePolicySortInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$FingerprintConfidencePolicySortInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$rejectThreshold = rejectThreshold;
+    final lOther$rejectThreshold = other.rejectThreshold;
+    if (_$data.containsKey('rejectThreshold') !=
+        other._$data.containsKey('rejectThreshold')) {
+      return false;
+    }
+    if (l$rejectThreshold != lOther$rejectThreshold) {
+      return false;
+    }
+    final l$manualReviewThreshold = manualReviewThreshold;
+    final lOther$manualReviewThreshold = other.manualReviewThreshold;
+    if (_$data.containsKey('manualReviewThreshold') !=
+        other._$data.containsKey('manualReviewThreshold')) {
+      return false;
+    }
+    if (l$manualReviewThreshold != lOther$manualReviewThreshold) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$rejectThreshold = rejectThreshold;
+    final l$manualReviewThreshold = manualReviewThreshold;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('rejectThreshold') ? l$rejectThreshold : const {},
+      _$data.containsKey('manualReviewThreshold')
+          ? l$manualReviewThreshold
+          : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$FingerprintConfidencePolicySortInput<TRes> {
+  factory CopyWith$Input$FingerprintConfidencePolicySortInput(
+    Input$FingerprintConfidencePolicySortInput instance,
+    TRes Function(Input$FingerprintConfidencePolicySortInput) then,
+  ) = _CopyWithImpl$Input$FingerprintConfidencePolicySortInput;
+
+  factory CopyWith$Input$FingerprintConfidencePolicySortInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$FingerprintConfidencePolicySortInput;
+
+  TRes call({
+    Enum$SortEnumType? id,
+    Enum$SortEnumType? rejectThreshold,
+    Enum$SortEnumType? manualReviewThreshold,
+  });
+}
+
+class _CopyWithImpl$Input$FingerprintConfidencePolicySortInput<TRes>
+    implements CopyWith$Input$FingerprintConfidencePolicySortInput<TRes> {
+  _CopyWithImpl$Input$FingerprintConfidencePolicySortInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$FingerprintConfidencePolicySortInput _instance;
+
+  final TRes Function(Input$FingerprintConfidencePolicySortInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? rejectThreshold = _undefined,
+    Object? manualReviewThreshold = _undefined,
+  }) => _then(
+    Input$FingerprintConfidencePolicySortInput._({
+      ..._instance._$data,
+      if (id != _undefined) 'id': (id as Enum$SortEnumType?),
+      if (rejectThreshold != _undefined)
+        'rejectThreshold': (rejectThreshold as Enum$SortEnumType?),
+      if (manualReviewThreshold != _undefined)
+        'manualReviewThreshold': (manualReviewThreshold as Enum$SortEnumType?),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Input$FingerprintConfidencePolicySortInput<TRes>
+    implements CopyWith$Input$FingerprintConfidencePolicySortInput<TRes> {
+  _CopyWithStubImpl$Input$FingerprintConfidencePolicySortInput(this._res);
+
+  TRes _res;
+
+  call({
+    Enum$SortEnumType? id,
+    Enum$SortEnumType? rejectThreshold,
+    Enum$SortEnumType? manualReviewThreshold,
   }) => _res;
 }
 
@@ -35288,12 +36835,12 @@ class Input$LegalDocumentInput {
     required String name,
     required String documentUrl,
     required Enum$DocumentType documentType,
-    required String note,
+    String? note,
   }) => Input$LegalDocumentInput._({
     r'name': name,
     r'documentUrl': documentUrl,
     r'documentType': documentType,
-    r'note': note,
+    if (note != null) r'note': note,
   });
 
   Input$LegalDocumentInput._(this._$data);
@@ -35308,8 +36855,10 @@ class Input$LegalDocumentInput {
     result$data['documentType'] = fromJson$Enum$DocumentType(
       (l$documentType as String),
     );
-    final l$note = data['note'];
-    result$data['note'] = (l$note as String);
+    if (data.containsKey('note')) {
+      final l$note = data['note'];
+      result$data['note'] = (l$note as String?);
+    }
     return Input$LegalDocumentInput._(result$data);
   }
 
@@ -35322,7 +36871,7 @@ class Input$LegalDocumentInput {
   Enum$DocumentType get documentType =>
       (_$data['documentType'] as Enum$DocumentType);
 
-  String get note => (_$data['note'] as String);
+  String? get note => (_$data['note'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -35332,8 +36881,10 @@ class Input$LegalDocumentInput {
     result$data['documentUrl'] = l$documentUrl;
     final l$documentType = documentType;
     result$data['documentType'] = toJson$Enum$DocumentType(l$documentType);
-    final l$note = note;
-    result$data['note'] = l$note;
+    if (_$data.containsKey('note')) {
+      final l$note = note;
+      result$data['note'] = l$note;
+    }
     return result$data;
   }
 
@@ -35366,6 +36917,9 @@ class Input$LegalDocumentInput {
     }
     final l$note = note;
     final lOther$note = other.note;
+    if (_$data.containsKey('note') != other._$data.containsKey('note')) {
+      return false;
+    }
     if (l$note != lOther$note) {
       return false;
     }
@@ -35378,7 +36932,12 @@ class Input$LegalDocumentInput {
     final l$documentUrl = documentUrl;
     final l$documentType = documentType;
     final l$note = note;
-    return Object.hashAll([l$name, l$documentUrl, l$documentType, l$note]);
+    return Object.hashAll([
+      l$name,
+      l$documentUrl,
+      l$documentType,
+      _$data.containsKey('note') ? l$note : const {},
+    ]);
   }
 }
 
@@ -35422,7 +36981,7 @@ class _CopyWithImpl$Input$LegalDocumentInput<TRes>
         'documentUrl': (documentUrl as String),
       if (documentType != _undefined && documentType != null)
         'documentType': (documentType as Enum$DocumentType),
-      if (note != _undefined && note != null) 'note': (note as String),
+      if (note != _undefined) 'note': (note as String?),
     }),
   );
 }
@@ -40360,6 +41919,266 @@ class _CopyWithStubImpl$Input$ListFilterInputTypeOfSyncedLineFilterInput<TRes>
 
   CopyWith$Input$SyncedLineFilterInput<TRes> get some =>
       CopyWith$Input$SyncedLineFilterInput.stub(_res);
+}
+
+class Input$ListFilterInputTypeOfTopTrackInfoFilterInput {
+  factory Input$ListFilterInputTypeOfTopTrackInfoFilterInput({
+    Input$TopTrackInfoFilterInput? all,
+    Input$TopTrackInfoFilterInput? none,
+    Input$TopTrackInfoFilterInput? some,
+    bool? any,
+  }) => Input$ListFilterInputTypeOfTopTrackInfoFilterInput._({
+    if (all != null) r'all': all,
+    if (none != null) r'none': none,
+    if (some != null) r'some': some,
+    if (any != null) r'any': any,
+  });
+
+  Input$ListFilterInputTypeOfTopTrackInfoFilterInput._(this._$data);
+
+  factory Input$ListFilterInputTypeOfTopTrackInfoFilterInput.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('all')) {
+      final l$all = data['all'];
+      result$data['all'] = l$all == null
+          ? null
+          : Input$TopTrackInfoFilterInput.fromJson(
+              (l$all as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('none')) {
+      final l$none = data['none'];
+      result$data['none'] = l$none == null
+          ? null
+          : Input$TopTrackInfoFilterInput.fromJson(
+              (l$none as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('some')) {
+      final l$some = data['some'];
+      result$data['some'] = l$some == null
+          ? null
+          : Input$TopTrackInfoFilterInput.fromJson(
+              (l$some as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('any')) {
+      final l$any = data['any'];
+      result$data['any'] = (l$any as bool?);
+    }
+    return Input$ListFilterInputTypeOfTopTrackInfoFilterInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Input$TopTrackInfoFilterInput? get all =>
+      (_$data['all'] as Input$TopTrackInfoFilterInput?);
+
+  Input$TopTrackInfoFilterInput? get none =>
+      (_$data['none'] as Input$TopTrackInfoFilterInput?);
+
+  Input$TopTrackInfoFilterInput? get some =>
+      (_$data['some'] as Input$TopTrackInfoFilterInput?);
+
+  bool? get any => (_$data['any'] as bool?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('all')) {
+      final l$all = all;
+      result$data['all'] = l$all?.toJson();
+    }
+    if (_$data.containsKey('none')) {
+      final l$none = none;
+      result$data['none'] = l$none?.toJson();
+    }
+    if (_$data.containsKey('some')) {
+      final l$some = some;
+      result$data['some'] = l$some?.toJson();
+    }
+    if (_$data.containsKey('any')) {
+      final l$any = any;
+      result$data['any'] = l$any;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput<
+    Input$ListFilterInputTypeOfTopTrackInfoFilterInput
+  >
+  get copyWith => CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput(
+    this,
+    (i) => i,
+  );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$ListFilterInputTypeOfTopTrackInfoFilterInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$all = all;
+    final lOther$all = other.all;
+    if (_$data.containsKey('all') != other._$data.containsKey('all')) {
+      return false;
+    }
+    if (l$all != lOther$all) {
+      return false;
+    }
+    final l$none = none;
+    final lOther$none = other.none;
+    if (_$data.containsKey('none') != other._$data.containsKey('none')) {
+      return false;
+    }
+    if (l$none != lOther$none) {
+      return false;
+    }
+    final l$some = some;
+    final lOther$some = other.some;
+    if (_$data.containsKey('some') != other._$data.containsKey('some')) {
+      return false;
+    }
+    if (l$some != lOther$some) {
+      return false;
+    }
+    final l$any = any;
+    final lOther$any = other.any;
+    if (_$data.containsKey('any') != other._$data.containsKey('any')) {
+      return false;
+    }
+    if (l$any != lOther$any) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$all = all;
+    final l$none = none;
+    final l$some = some;
+    final l$any = any;
+    return Object.hashAll([
+      _$data.containsKey('all') ? l$all : const {},
+      _$data.containsKey('none') ? l$none : const {},
+      _$data.containsKey('some') ? l$some : const {},
+      _$data.containsKey('any') ? l$any : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput<
+  TRes
+> {
+  factory CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput(
+    Input$ListFilterInputTypeOfTopTrackInfoFilterInput instance,
+    TRes Function(Input$ListFilterInputTypeOfTopTrackInfoFilterInput) then,
+  ) = _CopyWithImpl$Input$ListFilterInputTypeOfTopTrackInfoFilterInput;
+
+  factory CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput.stub(
+    TRes res,
+  ) = _CopyWithStubImpl$Input$ListFilterInputTypeOfTopTrackInfoFilterInput;
+
+  TRes call({
+    Input$TopTrackInfoFilterInput? all,
+    Input$TopTrackInfoFilterInput? none,
+    Input$TopTrackInfoFilterInput? some,
+    bool? any,
+  });
+  CopyWith$Input$TopTrackInfoFilterInput<TRes> get all;
+  CopyWith$Input$TopTrackInfoFilterInput<TRes> get none;
+  CopyWith$Input$TopTrackInfoFilterInput<TRes> get some;
+}
+
+class _CopyWithImpl$Input$ListFilterInputTypeOfTopTrackInfoFilterInput<TRes>
+    implements
+        CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput<TRes> {
+  _CopyWithImpl$Input$ListFilterInputTypeOfTopTrackInfoFilterInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ListFilterInputTypeOfTopTrackInfoFilterInput _instance;
+
+  final TRes Function(Input$ListFilterInputTypeOfTopTrackInfoFilterInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? all = _undefined,
+    Object? none = _undefined,
+    Object? some = _undefined,
+    Object? any = _undefined,
+  }) => _then(
+    Input$ListFilterInputTypeOfTopTrackInfoFilterInput._({
+      ..._instance._$data,
+      if (all != _undefined) 'all': (all as Input$TopTrackInfoFilterInput?),
+      if (none != _undefined) 'none': (none as Input$TopTrackInfoFilterInput?),
+      if (some != _undefined) 'some': (some as Input$TopTrackInfoFilterInput?),
+      if (any != _undefined) 'any': (any as bool?),
+    }),
+  );
+
+  CopyWith$Input$TopTrackInfoFilterInput<TRes> get all {
+    final local$all = _instance.all;
+    return local$all == null
+        ? CopyWith$Input$TopTrackInfoFilterInput.stub(_then(_instance))
+        : CopyWith$Input$TopTrackInfoFilterInput(
+            local$all,
+            (e) => call(all: e),
+          );
+  }
+
+  CopyWith$Input$TopTrackInfoFilterInput<TRes> get none {
+    final local$none = _instance.none;
+    return local$none == null
+        ? CopyWith$Input$TopTrackInfoFilterInput.stub(_then(_instance))
+        : CopyWith$Input$TopTrackInfoFilterInput(
+            local$none,
+            (e) => call(none: e),
+          );
+  }
+
+  CopyWith$Input$TopTrackInfoFilterInput<TRes> get some {
+    final local$some = _instance.some;
+    return local$some == null
+        ? CopyWith$Input$TopTrackInfoFilterInput.stub(_then(_instance))
+        : CopyWith$Input$TopTrackInfoFilterInput(
+            local$some,
+            (e) => call(some: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Input$ListFilterInputTypeOfTopTrackInfoFilterInput<TRes>
+    implements
+        CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput<TRes> {
+  _CopyWithStubImpl$Input$ListFilterInputTypeOfTopTrackInfoFilterInput(
+    this._res,
+  );
+
+  TRes _res;
+
+  call({
+    Input$TopTrackInfoFilterInput? all,
+    Input$TopTrackInfoFilterInput? none,
+    Input$TopTrackInfoFilterInput? some,
+    bool? any,
+  }) => _res;
+
+  CopyWith$Input$TopTrackInfoFilterInput<TRes> get all =>
+      CopyWith$Input$TopTrackInfoFilterInput.stub(_res);
+
+  CopyWith$Input$TopTrackInfoFilterInput<TRes> get none =>
+      CopyWith$Input$TopTrackInfoFilterInput.stub(_res);
+
+  CopyWith$Input$TopTrackInfoFilterInput<TRes> get some =>
+      CopyWith$Input$TopTrackInfoFilterInput.stub(_res);
 }
 
 class Input$ListFilterInputTypeOfWorkSplitFilterInput {
@@ -46028,6 +47847,7 @@ class Input$NotificationFilterInput {
     Input$NullableOfNotificationRelatedTypeOperationFilterInput? relatedType,
     Input$StringOperationFilterInput? content,
     Input$StringOperationFilterInput? url,
+    Input$StringOperationFilterInput? mobileUrl,
     Input$BooleanOperationFilterInput? isRead,
     Input$DateTimeOperationFilterInput? readAt,
     Input$NotificationActionTypeOperationFilterInput? action,
@@ -46042,6 +47862,7 @@ class Input$NotificationFilterInput {
     if (relatedType != null) r'relatedType': relatedType,
     if (content != null) r'content': content,
     if (url != null) r'url': url,
+    if (mobileUrl != null) r'mobileUrl': mobileUrl,
     if (isRead != null) r'isRead': isRead,
     if (readAt != null) r'readAt': readAt,
     if (action != null) r'action': action,
@@ -46128,6 +47949,14 @@ class Input$NotificationFilterInput {
               (l$url as Map<String, dynamic>),
             );
     }
+    if (data.containsKey('mobileUrl')) {
+      final l$mobileUrl = data['mobileUrl'];
+      result$data['mobileUrl'] = l$mobileUrl == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$mobileUrl as Map<String, dynamic>),
+            );
+    }
     if (data.containsKey('isRead')) {
       final l$isRead = data['isRead'];
       result$data['isRead'] = l$isRead == null
@@ -46194,6 +48023,9 @@ class Input$NotificationFilterInput {
   Input$StringOperationFilterInput? get url =>
       (_$data['url'] as Input$StringOperationFilterInput?);
 
+  Input$StringOperationFilterInput? get mobileUrl =>
+      (_$data['mobileUrl'] as Input$StringOperationFilterInput?);
+
   Input$BooleanOperationFilterInput? get isRead =>
       (_$data['isRead'] as Input$BooleanOperationFilterInput?);
 
@@ -46243,6 +48075,10 @@ class Input$NotificationFilterInput {
     if (_$data.containsKey('url')) {
       final l$url = url;
       result$data['url'] = l$url?.toJson();
+    }
+    if (_$data.containsKey('mobileUrl')) {
+      final l$mobileUrl = mobileUrl;
+      result$data['mobileUrl'] = l$mobileUrl?.toJson();
     }
     if (_$data.containsKey('isRead')) {
       final l$isRead = isRead;
@@ -46372,6 +48208,15 @@ class Input$NotificationFilterInput {
     if (l$url != lOther$url) {
       return false;
     }
+    final l$mobileUrl = mobileUrl;
+    final lOther$mobileUrl = other.mobileUrl;
+    if (_$data.containsKey('mobileUrl') !=
+        other._$data.containsKey('mobileUrl')) {
+      return false;
+    }
+    if (l$mobileUrl != lOther$mobileUrl) {
+      return false;
+    }
     final l$isRead = isRead;
     final lOther$isRead = other.isRead;
     if (_$data.containsKey('isRead') != other._$data.containsKey('isRead')) {
@@ -46419,6 +48264,7 @@ class Input$NotificationFilterInput {
     final l$relatedType = relatedType;
     final l$content = content;
     final l$url = url;
+    final l$mobileUrl = mobileUrl;
     final l$isRead = isRead;
     final l$readAt = readAt;
     final l$action = action;
@@ -46441,6 +48287,7 @@ class Input$NotificationFilterInput {
       _$data.containsKey('relatedType') ? l$relatedType : const {},
       _$data.containsKey('content') ? l$content : const {},
       _$data.containsKey('url') ? l$url : const {},
+      _$data.containsKey('mobileUrl') ? l$mobileUrl : const {},
       _$data.containsKey('isRead') ? l$isRead : const {},
       _$data.containsKey('readAt') ? l$readAt : const {},
       _$data.containsKey('action') ? l$action : const {},
@@ -46468,6 +48315,7 @@ abstract class CopyWith$Input$NotificationFilterInput<TRes> {
     Input$NullableOfNotificationRelatedTypeOperationFilterInput? relatedType,
     Input$StringOperationFilterInput? content,
     Input$StringOperationFilterInput? url,
+    Input$StringOperationFilterInput? mobileUrl,
     Input$BooleanOperationFilterInput? isRead,
     Input$DateTimeOperationFilterInput? readAt,
     Input$NotificationActionTypeOperationFilterInput? action,
@@ -46497,6 +48345,7 @@ abstract class CopyWith$Input$NotificationFilterInput<TRes> {
   get relatedType;
   CopyWith$Input$StringOperationFilterInput<TRes> get content;
   CopyWith$Input$StringOperationFilterInput<TRes> get url;
+  CopyWith$Input$StringOperationFilterInput<TRes> get mobileUrl;
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isRead;
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get readAt;
   CopyWith$Input$NotificationActionTypeOperationFilterInput<TRes> get action;
@@ -46523,6 +48372,7 @@ class _CopyWithImpl$Input$NotificationFilterInput<TRes>
     Object? relatedType = _undefined,
     Object? content = _undefined,
     Object? url = _undefined,
+    Object? mobileUrl = _undefined,
     Object? isRead = _undefined,
     Object? readAt = _undefined,
     Object? action = _undefined,
@@ -46547,6 +48397,8 @@ class _CopyWithImpl$Input$NotificationFilterInput<TRes>
       if (content != _undefined)
         'content': (content as Input$StringOperationFilterInput?),
       if (url != _undefined) 'url': (url as Input$StringOperationFilterInput?),
+      if (mobileUrl != _undefined)
+        'mobileUrl': (mobileUrl as Input$StringOperationFilterInput?),
       if (isRead != _undefined)
         'isRead': (isRead as Input$BooleanOperationFilterInput?),
       if (readAt != _undefined)
@@ -46661,6 +48513,16 @@ class _CopyWithImpl$Input$NotificationFilterInput<TRes>
           );
   }
 
+  CopyWith$Input$StringOperationFilterInput<TRes> get mobileUrl {
+    final local$mobileUrl = _instance.mobileUrl;
+    return local$mobileUrl == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$mobileUrl,
+            (e) => call(mobileUrl: e),
+          );
+  }
+
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isRead {
     final local$isRead = _instance.isRead;
     return local$isRead == null
@@ -46720,6 +48582,7 @@ class _CopyWithStubImpl$Input$NotificationFilterInput<TRes>
     Input$NullableOfNotificationRelatedTypeOperationFilterInput? relatedType,
     Input$StringOperationFilterInput? content,
     Input$StringOperationFilterInput? url,
+    Input$StringOperationFilterInput? mobileUrl,
     Input$BooleanOperationFilterInput? isRead,
     Input$DateTimeOperationFilterInput? readAt,
     Input$NotificationActionTypeOperationFilterInput? action,
@@ -46754,6 +48617,9 @@ class _CopyWithStubImpl$Input$NotificationFilterInput<TRes>
   CopyWith$Input$StringOperationFilterInput<TRes> get url =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  CopyWith$Input$StringOperationFilterInput<TRes> get mobileUrl =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isRead =>
       CopyWith$Input$BooleanOperationFilterInput.stub(_res);
 
@@ -46776,6 +48642,7 @@ class Input$NotificationSortInput {
     Enum$SortEnumType? relatedType,
     Enum$SortEnumType? content,
     Enum$SortEnumType? url,
+    Enum$SortEnumType? mobileUrl,
     Enum$SortEnumType? isRead,
     Enum$SortEnumType? readAt,
     Enum$SortEnumType? action,
@@ -46788,6 +48655,7 @@ class Input$NotificationSortInput {
     if (relatedType != null) r'relatedType': relatedType,
     if (content != null) r'content': content,
     if (url != null) r'url': url,
+    if (mobileUrl != null) r'mobileUrl': mobileUrl,
     if (isRead != null) r'isRead': isRead,
     if (readAt != null) r'readAt': readAt,
     if (action != null) r'action': action,
@@ -46840,6 +48708,12 @@ class Input$NotificationSortInput {
           ? null
           : fromJson$Enum$SortEnumType((l$url as String));
     }
+    if (data.containsKey('mobileUrl')) {
+      final l$mobileUrl = data['mobileUrl'];
+      result$data['mobileUrl'] = l$mobileUrl == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$mobileUrl as String));
+    }
     if (data.containsKey('isRead')) {
       final l$isRead = data['isRead'];
       result$data['isRead'] = l$isRead == null
@@ -46884,6 +48758,9 @@ class Input$NotificationSortInput {
   Enum$SortEnumType? get content => (_$data['content'] as Enum$SortEnumType?);
 
   Enum$SortEnumType? get url => (_$data['url'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get mobileUrl =>
+      (_$data['mobileUrl'] as Enum$SortEnumType?);
 
   Enum$SortEnumType? get isRead => (_$data['isRead'] as Enum$SortEnumType?);
 
@@ -46935,6 +48812,12 @@ class Input$NotificationSortInput {
       result$data['url'] = l$url == null
           ? null
           : toJson$Enum$SortEnumType(l$url);
+    }
+    if (_$data.containsKey('mobileUrl')) {
+      final l$mobileUrl = mobileUrl;
+      result$data['mobileUrl'] = l$mobileUrl == null
+          ? null
+          : toJson$Enum$SortEnumType(l$mobileUrl);
     }
     if (_$data.containsKey('isRead')) {
       final l$isRead = isRead;
@@ -47034,6 +48917,15 @@ class Input$NotificationSortInput {
     if (l$url != lOther$url) {
       return false;
     }
+    final l$mobileUrl = mobileUrl;
+    final lOther$mobileUrl = other.mobileUrl;
+    if (_$data.containsKey('mobileUrl') !=
+        other._$data.containsKey('mobileUrl')) {
+      return false;
+    }
+    if (l$mobileUrl != lOther$mobileUrl) {
+      return false;
+    }
     final l$isRead = isRead;
     final lOther$isRead = other.isRead;
     if (_$data.containsKey('isRead') != other._$data.containsKey('isRead')) {
@@ -47079,6 +48971,7 @@ class Input$NotificationSortInput {
     final l$relatedType = relatedType;
     final l$content = content;
     final l$url = url;
+    final l$mobileUrl = mobileUrl;
     final l$isRead = isRead;
     final l$readAt = readAt;
     final l$action = action;
@@ -47091,6 +48984,7 @@ class Input$NotificationSortInput {
       _$data.containsKey('relatedType') ? l$relatedType : const {},
       _$data.containsKey('content') ? l$content : const {},
       _$data.containsKey('url') ? l$url : const {},
+      _$data.containsKey('mobileUrl') ? l$mobileUrl : const {},
       _$data.containsKey('isRead') ? l$isRead : const {},
       _$data.containsKey('readAt') ? l$readAt : const {},
       _$data.containsKey('action') ? l$action : const {},
@@ -47116,6 +49010,7 @@ abstract class CopyWith$Input$NotificationSortInput<TRes> {
     Enum$SortEnumType? relatedType,
     Enum$SortEnumType? content,
     Enum$SortEnumType? url,
+    Enum$SortEnumType? mobileUrl,
     Enum$SortEnumType? isRead,
     Enum$SortEnumType? readAt,
     Enum$SortEnumType? action,
@@ -47141,6 +49036,7 @@ class _CopyWithImpl$Input$NotificationSortInput<TRes>
     Object? relatedType = _undefined,
     Object? content = _undefined,
     Object? url = _undefined,
+    Object? mobileUrl = _undefined,
     Object? isRead = _undefined,
     Object? readAt = _undefined,
     Object? action = _undefined,
@@ -47157,6 +49053,8 @@ class _CopyWithImpl$Input$NotificationSortInput<TRes>
         'relatedType': (relatedType as Enum$SortEnumType?),
       if (content != _undefined) 'content': (content as Enum$SortEnumType?),
       if (url != _undefined) 'url': (url as Enum$SortEnumType?),
+      if (mobileUrl != _undefined)
+        'mobileUrl': (mobileUrl as Enum$SortEnumType?),
       if (isRead != _undefined) 'isRead': (isRead as Enum$SortEnumType?),
       if (readAt != _undefined) 'readAt': (readAt as Enum$SortEnumType?),
       if (action != _undefined) 'action': (action as Enum$SortEnumType?),
@@ -47180,6 +49078,7 @@ class _CopyWithStubImpl$Input$NotificationSortInput<TRes>
     Enum$SortEnumType? relatedType,
     Enum$SortEnumType? content,
     Enum$SortEnumType? url,
+    Enum$SortEnumType? mobileUrl,
     Enum$SortEnumType? isRead,
     Enum$SortEnumType? readAt,
     Enum$SortEnumType? action,
@@ -50819,10 +52718,13 @@ class Input$PackageOrderFilterInput {
     Input$StringOperationFilterInput? providerId,
     Input$StringOperationFilterInput? artistPackageId,
     Input$StringOperationFilterInput? paymentTransactionId,
+    Input$StringOperationFilterInput? payoutTransactionId,
     Input$StringOperationFilterInput? conversationId,
     Input$StringOperationFilterInput? requirements,
     Input$PackageOrderStatusOperationFilterInput? status,
     Input$IntOperationFilterInput? revisionCount,
+    Input$StringOperationFilterInput? disputedReason,
+    Input$StringOperationFilterInput? refundReason,
     Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput? deliveries,
     Input$IntOperationFilterInput? duration,
     Input$TimeSpanOperationFilterInput? freezedTime,
@@ -50846,10 +52748,14 @@ class Input$PackageOrderFilterInput {
     if (artistPackageId != null) r'artistPackageId': artistPackageId,
     if (paymentTransactionId != null)
       r'paymentTransactionId': paymentTransactionId,
+    if (payoutTransactionId != null)
+      r'payoutTransactionId': payoutTransactionId,
     if (conversationId != null) r'conversationId': conversationId,
     if (requirements != null) r'requirements': requirements,
     if (status != null) r'status': status,
     if (revisionCount != null) r'revisionCount': revisionCount,
+    if (disputedReason != null) r'disputedReason': disputedReason,
+    if (refundReason != null) r'refundReason': refundReason,
     if (deliveries != null) r'deliveries': deliveries,
     if (duration != null) r'duration': duration,
     if (freezedTime != null) r'freezedTime': freezedTime,
@@ -50932,6 +52838,14 @@ class Input$PackageOrderFilterInput {
               (l$paymentTransactionId as Map<String, dynamic>),
             );
     }
+    if (data.containsKey('payoutTransactionId')) {
+      final l$payoutTransactionId = data['payoutTransactionId'];
+      result$data['payoutTransactionId'] = l$payoutTransactionId == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$payoutTransactionId as Map<String, dynamic>),
+            );
+    }
     if (data.containsKey('conversationId')) {
       final l$conversationId = data['conversationId'];
       result$data['conversationId'] = l$conversationId == null
@@ -50962,6 +52876,22 @@ class Input$PackageOrderFilterInput {
           ? null
           : Input$IntOperationFilterInput.fromJson(
               (l$revisionCount as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('disputedReason')) {
+      final l$disputedReason = data['disputedReason'];
+      result$data['disputedReason'] = l$disputedReason == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$disputedReason as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('refundReason')) {
+      final l$refundReason = data['refundReason'];
+      result$data['refundReason'] = l$refundReason == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$refundReason as Map<String, dynamic>),
             );
     }
     if (data.containsKey('deliveries')) {
@@ -51102,6 +53032,9 @@ class Input$PackageOrderFilterInput {
   Input$StringOperationFilterInput? get paymentTransactionId =>
       (_$data['paymentTransactionId'] as Input$StringOperationFilterInput?);
 
+  Input$StringOperationFilterInput? get payoutTransactionId =>
+      (_$data['payoutTransactionId'] as Input$StringOperationFilterInput?);
+
   Input$StringOperationFilterInput? get conversationId =>
       (_$data['conversationId'] as Input$StringOperationFilterInput?);
 
@@ -51113,6 +53046,12 @@ class Input$PackageOrderFilterInput {
 
   Input$IntOperationFilterInput? get revisionCount =>
       (_$data['revisionCount'] as Input$IntOperationFilterInput?);
+
+  Input$StringOperationFilterInput? get disputedReason =>
+      (_$data['disputedReason'] as Input$StringOperationFilterInput?);
+
+  Input$StringOperationFilterInput? get refundReason =>
+      (_$data['refundReason'] as Input$StringOperationFilterInput?);
 
   Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput? get deliveries =>
       (_$data['deliveries']
@@ -51187,6 +53126,10 @@ class Input$PackageOrderFilterInput {
       final l$paymentTransactionId = paymentTransactionId;
       result$data['paymentTransactionId'] = l$paymentTransactionId?.toJson();
     }
+    if (_$data.containsKey('payoutTransactionId')) {
+      final l$payoutTransactionId = payoutTransactionId;
+      result$data['payoutTransactionId'] = l$payoutTransactionId?.toJson();
+    }
     if (_$data.containsKey('conversationId')) {
       final l$conversationId = conversationId;
       result$data['conversationId'] = l$conversationId?.toJson();
@@ -51202,6 +53145,14 @@ class Input$PackageOrderFilterInput {
     if (_$data.containsKey('revisionCount')) {
       final l$revisionCount = revisionCount;
       result$data['revisionCount'] = l$revisionCount?.toJson();
+    }
+    if (_$data.containsKey('disputedReason')) {
+      final l$disputedReason = disputedReason;
+      result$data['disputedReason'] = l$disputedReason?.toJson();
+    }
+    if (_$data.containsKey('refundReason')) {
+      final l$refundReason = refundReason;
+      result$data['refundReason'] = l$refundReason?.toJson();
     }
     if (_$data.containsKey('deliveries')) {
       final l$deliveries = deliveries;
@@ -51356,6 +53307,15 @@ class Input$PackageOrderFilterInput {
     if (l$paymentTransactionId != lOther$paymentTransactionId) {
       return false;
     }
+    final l$payoutTransactionId = payoutTransactionId;
+    final lOther$payoutTransactionId = other.payoutTransactionId;
+    if (_$data.containsKey('payoutTransactionId') !=
+        other._$data.containsKey('payoutTransactionId')) {
+      return false;
+    }
+    if (l$payoutTransactionId != lOther$payoutTransactionId) {
+      return false;
+    }
     final l$conversationId = conversationId;
     final lOther$conversationId = other.conversationId;
     if (_$data.containsKey('conversationId') !=
@@ -51389,6 +53349,24 @@ class Input$PackageOrderFilterInput {
       return false;
     }
     if (l$revisionCount != lOther$revisionCount) {
+      return false;
+    }
+    final l$disputedReason = disputedReason;
+    final lOther$disputedReason = other.disputedReason;
+    if (_$data.containsKey('disputedReason') !=
+        other._$data.containsKey('disputedReason')) {
+      return false;
+    }
+    if (l$disputedReason != lOther$disputedReason) {
+      return false;
+    }
+    final l$refundReason = refundReason;
+    final lOther$refundReason = other.refundReason;
+    if (_$data.containsKey('refundReason') !=
+        other._$data.containsKey('refundReason')) {
+      return false;
+    }
+    if (l$refundReason != lOther$refundReason) {
       return false;
     }
     final l$deliveries = deliveries;
@@ -51528,10 +53506,13 @@ class Input$PackageOrderFilterInput {
     final l$providerId = providerId;
     final l$artistPackageId = artistPackageId;
     final l$paymentTransactionId = paymentTransactionId;
+    final l$payoutTransactionId = payoutTransactionId;
     final l$conversationId = conversationId;
     final l$requirements = requirements;
     final l$status = status;
     final l$revisionCount = revisionCount;
+    final l$disputedReason = disputedReason;
+    final l$refundReason = refundReason;
     final l$deliveries = deliveries;
     final l$duration = duration;
     final l$freezedTime = freezedTime;
@@ -51564,10 +53545,15 @@ class Input$PackageOrderFilterInput {
       _$data.containsKey('paymentTransactionId')
           ? l$paymentTransactionId
           : const {},
+      _$data.containsKey('payoutTransactionId')
+          ? l$payoutTransactionId
+          : const {},
       _$data.containsKey('conversationId') ? l$conversationId : const {},
       _$data.containsKey('requirements') ? l$requirements : const {},
       _$data.containsKey('status') ? l$status : const {},
       _$data.containsKey('revisionCount') ? l$revisionCount : const {},
+      _$data.containsKey('disputedReason') ? l$disputedReason : const {},
+      _$data.containsKey('refundReason') ? l$refundReason : const {},
       _$data.containsKey('deliveries') ? l$deliveries : const {},
       _$data.containsKey('duration') ? l$duration : const {},
       _$data.containsKey('freezedTime') ? l$freezedTime : const {},
@@ -51607,10 +53593,13 @@ abstract class CopyWith$Input$PackageOrderFilterInput<TRes> {
     Input$StringOperationFilterInput? providerId,
     Input$StringOperationFilterInput? artistPackageId,
     Input$StringOperationFilterInput? paymentTransactionId,
+    Input$StringOperationFilterInput? payoutTransactionId,
     Input$StringOperationFilterInput? conversationId,
     Input$StringOperationFilterInput? requirements,
     Input$PackageOrderStatusOperationFilterInput? status,
     Input$IntOperationFilterInput? revisionCount,
+    Input$StringOperationFilterInput? disputedReason,
+    Input$StringOperationFilterInput? refundReason,
     Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput? deliveries,
     Input$IntOperationFilterInput? duration,
     Input$TimeSpanOperationFilterInput? freezedTime,
@@ -51647,10 +53636,13 @@ abstract class CopyWith$Input$PackageOrderFilterInput<TRes> {
   CopyWith$Input$StringOperationFilterInput<TRes> get providerId;
   CopyWith$Input$StringOperationFilterInput<TRes> get artistPackageId;
   CopyWith$Input$StringOperationFilterInput<TRes> get paymentTransactionId;
+  CopyWith$Input$StringOperationFilterInput<TRes> get payoutTransactionId;
   CopyWith$Input$StringOperationFilterInput<TRes> get conversationId;
   CopyWith$Input$StringOperationFilterInput<TRes> get requirements;
   CopyWith$Input$PackageOrderStatusOperationFilterInput<TRes> get status;
   CopyWith$Input$IntOperationFilterInput<TRes> get revisionCount;
+  CopyWith$Input$StringOperationFilterInput<TRes> get disputedReason;
+  CopyWith$Input$StringOperationFilterInput<TRes> get refundReason;
   CopyWith$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput<TRes>
   get deliveries;
   CopyWith$Input$IntOperationFilterInput<TRes> get duration;
@@ -51686,10 +53678,13 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
     Object? providerId = _undefined,
     Object? artistPackageId = _undefined,
     Object? paymentTransactionId = _undefined,
+    Object? payoutTransactionId = _undefined,
     Object? conversationId = _undefined,
     Object? requirements = _undefined,
     Object? status = _undefined,
     Object? revisionCount = _undefined,
+    Object? disputedReason = _undefined,
+    Object? refundReason = _undefined,
     Object? deliveries = _undefined,
     Object? duration = _undefined,
     Object? freezedTime = _undefined,
@@ -51721,6 +53716,9 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
       if (paymentTransactionId != _undefined)
         'paymentTransactionId':
             (paymentTransactionId as Input$StringOperationFilterInput?),
+      if (payoutTransactionId != _undefined)
+        'payoutTransactionId':
+            (payoutTransactionId as Input$StringOperationFilterInput?),
       if (conversationId != _undefined)
         'conversationId': (conversationId as Input$StringOperationFilterInput?),
       if (requirements != _undefined)
@@ -51729,6 +53727,10 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
         'status': (status as Input$PackageOrderStatusOperationFilterInput?),
       if (revisionCount != _undefined)
         'revisionCount': (revisionCount as Input$IntOperationFilterInput?),
+      if (disputedReason != _undefined)
+        'disputedReason': (disputedReason as Input$StringOperationFilterInput?),
+      if (refundReason != _undefined)
+        'refundReason': (refundReason as Input$StringOperationFilterInput?),
       if (deliveries != _undefined)
         'deliveries':
             (deliveries
@@ -51845,6 +53847,16 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
           );
   }
 
+  CopyWith$Input$StringOperationFilterInput<TRes> get payoutTransactionId {
+    final local$payoutTransactionId = _instance.payoutTransactionId;
+    return local$payoutTransactionId == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$payoutTransactionId,
+            (e) => call(payoutTransactionId: e),
+          );
+  }
+
   CopyWith$Input$StringOperationFilterInput<TRes> get conversationId {
     final local$conversationId = _instance.conversationId;
     return local$conversationId == null
@@ -51884,6 +53896,26 @@ class _CopyWithImpl$Input$PackageOrderFilterInput<TRes>
         : CopyWith$Input$IntOperationFilterInput(
             local$revisionCount,
             (e) => call(revisionCount: e),
+          );
+  }
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get disputedReason {
+    final local$disputedReason = _instance.disputedReason;
+    return local$disputedReason == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$disputedReason,
+            (e) => call(disputedReason: e),
+          );
+  }
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get refundReason {
+    final local$refundReason = _instance.refundReason;
+    return local$refundReason == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$refundReason,
+            (e) => call(refundReason: e),
           );
   }
 
@@ -52045,10 +54077,13 @@ class _CopyWithStubImpl$Input$PackageOrderFilterInput<TRes>
     Input$StringOperationFilterInput? providerId,
     Input$StringOperationFilterInput? artistPackageId,
     Input$StringOperationFilterInput? paymentTransactionId,
+    Input$StringOperationFilterInput? payoutTransactionId,
     Input$StringOperationFilterInput? conversationId,
     Input$StringOperationFilterInput? requirements,
     Input$PackageOrderStatusOperationFilterInput? status,
     Input$IntOperationFilterInput? revisionCount,
+    Input$StringOperationFilterInput? disputedReason,
+    Input$StringOperationFilterInput? refundReason,
     Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput? deliveries,
     Input$IntOperationFilterInput? duration,
     Input$TimeSpanOperationFilterInput? freezedTime,
@@ -52084,6 +54119,9 @@ class _CopyWithStubImpl$Input$PackageOrderFilterInput<TRes>
   CopyWith$Input$StringOperationFilterInput<TRes> get paymentTransactionId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
+  CopyWith$Input$StringOperationFilterInput<TRes> get payoutTransactionId =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
   CopyWith$Input$StringOperationFilterInput<TRes> get conversationId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
@@ -52095,6 +54133,12 @@ class _CopyWithStubImpl$Input$PackageOrderFilterInput<TRes>
 
   CopyWith$Input$IntOperationFilterInput<TRes> get revisionCount =>
       CopyWith$Input$IntOperationFilterInput.stub(_res);
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get disputedReason =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get refundReason =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
 
   CopyWith$Input$ListFilterInputTypeOfPackageOrderDeliveryFilterInput<TRes>
   get deliveries =>
@@ -52147,10 +54191,12 @@ class Input$PackageOrderRefundRequestInput {
     required String id,
     required double artistPercentageAmount,
     required double requestorPercentageAmount,
+    required String refundReason,
   }) => Input$PackageOrderRefundRequestInput._({
     r'id': id,
     r'artistPercentageAmount': artistPercentageAmount,
     r'requestorPercentageAmount': requestorPercentageAmount,
+    r'refundReason': refundReason,
   });
 
   Input$PackageOrderRefundRequestInput._(this._$data);
@@ -52167,6 +54213,8 @@ class Input$PackageOrderRefundRequestInput {
     final l$requestorPercentageAmount = data['requestorPercentageAmount'];
     result$data['requestorPercentageAmount'] =
         (l$requestorPercentageAmount as num).toDouble();
+    final l$refundReason = data['refundReason'];
+    result$data['refundReason'] = (l$refundReason as String);
     return Input$PackageOrderRefundRequestInput._(result$data);
   }
 
@@ -52180,6 +54228,8 @@ class Input$PackageOrderRefundRequestInput {
   double get requestorPercentageAmount =>
       (_$data['requestorPercentageAmount'] as double);
 
+  String get refundReason => (_$data['refundReason'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -52188,6 +54238,8 @@ class Input$PackageOrderRefundRequestInput {
     result$data['artistPercentageAmount'] = l$artistPercentageAmount;
     final l$requestorPercentageAmount = requestorPercentageAmount;
     result$data['requestorPercentageAmount'] = l$requestorPercentageAmount;
+    final l$refundReason = refundReason;
+    result$data['refundReason'] = l$refundReason;
     return result$data;
   }
 
@@ -52220,6 +54272,11 @@ class Input$PackageOrderRefundRequestInput {
     if (l$requestorPercentageAmount != lOther$requestorPercentageAmount) {
       return false;
     }
+    final l$refundReason = refundReason;
+    final lOther$refundReason = other.refundReason;
+    if (l$refundReason != lOther$refundReason) {
+      return false;
+    }
     return true;
   }
 
@@ -52228,10 +54285,12 @@ class Input$PackageOrderRefundRequestInput {
     final l$id = id;
     final l$artistPercentageAmount = artistPercentageAmount;
     final l$requestorPercentageAmount = requestorPercentageAmount;
+    final l$refundReason = refundReason;
     return Object.hashAll([
       l$id,
       l$artistPercentageAmount,
       l$requestorPercentageAmount,
+      l$refundReason,
     ]);
   }
 }
@@ -52249,6 +54308,7 @@ abstract class CopyWith$Input$PackageOrderRefundRequestInput<TRes> {
     String? id,
     double? artistPercentageAmount,
     double? requestorPercentageAmount,
+    String? refundReason,
   });
 }
 
@@ -52269,6 +54329,7 @@ class _CopyWithImpl$Input$PackageOrderRefundRequestInput<TRes>
     Object? id = _undefined,
     Object? artistPercentageAmount = _undefined,
     Object? requestorPercentageAmount = _undefined,
+    Object? refundReason = _undefined,
   }) => _then(
     Input$PackageOrderRefundRequestInput._({
       ..._instance._$data,
@@ -52279,6 +54340,8 @@ class _CopyWithImpl$Input$PackageOrderRefundRequestInput<TRes>
       if (requestorPercentageAmount != _undefined &&
           requestorPercentageAmount != null)
         'requestorPercentageAmount': (requestorPercentageAmount as double),
+      if (refundReason != _undefined && refundReason != null)
+        'refundReason': (refundReason as String),
     }),
   );
 }
@@ -52293,6 +54356,7 @@ class _CopyWithStubImpl$Input$PackageOrderRefundRequestInput<TRes>
     String? id,
     double? artistPercentageAmount,
     double? requestorPercentageAmount,
+    String? refundReason,
   }) => _res;
 }
 
@@ -52303,10 +54367,13 @@ class Input$PackageOrderSortInput {
     Enum$SortEnumType? providerId,
     Enum$SortEnumType? artistPackageId,
     Enum$SortEnumType? paymentTransactionId,
+    Enum$SortEnumType? payoutTransactionId,
     Enum$SortEnumType? conversationId,
     Enum$SortEnumType? requirements,
     Enum$SortEnumType? status,
     Enum$SortEnumType? revisionCount,
+    Enum$SortEnumType? disputedReason,
+    Enum$SortEnumType? refundReason,
     Enum$SortEnumType? duration,
     Enum$SortEnumType? freezedTime,
     Enum$SortEnumType? startedAt,
@@ -52327,10 +54394,14 @@ class Input$PackageOrderSortInput {
     if (artistPackageId != null) r'artistPackageId': artistPackageId,
     if (paymentTransactionId != null)
       r'paymentTransactionId': paymentTransactionId,
+    if (payoutTransactionId != null)
+      r'payoutTransactionId': payoutTransactionId,
     if (conversationId != null) r'conversationId': conversationId,
     if (requirements != null) r'requirements': requirements,
     if (status != null) r'status': status,
     if (revisionCount != null) r'revisionCount': revisionCount,
+    if (disputedReason != null) r'disputedReason': disputedReason,
+    if (refundReason != null) r'refundReason': refundReason,
     if (duration != null) r'duration': duration,
     if (freezedTime != null) r'freezedTime': freezedTime,
     if (startedAt != null) r'startedAt': startedAt,
@@ -52382,6 +54453,12 @@ class Input$PackageOrderSortInput {
           ? null
           : fromJson$Enum$SortEnumType((l$paymentTransactionId as String));
     }
+    if (data.containsKey('payoutTransactionId')) {
+      final l$payoutTransactionId = data['payoutTransactionId'];
+      result$data['payoutTransactionId'] = l$payoutTransactionId == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$payoutTransactionId as String));
+    }
     if (data.containsKey('conversationId')) {
       final l$conversationId = data['conversationId'];
       result$data['conversationId'] = l$conversationId == null
@@ -52405,6 +54482,18 @@ class Input$PackageOrderSortInput {
       result$data['revisionCount'] = l$revisionCount == null
           ? null
           : fromJson$Enum$SortEnumType((l$revisionCount as String));
+    }
+    if (data.containsKey('disputedReason')) {
+      final l$disputedReason = data['disputedReason'];
+      result$data['disputedReason'] = l$disputedReason == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$disputedReason as String));
+    }
+    if (data.containsKey('refundReason')) {
+      final l$refundReason = data['refundReason'];
+      result$data['refundReason'] = l$refundReason == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$refundReason as String));
     }
     if (data.containsKey('duration')) {
       final l$duration = data['duration'];
@@ -52502,6 +54591,9 @@ class Input$PackageOrderSortInput {
   Enum$SortEnumType? get paymentTransactionId =>
       (_$data['paymentTransactionId'] as Enum$SortEnumType?);
 
+  Enum$SortEnumType? get payoutTransactionId =>
+      (_$data['payoutTransactionId'] as Enum$SortEnumType?);
+
   Enum$SortEnumType? get conversationId =>
       (_$data['conversationId'] as Enum$SortEnumType?);
 
@@ -52512,6 +54604,12 @@ class Input$PackageOrderSortInput {
 
   Enum$SortEnumType? get revisionCount =>
       (_$data['revisionCount'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get disputedReason =>
+      (_$data['disputedReason'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get refundReason =>
+      (_$data['refundReason'] as Enum$SortEnumType?);
 
   Enum$SortEnumType? get duration => (_$data['duration'] as Enum$SortEnumType?);
 
@@ -52581,6 +54679,12 @@ class Input$PackageOrderSortInput {
           ? null
           : toJson$Enum$SortEnumType(l$paymentTransactionId);
     }
+    if (_$data.containsKey('payoutTransactionId')) {
+      final l$payoutTransactionId = payoutTransactionId;
+      result$data['payoutTransactionId'] = l$payoutTransactionId == null
+          ? null
+          : toJson$Enum$SortEnumType(l$payoutTransactionId);
+    }
     if (_$data.containsKey('conversationId')) {
       final l$conversationId = conversationId;
       result$data['conversationId'] = l$conversationId == null
@@ -52604,6 +54708,18 @@ class Input$PackageOrderSortInput {
       result$data['revisionCount'] = l$revisionCount == null
           ? null
           : toJson$Enum$SortEnumType(l$revisionCount);
+    }
+    if (_$data.containsKey('disputedReason')) {
+      final l$disputedReason = disputedReason;
+      result$data['disputedReason'] = l$disputedReason == null
+          ? null
+          : toJson$Enum$SortEnumType(l$disputedReason);
+    }
+    if (_$data.containsKey('refundReason')) {
+      final l$refundReason = refundReason;
+      result$data['refundReason'] = l$refundReason == null
+          ? null
+          : toJson$Enum$SortEnumType(l$refundReason);
     }
     if (_$data.containsKey('duration')) {
       final l$duration = duration;
@@ -52740,6 +54856,15 @@ class Input$PackageOrderSortInput {
     if (l$paymentTransactionId != lOther$paymentTransactionId) {
       return false;
     }
+    final l$payoutTransactionId = payoutTransactionId;
+    final lOther$payoutTransactionId = other.payoutTransactionId;
+    if (_$data.containsKey('payoutTransactionId') !=
+        other._$data.containsKey('payoutTransactionId')) {
+      return false;
+    }
+    if (l$payoutTransactionId != lOther$payoutTransactionId) {
+      return false;
+    }
     final l$conversationId = conversationId;
     final lOther$conversationId = other.conversationId;
     if (_$data.containsKey('conversationId') !=
@@ -52773,6 +54898,24 @@ class Input$PackageOrderSortInput {
       return false;
     }
     if (l$revisionCount != lOther$revisionCount) {
+      return false;
+    }
+    final l$disputedReason = disputedReason;
+    final lOther$disputedReason = other.disputedReason;
+    if (_$data.containsKey('disputedReason') !=
+        other._$data.containsKey('disputedReason')) {
+      return false;
+    }
+    if (l$disputedReason != lOther$disputedReason) {
+      return false;
+    }
+    final l$refundReason = refundReason;
+    final lOther$refundReason = other.refundReason;
+    if (_$data.containsKey('refundReason') !=
+        other._$data.containsKey('refundReason')) {
+      return false;
+    }
+    if (l$refundReason != lOther$refundReason) {
       return false;
     }
     final l$duration = duration;
@@ -52901,10 +55044,13 @@ class Input$PackageOrderSortInput {
     final l$providerId = providerId;
     final l$artistPackageId = artistPackageId;
     final l$paymentTransactionId = paymentTransactionId;
+    final l$payoutTransactionId = payoutTransactionId;
     final l$conversationId = conversationId;
     final l$requirements = requirements;
     final l$status = status;
     final l$revisionCount = revisionCount;
+    final l$disputedReason = disputedReason;
+    final l$refundReason = refundReason;
     final l$duration = duration;
     final l$freezedTime = freezedTime;
     final l$startedAt = startedAt;
@@ -52926,10 +55072,15 @@ class Input$PackageOrderSortInput {
       _$data.containsKey('paymentTransactionId')
           ? l$paymentTransactionId
           : const {},
+      _$data.containsKey('payoutTransactionId')
+          ? l$payoutTransactionId
+          : const {},
       _$data.containsKey('conversationId') ? l$conversationId : const {},
       _$data.containsKey('requirements') ? l$requirements : const {},
       _$data.containsKey('status') ? l$status : const {},
       _$data.containsKey('revisionCount') ? l$revisionCount : const {},
+      _$data.containsKey('disputedReason') ? l$disputedReason : const {},
+      _$data.containsKey('refundReason') ? l$refundReason : const {},
       _$data.containsKey('duration') ? l$duration : const {},
       _$data.containsKey('freezedTime') ? l$freezedTime : const {},
       _$data.containsKey('startedAt') ? l$startedAt : const {},
@@ -52966,10 +55117,13 @@ abstract class CopyWith$Input$PackageOrderSortInput<TRes> {
     Enum$SortEnumType? providerId,
     Enum$SortEnumType? artistPackageId,
     Enum$SortEnumType? paymentTransactionId,
+    Enum$SortEnumType? payoutTransactionId,
     Enum$SortEnumType? conversationId,
     Enum$SortEnumType? requirements,
     Enum$SortEnumType? status,
     Enum$SortEnumType? revisionCount,
+    Enum$SortEnumType? disputedReason,
+    Enum$SortEnumType? refundReason,
     Enum$SortEnumType? duration,
     Enum$SortEnumType? freezedTime,
     Enum$SortEnumType? startedAt,
@@ -53003,10 +55157,13 @@ class _CopyWithImpl$Input$PackageOrderSortInput<TRes>
     Object? providerId = _undefined,
     Object? artistPackageId = _undefined,
     Object? paymentTransactionId = _undefined,
+    Object? payoutTransactionId = _undefined,
     Object? conversationId = _undefined,
     Object? requirements = _undefined,
     Object? status = _undefined,
     Object? revisionCount = _undefined,
+    Object? disputedReason = _undefined,
+    Object? refundReason = _undefined,
     Object? duration = _undefined,
     Object? freezedTime = _undefined,
     Object? startedAt = _undefined,
@@ -53031,6 +55188,8 @@ class _CopyWithImpl$Input$PackageOrderSortInput<TRes>
         'artistPackageId': (artistPackageId as Enum$SortEnumType?),
       if (paymentTransactionId != _undefined)
         'paymentTransactionId': (paymentTransactionId as Enum$SortEnumType?),
+      if (payoutTransactionId != _undefined)
+        'payoutTransactionId': (payoutTransactionId as Enum$SortEnumType?),
       if (conversationId != _undefined)
         'conversationId': (conversationId as Enum$SortEnumType?),
       if (requirements != _undefined)
@@ -53038,6 +55197,10 @@ class _CopyWithImpl$Input$PackageOrderSortInput<TRes>
       if (status != _undefined) 'status': (status as Enum$SortEnumType?),
       if (revisionCount != _undefined)
         'revisionCount': (revisionCount as Enum$SortEnumType?),
+      if (disputedReason != _undefined)
+        'disputedReason': (disputedReason as Enum$SortEnumType?),
+      if (refundReason != _undefined)
+        'refundReason': (refundReason as Enum$SortEnumType?),
       if (duration != _undefined) 'duration': (duration as Enum$SortEnumType?),
       if (freezedTime != _undefined)
         'freezedTime': (freezedTime as Enum$SortEnumType?),
@@ -53085,10 +55248,13 @@ class _CopyWithStubImpl$Input$PackageOrderSortInput<TRes>
     Enum$SortEnumType? providerId,
     Enum$SortEnumType? artistPackageId,
     Enum$SortEnumType? paymentTransactionId,
+    Enum$SortEnumType? payoutTransactionId,
     Enum$SortEnumType? conversationId,
     Enum$SortEnumType? requirements,
     Enum$SortEnumType? status,
     Enum$SortEnumType? revisionCount,
+    Enum$SortEnumType? disputedReason,
+    Enum$SortEnumType? refundReason,
     Enum$SortEnumType? duration,
     Enum$SortEnumType? freezedTime,
     Enum$SortEnumType? startedAt,
@@ -67850,6 +70016,7 @@ class Input$RequestFilterInput {
     Input$StringOperationFilterInput? requestUserId,
     Input$StringOperationFilterInput? artistId,
     Input$StringOperationFilterInput? packageId,
+    Input$StringOperationFilterInput? orderId,
     Input$StringOperationFilterInput? title,
     Input$StringOperationFilterInput? titleUnsigned,
     Input$StringOperationFilterInput? summary,
@@ -67872,6 +70039,7 @@ class Input$RequestFilterInput {
     if (requestUserId != null) r'requestUserId': requestUserId,
     if (artistId != null) r'artistId': artistId,
     if (packageId != null) r'packageId': packageId,
+    if (orderId != null) r'orderId': orderId,
     if (title != null) r'title': title,
     if (titleUnsigned != null) r'titleUnsigned': titleUnsigned,
     if (summary != null) r'summary': summary,
@@ -67941,6 +70109,14 @@ class Input$RequestFilterInput {
           ? null
           : Input$StringOperationFilterInput.fromJson(
               (l$packageId as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('orderId')) {
+      final l$orderId = data['orderId'];
+      result$data['orderId'] = l$orderId == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$orderId as Map<String, dynamic>),
             );
     }
     if (data.containsKey('title')) {
@@ -68086,6 +70262,9 @@ class Input$RequestFilterInput {
   Input$StringOperationFilterInput? get packageId =>
       (_$data['packageId'] as Input$StringOperationFilterInput?);
 
+  Input$StringOperationFilterInput? get orderId =>
+      (_$data['orderId'] as Input$StringOperationFilterInput?);
+
   Input$StringOperationFilterInput? get title =>
       (_$data['title'] as Input$StringOperationFilterInput?);
 
@@ -68156,6 +70335,10 @@ class Input$RequestFilterInput {
     if (_$data.containsKey('packageId')) {
       final l$packageId = packageId;
       result$data['packageId'] = l$packageId?.toJson();
+    }
+    if (_$data.containsKey('orderId')) {
+      final l$orderId = orderId;
+      result$data['orderId'] = l$orderId?.toJson();
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -68305,6 +70488,14 @@ class Input$RequestFilterInput {
     if (l$packageId != lOther$packageId) {
       return false;
     }
+    final l$orderId = orderId;
+    final lOther$orderId = other.orderId;
+    if (_$data.containsKey('orderId') != other._$data.containsKey('orderId')) {
+      return false;
+    }
+    if (l$orderId != lOther$orderId) {
+      return false;
+    }
     final l$title = title;
     final lOther$title = other.title;
     if (_$data.containsKey('title') != other._$data.containsKey('title')) {
@@ -68445,6 +70636,7 @@ class Input$RequestFilterInput {
     final l$requestUserId = requestUserId;
     final l$artistId = artistId;
     final l$packageId = packageId;
+    final l$orderId = orderId;
     final l$title = title;
     final l$titleUnsigned = titleUnsigned;
     final l$summary = summary;
@@ -68475,6 +70667,7 @@ class Input$RequestFilterInput {
       _$data.containsKey('requestUserId') ? l$requestUserId : const {},
       _$data.containsKey('artistId') ? l$artistId : const {},
       _$data.containsKey('packageId') ? l$packageId : const {},
+      _$data.containsKey('orderId') ? l$orderId : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('titleUnsigned') ? l$titleUnsigned : const {},
       _$data.containsKey('summary') ? l$summary : const {},
@@ -68512,6 +70705,7 @@ abstract class CopyWith$Input$RequestFilterInput<TRes> {
     Input$StringOperationFilterInput? requestUserId,
     Input$StringOperationFilterInput? artistId,
     Input$StringOperationFilterInput? packageId,
+    Input$StringOperationFilterInput? orderId,
     Input$StringOperationFilterInput? title,
     Input$StringOperationFilterInput? titleUnsigned,
     Input$StringOperationFilterInput? summary,
@@ -68544,6 +70738,7 @@ abstract class CopyWith$Input$RequestFilterInput<TRes> {
   CopyWith$Input$StringOperationFilterInput<TRes> get requestUserId;
   CopyWith$Input$StringOperationFilterInput<TRes> get artistId;
   CopyWith$Input$StringOperationFilterInput<TRes> get packageId;
+  CopyWith$Input$StringOperationFilterInput<TRes> get orderId;
   CopyWith$Input$StringOperationFilterInput<TRes> get title;
   CopyWith$Input$StringOperationFilterInput<TRes> get titleUnsigned;
   CopyWith$Input$StringOperationFilterInput<TRes> get summary;
@@ -68578,6 +70773,7 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
     Object? requestUserId = _undefined,
     Object? artistId = _undefined,
     Object? packageId = _undefined,
+    Object? orderId = _undefined,
     Object? title = _undefined,
     Object? titleUnsigned = _undefined,
     Object? summary = _undefined,
@@ -68605,6 +70801,8 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
         'artistId': (artistId as Input$StringOperationFilterInput?),
       if (packageId != _undefined)
         'packageId': (packageId as Input$StringOperationFilterInput?),
+      if (orderId != _undefined)
+        'orderId': (orderId as Input$StringOperationFilterInput?),
       if (title != _undefined)
         'title': (title as Input$StringOperationFilterInput?),
       if (titleUnsigned != _undefined)
@@ -68701,6 +70899,16 @@ class _CopyWithImpl$Input$RequestFilterInput<TRes>
         : CopyWith$Input$StringOperationFilterInput(
             local$packageId,
             (e) => call(packageId: e),
+          );
+  }
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get orderId {
+    final local$orderId = _instance.orderId;
+    return local$orderId == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$orderId,
+            (e) => call(orderId: e),
           );
   }
 
@@ -68870,6 +71078,7 @@ class _CopyWithStubImpl$Input$RequestFilterInput<TRes>
     Input$StringOperationFilterInput? requestUserId,
     Input$StringOperationFilterInput? artistId,
     Input$StringOperationFilterInput? packageId,
+    Input$StringOperationFilterInput? orderId,
     Input$StringOperationFilterInput? title,
     Input$StringOperationFilterInput? titleUnsigned,
     Input$StringOperationFilterInput? summary,
@@ -68901,6 +71110,9 @@ class _CopyWithStubImpl$Input$RequestFilterInput<TRes>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
   CopyWith$Input$StringOperationFilterInput<TRes> get packageId =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get orderId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
   CopyWith$Input$StringOperationFilterInput<TRes> get title =>
@@ -68955,6 +71167,7 @@ class Input$RequestSortInput {
     Enum$SortEnumType? requestUserId,
     Enum$SortEnumType? artistId,
     Enum$SortEnumType? packageId,
+    Enum$SortEnumType? orderId,
     Enum$SortEnumType? title,
     Enum$SortEnumType? titleUnsigned,
     Enum$SortEnumType? summary,
@@ -68975,6 +71188,7 @@ class Input$RequestSortInput {
     if (requestUserId != null) r'requestUserId': requestUserId,
     if (artistId != null) r'artistId': artistId,
     if (packageId != null) r'packageId': packageId,
+    if (orderId != null) r'orderId': orderId,
     if (title != null) r'title': title,
     if (titleUnsigned != null) r'titleUnsigned': titleUnsigned,
     if (summary != null) r'summary': summary,
@@ -69019,6 +71233,12 @@ class Input$RequestSortInput {
       result$data['packageId'] = l$packageId == null
           ? null
           : fromJson$Enum$SortEnumType((l$packageId as String));
+    }
+    if (data.containsKey('orderId')) {
+      final l$orderId = data['orderId'];
+      result$data['orderId'] = l$orderId == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$orderId as String));
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -69127,6 +71347,8 @@ class Input$RequestSortInput {
   Enum$SortEnumType? get packageId =>
       (_$data['packageId'] as Enum$SortEnumType?);
 
+  Enum$SortEnumType? get orderId => (_$data['orderId'] as Enum$SortEnumType?);
+
   Enum$SortEnumType? get title => (_$data['title'] as Enum$SortEnumType?);
 
   Enum$SortEnumType? get titleUnsigned =>
@@ -69188,6 +71410,12 @@ class Input$RequestSortInput {
       result$data['packageId'] = l$packageId == null
           ? null
           : toJson$Enum$SortEnumType(l$packageId);
+    }
+    if (_$data.containsKey('orderId')) {
+      final l$orderId = orderId;
+      result$data['orderId'] = l$orderId == null
+          ? null
+          : toJson$Enum$SortEnumType(l$orderId);
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -69324,6 +71552,14 @@ class Input$RequestSortInput {
       return false;
     }
     if (l$packageId != lOther$packageId) {
+      return false;
+    }
+    final l$orderId = orderId;
+    final lOther$orderId = other.orderId;
+    if (_$data.containsKey('orderId') != other._$data.containsKey('orderId')) {
+      return false;
+    }
+    if (l$orderId != lOther$orderId) {
       return false;
     }
     final l$title = title;
@@ -69464,6 +71700,7 @@ class Input$RequestSortInput {
     final l$requestUserId = requestUserId;
     final l$artistId = artistId;
     final l$packageId = packageId;
+    final l$orderId = orderId;
     final l$title = title;
     final l$titleUnsigned = titleUnsigned;
     final l$summary = summary;
@@ -69484,6 +71721,7 @@ class Input$RequestSortInput {
       _$data.containsKey('requestUserId') ? l$requestUserId : const {},
       _$data.containsKey('artistId') ? l$artistId : const {},
       _$data.containsKey('packageId') ? l$packageId : const {},
+      _$data.containsKey('orderId') ? l$orderId : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('titleUnsigned') ? l$titleUnsigned : const {},
       _$data.containsKey('summary') ? l$summary : const {},
@@ -69519,6 +71757,7 @@ abstract class CopyWith$Input$RequestSortInput<TRes> {
     Enum$SortEnumType? requestUserId,
     Enum$SortEnumType? artistId,
     Enum$SortEnumType? packageId,
+    Enum$SortEnumType? orderId,
     Enum$SortEnumType? title,
     Enum$SortEnumType? titleUnsigned,
     Enum$SortEnumType? summary,
@@ -69553,6 +71792,7 @@ class _CopyWithImpl$Input$RequestSortInput<TRes>
     Object? requestUserId = _undefined,
     Object? artistId = _undefined,
     Object? packageId = _undefined,
+    Object? orderId = _undefined,
     Object? title = _undefined,
     Object? titleUnsigned = _undefined,
     Object? summary = _undefined,
@@ -69577,6 +71817,7 @@ class _CopyWithImpl$Input$RequestSortInput<TRes>
       if (artistId != _undefined) 'artistId': (artistId as Enum$SortEnumType?),
       if (packageId != _undefined)
         'packageId': (packageId as Enum$SortEnumType?),
+      if (orderId != _undefined) 'orderId': (orderId as Enum$SortEnumType?),
       if (title != _undefined) 'title': (title as Enum$SortEnumType?),
       if (titleUnsigned != _undefined)
         'titleUnsigned': (titleUnsigned as Enum$SortEnumType?),
@@ -69625,6 +71866,7 @@ class _CopyWithStubImpl$Input$RequestSortInput<TRes>
     Enum$SortEnumType? requestUserId,
     Enum$SortEnumType? artistId,
     Enum$SortEnumType? packageId,
+    Enum$SortEnumType? orderId,
     Enum$SortEnumType? title,
     Enum$SortEnumType? titleUnsigned,
     Enum$SortEnumType? summary,
@@ -81158,6 +83400,1871 @@ class _CopyWithStubImpl$Input$TimeSpanOperationFilterInput<TRes>
   }) => _res;
 }
 
+class Input$TopTrackFilterInput {
+  factory Input$TopTrackFilterInput({
+    List<Input$TopTrackFilterInput>? and,
+    List<Input$TopTrackFilterInput>? or,
+    Input$StringOperationFilterInput? id,
+    Input$StringOperationFilterInput? userId,
+    Input$ListFilterInputTypeOfTopTrackInfoFilterInput? tracksInfo,
+    Input$DateTimeOperationFilterInput? createdAt,
+    Input$DateTimeOperationFilterInput? updatedAt,
+  }) => Input$TopTrackFilterInput._({
+    if (and != null) r'and': and,
+    if (or != null) r'or': or,
+    if (id != null) r'id': id,
+    if (userId != null) r'userId': userId,
+    if (tracksInfo != null) r'tracksInfo': tracksInfo,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+  });
+
+  Input$TopTrackFilterInput._(this._$data);
+
+  factory Input$TopTrackFilterInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('and')) {
+      final l$and = data['and'];
+      result$data['and'] = (l$and as List<dynamic>?)
+          ?.map(
+            (e) =>
+                Input$TopTrackFilterInput.fromJson((e as Map<String, dynamic>)),
+          )
+          .toList();
+    }
+    if (data.containsKey('or')) {
+      final l$or = data['or'];
+      result$data['or'] = (l$or as List<dynamic>?)
+          ?.map(
+            (e) =>
+                Input$TopTrackFilterInput.fromJson((e as Map<String, dynamic>)),
+          )
+          .toList();
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$id as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$userId as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('tracksInfo')) {
+      final l$tracksInfo = data['tracksInfo'];
+      result$data['tracksInfo'] = l$tracksInfo == null
+          ? null
+          : Input$ListFilterInputTypeOfTopTrackInfoFilterInput.fromJson(
+              (l$tracksInfo as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Input$DateTimeOperationFilterInput.fromJson(
+              (l$createdAt as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : Input$DateTimeOperationFilterInput.fromJson(
+              (l$updatedAt as Map<String, dynamic>),
+            );
+    }
+    return Input$TopTrackFilterInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Input$TopTrackFilterInput>? get and =>
+      (_$data['and'] as List<Input$TopTrackFilterInput>?);
+
+  List<Input$TopTrackFilterInput>? get or =>
+      (_$data['or'] as List<Input$TopTrackFilterInput>?);
+
+  Input$StringOperationFilterInput? get id =>
+      (_$data['id'] as Input$StringOperationFilterInput?);
+
+  Input$StringOperationFilterInput? get userId =>
+      (_$data['userId'] as Input$StringOperationFilterInput?);
+
+  Input$ListFilterInputTypeOfTopTrackInfoFilterInput? get tracksInfo =>
+      (_$data['tracksInfo']
+          as Input$ListFilterInputTypeOfTopTrackInfoFilterInput?);
+
+  Input$DateTimeOperationFilterInput? get createdAt =>
+      (_$data['createdAt'] as Input$DateTimeOperationFilterInput?);
+
+  Input$DateTimeOperationFilterInput? get updatedAt =>
+      (_$data['updatedAt'] as Input$DateTimeOperationFilterInput?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('and')) {
+      final l$and = and;
+      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('or')) {
+      final l$or = or;
+      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId?.toJson();
+    }
+    if (_$data.containsKey('tracksInfo')) {
+      final l$tracksInfo = tracksInfo;
+      result$data['tracksInfo'] = l$tracksInfo?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt?.toJson();
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$TopTrackFilterInput<Input$TopTrackFilterInput> get copyWith =>
+      CopyWith$Input$TopTrackFilterInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$TopTrackFilterInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$and = and;
+    final lOther$and = other.and;
+    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
+      return false;
+    }
+    if (l$and != null && lOther$and != null) {
+      if (l$and.length != lOther$and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$and.length; i++) {
+        final l$and$entry = l$and[i];
+        final lOther$and$entry = lOther$and[i];
+        if (l$and$entry != lOther$and$entry) {
+          return false;
+        }
+      }
+    } else if (l$and != lOther$and) {
+      return false;
+    }
+    final l$or = or;
+    final lOther$or = other.or;
+    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
+      return false;
+    }
+    if (l$or != null && lOther$or != null) {
+      if (l$or.length != lOther$or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$or.length; i++) {
+        final l$or$entry = l$or[i];
+        final lOther$or$entry = lOther$or[i];
+        if (l$or$entry != lOther$or$entry) {
+          return false;
+        }
+      }
+    } else if (l$or != lOther$or) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$tracksInfo = tracksInfo;
+    final lOther$tracksInfo = other.tracksInfo;
+    if (_$data.containsKey('tracksInfo') !=
+        other._$data.containsKey('tracksInfo')) {
+      return false;
+    }
+    if (l$tracksInfo != lOther$tracksInfo) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') !=
+        other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') !=
+        other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$and = and;
+    final l$or = or;
+    final l$id = id;
+    final l$userId = userId;
+    final l$tracksInfo = tracksInfo;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      _$data.containsKey('and')
+          ? l$and == null
+                ? null
+                : Object.hashAll(l$and.map((v) => v))
+          : const {},
+      _$data.containsKey('or')
+          ? l$or == null
+                ? null
+                : Object.hashAll(l$or.map((v) => v))
+          : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+      _$data.containsKey('tracksInfo') ? l$tracksInfo : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$TopTrackFilterInput<TRes> {
+  factory CopyWith$Input$TopTrackFilterInput(
+    Input$TopTrackFilterInput instance,
+    TRes Function(Input$TopTrackFilterInput) then,
+  ) = _CopyWithImpl$Input$TopTrackFilterInput;
+
+  factory CopyWith$Input$TopTrackFilterInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$TopTrackFilterInput;
+
+  TRes call({
+    List<Input$TopTrackFilterInput>? and,
+    List<Input$TopTrackFilterInput>? or,
+    Input$StringOperationFilterInput? id,
+    Input$StringOperationFilterInput? userId,
+    Input$ListFilterInputTypeOfTopTrackInfoFilterInput? tracksInfo,
+    Input$DateTimeOperationFilterInput? createdAt,
+    Input$DateTimeOperationFilterInput? updatedAt,
+  });
+  TRes and(
+    Iterable<Input$TopTrackFilterInput>? Function(
+      Iterable<CopyWith$Input$TopTrackFilterInput<Input$TopTrackFilterInput>>?,
+    )
+    _fn,
+  );
+  TRes or(
+    Iterable<Input$TopTrackFilterInput>? Function(
+      Iterable<CopyWith$Input$TopTrackFilterInput<Input$TopTrackFilterInput>>?,
+    )
+    _fn,
+  );
+  CopyWith$Input$StringOperationFilterInput<TRes> get id;
+  CopyWith$Input$StringOperationFilterInput<TRes> get userId;
+  CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput<TRes>
+  get tracksInfo;
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt;
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt;
+}
+
+class _CopyWithImpl$Input$TopTrackFilterInput<TRes>
+    implements CopyWith$Input$TopTrackFilterInput<TRes> {
+  _CopyWithImpl$Input$TopTrackFilterInput(this._instance, this._then);
+
+  final Input$TopTrackFilterInput _instance;
+
+  final TRes Function(Input$TopTrackFilterInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? and = _undefined,
+    Object? or = _undefined,
+    Object? id = _undefined,
+    Object? userId = _undefined,
+    Object? tracksInfo = _undefined,
+    Object? createdAt = _undefined,
+    Object? updatedAt = _undefined,
+  }) => _then(
+    Input$TopTrackFilterInput._({
+      ..._instance._$data,
+      if (and != _undefined) 'and': (and as List<Input$TopTrackFilterInput>?),
+      if (or != _undefined) 'or': (or as List<Input$TopTrackFilterInput>?),
+      if (id != _undefined) 'id': (id as Input$StringOperationFilterInput?),
+      if (userId != _undefined)
+        'userId': (userId as Input$StringOperationFilterInput?),
+      if (tracksInfo != _undefined)
+        'tracksInfo':
+            (tracksInfo as Input$ListFilterInputTypeOfTopTrackInfoFilterInput?),
+      if (createdAt != _undefined)
+        'createdAt': (createdAt as Input$DateTimeOperationFilterInput?),
+      if (updatedAt != _undefined)
+        'updatedAt': (updatedAt as Input$DateTimeOperationFilterInput?),
+    }),
+  );
+
+  TRes and(
+    Iterable<Input$TopTrackFilterInput>? Function(
+      Iterable<CopyWith$Input$TopTrackFilterInput<Input$TopTrackFilterInput>>?,
+    )
+    _fn,
+  ) => call(
+    and: _fn(
+      _instance.and?.map(
+        (e) => CopyWith$Input$TopTrackFilterInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+
+  TRes or(
+    Iterable<Input$TopTrackFilterInput>? Function(
+      Iterable<CopyWith$Input$TopTrackFilterInput<Input$TopTrackFilterInput>>?,
+    )
+    _fn,
+  ) => call(
+    or: _fn(
+      _instance.or?.map((e) => CopyWith$Input$TopTrackFilterInput(e, (i) => i)),
+    )?.toList(),
+  );
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get id {
+    final local$id = _instance.id;
+    return local$id == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$id,
+            (e) => call(id: e),
+          );
+  }
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get userId {
+    final local$userId = _instance.userId;
+    return local$userId == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$userId,
+            (e) => call(userId: e),
+          );
+  }
+
+  CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput<TRes>
+  get tracksInfo {
+    final local$tracksInfo = _instance.tracksInfo;
+    return local$tracksInfo == null
+        ? CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput.stub(
+            _then(_instance),
+          )
+        : CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput(
+            local$tracksInfo,
+            (e) => call(tracksInfo: e),
+          );
+  }
+
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
+    final local$createdAt = _instance.createdAt;
+    return local$createdAt == null
+        ? CopyWith$Input$DateTimeOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$DateTimeOperationFilterInput(
+            local$createdAt,
+            (e) => call(createdAt: e),
+          );
+  }
+
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
+    final local$updatedAt = _instance.updatedAt;
+    return local$updatedAt == null
+        ? CopyWith$Input$DateTimeOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$DateTimeOperationFilterInput(
+            local$updatedAt,
+            (e) => call(updatedAt: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Input$TopTrackFilterInput<TRes>
+    implements CopyWith$Input$TopTrackFilterInput<TRes> {
+  _CopyWithStubImpl$Input$TopTrackFilterInput(this._res);
+
+  TRes _res;
+
+  call({
+    List<Input$TopTrackFilterInput>? and,
+    List<Input$TopTrackFilterInput>? or,
+    Input$StringOperationFilterInput? id,
+    Input$StringOperationFilterInput? userId,
+    Input$ListFilterInputTypeOfTopTrackInfoFilterInput? tracksInfo,
+    Input$DateTimeOperationFilterInput? createdAt,
+    Input$DateTimeOperationFilterInput? updatedAt,
+  }) => _res;
+
+  and(_fn) => _res;
+
+  or(_fn) => _res;
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get id =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get userId =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput<TRes>
+  get tracksInfo =>
+      CopyWith$Input$ListFilterInputTypeOfTopTrackInfoFilterInput.stub(_res);
+
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
+      CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
+
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
+      CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
+}
+
+class Input$TopTrackInfoFilterInput {
+  factory Input$TopTrackInfoFilterInput({
+    List<Input$TopTrackInfoFilterInput>? and,
+    List<Input$TopTrackInfoFilterInput>? or,
+    Input$StringOperationFilterInput? trackId,
+    Input$IntOperationFilterInput? playedCount,
+  }) => Input$TopTrackInfoFilterInput._({
+    if (and != null) r'and': and,
+    if (or != null) r'or': or,
+    if (trackId != null) r'trackId': trackId,
+    if (playedCount != null) r'playedCount': playedCount,
+  });
+
+  Input$TopTrackInfoFilterInput._(this._$data);
+
+  factory Input$TopTrackInfoFilterInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('and')) {
+      final l$and = data['and'];
+      result$data['and'] = (l$and as List<dynamic>?)
+          ?.map(
+            (e) => Input$TopTrackInfoFilterInput.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList();
+    }
+    if (data.containsKey('or')) {
+      final l$or = data['or'];
+      result$data['or'] = (l$or as List<dynamic>?)
+          ?.map(
+            (e) => Input$TopTrackInfoFilterInput.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList();
+    }
+    if (data.containsKey('trackId')) {
+      final l$trackId = data['trackId'];
+      result$data['trackId'] = l$trackId == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$trackId as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('playedCount')) {
+      final l$playedCount = data['playedCount'];
+      result$data['playedCount'] = l$playedCount == null
+          ? null
+          : Input$IntOperationFilterInput.fromJson(
+              (l$playedCount as Map<String, dynamic>),
+            );
+    }
+    return Input$TopTrackInfoFilterInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Input$TopTrackInfoFilterInput>? get and =>
+      (_$data['and'] as List<Input$TopTrackInfoFilterInput>?);
+
+  List<Input$TopTrackInfoFilterInput>? get or =>
+      (_$data['or'] as List<Input$TopTrackInfoFilterInput>?);
+
+  Input$StringOperationFilterInput? get trackId =>
+      (_$data['trackId'] as Input$StringOperationFilterInput?);
+
+  Input$IntOperationFilterInput? get playedCount =>
+      (_$data['playedCount'] as Input$IntOperationFilterInput?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('and')) {
+      final l$and = and;
+      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('or')) {
+      final l$or = or;
+      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('trackId')) {
+      final l$trackId = trackId;
+      result$data['trackId'] = l$trackId?.toJson();
+    }
+    if (_$data.containsKey('playedCount')) {
+      final l$playedCount = playedCount;
+      result$data['playedCount'] = l$playedCount?.toJson();
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$TopTrackInfoFilterInput<Input$TopTrackInfoFilterInput>
+  get copyWith => CopyWith$Input$TopTrackInfoFilterInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$TopTrackInfoFilterInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$and = and;
+    final lOther$and = other.and;
+    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
+      return false;
+    }
+    if (l$and != null && lOther$and != null) {
+      if (l$and.length != lOther$and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$and.length; i++) {
+        final l$and$entry = l$and[i];
+        final lOther$and$entry = lOther$and[i];
+        if (l$and$entry != lOther$and$entry) {
+          return false;
+        }
+      }
+    } else if (l$and != lOther$and) {
+      return false;
+    }
+    final l$or = or;
+    final lOther$or = other.or;
+    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
+      return false;
+    }
+    if (l$or != null && lOther$or != null) {
+      if (l$or.length != lOther$or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$or.length; i++) {
+        final l$or$entry = l$or[i];
+        final lOther$or$entry = lOther$or[i];
+        if (l$or$entry != lOther$or$entry) {
+          return false;
+        }
+      }
+    } else if (l$or != lOther$or) {
+      return false;
+    }
+    final l$trackId = trackId;
+    final lOther$trackId = other.trackId;
+    if (_$data.containsKey('trackId') != other._$data.containsKey('trackId')) {
+      return false;
+    }
+    if (l$trackId != lOther$trackId) {
+      return false;
+    }
+    final l$playedCount = playedCount;
+    final lOther$playedCount = other.playedCount;
+    if (_$data.containsKey('playedCount') !=
+        other._$data.containsKey('playedCount')) {
+      return false;
+    }
+    if (l$playedCount != lOther$playedCount) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$and = and;
+    final l$or = or;
+    final l$trackId = trackId;
+    final l$playedCount = playedCount;
+    return Object.hashAll([
+      _$data.containsKey('and')
+          ? l$and == null
+                ? null
+                : Object.hashAll(l$and.map((v) => v))
+          : const {},
+      _$data.containsKey('or')
+          ? l$or == null
+                ? null
+                : Object.hashAll(l$or.map((v) => v))
+          : const {},
+      _$data.containsKey('trackId') ? l$trackId : const {},
+      _$data.containsKey('playedCount') ? l$playedCount : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$TopTrackInfoFilterInput<TRes> {
+  factory CopyWith$Input$TopTrackInfoFilterInput(
+    Input$TopTrackInfoFilterInput instance,
+    TRes Function(Input$TopTrackInfoFilterInput) then,
+  ) = _CopyWithImpl$Input$TopTrackInfoFilterInput;
+
+  factory CopyWith$Input$TopTrackInfoFilterInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$TopTrackInfoFilterInput;
+
+  TRes call({
+    List<Input$TopTrackInfoFilterInput>? and,
+    List<Input$TopTrackInfoFilterInput>? or,
+    Input$StringOperationFilterInput? trackId,
+    Input$IntOperationFilterInput? playedCount,
+  });
+  TRes and(
+    Iterable<Input$TopTrackInfoFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$TopTrackInfoFilterInput<Input$TopTrackInfoFilterInput>
+      >?,
+    )
+    _fn,
+  );
+  TRes or(
+    Iterable<Input$TopTrackInfoFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$TopTrackInfoFilterInput<Input$TopTrackInfoFilterInput>
+      >?,
+    )
+    _fn,
+  );
+  CopyWith$Input$StringOperationFilterInput<TRes> get trackId;
+  CopyWith$Input$IntOperationFilterInput<TRes> get playedCount;
+}
+
+class _CopyWithImpl$Input$TopTrackInfoFilterInput<TRes>
+    implements CopyWith$Input$TopTrackInfoFilterInput<TRes> {
+  _CopyWithImpl$Input$TopTrackInfoFilterInput(this._instance, this._then);
+
+  final Input$TopTrackInfoFilterInput _instance;
+
+  final TRes Function(Input$TopTrackInfoFilterInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? and = _undefined,
+    Object? or = _undefined,
+    Object? trackId = _undefined,
+    Object? playedCount = _undefined,
+  }) => _then(
+    Input$TopTrackInfoFilterInput._({
+      ..._instance._$data,
+      if (and != _undefined)
+        'and': (and as List<Input$TopTrackInfoFilterInput>?),
+      if (or != _undefined) 'or': (or as List<Input$TopTrackInfoFilterInput>?),
+      if (trackId != _undefined)
+        'trackId': (trackId as Input$StringOperationFilterInput?),
+      if (playedCount != _undefined)
+        'playedCount': (playedCount as Input$IntOperationFilterInput?),
+    }),
+  );
+
+  TRes and(
+    Iterable<Input$TopTrackInfoFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$TopTrackInfoFilterInput<Input$TopTrackInfoFilterInput>
+      >?,
+    )
+    _fn,
+  ) => call(
+    and: _fn(
+      _instance.and?.map(
+        (e) => CopyWith$Input$TopTrackInfoFilterInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+
+  TRes or(
+    Iterable<Input$TopTrackInfoFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$TopTrackInfoFilterInput<Input$TopTrackInfoFilterInput>
+      >?,
+    )
+    _fn,
+  ) => call(
+    or: _fn(
+      _instance.or?.map(
+        (e) => CopyWith$Input$TopTrackInfoFilterInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get trackId {
+    final local$trackId = _instance.trackId;
+    return local$trackId == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$trackId,
+            (e) => call(trackId: e),
+          );
+  }
+
+  CopyWith$Input$IntOperationFilterInput<TRes> get playedCount {
+    final local$playedCount = _instance.playedCount;
+    return local$playedCount == null
+        ? CopyWith$Input$IntOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$IntOperationFilterInput(
+            local$playedCount,
+            (e) => call(playedCount: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Input$TopTrackInfoFilterInput<TRes>
+    implements CopyWith$Input$TopTrackInfoFilterInput<TRes> {
+  _CopyWithStubImpl$Input$TopTrackInfoFilterInput(this._res);
+
+  TRes _res;
+
+  call({
+    List<Input$TopTrackInfoFilterInput>? and,
+    List<Input$TopTrackInfoFilterInput>? or,
+    Input$StringOperationFilterInput? trackId,
+    Input$IntOperationFilterInput? playedCount,
+  }) => _res;
+
+  and(_fn) => _res;
+
+  or(_fn) => _res;
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get trackId =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$IntOperationFilterInput<TRes> get playedCount =>
+      CopyWith$Input$IntOperationFilterInput.stub(_res);
+}
+
+class Input$TopTrackInfoSortInput {
+  factory Input$TopTrackInfoSortInput({
+    Enum$SortEnumType? trackId,
+    Enum$SortEnumType? playedCount,
+  }) => Input$TopTrackInfoSortInput._({
+    if (trackId != null) r'trackId': trackId,
+    if (playedCount != null) r'playedCount': playedCount,
+  });
+
+  Input$TopTrackInfoSortInput._(this._$data);
+
+  factory Input$TopTrackInfoSortInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('trackId')) {
+      final l$trackId = data['trackId'];
+      result$data['trackId'] = l$trackId == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$trackId as String));
+    }
+    if (data.containsKey('playedCount')) {
+      final l$playedCount = data['playedCount'];
+      result$data['playedCount'] = l$playedCount == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$playedCount as String));
+    }
+    return Input$TopTrackInfoSortInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$SortEnumType? get trackId => (_$data['trackId'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get playedCount =>
+      (_$data['playedCount'] as Enum$SortEnumType?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('trackId')) {
+      final l$trackId = trackId;
+      result$data['trackId'] = l$trackId == null
+          ? null
+          : toJson$Enum$SortEnumType(l$trackId);
+    }
+    if (_$data.containsKey('playedCount')) {
+      final l$playedCount = playedCount;
+      result$data['playedCount'] = l$playedCount == null
+          ? null
+          : toJson$Enum$SortEnumType(l$playedCount);
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$TopTrackInfoSortInput<Input$TopTrackInfoSortInput>
+  get copyWith => CopyWith$Input$TopTrackInfoSortInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$TopTrackInfoSortInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$trackId = trackId;
+    final lOther$trackId = other.trackId;
+    if (_$data.containsKey('trackId') != other._$data.containsKey('trackId')) {
+      return false;
+    }
+    if (l$trackId != lOther$trackId) {
+      return false;
+    }
+    final l$playedCount = playedCount;
+    final lOther$playedCount = other.playedCount;
+    if (_$data.containsKey('playedCount') !=
+        other._$data.containsKey('playedCount')) {
+      return false;
+    }
+    if (l$playedCount != lOther$playedCount) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$trackId = trackId;
+    final l$playedCount = playedCount;
+    return Object.hashAll([
+      _$data.containsKey('trackId') ? l$trackId : const {},
+      _$data.containsKey('playedCount') ? l$playedCount : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$TopTrackInfoSortInput<TRes> {
+  factory CopyWith$Input$TopTrackInfoSortInput(
+    Input$TopTrackInfoSortInput instance,
+    TRes Function(Input$TopTrackInfoSortInput) then,
+  ) = _CopyWithImpl$Input$TopTrackInfoSortInput;
+
+  factory CopyWith$Input$TopTrackInfoSortInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$TopTrackInfoSortInput;
+
+  TRes call({Enum$SortEnumType? trackId, Enum$SortEnumType? playedCount});
+}
+
+class _CopyWithImpl$Input$TopTrackInfoSortInput<TRes>
+    implements CopyWith$Input$TopTrackInfoSortInput<TRes> {
+  _CopyWithImpl$Input$TopTrackInfoSortInput(this._instance, this._then);
+
+  final Input$TopTrackInfoSortInput _instance;
+
+  final TRes Function(Input$TopTrackInfoSortInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? trackId = _undefined, Object? playedCount = _undefined}) =>
+      _then(
+        Input$TopTrackInfoSortInput._({
+          ..._instance._$data,
+          if (trackId != _undefined) 'trackId': (trackId as Enum$SortEnumType?),
+          if (playedCount != _undefined)
+            'playedCount': (playedCount as Enum$SortEnumType?),
+        }),
+      );
+}
+
+class _CopyWithStubImpl$Input$TopTrackInfoSortInput<TRes>
+    implements CopyWith$Input$TopTrackInfoSortInput<TRes> {
+  _CopyWithStubImpl$Input$TopTrackInfoSortInput(this._res);
+
+  TRes _res;
+
+  call({Enum$SortEnumType? trackId, Enum$SortEnumType? playedCount}) => _res;
+}
+
+class Input$TrackDailyMetricFilterInput {
+  factory Input$TrackDailyMetricFilterInput({
+    List<Input$TrackDailyMetricFilterInput>? and,
+    List<Input$TrackDailyMetricFilterInput>? or,
+    Input$StringOperationFilterInput? id,
+    Input$StringOperationFilterInput? trackId,
+    Input$LongOperationFilterInput? streamCount,
+    Input$LongOperationFilterInput? downloadCount,
+    Input$LongOperationFilterInput? favoriteCount,
+    Input$LongOperationFilterInput? commentCount,
+    Input$DateTimeOperationFilterInput? createdAt,
+    Input$DateTimeOperationFilterInput? updatedAt,
+  }) => Input$TrackDailyMetricFilterInput._({
+    if (and != null) r'and': and,
+    if (or != null) r'or': or,
+    if (id != null) r'id': id,
+    if (trackId != null) r'trackId': trackId,
+    if (streamCount != null) r'streamCount': streamCount,
+    if (downloadCount != null) r'downloadCount': downloadCount,
+    if (favoriteCount != null) r'favoriteCount': favoriteCount,
+    if (commentCount != null) r'commentCount': commentCount,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+  });
+
+  Input$TrackDailyMetricFilterInput._(this._$data);
+
+  factory Input$TrackDailyMetricFilterInput.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('and')) {
+      final l$and = data['and'];
+      result$data['and'] = (l$and as List<dynamic>?)
+          ?.map(
+            (e) => Input$TrackDailyMetricFilterInput.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList();
+    }
+    if (data.containsKey('or')) {
+      final l$or = data['or'];
+      result$data['or'] = (l$or as List<dynamic>?)
+          ?.map(
+            (e) => Input$TrackDailyMetricFilterInput.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
+          .toList();
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$id as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('trackId')) {
+      final l$trackId = data['trackId'];
+      result$data['trackId'] = l$trackId == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$trackId as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('streamCount')) {
+      final l$streamCount = data['streamCount'];
+      result$data['streamCount'] = l$streamCount == null
+          ? null
+          : Input$LongOperationFilterInput.fromJson(
+              (l$streamCount as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('downloadCount')) {
+      final l$downloadCount = data['downloadCount'];
+      result$data['downloadCount'] = l$downloadCount == null
+          ? null
+          : Input$LongOperationFilterInput.fromJson(
+              (l$downloadCount as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('favoriteCount')) {
+      final l$favoriteCount = data['favoriteCount'];
+      result$data['favoriteCount'] = l$favoriteCount == null
+          ? null
+          : Input$LongOperationFilterInput.fromJson(
+              (l$favoriteCount as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('commentCount')) {
+      final l$commentCount = data['commentCount'];
+      result$data['commentCount'] = l$commentCount == null
+          ? null
+          : Input$LongOperationFilterInput.fromJson(
+              (l$commentCount as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Input$DateTimeOperationFilterInput.fromJson(
+              (l$createdAt as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : Input$DateTimeOperationFilterInput.fromJson(
+              (l$updatedAt as Map<String, dynamic>),
+            );
+    }
+    return Input$TrackDailyMetricFilterInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Input$TrackDailyMetricFilterInput>? get and =>
+      (_$data['and'] as List<Input$TrackDailyMetricFilterInput>?);
+
+  List<Input$TrackDailyMetricFilterInput>? get or =>
+      (_$data['or'] as List<Input$TrackDailyMetricFilterInput>?);
+
+  Input$StringOperationFilterInput? get id =>
+      (_$data['id'] as Input$StringOperationFilterInput?);
+
+  Input$StringOperationFilterInput? get trackId =>
+      (_$data['trackId'] as Input$StringOperationFilterInput?);
+
+  Input$LongOperationFilterInput? get streamCount =>
+      (_$data['streamCount'] as Input$LongOperationFilterInput?);
+
+  Input$LongOperationFilterInput? get downloadCount =>
+      (_$data['downloadCount'] as Input$LongOperationFilterInput?);
+
+  Input$LongOperationFilterInput? get favoriteCount =>
+      (_$data['favoriteCount'] as Input$LongOperationFilterInput?);
+
+  Input$LongOperationFilterInput? get commentCount =>
+      (_$data['commentCount'] as Input$LongOperationFilterInput?);
+
+  Input$DateTimeOperationFilterInput? get createdAt =>
+      (_$data['createdAt'] as Input$DateTimeOperationFilterInput?);
+
+  Input$DateTimeOperationFilterInput? get updatedAt =>
+      (_$data['updatedAt'] as Input$DateTimeOperationFilterInput?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('and')) {
+      final l$and = and;
+      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('or')) {
+      final l$or = or;
+      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('trackId')) {
+      final l$trackId = trackId;
+      result$data['trackId'] = l$trackId?.toJson();
+    }
+    if (_$data.containsKey('streamCount')) {
+      final l$streamCount = streamCount;
+      result$data['streamCount'] = l$streamCount?.toJson();
+    }
+    if (_$data.containsKey('downloadCount')) {
+      final l$downloadCount = downloadCount;
+      result$data['downloadCount'] = l$downloadCount?.toJson();
+    }
+    if (_$data.containsKey('favoriteCount')) {
+      final l$favoriteCount = favoriteCount;
+      result$data['favoriteCount'] = l$favoriteCount?.toJson();
+    }
+    if (_$data.containsKey('commentCount')) {
+      final l$commentCount = commentCount;
+      result$data['commentCount'] = l$commentCount?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt?.toJson();
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$TrackDailyMetricFilterInput<Input$TrackDailyMetricFilterInput>
+  get copyWith => CopyWith$Input$TrackDailyMetricFilterInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$TrackDailyMetricFilterInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$and = and;
+    final lOther$and = other.and;
+    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
+      return false;
+    }
+    if (l$and != null && lOther$and != null) {
+      if (l$and.length != lOther$and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$and.length; i++) {
+        final l$and$entry = l$and[i];
+        final lOther$and$entry = lOther$and[i];
+        if (l$and$entry != lOther$and$entry) {
+          return false;
+        }
+      }
+    } else if (l$and != lOther$and) {
+      return false;
+    }
+    final l$or = or;
+    final lOther$or = other.or;
+    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
+      return false;
+    }
+    if (l$or != null && lOther$or != null) {
+      if (l$or.length != lOther$or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$or.length; i++) {
+        final l$or$entry = l$or[i];
+        final lOther$or$entry = lOther$or[i];
+        if (l$or$entry != lOther$or$entry) {
+          return false;
+        }
+      }
+    } else if (l$or != lOther$or) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$trackId = trackId;
+    final lOther$trackId = other.trackId;
+    if (_$data.containsKey('trackId') != other._$data.containsKey('trackId')) {
+      return false;
+    }
+    if (l$trackId != lOther$trackId) {
+      return false;
+    }
+    final l$streamCount = streamCount;
+    final lOther$streamCount = other.streamCount;
+    if (_$data.containsKey('streamCount') !=
+        other._$data.containsKey('streamCount')) {
+      return false;
+    }
+    if (l$streamCount != lOther$streamCount) {
+      return false;
+    }
+    final l$downloadCount = downloadCount;
+    final lOther$downloadCount = other.downloadCount;
+    if (_$data.containsKey('downloadCount') !=
+        other._$data.containsKey('downloadCount')) {
+      return false;
+    }
+    if (l$downloadCount != lOther$downloadCount) {
+      return false;
+    }
+    final l$favoriteCount = favoriteCount;
+    final lOther$favoriteCount = other.favoriteCount;
+    if (_$data.containsKey('favoriteCount') !=
+        other._$data.containsKey('favoriteCount')) {
+      return false;
+    }
+    if (l$favoriteCount != lOther$favoriteCount) {
+      return false;
+    }
+    final l$commentCount = commentCount;
+    final lOther$commentCount = other.commentCount;
+    if (_$data.containsKey('commentCount') !=
+        other._$data.containsKey('commentCount')) {
+      return false;
+    }
+    if (l$commentCount != lOther$commentCount) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') !=
+        other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') !=
+        other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$and = and;
+    final l$or = or;
+    final l$id = id;
+    final l$trackId = trackId;
+    final l$streamCount = streamCount;
+    final l$downloadCount = downloadCount;
+    final l$favoriteCount = favoriteCount;
+    final l$commentCount = commentCount;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      _$data.containsKey('and')
+          ? l$and == null
+                ? null
+                : Object.hashAll(l$and.map((v) => v))
+          : const {},
+      _$data.containsKey('or')
+          ? l$or == null
+                ? null
+                : Object.hashAll(l$or.map((v) => v))
+          : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('trackId') ? l$trackId : const {},
+      _$data.containsKey('streamCount') ? l$streamCount : const {},
+      _$data.containsKey('downloadCount') ? l$downloadCount : const {},
+      _$data.containsKey('favoriteCount') ? l$favoriteCount : const {},
+      _$data.containsKey('commentCount') ? l$commentCount : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$TrackDailyMetricFilterInput<TRes> {
+  factory CopyWith$Input$TrackDailyMetricFilterInput(
+    Input$TrackDailyMetricFilterInput instance,
+    TRes Function(Input$TrackDailyMetricFilterInput) then,
+  ) = _CopyWithImpl$Input$TrackDailyMetricFilterInput;
+
+  factory CopyWith$Input$TrackDailyMetricFilterInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$TrackDailyMetricFilterInput;
+
+  TRes call({
+    List<Input$TrackDailyMetricFilterInput>? and,
+    List<Input$TrackDailyMetricFilterInput>? or,
+    Input$StringOperationFilterInput? id,
+    Input$StringOperationFilterInput? trackId,
+    Input$LongOperationFilterInput? streamCount,
+    Input$LongOperationFilterInput? downloadCount,
+    Input$LongOperationFilterInput? favoriteCount,
+    Input$LongOperationFilterInput? commentCount,
+    Input$DateTimeOperationFilterInput? createdAt,
+    Input$DateTimeOperationFilterInput? updatedAt,
+  });
+  TRes and(
+    Iterable<Input$TrackDailyMetricFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$TrackDailyMetricFilterInput<
+          Input$TrackDailyMetricFilterInput
+        >
+      >?,
+    )
+    _fn,
+  );
+  TRes or(
+    Iterable<Input$TrackDailyMetricFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$TrackDailyMetricFilterInput<
+          Input$TrackDailyMetricFilterInput
+        >
+      >?,
+    )
+    _fn,
+  );
+  CopyWith$Input$StringOperationFilterInput<TRes> get id;
+  CopyWith$Input$StringOperationFilterInput<TRes> get trackId;
+  CopyWith$Input$LongOperationFilterInput<TRes> get streamCount;
+  CopyWith$Input$LongOperationFilterInput<TRes> get downloadCount;
+  CopyWith$Input$LongOperationFilterInput<TRes> get favoriteCount;
+  CopyWith$Input$LongOperationFilterInput<TRes> get commentCount;
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt;
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt;
+}
+
+class _CopyWithImpl$Input$TrackDailyMetricFilterInput<TRes>
+    implements CopyWith$Input$TrackDailyMetricFilterInput<TRes> {
+  _CopyWithImpl$Input$TrackDailyMetricFilterInput(this._instance, this._then);
+
+  final Input$TrackDailyMetricFilterInput _instance;
+
+  final TRes Function(Input$TrackDailyMetricFilterInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? and = _undefined,
+    Object? or = _undefined,
+    Object? id = _undefined,
+    Object? trackId = _undefined,
+    Object? streamCount = _undefined,
+    Object? downloadCount = _undefined,
+    Object? favoriteCount = _undefined,
+    Object? commentCount = _undefined,
+    Object? createdAt = _undefined,
+    Object? updatedAt = _undefined,
+  }) => _then(
+    Input$TrackDailyMetricFilterInput._({
+      ..._instance._$data,
+      if (and != _undefined)
+        'and': (and as List<Input$TrackDailyMetricFilterInput>?),
+      if (or != _undefined)
+        'or': (or as List<Input$TrackDailyMetricFilterInput>?),
+      if (id != _undefined) 'id': (id as Input$StringOperationFilterInput?),
+      if (trackId != _undefined)
+        'trackId': (trackId as Input$StringOperationFilterInput?),
+      if (streamCount != _undefined)
+        'streamCount': (streamCount as Input$LongOperationFilterInput?),
+      if (downloadCount != _undefined)
+        'downloadCount': (downloadCount as Input$LongOperationFilterInput?),
+      if (favoriteCount != _undefined)
+        'favoriteCount': (favoriteCount as Input$LongOperationFilterInput?),
+      if (commentCount != _undefined)
+        'commentCount': (commentCount as Input$LongOperationFilterInput?),
+      if (createdAt != _undefined)
+        'createdAt': (createdAt as Input$DateTimeOperationFilterInput?),
+      if (updatedAt != _undefined)
+        'updatedAt': (updatedAt as Input$DateTimeOperationFilterInput?),
+    }),
+  );
+
+  TRes and(
+    Iterable<Input$TrackDailyMetricFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$TrackDailyMetricFilterInput<
+          Input$TrackDailyMetricFilterInput
+        >
+      >?,
+    )
+    _fn,
+  ) => call(
+    and: _fn(
+      _instance.and?.map(
+        (e) => CopyWith$Input$TrackDailyMetricFilterInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+
+  TRes or(
+    Iterable<Input$TrackDailyMetricFilterInput>? Function(
+      Iterable<
+        CopyWith$Input$TrackDailyMetricFilterInput<
+          Input$TrackDailyMetricFilterInput
+        >
+      >?,
+    )
+    _fn,
+  ) => call(
+    or: _fn(
+      _instance.or?.map(
+        (e) => CopyWith$Input$TrackDailyMetricFilterInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get id {
+    final local$id = _instance.id;
+    return local$id == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$id,
+            (e) => call(id: e),
+          );
+  }
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get trackId {
+    final local$trackId = _instance.trackId;
+    return local$trackId == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$trackId,
+            (e) => call(trackId: e),
+          );
+  }
+
+  CopyWith$Input$LongOperationFilterInput<TRes> get streamCount {
+    final local$streamCount = _instance.streamCount;
+    return local$streamCount == null
+        ? CopyWith$Input$LongOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$LongOperationFilterInput(
+            local$streamCount,
+            (e) => call(streamCount: e),
+          );
+  }
+
+  CopyWith$Input$LongOperationFilterInput<TRes> get downloadCount {
+    final local$downloadCount = _instance.downloadCount;
+    return local$downloadCount == null
+        ? CopyWith$Input$LongOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$LongOperationFilterInput(
+            local$downloadCount,
+            (e) => call(downloadCount: e),
+          );
+  }
+
+  CopyWith$Input$LongOperationFilterInput<TRes> get favoriteCount {
+    final local$favoriteCount = _instance.favoriteCount;
+    return local$favoriteCount == null
+        ? CopyWith$Input$LongOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$LongOperationFilterInput(
+            local$favoriteCount,
+            (e) => call(favoriteCount: e),
+          );
+  }
+
+  CopyWith$Input$LongOperationFilterInput<TRes> get commentCount {
+    final local$commentCount = _instance.commentCount;
+    return local$commentCount == null
+        ? CopyWith$Input$LongOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$LongOperationFilterInput(
+            local$commentCount,
+            (e) => call(commentCount: e),
+          );
+  }
+
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt {
+    final local$createdAt = _instance.createdAt;
+    return local$createdAt == null
+        ? CopyWith$Input$DateTimeOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$DateTimeOperationFilterInput(
+            local$createdAt,
+            (e) => call(createdAt: e),
+          );
+  }
+
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt {
+    final local$updatedAt = _instance.updatedAt;
+    return local$updatedAt == null
+        ? CopyWith$Input$DateTimeOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$DateTimeOperationFilterInput(
+            local$updatedAt,
+            (e) => call(updatedAt: e),
+          );
+  }
+}
+
+class _CopyWithStubImpl$Input$TrackDailyMetricFilterInput<TRes>
+    implements CopyWith$Input$TrackDailyMetricFilterInput<TRes> {
+  _CopyWithStubImpl$Input$TrackDailyMetricFilterInput(this._res);
+
+  TRes _res;
+
+  call({
+    List<Input$TrackDailyMetricFilterInput>? and,
+    List<Input$TrackDailyMetricFilterInput>? or,
+    Input$StringOperationFilterInput? id,
+    Input$StringOperationFilterInput? trackId,
+    Input$LongOperationFilterInput? streamCount,
+    Input$LongOperationFilterInput? downloadCount,
+    Input$LongOperationFilterInput? favoriteCount,
+    Input$LongOperationFilterInput? commentCount,
+    Input$DateTimeOperationFilterInput? createdAt,
+    Input$DateTimeOperationFilterInput? updatedAt,
+  }) => _res;
+
+  and(_fn) => _res;
+
+  or(_fn) => _res;
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get id =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get trackId =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$LongOperationFilterInput<TRes> get streamCount =>
+      CopyWith$Input$LongOperationFilterInput.stub(_res);
+
+  CopyWith$Input$LongOperationFilterInput<TRes> get downloadCount =>
+      CopyWith$Input$LongOperationFilterInput.stub(_res);
+
+  CopyWith$Input$LongOperationFilterInput<TRes> get favoriteCount =>
+      CopyWith$Input$LongOperationFilterInput.stub(_res);
+
+  CopyWith$Input$LongOperationFilterInput<TRes> get commentCount =>
+      CopyWith$Input$LongOperationFilterInput.stub(_res);
+
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get createdAt =>
+      CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
+
+  CopyWith$Input$DateTimeOperationFilterInput<TRes> get updatedAt =>
+      CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
+}
+
+class Input$TrackDailyMetricSortInput {
+  factory Input$TrackDailyMetricSortInput({
+    Enum$SortEnumType? id,
+    Enum$SortEnumType? trackId,
+    Enum$SortEnumType? streamCount,
+    Enum$SortEnumType? downloadCount,
+    Enum$SortEnumType? favoriteCount,
+    Enum$SortEnumType? commentCount,
+    Enum$SortEnumType? createdAt,
+    Enum$SortEnumType? updatedAt,
+  }) => Input$TrackDailyMetricSortInput._({
+    if (id != null) r'id': id,
+    if (trackId != null) r'trackId': trackId,
+    if (streamCount != null) r'streamCount': streamCount,
+    if (downloadCount != null) r'downloadCount': downloadCount,
+    if (favoriteCount != null) r'favoriteCount': favoriteCount,
+    if (commentCount != null) r'commentCount': commentCount,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+  });
+
+  Input$TrackDailyMetricSortInput._(this._$data);
+
+  factory Input$TrackDailyMetricSortInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$id as String));
+    }
+    if (data.containsKey('trackId')) {
+      final l$trackId = data['trackId'];
+      result$data['trackId'] = l$trackId == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$trackId as String));
+    }
+    if (data.containsKey('streamCount')) {
+      final l$streamCount = data['streamCount'];
+      result$data['streamCount'] = l$streamCount == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$streamCount as String));
+    }
+    if (data.containsKey('downloadCount')) {
+      final l$downloadCount = data['downloadCount'];
+      result$data['downloadCount'] = l$downloadCount == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$downloadCount as String));
+    }
+    if (data.containsKey('favoriteCount')) {
+      final l$favoriteCount = data['favoriteCount'];
+      result$data['favoriteCount'] = l$favoriteCount == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$favoriteCount as String));
+    }
+    if (data.containsKey('commentCount')) {
+      final l$commentCount = data['commentCount'];
+      result$data['commentCount'] = l$commentCount == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$commentCount as String));
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$createdAt as String));
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$updatedAt as String));
+    }
+    return Input$TrackDailyMetricSortInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$SortEnumType? get id => (_$data['id'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get trackId => (_$data['trackId'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get streamCount =>
+      (_$data['streamCount'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get downloadCount =>
+      (_$data['downloadCount'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get favoriteCount =>
+      (_$data['favoriteCount'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get commentCount =>
+      (_$data['commentCount'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get createdAt =>
+      (_$data['createdAt'] as Enum$SortEnumType?);
+
+  Enum$SortEnumType? get updatedAt =>
+      (_$data['updatedAt'] as Enum$SortEnumType?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJson$Enum$SortEnumType(l$id);
+    }
+    if (_$data.containsKey('trackId')) {
+      final l$trackId = trackId;
+      result$data['trackId'] = l$trackId == null
+          ? null
+          : toJson$Enum$SortEnumType(l$trackId);
+    }
+    if (_$data.containsKey('streamCount')) {
+      final l$streamCount = streamCount;
+      result$data['streamCount'] = l$streamCount == null
+          ? null
+          : toJson$Enum$SortEnumType(l$streamCount);
+    }
+    if (_$data.containsKey('downloadCount')) {
+      final l$downloadCount = downloadCount;
+      result$data['downloadCount'] = l$downloadCount == null
+          ? null
+          : toJson$Enum$SortEnumType(l$downloadCount);
+    }
+    if (_$data.containsKey('favoriteCount')) {
+      final l$favoriteCount = favoriteCount;
+      result$data['favoriteCount'] = l$favoriteCount == null
+          ? null
+          : toJson$Enum$SortEnumType(l$favoriteCount);
+    }
+    if (_$data.containsKey('commentCount')) {
+      final l$commentCount = commentCount;
+      result$data['commentCount'] = l$commentCount == null
+          ? null
+          : toJson$Enum$SortEnumType(l$commentCount);
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : toJson$Enum$SortEnumType(l$createdAt);
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : toJson$Enum$SortEnumType(l$updatedAt);
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$TrackDailyMetricSortInput<Input$TrackDailyMetricSortInput>
+  get copyWith => CopyWith$Input$TrackDailyMetricSortInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$TrackDailyMetricSortInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$trackId = trackId;
+    final lOther$trackId = other.trackId;
+    if (_$data.containsKey('trackId') != other._$data.containsKey('trackId')) {
+      return false;
+    }
+    if (l$trackId != lOther$trackId) {
+      return false;
+    }
+    final l$streamCount = streamCount;
+    final lOther$streamCount = other.streamCount;
+    if (_$data.containsKey('streamCount') !=
+        other._$data.containsKey('streamCount')) {
+      return false;
+    }
+    if (l$streamCount != lOther$streamCount) {
+      return false;
+    }
+    final l$downloadCount = downloadCount;
+    final lOther$downloadCount = other.downloadCount;
+    if (_$data.containsKey('downloadCount') !=
+        other._$data.containsKey('downloadCount')) {
+      return false;
+    }
+    if (l$downloadCount != lOther$downloadCount) {
+      return false;
+    }
+    final l$favoriteCount = favoriteCount;
+    final lOther$favoriteCount = other.favoriteCount;
+    if (_$data.containsKey('favoriteCount') !=
+        other._$data.containsKey('favoriteCount')) {
+      return false;
+    }
+    if (l$favoriteCount != lOther$favoriteCount) {
+      return false;
+    }
+    final l$commentCount = commentCount;
+    final lOther$commentCount = other.commentCount;
+    if (_$data.containsKey('commentCount') !=
+        other._$data.containsKey('commentCount')) {
+      return false;
+    }
+    if (l$commentCount != lOther$commentCount) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') !=
+        other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') !=
+        other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$trackId = trackId;
+    final l$streamCount = streamCount;
+    final l$downloadCount = downloadCount;
+    final l$favoriteCount = favoriteCount;
+    final l$commentCount = commentCount;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('trackId') ? l$trackId : const {},
+      _$data.containsKey('streamCount') ? l$streamCount : const {},
+      _$data.containsKey('downloadCount') ? l$downloadCount : const {},
+      _$data.containsKey('favoriteCount') ? l$favoriteCount : const {},
+      _$data.containsKey('commentCount') ? l$commentCount : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$TrackDailyMetricSortInput<TRes> {
+  factory CopyWith$Input$TrackDailyMetricSortInput(
+    Input$TrackDailyMetricSortInput instance,
+    TRes Function(Input$TrackDailyMetricSortInput) then,
+  ) = _CopyWithImpl$Input$TrackDailyMetricSortInput;
+
+  factory CopyWith$Input$TrackDailyMetricSortInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$TrackDailyMetricSortInput;
+
+  TRes call({
+    Enum$SortEnumType? id,
+    Enum$SortEnumType? trackId,
+    Enum$SortEnumType? streamCount,
+    Enum$SortEnumType? downloadCount,
+    Enum$SortEnumType? favoriteCount,
+    Enum$SortEnumType? commentCount,
+    Enum$SortEnumType? createdAt,
+    Enum$SortEnumType? updatedAt,
+  });
+}
+
+class _CopyWithImpl$Input$TrackDailyMetricSortInput<TRes>
+    implements CopyWith$Input$TrackDailyMetricSortInput<TRes> {
+  _CopyWithImpl$Input$TrackDailyMetricSortInput(this._instance, this._then);
+
+  final Input$TrackDailyMetricSortInput _instance;
+
+  final TRes Function(Input$TrackDailyMetricSortInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? trackId = _undefined,
+    Object? streamCount = _undefined,
+    Object? downloadCount = _undefined,
+    Object? favoriteCount = _undefined,
+    Object? commentCount = _undefined,
+    Object? createdAt = _undefined,
+    Object? updatedAt = _undefined,
+  }) => _then(
+    Input$TrackDailyMetricSortInput._({
+      ..._instance._$data,
+      if (id != _undefined) 'id': (id as Enum$SortEnumType?),
+      if (trackId != _undefined) 'trackId': (trackId as Enum$SortEnumType?),
+      if (streamCount != _undefined)
+        'streamCount': (streamCount as Enum$SortEnumType?),
+      if (downloadCount != _undefined)
+        'downloadCount': (downloadCount as Enum$SortEnumType?),
+      if (favoriteCount != _undefined)
+        'favoriteCount': (favoriteCount as Enum$SortEnumType?),
+      if (commentCount != _undefined)
+        'commentCount': (commentCount as Enum$SortEnumType?),
+      if (createdAt != _undefined)
+        'createdAt': (createdAt as Enum$SortEnumType?),
+      if (updatedAt != _undefined)
+        'updatedAt': (updatedAt as Enum$SortEnumType?),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Input$TrackDailyMetricSortInput<TRes>
+    implements CopyWith$Input$TrackDailyMetricSortInput<TRes> {
+  _CopyWithStubImpl$Input$TrackDailyMetricSortInput(this._res);
+
+  TRes _res;
+
+  call({
+    Enum$SortEnumType? id,
+    Enum$SortEnumType? trackId,
+    Enum$SortEnumType? streamCount,
+    Enum$SortEnumType? downloadCount,
+    Enum$SortEnumType? favoriteCount,
+    Enum$SortEnumType? commentCount,
+    Enum$SortEnumType? createdAt,
+    Enum$SortEnumType? updatedAt,
+  }) => _res;
+}
+
 class Input$TrackFilterInput {
   factory Input$TrackFilterInput({
     List<Input$TrackFilterInput>? and,
@@ -84760,6 +88867,324 @@ class _CopyWithStubImpl$Input$UpdateCategoryRequestInput<TRes>
   }) => _res;
 }
 
+class Input$UpdateCustomArtistPackageRequestInput {
+  factory Input$UpdateCustomArtistPackageRequestInput({
+    required String id,
+    String? packageName,
+    double? amount,
+    int? estimateDeliveryDays,
+    String? description,
+    List<Input$MetadataInput>? serviceDetails,
+    int? maxRevision,
+  }) => Input$UpdateCustomArtistPackageRequestInput._({
+    r'id': id,
+    if (packageName != null) r'packageName': packageName,
+    if (amount != null) r'amount': amount,
+    if (estimateDeliveryDays != null)
+      r'estimateDeliveryDays': estimateDeliveryDays,
+    if (description != null) r'description': description,
+    if (serviceDetails != null) r'serviceDetails': serviceDetails,
+    if (maxRevision != null) r'maxRevision': maxRevision,
+  });
+
+  Input$UpdateCustomArtistPackageRequestInput._(this._$data);
+
+  factory Input$UpdateCustomArtistPackageRequestInput.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    if (data.containsKey('packageName')) {
+      final l$packageName = data['packageName'];
+      result$data['packageName'] = (l$packageName as String?);
+    }
+    if (data.containsKey('amount')) {
+      final l$amount = data['amount'];
+      result$data['amount'] = (l$amount as num?)?.toDouble();
+    }
+    if (data.containsKey('estimateDeliveryDays')) {
+      final l$estimateDeliveryDays = data['estimateDeliveryDays'];
+      result$data['estimateDeliveryDays'] = (l$estimateDeliveryDays as int?);
+    }
+    if (data.containsKey('description')) {
+      final l$description = data['description'];
+      result$data['description'] = (l$description as String?);
+    }
+    if (data.containsKey('serviceDetails')) {
+      final l$serviceDetails = data['serviceDetails'];
+      result$data['serviceDetails'] = (l$serviceDetails as List<dynamic>?)
+          ?.map(
+            (e) => Input$MetadataInput.fromJson((e as Map<String, dynamic>)),
+          )
+          .toList();
+    }
+    if (data.containsKey('maxRevision')) {
+      final l$maxRevision = data['maxRevision'];
+      result$data['maxRevision'] = (l$maxRevision as int?);
+    }
+    return Input$UpdateCustomArtistPackageRequestInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+
+  String? get packageName => (_$data['packageName'] as String?);
+
+  double? get amount => (_$data['amount'] as double?);
+
+  int? get estimateDeliveryDays => (_$data['estimateDeliveryDays'] as int?);
+
+  String? get description => (_$data['description'] as String?);
+
+  List<Input$MetadataInput>? get serviceDetails =>
+      (_$data['serviceDetails'] as List<Input$MetadataInput>?);
+
+  int? get maxRevision => (_$data['maxRevision'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    if (_$data.containsKey('packageName')) {
+      final l$packageName = packageName;
+      result$data['packageName'] = l$packageName;
+    }
+    if (_$data.containsKey('amount')) {
+      final l$amount = amount;
+      result$data['amount'] = l$amount;
+    }
+    if (_$data.containsKey('estimateDeliveryDays')) {
+      final l$estimateDeliveryDays = estimateDeliveryDays;
+      result$data['estimateDeliveryDays'] = l$estimateDeliveryDays;
+    }
+    if (_$data.containsKey('description')) {
+      final l$description = description;
+      result$data['description'] = l$description;
+    }
+    if (_$data.containsKey('serviceDetails')) {
+      final l$serviceDetails = serviceDetails;
+      result$data['serviceDetails'] = l$serviceDetails
+          ?.map((e) => e.toJson())
+          .toList();
+    }
+    if (_$data.containsKey('maxRevision')) {
+      final l$maxRevision = maxRevision;
+      result$data['maxRevision'] = l$maxRevision;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$UpdateCustomArtistPackageRequestInput<
+    Input$UpdateCustomArtistPackageRequestInput
+  >
+  get copyWith =>
+      CopyWith$Input$UpdateCustomArtistPackageRequestInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$UpdateCustomArtistPackageRequestInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$packageName = packageName;
+    final lOther$packageName = other.packageName;
+    if (_$data.containsKey('packageName') !=
+        other._$data.containsKey('packageName')) {
+      return false;
+    }
+    if (l$packageName != lOther$packageName) {
+      return false;
+    }
+    final l$amount = amount;
+    final lOther$amount = other.amount;
+    if (_$data.containsKey('amount') != other._$data.containsKey('amount')) {
+      return false;
+    }
+    if (l$amount != lOther$amount) {
+      return false;
+    }
+    final l$estimateDeliveryDays = estimateDeliveryDays;
+    final lOther$estimateDeliveryDays = other.estimateDeliveryDays;
+    if (_$data.containsKey('estimateDeliveryDays') !=
+        other._$data.containsKey('estimateDeliveryDays')) {
+      return false;
+    }
+    if (l$estimateDeliveryDays != lOther$estimateDeliveryDays) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (_$data.containsKey('description') !=
+        other._$data.containsKey('description')) {
+      return false;
+    }
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$serviceDetails = serviceDetails;
+    final lOther$serviceDetails = other.serviceDetails;
+    if (_$data.containsKey('serviceDetails') !=
+        other._$data.containsKey('serviceDetails')) {
+      return false;
+    }
+    if (l$serviceDetails != null && lOther$serviceDetails != null) {
+      if (l$serviceDetails.length != lOther$serviceDetails.length) {
+        return false;
+      }
+      for (int i = 0; i < l$serviceDetails.length; i++) {
+        final l$serviceDetails$entry = l$serviceDetails[i];
+        final lOther$serviceDetails$entry = lOther$serviceDetails[i];
+        if (l$serviceDetails$entry != lOther$serviceDetails$entry) {
+          return false;
+        }
+      }
+    } else if (l$serviceDetails != lOther$serviceDetails) {
+      return false;
+    }
+    final l$maxRevision = maxRevision;
+    final lOther$maxRevision = other.maxRevision;
+    if (_$data.containsKey('maxRevision') !=
+        other._$data.containsKey('maxRevision')) {
+      return false;
+    }
+    if (l$maxRevision != lOther$maxRevision) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$packageName = packageName;
+    final l$amount = amount;
+    final l$estimateDeliveryDays = estimateDeliveryDays;
+    final l$description = description;
+    final l$serviceDetails = serviceDetails;
+    final l$maxRevision = maxRevision;
+    return Object.hashAll([
+      l$id,
+      _$data.containsKey('packageName') ? l$packageName : const {},
+      _$data.containsKey('amount') ? l$amount : const {},
+      _$data.containsKey('estimateDeliveryDays')
+          ? l$estimateDeliveryDays
+          : const {},
+      _$data.containsKey('description') ? l$description : const {},
+      _$data.containsKey('serviceDetails')
+          ? l$serviceDetails == null
+                ? null
+                : Object.hashAll(l$serviceDetails.map((v) => v))
+          : const {},
+      _$data.containsKey('maxRevision') ? l$maxRevision : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$UpdateCustomArtistPackageRequestInput<TRes> {
+  factory CopyWith$Input$UpdateCustomArtistPackageRequestInput(
+    Input$UpdateCustomArtistPackageRequestInput instance,
+    TRes Function(Input$UpdateCustomArtistPackageRequestInput) then,
+  ) = _CopyWithImpl$Input$UpdateCustomArtistPackageRequestInput;
+
+  factory CopyWith$Input$UpdateCustomArtistPackageRequestInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$UpdateCustomArtistPackageRequestInput;
+
+  TRes call({
+    String? id,
+    String? packageName,
+    double? amount,
+    int? estimateDeliveryDays,
+    String? description,
+    List<Input$MetadataInput>? serviceDetails,
+    int? maxRevision,
+  });
+  TRes serviceDetails(
+    Iterable<Input$MetadataInput>? Function(
+      Iterable<CopyWith$Input$MetadataInput<Input$MetadataInput>>?,
+    )
+    _fn,
+  );
+}
+
+class _CopyWithImpl$Input$UpdateCustomArtistPackageRequestInput<TRes>
+    implements CopyWith$Input$UpdateCustomArtistPackageRequestInput<TRes> {
+  _CopyWithImpl$Input$UpdateCustomArtistPackageRequestInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$UpdateCustomArtistPackageRequestInput _instance;
+
+  final TRes Function(Input$UpdateCustomArtistPackageRequestInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? packageName = _undefined,
+    Object? amount = _undefined,
+    Object? estimateDeliveryDays = _undefined,
+    Object? description = _undefined,
+    Object? serviceDetails = _undefined,
+    Object? maxRevision = _undefined,
+  }) => _then(
+    Input$UpdateCustomArtistPackageRequestInput._({
+      ..._instance._$data,
+      if (id != _undefined && id != null) 'id': (id as String),
+      if (packageName != _undefined) 'packageName': (packageName as String?),
+      if (amount != _undefined) 'amount': (amount as double?),
+      if (estimateDeliveryDays != _undefined)
+        'estimateDeliveryDays': (estimateDeliveryDays as int?),
+      if (description != _undefined) 'description': (description as String?),
+      if (serviceDetails != _undefined)
+        'serviceDetails': (serviceDetails as List<Input$MetadataInput>?),
+      if (maxRevision != _undefined) 'maxRevision': (maxRevision as int?),
+    }),
+  );
+
+  TRes serviceDetails(
+    Iterable<Input$MetadataInput>? Function(
+      Iterable<CopyWith$Input$MetadataInput<Input$MetadataInput>>?,
+    )
+    _fn,
+  ) => call(
+    serviceDetails: _fn(
+      _instance.serviceDetails?.map(
+        (e) => CopyWith$Input$MetadataInput(e, (i) => i),
+      ),
+    )?.toList(),
+  );
+}
+
+class _CopyWithStubImpl$Input$UpdateCustomArtistPackageRequestInput<TRes>
+    implements CopyWith$Input$UpdateCustomArtistPackageRequestInput<TRes> {
+  _CopyWithStubImpl$Input$UpdateCustomArtistPackageRequestInput(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? packageName,
+    double? amount,
+    int? estimateDeliveryDays,
+    String? description,
+    List<Input$MetadataInput>? serviceDetails,
+    int? maxRevision,
+  }) => _res;
+
+  serviceDetails(_fn) => _res;
+}
+
 class Input$UpdateEntitlementRequestInput {
   factory Input$UpdateEntitlementRequestInput({
     dynamic? value,
@@ -85178,6 +89603,141 @@ class _CopyWithStubImpl$Input$UpdateEscrowCommissionPolicyRequestInput<TRes>
     double? platformFeePercentage,
     Enum$CurrencyType? currency,
   }) => _res;
+}
+
+class Input$UpdateFingerprintConfidencePolicyRequestInput {
+  factory Input$UpdateFingerprintConfidencePolicyRequestInput({
+    required double rejectThreshold,
+    required double manualReviewThreshold,
+  }) => Input$UpdateFingerprintConfidencePolicyRequestInput._({
+    r'rejectThreshold': rejectThreshold,
+    r'manualReviewThreshold': manualReviewThreshold,
+  });
+
+  Input$UpdateFingerprintConfidencePolicyRequestInput._(this._$data);
+
+  factory Input$UpdateFingerprintConfidencePolicyRequestInput.fromJson(
+    Map<String, dynamic> data,
+  ) {
+    final result$data = <String, dynamic>{};
+    final l$rejectThreshold = data['rejectThreshold'];
+    result$data['rejectThreshold'] = (l$rejectThreshold as num).toDouble();
+    final l$manualReviewThreshold = data['manualReviewThreshold'];
+    result$data['manualReviewThreshold'] = (l$manualReviewThreshold as num)
+        .toDouble();
+    return Input$UpdateFingerprintConfidencePolicyRequestInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  double get rejectThreshold => (_$data['rejectThreshold'] as double);
+
+  double get manualReviewThreshold =>
+      (_$data['manualReviewThreshold'] as double);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$rejectThreshold = rejectThreshold;
+    result$data['rejectThreshold'] = l$rejectThreshold;
+    final l$manualReviewThreshold = manualReviewThreshold;
+    result$data['manualReviewThreshold'] = l$manualReviewThreshold;
+    return result$data;
+  }
+
+  CopyWith$Input$UpdateFingerprintConfidencePolicyRequestInput<
+    Input$UpdateFingerprintConfidencePolicyRequestInput
+  >
+  get copyWith => CopyWith$Input$UpdateFingerprintConfidencePolicyRequestInput(
+    this,
+    (i) => i,
+  );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$UpdateFingerprintConfidencePolicyRequestInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$rejectThreshold = rejectThreshold;
+    final lOther$rejectThreshold = other.rejectThreshold;
+    if (l$rejectThreshold != lOther$rejectThreshold) {
+      return false;
+    }
+    final l$manualReviewThreshold = manualReviewThreshold;
+    final lOther$manualReviewThreshold = other.manualReviewThreshold;
+    if (l$manualReviewThreshold != lOther$manualReviewThreshold) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$rejectThreshold = rejectThreshold;
+    final l$manualReviewThreshold = manualReviewThreshold;
+    return Object.hashAll([l$rejectThreshold, l$manualReviewThreshold]);
+  }
+}
+
+abstract class CopyWith$Input$UpdateFingerprintConfidencePolicyRequestInput<
+  TRes
+> {
+  factory CopyWith$Input$UpdateFingerprintConfidencePolicyRequestInput(
+    Input$UpdateFingerprintConfidencePolicyRequestInput instance,
+    TRes Function(Input$UpdateFingerprintConfidencePolicyRequestInput) then,
+  ) = _CopyWithImpl$Input$UpdateFingerprintConfidencePolicyRequestInput;
+
+  factory CopyWith$Input$UpdateFingerprintConfidencePolicyRequestInput.stub(
+    TRes res,
+  ) = _CopyWithStubImpl$Input$UpdateFingerprintConfidencePolicyRequestInput;
+
+  TRes call({double? rejectThreshold, double? manualReviewThreshold});
+}
+
+class _CopyWithImpl$Input$UpdateFingerprintConfidencePolicyRequestInput<TRes>
+    implements
+        CopyWith$Input$UpdateFingerprintConfidencePolicyRequestInput<TRes> {
+  _CopyWithImpl$Input$UpdateFingerprintConfidencePolicyRequestInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$UpdateFingerprintConfidencePolicyRequestInput _instance;
+
+  final TRes Function(Input$UpdateFingerprintConfidencePolicyRequestInput)
+  _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? rejectThreshold = _undefined,
+    Object? manualReviewThreshold = _undefined,
+  }) => _then(
+    Input$UpdateFingerprintConfidencePolicyRequestInput._({
+      ..._instance._$data,
+      if (rejectThreshold != _undefined && rejectThreshold != null)
+        'rejectThreshold': (rejectThreshold as double),
+      if (manualReviewThreshold != _undefined && manualReviewThreshold != null)
+        'manualReviewThreshold': (manualReviewThreshold as double),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Input$UpdateFingerprintConfidencePolicyRequestInput<
+  TRes
+>
+    implements
+        CopyWith$Input$UpdateFingerprintConfidencePolicyRequestInput<TRes> {
+  _CopyWithStubImpl$Input$UpdateFingerprintConfidencePolicyRequestInput(
+    this._res,
+  );
+
+  TRes _res;
+
+  call({double? rejectThreshold, double? manualReviewThreshold}) => _res;
 }
 
 class Input$UpdateListenerRequestInput {
@@ -86971,6 +91531,250 @@ class _CopyWithStubImpl$Input$UpdateTrackCommentRequestInput<TRes>
   call({String? commentId, String? content}) => _res;
 }
 
+class Input$UpdateTrackRequestInput {
+  factory Input$UpdateTrackRequestInput({
+    required String trackId,
+    String? description,
+    List<String>? categoryIds,
+    List<String>? tags,
+    bool? isPublic,
+  }) => Input$UpdateTrackRequestInput._({
+    r'trackId': trackId,
+    if (description != null) r'description': description,
+    if (categoryIds != null) r'categoryIds': categoryIds,
+    if (tags != null) r'tags': tags,
+    if (isPublic != null) r'isPublic': isPublic,
+  });
+
+  Input$UpdateTrackRequestInput._(this._$data);
+
+  factory Input$UpdateTrackRequestInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$trackId = data['trackId'];
+    result$data['trackId'] = (l$trackId as String);
+    if (data.containsKey('description')) {
+      final l$description = data['description'];
+      result$data['description'] = (l$description as String?);
+    }
+    if (data.containsKey('categoryIds')) {
+      final l$categoryIds = data['categoryIds'];
+      result$data['categoryIds'] = (l$categoryIds as List<dynamic>?)
+          ?.map((e) => (e as String))
+          .toList();
+    }
+    if (data.containsKey('tags')) {
+      final l$tags = data['tags'];
+      result$data['tags'] = (l$tags as List<dynamic>?)
+          ?.map((e) => (e as String))
+          .toList();
+    }
+    if (data.containsKey('isPublic')) {
+      final l$isPublic = data['isPublic'];
+      result$data['isPublic'] = (l$isPublic as bool?);
+    }
+    return Input$UpdateTrackRequestInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get trackId => (_$data['trackId'] as String);
+
+  String? get description => (_$data['description'] as String?);
+
+  List<String>? get categoryIds => (_$data['categoryIds'] as List<String>?);
+
+  List<String>? get tags => (_$data['tags'] as List<String>?);
+
+  bool? get isPublic => (_$data['isPublic'] as bool?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$trackId = trackId;
+    result$data['trackId'] = l$trackId;
+    if (_$data.containsKey('description')) {
+      final l$description = description;
+      result$data['description'] = l$description;
+    }
+    if (_$data.containsKey('categoryIds')) {
+      final l$categoryIds = categoryIds;
+      result$data['categoryIds'] = l$categoryIds?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('tags')) {
+      final l$tags = tags;
+      result$data['tags'] = l$tags?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('isPublic')) {
+      final l$isPublic = isPublic;
+      result$data['isPublic'] = l$isPublic;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$UpdateTrackRequestInput<Input$UpdateTrackRequestInput>
+  get copyWith => CopyWith$Input$UpdateTrackRequestInput(this, (i) => i);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$UpdateTrackRequestInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$trackId = trackId;
+    final lOther$trackId = other.trackId;
+    if (l$trackId != lOther$trackId) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (_$data.containsKey('description') !=
+        other._$data.containsKey('description')) {
+      return false;
+    }
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$categoryIds = categoryIds;
+    final lOther$categoryIds = other.categoryIds;
+    if (_$data.containsKey('categoryIds') !=
+        other._$data.containsKey('categoryIds')) {
+      return false;
+    }
+    if (l$categoryIds != null && lOther$categoryIds != null) {
+      if (l$categoryIds.length != lOther$categoryIds.length) {
+        return false;
+      }
+      for (int i = 0; i < l$categoryIds.length; i++) {
+        final l$categoryIds$entry = l$categoryIds[i];
+        final lOther$categoryIds$entry = lOther$categoryIds[i];
+        if (l$categoryIds$entry != lOther$categoryIds$entry) {
+          return false;
+        }
+      }
+    } else if (l$categoryIds != lOther$categoryIds) {
+      return false;
+    }
+    final l$tags = tags;
+    final lOther$tags = other.tags;
+    if (_$data.containsKey('tags') != other._$data.containsKey('tags')) {
+      return false;
+    }
+    if (l$tags != null && lOther$tags != null) {
+      if (l$tags.length != lOther$tags.length) {
+        return false;
+      }
+      for (int i = 0; i < l$tags.length; i++) {
+        final l$tags$entry = l$tags[i];
+        final lOther$tags$entry = lOther$tags[i];
+        if (l$tags$entry != lOther$tags$entry) {
+          return false;
+        }
+      }
+    } else if (l$tags != lOther$tags) {
+      return false;
+    }
+    final l$isPublic = isPublic;
+    final lOther$isPublic = other.isPublic;
+    if (_$data.containsKey('isPublic') !=
+        other._$data.containsKey('isPublic')) {
+      return false;
+    }
+    if (l$isPublic != lOther$isPublic) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$trackId = trackId;
+    final l$description = description;
+    final l$categoryIds = categoryIds;
+    final l$tags = tags;
+    final l$isPublic = isPublic;
+    return Object.hashAll([
+      l$trackId,
+      _$data.containsKey('description') ? l$description : const {},
+      _$data.containsKey('categoryIds')
+          ? l$categoryIds == null
+                ? null
+                : Object.hashAll(l$categoryIds.map((v) => v))
+          : const {},
+      _$data.containsKey('tags')
+          ? l$tags == null
+                ? null
+                : Object.hashAll(l$tags.map((v) => v))
+          : const {},
+      _$data.containsKey('isPublic') ? l$isPublic : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$UpdateTrackRequestInput<TRes> {
+  factory CopyWith$Input$UpdateTrackRequestInput(
+    Input$UpdateTrackRequestInput instance,
+    TRes Function(Input$UpdateTrackRequestInput) then,
+  ) = _CopyWithImpl$Input$UpdateTrackRequestInput;
+
+  factory CopyWith$Input$UpdateTrackRequestInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$UpdateTrackRequestInput;
+
+  TRes call({
+    String? trackId,
+    String? description,
+    List<String>? categoryIds,
+    List<String>? tags,
+    bool? isPublic,
+  });
+}
+
+class _CopyWithImpl$Input$UpdateTrackRequestInput<TRes>
+    implements CopyWith$Input$UpdateTrackRequestInput<TRes> {
+  _CopyWithImpl$Input$UpdateTrackRequestInput(this._instance, this._then);
+
+  final Input$UpdateTrackRequestInput _instance;
+
+  final TRes Function(Input$UpdateTrackRequestInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? trackId = _undefined,
+    Object? description = _undefined,
+    Object? categoryIds = _undefined,
+    Object? tags = _undefined,
+    Object? isPublic = _undefined,
+  }) => _then(
+    Input$UpdateTrackRequestInput._({
+      ..._instance._$data,
+      if (trackId != _undefined && trackId != null)
+        'trackId': (trackId as String),
+      if (description != _undefined) 'description': (description as String?),
+      if (categoryIds != _undefined)
+        'categoryIds': (categoryIds as List<String>?),
+      if (tags != _undefined) 'tags': (tags as List<String>?),
+      if (isPublic != _undefined) 'isPublic': (isPublic as bool?),
+    }),
+  );
+}
+
+class _CopyWithStubImpl$Input$UpdateTrackRequestInput<TRes>
+    implements CopyWith$Input$UpdateTrackRequestInput<TRes> {
+  _CopyWithStubImpl$Input$UpdateTrackRequestInput(this._res);
+
+  TRes _res;
+
+  call({
+    String? trackId,
+    String? description,
+    List<String>? categoryIds,
+    List<String>? tags,
+    bool? isPublic,
+  }) => _res;
+}
+
 class Input$UserEngagementActionOperationFilterInput {
   factory Input$UserEngagementActionOperationFilterInput({
     Enum$UserEngagementAction? eq,
@@ -88449,6 +93253,7 @@ class Input$UserFilterInput {
     Input$StringOperationFilterInput? email,
     Input$StringOperationFilterInput? passwordHash,
     Input$StringOperationFilterInput? fullName,
+    Input$StringOperationFilterInput? fullNameUnsigned,
     Input$UserGenderOperationFilterInput? gender,
     Input$DateTimeOperationFilterInput? birthDate,
     Input$UserRoleOperationFilterInput? role,
@@ -88457,7 +93262,7 @@ class Input$UserFilterInput {
     Input$BooleanOperationFilterInput? isLinkedWithGoogle,
     Input$StringOperationFilterInput? stripeCustomerId,
     Input$StringOperationFilterInput? stripeAccountId,
-    Input$StringOperationFilterInput? fcmToken,
+    Input$ListStringOperationFilterInput? fcmToken,
     Input$DateTimeOperationFilterInput? lastLoginAt,
     Input$ListFilterInputTypeOfRestrictionFilterInput? restrictions,
     Input$StringOperationFilterInput? createdBy,
@@ -88471,6 +93276,7 @@ class Input$UserFilterInput {
     if (email != null) r'email': email,
     if (passwordHash != null) r'passwordHash': passwordHash,
     if (fullName != null) r'fullName': fullName,
+    if (fullNameUnsigned != null) r'fullNameUnsigned': fullNameUnsigned,
     if (gender != null) r'gender': gender,
     if (birthDate != null) r'birthDate': birthDate,
     if (role != null) r'role': role,
@@ -88538,6 +93344,14 @@ class Input$UserFilterInput {
           ? null
           : Input$StringOperationFilterInput.fromJson(
               (l$fullName as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('fullNameUnsigned')) {
+      final l$fullNameUnsigned = data['fullNameUnsigned'];
+      result$data['fullNameUnsigned'] = l$fullNameUnsigned == null
+          ? null
+          : Input$StringOperationFilterInput.fromJson(
+              (l$fullNameUnsigned as Map<String, dynamic>),
             );
     }
     if (data.containsKey('gender')) {
@@ -88608,7 +93422,7 @@ class Input$UserFilterInput {
       final l$fcmToken = data['fcmToken'];
       result$data['fcmToken'] = l$fcmToken == null
           ? null
-          : Input$StringOperationFilterInput.fromJson(
+          : Input$ListStringOperationFilterInput.fromJson(
               (l$fcmToken as Map<String, dynamic>),
             );
     }
@@ -88683,6 +93497,9 @@ class Input$UserFilterInput {
   Input$StringOperationFilterInput? get fullName =>
       (_$data['fullName'] as Input$StringOperationFilterInput?);
 
+  Input$StringOperationFilterInput? get fullNameUnsigned =>
+      (_$data['fullNameUnsigned'] as Input$StringOperationFilterInput?);
+
   Input$UserGenderOperationFilterInput? get gender =>
       (_$data['gender'] as Input$UserGenderOperationFilterInput?);
 
@@ -88707,8 +93524,8 @@ class Input$UserFilterInput {
   Input$StringOperationFilterInput? get stripeAccountId =>
       (_$data['stripeAccountId'] as Input$StringOperationFilterInput?);
 
-  Input$StringOperationFilterInput? get fcmToken =>
-      (_$data['fcmToken'] as Input$StringOperationFilterInput?);
+  Input$ListStringOperationFilterInput? get fcmToken =>
+      (_$data['fcmToken'] as Input$ListStringOperationFilterInput?);
 
   Input$DateTimeOperationFilterInput? get lastLoginAt =>
       (_$data['lastLoginAt'] as Input$DateTimeOperationFilterInput?);
@@ -88754,6 +93571,10 @@ class Input$UserFilterInput {
     if (_$data.containsKey('fullName')) {
       final l$fullName = fullName;
       result$data['fullName'] = l$fullName?.toJson();
+    }
+    if (_$data.containsKey('fullNameUnsigned')) {
+      final l$fullNameUnsigned = fullNameUnsigned;
+      result$data['fullNameUnsigned'] = l$fullNameUnsigned?.toJson();
     }
     if (_$data.containsKey('gender')) {
       final l$gender = gender;
@@ -88901,6 +93722,15 @@ class Input$UserFilterInput {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$fullNameUnsigned = fullNameUnsigned;
+    final lOther$fullNameUnsigned = other.fullNameUnsigned;
+    if (_$data.containsKey('fullNameUnsigned') !=
+        other._$data.containsKey('fullNameUnsigned')) {
+      return false;
+    }
+    if (l$fullNameUnsigned != lOther$fullNameUnsigned) {
+      return false;
+    }
     final l$gender = gender;
     final lOther$gender = other.gender;
     if (_$data.containsKey('gender') != other._$data.containsKey('gender')) {
@@ -89044,6 +93874,7 @@ class Input$UserFilterInput {
     final l$email = email;
     final l$passwordHash = passwordHash;
     final l$fullName = fullName;
+    final l$fullNameUnsigned = fullNameUnsigned;
     final l$gender = gender;
     final l$birthDate = birthDate;
     final l$role = role;
@@ -89074,6 +93905,7 @@ class Input$UserFilterInput {
       _$data.containsKey('email') ? l$email : const {},
       _$data.containsKey('passwordHash') ? l$passwordHash : const {},
       _$data.containsKey('fullName') ? l$fullName : const {},
+      _$data.containsKey('fullNameUnsigned') ? l$fullNameUnsigned : const {},
       _$data.containsKey('gender') ? l$gender : const {},
       _$data.containsKey('birthDate') ? l$birthDate : const {},
       _$data.containsKey('role') ? l$role : const {},
@@ -89111,6 +93943,7 @@ abstract class CopyWith$Input$UserFilterInput<TRes> {
     Input$StringOperationFilterInput? email,
     Input$StringOperationFilterInput? passwordHash,
     Input$StringOperationFilterInput? fullName,
+    Input$StringOperationFilterInput? fullNameUnsigned,
     Input$UserGenderOperationFilterInput? gender,
     Input$DateTimeOperationFilterInput? birthDate,
     Input$UserRoleOperationFilterInput? role,
@@ -89119,7 +93952,7 @@ abstract class CopyWith$Input$UserFilterInput<TRes> {
     Input$BooleanOperationFilterInput? isLinkedWithGoogle,
     Input$StringOperationFilterInput? stripeCustomerId,
     Input$StringOperationFilterInput? stripeAccountId,
-    Input$StringOperationFilterInput? fcmToken,
+    Input$ListStringOperationFilterInput? fcmToken,
     Input$DateTimeOperationFilterInput? lastLoginAt,
     Input$ListFilterInputTypeOfRestrictionFilterInput? restrictions,
     Input$StringOperationFilterInput? createdBy,
@@ -89143,6 +93976,7 @@ abstract class CopyWith$Input$UserFilterInput<TRes> {
   CopyWith$Input$StringOperationFilterInput<TRes> get email;
   CopyWith$Input$StringOperationFilterInput<TRes> get passwordHash;
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName;
+  CopyWith$Input$StringOperationFilterInput<TRes> get fullNameUnsigned;
   CopyWith$Input$UserGenderOperationFilterInput<TRes> get gender;
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get birthDate;
   CopyWith$Input$UserRoleOperationFilterInput<TRes> get role;
@@ -89151,7 +93985,7 @@ abstract class CopyWith$Input$UserFilterInput<TRes> {
   CopyWith$Input$BooleanOperationFilterInput<TRes> get isLinkedWithGoogle;
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeCustomerId;
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeAccountId;
-  CopyWith$Input$StringOperationFilterInput<TRes> get fcmToken;
+  CopyWith$Input$ListStringOperationFilterInput<TRes> get fcmToken;
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get lastLoginAt;
   CopyWith$Input$ListFilterInputTypeOfRestrictionFilterInput<TRes>
   get restrictions;
@@ -89178,6 +94012,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
     Object? email = _undefined,
     Object? passwordHash = _undefined,
     Object? fullName = _undefined,
+    Object? fullNameUnsigned = _undefined,
     Object? gender = _undefined,
     Object? birthDate = _undefined,
     Object? role = _undefined,
@@ -89205,6 +94040,9 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
         'passwordHash': (passwordHash as Input$StringOperationFilterInput?),
       if (fullName != _undefined)
         'fullName': (fullName as Input$StringOperationFilterInput?),
+      if (fullNameUnsigned != _undefined)
+        'fullNameUnsigned':
+            (fullNameUnsigned as Input$StringOperationFilterInput?),
       if (gender != _undefined)
         'gender': (gender as Input$UserGenderOperationFilterInput?),
       if (birthDate != _undefined)
@@ -89225,7 +94063,7 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
         'stripeAccountId':
             (stripeAccountId as Input$StringOperationFilterInput?),
       if (fcmToken != _undefined)
-        'fcmToken': (fcmToken as Input$StringOperationFilterInput?),
+        'fcmToken': (fcmToken as Input$ListStringOperationFilterInput?),
       if (lastLoginAt != _undefined)
         'lastLoginAt': (lastLoginAt as Input$DateTimeOperationFilterInput?),
       if (restrictions != _undefined)
@@ -89302,6 +94140,16 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
         : CopyWith$Input$StringOperationFilterInput(
             local$fullName,
             (e) => call(fullName: e),
+          );
+  }
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get fullNameUnsigned {
+    final local$fullNameUnsigned = _instance.fullNameUnsigned;
+    return local$fullNameUnsigned == null
+        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$StringOperationFilterInput(
+            local$fullNameUnsigned,
+            (e) => call(fullNameUnsigned: e),
           );
   }
 
@@ -89385,11 +94233,11 @@ class _CopyWithImpl$Input$UserFilterInput<TRes>
           );
   }
 
-  CopyWith$Input$StringOperationFilterInput<TRes> get fcmToken {
+  CopyWith$Input$ListStringOperationFilterInput<TRes> get fcmToken {
     final local$fcmToken = _instance.fcmToken;
     return local$fcmToken == null
-        ? CopyWith$Input$StringOperationFilterInput.stub(_then(_instance))
-        : CopyWith$Input$StringOperationFilterInput(
+        ? CopyWith$Input$ListStringOperationFilterInput.stub(_then(_instance))
+        : CopyWith$Input$ListStringOperationFilterInput(
             local$fcmToken,
             (e) => call(fcmToken: e),
           );
@@ -89472,6 +94320,7 @@ class _CopyWithStubImpl$Input$UserFilterInput<TRes>
     Input$StringOperationFilterInput? email,
     Input$StringOperationFilterInput? passwordHash,
     Input$StringOperationFilterInput? fullName,
+    Input$StringOperationFilterInput? fullNameUnsigned,
     Input$UserGenderOperationFilterInput? gender,
     Input$DateTimeOperationFilterInput? birthDate,
     Input$UserRoleOperationFilterInput? role,
@@ -89480,7 +94329,7 @@ class _CopyWithStubImpl$Input$UserFilterInput<TRes>
     Input$BooleanOperationFilterInput? isLinkedWithGoogle,
     Input$StringOperationFilterInput? stripeCustomerId,
     Input$StringOperationFilterInput? stripeAccountId,
-    Input$StringOperationFilterInput? fcmToken,
+    Input$ListStringOperationFilterInput? fcmToken,
     Input$DateTimeOperationFilterInput? lastLoginAt,
     Input$ListFilterInputTypeOfRestrictionFilterInput? restrictions,
     Input$StringOperationFilterInput? createdBy,
@@ -89503,6 +94352,9 @@ class _CopyWithStubImpl$Input$UserFilterInput<TRes>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
   CopyWith$Input$StringOperationFilterInput<TRes> get fullName =>
+      CopyWith$Input$StringOperationFilterInput.stub(_res);
+
+  CopyWith$Input$StringOperationFilterInput<TRes> get fullNameUnsigned =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
   CopyWith$Input$UserGenderOperationFilterInput<TRes> get gender =>
@@ -89529,8 +94381,8 @@ class _CopyWithStubImpl$Input$UserFilterInput<TRes>
   CopyWith$Input$StringOperationFilterInput<TRes> get stripeAccountId =>
       CopyWith$Input$StringOperationFilterInput.stub(_res);
 
-  CopyWith$Input$StringOperationFilterInput<TRes> get fcmToken =>
-      CopyWith$Input$StringOperationFilterInput.stub(_res);
+  CopyWith$Input$ListStringOperationFilterInput<TRes> get fcmToken =>
+      CopyWith$Input$ListStringOperationFilterInput.stub(_res);
 
   CopyWith$Input$DateTimeOperationFilterInput<TRes> get lastLoginAt =>
       CopyWith$Input$DateTimeOperationFilterInput.stub(_res);
@@ -90019,6 +94871,7 @@ class Input$UserSortInput {
     Enum$SortEnumType? email,
     Enum$SortEnumType? passwordHash,
     Enum$SortEnumType? fullName,
+    Enum$SortEnumType? fullNameUnsigned,
     Enum$SortEnumType? gender,
     Enum$SortEnumType? birthDate,
     Enum$SortEnumType? role,
@@ -90027,7 +94880,6 @@ class Input$UserSortInput {
     Enum$SortEnumType? isLinkedWithGoogle,
     Enum$SortEnumType? stripeCustomerId,
     Enum$SortEnumType? stripeAccountId,
-    Enum$SortEnumType? fcmToken,
     Enum$SortEnumType? lastLoginAt,
     Enum$SortEnumType? createdBy,
     Enum$SortEnumType? updatedBy,
@@ -90038,6 +94890,7 @@ class Input$UserSortInput {
     if (email != null) r'email': email,
     if (passwordHash != null) r'passwordHash': passwordHash,
     if (fullName != null) r'fullName': fullName,
+    if (fullNameUnsigned != null) r'fullNameUnsigned': fullNameUnsigned,
     if (gender != null) r'gender': gender,
     if (birthDate != null) r'birthDate': birthDate,
     if (role != null) r'role': role,
@@ -90046,7 +94899,6 @@ class Input$UserSortInput {
     if (isLinkedWithGoogle != null) r'isLinkedWithGoogle': isLinkedWithGoogle,
     if (stripeCustomerId != null) r'stripeCustomerId': stripeCustomerId,
     if (stripeAccountId != null) r'stripeAccountId': stripeAccountId,
-    if (fcmToken != null) r'fcmToken': fcmToken,
     if (lastLoginAt != null) r'lastLoginAt': lastLoginAt,
     if (createdBy != null) r'createdBy': createdBy,
     if (updatedBy != null) r'updatedBy': updatedBy,
@@ -90081,6 +94933,12 @@ class Input$UserSortInput {
       result$data['fullName'] = l$fullName == null
           ? null
           : fromJson$Enum$SortEnumType((l$fullName as String));
+    }
+    if (data.containsKey('fullNameUnsigned')) {
+      final l$fullNameUnsigned = data['fullNameUnsigned'];
+      result$data['fullNameUnsigned'] = l$fullNameUnsigned == null
+          ? null
+          : fromJson$Enum$SortEnumType((l$fullNameUnsigned as String));
     }
     if (data.containsKey('gender')) {
       final l$gender = data['gender'];
@@ -90130,12 +94988,6 @@ class Input$UserSortInput {
           ? null
           : fromJson$Enum$SortEnumType((l$stripeAccountId as String));
     }
-    if (data.containsKey('fcmToken')) {
-      final l$fcmToken = data['fcmToken'];
-      result$data['fcmToken'] = l$fcmToken == null
-          ? null
-          : fromJson$Enum$SortEnumType((l$fcmToken as String));
-    }
     if (data.containsKey('lastLoginAt')) {
       final l$lastLoginAt = data['lastLoginAt'];
       result$data['lastLoginAt'] = l$lastLoginAt == null
@@ -90180,6 +95032,9 @@ class Input$UserSortInput {
 
   Enum$SortEnumType? get fullName => (_$data['fullName'] as Enum$SortEnumType?);
 
+  Enum$SortEnumType? get fullNameUnsigned =>
+      (_$data['fullNameUnsigned'] as Enum$SortEnumType?);
+
   Enum$SortEnumType? get gender => (_$data['gender'] as Enum$SortEnumType?);
 
   Enum$SortEnumType? get birthDate =>
@@ -90200,8 +95055,6 @@ class Input$UserSortInput {
 
   Enum$SortEnumType? get stripeAccountId =>
       (_$data['stripeAccountId'] as Enum$SortEnumType?);
-
-  Enum$SortEnumType? get fcmToken => (_$data['fcmToken'] as Enum$SortEnumType?);
 
   Enum$SortEnumType? get lastLoginAt =>
       (_$data['lastLoginAt'] as Enum$SortEnumType?);
@@ -90241,6 +95094,12 @@ class Input$UserSortInput {
       result$data['fullName'] = l$fullName == null
           ? null
           : toJson$Enum$SortEnumType(l$fullName);
+    }
+    if (_$data.containsKey('fullNameUnsigned')) {
+      final l$fullNameUnsigned = fullNameUnsigned;
+      result$data['fullNameUnsigned'] = l$fullNameUnsigned == null
+          ? null
+          : toJson$Enum$SortEnumType(l$fullNameUnsigned);
     }
     if (_$data.containsKey('gender')) {
       final l$gender = gender;
@@ -90289,12 +95148,6 @@ class Input$UserSortInput {
       result$data['stripeAccountId'] = l$stripeAccountId == null
           ? null
           : toJson$Enum$SortEnumType(l$stripeAccountId);
-    }
-    if (_$data.containsKey('fcmToken')) {
-      final l$fcmToken = fcmToken;
-      result$data['fcmToken'] = l$fcmToken == null
-          ? null
-          : toJson$Enum$SortEnumType(l$fcmToken);
     }
     if (_$data.containsKey('lastLoginAt')) {
       final l$lastLoginAt = lastLoginAt;
@@ -90374,6 +95227,15 @@ class Input$UserSortInput {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$fullNameUnsigned = fullNameUnsigned;
+    final lOther$fullNameUnsigned = other.fullNameUnsigned;
+    if (_$data.containsKey('fullNameUnsigned') !=
+        other._$data.containsKey('fullNameUnsigned')) {
+      return false;
+    }
+    if (l$fullNameUnsigned != lOther$fullNameUnsigned) {
+      return false;
+    }
     final l$gender = gender;
     final lOther$gender = other.gender;
     if (_$data.containsKey('gender') != other._$data.containsKey('gender')) {
@@ -90443,15 +95305,6 @@ class Input$UserSortInput {
     if (l$stripeAccountId != lOther$stripeAccountId) {
       return false;
     }
-    final l$fcmToken = fcmToken;
-    final lOther$fcmToken = other.fcmToken;
-    if (_$data.containsKey('fcmToken') !=
-        other._$data.containsKey('fcmToken')) {
-      return false;
-    }
-    if (l$fcmToken != lOther$fcmToken) {
-      return false;
-    }
     final l$lastLoginAt = lastLoginAt;
     final lOther$lastLoginAt = other.lastLoginAt;
     if (_$data.containsKey('lastLoginAt') !=
@@ -90506,6 +95359,7 @@ class Input$UserSortInput {
     final l$email = email;
     final l$passwordHash = passwordHash;
     final l$fullName = fullName;
+    final l$fullNameUnsigned = fullNameUnsigned;
     final l$gender = gender;
     final l$birthDate = birthDate;
     final l$role = role;
@@ -90514,7 +95368,6 @@ class Input$UserSortInput {
     final l$isLinkedWithGoogle = isLinkedWithGoogle;
     final l$stripeCustomerId = stripeCustomerId;
     final l$stripeAccountId = stripeAccountId;
-    final l$fcmToken = fcmToken;
     final l$lastLoginAt = lastLoginAt;
     final l$createdBy = createdBy;
     final l$updatedBy = updatedBy;
@@ -90525,6 +95378,7 @@ class Input$UserSortInput {
       _$data.containsKey('email') ? l$email : const {},
       _$data.containsKey('passwordHash') ? l$passwordHash : const {},
       _$data.containsKey('fullName') ? l$fullName : const {},
+      _$data.containsKey('fullNameUnsigned') ? l$fullNameUnsigned : const {},
       _$data.containsKey('gender') ? l$gender : const {},
       _$data.containsKey('birthDate') ? l$birthDate : const {},
       _$data.containsKey('role') ? l$role : const {},
@@ -90535,7 +95389,6 @@ class Input$UserSortInput {
           : const {},
       _$data.containsKey('stripeCustomerId') ? l$stripeCustomerId : const {},
       _$data.containsKey('stripeAccountId') ? l$stripeAccountId : const {},
-      _$data.containsKey('fcmToken') ? l$fcmToken : const {},
       _$data.containsKey('lastLoginAt') ? l$lastLoginAt : const {},
       _$data.containsKey('createdBy') ? l$createdBy : const {},
       _$data.containsKey('updatedBy') ? l$updatedBy : const {},
@@ -90559,6 +95412,7 @@ abstract class CopyWith$Input$UserSortInput<TRes> {
     Enum$SortEnumType? email,
     Enum$SortEnumType? passwordHash,
     Enum$SortEnumType? fullName,
+    Enum$SortEnumType? fullNameUnsigned,
     Enum$SortEnumType? gender,
     Enum$SortEnumType? birthDate,
     Enum$SortEnumType? role,
@@ -90567,7 +95421,6 @@ abstract class CopyWith$Input$UserSortInput<TRes> {
     Enum$SortEnumType? isLinkedWithGoogle,
     Enum$SortEnumType? stripeCustomerId,
     Enum$SortEnumType? stripeAccountId,
-    Enum$SortEnumType? fcmToken,
     Enum$SortEnumType? lastLoginAt,
     Enum$SortEnumType? createdBy,
     Enum$SortEnumType? updatedBy,
@@ -90591,6 +95444,7 @@ class _CopyWithImpl$Input$UserSortInput<TRes>
     Object? email = _undefined,
     Object? passwordHash = _undefined,
     Object? fullName = _undefined,
+    Object? fullNameUnsigned = _undefined,
     Object? gender = _undefined,
     Object? birthDate = _undefined,
     Object? role = _undefined,
@@ -90599,7 +95453,6 @@ class _CopyWithImpl$Input$UserSortInput<TRes>
     Object? isLinkedWithGoogle = _undefined,
     Object? stripeCustomerId = _undefined,
     Object? stripeAccountId = _undefined,
-    Object? fcmToken = _undefined,
     Object? lastLoginAt = _undefined,
     Object? createdBy = _undefined,
     Object? updatedBy = _undefined,
@@ -90613,6 +95466,8 @@ class _CopyWithImpl$Input$UserSortInput<TRes>
       if (passwordHash != _undefined)
         'passwordHash': (passwordHash as Enum$SortEnumType?),
       if (fullName != _undefined) 'fullName': (fullName as Enum$SortEnumType?),
+      if (fullNameUnsigned != _undefined)
+        'fullNameUnsigned': (fullNameUnsigned as Enum$SortEnumType?),
       if (gender != _undefined) 'gender': (gender as Enum$SortEnumType?),
       if (birthDate != _undefined)
         'birthDate': (birthDate as Enum$SortEnumType?),
@@ -90626,7 +95481,6 @@ class _CopyWithImpl$Input$UserSortInput<TRes>
         'stripeCustomerId': (stripeCustomerId as Enum$SortEnumType?),
       if (stripeAccountId != _undefined)
         'stripeAccountId': (stripeAccountId as Enum$SortEnumType?),
-      if (fcmToken != _undefined) 'fcmToken': (fcmToken as Enum$SortEnumType?),
       if (lastLoginAt != _undefined)
         'lastLoginAt': (lastLoginAt as Enum$SortEnumType?),
       if (createdBy != _undefined)
@@ -90652,6 +95506,7 @@ class _CopyWithStubImpl$Input$UserSortInput<TRes>
     Enum$SortEnumType? email,
     Enum$SortEnumType? passwordHash,
     Enum$SortEnumType? fullName,
+    Enum$SortEnumType? fullNameUnsigned,
     Enum$SortEnumType? gender,
     Enum$SortEnumType? birthDate,
     Enum$SortEnumType? role,
@@ -90660,7 +95515,6 @@ class _CopyWithStubImpl$Input$UserSortInput<TRes>
     Enum$SortEnumType? isLinkedWithGoogle,
     Enum$SortEnumType? stripeCustomerId,
     Enum$SortEnumType? stripeAccountId,
-    Enum$SortEnumType? fcmToken,
     Enum$SortEnumType? lastLoginAt,
     Enum$SortEnumType? createdBy,
     Enum$SortEnumType? updatedBy,
@@ -93731,11 +98585,55 @@ Enum$ApplyPolicy fromJson$Enum$ApplyPolicy(String value) {
   }
 }
 
+enum Enum$ApprovalPriorityStatus {
+  LOW,
+  MEDIUM,
+  HIGH,
+  URGENT,
+  $unknown;
+
+  factory Enum$ApprovalPriorityStatus.fromJson(String value) =>
+      fromJson$Enum$ApprovalPriorityStatus(value);
+
+  String toJson() => toJson$Enum$ApprovalPriorityStatus(this);
+}
+
+String toJson$Enum$ApprovalPriorityStatus(Enum$ApprovalPriorityStatus e) {
+  switch (e) {
+    case Enum$ApprovalPriorityStatus.LOW:
+      return r'LOW';
+    case Enum$ApprovalPriorityStatus.MEDIUM:
+      return r'MEDIUM';
+    case Enum$ApprovalPriorityStatus.HIGH:
+      return r'HIGH';
+    case Enum$ApprovalPriorityStatus.URGENT:
+      return r'URGENT';
+    case Enum$ApprovalPriorityStatus.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ApprovalPriorityStatus fromJson$Enum$ApprovalPriorityStatus(String value) {
+  switch (value) {
+    case r'LOW':
+      return Enum$ApprovalPriorityStatus.LOW;
+    case r'MEDIUM':
+      return Enum$ApprovalPriorityStatus.MEDIUM;
+    case r'HIGH':
+      return Enum$ApprovalPriorityStatus.HIGH;
+    case r'URGENT':
+      return Enum$ApprovalPriorityStatus.URGENT;
+    default:
+      return Enum$ApprovalPriorityStatus.$unknown;
+  }
+}
+
 enum Enum$ApprovalType {
   TRACK_UPLOAD,
   WORK_UPLOAD,
   RECORDING_UPLOAD,
   ARTIST_REGISTRATION,
+  DISPUTE_RESOLUTION,
   $unknown;
 
   factory Enum$ApprovalType.fromJson(String value) =>
@@ -93754,6 +98652,8 @@ String toJson$Enum$ApprovalType(Enum$ApprovalType e) {
       return r'RECORDING_UPLOAD';
     case Enum$ApprovalType.ARTIST_REGISTRATION:
       return r'ARTIST_REGISTRATION';
+    case Enum$ApprovalType.DISPUTE_RESOLUTION:
+      return r'DISPUTE_RESOLUTION';
     case Enum$ApprovalType.$unknown:
       return r'$unknown';
   }
@@ -93769,6 +98669,8 @@ Enum$ApprovalType fromJson$Enum$ApprovalType(String value) {
       return Enum$ApprovalType.RECORDING_UPLOAD;
     case r'ARTIST_REGISTRATION':
       return Enum$ApprovalType.ARTIST_REGISTRATION;
+    case r'DISPUTE_RESOLUTION':
+      return Enum$ApprovalType.DISPUTE_RESOLUTION;
     default:
       return Enum$ApprovalType.$unknown;
   }
@@ -94507,6 +99409,7 @@ Enum$EntitlementValueType fromJson$Enum$EntitlementValueType(String value) {
 enum Enum$HistoryActionType {
   APPROVED,
   REJECTED,
+  CANCELED,
   REQUEST_CHANGE,
   DISMISSED,
   $unknown;
@@ -94523,6 +99426,8 @@ String toJson$Enum$HistoryActionType(Enum$HistoryActionType e) {
       return r'APPROVED';
     case Enum$HistoryActionType.REJECTED:
       return r'REJECTED';
+    case Enum$HistoryActionType.CANCELED:
+      return r'CANCELED';
     case Enum$HistoryActionType.REQUEST_CHANGE:
       return r'REQUEST_CHANGE';
     case Enum$HistoryActionType.DISMISSED:
@@ -94538,6 +99443,8 @@ Enum$HistoryActionType fromJson$Enum$HistoryActionType(String value) {
       return Enum$HistoryActionType.APPROVED;
     case r'REJECTED':
       return Enum$HistoryActionType.REJECTED;
+    case r'CANCELED':
+      return Enum$HistoryActionType.CANCELED;
     case r'REQUEST_CHANGE':
       return Enum$HistoryActionType.REQUEST_CHANGE;
     case r'DISMISSED':
@@ -94682,6 +99589,9 @@ enum Enum$NotificationActionType {
   REQUEST_REJECTED,
   ORDER_CREATED,
   ORDER_COMPLETED,
+  ORDER_CONTINUED,
+  ORDER_DISPUTED,
+  ORDER_REFUNDED,
   ORDER_DEADLINE,
   RELEASE,
   OTHER,
@@ -94721,6 +99631,12 @@ String toJson$Enum$NotificationActionType(Enum$NotificationActionType e) {
       return r'ORDER_CREATED';
     case Enum$NotificationActionType.ORDER_COMPLETED:
       return r'ORDER_COMPLETED';
+    case Enum$NotificationActionType.ORDER_CONTINUED:
+      return r'ORDER_CONTINUED';
+    case Enum$NotificationActionType.ORDER_DISPUTED:
+      return r'ORDER_DISPUTED';
+    case Enum$NotificationActionType.ORDER_REFUNDED:
+      return r'ORDER_REFUNDED';
     case Enum$NotificationActionType.ORDER_DEADLINE:
       return r'ORDER_DEADLINE';
     case Enum$NotificationActionType.RELEASE:
@@ -94760,6 +99676,12 @@ Enum$NotificationActionType fromJson$Enum$NotificationActionType(String value) {
       return Enum$NotificationActionType.ORDER_CREATED;
     case r'ORDER_COMPLETED':
       return Enum$NotificationActionType.ORDER_COMPLETED;
+    case r'ORDER_CONTINUED':
+      return Enum$NotificationActionType.ORDER_CONTINUED;
+    case r'ORDER_DISPUTED':
+      return Enum$NotificationActionType.ORDER_DISPUTED;
+    case r'ORDER_REFUNDED':
+      return Enum$NotificationActionType.ORDER_REFUNDED;
     case r'ORDER_DEADLINE':
       return Enum$NotificationActionType.ORDER_DEADLINE;
     case r'RELEASE':
@@ -95138,7 +100060,6 @@ Enum$PeriodTime fromJson$Enum$PeriodTime(String value) {
 enum Enum$PolicyStatus {
   ACTIVE,
   INACTIVE,
-  PENDING,
   $unknown;
 
   factory Enum$PolicyStatus.fromJson(String value) =>
@@ -95153,8 +100074,6 @@ String toJson$Enum$PolicyStatus(Enum$PolicyStatus e) {
       return r'ACTIVE';
     case Enum$PolicyStatus.INACTIVE:
       return r'INACTIVE';
-    case Enum$PolicyStatus.PENDING:
-      return r'PENDING';
     case Enum$PolicyStatus.$unknown:
       return r'$unknown';
   }
@@ -95166,8 +100085,6 @@ Enum$PolicyStatus fromJson$Enum$PolicyStatus(String value) {
       return Enum$PolicyStatus.ACTIVE;
     case r'INACTIVE':
       return Enum$PolicyStatus.INACTIVE;
-    case r'PENDING':
-      return Enum$PolicyStatus.PENDING;
     default:
       return Enum$PolicyStatus.$unknown;
   }
@@ -95732,6 +100649,8 @@ enum Enum$ReportType {
   FAKE_ACCOUNT,
   SCAM_OR_FRAUD,
   SELF_HARM_OR_DANGEROUS_CONTENT,
+  PRIVACY_VIOLATION,
+  UNAPPROVED_UPLOADED_TRACK,
   OTHER,
   $unknown;
 
@@ -95761,6 +100680,10 @@ String toJson$Enum$ReportType(Enum$ReportType e) {
       return r'SCAM_OR_FRAUD';
     case Enum$ReportType.SELF_HARM_OR_DANGEROUS_CONTENT:
       return r'SELF_HARM_OR_DANGEROUS_CONTENT';
+    case Enum$ReportType.PRIVACY_VIOLATION:
+      return r'PRIVACY_VIOLATION';
+    case Enum$ReportType.UNAPPROVED_UPLOADED_TRACK:
+      return r'UNAPPROVED_UPLOADED_TRACK';
     case Enum$ReportType.OTHER:
       return r'OTHER';
     case Enum$ReportType.$unknown:
@@ -95788,6 +100711,10 @@ Enum$ReportType fromJson$Enum$ReportType(String value) {
       return Enum$ReportType.SCAM_OR_FRAUD;
     case r'SELF_HARM_OR_DANGEROUS_CONTENT':
       return Enum$ReportType.SELF_HARM_OR_DANGEROUS_CONTENT;
+    case r'PRIVACY_VIOLATION':
+      return Enum$ReportType.PRIVACY_VIOLATION;
+    case r'UNAPPROVED_UPLOADED_TRACK':
+      return Enum$ReportType.UNAPPROVED_UPLOADED_TRACK;
     case r'OTHER':
       return Enum$ReportType.OTHER;
     default:

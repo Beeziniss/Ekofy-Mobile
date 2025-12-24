@@ -15,7 +15,9 @@ class InboxNotifier extends StateNotifier<InboxState> {
   InboxNotifier(this.repository, this.ref) : super(InboxState());
 
   /// Fetch conversations for the current user with optional status filter
-  Future<void> fetchConversations({Enum$ConversationStatus? status}) async {
+  Future<void> fetchConversations({
+    List<Enum$ConversationStatus>? statuses,
+  }) async {
     state = state.copyWith(isLoading: true, error: null);
     try {
       final jwtPayload = await Helper.decodeJwtUnverified(ref);
@@ -27,7 +29,7 @@ class InboxNotifier extends StateNotifier<InboxState> {
 
       final conversations = await repository.fetchConversations(
         userId: userId,
-        status: status,
+        statuses: statuses,
       );
       state = state.copyWith(conversations: conversations, isLoading: false);
     } catch (e) {

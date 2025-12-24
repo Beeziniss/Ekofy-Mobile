@@ -80,7 +80,9 @@ class MessageBubble extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    DateFormat('HH:mm').format(message.sentAt),
+                    DateFormat(
+                      'HH:mm',
+                    ).format(message.sentAt.add(const Duration(hours: 7))),
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 10,

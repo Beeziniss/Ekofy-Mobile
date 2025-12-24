@@ -35,7 +35,7 @@ class _TransactionDetailScreenState
       backgroundColor: const Color(0xFF0B0B0E),
       appBar: AppBar(
         title: const Text(
-          'Transaction Detail',
+          'Invoice Detail',
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
@@ -105,7 +105,10 @@ class _TransactionDetailScreenState
             const SizedBox(height: 12),
             _kv('Amount', formatAmountMajor(item.amountMinor, item.currency)),
             const SizedBox(height: 8),
-            _kv('Created', _formatDateTime(item.createdAt)),
+            _kv(
+              'Created',
+              _formatDateTime(item.createdAt.add(Duration(hours: 7))),
+            ),
             if (item.stripePaymentId != null) ...[
               const SizedBox(height: 8),
               _kv('Stripe Payment Id', item.stripePaymentId!),
@@ -122,13 +125,11 @@ class _TransactionDetailScreenState
               const SizedBox(height: 8),
               _kv('Full Name', item.fullName!),
             ],
-            if (item.email != null) ...[
-              const SizedBox(height: 8),
-              _kv('Email', item.email!),
-            ],
             if (item.from != null && item.to != null) ...[
               const SizedBox(height: 8),
-              _kv('From', '${item.from!}\n -> ${item.to!}'),
+              _kv('Billed from', item.from!),
+              const SizedBox(height: 8),
+              _kv('Billed to', item.to!),
             ],
           ],
         ),

@@ -1,10 +1,15 @@
 import 'dart:async';
 
 import 'package:ekofy_mobile/core/configs/assets/app_images.dart';
+import 'package:ekofy_mobile/core/di/injector.dart';
 import 'package:ekofy_mobile/features/library/presentation/providers/library_provider.dart';
 import 'package:ekofy_mobile/features/library/presentation/providers/library_state.dart';
+import 'package:ekofy_mobile/gql/queries/generated/playlist_query.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../../data/datasources/library_mock_datasource.dart';
 import '../../data/models/library_models.dart';
@@ -33,11 +38,11 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
 
   // Local UI state per tab
   int _activeTab = 0;
-  final _searchCtrls = List.generate(5, (_) => TextEditingController());
-  final _searchDebouncers = List<Timer?>.filled(5, null);
-  final _isLoading = List.filled(5, false);
-  final _hasMore = List.filled(5, true);
-  final _page = List.filled(5, 1);
+  final _searchCtrls = List.generate(2, (_) => TextEditingController());
+  final _searchDebouncers = List<Timer?>.filled(2, null);
+  final _isLoading = List.filled(2, false);
+  final _hasMore = List.filled(2, true);
+  final _page = List.filled(2, 1);
   final _pageSize = 12;
 
   // Data caches
@@ -64,13 +69,13 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(() {
       if (_activeTab != _tabController.index) {
         setState(() => _activeTab = _tabController.index);
       }
     });
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 2; i++) {
       _searchCtrls[i].addListener(() => _onSearchChanged(i));
     }
     _loadInitial();
@@ -95,10 +100,10 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
   Future<void> _loadInitial() async {
     await Future.wait([
       _loadPlaylists(reset: true),
-      _loadTracks(reset: true),
-      _loadAlbums(reset: true),
+      // _loadTracks(reset: true),
+      // _loadAlbums(reset: true),
       _loadArtists(reset: true),
-      _loadFollowers(reset: true),
+      // _loadFollowers(reset: true),
     ]);
   }
 
@@ -110,17 +115,17 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
           _applyPlaylistFilters(resetPage: true);
           break;
         case 1:
-          _applyTrackFilters(resetPage: true);
-          break;
-        case 2:
-          _applyAlbumFilters(resetPage: true);
-          break;
-        case 3:
           _applyArtistFilters(resetPage: true);
           break;
-        case 4:
-          _applyFollowersFilters(resetPage: true);
-          break;
+        // case 2:
+        //   _applyAlbumFilters(resetPage: true);
+        //   break;
+        // case 3:
+        //   _applyArtistFilters(resetPage: true);
+        //   break;
+        // case 4:
+        //   _applyFollowersFilters(resetPage: true);
+        //   break;
       }
     });
   }
@@ -132,7 +137,6 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
       _hasMore[0] = true;
       setState(() => _isLoading[0] = true);
     }
-    //INFO: Gọi dữ liệu mock playlists. Thay bằng Repository/API thật khi triển khai backend.
     final data = await _ds.getPlaylists();
     if (!mounted) return;
     setState(() {
@@ -254,9 +258,9 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
 
   Future<void> _loadArtists({bool reset = false}) async {
     if (reset) {
-      _page[3] = 1;
-      _hasMore[3] = true;
-      setState(() => _isLoading[3] = true);
+      _page[1] = 1;
+      _hasMore[1] = true;
+      setState(() => _isLoading[1] = true);
     }
     //INFO: Gọi dữ liệu mock artists.
     final data = await _ds.getArtists();
@@ -264,31 +268,31 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
     setState(() {
       _allArtists = data;
       _applyArtistFilters(resetPage: true);
-      _isLoading[3] = false;
+      _isLoading[1] = false;
     });
   }
 
   void _applyArtistFilters({bool resetPage = false}) {
-    if (resetPage) _page[3] = 1;
-    final q = _searchCtrls[3].text.trim().toLowerCase();
+    if (resetPage) _page[1] = 1;
+    final q = _searchCtrls[1].text.trim().toLowerCase();
     Iterable<Artist> list = _allArtists;
     if (q.isNotEmpty) {
       list = list.where((e) => e.stageName.toLowerCase().contains(q));
     }
     final sorted = list.toList();
-    final end = (_page[3] * _pageSize).clamp(0, sorted.length);
+    final end = (_page[1] * _pageSize).clamp(0, sorted.length);
     _visibleArtists = sorted.sublist(0, end);
-    _hasMore[3] = end < sorted.length;
+    _hasMore[1] = end < sorted.length;
     setState(() {});
   }
 
   void _loadMoreArtists() async {
-    if (!_hasMore[3] || _isLoading[3]) return;
-    setState(() => _isLoading[3] = true);
+    if (!_hasMore[1] || _isLoading[1]) return;
+    setState(() => _isLoading[1] = true);
     await Future.delayed(const Duration(milliseconds: 600));
-    _page[3] += 1;
+    _page[1] += 1;
     _applyArtistFilters();
-    setState(() => _isLoading[3] = false);
+    setState(() => _isLoading[1] = false);
   }
 
   Future<void> _loadFollowers({bool reset = false}) async {
@@ -349,17 +353,6 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
             crossAxisAlignment: CrossAxisAlignment.start,
 
             children: [
-              const SizedBox(height: 4),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  '124 followers | 89 following',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: Colors.white70,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 0, width: 0),
               TabBar(
                 controller: _tabController,
                 isScrollable: true,
@@ -373,10 +366,10 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
                 unselectedLabelColor: Colors.white70,
                 tabs: const [
                   Tab(icon: Icon(Icons.queue_music), text: 'Playlist'),
-                  Tab(icon: Icon(Icons.favorite), text: 'Favorites'),
-                  Tab(icon: Icon(Icons.album), text: 'Albums'),
+                  // Tab(icon: Icon(Icons.favorite), text: 'Favorites'),
+                  // Tab(icon: Icon(Icons.album), text: 'Albums'),
                   Tab(icon: Icon(Icons.person), text: 'Artists'),
-                  Tab(icon: Icon(Icons.groups), text: 'Followers'),
+                  // Tab(icon: Icon(Icons.groups), text: 'Followers'),
                 ],
               ),
             ],
@@ -387,10 +380,10 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
         controller: _tabController,
         children: [
           _buildPlaylistsTab(context),
-          _buildFavoritesTab(context),
-          _buildAlbumsTab(context),
+          // _buildFavoritesTab(context),
+          // _buildAlbumsTab(context),
           _buildArtistsTab(context),
-          _buildFollowersTab(context),
+          // _buildFollowersTab(context),
         ],
       ),
     );
@@ -398,125 +391,189 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
 
   // ----- Playlist Tab -----
   Widget _buildPlaylistsTab(BuildContext context) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: (n) {
-        if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120) {
-          _loadMorePlaylists();
-        }
-        return false;
-      },
-      child: RefreshIndicator(
-        onRefresh: () => _loadPlaylists(reset: true),
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: _searchBar(0, hint: 'Search playlists…')),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
+    final payload = ref.watch(jwtPayloadProvider);
+    final userId = payload?['userId'];
+    final searchText = _searchCtrls[0].text.trim();
+
+    return Query$Playlists$Widget(
+      options: Options$Query$Playlists(
+        variables: Variables$Query$Playlists(
+          userId: userId,
+          name: searchText.isNotEmpty ? searchText : "",
+          take: _pageSize,
+          skip: 0,
+        ),
+        fetchPolicy: FetchPolicy.cacheAndNetwork,
+      ),
+      builder: (result, {fetchMore, refetch}) {
+        final playlists = result.parsedData?.playlists?.items ?? [];
+        final isLoading = result.isLoading;
+
+        return NotificationListener<ScrollNotification>(
+          onNotification: (n) {
+            if (n.metrics.pixels >= n.metrics.maxScrollExtent - 120) {
+              if (!isLoading &&
+                  result.parsedData?.playlists?.pageInfo?.hasNextPage == true) {
+                fetchMore?.call(
+                  FetchMoreOptions$Query$Playlists(
+                    variables: Variables$Query$Playlists(
+                      userId: userId,
+                      name: searchText.isNotEmpty ? searchText : null,
+                      take: _pageSize,
+                      skip: playlists.length,
+                    ),
+                    updateQuery: (previousResultData, fetchMoreResultData) {
+                      final List<dynamic> repos = [
+                        ...previousResultData?['playlists']?['items'] ?? [],
+                        ...fetchMoreResultData?['playlists']?['items'] ?? [],
+                      ];
+                      fetchMoreResultData?['playlists']?['items'] = repos;
+                      return fetchMoreResultData;
+                    },
+                  ),
+                );
+              }
+            }
+            return false;
+          },
+          child: RefreshIndicator(
+            onRefresh: () async => refetch?.call(),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: _searchBar(0, hint: 'Search playlists…'),
                 ),
-                child: Text(
-                  _visiblePlaylists.length == 1
-                      ? '1 playlist'
-                      : '${_visiblePlaylists.length} playlists',
-                  style: const TextStyle(color: Colors.white70),
-                ),
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              sliver: SliverGrid(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final showCreate = _searchCtrls[0].text.trim().isEmpty;
-                    if (showCreate && index == 0) {
-                      return CreatePlaylistCard(
-                        onTap: () => _showCreatePlaylistSheet(context),
-                      );
-                    }
-                    final itemIndex = showCreate ? index - 1 : index;
-                    if (itemIndex >= _visiblePlaylists.length) {
-                      return _playlistSkeleton();
-                    }
-                    final p = _visiblePlaylists[itemIndex];
-                    final isPlaying = _currentlyPlayingPlaylistId == p.id;
-                    // favorites hidden; ownership not needed for UI now
-                    return PlaylistCard(
-                      playlist: p,
-                      isPlaying: isPlaying,
-                      onTogglePlay: () {
-                        setState(() {
-                          _currentlyPlayingPlaylistId = isPlaying ? null : p.id;
-                        });
-                      },
-                      onMore: () {
-                        showModalBottomSheet(
-                          context: context,
-                          backgroundColor: const Color(0xFF15151B),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(16),
-                            ),
-                          ),
-                          builder: (_) => SafeArea(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                ListTile(
-                                  leading: const Icon(
-                                    Icons.link,
-                                    color: Colors.white70,
-                                  ),
-                                  title: const Text(
-                                    'Copy link',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text('Link copied'),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  childCount:
-                      (_visiblePlaylists.length + (_isLoading[0] ? 6 : 0)) +
-                      (_searchCtrls[0].text.trim().isEmpty ? 1 : 0),
-                ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: _gridCols(context),
-                  childAspectRatio: 0.9,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                child: Center(
-                  child: Text(
-                    _hasMore[0]
-                        ? (_isLoading[0] ? 'Loading more…' : 'Scroll for more')
-                        : 'No more items',
-                    style: const TextStyle(color: Colors.white70),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    child: Text(
+                      playlists.length == 1
+                          ? '1 playlist'
+                          : '${playlists.length} playlists',
+                      style: const TextStyle(color: Colors.white70),
+                    ),
                   ),
                 ),
-              ),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  sliver: SliverGrid(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final showCreate = _searchCtrls[0].text.trim().isEmpty;
+                        if (showCreate && index == 0) {
+                          return CreatePlaylistCard(
+                            onTap: () => _showCreatePlaylistSheet(context),
+                          );
+                        }
+                        final itemIndex = showCreate ? index - 1 : index;
+                        if (itemIndex >= playlists.length) {
+                          return _playlistSkeleton();
+                        }
+                        final p = playlists[itemIndex];
+
+                        final localPlaylist = Playlist(
+                          id: p.id,
+                          name: p.name,
+                          coverImage:
+                              p.coverImage ??
+                              'https://www.iphonefaq.org/files/styles/large/public/apple_music.jpg',
+                          userId: p.userId,
+                          isFavorited: p.checkPlaylistInFavorite,
+                          isPublic: p.isPublic,
+                        );
+
+                        final isPlaying = _currentlyPlayingPlaylistId == p.id;
+                        // favorites hidden; ownership not needed for UI now
+                        return PlaylistCard(
+                          playlist: localPlaylist,
+                          isPlaying: isPlaying,
+                          onTogglePlay: () {
+                            setState(() {
+                              _currentlyPlayingPlaylistId = isPlaying
+                                  ? null
+                                  : p.id;
+                            });
+                          },
+                          onMore: () {
+                            showModalBottomSheet(
+                              context: context,
+                              backgroundColor: const Color(0xFF15151B),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(16),
+                                ),
+                              ),
+                              builder: (_) => SafeArea(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ListTile(
+                                      leading: const Icon(
+                                        Icons.link,
+                                        color: Colors.white70,
+                                      ),
+                                      title: const Text(
+                                        'Copy link',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      onTap: () {
+                                        Clipboard.setData(
+                                          ClipboardData(
+                                            text: '${dotenv.env['BROWSER_URL']}/playlists/${p.id}',
+                                          ),
+                                        );
+                                        Navigator.pop(context);
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          const SnackBar(
+                                            content: Text('Link copied'),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      childCount:
+                          (playlists.length + (isLoading ? 6 : 0)) +
+                          (searchText.isEmpty ? 1 : 0),
+                    ),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: _gridCols(context),
+                      childAspectRatio: 0.9,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: Center(
+                      child: Text(
+                        (result.parsedData?.playlists?.pageInfo?.hasNextPage ==
+                                true)
+                            ? (isLoading ? 'Loading more…' : 'Scroll for more')
+                            : 'No more items',
+                        style: const TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ),
+                ),
+                const SliverToBoxAdapter(child: SizedBox(height: 80)),
+              ],
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 80)),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -833,14 +890,13 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
 
     return libraryState.when(
       initial: () => const SizedBox.shrink(),
-      loading: () => Center(
-        child: Image.asset(AppImages.loader, gaplessPlayback: true),
-      ),
+      loading: () =>
+          Center(child: Image.asset(AppImages.loader, gaplessPlayback: true)),
       failure: (msg) => Center(
         child: Text('Error: $msg', style: const TextStyle(color: Colors.white)),
       ),
       success: (artists) {
-        final q = _searchCtrls[3].text.trim().toLowerCase();
+        final q = _searchCtrls[1].text.trim().toLowerCase();
         final visibleArtists = artists
             .where((e) => e.stageName.toLowerCase().contains(q))
             .toList();
@@ -849,7 +905,7 @@ class _LibraryPageState extends ConsumerState<LibraryPage>
           onRefresh: () => ref.read(libraryProvider.notifier).fetchArtists(),
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(child: _searchBar(3, hint: 'Search artists…')),
+              SliverToBoxAdapter(child: _searchBar(1, hint: 'Search artists…')),
               if (visibleArtists.isEmpty)
                 const SliverFillRemaining(
                   child: Center(

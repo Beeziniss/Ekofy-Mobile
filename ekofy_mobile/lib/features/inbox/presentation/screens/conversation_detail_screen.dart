@@ -367,7 +367,7 @@ class _ConversationDetailScreenState
           if (conversation.status == Enum$ConversationStatus.PENDING)
             IconButton(
               icon: Icon(
-                Icons.add_circle_outline,
+                Icons.list_alt,
                 color: isDark ? AppColors.purpleIshWhite : AppColors.deepBlue,
               ),
               tooltip: 'Create Request',
@@ -699,7 +699,7 @@ class _CreateRequestModalState extends ConsumerState<_CreateRequestModal> {
                                     ),
                                   ),
                                   Text(
-                                    '${Helper.formatCurrency(package.amount)} ${package.currency}',
+                                    '${Helper.formatCurrency(package.amount)} ${Helper.convertCurrencyCodeToSymbol(package.currency)}',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.violet,
@@ -784,6 +784,7 @@ class _CreateRequestModalState extends ConsumerState<_CreateRequestModal> {
                   'Send Request',
                   style: TextStyle(
                     color: Colors.white,
+                    fontFamily: 'Poppins',
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),

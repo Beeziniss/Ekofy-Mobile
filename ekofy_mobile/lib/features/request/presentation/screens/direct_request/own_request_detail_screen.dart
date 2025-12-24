@@ -413,6 +413,7 @@ class _OwnRequestDetailScreenState
               onPressed: () {
                 if (result?.isLoading == true) return;
 
+                try {
                 runMutation(
                   Variables$Mutation$CreatePaymentCheckoutSession(
                     packageId: widget.item.packageId!,
@@ -427,14 +428,21 @@ class _OwnRequestDetailScreenState
                     deliveries: [],
                   ),
                 );
-              },
-              gradientColors: [AppColors.deepBlue, AppColors.violet],
-            );
-          },
-        );
-      },
-    );
-  }
+              } catch (e) {
+                Fluttertoast.showToast(
+                  msg: "Error: ${e.toString()}",
+                  backgroundColor: AppColors.error,
+                  toastLength: Toast.LENGTH_LONG,
+                );
+              }
+            },
+            gradientColors: [AppColors.deepBlue, AppColors.violet],
+          );
+        },
+      );
+    },
+  );
+}
 
   //String _primaryActionLabel(RequestStatus status) {
   // switch (status) {

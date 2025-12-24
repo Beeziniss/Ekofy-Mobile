@@ -38,22 +38,26 @@ class TrackTile extends StatelessWidget {
             height: 48,
             child: track.albumArt == null
                 ? Container(color: const Color(0xFF22222A))
-                : Image.asset(track.albumArt!, fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(color: const Color(0xFF22222A))),
+                : Image.network(
+                    track.albumArt!,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) =>
+                        Container(color: const Color(0xFF22222A)),
+                  ),
           ),
         ),
         title: Text(track.name, style: const TextStyle(color: Colors.white)),
-        subtitle: Text('${track.artistName} • ${formatDuration(track.duration)}', style: const TextStyle(color: Colors.white70)),
-        trailing: Row(
+        subtitle: Text(
+          track.artistName,
+          style: const TextStyle(color: Colors.white70),
+        ),
+        trailing: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            IconButton(onPressed: onPlay, icon: const Icon(Icons.play_arrow, color: Colors.white70)),
-            if (showFavorite)
-              IconButton(
-                onPressed: onToggleFavorite,
-                icon: Icon(isFavorited ? Icons.favorite : Icons.favorite_border, color: Colors.white70),
-              ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz, color: Colors.white70)),
+            IconButton(
+              onPressed: onPlay,
+              icon: const Icon(Icons.play_arrow, color: Colors.white70),
+            ),
           ],
         ),
       ),

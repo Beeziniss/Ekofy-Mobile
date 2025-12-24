@@ -1,6 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
+import 'dart:convert';
 
+import 'package:ekofy_mobile/core/configs/routes/app_route.dart';
+import 'package:go_router/go_router.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:app_settings/app_settings.dart';
@@ -61,6 +64,19 @@ class NotificationService {
       settings,
       onDidReceiveNotificationResponse: (NotificationResponse response) {
         log('Notification Clicked: ${response.payload}');
+        if (response.payload != null) {
+          try {
+            final data = jsonDecode(response.payload!);
+            if (data['mobileRoute'] != null) {
+              final context = rootNavigatorKey.currentContext;
+              if (context != null) {
+                context.push(data['mobileRoute']);
+              }
+            }
+          } catch (e) {
+            log('Error parsing notification payload: $e');
+          }
+        }
       },
     );
 
@@ -136,7 +152,7 @@ class NotificationService {
       notification?.title,
       notification?.body,
       details,
-      payload: 'Notification Payload',
+      payload: jsonEncode(message.data),
     );
   }
 
